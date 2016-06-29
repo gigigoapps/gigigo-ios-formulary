@@ -1,0 +1,620 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7B8C9C211D22567A0066AAA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C201D22567A0066AAA3 /* AppDelegate.swift */; };
+		7B8C9C261D22567A0066AAA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C9C241D22567A0066AAA3 /* Main.storyboard */; };
+		7B8C9C281D22567A0066AAA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C9C271D22567A0066AAA3 /* Assets.xcassets */; };
+		7B8C9C2B1D22567A0066AAA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C9C291D22567A0066AAA3 /* LaunchScreen.storyboard */; };
+		7B8C9C361D22567A0066AAA3 /* GIGFormularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C351D22567A0066AAA3 /* GIGFormularyTests.swift */; };
+		7B8C9C411D22567A0066AAA3 /* GIGFormularyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C401D22567A0066AAA3 /* GIGFormularyUITests.swift */; };
+		7B8C9C511D22575C0066AAA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C501D22575C0066AAA3 /* ViewController.swift */; };
+		7B8C9C531D22577C0066AAA3 /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C521D22577C0066AAA3 /* FormController.swift */; };
+		7B8C9C551D2257C10066AAA3 /* FormConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C541D2257C10066AAA3 /* FormConstant.swift */; };
+		7B8C9C5B1D225B9C0066AAA3 /* FormBuilderFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C5A1D225B9C0066AAA3 /* FormBuilderFields.swift */; };
+		7B8C9C641D2265F30066AAA3 /* TextFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C631D2265F30066AAA3 /* TextFormField.swift */; };
+		7B8C9C681D2273180066AAA3 /* PickerFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C671D2273180066AAA3 /* PickerFormField.swift */; };
+		7B8C9C6A1D22B2900066AAA3 /* PickerFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C9C691D22B2900066AAA3 /* PickerFormField.xib */; };
+		7B8C9C6C1D22B2AC0066AAA3 /* TextFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C9C6B1D22B2AC0066AAA3 /* TextFormField.xib */; };
+		7BDBDE5B1D23AE7800665CF3 /* FormFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDBDE5A1D23AE7800665CF3 /* FormFieldModel.swift */; };
+		7BDBDE5D1D23AE8500665CF3 /* FormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDBDE5C1D23AE8500665CF3 /* FormField.swift */; };
+		7BDBDE601D23B34300665CF3 /* FormFieldOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDBDE5F1D23B34300665CF3 /* FormFieldOptionsModel.swift */; };
+		7BDBDE621D23B47600665CF3 /* FormFieldStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDBDE611D23B47600665CF3 /* FormFieldStyleModel.swift */; };
+		7BDBDE641D23BFA300665CF3 /* FormBuilderViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDBDE631D23BFA300665CF3 /* FormBuilderViews.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7B8C9C321D22567A0066AAA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B8C9C151D22567A0066AAA3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B8C9C1C1D22567A0066AAA3;
+			remoteInfo = GIGFormulary;
+		};
+		7B8C9C3D1D22567A0066AAA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B8C9C151D22567A0066AAA3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B8C9C1C1D22567A0066AAA3;
+			remoteInfo = GIGFormulary;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7B8C9C1D1D22567A0066AAA3 /* GIGFormulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIGFormulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B8C9C201D22567A0066AAA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7B8C9C251D22567A0066AAA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7B8C9C271D22567A0066AAA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7B8C9C2A1D22567A0066AAA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7B8C9C2C1D22567A0066AAA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B8C9C311D22567A0066AAA3 /* GIGFormularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GIGFormularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B8C9C351D22567A0066AAA3 /* GIGFormularyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIGFormularyTests.swift; sourceTree = "<group>"; };
+		7B8C9C371D22567A0066AAA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B8C9C3C1D22567A0066AAA3 /* GIGFormularyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GIGFormularyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B8C9C401D22567A0066AAA3 /* GIGFormularyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIGFormularyUITests.swift; sourceTree = "<group>"; };
+		7B8C9C421D22567A0066AAA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B8C9C501D22575C0066AAA3 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = App/ViewController.swift; sourceTree = "<group>"; };
+		7B8C9C521D22577C0066AAA3 /* FormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormController.swift; path = Source/FormController.swift; sourceTree = "<group>"; };
+		7B8C9C541D2257C10066AAA3 /* FormConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormConstant.swift; path = Source/FormConstant.swift; sourceTree = "<group>"; };
+		7B8C9C5A1D225B9C0066AAA3 /* FormBuilderFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormBuilderFields.swift; path = Source/Builder/FormBuilderFields.swift; sourceTree = "<group>"; };
+		7B8C9C631D2265F30066AAA3 /* TextFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFormField.swift; path = Source/Builder/Fields/TextFormField/TextFormField.swift; sourceTree = "<group>"; };
+		7B8C9C671D2273180066AAA3 /* PickerFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickerFormField.swift; path = Source/Builder/Fields/PickerFormField/PickerFormField.swift; sourceTree = "<group>"; };
+		7B8C9C691D22B2900066AAA3 /* PickerFormField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PickerFormField.xib; path = Source/Builder/Fields/PickerFormField/PickerFormField.xib; sourceTree = "<group>"; };
+		7B8C9C6B1D22B2AC0066AAA3 /* TextFormField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextFormField.xib; path = Source/Builder/Fields/TextFormField/TextFormField.xib; sourceTree = "<group>"; };
+		7BDBDE5A1D23AE7800665CF3 /* FormFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormFieldModel.swift; path = Source/Model/FormFieldModel.swift; sourceTree = "<group>"; };
+		7BDBDE5C1D23AE8500665CF3 /* FormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormField.swift; path = Source/Builder/Fields/FormField.swift; sourceTree = "<group>"; };
+		7BDBDE5F1D23B34300665CF3 /* FormFieldOptionsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormFieldOptionsModel.swift; path = Source/Model/FormFieldOptionsModel.swift; sourceTree = "<group>"; };
+		7BDBDE611D23B47600665CF3 /* FormFieldStyleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormFieldStyleModel.swift; path = Source/Model/FormFieldStyleModel.swift; sourceTree = "<group>"; };
+		7BDBDE631D23BFA300665CF3 /* FormBuilderViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormBuilderViews.swift; path = Source/Builder/FormBuilderViews.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7B8C9C1A1D22567A0066AAA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B8C9C2E1D22567A0066AAA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B8C9C391D22567A0066AAA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7B8C9C141D22567A0066AAA3 = {
+			isa = PBXGroup;
+			children = (
+				7B8C9C1F1D22567A0066AAA3 /* GIGFormulary */,
+				7B8C9C341D22567A0066AAA3 /* GIGFormularyTests */,
+				7B8C9C3F1D22567A0066AAA3 /* GIGFormularyUITests */,
+				7B8C9C1E1D22567A0066AAA3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7B8C9C1E1D22567A0066AAA3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7B8C9C1D1D22567A0066AAA3 /* GIGFormulary.app */,
+				7B8C9C311D22567A0066AAA3 /* GIGFormularyTests.xctest */,
+				7B8C9C3C1D22567A0066AAA3 /* GIGFormularyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7B8C9C1F1D22567A0066AAA3 /* GIGFormulary */ = {
+			isa = PBXGroup;
+			children = (
+				7B8C9C4F1D2256EE0066AAA3 /* Source */,
+				7B8C9C4E1D2256E30066AAA3 /* App */,
+				7B8C9C201D22567A0066AAA3 /* AppDelegate.swift */,
+				7B8C9C241D22567A0066AAA3 /* Main.storyboard */,
+				7B8C9C271D22567A0066AAA3 /* Assets.xcassets */,
+				7B8C9C291D22567A0066AAA3 /* LaunchScreen.storyboard */,
+				7B8C9C2C1D22567A0066AAA3 /* Info.plist */,
+			);
+			path = GIGFormulary;
+			sourceTree = "<group>";
+		};
+		7B8C9C341D22567A0066AAA3 /* GIGFormularyTests */ = {
+			isa = PBXGroup;
+			children = (
+				7B8C9C351D22567A0066AAA3 /* GIGFormularyTests.swift */,
+				7B8C9C371D22567A0066AAA3 /* Info.plist */,
+			);
+			path = GIGFormularyTests;
+			sourceTree = "<group>";
+		};
+		7B8C9C3F1D22567A0066AAA3 /* GIGFormularyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7B8C9C401D22567A0066AAA3 /* GIGFormularyUITests.swift */,
+				7B8C9C421D22567A0066AAA3 /* Info.plist */,
+			);
+			path = GIGFormularyUITests;
+			sourceTree = "<group>";
+		};
+		7B8C9C4E1D2256E30066AAA3 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7B8C9C501D22575C0066AAA3 /* ViewController.swift */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		7B8C9C4F1D2256EE0066AAA3 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7B8C9C5C1D225C540066AAA3 /* Model */,
+				7B8C9C581D225B600066AAA3 /* Builder */,
+				7B8C9C561D2257C80066AAA3 /* Validators */,
+				7B8C9C521D22577C0066AAA3 /* FormController.swift */,
+				7B8C9C541D2257C10066AAA3 /* FormConstant.swift */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		7B8C9C561D2257C80066AAA3 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Validators;
+			sourceTree = "<group>";
+		};
+		7B8C9C581D225B600066AAA3 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				7B8C9C621D2265B30066AAA3 /* Fields */,
+				7BDBDE631D23BFA300665CF3 /* FormBuilderViews.swift */,
+				7B8C9C5A1D225B9C0066AAA3 /* FormBuilderFields.swift */,
+			);
+			name = Builder;
+			sourceTree = "<group>";
+		};
+		7B8C9C5C1D225C540066AAA3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7BDBDE5A1D23AE7800665CF3 /* FormFieldModel.swift */,
+				7BDBDE5F1D23B34300665CF3 /* FormFieldOptionsModel.swift */,
+				7BDBDE611D23B47600665CF3 /* FormFieldStyleModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		7B8C9C621D2265B30066AAA3 /* Fields */ = {
+			isa = PBXGroup;
+			children = (
+				7B8C9C661D2272FE0066AAA3 /* PickerFormField */,
+				7B8C9C651D2266010066AAA3 /* TextFormField */,
+				7BDBDE5C1D23AE8500665CF3 /* FormField.swift */,
+			);
+			name = Fields;
+			sourceTree = "<group>";
+		};
+		7B8C9C651D2266010066AAA3 /* TextFormField */ = {
+			isa = PBXGroup;
+			children = (
+				7B8C9C6B1D22B2AC0066AAA3 /* TextFormField.xib */,
+				7B8C9C631D2265F30066AAA3 /* TextFormField.swift */,
+			);
+			name = TextFormField;
+			sourceTree = "<group>";
+		};
+		7B8C9C661D2272FE0066AAA3 /* PickerFormField */ = {
+			isa = PBXGroup;
+			children = (
+				7B8C9C691D22B2900066AAA3 /* PickerFormField.xib */,
+				7B8C9C671D2273180066AAA3 /* PickerFormField.swift */,
+			);
+			name = PickerFormField;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7B8C9C1C1D22567A0066AAA3 /* GIGFormulary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B8C9C451D22567A0066AAA3 /* Build configuration list for PBXNativeTarget "GIGFormulary" */;
+			buildPhases = (
+				7B8C9C191D22567A0066AAA3 /* Sources */,
+				7B8C9C1A1D22567A0066AAA3 /* Frameworks */,
+				7B8C9C1B1D22567A0066AAA3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GIGFormulary;
+			productName = GIGFormulary;
+			productReference = 7B8C9C1D1D22567A0066AAA3 /* GIGFormulary.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7B8C9C301D22567A0066AAA3 /* GIGFormularyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B8C9C481D22567A0066AAA3 /* Build configuration list for PBXNativeTarget "GIGFormularyTests" */;
+			buildPhases = (
+				7B8C9C2D1D22567A0066AAA3 /* Sources */,
+				7B8C9C2E1D22567A0066AAA3 /* Frameworks */,
+				7B8C9C2F1D22567A0066AAA3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7B8C9C331D22567A0066AAA3 /* PBXTargetDependency */,
+			);
+			name = GIGFormularyTests;
+			productName = GIGFormularyTests;
+			productReference = 7B8C9C311D22567A0066AAA3 /* GIGFormularyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7B8C9C3B1D22567A0066AAA3 /* GIGFormularyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B8C9C4B1D22567A0066AAA3 /* Build configuration list for PBXNativeTarget "GIGFormularyUITests" */;
+			buildPhases = (
+				7B8C9C381D22567A0066AAA3 /* Sources */,
+				7B8C9C391D22567A0066AAA3 /* Frameworks */,
+				7B8C9C3A1D22567A0066AAA3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7B8C9C3E1D22567A0066AAA3 /* PBXTargetDependency */,
+			);
+			name = GIGFormularyUITests;
+			productName = GIGFormularyUITests;
+			productReference = 7B8C9C3C1D22567A0066AAA3 /* GIGFormularyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7B8C9C151D22567A0066AAA3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = gigigo;
+				TargetAttributes = {
+					7B8C9C1C1D22567A0066AAA3 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					7B8C9C301D22567A0066AAA3 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 7B8C9C1C1D22567A0066AAA3;
+					};
+					7B8C9C3B1D22567A0066AAA3 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 7B8C9C1C1D22567A0066AAA3;
+					};
+				};
+			};
+			buildConfigurationList = 7B8C9C181D22567A0066AAA3 /* Build configuration list for PBXProject "GIGFormulary" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7B8C9C141D22567A0066AAA3;
+			productRefGroup = 7B8C9C1E1D22567A0066AAA3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7B8C9C1C1D22567A0066AAA3 /* GIGFormulary */,
+				7B8C9C301D22567A0066AAA3 /* GIGFormularyTests */,
+				7B8C9C3B1D22567A0066AAA3 /* GIGFormularyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7B8C9C1B1D22567A0066AAA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B8C9C2B1D22567A0066AAA3 /* LaunchScreen.storyboard in Resources */,
+				7B8C9C281D22567A0066AAA3 /* Assets.xcassets in Resources */,
+				7B8C9C6A1D22B2900066AAA3 /* PickerFormField.xib in Resources */,
+				7B8C9C261D22567A0066AAA3 /* Main.storyboard in Resources */,
+				7B8C9C6C1D22B2AC0066AAA3 /* TextFormField.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B8C9C2F1D22567A0066AAA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B8C9C3A1D22567A0066AAA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7B8C9C191D22567A0066AAA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BDBDE5D1D23AE8500665CF3 /* FormField.swift in Sources */,
+				7B8C9C531D22577C0066AAA3 /* FormController.swift in Sources */,
+				7BDBDE641D23BFA300665CF3 /* FormBuilderViews.swift in Sources */,
+				7B8C9C681D2273180066AAA3 /* PickerFormField.swift in Sources */,
+				7BDBDE5B1D23AE7800665CF3 /* FormFieldModel.swift in Sources */,
+				7BDBDE601D23B34300665CF3 /* FormFieldOptionsModel.swift in Sources */,
+				7BDBDE621D23B47600665CF3 /* FormFieldStyleModel.swift in Sources */,
+				7B8C9C641D2265F30066AAA3 /* TextFormField.swift in Sources */,
+				7B8C9C511D22575C0066AAA3 /* ViewController.swift in Sources */,
+				7B8C9C5B1D225B9C0066AAA3 /* FormBuilderFields.swift in Sources */,
+				7B8C9C211D22567A0066AAA3 /* AppDelegate.swift in Sources */,
+				7B8C9C551D2257C10066AAA3 /* FormConstant.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B8C9C2D1D22567A0066AAA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B8C9C361D22567A0066AAA3 /* GIGFormularyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B8C9C381D22567A0066AAA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B8C9C411D22567A0066AAA3 /* GIGFormularyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7B8C9C331D22567A0066AAA3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B8C9C1C1D22567A0066AAA3 /* GIGFormulary */;
+			targetProxy = 7B8C9C321D22567A0066AAA3 /* PBXContainerItemProxy */;
+		};
+		7B8C9C3E1D22567A0066AAA3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B8C9C1C1D22567A0066AAA3 /* GIGFormulary */;
+			targetProxy = 7B8C9C3D1D22567A0066AAA3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7B8C9C241D22567A0066AAA3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B8C9C251D22567A0066AAA3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7B8C9C291D22567A0066AAA3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B8C9C2A1D22567A0066AAA3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7B8C9C431D22567A0066AAA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7B8C9C441D22567A0066AAA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7B8C9C461D22567A0066AAA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GIGFormulary/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormulary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7B8C9C471D22567A0066AAA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GIGFormulary/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormulary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		7B8C9C491D22567A0066AAA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GIGFormularyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormularyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GIGFormulary.app/GIGFormulary";
+			};
+			name = Debug;
+		};
+		7B8C9C4A1D22567A0066AAA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GIGFormularyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormularyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GIGFormulary.app/GIGFormulary";
+			};
+			name = Release;
+		};
+		7B8C9C4C1D22567A0066AAA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GIGFormularyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormularyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = GIGFormulary;
+			};
+			name = Debug;
+		};
+		7B8C9C4D1D22567A0066AAA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GIGFormularyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormularyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = GIGFormulary;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7B8C9C181D22567A0066AAA3 /* Build configuration list for PBXProject "GIGFormulary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B8C9C431D22567A0066AAA3 /* Debug */,
+				7B8C9C441D22567A0066AAA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B8C9C451D22567A0066AAA3 /* Build configuration list for PBXNativeTarget "GIGFormulary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B8C9C461D22567A0066AAA3 /* Debug */,
+				7B8C9C471D22567A0066AAA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B8C9C481D22567A0066AAA3 /* Build configuration list for PBXNativeTarget "GIGFormularyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B8C9C491D22567A0066AAA3 /* Debug */,
+				7B8C9C4A1D22567A0066AAA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B8C9C4B1D22567A0066AAA3 /* Build configuration list for PBXNativeTarget "GIGFormularyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B8C9C4C1D22567A0066AAA3 /* Debug */,
+				7B8C9C4D1D22567A0066AAA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7B8C9C151D22567A0066AAA3 /* Project object */;
+}

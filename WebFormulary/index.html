@@ -1,0 +1,452 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <title>Construct TRON</title>
+                    
+        <!-- Bootstrap -->
+        <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+                        
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        
+        
+        <style>
+            .containerPpal {
+                border-color: black;
+                border-style: solid;
+                border-width: 1px;
+                margin-bottom: 20px;
+            }
+        .row{
+            min-height: 80px;
+        }
+        .pType {
+            margin-top: 26px;
+            font-size: 20px;
+            text-align: right;
+        }
+        select {
+            height: 43px;
+            margin-top: 19px;
+            width: 300px;
+        }
+        #containterElementField {
+        }
+        #titleField {
+            background-color: yellow;
+            height: 73px;
+        }
+        
+        input{
+            height: 38px;
+            margin-top: 21px;
+            width: 300px;
+        }
+        
+        
+        .cellConstructor {
+            border-color: black;
+            border-radius: 10px;
+            border-style: solid;
+            border-width: 1px;
+            height: 136px;
+            margin-bottom: 15px;
+            margin-top: 15px;
+        }
+        .buttonAdd {
+            background-color: blue;
+            border-radius: 0px 10px 10px 0px;
+            color: white;
+            float: right;
+            font-size: 49px;
+            height: 135px;
+            margin-right: 13px;
+            text-align: center;
+            width: 80px;
+        }
+            .buttonAdd p{
+                margin-top: 27px;
+            }
+        .buttonRemove {
+            background-color: red;
+            border-radius: 0px 10px 10px 0px;
+            color: white;
+            float: right;
+            font-size: 49px;
+            height: 135px;
+            margin-right: 13px;
+            text-align: center;
+            width: 80px;
+        }
+            .buttonRemove p{
+                margin-top: 27px;
+            }
+        .titleTextField {
+            height: 26px;
+            margin-left: 94px;
+            margin-top: 9px;
+            width: 300px;
+        }
+            .titleTextField p{
+                float: left;
+                margin-top: 3px;
+                width: 50px;
+            }
+            .titleTextField input{
+                float: right;
+                height: 26px;
+                margin-top: 0;
+                width: 246px;
+            }
+        .inputTextField {
+            float: left;
+            height: 46px;
+            margin-bottom: 5px;
+            margin-left: -120px;
+            margin-top: 9px;
+            width: 498px;
+        }
+            .inputTextField p{
+                float: left;
+                margin-left: 33px;
+                margin-top: 11px;
+                width: 85px;
+            }
+            .inputTextField input{
+                float: right;
+                height: 42px;
+                margin-top: 0;
+                width: 374px;
+            }
+        .errorTextField{
+            height: 26px;
+            margin-left: 69px;
+            margin-top: 9px;
+            width: 325px;
+        }
+            .errorTextField p{
+                float: left;
+                margin-left: -10px;
+                margin-top: 3px;
+                width: 78px;
+            }
+            .errorTextField input{
+                float: right;
+                height: 26px;
+                margin-top: 0;
+                width: 246px;
+            }
+        
+        .mandatoryTextField {
+            float: left;
+            margin-top: 8px;
+            width: 169px;
+        }
+            .mandatoryTextField input{
+                float: left;
+                width: 36px;
+            }
+            .mandatoryTextField p{
+                margin-top: 14px;
+            }
+        
+        #listItemsCreated {
+            margin-top: 10px;
+        }
+        
+        #lineSeparator {
+            width: 100%;
+            height: 2px;
+            background-color: gray;
+        }
+        
+        #containerListItemsCreated{
+            
+        }
+        
+        #containerJsonItemsCreated{
+            border-color: gray;
+            border-radius: 10px;
+            border-style: solid;
+            border-width: 1px;
+            margin-bottom: 24px;
+        }
+        
+        .titleTextFieldResult {
+            margin-left: 150px;
+            margin-top: 18px;
+        }
+        .placeHolderTextFieldResult {
+            border-color: gray;
+            border-style: solid;
+            border-width: 1px;
+            float: left;
+            height: 42px;
+            margin-left: 150px;
+            padding-left: 20px;
+            padding-top: 11px;
+            width: 45%;
+        }
+        .mandatoryTextFieldResult{
+             width: 41px;
+        }
+        .errorTextFieldResult{
+            margin-left: 150px;
+        }
+        .containterMid {
+            height: 52px;
+            width: 853px;
+        }
+        #buttonGenerateJson{
+            background-color: green;
+            border-color: gray;
+            border-radius: 5px;
+            border-style: solid;
+            border-width: 1px;
+            color: white;
+            height: 45px;
+            position: absolute;
+            right: 11px;
+            text-align: center;
+            top: 18px;
+            width: 117px;
+        }
+            #buttonGenerateJson p{
+                margin-top: 12px;
+            }
+        .containerTextFieldCenter{
+            height: 51px;
+            width: 100%;
+        }
+        
+        </style>
+    </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <body>
+        <div class="container">
+            <div class="page-header">
+                <h1>Constructor de formularios</h1>
+            </div>
+            <p class="lead"><p>
+        </div>
+        
+        
+        <div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                
+                <!-- Container CreatorTypeField -->
+                <div class="col-md-10 containerPpal">
+                    
+                    <!-- Select typeField -->
+                    <div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="pType">Tipo:</p>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="selectTypeField">
+                                    <option value="None">Elegir tipo de Field</option>
+                                    <option value="Text">Texto</option>
+                                    <option value="Picker">Picker</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Generate Json -->
+                    <div>
+                        <div id="buttonGenerateJson"><p>Generar JSON</p></div>
+                    </div>
+                    
+                    <!-- Continer diferent element -->
+                    <div id="containterElementField"> </div>
+                    
+                    
+                    
+                    
+                   <!-- ZONA DE PRUEBAS -->
+  
+                   
+                   <!-- FIN ZONA DE PRUEBAS -->
+                    
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            
+            
+            
+            <!-- LIST ITEMS CREATED -->
+            <div id="listItemsCreated" class="row">
+                <div class="col-md-1"></div>
+                <!-- Container CreatorTypeField -->
+                <div class="col-md-10 containerPpal">
+                    
+                    <h3>Fields creados</h3>
+                    <div id="lineSeparator"></div>
+                    <div id="containerListItemsCreated"></div>
+                    
+                    <h3>Json resultante</h3>
+                    <div id="containerJsonItemsCreated"></div>
+                    
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        
+        </div>
+        
+        
+        
+        <script>
+            
+            var fieldSelected = ""
+            var listFieldsResult = []
+            
+            
+            function createField(title,placeHolder,error) {
+                var html = '<div class="cellConstructor"><div class="row"><div class="col-md-8"><p class="titleTextFieldResult">'+title+'</p><div class="containterMid"><p class="placeHolderTextFieldResult">'+placeHolder+'</p><input style="display:none" checked/><input class="mandatoryTextFieldResult" type="checkbox" name="mandatory" value="mandatory" checked disabled readonly></div><p class="errorTextFieldResult">'+error+'</p></div><div class="col-md-2 buttonRemove"><p>-</p></div></div></div>';
+                $("#containerListItemsCreated").append(html);
+                resetTypeField();
+            }
+        
+            function validateTextField() {
+                var title = $("#titleTextField").val()
+                var error = $("#errorTextField").val()
+                var placeHolder = $("#palceHolderTextField").val()
+                
+                if (title.length > 0 && error.length > 0) {
+                    createField(title,placeHolder,error);
+                }
+                else {
+                    alert("Los campos con asterisco son obligatorios");
+                }
+            }
+            
+            function addField() {
+                if (fieldSelected == "Text") {
+                    validateTextField();
+                }
+                else {
+                    alert("b");
+                }
+            }
+        
+            function resetTypeField() {
+                clearTypeField()
+            }
+        
+            function clearTypeField(){
+                $("#containterElementField").empty()
+            }
+            
+            function createElementField(typeField) {
+                
+                fieldSelected = typeField;
+                
+                clearTypeField();
+                
+                if (typeField == "Text") {
+                    
+                    var html = '<div class="cellConstructor"><div class="row"><div class="col-md-10"><div class="titleTextField"><p>Titulo*:</p><input type="text" name="titleTextField" id="titleTextField"></div><div class="containerTextFieldCenter"><div class="inputTextField"><p>PlaceHolder:</p><input type="text" name="palceHolderTextField" id="palceHolderTextField"></div><div class="mandatoryTextField"><input type="checkbox" name="mandatory" value="mandatory" id="mandatory"><p>Es obligatorio?</p></div></div><div class="errorTextField"><p>Texto error*:</p><input type="text" name="errorTextField"id="errorTextField"></div></div><div class="col-md-2 buttonAdd" onclick="addField()"><p>+</p></div></div></div>';
+                    
+                    $("#containterElementField").append(html)
+                }
+                else if (typeField == "Picker") {
+                    
+                }
+            }
+        
+        
+            $(".selectTypeField").change(function() {
+                 createElementField(this.value)
+            });
+            
+            $("#buttonGenerateJson").click(function() {
+                alert("generar");
+            });
+            
+            
+        </script>
+    </body>
+</html>
+
+
+<!-- PARA BORRAR USAR;
+ $( this ).slideUp();
+ -->
+
+<!--
+
+ <div class="cellConstructor">
+ <div class="row">
+ <div class="col-md-8">
+ 
+ </div>
+ <div class="col-md-2 buttonAdd">
+ +
+ </div>
+ </div>
+ </div>
+
+ 
+ ///// COMPLETO DEBAJO
+ 
+ 
+ <div class="cellConstructor">
+ <div class="row">
+ <div class="col-md-10">
+ <div class="titleTextField">
+ <p>Titulo*:</p>
+ <input type="text" name="titleTextField" id="titleTextField">
+ </div>
+ <div class="containerTextFieldCenter">
+ <div class="inputTextField">
+ <p>PlaceHolder:</p>
+ <input type="text" name="palceHolderTextField" id="palceHolderTextField">
+ </div>
+ <div class="mandatoryTextField">
+ <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">
+ <p>Es obligatorio?</p>
+ </div>
+ </div>
+ <div class="errorTextField">
+ <p>Texto error*:</p>
+ <input type="text" name="errorTextField"id="errorTextField">
+ </div>
+ </div>
+ <div class="col-md-2 buttonAdd" onclick="addField()">
+ <p>+</p>
+ </div>
+ </div>
+ </div>
+ 
+ 
+ /////////
+
+<div class="cellConstructor">
+    <div class="row">
+        <div class="col-md-8">
+            <p class="titleTextFieldResult">asda</p>
+            <div class="containterMid">
+                <p class="placeHolderTextFieldResult">asdad</p>
+                <input style="display:none" checked/>
+                <input class="mandatoryTextFieldResult" type="checkbox" name="mandatory" value="mandatory" checked disabled readonly>
+                    </div>
+            <p class="errorTextFieldResult">asdas</p>
+        </div>
+        <div class="col-md-2 buttonRemove">
+            <p>-</p>
+        </div>
+    </div>
+</div>
+
+-->
