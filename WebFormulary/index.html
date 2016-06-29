@@ -310,31 +310,60 @@
             
             var fieldSelected = ""
             var listFieldsResult = []
+            var indexField = 0
+            
+            function saveField(tag,title,placeHolder,error,mandatory) {
+                
+                var itemSave = {
+                    "id":indexField,
+                    "tag":tag,
+                    "title":title,
+                    "placeHolder":placeHolder,
+                    "error":error,
+                    "mandatory":mandatory,
+                }
+                
+                listFieldsResult.push(itemSave)
+                /*
+                for (var i=0; i<listFieldsResult.length; i++) {
+                    $.each(listFieldsResult[i], function(index, val) {
+                        console.log("key:"+index+" - value:"+val);
+                    });
+                }
+                */
+                indexField++;
+            }
+        
+            function removeField(idRemove){
+                $("#fieldNumber"+idRemove).slideUp();
+            }
             
             
-            function createField(title,placeHolder,error,isChecked) {
+            function createField(title,placeHolder,error,mandatory) {
                 
                 var valueCheck = ""
-                if (isChecked) {
+                if (mandatory) {
                     valueCheck = "checked"
                 }
-                if (error.length == 0) {
-                    error = "error_generic_field"
-                }
                 
-                var html = '<div class="cellConstructor"><div class="row"><div class="col-md-8"><p class="titleTextFieldResult">'+title+'</p><div class="containterMid"><p class="placeHolderTextFieldResult">'+placeHolder+'</p><input class="mandatoryTextFieldResult" type="checkbox" name="mandatory" value="mandatory" '+valueCheck+' disabled readonly></div><p class="errorTextFieldResult">'+error+'</p></div><div class="col-md-2 buttonRemove"><p>-</p></div></div></div>';
+                var html = '<div class="cellConstructor" id="fieldNumber'+indexField+'"><div class="row"><div class="col-md-8"><p class="titleTextFieldResult">'+title+'</p><div class="containterMid"><p class="placeHolderTextFieldResult">'+placeHolder+'</p><input class="mandatoryTextFieldResult" type="checkbox" name="mandatory" value="mandatory" '+valueCheck+' disabled readonly></div><p class="errorTextFieldResult">'+error+'</p></div><div class="col-md-2 buttonRemove" onclick="removeField('+indexField+')"><p>-</p></div></div></div>';
                 $("#containerListItemsCreated").append(html);
                 resetTypeField();
             }
         
             function validateTextField() {
                 var title = $("#titleTextField").val()
-                var error = $("#errorTextField").val()
                 var placeHolder = $("#palceHolderTextField").val()
-                var isChecked = $('#mandatory').is(':checked');
+                var error = $("#errorTextField").val()
+                var mandatory = $('#mandatory').is(':checked');
+                
+                if (error.length == 0) {
+                    error = "error_generic_field"
+                }
                 
                 if (title.length > 0) {
-                    createField(title,placeHolder,error,isChecked);
+                    createField(title,placeHolder,error,mandatory);
+                    saveField("text",title,placeHolder,error,mandatory)
                 }
                 else {
                     alert("Los campos con asterisco son obligatorios");
@@ -345,8 +374,8 @@
                 if (fieldSelected == "Text") {
                     validateTextField();
                 }
-                else {
-                    alert("b");
+                else if (typeField == "Picker") {
+                    alert("Picker");
                 }
             }
         
