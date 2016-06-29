@@ -133,7 +133,7 @@
         }
             .errorTextField p{
                 float: left;
-                margin-left: -10px;
+                margin-left: -5px;
                 margin-top: 3px;
                 width: 78px;
             }
@@ -312,8 +312,17 @@
             var listFieldsResult = []
             
             
-            function createField(title,placeHolder,error) {
-                var html = '<div class="cellConstructor"><div class="row"><div class="col-md-8"><p class="titleTextFieldResult">'+title+'</p><div class="containterMid"><p class="placeHolderTextFieldResult">'+placeHolder+'</p><input style="display:none" checked/><input class="mandatoryTextFieldResult" type="checkbox" name="mandatory" value="mandatory" checked disabled readonly></div><p class="errorTextFieldResult">'+error+'</p></div><div class="col-md-2 buttonRemove"><p>-</p></div></div></div>';
+            function createField(title,placeHolder,error,isChecked) {
+                
+                var valueCheck = ""
+                if (isChecked) {
+                    valueCheck = "checked"
+                }
+                if (error.length == 0) {
+                    error = "error_generic_field"
+                }
+                
+                var html = '<div class="cellConstructor"><div class="row"><div class="col-md-8"><p class="titleTextFieldResult">'+title+'</p><div class="containterMid"><p class="placeHolderTextFieldResult">'+placeHolder+'</p><input class="mandatoryTextFieldResult" type="checkbox" name="mandatory" value="mandatory" '+valueCheck+' disabled readonly></div><p class="errorTextFieldResult">'+error+'</p></div><div class="col-md-2 buttonRemove"><p>-</p></div></div></div>';
                 $("#containerListItemsCreated").append(html);
                 resetTypeField();
             }
@@ -322,9 +331,10 @@
                 var title = $("#titleTextField").val()
                 var error = $("#errorTextField").val()
                 var placeHolder = $("#palceHolderTextField").val()
+                var isChecked = $('#mandatory').is(':checked');
                 
-                if (title.length > 0 && error.length > 0) {
-                    createField(title,placeHolder,error);
+                if (title.length > 0) {
+                    createField(title,placeHolder,error,isChecked);
                 }
                 else {
                     alert("Los campos con asterisco son obligatorios");
@@ -342,6 +352,7 @@
         
             function resetTypeField() {
                 clearTypeField()
+                $(".selectTypeField").val("None");
             }
         
             function clearTypeField(){
@@ -356,7 +367,7 @@
                 
                 if (typeField == "Text") {
                     
-                    var html = '<div class="cellConstructor"><div class="row"><div class="col-md-10"><div class="titleTextField"><p>Titulo*:</p><input type="text" name="titleTextField" id="titleTextField"></div><div class="containerTextFieldCenter"><div class="inputTextField"><p>PlaceHolder:</p><input type="text" name="palceHolderTextField" id="palceHolderTextField"></div><div class="mandatoryTextField"><input type="checkbox" name="mandatory" value="mandatory" id="mandatory"><p>Es obligatorio?</p></div></div><div class="errorTextField"><p>Texto error*:</p><input type="text" name="errorTextField"id="errorTextField"></div></div><div class="col-md-2 buttonAdd" onclick="addField()"><p>+</p></div></div></div>';
+                    var html = '<div class="cellConstructor"><div class="row"><div class="col-md-10"><div class="titleTextField"><p>Titulo*:</p><input type="text" name="titleTextField" id="titleTextField"></div><div class="containerTextFieldCenter"><div class="inputTextField"><p>PlaceHolder:</p><input type="text" name="palceHolderTextField" id="palceHolderTextField"></div><div class="mandatoryTextField"><input type="checkbox" name="mandatory" value="mandatory" id="mandatory"><p>Es obligatorio?</p></div></div><div class="errorTextField"><p>Texto error:</p><input type="text" name="errorTextField"id="errorTextField"></div></div><div class="col-md-2 buttonAdd" onclick="addField()"><p>+</p></div></div></div>';
                     
                     $("#containterElementField").append(html)
                 }
