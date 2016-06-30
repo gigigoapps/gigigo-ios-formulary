@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2327765A1D25194A00FEFE8C /* GIGLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 232776581D2513AD00FEFE8C /* GIGLibrary.framework */; };
+		2327765B1D25194A00FEFE8C /* GIGLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 232776581D2513AD00FEFE8C /* GIGLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		232776611D25291C00FEFE8C /* json_formulary.json in Resources */ = {isa = PBXBuildFile; fileRef = 232776601D25291C00FEFE8C /* json_formulary.json */; };
+		23582CE11D25550600B04CE5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23582CE01D25550600B04CE5 /* Localizable.strings */; };
 		7B8C9C211D22567A0066AAA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C201D22567A0066AAA3 /* AppDelegate.swift */; };
 		7B8C9C261D22567A0066AAA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C9C241D22567A0066AAA3 /* Main.storyboard */; };
 		7B8C9C281D22567A0066AAA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C9C271D22567A0066AAA3 /* Assets.xcassets */; };
@@ -45,7 +49,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2327765C1D25194A00FEFE8C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2327765B1D25194A00FEFE8C /* GIGLibrary.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		232776581D2513AD00FEFE8C /* GIGLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GIGLibrary.framework; path = ../Carthage/Build/iOS/GIGLibrary.framework; sourceTree = "<group>"; };
+		232776601D25291C00FEFE8C /* json_formulary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = json_formulary.json; path = App/Json/json_formulary.json; sourceTree = "<group>"; };
+		23582CE01D25550600B04CE5 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Resources/Localizable.strings; sourceTree = "<group>"; };
 		7B8C9C1D1D22567A0066AAA3 /* GIGFormulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIGFormulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B8C9C201D22567A0066AAA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B8C9C251D22567A0066AAA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -78,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2327765A1D25194A00FEFE8C /* GIGLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +120,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		232776561D25138100FEFE8C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				232776571D25139F00FEFE8C /* Internal */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		232776571D25139F00FEFE8C /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				232776581D2513AD00FEFE8C /* GIGLibrary.framework */,
+			);
+			name = Internal;
+			sourceTree = "<group>";
+		};
+		2327765D1D2528A200FEFE8C /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				232776601D25291C00FEFE8C /* json_formulary.json */,
+			);
+			name = Json;
+			sourceTree = "<group>";
+		};
+		232776641D252D2D00FEFE8C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7B8C9C271D22567A0066AAA3 /* Assets.xcassets */,
+				23582CE01D25550600B04CE5 /* Localizable.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		7B8C9C141D22567A0066AAA3 = {
 			isa = PBXGroup;
 			children = (
@@ -121,11 +176,11 @@
 		7B8C9C1F1D22567A0066AAA3 /* GIGFormulary */ = {
 			isa = PBXGroup;
 			children = (
+				232776641D252D2D00FEFE8C /* Resources */,
+				232776561D25138100FEFE8C /* Frameworks */,
 				7B8C9C4F1D2256EE0066AAA3 /* Source */,
 				7B8C9C4E1D2256E30066AAA3 /* App */,
 				7B8C9C201D22567A0066AAA3 /* AppDelegate.swift */,
-				7B8C9C241D22567A0066AAA3 /* Main.storyboard */,
-				7B8C9C271D22567A0066AAA3 /* Assets.xcassets */,
 				7B8C9C291D22567A0066AAA3 /* LaunchScreen.storyboard */,
 				7B8C9C2C1D22567A0066AAA3 /* Info.plist */,
 			);
@@ -153,7 +208,9 @@
 		7B8C9C4E1D2256E30066AAA3 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				2327765D1D2528A200FEFE8C /* Json */,
 				7B8C9C501D22575C0066AAA3 /* ViewController.swift */,
+				7B8C9C241D22567A0066AAA3 /* Main.storyboard */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -235,6 +292,7 @@
 				7B8C9C191D22567A0066AAA3 /* Sources */,
 				7B8C9C1A1D22567A0066AAA3 /* Frameworks */,
 				7B8C9C1B1D22567A0066AAA3 /* Resources */,
+				2327765C1D25194A00FEFE8C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -332,8 +390,10 @@
 				7B8C9C2B1D22567A0066AAA3 /* LaunchScreen.storyboard in Resources */,
 				7B8C9C281D22567A0066AAA3 /* Assets.xcassets in Resources */,
 				7B8C9C6A1D22B2900066AAA3 /* PickerFormField.xib in Resources */,
+				23582CE11D25550600B04CE5 /* Localizable.strings in Resources */,
 				7B8C9C261D22567A0066AAA3 /* Main.storyboard in Resources */,
 				7B8C9C6C1D22B2AC0066AAA3 /* TextFormField.xib in Resources */,
+				232776611D25291C00FEFE8C /* json_formulary.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +571,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = GIGFormulary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormulary;
@@ -522,6 +586,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = GIGFormulary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormulary;

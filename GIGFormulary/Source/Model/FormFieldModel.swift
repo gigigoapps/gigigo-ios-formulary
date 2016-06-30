@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GIGLibrary
 
 class FormFieldModel: NSObject {
     
@@ -21,7 +22,7 @@ class FormFieldModel: NSObject {
     var mandatory = false
     var keyboard: String?
     var options: [FormFieldOptionsModel]?
-    var style: [FormFieldStyleModel]?
+    var style: FormFieldStyleModel?
        
     // MARK: Public Method
     
@@ -36,10 +37,6 @@ class FormFieldModel: NSObject {
             print("❌❌❌ label Not Found")
             throw ThrowError.MandatoryElementNotFound
         }
-        guard let textError = json["textError"] as? String else {
-            print("❌❌❌ textError Not Found")
-            throw ThrowError.MandatoryElementNotFound
-        }
         
         //-- Optional --
         let placeHolder = json["placeHolder"] as? String
@@ -48,15 +45,22 @@ class FormFieldModel: NSObject {
         let keyboard = json["keyboard"] as? String
         let options = json["options"] as? [String: AnyObject]
         let style = json["style"] as? [String: AnyObject]
+        let textError = json["textError"] as? String
         
         
         //== INSERT DATA ==
         //-- Mandatory--
         self.tag = tag
         self.label = label
-        self.textError = textError
         
         //-- Optional--
+        if (textError != nil) {
+            self.textError = textError
+        }
+        else {
+            self.textError = NSLocalizedString("error_generic_field", comment: "")
+        }
+
         if (placeHolder != nil) {
             /*  self.bodyBottom = BodyBottomDetailModel()
              try self.bodyBottom?.parseJson(bodyBottom!)
@@ -66,7 +70,7 @@ class FormFieldModel: NSObject {
             
         }
         if (mandatory != nil) {
-            
+            self.mandatory = mandatory!
         }
         if (keyboard != nil) {
             
@@ -75,7 +79,7 @@ class FormFieldModel: NSObject {
             
         }
         if (style != nil) {
-            
+            //mandatoryIcon
         }
     }
 }

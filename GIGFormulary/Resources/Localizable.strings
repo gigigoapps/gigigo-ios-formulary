@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  GIGFormulary
+
+  Created by eduardo parada pardo on 30/6/16.
+  Copyright © 2016 gigigo. All rights reserved.
+*/
+
+"error_generic_field" = "texto de error";

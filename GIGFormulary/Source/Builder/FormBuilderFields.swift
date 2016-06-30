@@ -52,17 +52,7 @@ class FormBuilderFields: NSObject {
     // MARK: Public Method
     
     func fieldsFromJSONFile(file: String) -> [FormField] {
-        
-        /*
-         NSArray *listFormDic = [self.bundle loadJSONFile:file rootNode:@"fields"];
-         */
-        
-        let listFormDic = [["tag":"text","label":"ejemplo1","type":"fsad","textError":"fsad"],
-                           ["tag":"picker","label":"ejemplo2","type":"fsad","textError":"fsad"],
-                           ["tag":"text","label":"ejemplo3","type":"fsad","textError":"fsad"]]
-        
-        
-        
+        let listFormDic = NSBundle.mainBundle().loadJSONFile(file, rootNode: "fields") as! [[String: AnyObject]]
         var listFormField = [FormField]()
         
         for fieldDic in listFormDic {

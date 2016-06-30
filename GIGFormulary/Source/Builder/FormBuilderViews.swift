@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GIGLibrary
 
 class FormBuilderViews: NSObject {
     // -- Views --
@@ -34,62 +35,68 @@ class FormBuilderViews: NSObject {
     func prepareFormulary() {
         
         
-        //_- borrar
+        //_- TODO EDU borrar
         self.viewFormulary.backgroundColor = UIColor.redColor()
         self.scrollView.backgroundColor = UIColor.greenColor()
         //-- fin borrar
         
-        //-- TODO EDU, añadir constraint
+        
         self.scrollView.addSubview(viewFormulary)
         self.viewContainerFormulary.addSubview(scrollView)
+        
+        
+        //-- Constraint --
+        
+        gig_autoresize(self.viewFormulary, false)
+        gig_layout_fit_horizontal(self.viewFormulary);
+        gig_layout_top(self.viewFormulary, 0);
+        gig_layout_bottom(self.viewFormulary, 0)
+        
+        gig_autoresize(self.scrollView, false)
+        gig_layout_fit_horizontal(self.scrollView);
+        gig_layout_top(self.scrollView, 0);
+        gig_layout_bottom(self.scrollView, 0)
+        
+        // TODO EDU habria q ver como solucionar esta mierda T_T
+         self.scrollView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[viewContainer(==\(self.viewContainerFormulary.frame.width))]|", options: [], metrics: nil, views: ["viewContainer":viewFormulary]))
+        
     }
     
     func addFields(listFields: [FormField]) {
         
                 
-        var lastView: UIView
+        var lastView = UIView()
+        var firstTime = true
         for field in listFields {
-            
             self.viewFormulary.addSubview(field)
             
-            // TODO EDU CONSTRAINT DE FIELD
+            gig_autoresize(field, false)
+            gig_layout_fit_horizontal(field);
+            
+            if (!firstTime)
+            {
+                gig_layout_below(field, lastView, 10);
+            }
+            else
+            {
+                gig_layout_top(field, 0);
+            }
             
             lastView = field
+            firstTime = false
+            
+            
+            // TODO EDU
+            field.layoutIfNeeded()
+            field.updateConstraints()
         }
         
         if (self.viewFormulary.subviews.count > 0) {
-            // TODO EDU CONSTRAINT DE PIE DE VISTA
+             gig_layout_bottom(lastView, 0);
         }
-
         
-        /*
-         UIView *lastView = nil;
-         
-         for (GIGFormField *field in self.formFields)
-         {
-         field.formController = self;
-         [self.fieldsContentView addSubview:field];
-         
-         gig_autoresize(field, NO);
-         gig_layout_fit_horizontal(field);
-         
-         if (lastView != nil)
-         {
-         gig_layout_below(field, lastView, self.fieldsMargin);
-         }
-         else
-         {
-         gig_layout_top(field, 0);
-         }
-         
-         lastView = field;
-         }
-         
-         if (lastView != nil)
-         {
-         gig_layout_bottom(lastView, 0);
-         }
-         
-         */
+        // TODO EDU
+        self.viewFormulary.layoutIfNeeded()
+        self.viewFormulary.updateConstraints()
     }
 }
