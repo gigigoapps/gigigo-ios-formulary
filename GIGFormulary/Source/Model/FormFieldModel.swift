@@ -12,7 +12,7 @@ import GIGLibrary
 class FormFieldModel: NSObject {
     
     //-- Mandatory --
-    var tag: String?
+    var type: String?
     var label: String?
     var textError: String?
     
@@ -29,8 +29,8 @@ class FormFieldModel: NSObject {
     func parseDictionary(json: [String:AnyObject]) throws {
         //== PREPARE DATA ==
         //-- Mandatory --
-        guard let tag = json["tag"] as? String else {
-            print("❌❌❌ tag Not Found")
+        guard let type = json["type"] as? String else {
+            print("❌❌❌ type Not Found")
             throw ThrowError.MandatoryElementNotFound
         }
         guard let label = json["label"] as? String else {
@@ -50,7 +50,7 @@ class FormFieldModel: NSObject {
         
         //== INSERT DATA ==
         //-- Mandatory--
-        self.tag = tag
+        self.type = type
         self.label = label
         
         //-- Optional--

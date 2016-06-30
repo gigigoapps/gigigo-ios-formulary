@@ -11,11 +11,13 @@ import GIGLibrary
 
 
 protocol PTextFormField {
-    func borrarProtocolo()
+    func scrollRectToVisible(field: FormField)
+    func didChangeValue(field: FormField, text: String)
+    func formFieldDidFinish(field: FormField)
 }
 
 
-class TextFormField: FormField {
+class TextFormField: FormField, UITextFieldDelegate {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var textTextField: UITextField!
@@ -25,10 +27,7 @@ class TextFormField: FormField {
     @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
     
-    /*
-    func borrar() {
-        self.delegate!.borrarProtocolo()
-     }*/
+    //-- VAR -- 
     
     var viewContainer: UIView!
     
@@ -109,6 +108,7 @@ class TextFormField: FormField {
         self.titleLabel.numberOfLines = 0
         self.errorLabel.numberOfLines = 0
         self.mandotoryImage.image = UIImage(named: "mandatoryIcon")
+        self.textTextField.delegate = self
         
         NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(self.borrar), userInfo: nil, repeats: true)
     }
@@ -118,4 +118,39 @@ class TextFormField: FormField {
     func borrar() {
         self.showError()
     }
+    
+    // MERK: UITextFieldDelegate
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        self.delegate!.scrollRectToVisible(self)
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        self.delegate?.didChangeValue(self, text: textField.text!)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.delegate?.formFieldDidFinish(self)
+        return false
+    }
+    
+    
+    /*
+    - (void)textFieldDidBeginEditing:(UITextField *)textField
+    {
+    [self.formController formFieldDidStart:self];
+    }
+    
+    - (void)textFieldDidEndEditing:(UITextField *)textField
+    {
+    [self.formController formField:self didChangeValue:textField.text];
+    }
+    
+    - (BOOL)textFieldShouldReturn:(UITextField *)textField
+    {
+    [self.formController formFieldDidFinish:self];
+    
+    return NO;
+    }*/
+
 }

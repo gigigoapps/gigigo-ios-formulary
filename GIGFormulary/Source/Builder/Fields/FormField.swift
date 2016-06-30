@@ -9,7 +9,6 @@
 import UIKit
 
 protocol PFormField: PTextFormField, PPickerFormField {
-    
 }
 
 class FormField: UIView{

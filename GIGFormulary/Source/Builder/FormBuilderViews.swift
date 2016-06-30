@@ -30,6 +30,26 @@ class FormBuilderViews: NSObject {
         self.addFields(listFields)
     }
     
+    func scrollRectToVisible(field: FormField) {
+        self.scrollView.scrollRectToVisible(field.frame, animated: true)
+    }
+    
+    func changeFocusField(field: FormField?) {
+        if (field != nil)
+        {
+            if ((field?.canBecomeFirstResponder()) != nil) {
+                field?.becomeFirstResponder()
+            }
+            else {
+                field?.resignFirstResponder()
+            }
+        }
+        else
+        {
+            [self.viewContainerFormulary.resignFirstResponder];
+        }
+    }
+    
     // MARK : Private Method
     
     func prepareFormulary() {

@@ -1,7 +1,6 @@
 {
     "fields": [
                {
-               "tag": "text",
                "type": "text",
                "label": "*Name (max 20 characters):",
                "placeholder": "Write your name here...",
@@ -9,8 +8,7 @@
                "validator": "text",               "textError": "texto de error desde json probando si es demasiado largo para que entre"
                },
                {
-               "tag": "text",
-               "type": "password",
+               "type": "text",
                "label": "*Password (between 4 and 8 characters):",
                "placeholder": "Write a password...",
                "minLength": 4,

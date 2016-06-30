@@ -14,7 +14,8 @@ class FormController: NSObject, PFormField {
     var formViews: FormBuilderViews?
     
     // VAR
-    var listFields = [FormField]()
+    var formFields = [FormField]()
+    var formValues = [String: String]()
     
     init(viewContainerFormulary: UIView) {        
         super.init()
@@ -26,19 +27,42 @@ class FormController: NSObject, PFormField {
     
     func loadFieldsFromJSONFile(jsonFile: String) {
         let builder = FormBuilderFields(formController: self)
-        self.listFields = builder.fieldsFromJSONFile(jsonFile)
+        self.formFields = builder.fieldsFromJSONFile(jsonFile)
         
-        self.formViews!.updateFormularyContent(self.listFields)
+        self.formViews!.updateFormularyContent(self.formFields)
     }
     
-    
     // MARK: Private Method
+
+    func nextFieldTo(field: FormField) -> FormField?{
+        let nextField =  self.formFields.indexOf(field)!+1
+        if (nextField < self.formFields.count) {
+            return self.formFields[nextField]
+        }
+        else {
+            return nil
+        }
+    }
     
+    // MARK: PFormField
     
     
     // MARK: PTextFormField
-    func borrarProtocolo() {
+    func scrollRectToVisible(field: FormField) {
+        self.formViews?.scrollRectToVisible(field)
+    }
+    
+    func didChangeValue(field: FormField, text: String) {
+        self.formValues["\(field.tag)"] = text
+    }
+    
+    func formFieldDidFinish(field: FormField) {
+        let nextField = self.nextFieldTo(field)
+        self.formViews?.changeFocusField(nextField)
         
+        if (nextField != nil) {
+            // [self validateFields];  // TODO EDU lanzar toda la validacion
+        }
     }
     
     //MARK: PPickerFormField
