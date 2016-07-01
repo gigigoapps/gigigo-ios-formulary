@@ -179,6 +179,10 @@
             margin-bottom: 24px;
         }
         
+            #containerJsonItemsCreated p{
+                padding: 10px;
+            }
+        
         .titleTextFieldResult {
             margin-left: 150px;
             margin-top: 18px;
@@ -225,6 +229,15 @@
             height: 51px;
             width: 100%;
         }
+        
+        
+        pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+        .string { color: green; }
+        .number { color: darkorange; }
+        .boolean { color: blue; }
+        .null { color: magenta; }
+        .key { color: red; }
+
         
         </style>
     </head>
@@ -385,7 +398,9 @@
             }
         
             function clearTypeField(){
-                $("#containterElementField").empty()
+                $("#createField").slideUp(function(){
+                    $("#containterElementField").empty()
+                });
             }
             
             function createElementField(typeField) {
@@ -396,7 +411,7 @@
                 
                 if (typeField == "Text") {
                     
-                    var html = '<div class="cellConstructor"><div class="row"><div class="col-md-10"><div class="titleTextField"><p>Titulo*:</p><input type="text" name="titleTextField" id="titleTextField"></div><div class="containerTextFieldCenter"><div class="inputTextField"><p>PlaceHolder:</p><input type="text" name="palceHolderTextField" id="palceHolderTextField"></div><div class="mandatoryTextField"><input type="checkbox" name="mandatory" value="mandatory" id="mandatory"><p>Es obligatorio?</p></div></div><div class="errorTextField"><p>Texto error:</p><input type="text" name="errorTextField"id="errorTextField"></div></div><div class="col-md-2 buttonAdd" onclick="addField()"><p>+</p></div></div></div>';
+                    var html = '<div class="cellConstructor" id="createField"><div class="row"><div class="col-md-10"><div class="titleTextField"><p>Titulo*:</p><input type="text" name="titleTextField" id="titleTextField"></div><div class="containerTextFieldCenter"><div class="inputTextField"><p>PlaceHolder:</p><input type="text" name="palceHolderTextField" id="palceHolderTextField"></div><div class="mandatoryTextField"><input type="checkbox" name="mandatory" value="mandatory" id="mandatory"><p>Es obligatorio?</p></div></div><div class="errorTextField"><p>Texto error:</p><input type="text" name="errorTextField"id="errorTextField"></div></div><div class="col-md-2 buttonAdd" onclick="addField()"><p>+</p></div></div></div>';
                     
                     $("#containterElementField").append(html)
                 }
@@ -405,13 +420,41 @@
                 }
             }
         
+            function syntaxHighlight(json) {
+            if (typeof json != 'string') {
+                json = JSON.stringify(json, undefined, 2);
+            }
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                                var cls = 'number';
+                                if (/^"/.test(match)) {
+                                    if (/:$/.test(match)) {
+                                    cls = 'key';
+                                    } else {
+                                    cls = 'string';
+                                    }
+                                    } else if (/true|false/.test(match)) {
+                                    cls = 'boolean';
+                                    } else if (/null/.test(match)) {
+                                    cls = 'null';
+                                    }
+                                    return '<span class="' + cls + '">' + match + '</span>';
+                                    });
+             }
+                                
+            function output(inp) {
+                      
+                                document.body.appendChild(document.createElement('pre')).innerHTML = inp;
+            }
         
             $(".selectTypeField").change(function() {
                  createElementField(this.value)
             });
             
             $("#buttonGenerateJson").click(function() {
-                alert("generar");
+                 $("#containerJsonItemsCreated").empty()
+                var recoverJSON = JSON.stringify(listFieldsResult, undefined, 4);
+                $("#containerJsonItemsCreated").append("<pre>"+syntaxHighlight(recoverJSON)+"</pre>")
             });
             
             
