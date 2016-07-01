@@ -39,7 +39,6 @@
                 </textField>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0J7-VO-BTk" userLabel="mandotoryImage">
                     <rect key="frame" x="282" y="36" width="30" height="30"/>
-                    <color key="backgroundColor" red="0.96862745100000003" green="0.0" blue="0.044866288589999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="EJG-c8-8LN"/>
                         <constraint firstAttribute="height" constant="30" id="fAY-Oh-FtA"/>
@@ -55,7 +54,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="ylY-uG-c7q" firstAttribute="top" secondItem="aon-0X-cZ7" secondAttribute="bottom" constant="2" id="4cW-20-fp1"/>
                 <constraint firstAttribute="trailing" secondItem="0J7-VO-BTk" secondAttribute="trailing" constant="8" id="K4H-Hn-Y10"/>

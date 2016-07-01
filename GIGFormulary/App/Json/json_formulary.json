@@ -5,7 +5,8 @@
                "label": "*Name (max 20 characters):",
                "placeholder": "Write your name here...",
                "maxLength": 20,
-               "validator": "text",               "textError": "texto de error desde json probando si es demasiado largo para que entre"
+               "validator": "text",
+               "textError": "texto de error desde json probando si es demasiado largo para que entre"
                },
                {
                "type": "text",
@@ -13,8 +14,65 @@
                "placeholder": "Write a password...",
                "minLength": 4,
                "maxLength": 8,
-               "validator": "numeric",
-               "mandatory": true
+               "mandatory": true,
+               "validator": "text",
+               "style": {
+                    "backgroundColorField":"#F3F781"
+                    }
+               },
+               {
+               "type": "text",
+               "label": "sfasfsda",
+               "placeholder": "Write your name here...",
+               "maxLength": 20,
+               "textError": "texto de error desde json probando si es demasiado largo para que entre"
+               },
+               {
+               "type": "text",
+               "label": "1231221312",
+               "placeholder": "Write a password...",
+               "minLength": 4,
+               "maxLength": 8,
+               "mandatory": true,
+               "style": {
+               "backgroundColorField":"#F3F781"
+               }
+               },
+               {
+               "type": "text",
+               "label": "aaaaa",
+               "placeholder": "Write your name here...",
+               "maxLength": 20,
+               "textError": "texto de error desde json probando si es demasiado largo para que entre"
+               },
+               {
+               "type": "text",
+               "label": "bbbb",
+               "placeholder": "Write a password...",
+               "minLength": 4,
+               "maxLength": 8,
+               "mandatory": true,
+               "style": {
+               "backgroundColorField":"#F3F781"
+               }
+               },
+               {
+               "type": "text",
+               "label": "cccc",
+               "placeholder": "Write your name here...",
+               "maxLength": 20,
+               "textError": "texto de error desde json probando si es demasiado largo para que entre"
+               },
+               {
+               "type": "text",
+               "label": "dddd",
+               "placeholder": "Write a password...",
+               "minLength": 4,
+               "maxLength": 8,
+               "mandatory": true,
+               "style": {
+               "backgroundColorField":"#F3F781"
+               }
                }
      ]
 }

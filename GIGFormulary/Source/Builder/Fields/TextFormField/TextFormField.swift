@@ -76,15 +76,35 @@ class TextFormField: FormField, UITextFieldDelegate {
         self.loadCustomStyleField(formFieldM)
     }
     
-    func showError() {
-        self.errorLabel.sizeToFit()
-        UIView.animateWithDuration(1.0) {  // TODO EDU, ver pq leches no se hace animado
-            self.heightErrorLabelConstraint.constant = self.errorLabel.frame.height
-            self.errorLabel.layoutIfNeeded()
+    override func validate() -> Bool {
+        let status = super.validate()
+        if (!status) {
+            self.showError()
+        }
+        
+        return status
+    }
+    
+    // MARK: GIGFormField (Override)
+    
+    override internal var fieldValue: AnyObject? {
+        get {
+            return self.textTextField.text
+        }
+        set {
+            self.textTextField.text = "\(self.fieldValue)"
         }
     }
     
-    // MARK: Private Method
+    // MARK: Private Method    
+    
+    private func showError() {
+        UIView.animateWithDuration(0.5) {
+            self.errorLabel.sizeToFit()
+            self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
+            self.layoutIfNeeded()
+        }
+    }
     
     private func showMandatory(isMandatory: Bool) {
         if (isMandatory) {
@@ -98,8 +118,11 @@ class TextFormField: FormField, UITextFieldDelegate {
     private func loadCustomStyleField(formFieldM: FormFieldModel) {
         let styleField = formFieldM.style
         if (styleField != nil) {
-            if (styleField?.mandatoryIcon != nil) {
+            if (styleField!.mandatoryIcon != nil) {
                 self.mandotoryImage.image = UIImage() // TODO EDU, aqui habria q cargar la imagen q fuera
+            }
+            if (styleField!.backgroundColorField != nil) {
+                self.viewContainer.backgroundColor = styleField!.backgroundColorField!
             }
         }
     }
@@ -109,17 +132,9 @@ class TextFormField: FormField, UITextFieldDelegate {
         self.errorLabel.numberOfLines = 0
         self.mandotoryImage.image = UIImage(named: "mandatoryIcon")
         self.textTextField.delegate = self
-        
-        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(self.borrar), userInfo: nil, repeats: true)
     }
     
-    
-    // must be internal or public.
-    func borrar() {
-        self.showError()
-    }
-    
-    // MERK: UITextFieldDelegate
+    // MARK: UITextFieldDelegate
     
     func textFieldDidBeginEditing(textField: UITextField) {
         self.delegate!.scrollRectToVisible(self)
@@ -134,23 +149,15 @@ class TextFormField: FormField, UITextFieldDelegate {
         return false
     }
     
-    
-    /*
-    - (void)textFieldDidBeginEditing:(UITextField *)textField
-    {
-    [self.formController formFieldDidStart:self];
+    // MARK: UIResponser (Overrride)
+    override func canBecomeFirstResponder() -> Bool {
+        return self.textTextField.canBecomeFirstResponder()
     }
     
-    - (void)textFieldDidEndEditing:(UITextField *)textField
-    {
-    [self.formController formField:self didChangeValue:textField.text];
+    override func becomeFirstResponder() -> Bool {
+        return self.textTextField.becomeFirstResponder()
     }
-    
-    - (BOOL)textFieldShouldReturn:(UITextField *)textField
-    {
-    [self.formController formFieldDidFinish:self];
-    
-    return NO;
-    }*/
-
+    override func resignFirstResponder() -> Bool {
+        return self.textTextField.resignFirstResponder()
+    }
 }

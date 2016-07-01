@@ -46,7 +46,7 @@ class FormBuilderViews: NSObject {
         }
         else
         {
-            [self.viewContainerFormulary.resignFirstResponder];
+            self.viewContainerFormulary.endEditing(true)
         }
     }
     
@@ -56,7 +56,6 @@ class FormBuilderViews: NSObject {
         
         
         //_- TODO EDU borrar
-        self.viewFormulary.backgroundColor = UIColor.redColor()
         self.scrollView.backgroundColor = UIColor.greenColor()
         //-- fin borrar
         
@@ -83,8 +82,6 @@ class FormBuilderViews: NSObject {
     }
     
     func addFields(listFields: [FormField]) {
-        
-                
         var lastView = UIView()
         var firstTime = true
         for field in listFields {
@@ -104,19 +101,10 @@ class FormBuilderViews: NSObject {
             
             lastView = field
             firstTime = false
-            
-            
-            // TODO EDU
-            field.layoutIfNeeded()
-            field.updateConstraints()
         }
         
         if (self.viewFormulary.subviews.count > 0) {
              gig_layout_bottom(lastView, 0);
         }
-        
-        // TODO EDU
-        self.viewFormulary.layoutIfNeeded()
-        self.viewFormulary.updateConstraints()
     }
 }

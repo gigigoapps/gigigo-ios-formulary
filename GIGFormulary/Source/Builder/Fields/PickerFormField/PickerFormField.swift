@@ -19,4 +19,8 @@ class PickerFormField: FormField {
         
     }
     
+    override func validate() -> Bool {
+            return true
+    }
+    
 }

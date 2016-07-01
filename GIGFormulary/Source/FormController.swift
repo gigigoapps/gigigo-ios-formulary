@@ -27,14 +27,13 @@ class FormController: NSObject, PFormField {
     
     func loadFieldsFromJSONFile(jsonFile: String) {
         let builder = FormBuilderFields(formController: self)
-        self.formFields = builder.fieldsFromJSONFile(jsonFile)
-        
+        self.formFields = builder.fieldsFromJSONFile(jsonFile)        
         self.formViews!.updateFormularyContent(self.formFields)
     }
     
     // MARK: Private Method
 
-    func nextFieldTo(field: FormField) -> FormField?{
+    private func nextFieldTo(field: FormField) -> FormField?{
         let nextField =  self.formFields.indexOf(field)!+1
         if (nextField < self.formFields.count) {
             return self.formFields[nextField]
@@ -44,6 +43,26 @@ class FormController: NSObject, PFormField {
         }
     }
     
+    
+    private func validateFields() -> Bool {
+        var valid = true
+        for field in self.formFields {
+            valid = field.validate()
+        }
+        return valid
+    }
+    /*
+    {
+    BOOL valid = YES;
+    
+    for (GIGFormField *field in self.formFields)
+    {
+    valid = ([field validate] && valid);
+    }
+    
+    return valid;
+    }
+    */
     // MARK: PFormField
     
     
@@ -60,8 +79,8 @@ class FormController: NSObject, PFormField {
         let nextField = self.nextFieldTo(field)
         self.formViews?.changeFocusField(nextField)
         
-        if (nextField != nil) {
-            // [self validateFields];  // TODO EDU lanzar toda la validacion
+        if (nextField == nil) {
+             self.validateFields()
         }
     }
     

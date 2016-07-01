@@ -15,6 +15,8 @@ class FormBuilderFields: NSObject {
         
     //-- Types --
     var listTypeFields = [TypeField: FormField.Type]()
+    var keyboardTypes = [TypeKeyBoard: UIKeyboardType]()
+    var validatorsType = [TypeValidator: Validator.Type]()
 
     
     init(formController: FormController) {
@@ -30,6 +32,13 @@ class FormBuilderFields: NSObject {
     private func initializeTypes() {
         self.listTypeFields = [.TEXT_FORM_FIELD: TextFormField.self,
                                .PICKER_FORM_FIELD: PickerFormField.self]
+        
+        self.keyboardTypes  = [.KEYBOARD_TEXT: .Default,
+                              .KEYBOARD_EMAIL: .EmailAddress,
+                              .KEYBOARD_NUMBER: .NumbersAndPunctuation,
+                              .KEYBOARD_NUMBERPAD: .NumberPad]
+
+        self.validatorsType = [.VALIDATOR_TEXT: StringValidator.self]
     }
     
     private func createField(fieldDic: [String:AnyObject], tag: Int) -> FormField {
@@ -40,6 +49,7 @@ class FormBuilderFields: NSObject {
             let typeField = self.listTypeFields[TypeField(rawValue: formFieldM.type!)!]
             let field = typeField!.init()
             field.delegate = self.formController
+            field.validator = self.validatorToField(formFieldM)
             field.insertData(formFieldM)
             field.tag = tag
             return field
@@ -47,6 +57,18 @@ class FormBuilderFields: NSObject {
         catch {
             let field = FormField()
             return field
+        }
+    }
+    
+    private func validatorToField(formFieldM: FormFieldModel) -> Validator?{
+        if (formFieldM.validator != nil) {
+            let typeValidator = self.validatorsType[TypeValidator(rawValue: formFieldM.validator!)!]
+            let validator = typeValidator!.init(mandatory: true)
+            validator.mandatory = formFieldM.mandatory
+            return validator
+        }
+        else {
+            return Validator(mandatory: formFieldM.mandatory)
         }
     }
     
