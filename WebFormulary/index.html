@@ -18,8 +18,8 @@
         
         
         <style>
-            .page-header h1 {
-                color: white;
+            body {
+                background: none !important;
             }
             .containerPpal {
                 border-color: black;
@@ -60,7 +60,7 @@
             border-radius: 10px;
             border-style: solid;
             border-width: 1px;
-            height: 136px;
+            height: 144px;
             margin-bottom: 15px;
             margin-top: 15px;
         }
@@ -70,13 +70,13 @@
             color: white;
             float: right;
             font-size: 49px;
-            height: 135px;
+            height: 142px;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonAdd p{
-                margin-top: 27px;
+                margin-top: 34px;
             }
         .buttonRemove {
             background-color: red;
@@ -84,17 +84,19 @@
             color: white;
             float: right;
             font-size: 49px;
-            height: 135px;
+            height: 142px;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonRemove p{
-                margin-top: 27px;
+                margin-top: 34px;
             }
         .titleTextField {
+            float: left;
             height: 26px;
             margin-left: 94px;
+            margin-right: 20px;
             margin-top: 9px;
             width: 300px;
         }
@@ -188,7 +190,9 @@
             }
         
         .titleTextFieldResult {
+            float: left;
             margin-left: 150px;
+            margin-right: 77px;
             margin-top: 18px;
         }
         .placeHolderTextFieldResult {
@@ -230,7 +234,8 @@
                 margin-top: 12px;
             }
         .containerTextFieldCenter{
-            height: 51px;
+            height: 54px;
+            margin-left: 144px;
             width: 100%;
         }
         
@@ -243,30 +248,82 @@
         .key { color: red; }
 
         #ControlColor {
-            background-color: white;
+            background-color: silver;
+            border: 2px solid black;
+            border-radius: 11px;
+            display: none;
             height: 328px;
             left: 423px;
             position: absolute;
             top: 130px;
             width: 613px;
-            display: none;
         }
         .cp-app,#description {
              position: absolute !important;
              visibility: hidden !important;
         }
+        
+        #cellColor {
+            border: 1px solid black;
+            height: 30px;
+            width: 100px;
+            float:left;
+        }
+        .colorZone {
+            height: 35px;
+            padding-top: 7px;
+            width: 100%;
+        }
+            .colorZone p{
+                float: left;
+                margin-right: 10px;
+                margin-top: 5px;
+            }
+        
+        .containerTextFieldTop{
+            height: 42px;
+        }
+        
+        #colorId{
+        
+        }
+        
+        #closeSaveColor{
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 5px;
+            height: 40px;
+            left: 220px;
+            position: absolute;
+            text-align: center;
+            top: 274px;
+            width: 150px;
+        }
+            #closeSaveColor p{
+                font-size: 16px;
+                margin-top: 8px;
+            }
+        #closeSaveColor:hover{
+            background-color: gray;
+            cursor: pointer;
+        }
+        
+        .containterTop{
+            height: 50px;
+        }
+        
         </style>
         
-        <!-- ZONA EJEMPLO  -->
-        
-        
-        <!-- <link href="colorPicker-master/developer/colorPicker.sys.css" rel="stylesheet" type="text/css"> -->
-        <!-- <link href="colorPicker-master/developer/colorPicker.css" rel="stylesheet" type="text/css"> -->
+
+
+
+
+
         <link href="colorPicker-master/index.css" rel="stylesheet" type="text/css">
         
         
-        <!-- FIN EJEMPLO -->
-         
+
+
         
         
         
@@ -317,10 +374,84 @@
                     
                     
                     
+                    
+                    
+                    
                    <!-- ZONA DE PRUEBAS -->
-
+                   <!--
+                   <div class="cellConstructor">
+                       <div class="row">
+                           <div class="col-md-10">
+                               <div class="containerTextFieldTop">
+                                   <div class="titleTextField">
+                                       <p>Titulo*:</p>
+                                       <input type="text" name="titleTextField" id="titleTextField">
+                                           </div>
+                                   <div class="colorZone">
+                                       <p>Color de la celda:</p>
+                                       <div id="cellColor"  onclick="cellColorOpen()"></div>
+                                   </div>
+                               </div>
+                               
+                               
+                               <div class="containerTextFieldCenter">
+                                   <div class="inputTextField">
+                                       <p>PlaceHolder:</p>
+                                       <input type="text" name="palceHolderTextField" id="palceHolderTextField">
+                                           </div>
+                                   <div class="mandatoryTextField">
+                                       <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">
+                                           <p>Es obligatorio?</p>
+                                           </div>
+                               </div>
+                               <div class="errorTextField">
+                                   <p>Texto error*:</p>
+                                   <input type="text" name="errorTextField"id="errorTextField">
+                                       </div>
+                           </div>
+                           <div class="col-md-2 buttonAdd" onclick="addField()">
+                               <p>+</p>
+                           </div>
+                       </div>
+                   </div>-->
+                   
+                   
+                   
+                   <!--
+                   <div class="cellConstructor">
+                       <div class="row">
+                           <div class="col-md-8">
+                               <div class="containterTop">
+                                   <p class="titleTextFieldResult">asda</p>
+                                   
+                                   <div class="colorZone">
+                                       <p>Color de la celda:</p>
+                                       <div id="cellColor"></div>
+                                   </div>
+                                </div>
+                               <div class="containterMid">
+                                   <p class="placeHolderTextFieldResult">asdad</p>
+                                   <input style="display:none" checked/>
+                                   <input class="mandatoryTextFieldResult" type="checkbox" name="mandatory" value="mandatory" checked disabled readonly>
+                                       </div>
+                               <p class="errorTextFieldResult">asdas</p>
+                           </div>
+                           <div class="col-md-2 buttonRemove">
+                               <p>-</p>
+                           </div>
+                       </div>
+                   </div>
+                   -->
                    
                    <!-- FIN ZONA DE PRUEBAS -->
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
                     
                 </div>
                 <div class="col-md-1"></div>
@@ -372,7 +503,7 @@
                     <div class="hsv-barcursor-l"></div>
                     <div class="hsv-barcursor-r"></div>
                 </div>
-            </div>            
+            </div>
             <div id="color_squares">
                 <div></div>
                 <div></div>
@@ -390,48 +521,10 @@
             <script type="text/javascript" src="colorPicker-master/colorPicker.data.js"></script>
             <script type="text/javascript" src="colorPicker-master/colorPicker.js"></script>
             <script type="text/javascript" src="colorPicker-master/index.js"></script>
+            
+            
+            <div id="closeSaveColor"><p>Cerrar y salvar</p></div>
         </div>
-         
-        
-        
-        
-        
-        <!-- ZONA DE PRUEBAS -->
-
-        
-        
-        
-        ---
-        <div class="cellConstructor">
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="titleTextField">
-                        <p>Titulo*:</p>
-                        <input type="text" name="titleTextField" id="titleTextField">
-                            </div>
-                    <div class="containerTextFieldCenter">
-                        <div class="inputTextField">
-                            <p>PlaceHolder:</p>
-                            <input type="text" name="palceHolderTextField" id="palceHolderTextField">
-                                </div>
-                        <div class="mandatoryTextField">
-                            <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">
-                                <p>Es obligatorio?</p>
-                                </div>
-                    </div>
-                    <div class="errorTextField">
-                        <p>Texto error*:</p>
-                        <input type="text" name="errorTextField"id="errorTextField">
-                            </div>
-                </div>
-                <div class="col-md-2 buttonAdd" onclick="addField()">
-                    <p>+</p>
-                </div>
-            </div>
-        </div>
-        <!-- FIN ZONA DE PRUEBAS -->
-        
-        
         
         
         
@@ -444,16 +537,33 @@
             var listFieldsResult = []
             var indexField = 0
             
-            function saveField(tag,title,placeHolder,error,mandatory) {
+            function saveField(tag,title,placeHolder,error,mandatory,cellColor) {
+                var style = {}
+                var haveStyle = false;
+                
+                if (cellColor.length > 0) {
+                    style["backgroundColor"] = cellColor
+                    haveStyle = true;
+                }
                 
                 var itemSave = {
                     "id":indexField,
                     "tag":tag,
                     "title":title,
-                    "placeHolder":placeHolder,
                     "error":error,
                     "mandatory":mandatory,
                 }
+                
+                if (placeHolder.length > 0) {
+                    itemSave["placeHolder"] = placeHolder
+                }
+                
+                if (haveStyle) {
+                    itemSave["style"] = style
+                }
+                
+                
+           //     alert("itemSave"+itemSave.length);
                 
                 listFieldsResult.push(itemSave)
                 /*
@@ -471,14 +581,43 @@
             }
             
             
-            function createField(title,placeHolder,error,mandatory) {
+            function createField(title,placeHolder,error,mandatory,cellColor) {
                 
                 var valueCheck = ""
                 if (mandatory) {
                     valueCheck = "checked"
                 }
+                var htmlBackgroundColor = '<div class="colorZone"><p>Color de la celda:</p><div id="cellColor"></div></div>';
+                if (cellColor != "") {
+                    htmlBackgroundColor = '<div class="colorZone"><p>Color de la celda:</p><div id="cellColor" style="background-color:'+cellColor+'">'+cellColor+'</div></div>'
+                }
+            
+                /*
+                <div class="cellConstructor" id="createField">
+                <div class="row">
+                <div class="col-md-8">
+                <div class="containterTop">
+                <p class="titleTextFieldResult">asda</p>
                 
-                var html = '<div class="cellConstructor" id="fieldNumber'+indexField+'"><div class="row"><div class="col-md-8"><p class="titleTextFieldResult">'+title+'</p><div class="containterMid"><p class="placeHolderTextFieldResult">'+placeHolder+'</p><input class="mandatoryTextFieldResult" type="checkbox" name="mandatory" value="mandatory" '+valueCheck+' disabled readonly></div><p class="errorTextFieldResult">'+error+'</p></div><div class="col-md-2 buttonRemove" onclick="removeField('+indexField+')"><p>-</p></div></div></div>';
+                <div class="colorZone">
+                <p>Color de la celda:</p>
+                <div id="cellColor"></div>
+                </div>
+                </div>
+                <div class="containterMid">
+                <p class="placeHolderTextFieldResult">asdad</p>
+                <input style="display:none" checked/>
+                <input class="mandatoryTextFieldResult" type="checkbox" name="mandatory" value="mandatory" checked disabled readonly>
+                </div>
+                <p class="errorTextFieldResult">asdas</p>
+                </div>
+                <div class="col-md-2 buttonRemove">
+                <p>-</p>
+                </div>
+                </div>
+                </div>
+                */
+                var html = '<div class="cellConstructor" id="fieldNumber'+indexField+'"><div class="row"><div class="col-md-8"><div class="containterTop"><p class="titleTextFieldResult">'+title+'</p>'+htmlBackgroundColor+'</div><div class="containterMid"><p class="placeHolderTextFieldResult">'+placeHolder+'</p><input class="mandatoryTextFieldResult" type="checkbox" name="mandatory" value="mandatory" '+valueCheck+' disabled readonly></div><p class="errorTextFieldResult">'+error+'</p></div><div class="col-md-2 buttonRemove" onclick="removeField('+indexField+')"><p>-</p></div></div></div>';
                 $("#containerListItemsCreated").append(html);
                 resetTypeField();
             }
@@ -488,14 +627,15 @@
                 var placeHolder = $("#palceHolderTextField").val()
                 var error = $("#errorTextField").val()
                 var mandatory = $('#mandatory').is(':checked');
+                var cellColor = $("#cellColor").text()
                 
                 if (error.length == 0) {
                     error = "error_generic_field"
                 }
                 
                 if (title.length > 0) {
-                    createField(title,placeHolder,error,mandatory);
-                    saveField("text",title,placeHolder,error,mandatory)
+                    createField(title,placeHolder,error,mandatory,cellColor);
+                    saveField("text",title,placeHolder,error,mandatory,cellColor)
                 }
                 else {
                     alert("Los campos con asterisco son obligatorios");
@@ -518,7 +658,7 @@
         
             function clearTypeField(){
                 $("#createField").slideUp(function(){
-                    $("#containterElementField").empty()
+                       $("#containterElementField").empty()
                 });
             }
         
@@ -530,11 +670,11 @@
                 
                 fieldSelected = typeField;
                 
-                clearTypeField();
+             //   clearTypeField();
                 
                 if (typeField == "Text") {
                     
-                    var html = '<div class="cellConstructor" id="createField"><div class="row"><div class="col-md-10"><div class="titleTextField"><p>Titulo*:</p><input type="text" name="titleTextField" id="titleTextField"></div><div class="containerTextFieldCenter"><div class="inputTextField"><p>PlaceHolder:</p><input type="text" name="palceHolderTextField" id="palceHolderTextField"></div><div class="mandatoryTextField"><input type="checkbox" name="mandatory" value="mandatory" id="mandatory"><p>Es obligatorio?</p></div></div><div class="errorTextField"><p>Texto error:</p><input type="text" name="errorTextField"id="errorTextField"></div></div><div class="col-md-2 buttonAdd" onclick="addField()"><p>+</p></div></div></div>';
+                    var html = '                   <div class="cellConstructor" id="createField">                    <div class="row">                    <div class="col-md-10">                    <div class="containerTextFieldTop">                    <div class="titleTextField">                    <p>Titulo*:</p>                    <input type="text" name="titleTextField" id="titleTextField">                    </div>                    <div class="colorZone">                    <p>Color de la celda:</p>                    <div id="cellColor" onclick="cellColorOpen()"></div>                    </div>                    </div>                    <div class="containerTextFieldCenter">                    <div class="inputTextField">                    <p>PlaceHolder:</p>                    <input type="text" name="palceHolderTextField" id="palceHolderTextField">                    </div>                    <div class="mandatoryTextField">                    <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">                    <p>Es obligatorio?</p>                    </div>                    </div>                    <div class="errorTextField">                    <p>Texto error*:</p>                    <input type="text" name="errorTextField"id="errorTextField">                    </div>                    </div>                    <div class="col-md-2 buttonAdd" onclick="addField()">                    <p>+</p>                    </div>                    </div>                    </div>';
                     
                     $("#containterElementField").append(html)
                 }
@@ -578,8 +718,19 @@
                  $("#containerJsonItemsCreated").empty()
                 var recoverJSON = JSON.stringify(listFieldsResult, undefined, 4);
                 $("#containerJsonItemsCreated").append("<pre>"+syntaxHighlight(recoverJSON)+"</pre>")
+                                           });
+                       
+            function cellColorOpen() {
+                $("#ControlColor").show();
+            }
+                                
+            $("#closeSaveColor").click(function() {
+                $("#ControlColor").hide();
+                $("#cellColor").css("background-color", $("#testPatch").text());
+                $("#cellColor").empty()
+                $("#cellColor").append("<p id='colorId'>"+$("#testPatch").text()+"</p>");
             });
-            
+                                
             
         </script>
     </body>
@@ -607,12 +758,18 @@
  ///// COMPLETO DEBAJO
  
  
- <div class="cellConstructor">
+ <div class="cellConstructor" id="createField">
  <div class="row">
  <div class="col-md-10">
+ <div class="containerTextFieldTop">
  <div class="titleTextField">
  <p>Titulo*:</p>
  <input type="text" name="titleTextField" id="titleTextField">
+ </div>
+ <div class="colorZone">
+ <p>Color de la celda:</p>
+ <div id="cellColor"  onclick="cellColorOpen()"></div>
+ </div>
  </div>
  <div class="containerTextFieldCenter">
  <div class="inputTextField">
