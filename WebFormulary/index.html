@@ -18,11 +18,15 @@
         
         
         <style>
+            .page-header h1 {
+                color: white;
+            }
             .containerPpal {
                 border-color: black;
                 border-style: solid;
                 border-width: 1px;
                 margin-bottom: 20px;
+                background-color: white;
             }
         .row{
             min-height: 80px;
@@ -238,8 +242,34 @@
         .null { color: magenta; }
         .key { color: red; }
 
-        
+        #ControlColor {
+            background-color: white;
+            height: 328px;
+            left: 423px;
+            position: absolute;
+            top: 130px;
+            width: 613px;
+            display: none;
+        }
+        .cp-app,#description {
+             position: absolute !important;
+             visibility: hidden !important;
+        }
         </style>
+        
+        <!-- ZONA EJEMPLO  -->
+        
+        
+        <!-- <link href="colorPicker-master/developer/colorPicker.sys.css" rel="stylesheet" type="text/css"> -->
+        <!-- <link href="colorPicker-master/developer/colorPicker.css" rel="stylesheet" type="text/css"> -->
+        <link href="colorPicker-master/index.css" rel="stylesheet" type="text/css">
+        
+        
+        <!-- FIN EJEMPLO -->
+         
+        
+        
+        
     </head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -288,7 +318,7 @@
                     
                     
                    <!-- ZONA DE PRUEBAS -->
-  
+
                    
                    <!-- FIN ZONA DE PRUEBAS -->
                     
@@ -317,9 +347,98 @@
         
         </div>
         
+        <!-- COLOR -->
+        <div id="ControlColor">
+            <div id="testPatch">.</div>
+            <div id="contrastPatch"><div></div><i>-Test-</i></div>
+            <div id="colorValues">.</div>
+            <div id="sliders" class="sliders">
+                <div id="rgbr"><div></div></div>
+                <div id="rgbg"><div></div></div>
+                <div id="rgbb"><div></div></div>
+                
+                <div id="hslh"><div></div></div>
+                <div id="hsls"><div></div></div>
+                <div id="hsll"><div></div></div>
+            </div>
+            <div id="hsv_map">
+                <canvas id="surface" width="200" height="200"></canvas>
+                <div class="cover"></div>
+                <div class="hsv-cursor"></div>
+                <div class="bar-bg"></div>
+                <div class="bar-white"></div>
+                <canvas id="luminanceBar" width="25" height="200"></canvas>
+                <div class="hsv-barcursors" id="hsv_cursors">
+                    <div class="hsv-barcursor-l"></div>
+                    <div class="hsv-barcursor-r"></div>
+                </div>
+            </div>            
+            <div id="color_squares">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            
+            <div id="description">
+                <select><option value="Colors">Colors</option><option value="ColorPicker">ColorPicker</option></select>
+            </div>
+            <script type="text/javascript" src="colorPicker-master/colors.js"></script>
+            <script type="text/javascript" src="colorPicker-master/colorPicker.data.js"></script>
+            <script type="text/javascript" src="colorPicker-master/colorPicker.js"></script>
+            <script type="text/javascript" src="colorPicker-master/index.js"></script>
+        </div>
+         
+        
+        
+        
+        
+        <!-- ZONA DE PRUEBAS -->
+
+        
+        
+        
+        ---
+        <div class="cellConstructor">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="titleTextField">
+                        <p>Titulo*:</p>
+                        <input type="text" name="titleTextField" id="titleTextField">
+                            </div>
+                    <div class="containerTextFieldCenter">
+                        <div class="inputTextField">
+                            <p>PlaceHolder:</p>
+                            <input type="text" name="palceHolderTextField" id="palceHolderTextField">
+                                </div>
+                        <div class="mandatoryTextField">
+                            <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">
+                                <p>Es obligatorio?</p>
+                                </div>
+                    </div>
+                    <div class="errorTextField">
+                        <p>Texto error*:</p>
+                        <input type="text" name="errorTextField"id="errorTextField">
+                            </div>
+                </div>
+                <div class="col-md-2 buttonAdd" onclick="addField()">
+                    <p>+</p>
+                </div>
+            </div>
+        </div>
+        <!-- FIN ZONA DE PRUEBAS -->
+        
+        
+        
+        
+        
         
         
         <script>
+            
             
             var fieldSelected = ""
             var listFieldsResult = []
@@ -402,7 +521,11 @@
                     $("#containterElementField").empty()
                 });
             }
-            
+        
+            //======================================
+            //          ADD NEW FILED             //
+            //======================================
+        
             function createElementField(typeField) {
                 
                 fieldSelected = typeField;
