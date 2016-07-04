@@ -537,19 +537,19 @@
             var listFieldsResult = []
             var indexField = 0
             
-            function saveField(tag,title,placeHolder,error,mandatory,cellColor) {
+            function saveField(type,title,placeHolder,error,mandatory,cellColor) {
                 var style = {}
                 var haveStyle = false;
                 
                 if (cellColor.length > 0) {
-                    style["backgroundColor"] = cellColor
+                    style["backgroundColorField"] = cellColor
                     haveStyle = true;
                 }
                 
                 var itemSave = {
-                    "id":indexField,
-                    "tag":tag,
-                    "title":title,
+                    "tag":indexField,
+                    "type":type,
+                    "label":title,
                     "error":error,
                     "mandatory":mandatory,
                 }
@@ -563,8 +563,6 @@
                 }
                 
                 
-           //     alert("itemSave"+itemSave.length);
-                
                 listFieldsResult.push(itemSave)
                 /*
                 for (var i=0; i<listFieldsResult.length; i++) {
@@ -577,6 +575,25 @@
             }
         
             function removeField(idRemove){
+                var auxListFieldsResult = [];
+                
+                for (var i=0; i<listFieldsResult.length; i++) {
+                    
+                    var find = false;
+                    
+                    $.each(listFieldsResult[i], function(index, val) {
+                        if (index == "tag" && val == idRemove){
+                            find = true;
+                        }
+                    });
+                    
+                    if (!find) {
+                        auxListFieldsResult.push(listFieldsResult[i])
+                    }
+                }
+                
+                listFieldsResult = auxListFieldsResult;
+                
                 $("#fieldNumber"+idRemove).slideUp();
             }
             
@@ -591,32 +608,7 @@
                 if (cellColor != "") {
                     htmlBackgroundColor = '<div class="colorZone"><p>Color de la celda:</p><div id="cellColor" style="background-color:'+cellColor+'">'+cellColor+'</div></div>'
                 }
-            
-                /*
-                <div class="cellConstructor" id="createField">
-                <div class="row">
-                <div class="col-md-8">
-                <div class="containterTop">
-                <p class="titleTextFieldResult">asda</p>
-                
-                <div class="colorZone">
-                <p>Color de la celda:</p>
-                <div id="cellColor"></div>
-                </div>
-                </div>
-                <div class="containterMid">
-                <p class="placeHolderTextFieldResult">asdad</p>
-                <input style="display:none" checked/>
-                <input class="mandatoryTextFieldResult" type="checkbox" name="mandatory" value="mandatory" checked disabled readonly>
-                </div>
-                <p class="errorTextFieldResult">asdas</p>
-                </div>
-                <div class="col-md-2 buttonRemove">
-                <p>-</p>
-                </div>
-                </div>
-                </div>
-                */
+
                 var html = '<div class="cellConstructor" id="fieldNumber'+indexField+'"><div class="row"><div class="col-md-8"><div class="containterTop"><p class="titleTextFieldResult">'+title+'</p>'+htmlBackgroundColor+'</div><div class="containterMid"><p class="placeHolderTextFieldResult">'+placeHolder+'</p><input class="mandatoryTextFieldResult" type="checkbox" name="mandatory" value="mandatory" '+valueCheck+' disabled readonly></div><p class="errorTextFieldResult">'+error+'</p></div><div class="col-md-2 buttonRemove" onclick="removeField('+indexField+')"><p>-</p></div></div></div>';
                 $("#containerListItemsCreated").append(html);
                 resetTypeField();
@@ -670,8 +662,6 @@
                 
                 fieldSelected = typeField;
                 
-             //   clearTypeField();
-                
                 if (typeField == "Text") {
                     
                     var html = '                   <div class="cellConstructor" id="createField">                    <div class="row">                    <div class="col-md-10">                    <div class="containerTextFieldTop">                    <div class="titleTextField">                    <p>Titulo*:</p>                    <input type="text" name="titleTextField" id="titleTextField">                    </div>                    <div class="colorZone">                    <p>Color de la celda:</p>                    <div id="cellColor" onclick="cellColorOpen()"></div>                    </div>                    </div>                    <div class="containerTextFieldCenter">                    <div class="inputTextField">                    <p>PlaceHolder:</p>                    <input type="text" name="palceHolderTextField" id="palceHolderTextField">                    </div>                    <div class="mandatoryTextField">                    <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">                    <p>Es obligatorio?</p>                    </div>                    </div>                    <div class="errorTextField">                    <p>Texto error*:</p>                    <input type="text" name="errorTextField"id="errorTextField">                    </div>                    </div>                    <div class="col-md-2 buttonAdd" onclick="addField()">                    <p>+</p>                    </div>                    </div>                    </div>';
@@ -715,8 +705,9 @@
             });
             
             $("#buttonGenerateJson").click(function() {
-                 $("#containerJsonItemsCreated").empty()
+                $("#containerJsonItemsCreated").empty()
                 var recoverJSON = JSON.stringify(listFieldsResult, undefined, 4);
+                recoverJSON = '{ \n "fields":'+recoverJSON+' \n}';
                 $("#containerJsonItemsCreated").append("<pre>"+syntaxHighlight(recoverJSON)+"</pre>")
                                            });
                        

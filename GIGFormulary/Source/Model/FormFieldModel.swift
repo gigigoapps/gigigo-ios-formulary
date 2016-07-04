@@ -64,9 +64,7 @@ class FormFieldModel: NSObject {
         }
 
         if (placeHolder != nil) {
-            /*  self.bodyBottom = BodyBottomDetailModel()
-             try self.bodyBottom?.parseJson(bodyBottom!)
-             self.listViewsCreate.append("BodyBottom")*/
+            self.placeHolder = placeHolder
         }
         if (maxLength != nil) {
             

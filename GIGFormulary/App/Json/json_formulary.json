@@ -1,78 +1,34 @@
 {
-    "fields": [
-               {
-               "type": "text",
-               "label": "*Name (max 20 characters):",
-               "placeholder": "Write your name here...",
-               "maxLength": 20,
-               "validator": "text",
-               "textError": "texto de error desde json probando si es demasiado largo para que entre"
-               },
-               {
-               "type": "text",
-               "label": "*Password (between 4 and 8 characters):",
-               "placeholder": "Write a password...",
-               "minLength": 4,
-               "maxLength": 8,
-               "mandatory": true,
-               "validator": "text",
-               "style": {
-                    "backgroundColorField":"#F3F781"
-                    }
-               },
-               {
-               "type": "text",
-               "label": "sfasfsda",
-               "placeholder": "Write your name here...",
-               "maxLength": 20,
-               "textError": "texto de error desde json probando si es demasiado largo para que entre"
-               },
-               {
-               "type": "text",
-               "label": "1231221312",
-               "placeholder": "Write a password...",
-               "minLength": 4,
-               "maxLength": 8,
-               "mandatory": true,
-               "style": {
-               "backgroundColorField":"#F3F781"
-               }
-               },
-               {
-               "type": "text",
-               "label": "aaaaa",
-               "placeholder": "Write your name here...",
-               "maxLength": 20,
-               "textError": "texto de error desde json probando si es demasiado largo para que entre"
-               },
-               {
-               "type": "text",
-               "label": "bbbb",
-               "placeholder": "Write a password...",
-               "minLength": 4,
-               "maxLength": 8,
-               "mandatory": true,
-               "style": {
-               "backgroundColorField":"#F3F781"
-               }
-               },
-               {
-               "type": "text",
-               "label": "cccc",
-               "placeholder": "Write your name here...",
-               "maxLength": 20,
-               "textError": "texto de error desde json probando si es demasiado largo para que entre"
-               },
-               {
-               "type": "text",
-               "label": "dddd",
-               "placeholder": "Write a password...",
-               "minLength": 4,
-               "maxLength": 8,
-               "mandatory": true,
-               "style": {
-               "backgroundColorField":"#F3F781"
-               }
-               }
-     ]
+    "fields":[
+              {
+              "tag": 0,
+              "type": "text",
+              "label": "sdad",
+              "error": "asd",
+              "mandatory": false,
+              "placeHolder": "asd",
+              "style": {
+              "backgroundColorField": "#8B91FF"
+              }
+              },
+              {
+              "tag": 1,
+              "type": "text",
+              "label": "qweq",
+              "error": "error_generic_field",
+              "mandatory": true,
+              "placeHolder": "qweqewq"
+              },
+              {
+              "tag": 2,
+              "type": "text",
+              "label": "12312",
+              "error": "afsaf",
+              "mandatory": false,
+              "placeHolder": "asdas",
+              "style": {
+              "backgroundColorField": "#FF594F"
+              }
+              }
+              ] 
 }
