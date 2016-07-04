@@ -342,6 +342,15 @@
                 cursor: pointer;
             }
         
+        #bar {
+           /* visibility:hidden;*/
+            position:absolute;
+            width: 0px;
+            height: 0px;
+            -moz-appearance:none;
+            outline:0px none transparent;
+        }
+        
         </style>
         
 
@@ -559,6 +568,7 @@
         
         
         
+        <script src="clipboard.js-master/dist/clipboard.min.js"></script>
         
         <script>
             
@@ -740,19 +750,6 @@
                     document.execCommand("copy");
                     document.body.removeChild(aux);
                 }
-                     
-            function butonCopyPaste() {
-                                var aux = document.createElement("input");
-                                
-                                var recoverJSON = JSON.stringify(listFieldsResult, undefined, 4);
-                                recoverJSON = '{ \n "fields":'+recoverJSON+' \n}';
-                                
-                                aux.setAttribute("value", recoverJSON);
-                                document.body.appendChild(aux);
-                                aux.select();
-                                document.execCommand("copy");
-                                document.body.removeChild(aux);
-            }
                                 
             function output(inp) {
                  document.body.appendChild(document.createElement('pre')).innerHTML = inp;
@@ -768,7 +765,7 @@
                 $("#containerJsonItemsCreated").empty()
                 var recoverJSON = JSON.stringify(listFieldsResult, undefined, 4);
                 recoverJSON = '{ \n "fields":'+recoverJSON+' \n}';
-                $("#containerJsonItemsCreated").append("<div class='butonCopyPaste' onclick='butonCopyPaste()'>Copiar</div><pre>"+syntaxHighlight(recoverJSON)+"</pre>")
+               $("#containerJsonItemsCreated").append("<button class='btn butonCopyPaste' data-clipboard-action='copy' data-clipboard-target='#bar'>Copiar</button><textarea id='bar'>"+recoverJSON+"</textarea><pre>"+syntaxHighlight(recoverJSON)+"</pre>")
             });
                        
             function cellColorOpen() {
@@ -782,8 +779,21 @@
                 $("#cellColor").append("<p id='colorId'>"+$("#testPatch").text()+"</p>");
             });
                                 
+                                var clipboard = new Clipboard('.btn');
+                                
+                                clipboard.on('success', function(e) {
+                                             console.log("OK");
+                                             console.log(e);
+                                             });
+                                
+                                clipboard.on('error', function(e) {
+                                             console.log("OK");
+                                             console.log(e);
+                                             });
+                                
             
         </script>
+        
     </body>
 </html>
 

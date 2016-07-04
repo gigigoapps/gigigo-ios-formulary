@@ -1,1 +1,22 @@
-{  "fields":[    {        "tag": 0,        "type": "text",        "label": "1",        "error": "error_generic_field",        "mandatory": false    }] }
+{
+    "fields":[
+              {
+              "tag": 0,
+              "type": "text",
+              "label": "titulo",
+              "error": "error_generic_field",
+              "mandatory": false
+              },
+              {
+              "tag": 1,
+              "type": "text",
+              "label": "segundo elemento",
+              "error": "sada",
+              "mandatory": true,
+              "placeHolder": "con placeHolder",
+              "style": {
+              "backgroundColorField": "#86FF60"
+              }
+              }
+              ] 
+}
