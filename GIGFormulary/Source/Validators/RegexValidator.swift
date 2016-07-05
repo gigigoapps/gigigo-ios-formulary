@@ -27,6 +27,8 @@ class RegexValidator: StringValidator {
     required init(mandatory: Bool) {
         super.init(mandatory: mandatory)
     }
+    
+    // MARK: Public Method
 
     override func validate(value: AnyObject?) -> Bool{
         if (!super.validate(value))  {

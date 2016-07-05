@@ -31,6 +31,8 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     var viewContainer: UIView!
     
+    // MARK: INIT
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
          self.awakeFromNib(frame)
@@ -69,10 +71,8 @@ class TextFormField: FormField, UITextFieldDelegate {
     // MARK: Public Method
     
     override func insertData(formFieldM: FormFieldModel) {
-        self.titleLabel.text = formFieldM.label
-        self.textTextField.placeholder = formFieldM.placeHolder
-        self.errorLabel.text = formFieldM.textError
-        self.showMandatory(formFieldM.mandatory)
+        self.loadData(formFieldM)
+        self.loadMandatory(formFieldM.mandatory)
         self.loadCustomStyleField(formFieldM)
         self.loadKeyboard(formFieldM)
     }
@@ -117,7 +117,22 @@ class TextFormField: FormField, UITextFieldDelegate {
         }
     }
     
-    private func showMandatory(isMandatory: Bool) {
+    private func initializeView() {
+        self.titleLabel.numberOfLines = 0
+        self.errorLabel.numberOfLines = 0
+        self.mandotoryImage.image = UIImage(named: "mandatoryIcon")
+        self.textTextField.delegate = self
+    }
+    
+    // MARK: Load data field
+    
+    private func loadData(formFieldM: FormFieldModel) {
+        self.titleLabel.text = formFieldM.label
+        self.textTextField.placeholder = formFieldM.placeHolder
+        self.errorLabel.text = formFieldM.textError
+    }
+    
+    private func loadMandatory(isMandatory: Bool) {
         if (isMandatory) {
             self.widthMandatoryImageConstraint.constant = 30
         }
@@ -140,13 +155,6 @@ class TextFormField: FormField, UITextFieldDelegate {
                 self.viewContainer.backgroundColor = styleField!.backgroundColorField!
             }
         }
-    }
-    
-    private func initializeView() {
-        self.titleLabel.numberOfLines = 0
-        self.errorLabel.numberOfLines = 0
-        self.mandotoryImage.image = UIImage(named: "mandatoryIcon")
-        self.textTextField.delegate = self
     }
     
     // MARK: UITextFieldDelegate
