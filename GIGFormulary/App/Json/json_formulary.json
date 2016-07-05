@@ -5,7 +5,7 @@
               "type": "text",
               "label": "wer",
               "error": "error_generic_field",
-              "mandatory": false
+              "mandatory": true
               },
               {
               "tag": 1,
