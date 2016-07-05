@@ -24,6 +24,7 @@ class FormFieldModel: NSObject {
     var options: [FormFieldOptionsModel]?
     var style: FormFieldStyleModel?
     var validator: String?
+    var keyBoard: String?
        
     // MARK: Public Method
     
@@ -48,6 +49,7 @@ class FormFieldModel: NSObject {
         let style = json["style"] as? [String: AnyObject]
         let textError = json["textError"] as? String
         let validator = json["validator"] as? String
+        let keyBoard = json["keyBoard"] as? String
         
         
         //== INSERT DATA ==
@@ -84,6 +86,9 @@ class FormFieldModel: NSObject {
         }
         if (validator != nil) {
             self.validator = validator
+        }
+        if (keyBoard != nil) {
+            self.keyBoard = keyBoard
         }
     }
 }

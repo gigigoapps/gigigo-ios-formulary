@@ -9,18 +9,34 @@
 import UIKit
 import GIGLibrary
 
+
+protocol PFormBuilderViews {
+    func sendButtonAction()
+}
+
 class FormBuilderViews: NSObject {
-    // -- Views --
+    //-- Views --
     let viewContainerFormulary: UIView
     var viewFormulary = UIView()
     var scrollView = UIScrollView()
+    let buttonSend: UIButton
+    let viewContainerField: UIView
     
-    init(viewContainerFormulary: UIView) {
+    //-- Var --
+    var delegate: PFormBuilderViews?
+    
+    init(viewContainerFormulary: UIView, formController: FormController) {
         self.viewContainerFormulary = viewContainerFormulary
+        self.viewFormulary = viewContainerFormulary.subviews[0]
+        self.viewContainerField = self.viewFormulary.subviews[2]
+        self.buttonSend = self.viewFormulary.subviews[1] as! UIButton
+        viewContainerFormulary.removeSubviews()
         
         super.init()
         
         self.prepareFormulary()
+        self.delegate = formController
+        self.buttonSend.addTarget(self, action: #selector(self.buttonAction), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     // MARK : Public Method
@@ -50,19 +66,17 @@ class FormBuilderViews: NSObject {
         }
     }
     
+    // MARK : Actions
+    
+    func buttonAction() {
+        self.delegate?.sendButtonAction()
+    }
+    
     // MARK : Private Method
     
     func prepareFormulary() {
-        
-        
-        //_- TODO EDU borrar
-        self.scrollView.backgroundColor = UIColor.greenColor()
-        //-- fin borrar
-        
-        
-        self.scrollView.addSubview(viewFormulary)
-        self.viewContainerFormulary.addSubview(scrollView)
-        
+        self.scrollView.addSubview(self.viewFormulary)
+        self.viewContainerFormulary.addSubview(self.scrollView)        
         
         //-- Constraint --
         
@@ -85,7 +99,7 @@ class FormBuilderViews: NSObject {
         var lastView = UIView()
         var firstTime = true
         for field in listFields {
-            self.viewFormulary.addSubview(field)
+            self.viewContainerField.addSubview(field)
             
             gig_autoresize(field, false)
             gig_layout_fit_horizontal(field);
@@ -103,7 +117,7 @@ class FormBuilderViews: NSObject {
             firstTime = false
         }
         
-        if (self.viewFormulary.subviews.count > 0) {
+        if (self.viewContainerField.subviews.count > 0) {
              gig_layout_bottom(lastView, 0);
         }
     }

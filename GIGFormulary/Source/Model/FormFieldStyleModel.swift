@@ -21,32 +21,7 @@ class FormFieldStyleModel: NSObject {
         
         //== INSERT DATA ==
         if (backgroundColorField != nil) {
-        //    let string = "ff"
-        //    let value = UInt8(strtoul(string, nil, 16))
-        //    let value2 = UInt8(strtoul(backgroundColorField!, nil, 16))
-            
-            
-            
-       /*
-            
-            
-            //UIColor.redColor()
-            let str = "239A23F"
-            let num = Int(str, radix: 16)
-            
-            let scanner = NSScanner(string: str)
-            var result : UInt32 = 0
-            if scanner.scanHexInt(&result) {
-               // println(result) // 37331519
-                
-                var a = 0
-                a = a+1
-            }
-            */
             self.backgroundColorField = self.stringToHexColor(backgroundColorField!)
-            
-        //    var a = 0
-        //    a = a+1
         }
         
         
@@ -55,9 +30,9 @@ class FormFieldStyleModel: NSObject {
         }
     }
     
+    // MARK: Private Method
     
-    func stringToHexColor(hexString: String) -> UIColor? {
-        
+    private func stringToHexColor(hexString: String) -> UIColor? {  // TODO EDU , esto habria que meterlo en la gigLib
         let hexStringAlpha = "\(hexString)FF"
         let r, g, b, a: CGFloat
         

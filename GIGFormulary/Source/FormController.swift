@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FormController: NSObject, PFormField {
+class FormController: NSObject, PFormField, PFormBuilderViews {
     
     // CLASS
     var formViews: FormBuilderViews?
@@ -20,7 +20,7 @@ class FormController: NSObject, PFormField {
     init(viewContainerFormulary: UIView) {        
         super.init()
         
-        self.formViews = FormBuilderViews(viewContainerFormulary: viewContainerFormulary)
+        self.formViews = FormBuilderViews(viewContainerFormulary: viewContainerFormulary,formController: self)
     }
     
     // MARK: Public Method
@@ -63,7 +63,11 @@ class FormController: NSObject, PFormField {
     return valid;
     }
     */
-    // MARK: PFormField
+    // MARK: PFormBuilderViews
+    
+    func sendButtonAction() {
+        self.validateFields()
+    }
     
     
     // MARK: PTextFormField

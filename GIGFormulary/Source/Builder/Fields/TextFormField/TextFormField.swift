@@ -74,6 +74,7 @@ class TextFormField: FormField, UITextFieldDelegate {
         self.errorLabel.text = formFieldM.textError
         self.showMandatory(formFieldM.mandatory)
         self.loadCustomStyleField(formFieldM)
+        self.loadKeyboard(formFieldM)
     }
     
     override func validate() -> Bool {
@@ -113,6 +114,10 @@ class TextFormField: FormField, UITextFieldDelegate {
         else {
             self.widthMandatoryImageConstraint.constant = 0
         }
+    }
+    
+    private func loadKeyboard(formFieldM: FormFieldModel) {
+        self.textTextField.keyboardType = self.keyBoard!
     }
     
     private func loadCustomStyleField(formFieldM: FormFieldModel) {

@@ -5,18 +5,39 @@
               "type": "text",
               "label": "titulo",
               "error": "error_generic_field",
-              "mandatory": false
+              "mandatory": true,
+              "placeHolder": "algo",
+              "keyBoard": "FormKeyboardTypeNumbers",
+              "validator": "text"
               },
               {
               "tag": 1,
               "type": "text",
-              "label": "segundo elemento",
-              "error": "sada",
-              "mandatory": true,
-              "placeHolder": "con placeHolder",
+              "label": "otro",
+              "error": "error_generic_field",
+              "mandatory": false,
+              "placeHolder": "ajsajs",
               "style": {
-              "backgroundColorField": "#86FF60"
+              "backgroundColorField": "#FEC487"
               }
+              },
+              {
+              "tag": 2,
+              "type": "text",
+              "label": "safas",
+              "error": "ssafsa",
+              "mandatory": false,
+              "placeHolder": "asdf",
+              "style": {
+              "backgroundColorField": "#FF2128"
+              }
+              },
+              {
+              "tag": 3,
+              "type": "text",
+              "label": "wqewqeq",
+              "error": "error_generic_field",
+              "mandatory": false
               }
               ] 
 }

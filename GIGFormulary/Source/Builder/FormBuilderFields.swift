@@ -50,6 +50,7 @@ class FormBuilderFields: NSObject {
             let field = typeField!.init()
             field.delegate = self.formController
             field.validator = self.validatorToField(formFieldM)
+            field.keyBoard = self.keyBoardToField(formFieldM)
             field.insertData(formFieldM)
             field.tag = tag
             return field
@@ -69,6 +70,15 @@ class FormBuilderFields: NSObject {
         }
         else {
             return Validator(mandatory: formFieldM.mandatory)
+        }
+    }
+    
+    private func keyBoardToField(formFieldM: FormFieldModel) -> UIKeyboardType?{
+        if (formFieldM.keyBoard != nil) {
+            return self.keyboardTypes[TypeKeyBoard(rawValue: formFieldM.keyBoard!)!]
+        }
+        else {
+            return UIKeyboardType.Default
         }
     }
     

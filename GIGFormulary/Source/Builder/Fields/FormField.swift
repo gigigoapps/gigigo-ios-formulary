@@ -15,6 +15,7 @@ public class FormField: UIView{
     
     var delegate: PFormField?
     var validator: Validator?
+    var keyBoard: UIKeyboardType?
     public var fieldValue: AnyObject?
     
     //-- Init Xib --
