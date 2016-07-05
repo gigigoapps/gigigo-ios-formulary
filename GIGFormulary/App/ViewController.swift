@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import GIGLibrary
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let formController = FormController(viewContainerFormulary: self.view)
-        formController.loadFieldsFromJSONFile("")
+        formController.loadFieldsFromJSONFile("json_formulary.json")
+        
     }
 }
-

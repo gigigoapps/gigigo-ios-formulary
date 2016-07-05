@@ -14,6 +14,20 @@ enum TypeField: String {
     case PICKER_FORM_FIELD = "picker"
 }
 
+enum TypeKeyBoard: String {
+    case KEYBOARD_TEXT = "FormKeyboardTypeText"
+    case KEYBOARD_EMAIL = "FormKeyboardTypeEmail"
+    case KEYBOARD_NUMBER = "FormKeyboardTypeNumbers"
+    case KEYBOARD_NUMBERPAD = "FormKeyboardTypeNumberPad"
+}
+
+enum TypeValidator: String {
+    case VALIDATOR_TEXT = "text"
+}
+
+
+
+
 enum ThrowError: ErrorType {
     case InvalidParse
     case MandatoryElementNotFound

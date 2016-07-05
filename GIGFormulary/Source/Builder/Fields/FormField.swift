@@ -9,19 +9,21 @@
 import UIKit
 
 protocol PFormField: PTextFormField, PPickerFormField {
-    
 }
 
-class FormField: UIView{
+public class FormField: UIView{
     
     var delegate: PFormField?
+    var validator: Validator?
+    var keyBoard: UIKeyboardType?
+    public var fieldValue: AnyObject?
     
     //-- Init Xib --
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
         
@@ -29,5 +31,12 @@ class FormField: UIView{
     
     func insertData(formFieldM: FormFieldModel) {
         
+    }
+    
+    func validate() -> Bool {
+        if (self.validator == nil) {
+            return true
+        }
+        return self.validator!.validate(self.fieldValue)
     }
 }

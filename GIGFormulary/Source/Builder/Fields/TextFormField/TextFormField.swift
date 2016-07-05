@@ -7,22 +7,27 @@
 //
 
 import UIKit
+import GIGLibrary
+
 
 protocol PTextFormField {
-    func borrarProtocolo()
+    func scrollRectToVisible(field: FormField)
+    func didChangeValue(field: FormField, text: String)
+    func formFieldDidFinish(field: FormField)
 }
 
-class TextFormField: FormField {
+
+class TextFormField: FormField, UITextFieldDelegate {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var textTextField: UITextField!
     @IBOutlet var mandotoryImage: UIImageView!
     @IBOutlet var errorLabel: UILabel!
     
-    /*
-    func borrar() {
-        self.delegate!.borrarProtocolo()
-     }*/
+    @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
+    @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
+    
+    //-- VAR -- 
     
     var viewContainer: UIView!
     
@@ -37,13 +42,21 @@ class TextFormField: FormField {
     
     func xibSetup() {
         self.viewContainer = loadViewFromNib()
-        self.viewContainer.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
-        addSubview(viewContainer)
+        
+        addSubview(self.viewContainer)
+        
+        gig_autoresize(self.viewContainer, false)
+        gig_layout_fit_horizontal(self.viewContainer);
+        gig_layout_top(self.viewContainer, 0);
+        gig_layout_bottom(self.viewContainer, 0)
+        
+        self.initializeView()
     }
     
     func loadViewFromNib() -> UIView {
         let bundle = NSBundle(forClass: self.dynamicType)
-        let nib = UINib(nibName: "TextFormField", bundle: bundle)
+        let classString = NSStringFromClass(self.dynamicType)
+        let nib = UINib(nibName: classString.componentsSeparatedByString(".").last!, bundle: bundle)
         let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
         return view
     }
@@ -58,21 +71,98 @@ class TextFormField: FormField {
     override func insertData(formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label
         self.textTextField.placeholder = formFieldM.placeHolder
+        self.errorLabel.text = formFieldM.textError
         self.showMandatory(formFieldM.mandatory)
+        self.loadCustomStyleField(formFieldM)
+        self.loadKeyboard(formFieldM)
     }
     
-    func showError() {
+    override func validate() -> Bool {
+        let status = super.validate()
+        if (!status) {
+            self.showError()
+        }
         
+        return status
     }
     
-    // MARK: Private Method
+    // MARK: GIGFormField (Override)
+    
+    override internal var fieldValue: AnyObject? {
+        get {
+            return self.textTextField.text
+        }
+        set {
+            self.textTextField.text = "\(self.fieldValue)"
+        }
+    }
+    
+    // MARK: Private Method    
+    
+    private func showError() {
+        UIView.animateWithDuration(0.5) {
+            self.errorLabel.sizeToFit()
+            self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
+            self.layoutIfNeeded()
+        }
+    }
     
     private func showMandatory(isMandatory: Bool) {
         if (isMandatory) {
-            // poner constraint a cero
+            self.widthMandatoryImageConstraint.constant = 30
         }
         else {
-            // abrir constraint
+            self.widthMandatoryImageConstraint.constant = 0
         }
+    }
+    
+    private func loadKeyboard(formFieldM: FormFieldModel) {
+        self.textTextField.keyboardType = self.keyBoard!
+    }
+    
+    private func loadCustomStyleField(formFieldM: FormFieldModel) {
+        let styleField = formFieldM.style
+        if (styleField != nil) {
+            if (styleField!.mandatoryIcon != nil) {
+                self.mandotoryImage.image = UIImage() // TODO EDU, aqui habria q cargar la imagen q fuera
+            }
+            if (styleField!.backgroundColorField != nil) {
+                self.viewContainer.backgroundColor = styleField!.backgroundColorField!
+            }
+        }
+    }
+    
+    private func initializeView() {
+        self.titleLabel.numberOfLines = 0
+        self.errorLabel.numberOfLines = 0
+        self.mandotoryImage.image = UIImage(named: "mandatoryIcon")
+        self.textTextField.delegate = self
+    }
+    
+    // MARK: UITextFieldDelegate
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        self.delegate!.scrollRectToVisible(self)
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        self.delegate?.didChangeValue(self, text: textField.text!)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.delegate?.formFieldDidFinish(self)
+        return false
+    }
+    
+    // MARK: UIResponser (Overrride)
+    override func canBecomeFirstResponder() -> Bool {
+        return self.textTextField.canBecomeFirstResponder()
+    }
+    
+    override func becomeFirstResponder() -> Bool {
+        return self.textTextField.becomeFirstResponder()
+    }
+    override func resignFirstResponder() -> Bool {
+        return self.textTextField.resignFirstResponder()
     }
 }

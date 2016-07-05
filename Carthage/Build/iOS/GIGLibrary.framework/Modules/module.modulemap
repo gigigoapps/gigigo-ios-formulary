@@ -1,0 +1,10 @@
+framework module GIGLibrary {
+  umbrella header "GIGLibrary.h"
+
+  export *
+  module * { export * }
+}
+
+module GIGLibrary.Swift {
+    header "GIGLibrary-Swift.h"
+}

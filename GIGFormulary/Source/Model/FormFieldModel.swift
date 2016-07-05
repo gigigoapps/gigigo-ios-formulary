@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import GIGLibrary
 
 class FormFieldModel: NSObject {
     
     //-- Mandatory --
-    var tag: String?
+    var type: String?
     var label: String?
     var textError: String?
     
@@ -21,23 +22,21 @@ class FormFieldModel: NSObject {
     var mandatory = false
     var keyboard: String?
     var options: [FormFieldOptionsModel]?
-    var style: [FormFieldStyleModel]?
+    var style: FormFieldStyleModel?
+    var validator: String?
+    var keyBoard: String?
        
     // MARK: Public Method
     
     func parseDictionary(json: [String:AnyObject]) throws {
         //== PREPARE DATA ==
         //-- Mandatory --
-        guard let tag = json["tag"] as? String else {
-            print("❌❌❌ tag Not Found")
+        guard let type = json["type"] as? String else {
+            print("❌❌❌ type Not Found")
             throw ThrowError.MandatoryElementNotFound
         }
         guard let label = json["label"] as? String else {
             print("❌❌❌ label Not Found")
-            throw ThrowError.MandatoryElementNotFound
-        }
-        guard let textError = json["textError"] as? String else {
-            print("❌❌❌ textError Not Found")
             throw ThrowError.MandatoryElementNotFound
         }
         
@@ -48,25 +47,32 @@ class FormFieldModel: NSObject {
         let keyboard = json["keyboard"] as? String
         let options = json["options"] as? [String: AnyObject]
         let style = json["style"] as? [String: AnyObject]
+        let textError = json["textError"] as? String
+        let validator = json["validator"] as? String
+        let keyBoard = json["keyBoard"] as? String
         
         
         //== INSERT DATA ==
         //-- Mandatory--
-        self.tag = tag
+        self.type = type
         self.label = label
-        self.textError = textError
         
         //-- Optional--
+        if (textError != nil) {
+            self.textError = textError
+        }
+        else {
+            self.textError = NSLocalizedString("error_generic_field", comment: "")
+        }
+
         if (placeHolder != nil) {
-            /*  self.bodyBottom = BodyBottomDetailModel()
-             try self.bodyBottom?.parseJson(bodyBottom!)
-             self.listViewsCreate.append("BodyBottom")*/
+            self.placeHolder = placeHolder
         }
         if (maxLength != nil) {
             
         }
         if (mandatory != nil) {
-            
+            self.mandatory = mandatory!
         }
         if (keyboard != nil) {
             
@@ -75,7 +81,14 @@ class FormFieldModel: NSObject {
             
         }
         if (style != nil) {
-            
+            self.style = FormFieldStyleModel()
+            self.style?.parseDictionary(style!)
+        }
+        if (validator != nil) {
+            self.validator = validator
+        }
+        if (keyBoard != nil) {
+            self.keyBoard = keyBoard
         }
     }
 }

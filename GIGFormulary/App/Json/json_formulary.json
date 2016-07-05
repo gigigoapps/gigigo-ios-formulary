@@ -1,0 +1,43 @@
+{
+    "fields":[
+              {
+              "tag": 0,
+              "type": "text",
+              "label": "titulo",
+              "error": "error_generic_field",
+              "mandatory": true,
+              "placeHolder": "algo",
+              "keyBoard": "FormKeyboardTypeNumbers",
+              "validator": "text"
+              },
+              {
+              "tag": 1,
+              "type": "text",
+              "label": "otro",
+              "error": "error_generic_field",
+              "mandatory": false,
+              "placeHolder": "ajsajs",
+              "style": {
+              "backgroundColorField": "#FEC487"
+              }
+              },
+              {
+              "tag": 2,
+              "type": "text",
+              "label": "safas",
+              "error": "ssafsa",
+              "mandatory": false,
+              "placeHolder": "asdf",
+              "style": {
+              "backgroundColorField": "#FF2128"
+              }
+              },
+              {
+              "tag": 3,
+              "type": "text",
+              "label": "wqewqeq",
+              "error": "error_generic_field",
+              "mandatory": false
+              }
+              ] 
+}
