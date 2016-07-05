@@ -345,4 +345,19 @@
     margin-top: 8px;
     width: 179px;
 }
-        
+  
+.validatorResult{
+    float: left;
+    margin-left: 16px;
+    margin-top: 22px;
+}
+ 
+.keyboardResult{
+    float: left;
+    margin-left: 16px;
+    margin-top: 11px;
+} 
+
+#containerListItemsCreated input {
+	background-color: silver;
+}   

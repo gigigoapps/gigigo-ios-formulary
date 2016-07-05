@@ -3,41 +3,37 @@
               {
               "tag": 0,
               "type": "text",
-              "label": "titulo",
+              "label": "wer",
               "error": "error_generic_field",
-              "mandatory": true,
-              "placeHolder": "algo",
-              "keyBoard": "FormKeyboardTypeNumbers",
-              "validator": "text"
+              "mandatory": false
               },
               {
               "tag": 1,
               "type": "text",
-              "label": "otro",
-              "error": "error_generic_field",
+              "label": "sfs",
+              "error": "sdfsdf",
               "mandatory": false,
-              "placeHolder": "ajsajs",
-              "style": {
-              "backgroundColorField": "#FEC487"
-              }
+              "placeHolder": "sfsd"
               },
               {
               "tag": 2,
               "type": "text",
-              "label": "safas",
-              "error": "ssafsa",
+              "label": "dsfasdf",
+              "error": "fasdfs",
               "mandatory": false,
-              "placeHolder": "asdf",
+              "placeHolder": "safsda",
               "style": {
-              "backgroundColorField": "#FF2128"
+              "backgroundColorField": "#EDAE2C"
               }
               },
               {
-              "tag": 3,
+              "tag": 4,
               "type": "text",
-              "label": "wqewqeq",
+              "label": "dfgdfs",
               "error": "error_generic_field",
-              "mandatory": false
+              "mandatory": false,
+              "keyboard": "FormKeyboardTypeNumbers",
+              "validator": "text"
               }
               ] 
 }

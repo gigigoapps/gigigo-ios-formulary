@@ -49,7 +49,7 @@ class FormFieldModel: NSObject {
         let style = json["style"] as? [String: AnyObject]
         let textError = json["textError"] as? String
         let validator = json["validator"] as? String
-        let keyBoard = json["keyBoard"] as? String
+        let keyBoard = json["keyboard"] as? String
         
         
         //== INSERT DATA ==
