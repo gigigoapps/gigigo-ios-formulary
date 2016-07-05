@@ -3,7 +3,7 @@
             var indexField = 0
             
             
-            function saveField(type,title,placeHolder,error,mandatory,cellColor) {
+            function saveField(type,title,placeHolder,error,mandatory,cellColor,keyboard,validator) {
                 var style = {}
                 var haveStyle = false;
                 
@@ -24,19 +24,28 @@
                     itemSave["placeHolder"] = placeHolder
                 }
                 
+                if (keyboard != "None") {
+                    itemSave["keyboard"] = keyboard
+                }
+                
+                if (validator != "None") {
+                    itemSave["validator"] = validator
+                }
+                
                 if (haveStyle) {
                     itemSave["style"] = style
                 }
                 
+                //	alert(itemSave);
                 
                 listFieldsResult.push(itemSave)
-                /*
+                
                 for (var i=0; i<listFieldsResult.length; i++) {
                     $.each(listFieldsResult[i], function(index, val) {
                         console.log("key:"+index+" - value:"+val);
                     });
                 }
-                */
+                
                 indexField++;
             }
         
@@ -64,7 +73,7 @@
             }
             
             
-            function createField(title,placeHolder,error,mandatory,cellColor) {
+            function createField(title,placeHolder,error,mandatory,cellColor,keyboard,validator) {
                 
                 var valueCheck = ""
                 if (mandatory) {
@@ -86,14 +95,16 @@
                 var error = $("#errorTextField").val()
                 var mandatory = $('#mandatory').is(':checked');
                 var cellColor = $("#cellColor").text()
+                var keyboard = document.getElementById("selectTypeKeyboard").value;
+                var validator = document.getElementById("selectTypeValidator").value;
                 
                 if (error.length == 0) {
                     error = "error_generic_field"
                 }
                 
                 if (title.length > 0) {
-                    createField(title,placeHolder,error,mandatory,cellColor);
-                    saveField("text",title,placeHolder,error,mandatory,cellColor)
+                    createField(title,placeHolder,error,mandatory,cellColor,keyboard,validator);
+                    saveField("text",title,placeHolder,error,mandatory,cellColor,keyboard,validator)
                 }
                 else {
                     alert("Los campos con asterisco son obligatorios");
@@ -130,8 +141,7 @@
                 
                 if (typeField == "Text") {
                     
-                    var html = '<div class="cellConstructor" id="createField"><div class="row"><div class="col-md-10"><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text" name="titleTextField" id="titleTextField"></div><div class="colorZone"><p>Color de la celda:</p><div id="cellColor" onclick="cellColorOpen()"></div></div></div><div class="containerTextFieldCenter"><div class="inputTextField"><p>PlaceHolder:</p><input type="text" name="palceHolderTextField" id="palceHolderTextField"></div><div class="mandatoryTextField"><input type="checkbox" name="mandatory" value="mandatory" id="mandatory"><p>Es obligatorio?</p></div></div><div class="errorTextField"><p>Texto error*:</p><input type="text" name="errorTextField"id="errorTextField"></div></div><div class="col-md-2 buttonAdd" onclick="addField()"><p>+</p></div></div></div>';
-                    
+                    var html = '<div class="cellConstructor" id="createField">                       <div class="row">                           <div class="col-md-10"><div class="containerTextFieldTop">                                   <div class="titleTextField">                                       <p>Titulo*:</p>                                       <input type="text" name="titleTextField" id="titleTextField">                                           </div>                                   <div class="colorZone">                                       <p>Color de la celda:</p>                                       <div id="cellColor"  onclick="cellColorOpen()"></div>                                   </div>                                    <select id="selectTypeKeyboard">                                        <option value="None">Elegir tipo de teclado</option>                                        <option value="FormKeyboardTypeText">Texto</option>                                        <option value="FormKeyboardTypeEmail">Email</option>                                        <option value="FormKeyboardTypeNumbers">Nuerico</option>                                        <option value="FormKeyboardTypeNumberPad">NuericoPad</option>                                    </select>                               </div><div class="containerTextFieldCenter">                                   <div class="inputTextField">                                      <p>PlaceHolder:</p>                                       <input type="text" name="palceHolderTextField" id="palceHolderTextField">                                   </div>                                   <div class="mandatoryTextField">                                       <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">                                           <p>Es obligatorio?</p></div><select id="selectTypeValidator"><option value="None">Tipo validador</option>                                        <option value="text">Texto</option>                                        <option value="email">Email</option>                                       <option value="numeric">Numérico</option></select>                                 </div>                               <div class="errorTextField">                                   <p>Texto error*:</p>                                   <input type="text" name="errorTextField"id="errorTextField">                                       </div>                           </div>                           <div class="col-md-2 buttonAdd" onclick="addField()">                               <p>+</p>                           </div>                       </div>                   </div> ';
                     $("#containterElementField").append(html)
                 }
                 else if (typeField == "Picker") {

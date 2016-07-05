@@ -141,7 +141,7 @@
         .mandatoryTextField {
             float: left;
             margin-top: 8px;
-            width: 169px;
+            width: 133px;
         }
             .mandatoryTextField input{
                 float: left;
@@ -264,9 +264,9 @@
             float:left;
         }
         .colorZone {
-            height: 35px;
-            padding-top: 7px;
-            width: 100%;
+            float: left;
+    		height: 35px;
+    		padding-top: 7px;
         }
             .colorZone p{
                 float: left;
@@ -275,7 +275,8 @@
             }
         
         .containerTextFieldTop{
-            height: 42px;
+            height: 43px;
+            width: 100%;
         }
         
         #colorId{
@@ -330,3 +331,18 @@
             -moz-appearance:none;
             outline:0px none transparent;
         }
+        
+        #selectTypeKeyboard {
+            float: left;
+   			margin-left: 21px;
+    		margin-top: 0;
+    		width: 179px;
+        }        
+        
+#selectTypeValidator {
+    float: left;
+    margin-left: 0;
+    margin-top: 8px;
+    width: 179px;
+}
+        
