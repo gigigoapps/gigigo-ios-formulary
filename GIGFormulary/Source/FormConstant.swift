@@ -23,6 +23,7 @@ enum TypeKeyBoard: String {
 
 enum TypeValidator: String {
     case VALIDATOR_TEXT = "text"
+    case VALIDATOR_EMAIL = "email"
 }
 
 

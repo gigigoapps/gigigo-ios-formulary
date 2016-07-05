@@ -76,11 +76,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GIGFormulary/Source/Builder/FormBuilderFields.swift"
-            timestampString = "489400301.309592"
+            timestampString = "489408089.696268"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "keyBoardToField(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -91,14 +91,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GIGFormulary/Source/Builder/Fields/FormField.swift"
-            timestampString = "489406035.188732"
+            filePath = "GIGFormulary/Source/Validators/RegexValidator.swift"
+            timestampString = "489408404.795261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "validate()"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "validate(_:)"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GIGFormulary.RegexValidator.validate (Swift.Optional&lt;Swift.AnyObject&gt;) -&gt; Swift.Bool"
+                  moduleName = "GIGFormulary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eduardoparada/ios_proyect/gigigo-giglibformulary-ios/GIGFormulary/Source/Validators/RegexValidator.swift"
+                  timestampString = "489408713.111338"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "1164">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GIGFormulary.RegexValidator.validate (Swift.Optional&lt;Swift.AnyObject&gt;) -&gt; Swift.Bool"
+                  moduleName = "GIGFormulary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eduardoparada/ios_proyect/gigigo-giglibformulary-ios/GIGFormulary/Source/Validators/RegexValidator.swift"
+                  timestampString = "489408713.11148"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "1497">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

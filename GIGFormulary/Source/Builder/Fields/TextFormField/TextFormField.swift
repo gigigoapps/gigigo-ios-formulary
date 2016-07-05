@@ -82,6 +82,9 @@ class TextFormField: FormField, UITextFieldDelegate {
         if (!status) {
             self.showError()
         }
+        else {
+            self.hideError()
+        }
         
         return status
     }
@@ -103,6 +106,13 @@ class TextFormField: FormField, UITextFieldDelegate {
         UIView.animateWithDuration(0.5) {
             self.errorLabel.sizeToFit()
             self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
+            self.layoutIfNeeded()
+        }
+    }
+    
+    private func hideError() {
+        UIView.animateWithDuration(0.5) {
+            self.heightErrorLabelConstraint.constant = 0
             self.layoutIfNeeded()
         }
     }

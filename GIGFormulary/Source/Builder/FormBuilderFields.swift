@@ -38,7 +38,8 @@ class FormBuilderFields: NSObject {
                               .KEYBOARD_NUMBER: .NumbersAndPunctuation,
                               .KEYBOARD_NUMBERPAD: .NumberPad]
 
-        self.validatorsType = [.VALIDATOR_TEXT: StringValidator.self]
+        self.validatorsType = [.VALIDATOR_TEXT: StringValidator.self,
+                               .VALIDATOR_EMAIL: MailRegexValidator.self]
     }
     
     private func createField(fieldDic: [String:AnyObject], tag: Int) -> FormField {
@@ -50,7 +51,7 @@ class FormBuilderFields: NSObject {
             let field = typeField!.init()
             field.delegate = self.formController
             field.validator = self.validatorToField(formFieldM)
-            field.keyBoard = self.keyBoardToField(formFieldM)
+            field.keyBoard = self.keyboardToField(formFieldM)
             field.insertData(formFieldM)
             field.tag = tag
             return field
@@ -73,7 +74,7 @@ class FormBuilderFields: NSObject {
         }
     }
     
-    private func keyBoardToField(formFieldM: FormFieldModel) -> UIKeyboardType?{
+    private func keyboardToField(formFieldM: FormFieldModel) -> UIKeyboardType?{
         if (formFieldM.keyBoard != nil) {
             return self.keyboardTypes[TypeKeyBoard(rawValue: formFieldM.keyBoard!)!]
         }

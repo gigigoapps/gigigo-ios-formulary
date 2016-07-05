@@ -25,6 +25,8 @@
 		7B8C9C681D2273180066AAA3 /* PickerFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C671D2273180066AAA3 /* PickerFormField.swift */; };
 		7B8C9C6A1D22B2900066AAA3 /* PickerFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C9C691D22B2900066AAA3 /* PickerFormField.xib */; };
 		7B8C9C6C1D22B2AC0066AAA3 /* TextFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C9C6B1D22B2AC0066AAA3 /* TextFormField.xib */; };
+		7B90DFD61D2BC08A005101DA /* RegexValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B90DFD51D2BC08A005101DA /* RegexValidator.swift */; };
+		7B90DFD81D2BC43A005101DA /* MailRegexValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B90DFD71D2BC43A005101DA /* MailRegexValidator.swift */; };
 		7BC59C7C1D267378008507CE /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC59C7B1D267378008507CE /* Validator.swift */; };
 		7BC59C7E1D267498008507CE /* StringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC59C7D1D267498008507CE /* StringValidator.swift */; };
 		7BDBDE5B1D23AE7800665CF3 /* FormFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDBDE5A1D23AE7800665CF3 /* FormFieldModel.swift */; };
@@ -89,6 +91,8 @@
 		7B8C9C671D2273180066AAA3 /* PickerFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickerFormField.swift; path = Source/Builder/Fields/PickerFormField/PickerFormField.swift; sourceTree = "<group>"; };
 		7B8C9C691D22B2900066AAA3 /* PickerFormField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PickerFormField.xib; path = Source/Builder/Fields/PickerFormField/PickerFormField.xib; sourceTree = "<group>"; };
 		7B8C9C6B1D22B2AC0066AAA3 /* TextFormField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextFormField.xib; path = Source/Builder/Fields/TextFormField/TextFormField.xib; sourceTree = "<group>"; };
+		7B90DFD51D2BC08A005101DA /* RegexValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegexValidator.swift; path = Source/Validators/RegexValidator.swift; sourceTree = "<group>"; };
+		7B90DFD71D2BC43A005101DA /* MailRegexValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MailRegexValidator.swift; path = Source/Validators/MailRegexValidator.swift; sourceTree = "<group>"; };
 		7BC59C7B1D267378008507CE /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validator.swift; path = Source/Validators/Validator.swift; sourceTree = "<group>"; };
 		7BC59C7D1D267498008507CE /* StringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringValidator.swift; path = Source/Validators/StringValidator.swift; sourceTree = "<group>"; };
 		7BDBDE5A1D23AE7800665CF3 /* FormFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormFieldModel.swift; path = Source/Model/FormFieldModel.swift; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 			children = (
 				7BC59C7B1D267378008507CE /* Validator.swift */,
 				7BC59C7D1D267498008507CE /* StringValidator.swift */,
+				7B90DFD51D2BC08A005101DA /* RegexValidator.swift */,
+				7B90DFD71D2BC43A005101DA /* MailRegexValidator.swift */,
 			);
 			name = Validators;
 			sourceTree = "<group>";
@@ -430,6 +436,8 @@
 				7B8C9C681D2273180066AAA3 /* PickerFormField.swift in Sources */,
 				7BC59C7C1D267378008507CE /* Validator.swift in Sources */,
 				7BDBDE5B1D23AE7800665CF3 /* FormFieldModel.swift in Sources */,
+				7B90DFD61D2BC08A005101DA /* RegexValidator.swift in Sources */,
+				7B90DFD81D2BC43A005101DA /* MailRegexValidator.swift in Sources */,
 				7BDBDE601D23B34300665CF3 /* FormFieldOptionsModel.swift in Sources */,
 				7BC59C7E1D267498008507CE /* StringValidator.swift in Sources */,
 				7BDBDE621D23B47600665CF3 /* FormFieldStyleModel.swift in Sources */,

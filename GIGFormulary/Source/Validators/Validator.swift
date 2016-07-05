@@ -12,6 +12,10 @@ class Validator:NSObject {
     
     var mandatory: Bool
     
+    override init() {        
+        self.mandatory = false
+        super.init()
+    }
     
     required init(mandatory: Bool) {
         self.mandatory = mandatory

@@ -5,7 +5,7 @@
               "type": "text",
               "label": "wer",
               "error": "error_generic_field",
-              "mandatory": true
+              "mandatory": false
               },
               {
               "tag": 1,
@@ -27,13 +27,13 @@
               }
               },
               {
-              "tag": 4,
+              "tag": 5,
               "type": "text",
-              "label": "dfgdfs",
+              "label": "validador EMAIL",
               "error": "error_generic_field",
               "mandatory": false,
-              "keyboard": "FormKeyboardTypeNumbers",
-              "validator": "text"
+              "keyboard": "FormKeyboardTypeEmail",
+              "validator": "email"
               }
               ] 
 }
