@@ -11,6 +11,8 @@ import UIKit
 class Validator:NSObject {
     
     var mandatory: Bool
+    var minLength: Int?
+    var maxLength: Int?
     
     override init() {        
         self.mandatory = false
@@ -22,6 +24,7 @@ class Validator:NSObject {
         super.init()
     }
     
+    // MARK:Public Method    
     
     func validate(value: AnyObject?) -> Bool{
         if (value == nil && self.mandatory) {
