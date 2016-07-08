@@ -40,7 +40,6 @@
             border-radius: 10px;
             border-style: solid;
             border-width: 1px;
-            height: 144px;
             margin-bottom: 15px;
             margin-top: 15px;
         }
@@ -50,13 +49,13 @@
             color: white;
             float: right;
             font-size: 49px;
-            height: 142px;
+            height: 230px;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonAdd p{
-                margin-top: 34px;
+                margin-top: 70px;
             }
             .buttonAdd:hover {
                 background-color: skyblue;
@@ -68,13 +67,13 @@
             color: white;
             float: right;
             font-size: 49px;
-            height: 142px;
+            height: 230px;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonRemove p{
-                margin-top: 34px;
+                margin-top: 70px;
             }
             .buttonRemove:hover {
                 background-color: gray;
@@ -120,10 +119,10 @@
                 width: 374px;
             }
         .errorTextField{
-            height: 26px;
+            height: 37px;
             margin-left: 69px;
             margin-top: 9px;
-            width: 325px;
+            width: 100%;
         }
             .errorTextField p{
                 float: left;
@@ -132,12 +131,16 @@
                 width: 78px;
             }
             .errorTextField input{
-                float: right;
+                float: left;
                 height: 26px;
+                margin-right: 16px;
                 margin-top: 0;
                 width: 246px;
             }
-        
+        .inputWidth {
+            width: 70px !important;
+        }
+
         .mandatoryTextField {
             float: left;
             margin-top: 8px;
@@ -267,6 +270,7 @@
             float: left;
     		height: 35px;
     		padding-top: 7px;
+            margin-left: 31px;
         }
             .colorZone p{
                 float: left;
@@ -282,7 +286,9 @@
         #colorId{
         
         }
-        
+        .textErrorP {
+            margin-right: 6px;
+        }
         #closeSaveColor{
             background-color: white;
             border: 1px solid black;
@@ -361,3 +367,13 @@
 #containerListItemsCreated input {
 	background-color: silver;
 }   
+.styleField{
+
+}
+    .styleField h4 {
+        margin-left: 29px;       
+    }
+
+.spaceSeparate{
+    height: 47px;
+}
