@@ -183,7 +183,7 @@ class TextFormField: FormField, UITextFieldDelegate {
         }
         else {
             let lengthValidator = LengthValidator(minLength: self.formFieldM!.minLengthValue, maxLength: self.formFieldM!.maxLengthValue)
-            return lengthValidator.validate(finalString)
+            return lengthValidator.controlCharacters(finalString)
         }
     }
     

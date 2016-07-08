@@ -20,6 +20,17 @@ class LengthValidator: StringValidator {
         self.maxLength = maxLength
     }
     
+    func controlCharacters(value: String) -> Bool {
+        if (!super.validate(value))  {
+            return false
+        }
+        
+        if (self.maxLength != nil) {
+            return !(value.characters.count > self.maxLength);
+        }
+        
+        return true
+    }
     
     // MARK: - OVERRIDE (Validator)
     
@@ -29,19 +40,15 @@ class LengthValidator: StringValidator {
         }
 
         let stringValue = value as! String
-            
-        if (stringValue.characters.count == 0 && !self.mandatory) {
-            return true
-        }
         
         if (self.maxLength != nil && self.minLength != nil) {
-            return (!(value!.length > self.maxLength) && !(value!.length < self.minLength));
+            return (!(stringValue.characters.count > self.maxLength) && !(stringValue.characters.count < self.minLength));
         }
         else if (self.maxLength != nil) {
-            return !(value!.length > self.maxLength);
+            return !(stringValue.characters.count > self.maxLength);
         }
         else if (self.minLength != nil) {
-            return !(value!.length < self.minLength);
+            return !(stringValue.characters.count < self.minLength);
         }
         
         return true
