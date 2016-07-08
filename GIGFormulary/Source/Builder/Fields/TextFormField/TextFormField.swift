@@ -68,14 +68,7 @@ class TextFormField: FormField, UITextFieldDelegate {
         self.xibSetup()
     }
     
-    // MARK: Public Method
-    
-    override func insertData(formFieldM: FormFieldModel) {
-        self.loadData(formFieldM)
-        self.loadMandatory(formFieldM.mandatory)
-        self.loadCustomStyleField(formFieldM)
-        self.loadKeyboard(formFieldM)
-    }
+    // MARK: VALIDATE
     
     override func validate() -> Bool {
         let status = super.validate()
@@ -87,6 +80,15 @@ class TextFormField: FormField, UITextFieldDelegate {
         }
         
         return status
+    }
+    
+    // MARK: Public Method
+    
+    override func insertData(formFieldM: FormFieldModel) {
+        self.loadData(formFieldM)
+        self.loadMandatory(formFieldM.mandatory)
+        self.loadCustomStyleField(formFieldM)
+        self.loadKeyboard(formFieldM)
     }
     
     // MARK: GIGFormField (Override)
@@ -170,6 +172,19 @@ class TextFormField: FormField, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.delegate?.formFieldDidFinish(self)
         return false
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {        
+        let textFieldText: NSString = textField.text ?? ""
+        let finalString = textFieldText.stringByReplacingCharactersInRange(range, withString: string)
+    
+        if (self.validator != nil && (self.validator is LengthValidator)) {
+            return self.validator!.validate(finalString)
+        }
+        else {
+            let lengthValidator = LengthValidator(minLength: self.formFieldM!.minLengthValue, maxLength: self.formFieldM!.maxLengthValue)
+            return lengthValidator.validate(finalString)
+        }
     }
     
     // MARK: UIResponser (Overrride)

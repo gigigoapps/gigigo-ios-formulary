@@ -54,6 +54,7 @@ class FormBuilderFields: NSObject {
             field.keyBoard = self.keyboardToField(formFieldM)
             field.insertData(formFieldM)
             field.tag = tag
+            field.formFieldM = formFieldM
             return field
         }
         catch {
@@ -66,7 +67,8 @@ class FormBuilderFields: NSObject {
         if (formFieldM.validator != nil) {
             let typeValidator = self.validatorsType[TypeValidator(rawValue: formFieldM.validator!)!]
             let validator = typeValidator!.init(mandatory: true)
-            validator.mandatory = formFieldM.mandatory
+            validator.minLength = formFieldM.minLengthValue
+            validator.maxLength = formFieldM.maxLengthValue
             return validator
         }
         else {

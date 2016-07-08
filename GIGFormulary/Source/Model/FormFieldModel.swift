@@ -25,6 +25,8 @@ class FormFieldModel: NSObject {
     var style: FormFieldStyleModel?
     var validator: String?
     var keyBoard: String?
+    var minLengthValue: Int?
+    var maxLengthValue: Int?
        
     // MARK: Public Method
     
@@ -50,6 +52,8 @@ class FormFieldModel: NSObject {
         let textError = json["textError"] as? String
         let validator = json["validator"] as? String
         let keyBoard = json["keyboard"] as? String
+        let maxLengthValue = json["maxLength"] as? Int
+        let minLengthValue = json["minLength"] as? Int
         
         
         //== INSERT DATA ==
@@ -89,6 +93,12 @@ class FormFieldModel: NSObject {
         }
         if (keyBoard != nil) {
             self.keyBoard = keyBoard
+        }
+        if (maxLengthValue != nil) {
+            self.maxLengthValue = maxLengthValue
+        }
+        if (minLengthValue != nil) {
+            self.minLengthValue = minLengthValue
         }
     }
 }

@@ -11,6 +11,7 @@
 		2327765B1D25194A00FEFE8C /* GIGLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 232776581D2513AD00FEFE8C /* GIGLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		232776611D25291C00FEFE8C /* json_formulary.json in Resources */ = {isa = PBXBuildFile; fileRef = 232776601D25291C00FEFE8C /* json_formulary.json */; };
 		23582CE11D25550600B04CE5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23582CE01D25550600B04CE5 /* Localizable.strings */; };
+		23F039BE1D2D432F000DB7AA /* LengthValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F039BD1D2D432F000DB7AA /* LengthValidator.swift */; };
 		7B8C9C211D22567A0066AAA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C201D22567A0066AAA3 /* AppDelegate.swift */; };
 		7B8C9C261D22567A0066AAA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C9C241D22567A0066AAA3 /* Main.storyboard */; };
 		7B8C9C281D22567A0066AAA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C9C271D22567A0066AAA3 /* Assets.xcassets */; };
@@ -71,6 +72,7 @@
 		232776581D2513AD00FEFE8C /* GIGLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GIGLibrary.framework; path = ../Carthage/Build/iOS/GIGLibrary.framework; sourceTree = "<group>"; };
 		232776601D25291C00FEFE8C /* json_formulary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = json_formulary.json; path = App/Json/json_formulary.json; sourceTree = "<group>"; };
 		23582CE01D25550600B04CE5 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Resources/Localizable.strings; sourceTree = "<group>"; };
+		23F039BD1D2D432F000DB7AA /* LengthValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LengthValidator.swift; path = Source/Validators/LengthValidator.swift; sourceTree = "<group>"; };
 		7B8C9C1D1D22567A0066AAA3 /* GIGFormulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIGFormulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B8C9C201D22567A0066AAA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B8C9C251D22567A0066AAA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				7BC59C7D1D267498008507CE /* StringValidator.swift */,
 				7B90DFD51D2BC08A005101DA /* RegexValidator.swift */,
 				7B90DFD71D2BC43A005101DA /* MailRegexValidator.swift */,
+				23F039BD1D2D432F000DB7AA /* LengthValidator.swift */,
 			);
 			name = Validators;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F039BE1D2D432F000DB7AA /* LengthValidator.swift in Sources */,
 				7BDBDE5D1D23AE8500665CF3 /* FormField.swift in Sources */,
 				7B8C9C531D22577C0066AAA3 /* FormController.swift in Sources */,
 				7BDBDE641D23BFA300665CF3 /* FormBuilderViews.swift in Sources */,

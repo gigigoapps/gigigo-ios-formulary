@@ -5,7 +5,8 @@
               "type": "text",
               "label": "wer",
               "error": "error_generic_field",
-              "mandatory": false
+              "mandatory": false,
+              "maxLength": 2
               },
               {
               "tag": 1,
@@ -33,7 +34,34 @@
               "error": "error_generic_field",
               "mandatory": false,
               "keyboard": "FormKeyboardTypeEmail",
-              "validator": "email"
+              "validator": "email",
+              "maxLength": 8
+              },
+              {
+              "tag": 6,
+              "type": "text",
+              "label": "wer",
+              "error": "error_generic_field",
+              "mandatory": false
+              },
+              {
+              "tag": 7,
+              "type": "text",
+              "label": "sfs",
+              "error": "sdfsdf",
+              "mandatory": false,
+              "placeHolder": "sfsd"
+              },
+              {
+              "tag": 8,
+              "type": "text",
+              "label": "dsfasdf",
+              "error": "fasdfs",
+              "mandatory": false,
+              "placeHolder": "safsda",
+              "style": {
+              "backgroundColorField": "#EDAE2C"
               }
+              },
               ] 
 }
