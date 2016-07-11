@@ -12,6 +12,7 @@
 		232776611D25291C00FEFE8C /* json_formulary.json in Resources */ = {isa = PBXBuildFile; fileRef = 232776601D25291C00FEFE8C /* json_formulary.json */; };
 		23582CE11D25550600B04CE5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23582CE01D25550600B04CE5 /* Localizable.strings */; };
 		23F039BE1D2D432F000DB7AA /* LengthValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F039BD1D2D432F000DB7AA /* LengthValidator.swift */; };
+		7B1307E91D3396CA000231E8 /* GIGLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 232776581D2513AD00FEFE8C /* GIGLibrary.framework */; };
 		7B87EC141D3385EA00061622 /* NumericValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87EC131D3385EA00061622 /* NumericValidator.swift */; };
 		7B87EC161D33872400061622 /* PostalCodeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87EC151D33872400061622 /* PostalCodeValidator.swift */; };
 		7B87EC181D33874800061622 /* PhoneValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87EC171D33874800061622 /* PhoneValidator.swift */; };
@@ -39,6 +40,9 @@
 		7BDBDE601D23B34300665CF3 /* FormFieldOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDBDE5F1D23B34300665CF3 /* FormFieldOptionsModel.swift */; };
 		7BDBDE621D23B47600665CF3 /* FormFieldStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDBDE611D23B47600665CF3 /* FormFieldStyleModel.swift */; };
 		7BDBDE641D23BFA300665CF3 /* FormBuilderViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDBDE631D23BFA300665CF3 /* FormBuilderViews.swift */; };
+		7BDC5EEB1D33980A00A753BC /* StringValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC5EEA1D33980A00A753BC /* StringValidatorTests.swift */; };
+		7BDC5EED1D33999D00A753BC /* LengthValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC5EEC1D33999D00A753BC /* LengthValidatorTests.swift */; };
+		7BDC5EEF1D339DE300A753BC /* RegexValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC5EEE1D339DE300A753BC /* RegexValidatorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +114,9 @@
 		7BDBDE5F1D23B34300665CF3 /* FormFieldOptionsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormFieldOptionsModel.swift; path = Source/Model/FormFieldOptionsModel.swift; sourceTree = "<group>"; };
 		7BDBDE611D23B47600665CF3 /* FormFieldStyleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormFieldStyleModel.swift; path = Source/Model/FormFieldStyleModel.swift; sourceTree = "<group>"; };
 		7BDBDE631D23BFA300665CF3 /* FormBuilderViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormBuilderViews.swift; path = Source/Builder/FormBuilderViews.swift; sourceTree = "<group>"; };
+		7BDC5EEA1D33980A00A753BC /* StringValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringValidatorTests.swift; path = Validator/StringValidatorTests.swift; sourceTree = "<group>"; };
+		7BDC5EEC1D33999D00A753BC /* LengthValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LengthValidatorTests.swift; path = Validator/LengthValidatorTests.swift; sourceTree = "<group>"; };
+		7BDC5EEE1D339DE300A753BC /* RegexValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegexValidatorTests.swift; path = Validator/RegexValidatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B1307E91D3396CA000231E8 /* GIGLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +183,9 @@
 			isa = PBXGroup;
 			children = (
 				7B87EC1A1D33895600061622 /* ValidatorTests.swift */,
+				7BDC5EEA1D33980A00A753BC /* StringValidatorTests.swift */,
+				7BDC5EEC1D33999D00A753BC /* LengthValidatorTests.swift */,
+				7BDC5EEE1D339DE300A753BC /* RegexValidatorTests.swift */,
 			);
 			name = Validator;
 			sourceTree = "<group>";
@@ -480,8 +491,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BDC5EED1D33999D00A753BC /* LengthValidatorTests.swift in Sources */,
+				7BDC5EEF1D339DE300A753BC /* RegexValidatorTests.swift in Sources */,
 				7B87EC1B1D33895600061622 /* ValidatorTests.swift in Sources */,
 				7B8C9C361D22567A0066AAA3 /* GIGFormularyTests.swift in Sources */,
+				7BDC5EEB1D33980A00A753BC /* StringValidatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,8 +635,10 @@
 				);
 				INFOPLIST_FILE = GIGFormulary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormulary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -638,6 +654,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormulary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -645,7 +662,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
 				INFOPLIST_FILE = GIGFormularyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormularyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -657,7 +676,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
 				INFOPLIST_FILE = GIGFormularyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormularyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

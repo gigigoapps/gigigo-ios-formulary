@@ -11,23 +11,37 @@ import XCTest
 
 class ValidatorTests: XCTestCase {
     
-    let validator = Validator()
+    var validator: Validator!
     
     override func setUp() {
         super.setUp()
         
+        self.validator = Validator()
     }
     
     override func tearDown() {
+        self.validator = nil
         
         super.tearDown()
     }
     
     // MARK: TESTS
     
-    /*
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }*/
+    func test_not_nil() {
+        XCTAssertNotNil(self.validator)
+    }
+    
+    func test_validate_mandatory() {
+        self.validator.mandatory = true
+        
+        XCTAssertFalse(self.validator.validate(nil))
+        XCTAssertTrue(self.validator.validate(""))
+    }
+    
+    func test_validate_optional() {
+        self.validator.mandatory = false
+        
+        XCTAssertTrue(self.validator.validate(nil))
+        XCTAssertTrue(self.validator.validate(""))
+    }
 }

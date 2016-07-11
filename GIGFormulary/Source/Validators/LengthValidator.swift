@@ -39,18 +39,23 @@ class LengthValidator: StringValidator {
             return false
         }
 
-        let stringValue = value as! String
+        let stringValue = value as? String
         
-        if (self.maxLength != nil && self.minLength != nil) {
-            return (!(stringValue.characters.count > self.maxLength) && !(stringValue.characters.count < self.minLength));
+        if (stringValue != nil) {
+            if (!self.mandatory && stringValue?.characters.count == 0) {
+                return true
+            }
+            
+            if (self.maxLength != nil && self.minLength != nil) {
+                return (!(stringValue!.characters.count > self.maxLength) && !(stringValue!.characters.count < self.minLength));
+            }
+            else if (self.maxLength != nil) {
+                return !(stringValue!.characters.count > self.maxLength);
+            }
+            else if (self.minLength != nil) {
+                return !(stringValue!.characters.count < self.minLength);
+            }
         }
-        else if (self.maxLength != nil) {
-            return !(stringValue.characters.count > self.maxLength);
-        }
-        else if (self.minLength != nil) {
-            return !(stringValue.characters.count < self.minLength);
-        }
-        
         return true
     }
 }

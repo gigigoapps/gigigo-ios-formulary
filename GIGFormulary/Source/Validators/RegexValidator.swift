@@ -18,8 +18,10 @@ class RegexValidator: StringValidator {
         super.init(mandatory: mandatory)
     }
     
-    init(regexPattern: String, mandatory: Bool) {
-        self.regex = NSRegularExpression(pattern: regexPattern)
+    init(regexPattern: String?, mandatory: Bool) {
+        if (regexPattern != nil) {
+            self.regex = NSRegularExpression(pattern: regexPattern)
+        }        
         
         super.init(mandatory: mandatory)
     }
