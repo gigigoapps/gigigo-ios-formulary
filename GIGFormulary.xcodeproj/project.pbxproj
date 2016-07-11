@@ -22,7 +22,6 @@
 		7B8C9C281D22567A0066AAA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C9C271D22567A0066AAA3 /* Assets.xcassets */; };
 		7B8C9C2B1D22567A0066AAA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C9C291D22567A0066AAA3 /* LaunchScreen.storyboard */; };
 		7B8C9C361D22567A0066AAA3 /* GIGFormularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C351D22567A0066AAA3 /* GIGFormularyTests.swift */; };
-		7B8C9C411D22567A0066AAA3 /* GIGFormularyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C401D22567A0066AAA3 /* GIGFormularyUITests.swift */; };
 		7B8C9C511D22575C0066AAA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C501D22575C0066AAA3 /* ViewController.swift */; };
 		7B8C9C531D22577C0066AAA3 /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C521D22577C0066AAA3 /* FormController.swift */; };
 		7B8C9C551D2257C10066AAA3 /* FormConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C9C541D2257C10066AAA3 /* FormConstant.swift */; };
@@ -47,13 +46,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		7B8C9C321D22567A0066AAA3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7B8C9C151D22567A0066AAA3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7B8C9C1C1D22567A0066AAA3;
-			remoteInfo = GIGFormulary;
-		};
-		7B8C9C3D1D22567A0066AAA3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7B8C9C151D22567A0066AAA3 /* Project object */;
 			proxyType = 1;
@@ -94,7 +86,6 @@
 		7B8C9C311D22567A0066AAA3 /* GIGFormularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GIGFormularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B8C9C351D22567A0066AAA3 /* GIGFormularyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIGFormularyTests.swift; sourceTree = "<group>"; };
 		7B8C9C371D22567A0066AAA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7B8C9C3C1D22567A0066AAA3 /* GIGFormularyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GIGFormularyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B8C9C401D22567A0066AAA3 /* GIGFormularyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIGFormularyUITests.swift; sourceTree = "<group>"; };
 		7B8C9C421D22567A0066AAA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B8C9C501D22575C0066AAA3 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = App/ViewController.swift; sourceTree = "<group>"; };
@@ -133,13 +124,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B1307E91D3396CA000231E8 /* GIGLibrary.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7B8C9C391D22567A0066AAA3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +189,6 @@
 			children = (
 				7B8C9C1D1D22567A0066AAA3 /* GIGFormulary.app */,
 				7B8C9C311D22567A0066AAA3 /* GIGFormularyTests.xctest */,
-				7B8C9C3C1D22567A0066AAA3 /* GIGFormularyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -367,24 +350,6 @@
 			productReference = 7B8C9C311D22567A0066AAA3 /* GIGFormularyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		7B8C9C3B1D22567A0066AAA3 /* GIGFormularyUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7B8C9C4B1D22567A0066AAA3 /* Build configuration list for PBXNativeTarget "GIGFormularyUITests" */;
-			buildPhases = (
-				7B8C9C381D22567A0066AAA3 /* Sources */,
-				7B8C9C391D22567A0066AAA3 /* Frameworks */,
-				7B8C9C3A1D22567A0066AAA3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7B8C9C3E1D22567A0066AAA3 /* PBXTargetDependency */,
-			);
-			name = GIGFormularyUITests;
-			productName = GIGFormularyUITests;
-			productReference = 7B8C9C3C1D22567A0066AAA3 /* GIGFormularyUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -399,10 +364,6 @@
 						CreatedOnToolsVersion = 7.3.1;
 					};
 					7B8C9C301D22567A0066AAA3 = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = 7B8C9C1C1D22567A0066AAA3;
-					};
-					7B8C9C3B1D22567A0066AAA3 = {
 						CreatedOnToolsVersion = 7.3.1;
 						TestTargetID = 7B8C9C1C1D22567A0066AAA3;
 					};
@@ -423,7 +384,6 @@
 			targets = (
 				7B8C9C1C1D22567A0066AAA3 /* GIGFormulary */,
 				7B8C9C301D22567A0066AAA3 /* GIGFormularyTests */,
-				7B8C9C3B1D22567A0066AAA3 /* GIGFormularyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -444,13 +404,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7B8C9C2F1D22567A0066AAA3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7B8C9C3A1D22567A0066AAA3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -499,14 +452,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7B8C9C381D22567A0066AAA3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7B8C9C411D22567A0066AAA3 /* GIGFormularyUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -514,11 +459,6 @@
 			isa = PBXTargetDependency;
 			target = 7B8C9C1C1D22567A0066AAA3 /* GIGFormulary */;
 			targetProxy = 7B8C9C321D22567A0066AAA3 /* PBXContainerItemProxy */;
-		};
-		7B8C9C3E1D22567A0066AAA3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7B8C9C1C1D22567A0066AAA3 /* GIGFormulary */;
-			targetProxy = 7B8C9C3D1D22567A0066AAA3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -688,30 +628,6 @@
 			};
 			name = Release;
 		};
-		7B8C9C4C1D22567A0066AAA3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = GIGFormularyUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormularyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = GIGFormulary;
-			};
-			name = Debug;
-		};
-		7B8C9C4D1D22567A0066AAA3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = GIGFormularyUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormularyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = GIGFormulary;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -738,15 +654,6 @@
 			buildConfigurations = (
 				7B8C9C491D22567A0066AAA3 /* Debug */,
 				7B8C9C4A1D22567A0066AAA3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7B8C9C4B1D22567A0066AAA3 /* Build configuration list for PBXNativeTarget "GIGFormularyUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7B8C9C4C1D22567A0066AAA3 /* Debug */,
-				7B8C9C4D1D22567A0066AAA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
