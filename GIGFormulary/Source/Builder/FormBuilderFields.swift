@@ -39,7 +39,7 @@ class FormBuilderFields: NSObject {
                               .KEYBOARD_NUMBERPAD: .NumberPad]
 
         self.validatorsType = [.VALIDATOR_TEXT: StringValidator.self,
-                               .VALIDATOR_EMAIL: MailRegexValidator.self,
+                               .VALIDATOR_EMAIL: MailValidator.self,
                                .VALIDATOR_LENGTH: LengthValidator.self,
                                .VALIDATOR_NUMERIC: NumericValidator.self,
                                .VALIDATOR_POSTALCODE: PostalCodeValidator.self,
