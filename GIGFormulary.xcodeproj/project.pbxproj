@@ -46,6 +46,10 @@
 		7BF8CE621D33B3F9009CFBE6 /* MailValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF8CE611D33B3F9009CFBE6 /* MailValidatorTests.swift */; };
 		7BF8CE641D33B514009CFBE6 /* PhoneValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF8CE631D33B514009CFBE6 /* PhoneValidatorTests.swift */; };
 		7BF8CE661D33B5E6009CFBE6 /* PostalCodeValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF8CE651D33B5E6009CFBE6 /* PostalCodeValidatorTests.swift */; };
+		7BF8CE6A1D33D1D6009CFBE6 /* BoolValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF8CE691D33D1D6009CFBE6 /* BoolValidatorTests.swift */; };
+		7BF8CE6C1D33D285009CFBE6 /* BoolValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF8CE6B1D33D285009CFBE6 /* BoolValidator.swift */; };
+		7BF8CE6E1D33D601009CFBE6 /* DNINIEValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF8CE6D1D33D601009CFBE6 /* DNINIEValidator.swift */; };
+		7BF8CE701D33DDC3009CFBE6 /* DNINIEValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF8CE6F1D33DDC3009CFBE6 /* DNINIEValidatorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +120,10 @@
 		7BF8CE611D33B3F9009CFBE6 /* MailValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MailValidatorTests.swift; path = Validator/MailValidatorTests.swift; sourceTree = "<group>"; };
 		7BF8CE631D33B514009CFBE6 /* PhoneValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneValidatorTests.swift; path = Validator/PhoneValidatorTests.swift; sourceTree = "<group>"; };
 		7BF8CE651D33B5E6009CFBE6 /* PostalCodeValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostalCodeValidatorTests.swift; path = Validator/PostalCodeValidatorTests.swift; sourceTree = "<group>"; };
+		7BF8CE691D33D1D6009CFBE6 /* BoolValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoolValidatorTests.swift; path = Validator/BoolValidatorTests.swift; sourceTree = "<group>"; };
+		7BF8CE6B1D33D285009CFBE6 /* BoolValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoolValidator.swift; path = Source/Validators/BoolValidator.swift; sourceTree = "<group>"; };
+		7BF8CE6D1D33D601009CFBE6 /* DNINIEValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DNINIEValidator.swift; path = Source/Validators/DNINIEValidator.swift; sourceTree = "<group>"; };
+		7BF8CE6F1D33DDC3009CFBE6 /* DNINIEValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DNINIEValidatorTests.swift; path = Validator/DNINIEValidatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +190,8 @@
 				7BF8CE611D33B3F9009CFBE6 /* MailValidatorTests.swift */,
 				7BF8CE631D33B514009CFBE6 /* PhoneValidatorTests.swift */,
 				7BF8CE651D33B5E6009CFBE6 /* PostalCodeValidatorTests.swift */,
+				7BF8CE691D33D1D6009CFBE6 /* BoolValidatorTests.swift */,
+				7BF8CE6F1D33DDC3009CFBE6 /* DNINIEValidatorTests.swift */,
 			);
 			name = Validator;
 			sourceTree = "<group>";
@@ -271,6 +281,8 @@
 				7B87EC131D3385EA00061622 /* NumericValidator.swift */,
 				7B87EC151D33872400061622 /* PostalCodeValidator.swift */,
 				7B87EC171D33874800061622 /* PhoneValidator.swift */,
+				7BF8CE6B1D33D285009CFBE6 /* BoolValidator.swift */,
+				7BF8CE6D1D33D601009CFBE6 /* DNINIEValidator.swift */,
 			);
 			name = Validators;
 			sourceTree = "<group>";
@@ -437,6 +449,7 @@
 				7B8C9C681D2273180066AAA3 /* PickerFormField.swift in Sources */,
 				7BC59C7C1D267378008507CE /* Validator.swift in Sources */,
 				7B87EC141D3385EA00061622 /* NumericValidator.swift in Sources */,
+				7BF8CE6C1D33D285009CFBE6 /* BoolValidator.swift in Sources */,
 				7BDBDE5B1D23AE7800665CF3 /* FormFieldModel.swift in Sources */,
 				7B90DFD61D2BC08A005101DA /* RegexValidator.swift in Sources */,
 				7B87EC161D33872400061622 /* PostalCodeValidator.swift in Sources */,
@@ -448,6 +461,7 @@
 				7B8C9C511D22575C0066AAA3 /* ViewController.swift in Sources */,
 				7B8C9C5B1D225B9C0066AAA3 /* FormBuilderFields.swift in Sources */,
 				7B8C9C211D22567A0066AAA3 /* AppDelegate.swift in Sources */,
+				7BF8CE6E1D33D601009CFBE6 /* DNINIEValidator.swift in Sources */,
 				7B8C9C551D2257C10066AAA3 /* FormConstant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,7 +475,9 @@
 				7BDC5EEF1D339DE300A753BC /* RegexValidatorTests.swift in Sources */,
 				7B87EC1B1D33895600061622 /* ValidatorTests.swift in Sources */,
 				7B8C9C361D22567A0066AAA3 /* GIGFormularyTests.swift in Sources */,
+				7BF8CE701D33DDC3009CFBE6 /* DNINIEValidatorTests.swift in Sources */,
 				7BF8CE601D33B143009CFBE6 /* NumericValidatorTests.swift in Sources */,
+				7BF8CE6A1D33D1D6009CFBE6 /* BoolValidatorTests.swift in Sources */,
 				7BF8CE661D33B5E6009CFBE6 /* PostalCodeValidatorTests.swift in Sources */,
 				7BDC5EEB1D33980A00A753BC /* StringValidatorTests.swift in Sources */,
 				7BF8CE641D33B514009CFBE6 /* PhoneValidatorTests.swift in Sources */,

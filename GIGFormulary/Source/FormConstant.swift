@@ -28,10 +28,9 @@ enum TypeValidator: String {
     case VALIDATOR_NUMERIC = "numeric"
     case VALIDATOR_POSTALCODE = "postalCode"
     case VALIDATOR_PHONE = "phone"
+    case VALIDATOR_BOOL = "bool"
+    case VALIDATOR_DNINIE = "dniNie"
 }
-
-
-
 
 enum ThrowError: ErrorType {
     case InvalidParse
@@ -39,9 +38,5 @@ enum ThrowError: ErrorType {
     case MandatoryElementEmpty
 }
 
-class FormConstant: NSObject {
-    
-
-    
-}
+class FormConstant: NSObject {}
 

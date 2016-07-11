@@ -9,46 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GIGFormularyTests/Validator/RegexValidatorTests.swift"
-            timestampString = "489924088.22047"
+            filePath = "GIGFormulary/Source/Validators/DNINIEValidator.swift"
+            timestampString = "489938507.65522"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "test_init_with_regexp()"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "validate(_:)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GIGFormularyTests.RegexValidatorTests.test_init_with_regexp () -&gt; ()"
-                  moduleName = "GIGFormularyTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eduardoparada/ios_proyect/gigigo-giglibformulary-ios/GIGFormularyTests/Validator/RegexValidatorTests.swift"
-                  timestampString = "489924156.297525"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "250">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GIGFormularyTests.RegexValidatorTests.(test_init_with_regexp () -&gt; ()).(implicit closure #1)"
-                  moduleName = "GIGFormularyTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eduardoparada/ios_proyect/gigigo-giglibformulary-ios/GIGFormularyTests/Validator/RegexValidatorTests.swift"
-                  timestampString = "489924156.297848"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "40">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -57,46 +25,94 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GIGFormularyTests/Validator/RegexValidatorTests.swift"
-            timestampString = "489924154.86104"
+            filePath = "GIGFormulary/Source/Validators/DNINIEValidator.swift"
+            timestampString = "489940453.225689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "test_validate_regexp()"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "isValidNieNif(_:)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GIGFormularyTests.RegexValidatorTests.test_validate_regexp () -&gt; ()"
-                  moduleName = "GIGFormularyTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eduardoparada/ios_proyect/gigigo-giglibformulary-ios/GIGFormularyTests/Validator/RegexValidatorTests.swift"
-                  timestampString = "489924156.301855"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "120">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GIGFormularyTests.RegexValidatorTests.(test_validate_regexp () -&gt; ()).(implicit closure #1)"
-                  moduleName = "GIGFormularyTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eduardoparada/ios_proyect/gigigo-giglibformulary-ios/GIGFormularyTests/Validator/RegexValidatorTests.swift"
-                  timestampString = "489924156.302129"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "40">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GIGFormulary/Source/Validators/DNINIEValidator.swift"
+            timestampString = "489940453.225689"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "validateCharsForDNI(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GIGFormulary/Source/Validators/DNINIEValidator.swift"
+            timestampString = "489940453.225689"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "validateCharsForNIE(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GIGFormulary/Source/Validators/DNINIEValidator.swift"
+            timestampString = "489940453.225689"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "validateRegex(_:regex:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GIGFormularyTests/Validator/DNINIEValidatorTests.swift"
+            timestampString = "489939689.818481"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "test_verify_optional()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GIGFormulary/Source/Validators/StringValidator.swift"
+            timestampString = "489939745.576643"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "validate(_:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

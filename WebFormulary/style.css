@@ -281,10 +281,12 @@
         .containerTextFieldTop{
             height: 43px;
             width: 100%;
-        }
-        
+        }        
         #colorId{
-        
+            margin-right: 0 !important;
+    		margin-top: 4px;
+    		text-align: center;
+    		width: 100%;
         }
         .textErrorP {
             margin-right: 6px;

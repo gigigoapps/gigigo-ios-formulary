@@ -8,8 +8,7 @@
 
 import UIKit
 
-class StringValidator: Validator {
-    
+class StringValidator: Validator {    
     override func validate(value: AnyObject?) -> Bool{
         if (value == nil && self.mandatory)
         {

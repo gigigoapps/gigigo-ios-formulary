@@ -3,10 +3,13 @@
               {
               "tag": 0,
               "type": "text",
-              "label": "vb",
+              "label": "dni y nie",
               "error": "error_generic_field",
               "mandatory": false,
-              "validator": "numeric"
+              "validator": "dniNie",
+              "style": {
+              "backgroundColorField": "#CC5575"
+              }
               }
               ] 
 }

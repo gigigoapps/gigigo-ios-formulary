@@ -43,7 +43,9 @@ class FormBuilderFields: NSObject {
                                .VALIDATOR_LENGTH: LengthValidator.self,
                                .VALIDATOR_NUMERIC: NumericValidator.self,
                                .VALIDATOR_POSTALCODE: PostalCodeValidator.self,
-                               .VALIDATOR_PHONE: PhoneValidator.self]
+                               .VALIDATOR_PHONE: PhoneValidator.self,
+                               .VALIDATOR_BOOL: BoolValidator.self,
+                               .VALIDATOR_DNINIE: DNINIEValidator.self]
     }
     
     private func createField(fieldDic: [String:AnyObject], tag: Int) -> FormField {
@@ -70,7 +72,7 @@ class FormBuilderFields: NSObject {
     private func validatorToField(formFieldM: FormFieldModel) -> Validator?{
         if (formFieldM.validator != nil) {
             let typeValidator = self.validatorsType[TypeValidator(rawValue: formFieldM.validator!)!]
-            let validator = typeValidator!.init(mandatory: true)
+            let validator = typeValidator!.init(mandatory: formFieldM.mandatory)
             validator.minLength = formFieldM.minLengthValue
             validator.maxLength = formFieldM.maxLengthValue
             return validator
