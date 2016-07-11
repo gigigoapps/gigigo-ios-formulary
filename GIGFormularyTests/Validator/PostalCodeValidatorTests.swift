@@ -11,26 +11,35 @@ import XCTest
 
 class PostalCodeValidatorTests: XCTestCase {
     
+    var validator: PostalCodeValidator!
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        self.validator = PostalCodeValidator(mandatory: true)
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        self.validator = nil
+        
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    // MARK: TESTS
+    
+    func test_valid_postal_codes() {
+        XCTAssertTrue(self.validator.validate("1234"))
+        XCTAssertTrue(self.validator.validate("01234"))
+        XCTAssertTrue(self.validator.validate("12345"))
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
+    func test_invalid_postal_codes() {
+        XCTAssertFalse(self.validator.validate("0234"))
+        XCTAssertFalse(self.validator.validate("123"))
+        XCTAssertFalse(self.validator.validate(""))
+        XCTAssertFalse(self.validator.validate("1"))
+        XCTAssertFalse(self.validator.validate("123456"))
+        XCTAssertFalse(self.validator.validate("00123"))
+        XCTAssertFalse(self.validator.validate("123a"))
     }
-    
 }
