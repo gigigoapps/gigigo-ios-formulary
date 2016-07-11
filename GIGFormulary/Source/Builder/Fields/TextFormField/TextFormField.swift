@@ -176,15 +176,9 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {        
         let textFieldText: NSString = textField.text ?? ""
-        let finalString = textFieldText.stringByReplacingCharactersInRange(range, withString: string)
-    
-        if (self.validator != nil && (self.validator is LengthValidator)) {
-            return self.validator!.validate(finalString)
-        }
-        else {
-            let lengthValidator = LengthValidator(minLength: self.formFieldM!.minLengthValue, maxLength: self.formFieldM!.maxLengthValue)
-            return lengthValidator.controlCharacters(finalString)
-        }
+        let finalString = textFieldText.stringByReplacingCharactersInRange(range, withString: string)    
+        let lengthValidator = LengthValidator(minLength: self.formFieldM!.minLengthValue, maxLength: self.formFieldM!.maxLengthValue)
+        return lengthValidator.controlCharacters(finalString)
     }
     
     // MARK: UIResponser (Overrride)

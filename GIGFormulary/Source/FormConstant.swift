@@ -24,6 +24,10 @@ enum TypeKeyBoard: String {
 enum TypeValidator: String {
     case VALIDATOR_TEXT = "text"
     case VALIDATOR_EMAIL = "email"
+    case VALIDATOR_LENGTH = "lengthText"
+    case VALIDATOR_NUMERIC = "numeric"
+    case VALIDATOR_POSTALCODE = "postalCode"
+    case VALIDATOR_PHONE = "phone"
 }
 
 
@@ -40,3 +44,4 @@ class FormConstant: NSObject {
 
     
 }
+
