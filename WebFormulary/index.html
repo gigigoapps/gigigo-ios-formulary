@@ -95,8 +95,22 @@
 
 
           <div class="styleField"> 
-            <h4>Estilos de celda:</h4>
-              '+htmlBackgroundColor+'
+            	<h4>Estilos de celda:</h4>
+	              '+htmlBackgroundColor+' 
+	             '<div class="colorZone">
+	             	 <p>Color de la celda:</p>
+	         		 <div id="cellColor" class="cellColor" style="background-color:'+cellColor+'">
+	         		 	 <p id="colorId">'+cellColor+'</p>
+	         		 </div>
+                     <p class="colorTittleP">Color titulo:</p>
+                     <div id="titleColor" class="cellColor" style="background-color:'+titleColor+'">
+                     	 <p id="colorId">'+titleColor+'</p>
+                     </div>
+                     <p class="colorTittleP">Color error:</p>
+                     <div id="errorColor" class="cellColor" style="background-color:'+errorColor+'">
+                     	 <p id="colorId">'+errorColor+'</p>
+                     </div>
+	             </div>'
           </div>
           <div class="spaceSeparate"></div>
       </div>
@@ -160,7 +174,11 @@
                                   <h4>Estilos de celda:</h4>
                                     <div class="colorZone">
                                        <p>Color de la celda:</p>
-                                       <div id="cellColor"  onclick="cellColorOpen()"></div>
+                                       <div id="cellColor" class="cellColor"  onclick="cellColorOpen('cellColor')"></div>
+                                       <p class="colorTittleP">Color titulo:</p>
+                                       <div id="titleColor" class="cellColor"  onclick="cellColorOpen('titleColor')"></div>
+                                       <p class="colorTittleP">Color Error:</p>
+                                       <div id="errorColor" class="cellColor"  onclick="cellColorOpen('errorColor')"></div>
                                    </div>
                                 </div>
                                 <div class="spaceSeparate"></div>
@@ -169,8 +187,8 @@
                                <p>+</p>
                            </div>
                        </div>
-                   </div>-->
-                   
+                   </div>
+                   -->
                    
 
                    

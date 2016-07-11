@@ -156,6 +156,12 @@ class TextFormField: FormField, UITextFieldDelegate {
             if (styleField!.backgroundColorField != nil) {
                 self.viewContainer.backgroundColor = styleField!.backgroundColorField!
             }
+            if (styleField!.titleColor != nil) {
+                self.titleLabel.textColor = styleField!.titleColor!
+            }
+            if (styleField!.errorColor != nil) {
+                self.errorLabel.textColor = styleField!.errorColor!
+            }
         }
     }
     

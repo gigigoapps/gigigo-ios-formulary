@@ -12,18 +12,26 @@ class FormFieldStyleModel: NSObject {
     
     var mandatoryIcon: UIImage?
     var backgroundColorField: UIColor?
-    
+    var titleColor: UIColor?
+    var errorColor: UIColor?
     
     func parseDictionary(json: [String:AnyObject]) {
         //== PREPARE DATA ==
         let mandatoryIcon = json["mandatoryIcon"] as? String
         let backgroundColorField = json["backgroundColorField"] as? String
+        let titleColor = json["titleColor"] as? String
+        let errorColor = json["errorColor"] as? String
         
         //== INSERT DATA ==
         if (backgroundColorField != nil) {
             self.backgroundColorField = self.stringToHexColor(backgroundColorField!)
         }
-        
+        if (titleColor != nil) {
+            self.titleColor = self.stringToHexColor(titleColor!)
+        }
+        if (errorColor != nil) {
+            self.errorColor = self.stringToHexColor(errorColor!)
+        }
         
         if (mandatoryIcon != nil) {
             //self.mandatoryIcon = mandatoryIcon  // TODO EDU , cargar una imagen desde donde????

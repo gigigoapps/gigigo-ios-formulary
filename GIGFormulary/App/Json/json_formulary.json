@@ -1,14 +1,16 @@
 {
     "fields":[
               {
-              "tag": 0,
+              "tag": 1,
               "type": "text",
-              "label": "dni y nie",
-              "error": "error_generic_field",
-              "mandatory": false,
-              "validator": "dniNie",
+              "label": "dfsfd",
+              "error": "asfadsfsadf",
+              "mandatory": true,
+              "placeHolder": "asfasfd",
               "style": {
-              "backgroundColorField": "#CC5575"
+              "backgroundColorField": "#3C4BCC",
+              "titleColor": "#CC2636",
+              "errorColor": "#2BCC20"
               }
               }
               ] 

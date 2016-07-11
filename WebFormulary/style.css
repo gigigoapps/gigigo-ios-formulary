@@ -260,7 +260,7 @@
              visibility: hidden !important;
         }
         
-        #cellColor {
+        .cellColor {
             border: 1px solid black;
             height: 30px;
             width: 100px;
@@ -378,4 +378,7 @@
 
 .spaceSeparate{
     height: 47px;
+}
+.colorTittleP {
+	margin-left: 10px;
 }
