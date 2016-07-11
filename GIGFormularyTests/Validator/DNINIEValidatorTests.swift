@@ -71,5 +71,7 @@ class DNINIEValidatorTests: XCTestCase {
         self.validator.mandatory = false
         XCTAssertTrue(self.validator.validate(""))
         XCTAssertTrue(self.validator.validate(nil))
+        XCTAssertFalse(self.validator.validate("5sx"))
+        XCTAssertTrue(self.validator.validate("50756778x"))
     }
 }
