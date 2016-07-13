@@ -1,17 +1,28 @@
 {
     "fields":[
               {
+              "tag": 0,
+              "type": "text",
+              "label": "titulo",
+              "error": "sdgsdfg",
+              "mandatory": false,
+              "placeHolder": "sdfsfa",
+              "minLength": 2,
+              "maxLength": 6,
+              "keyboard": "FormKeyboardTypeEmail",
+              "validator": "email",
+              "style": {
+              "backgroundColorField": "#CC3524",
+              "titleColor": "#3772CC",
+              "errorColor": "#01CC00"
+              }
+              },
+              {
               "tag": 1,
               "type": "text",
-              "label": "dfsfd",
-              "error": "asfadsfsadf",
-              "mandatory": true,
-              "placeHolder": "asfasfd",
-              "style": {
-              "backgroundColorField": "#3C4BCC",
-              "titleColor": "#CC2636",
-              "errorColor": "#2BCC20"
-              }
+              "label": "werwer",
+              "error": "error_generic_field",
+              "mandatory": true
               }
               ] 
 }
