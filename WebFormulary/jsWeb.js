@@ -232,7 +232,7 @@ function saveField(type,title,placeHolder,error,mandatory,cellColor,keyboard,val
         "tag":indexField,
         "type":type,
         "label":title,
-        "error":error,
+        "textError":error,
         "mandatory":mandatory,
     }
     
@@ -328,7 +328,7 @@ function savePickerField(type,title,error,mandatory,cellColor,titleColor,errorCo
         "tag":indexField,
         "type":type,
         "label":title,
-        "error":error,
+        "textError":error,
         "mandatory":mandatory,
         "listOptions":listOptions
     }

@@ -37,6 +37,12 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Su-5m-aJJ">
+                    <rect key="frame" x="16" y="36" width="255" height="30"/>
+                    <connections>
+                        <action selector="buttonAction:" destination="-1" eventType="touchUpInside" id="7F2-QG-nGz"/>
+                    </connections>
+                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZnK-Je-PNS" userLabel="mandotoryImage">
                     <rect key="frame" x="282" y="36" width="30" height="30"/>
                     <constraints>
@@ -56,14 +62,18 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="4Su-5m-aJJ" firstAttribute="centerY" secondItem="OeY-mw-R3y" secondAttribute="centerY" id="F6g-eC-KMg"/>
                 <constraint firstItem="OeY-mw-R3y" firstAttribute="leading" secondItem="zG1-KW-fvF" secondAttribute="leading" constant="16" id="KdX-rr-Lk2"/>
                 <constraint firstItem="ZnK-Je-PNS" firstAttribute="top" secondItem="vJq-Gk-gNw" secondAttribute="bottom" constant="2" id="Qhv-aH-ueb"/>
                 <constraint firstItem="anq-V9-23w" firstAttribute="leading" secondItem="zG1-KW-fvF" secondAttribute="leading" constant="16" id="UNE-3s-3KJ"/>
+                <constraint firstItem="4Su-5m-aJJ" firstAttribute="height" secondItem="OeY-mw-R3y" secondAttribute="height" id="Ugf-um-DbI"/>
                 <constraint firstItem="ZnK-Je-PNS" firstAttribute="leading" secondItem="OeY-mw-R3y" secondAttribute="trailing" constant="11" id="Wa6-jO-JBH"/>
                 <constraint firstAttribute="trailing" secondItem="ZnK-Je-PNS" secondAttribute="trailing" constant="8" id="bFo-KV-TJb"/>
                 <constraint firstItem="anq-V9-23w" firstAttribute="top" secondItem="ZnK-Je-PNS" secondAttribute="bottom" constant="4" id="bpS-Kc-7bb"/>
+                <constraint firstItem="4Su-5m-aJJ" firstAttribute="width" secondItem="OeY-mw-R3y" secondAttribute="width" id="eRc-xf-ST3"/>
                 <constraint firstAttribute="bottom" secondItem="anq-V9-23w" secondAttribute="bottom" constant="10" id="lTE-ye-mqG"/>
                 <constraint firstItem="vJq-Gk-gNw" firstAttribute="leading" secondItem="zG1-KW-fvF" secondAttribute="leading" constant="16" id="mW8-Li-MMx"/>
+                <constraint firstItem="4Su-5m-aJJ" firstAttribute="leading" secondItem="OeY-mw-R3y" secondAttribute="leading" id="nU6-Qh-kjs"/>
                 <constraint firstItem="OeY-mw-R3y" firstAttribute="top" secondItem="vJq-Gk-gNw" secondAttribute="bottom" constant="2" id="q8s-FP-ANh"/>
                 <constraint firstItem="vJq-Gk-gNw" firstAttribute="top" secondItem="zG1-KW-fvF" secondAttribute="top" constant="10" id="rET-uP-mhF"/>
                 <constraint firstAttribute="trailing" secondItem="vJq-Gk-gNw" secondAttribute="trailing" constant="16" id="tng-3E-RKl"/>

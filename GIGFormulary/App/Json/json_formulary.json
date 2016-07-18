@@ -4,7 +4,7 @@
               "tag": 0,
               "type": "text",
               "label": "titulo field",
-              "error": "texto de error formulario",
+              "textError": "texto de error formulario",
               "mandatory": true,
               "placeHolder": "placeholder",
               "minLength": 2,

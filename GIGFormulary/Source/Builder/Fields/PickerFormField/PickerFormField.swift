@@ -22,9 +22,26 @@ class PickerFormField: FormField {
     @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
     
-    //-- VAR --
+    // MARK: INIT
     
-    var viewContainer: UIView!
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.awakeFromNib(frame, classField: self.dynamicType)
+        self.initializeView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Private Method
+    
+    private func initializeView() {
+        self.titleLabel.numberOfLines = 0
+        self.errorLabel.numberOfLines = 0
+        self.mandotoryImage.image = UIImage(named: "mandatoryIcon")
+    }
+    
     
     // MARK: Overrride Method
     
@@ -34,5 +51,11 @@ class PickerFormField: FormField {
     
     override func validate() -> Bool {
             return true
-    }    
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func buttonAction(sender: AnyObject) {
+        
+    }
 }

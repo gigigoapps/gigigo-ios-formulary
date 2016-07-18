@@ -27,45 +27,17 @@ class TextFormField: FormField, UITextFieldDelegate {
     @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
     
-    //-- VAR -- 
-    
-    var viewContainer: UIView!
     
     // MARK: INIT
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-         self.awakeFromNib(frame)
+         self.awakeFromNib(frame, classField: self.dynamicType)
+        self.initializeView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func xibSetup() {
-        self.viewContainer = loadViewFromNib()
-        
-        addSubview(self.viewContainer)
-        
-        gig_autoresize(self.viewContainer, false)
-        gig_layout_fit_horizontal(self.viewContainer);
-        gig_layout_top(self.viewContainer, 0);
-        gig_layout_bottom(self.viewContainer, 0)
-        
-        self.initializeView()
-    }
-    
-    func loadViewFromNib() -> UIView {
-        let bundle = NSBundle(forClass: self.dynamicType)
-        let classString = NSStringFromClass(self.dynamicType)
-        let nib = UINib(nibName: classString.componentsSeparatedByString(".").last!, bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
-        return view
-    }
-    
-    func awakeFromNib(frame: CGRect) {
-        super.awakeFromNib()
-        self.xibSetup()
     }
     
     // MARK: VALIDATE
