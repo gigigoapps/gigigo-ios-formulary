@@ -15,7 +15,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let formController = FormController(viewContainerFormulary: self.view)
-        formController.loadFieldsFromJSONFile("json_formulary.json")
-        
+        formController.loadFieldsFromJSONFile("json_formulary.json")        
     }
 }
