@@ -18,7 +18,6 @@ class FormFieldModel: NSObject {
     
     //-- Optional --    
     var placeHolder: String?
-    var maxLength: String?
     var mandatory = false
     var keyboard: String?
     var options: [FormFieldOptionsModel]?
@@ -44,16 +43,14 @@ class FormFieldModel: NSObject {
         
         //-- Optional --
         let placeHolder = json["placeHolder"] as? String
-        let maxLength = json["maxLength"] as? String
         let mandatory = json["mandatory"] as? Bool
-        let keyboard = json["keyboard"] as? String
-        let options = json["options"] as? [String: AnyObject]
+        let options = json["listOptions"] as? [[String: AnyObject]]
         let style = json["style"] as? [String: AnyObject]
         let textError = json["textError"] as? String
         let validator = json["validator"] as? String
         let keyBoard = json["keyboard"] as? String
-        let maxLengthValue = json["maxLength"] as? Int
-        let minLengthValue = json["minLength"] as? Int
+        let maxLength = json["maxLength"] as? Int
+        let minLength = json["minLength"] as? Int
         
         
         //== INSERT DATA ==
@@ -68,21 +65,20 @@ class FormFieldModel: NSObject {
         else {
             self.textError = NSLocalizedString("error_generic_field", comment: "")
         }
-
         if (placeHolder != nil) {
             self.placeHolder = placeHolder
-        }
-        if (maxLength != nil) {
-            
         }
         if (mandatory != nil) {
             self.mandatory = mandatory!
         }
-        if (keyboard != nil) {
-            
-        }
         if (options != nil) {
-            
+            do {
+                self.options = try FormFieldOptionsModel.parseListOptionsJson(options!)
+            }
+            catch {
+                print("❌❌❌ options Not Found")
+                throw ThrowError.MandatoryElementNotFound
+            }
         }
         if (style != nil) {
             self.style = FormFieldStyleModel()
@@ -95,10 +91,10 @@ class FormFieldModel: NSObject {
             self.keyBoard = keyBoard
         }
         if (maxLengthValue != nil) {
-            self.maxLengthValue = maxLengthValue
+            self.maxLengthValue = maxLength
         }
         if (minLengthValue != nil) {
-            self.minLengthValue = minLengthValue
+            self.minLengthValue = minLength
         }
     }
 }

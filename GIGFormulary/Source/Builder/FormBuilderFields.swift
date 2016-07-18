@@ -31,7 +31,8 @@ class FormBuilderFields: NSObject {
     
     private func initializeTypes() {
         self.listTypeFields = [.TEXT_FORM_FIELD: TextFormField.self,
-                               .PICKER_FORM_FIELD: PickerFormField.self]
+                               .PICKER_FORM_FIELD: PickerFormField.self,
+                               .DATEPICKER_FORM_FIELD: PickerFormField.self]
         
         self.keyboardTypes  = [.KEYBOARD_TEXT: .Default,
                               .KEYBOARD_EMAIL: .EmailAddress,

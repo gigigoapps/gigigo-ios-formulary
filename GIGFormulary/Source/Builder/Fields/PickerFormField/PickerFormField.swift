@@ -46,7 +46,14 @@ class PickerFormField: FormField {
     // MARK: Overrride Method
     
     override func insertData(formFieldM: FormFieldModel) {
-        
+        if (formFieldM.type == TypeField.PICKER_FORM_FIELD.rawValue) {
+            let picker = OptionsPickerComponent()
+            picker.initTextField(self.textTextField)
+        }
+        else {
+            let  datePicker = DatePickerComponent()
+            datePicker.initTextField(self.textTextField)
+        }
     }
     
     override func validate() -> Bool {

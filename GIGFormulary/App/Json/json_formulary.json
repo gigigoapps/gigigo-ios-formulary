@@ -2,22 +2,28 @@
     "fields":[
               {
               "tag": 0,
-              "type": "text",
-              "label": "titulo field",
-              "textError": "texto de error formulario",
-              "mandatory": true,
-              "placeHolder": "placeholder",
-              "minLength": 2,
-              "maxLength": 9,
-              "keyboard": "FormKeyboardTypeEmail",
-              "validator": "email",
-              "style": {
-                    "backgroundColorField": "#4BCCCB",
-                    "titleColor": "#CC5F37",
-                    "errorColor": "#CC66A1",
-                    "sizeTitle": 22,
-                    "sizeError": 9
+              "type": "picker",
+              "label": "asd",
+              "textError": "error_generic_field",
+              "mandatory": false,
+              "listOptions": [
+                              {
+                              "key": "KeyNoSelected",
+                              "value": "asd"
+                              },
+                              {
+                              "key": "asd",
+                              "value": "safsda"
+                              },
+                              {
+                              "key": "sa",
+                              "value": "df"
+                              },
+                              {
+                              "key": "fasdf",
+                              "value": "asdf"
+                              }
+                              ]
               }
-            }
-        ]
+              ] 
 }

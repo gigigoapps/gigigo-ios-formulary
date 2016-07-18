@@ -32,6 +32,8 @@
 		7B8C9C6C1D22B2AC0066AAA3 /* TextFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C9C6B1D22B2AC0066AAA3 /* TextFormField.xib */; };
 		7B90DFD61D2BC08A005101DA /* RegexValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B90DFD51D2BC08A005101DA /* RegexValidator.swift */; };
 		7B90DFD81D2BC43A005101DA /* MailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B90DFD71D2BC43A005101DA /* MailValidator.swift */; };
+		7BC364991D3D26EA00C4AB41 /* DatePickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC364981D3D26EA00C4AB41 /* DatePickerComponent.swift */; };
+		7BC3649B1D3D270100C4AB41 /* OptionsPickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC3649A1D3D270100C4AB41 /* OptionsPickerComponent.swift */; };
 		7BC59C7C1D267378008507CE /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC59C7B1D267378008507CE /* Validator.swift */; };
 		7BC59C7E1D267498008507CE /* StringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC59C7D1D267498008507CE /* StringValidator.swift */; };
 		7BDBDE5B1D23AE7800665CF3 /* FormFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDBDE5A1D23AE7800665CF3 /* FormFieldModel.swift */; };
@@ -106,6 +108,8 @@
 		7B8C9C6B1D22B2AC0066AAA3 /* TextFormField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextFormField.xib; path = Source/Builder/Fields/TextFormField/TextFormField.xib; sourceTree = "<group>"; };
 		7B90DFD51D2BC08A005101DA /* RegexValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegexValidator.swift; path = Source/Validators/RegexValidator.swift; sourceTree = "<group>"; };
 		7B90DFD71D2BC43A005101DA /* MailValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MailValidator.swift; path = Source/Validators/MailValidator.swift; sourceTree = "<group>"; };
+		7BC364981D3D26EA00C4AB41 /* DatePickerComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatePickerComponent.swift; path = Common/Components/Pickers/DatePickerComponent.swift; sourceTree = "<group>"; };
+		7BC3649A1D3D270100C4AB41 /* OptionsPickerComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionsPickerComponent.swift; path = Common/Components/Pickers/OptionsPickerComponent.swift; sourceTree = "<group>"; };
 		7BC59C7B1D267378008507CE /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validator.swift; path = Source/Validators/Validator.swift; sourceTree = "<group>"; };
 		7BC59C7D1D267498008507CE /* StringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringValidator.swift; path = Source/Validators/StringValidator.swift; sourceTree = "<group>"; };
 		7BDBDE5A1D23AE7800665CF3 /* FormFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormFieldModel.swift; path = Source/Model/FormFieldModel.swift; sourceTree = "<group>"; };
@@ -218,6 +222,7 @@
 		7B8C9C1F1D22567A0066AAA3 /* GIGFormulary */ = {
 			isa = PBXGroup;
 			children = (
+				7BC364951D3D264900C4AB41 /* Common */,
 				232776641D252D2D00FEFE8C /* Resources */,
 				232776561D25138100FEFE8C /* Frameworks */,
 				7B8C9C4F1D2256EE0066AAA3 /* Source */,
@@ -333,6 +338,31 @@
 				7B8C9C671D2273180066AAA3 /* PickerFormField.swift */,
 			);
 			name = PickerFormField;
+			sourceTree = "<group>";
+		};
+		7BC364951D3D264900C4AB41 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7BC364961D3D265100C4AB41 /* Components */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		7BC364961D3D265100C4AB41 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7BC364971D3D265B00C4AB41 /* Pickers */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		7BC364971D3D265B00C4AB41 /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				7BC364981D3D26EA00C4AB41 /* DatePickerComponent.swift */,
+				7BC3649A1D3D270100C4AB41 /* OptionsPickerComponent.swift */,
+			);
+			name = Pickers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,7 +483,9 @@
 				7BDBDE5B1D23AE7800665CF3 /* FormFieldModel.swift in Sources */,
 				7B90DFD61D2BC08A005101DA /* RegexValidator.swift in Sources */,
 				7B87EC161D33872400061622 /* PostalCodeValidator.swift in Sources */,
+				7BC3649B1D3D270100C4AB41 /* OptionsPickerComponent.swift in Sources */,
 				7B90DFD81D2BC43A005101DA /* MailValidator.swift in Sources */,
+				7BC364991D3D26EA00C4AB41 /* DatePickerComponent.swift in Sources */,
 				7BDBDE601D23B34300665CF3 /* FormFieldOptionsModel.swift in Sources */,
 				7BC59C7E1D267498008507CE /* StringValidator.swift in Sources */,
 				7BDBDE621D23B47600665CF3 /* FormFieldStyleModel.swift in Sources */,
