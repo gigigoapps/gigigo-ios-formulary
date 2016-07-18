@@ -3,26 +3,21 @@
               {
               "tag": 0,
               "type": "text",
-              "label": "titulo",
-              "error": "sdgsdfg",
-              "mandatory": false,
-              "placeHolder": "sdfsfa",
+              "label": "titulo field",
+              "error": "texto de error formulario",
+              "mandatory": true,
+              "placeHolder": "placeholder",
               "minLength": 2,
-              "maxLength": 6,
+              "maxLength": 9,
               "keyboard": "FormKeyboardTypeEmail",
               "validator": "email",
               "style": {
-              "backgroundColorField": "#CC3524",
-              "titleColor": "#3772CC",
-              "errorColor": "#01CC00"
+                    "backgroundColorField": "#4BCCCB",
+                    "titleColor": "#CC5F37",
+                    "errorColor": "#CC66A1",
+                    "sizeTitle": 22,
+                    "sizeError": 9
               }
-              },
-              {
-              "tag": 1,
-              "type": "text",
-              "label": "werwer",
-              "error": "error_generic_field",
-              "mandatory": true
-              }
-              ] 
+            }
+        ]
 }

@@ -14,6 +14,19 @@ protocol PPickerFormField {
 
 class PickerFormField: FormField {
     
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var textTextField: UITextField!
+    @IBOutlet var mandotoryImage: UIImageView!
+    @IBOutlet var errorLabel: UILabel!
+    
+    @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
+    @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
+    
+    //-- VAR --
+    
+    var viewContainer: UIView!
+    
+    // MARK: Overrride Method
     
     override func insertData(formFieldM: FormFieldModel) {
         
@@ -21,6 +34,5 @@ class PickerFormField: FormField {
     
     override func validate() -> Bool {
             return true
-    }
-    
+    }    
 }

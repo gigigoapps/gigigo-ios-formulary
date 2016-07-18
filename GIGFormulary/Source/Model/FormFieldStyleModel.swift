@@ -14,6 +14,8 @@ class FormFieldStyleModel: NSObject {
     var backgroundColorField: UIColor?
     var titleColor: UIColor?
     var errorColor: UIColor?
+    var sizeTitle: CGFloat?
+    var sizeError: CGFloat?
     
     func parseDictionary(json: [String:AnyObject]) {
         //== PREPARE DATA ==
@@ -21,6 +23,8 @@ class FormFieldStyleModel: NSObject {
         let backgroundColorField = json["backgroundColorField"] as? String
         let titleColor = json["titleColor"] as? String
         let errorColor = json["errorColor"] as? String
+        let sizeTitle = json["sizeTitle"] as? CGFloat
+        let sizeError = json["sizeError"] as? CGFloat
         
         //== INSERT DATA ==
         if (backgroundColorField != nil) {
@@ -31,6 +35,12 @@ class FormFieldStyleModel: NSObject {
         }
         if (errorColor != nil) {
             self.errorColor = self.stringToHexColor(errorColor!)
+        }
+        if (sizeTitle != nil) {
+            self.sizeTitle = sizeTitle
+        }
+        if (sizeError != nil) {
+            self.sizeError = sizeError
         }
         
         if (mandatoryIcon != nil) {

@@ -162,6 +162,13 @@ class TextFormField: FormField, UITextFieldDelegate {
             if (styleField!.errorColor != nil) {
                 self.errorLabel.textColor = styleField!.errorColor!
             }
+            if (styleField!.sizeTitle != nil) {
+                self.titleLabel.font = UIFont.systemFontOfSize(styleField!.sizeTitle!)
+              //  self.titleLabel.font = UIFont(name: <#T##String#>, size: styleField!.sizeTitle!)  TODO EDU AMPLIACION
+            }
+            if (styleField!.sizeError != nil) {
+                self.errorLabel.font = UIFont.systemFontOfSize(styleField!.sizeError!)
+            }
         }
     }
     

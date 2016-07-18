@@ -189,11 +189,11 @@ function getStylesJson(cellColor,titleColor,errorColor,sizeTitle, sizeError) {
         haveStyle = true;
     }
     if (sizeTitle.length > 0) {
-        style["sizeTitle"] = sizeTitle
+        style["sizeTitle"] = parseInt(sizeTitle)
         haveStyle = true;
     }
     if (sizeError.length > 0) {
-        style["sizeError"] = sizeError
+        style["sizeError"] = parseInt(sizeError)
         haveStyle = true;
     }
 
