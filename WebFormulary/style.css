@@ -49,13 +49,13 @@
             color: white;
             float: right;
             font-size: 49px;
-            height: 230px;
+            height: 272px;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonAdd p{
-                margin-top: 70px;
+                margin-top: 100px;
             }
             .buttonAdd:hover {
                 background-color: skyblue;
@@ -268,9 +268,9 @@
         }
         .colorZone {
             float: left;
-    		height: 35px;
-    		padding-top: 7px;
+            height: 38px;
             margin-left: 31px;
+            padding-top: 7px;
         }
             .colorZone p{
                 float: left;
@@ -449,3 +449,26 @@
         cursor: pointer;
         color:white;
     }
+
+.sizeZone {
+    float: left;
+    height: 51px;
+    margin-left: 51px;
+    width: 100%;
+}
+    .sizeZone p {
+        float: left;
+        margin-top: 15px;
+    }
+    .sizeZone input {
+        float: left;
+        height: 25px;
+        margin-left: 12px;
+        margin-right: 10px;
+        margin-top: 13px;
+        width: 50px;
+    }
+
+
+
+
