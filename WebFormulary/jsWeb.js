@@ -302,7 +302,10 @@ function createPickerField(title,error,mandatory,cellColor,titleColor,errorColor
     for (var i = 0; i < idPickerField; i++) {
         var idKey = $("#inputKeyPickerField"+i).val()
         var idValue = $("#inputValuePickerField"+i).val()
-        htmlPickerItems = htmlPickerItems + '<div class="containerPickerField"><input type="text" name="element" value="'+idKey+'" disabled readonly><input type="text" name="element" value="'+idValue+'" disabled readonly></div>';
+
+        if (idKey != undefined && idValue != undefined) {
+                htmlPickerItems = htmlPickerItems + '<div class="containerPickerField"><input type="text" name="element" value="'+idKey+'" disabled readonly><input type="text" name="element" value="'+idValue+'" disabled readonly></div>';
+        }
     }
 
     var html = '<div class="cellConstructor"id="fieldNumber'+indexField+'"><div class="row"><div class="col-md-10"><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"value="'+title+'"disabled readonly></div></div><div id="containerErrorMandatoryPicker"><div class="errorTextField errorTextFieldPicker"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"disabled readonly value="'+error+'"></div><div class="mandatoryTextField optionModel"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"'+valueCheck+'disabled readonly><p>Es obligatorio?</p></div></div><div id="valuesOptionsSelector"><div id="pickerFieldsInsert"><p>Valores creados:</p>'+htmlPickerItems+'</div></div><div class="styleField"><h4>Estilos de celda:</h4>'+styles+' </div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonRemove"onclick="removeField('+indexField+')"><p>-</p></div></div></div>';
@@ -321,7 +324,9 @@ function savePickerField(type,title,error,mandatory,cellColor,titleColor,errorCo
             "key": idKey,
             "value":idValue
         }
-        listOptions.push(options)
+        if (idKey != undefined && idValue != undefined) {
+            listOptions.push(options)
+        }        
     }
 
     var itemSave = {
@@ -427,9 +432,10 @@ function allPickerIsComplete() {
         if (picker) {
             var key = $("#inputKeyPickerField"+i).val()
             var value = $("#inputValuePickerField"+i).val()
-
-            if (key.length == 0 || value.length == 0) {
-                isComplete = false
+            if (key != null && value != null) {
+                if (key.length == 0 || value.length == 0) {
+                    isComplete = false
+                }
             }
         }
     }

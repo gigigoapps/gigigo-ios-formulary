@@ -15,14 +15,14 @@ protocol PFormField: PTextFormField, PPickerFormField {
 
 public class FormField: UIView{
     
+    public var fieldValue: AnyObject?
+    
+    //-- LOCAL VAR --
+    var viewContainer: UIView!
     var delegate: PFormField?
     var validator: Validator?
     var keyBoard: UIKeyboardType?
     var formFieldM: FormFieldModel?
-    public var fieldValue: AnyObject?
-    
-    //-- VAR --
-    var viewContainer: UIView!
     
     //-- Init Xib --
     override init(frame: CGRect) {
@@ -31,7 +31,7 @@ public class FormField: UIView{
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }    
+    }
     
     // MARK: Initialize XIBS 
     
@@ -62,7 +62,7 @@ public class FormField: UIView{
     // MARK: Public Method
     
     func insertData(formFieldM: FormFieldModel) {
-        
+        // TODO nothing
     }
     
     func validate() -> Bool {
