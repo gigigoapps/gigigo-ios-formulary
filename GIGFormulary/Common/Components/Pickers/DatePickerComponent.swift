@@ -13,6 +13,7 @@ class DatePickerComponent: UIDatePicker {
     // Public properties
     
     var textField: UITextField?
+    var styles: FormFieldStyleModel?
     
     var dateSelected: NSDate? {
         get {
@@ -34,24 +35,6 @@ class DatePickerComponent: UIDatePicker {
         formatter.setLocalizedDateFormatFromTemplate("ddMMyyyy")
         return formatter
     }
-    
-    /*
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        self.initializeView()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.initializeView()
-    }
-    
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        
-        self.initializeView()
-    }*/
     
     func initTextField(textField: UITextField) {
         self.textField = textField
@@ -79,16 +62,13 @@ class DatePickerComponent: UIDatePicker {
         toolBar.translucent = true
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: NSLocalizedString("app_name", comment: ""), style: UIBarButtonItemStyle.Done, target: self, action: #selector(onDoneTap))
-        doneButton.tintColor = UIColor.greenColor()
-        
-        // if you remove the space element, the "done" button will be left aligned
-        // you can add more items if you want
+        doneButton.tintColor = self.styles?.aceptColorPicker
         toolBar.setItems([space, doneButton], animated: false)
         toolBar.userInteractionEnabled = true
         toolBar.sizeToFit()
         
-        toolBar.backgroundColor = UIColor.redColor()
-        self.datePicker.backgroundColor = UIColor.blueColor()
+        toolBar.backgroundColor = self.styles?.containerAceptColorPicker
+        self.datePicker.backgroundColor = self.styles?.backgroundPickerColorPicker
         
         self.textField!.inputAccessoryView = toolBar
     }

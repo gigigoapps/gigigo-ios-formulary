@@ -10,6 +10,7 @@ import UIKit
 
 class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    var styles: FormFieldStyleModel?
     var items: [FormFieldOptionsModel] = [] {
         didSet {
             self.picker.reloadAllComponents()
@@ -73,19 +74,17 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
-        toolBar.backgroundColor = UIColor.redColor()// TODO EDU, para la hoja de estilos de los picker
+        toolBar.backgroundColor = self.styles?.containerAceptColorPicker
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: NSLocalizedString("app_name", comment: ""), style: UIBarButtonItemStyle.Done, target: self, action: #selector(onDoneTap))
-        doneButton.tintColor = UIColor.blueColor() // TODO EDU, para la hoja de estilos de los picker
-        
-        // if you remove the space element, the "done" button will be left aligned
-        // you can add more items if you want
+        doneButton.tintColor = self.styles?.aceptColorPicker
+
         toolBar.setItems([space, doneButton], animated: false)
         toolBar.userInteractionEnabled = true
         toolBar.sizeToFit()
         
         self.textField!.inputAccessoryView = toolBar
-        self.picker.backgroundColor = UIColor.greenColor()// TODO EDU, para la hoja de estilos de los picker
+        self.picker.backgroundColor = self.styles?.backgroundPickerColorPicker
     }
     
     @objc private func onDoneTap() {

@@ -2,29 +2,21 @@
     "fields":[
               {
               "tag": 0,
-              "type": "datePicker",
-              "label": "asd",
-              "mandatory": true,
-              "minAge": 10,
-              "validator": "age",
+              "type": "picker",
+              "label": "fsdfsad",
+              "textError": "error_generic_field",
+              "mandatory": false,
               "listOptions": [
                               {
                               "key": "KeyNoSelected",
-                              "value": "Selecciona un elemento"
-                              },
-                              {
-                              "key": "key1",
-                              "value": "gozilla"
-                              },
-                              {
-                              "key": "key2",
-                              "value": "Power ranger"
-                              },
-                              {
-                              "key": "key",
-                              "value": "Pokemon"
+                              "value": "sfsdfasfasd"
                               }
-                              ]
+                              ],
+              "style": {
+              "aceptColorPicker": "#CC6300",
+              "containerAceptColorPicker": "#758ECC",
+              "backgroundPickerColorPicker": "#33CC00"
+              }
               }
               ] 
 }

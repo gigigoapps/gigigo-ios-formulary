@@ -65,11 +65,13 @@ class PickerFormField: FormField {
     override func insertData() {
         if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
             self.pickerOptions = OptionsPickerComponent()
+            self.pickerOptions?.styles = self.formFieldM?.style
             self.pickerOptions!.initTextField(self.textTextField)
             self.pickerOptions!.items = self.formFieldM!.options!
         }
         else {
             self.pickerDate = DatePickerComponent()
+            self.pickerDate?.styles = self.formFieldM?.style
             self.pickerDate!.initTextField(self.textTextField)
         }
         self.loadData(self.formFieldM!)

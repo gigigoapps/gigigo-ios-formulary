@@ -468,7 +468,27 @@
         margin-top: 13px;
         width: 50px;
     }
-
-
-
-
+.nextColor {
+    font-weight: bold;
+    height: 17px;
+    width: 100%;
+}
+.pickerConstructor{
+    height: 370px;
+}
+.pickerColorZone {
+    height: 119px;
+}
+.colorOKPicker {
+    margin-left: 12px;
+}
+.buttonAddPicker {
+    height: 368px;
+}
+    .buttonAddPicker p {
+        margin-top: 139px;
+    }
+    
+.withOutStyle{
+    width: 100%;
+}

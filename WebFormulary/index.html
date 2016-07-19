@@ -62,77 +62,9 @@
                     
                     
                    <!-- ZONA DE PRUEBAS -->
-                       <!--
-                   <div class="cellConstructor" id="createField">
-                       <div class="row">
-                           <div class="col-md-10">
-                               <div class="containerTextFieldTop">
-                                   <div class="titleTextField">
-                                       <p>Titulo*:</p>
-                                       <input type="text" name="titleTextField" id="titleTextField">
-                                           </div>
-                         
-                                    <select id="selectTypeKeyboard">
-                                        <option value="None">Elegir tipo de teclado</option>
-                                        <option value="FormKeyboardTypeText">Texto</option>
-                                        <option value="FormKeyboardTypeEmail">Email</option>
-                                        <option value="FormKeyboardTypeNumbers">Nuerico</option>
-                                        <option value="FormKeyboardTypeNumberPad">NuericoPad</option>
-                                    </select>                                   
-                               </div>
-                               <div class="containerTextFieldCenter">
-                                   <div class="inputTextField">
-                                       <p>PlaceHolder:</p>
-                                       <input type="text" name="palceHolderTextField" id="palceHolderTextField">
-                                   </div>
-                                   <div class="mandatoryTextField">
-                                       <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">
-                                           <p>Es obligatorio?</p>
-                                    </div>
-                                    
-                                    <select id="selectTypeValidator">
-                                        <option value="None">Tipo validador</option>
-                                        <option value="text">Texto</option>
-                                        <option value="email">Email</option>
-                                        <option value="lengthText">Long texto</option>
-                                        <option value="numeric">Numérico</option>
-                                        <option value="postalCode">Código postal</option>
-                                        <option value="phone">Teléfono</option>
-                                        <option value="dniNie">DNI/NIE</option>
-                                    </select>  
-                               </div>
-                               <div class="errorTextField">
-                                   <p class="textErrorP">Texto error:</p>
-                                   <input type="text" name="errorTextField"id="errorTextField">
-                                   <p>minLength:</p><input class="inputWidth" type="text" name="minLength"id="minLength">
-                                   <p>maxLength:</p><input class="inputWidth" type="text" name="maxLength"id="maxLength">
-                                </div>
-                                <div class="styleField"> 
-                                  <h4>Estilos de celda:</h4>
-                                    <div class="colorZone">
-                                       <p>Color de la celda:</p>
-                                       <div id="cellColor" class="cellColor"  onclick="cellColorOpen(\'cellColor\')"></div>
-                                       <p class="colorTittleP">Color titulo:</p>
-                                       <div id="titleColor" class="cellColor"  onclick="cellColorOpen(\'titleColor\')"></div>
-                                       <p class="colorTittleP">Color Error:</p>
-                                       <div id="errorColor" class="cellColor"  onclick="cellColorOpen(\'errorColor\')"></div>
-                                   </div>                                   
-                                   <div class="sizeZone">
-                                      <p>Tamaño titulo:</p>
-                                      <input id="sizeTitle" type="text" name="element">
-                                      <p>Tamaño texto error:</p>
-                                      <input id="sizeError" type="text" name="element">
-                                   </div>
-                                </div>
-                                <div class="spaceSeparate"></div>
-                           </div>
-                           <div class="col-md-2 buttonAdd" onclick="addField()">
-                               <p>+</p>
-                           </div>
-                       </div>
-                   </div>
--->
 
+
+ 
                    
                    <!-- FIN ZONA DE PRUEBAS -->
                    
@@ -235,8 +167,8 @@
 
                   <!--  http://www.danstools.com/javascript-minify/ -->
                    
-                     <!--  AÑADIR   
-                       
+                     <!--  AÑADIR   TEXTFIELD                       
+                               
                    <div class="cellConstructor" id="createField">
                        <div class="row">
                            <div class="col-md-10">
@@ -285,11 +217,17 @@
                                   <h4>Estilos de celda:</h4>
                                     <div class="colorZone">
                                        <p>Color de la celda:</p>
-                                       <div id="cellColor" class="cellColor"  onclick="cellColorOpen('cellColor')"></div>
+                                       <div id="cellColor" class="cellColor"  onclick="cellColorOpen(\'cellColor\')"></div>
                                        <p class="colorTittleP">Color titulo:</p>
-                                       <div id="titleColor" class="cellColor"  onclick="cellColorOpen('titleColor')"></div>
+                                       <div id="titleColor" class="cellColor"  onclick="cellColorOpen(\'titleColor\')"></div>
                                        <p class="colorTittleP">Color Error:</p>
-                                       <div id="errorColor" class="cellColor"  onclick="cellColorOpen('errorColor')"></div>
+                                       <div id="errorColor" class="cellColor"  onclick="cellColorOpen(\'errorColor\')"></div>
+                                   </div>                                   
+                                   <div class="sizeZone">
+                                      <p>Tamaño titulo:</p>
+                                      <input id="sizeTitle" type="text" name="element">
+                                      <p>Tamaño texto error:</p>
+                                      <input id="sizeError" type="text" name="element">
                                    </div>
                                 </div>
                                 <div class="spaceSeparate"></div>
@@ -299,8 +237,10 @@
                            </div>
                        </div>
                    </div>
-                   -->
-   <!-- 
+              -->
+
+
+   <!--   YA CREADO TEXTFIELD
 
 
 <div class="cellConstructor" id="fieldNumber'+indexField+'">
@@ -371,10 +311,9 @@
 
 
 
-
-                     <!--  AÑADIR  PICKER          -->
+                    <!--  AÑADIR  PICKER          -->
            <!--
-<div class="cellConstructor" id="createField">
+<div class="cellConstructor pickerConstructor" id="createField">
    <div class="row">
        <div class="col-md-10">
            <div class="containerTextFieldTop">
@@ -412,36 +351,40 @@
 
             <div class="styleField"> 
               <h4>Estilos de celda:</h4>
-                <div class="colorZone">
-                   <p>Color de la celda:</p>
-                   <div id="cellColor" class="cellColor"  onclick="cellColorOpen(\'cellColor\')"></div>
-                   <p class="colorTittleP">Color titulo:</p>
-                   <div id="titleColor" class="cellColor"  onclick="cellColorOpen(\'titleColor\')"></div>
-                   <p class="colorTittleP">Color Error:</p>
-                   <div id="errorColor" class="cellColor"  onclick="cellColorOpen(\'errorColor\')"></div>
-               </div>
                <div class="sizeZone">
                   <p>Tamaño titulo:</p>
                   <input id="sizeTitle" type="text" name="element">
                   <p>Tamaño texto error:</p>
                   <input id="sizeError" type="text" name="element">
                </div>
+                <div class="colorZone pickerColorZone">
+                   <p>Color de la celda:</p>
+                   <div id="cellColor" class="cellColor"  onclick="cellColorOpen(\'cellColor\')"></div>
+                   <p class="colorTittleP">Color titulo:</p>
+                   <div id="titleColor" class="cellColor"  onclick="cellColorOpen(\'titleColor\')"></div>
+                   <p class="colorTittleP">Color Error:</p>
+                   <div id="errorColor" class="cellColor"  onclick="cellColorOpen(\'errorColor\')"></div>
+                   <p class="nextColor">Estilos picker selector</p>
+                   <p class="colorOKPicker">Color texto OK:</p>
+                   <div id="aceptColor" class="cellColor"  onclick="cellColorOpen(\'aceptColor\')"></div>
+                   <p class="colorTittleP">Color contenedor OK:</p>
+                   <div id="containerAceptColor" class="cellColor" onclick="cellColorOpen(\'containerAceptColor\')"></div>
+                   <p class="colorTittleP">Color fondo:</p>
+                   <div id="backgroundPickerColor" class="cellColor" onclick="cellColorOpen(\'backgroundPickerColor\')"></div>
+               </div>
             </div>
             <div class="spaceSeparate"></div>
        </div>
-       <div class="col-md-2 buttonAdd" onclick="addField()">
+       <div class="col-md-2 buttonAdd buttonAddPicker" onclick="addField()">
            <p>+</p>
        </div>
    </div>
 </div>
--->
-
-
-
+ -->
                
                <!--  FIELD CREADO PICKER -->
 <!-- 
-               <div class="cellConstructor" id="fieldNumber'+indexField+'">
+               <div class="cellConstructor pickerConstructor" id="fieldNumber'+indexField+'">
                        <div class="row">
                            <div class="col-md-10">
                                <div class="containerTextFieldTop">
@@ -474,7 +417,7 @@
                               </div>
                                 <div class="spaceSeparate"></div>
                            </div>
-                           <div class="col-md-2 buttonRemove" onclick="removeField('+indexField+')">
+                           <div class="col-md-2 buttonRemove buttonAddPicker" onclick="removeField('+indexField+')">
                               <p>-</p>
                            </div>
                        </div>
