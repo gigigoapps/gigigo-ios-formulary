@@ -10,15 +10,16 @@ import UIKit
 
 class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    var items: [String] = [] {
+    var items: [FormFieldOptionsModel] = [] {
         didSet {
             self.picker.reloadAllComponents()
+            self.textField?.text = self.items[0].textOption
         }
     }
     
     var selectedIndex: Int? {
         get {
-            return !(self.textField!.text?.isEmpty ?? true) ? self.picker.selectedRowInComponent(0) : nil
+            return !(self.textField!.text?.isEmpty ?? true) ? self.picker.selectedRowInComponent(0) : 0
         }
         
         set {
@@ -51,14 +52,12 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.items[row]
+        return self.items[row].textOption
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         guard !self.items.isEmpty else { return }
-        //self.text = self.items[row]
-        self.textField?.text = self.items[row]
-       // self.delegate?.formUserEndEditingTap(self)
+        self.textField?.text = self.items[row].textOption
     }
     
     // MARK - Private Helpers
@@ -74,6 +73,7 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
+        toolBar.backgroundColor = UIColor.redColor()// TODO EDU, para la hoja de estilos de los picker
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: NSLocalizedString("app_name", comment: ""), style: UIBarButtonItemStyle.Done, target: self, action: #selector(onDoneTap))
         doneButton.tintColor = UIColor.blueColor() // TODO EDU, para la hoja de estilos de los picker
@@ -85,16 +85,14 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
         toolBar.sizeToFit()
         
         self.textField!.inputAccessoryView = toolBar
+        self.picker.backgroundColor = UIColor.greenColor()// TODO EDU, para la hoja de estilos de los picker
     }
     
     @objc private func onDoneTap() {
         if !self.items.isEmpty {
             let selectedRow = self.picker.selectedRowInComponent(0)
-          //  self.text = self.items[selectedRow]
-            self.textField?.text = self.items[selectedRow]
+            self.textField?.text = self.items[selectedRow].textOption
         }
-        
-        self.endEditing(true)
+        self.textField?.endEditing(true)
     }
-
 }

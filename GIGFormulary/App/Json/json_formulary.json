@@ -2,26 +2,27 @@
     "fields":[
               {
               "tag": 0,
-              "type": "picker",
+              "type": "datePicker",
               "label": "asd",
-              "textError": "error_generic_field",
-              "mandatory": false,
+              "mandatory": true,
+              "minAge": 10,
+              "validator": "age",
               "listOptions": [
                               {
                               "key": "KeyNoSelected",
-                              "value": "asd"
+                              "value": "Selecciona un elemento"
                               },
                               {
-                              "key": "asd",
-                              "value": "safsda"
+                              "key": "key1",
+                              "value": "gozilla"
                               },
                               {
-                              "key": "sa",
-                              "value": "df"
+                              "key": "key2",
+                              "value": "Power ranger"
                               },
                               {
-                              "key": "fasdf",
-                              "value": "asdf"
+                              "key": "key",
+                              "value": "Pokemon"
                               }
                               ]
               }

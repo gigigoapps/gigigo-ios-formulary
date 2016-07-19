@@ -61,7 +61,7 @@ public class FormField: UIView{
         
     // MARK: Public Method
     
-    func insertData(formFieldM: FormFieldModel) {
+    func insertData() {
         // TODO nothing
     }
     

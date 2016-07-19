@@ -22,6 +22,9 @@ class PickerFormField: FormField {
     @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
     
+    var pickerOptions: OptionsPickerComponent?
+    var pickerDate: DatePickerComponent?
+    
     // MARK: INIT
     
     override init(frame: CGRect) {
@@ -42,27 +45,101 @@ class PickerFormField: FormField {
         self.mandotoryImage.image = UIImage(named: "mandatoryIcon")
     }
     
+    private func showError() {
+        UIView.animateWithDuration(0.5) {
+            self.errorLabel.sizeToFit()
+            self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
+            self.layoutIfNeeded()
+        }
+    }
+    
+    private func hideError() {
+        UIView.animateWithDuration(0.5) {
+            self.heightErrorLabelConstraint.constant = 0
+            self.layoutIfNeeded()
+        }
+    }
     
     // MARK: Overrride Method
     
-    override func insertData(formFieldM: FormFieldModel) {
-        if (formFieldM.type == TypeField.PICKER_FORM_FIELD.rawValue) {
-            let picker = OptionsPickerComponent()
-            picker.initTextField(self.textTextField)
+    override func insertData() {
+        if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
+            self.pickerOptions = OptionsPickerComponent()
+            self.pickerOptions!.initTextField(self.textTextField)
+            self.pickerOptions!.items = self.formFieldM!.options!
         }
         else {
-            let  datePicker = DatePickerComponent()
-            datePicker.initTextField(self.textTextField)
+            self.pickerDate = DatePickerComponent()
+            self.pickerDate!.initTextField(self.textTextField)
         }
+        self.loadData(self.formFieldM!)
+        self.loadMandatory(self.formFieldM!.mandatory)
+        self.loadCustomStyleField(self.formFieldM!)
+        self.loadKeyboard(self.formFieldM!)
     }
     
     override func validate() -> Bool {
-            return true
+        var status = true
+        if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
+            status = self.pickerOptions?.selectedIndex == 0 ? false : true
+        }
+        else {
+            status = self.validator!.validate(self.pickerDate?.dateSelected)
+        }
+        
+        if (!status) {
+            self.showError()
+        }
+        else {
+            self.hideError()
+        }
+        
+        return status
+    }
+        
+    // MARK: Load data field
+    
+    private func loadData(formFieldM: FormFieldModel) {
+        self.titleLabel.text = formFieldM.label
+        self.textTextField.placeholder = formFieldM.placeHolder
+        self.errorLabel.text = formFieldM.textError
     }
     
-    // MARK: Actions
+    private func loadMandatory(isMandatory: Bool) {
+        if (isMandatory) {
+            self.widthMandatoryImageConstraint.constant = 30
+        }
+        else {
+            self.widthMandatoryImageConstraint.constant = 0
+        }
+    }
     
-    @IBAction func buttonAction(sender: AnyObject) {
-        
+    private func loadKeyboard(formFieldM: FormFieldModel) {
+        self.textTextField.keyboardType = self.keyBoard!
+    }
+    
+    private func loadCustomStyleField(formFieldM: FormFieldModel) {
+        let styleField = formFieldM.style
+        if (styleField != nil) {
+            if (styleField!.mandatoryIcon != nil) {
+                self.mandotoryImage.image = UIImage() // TODO EDU, aqui habria q cargar la imagen q fuera
+            }
+            if (styleField!.backgroundColorField != nil) {
+                self.viewContainer.backgroundColor = styleField!.backgroundColorField!
+            }
+            if (styleField!.titleColor != nil) {
+                self.titleLabel.textColor = styleField!.titleColor!
+            }
+            if (styleField!.errorColor != nil) {
+                self.errorLabel.textColor = styleField!.errorColor!
+            }
+            if (styleField!.sizeTitle != nil) {
+                self.titleLabel.font = UIFont.systemFontOfSize(styleField!.sizeTitle!)
+                //  self.titleLabel.font = UIFont(name: <#T##String#>, size: styleField!.sizeTitle!)  TODO EDU AMPLIACION
+            }
+            if (styleField!.sizeError != nil) {
+                self.errorLabel.font = UIFont.systemFontOfSize(styleField!.sizeError!)
+            }
+        }
     }
 }

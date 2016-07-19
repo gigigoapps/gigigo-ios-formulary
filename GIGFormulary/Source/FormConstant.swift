@@ -31,6 +31,7 @@ enum TypeValidator: String {
     case VALIDATOR_PHONE = "phone"
     case VALIDATOR_BOOL = "bool"
     case VALIDATOR_DNINIE = "dniNie"
+    case VALIDATOR_AGE = "age"
 }
 
 enum ThrowError: ErrorType {

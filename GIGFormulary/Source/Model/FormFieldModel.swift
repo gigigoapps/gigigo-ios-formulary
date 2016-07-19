@@ -26,6 +26,7 @@ class FormFieldModel: NSObject {
     var keyBoard: String?
     var minLengthValue: Int?
     var maxLengthValue: Int?
+    var minAge: Int?
        
     // MARK: Public Method
     
@@ -51,6 +52,7 @@ class FormFieldModel: NSObject {
         let keyBoard = json["keyboard"] as? String
         let maxLength = json["maxLength"] as? Int
         let minLength = json["minLength"] as? Int
+        let minAge = json["minAge"] as? Int
         
         
         //== INSERT DATA ==
@@ -60,7 +62,7 @@ class FormFieldModel: NSObject {
         
         //-- Optional--
         if (textError != nil) {
-            self.textError = textError
+            self.textError = NSLocalizedString(textError!, comment: "")
         }
         else {
             self.textError = NSLocalizedString("error_generic_field", comment: "")
@@ -95,6 +97,9 @@ class FormFieldModel: NSObject {
         }
         if (minLengthValue != nil) {
             self.minLengthValue = minLength
+        }
+        if (minAge != nil) {
+            self.minAge = minAge
         }
     }
 }

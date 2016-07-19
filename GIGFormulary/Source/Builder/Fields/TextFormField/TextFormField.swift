@@ -56,11 +56,11 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     // MARK: Public Method
     
-    override func insertData(formFieldM: FormFieldModel) {
-        self.loadData(formFieldM)
-        self.loadMandatory(formFieldM.mandatory)
-        self.loadCustomStyleField(formFieldM)
-        self.loadKeyboard(formFieldM)
+    override func insertData() {
+        self.loadData(self.formFieldM!)
+        self.loadMandatory(self.formFieldM!.mandatory)
+        self.loadCustomStyleField(self.formFieldM!)
+        self.loadKeyboard(self.formFieldM!)
     }
     
     // MARK: GIGFormField (Override)

@@ -36,6 +36,8 @@
 		7BC3649B1D3D270100C4AB41 /* OptionsPickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC3649A1D3D270100C4AB41 /* OptionsPickerComponent.swift */; };
 		7BC59C7C1D267378008507CE /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC59C7B1D267378008507CE /* Validator.swift */; };
 		7BC59C7E1D267498008507CE /* StringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC59C7D1D267498008507CE /* StringValidator.swift */; };
+		7BC755F21D3E248A0009EC46 /* AgeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC755F11D3E248A0009EC46 /* AgeValidator.swift */; };
+		7BC755F41D3E26C70009EC46 /* AgeValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC755F31D3E26C70009EC46 /* AgeValidatorTests.swift */; };
 		7BDBDE5B1D23AE7800665CF3 /* FormFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDBDE5A1D23AE7800665CF3 /* FormFieldModel.swift */; };
 		7BDBDE5D1D23AE8500665CF3 /* FormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDBDE5C1D23AE8500665CF3 /* FormField.swift */; };
 		7BDBDE601D23B34300665CF3 /* FormFieldOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDBDE5F1D23B34300665CF3 /* FormFieldOptionsModel.swift */; };
@@ -112,6 +114,8 @@
 		7BC3649A1D3D270100C4AB41 /* OptionsPickerComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionsPickerComponent.swift; path = Common/Components/Pickers/OptionsPickerComponent.swift; sourceTree = "<group>"; };
 		7BC59C7B1D267378008507CE /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validator.swift; path = Source/Validators/Validator.swift; sourceTree = "<group>"; };
 		7BC59C7D1D267498008507CE /* StringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringValidator.swift; path = Source/Validators/StringValidator.swift; sourceTree = "<group>"; };
+		7BC755F11D3E248A0009EC46 /* AgeValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AgeValidator.swift; path = Source/Validators/AgeValidator.swift; sourceTree = "<group>"; };
+		7BC755F31D3E26C70009EC46 /* AgeValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AgeValidatorTests.swift; path = Validator/AgeValidatorTests.swift; sourceTree = "<group>"; };
 		7BDBDE5A1D23AE7800665CF3 /* FormFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormFieldModel.swift; path = Source/Model/FormFieldModel.swift; sourceTree = "<group>"; };
 		7BDBDE5C1D23AE8500665CF3 /* FormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormField.swift; path = Source/Builder/Fields/FormField.swift; sourceTree = "<group>"; };
 		7BDBDE5F1D23B34300665CF3 /* FormFieldOptionsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormFieldOptionsModel.swift; path = Source/Model/FormFieldOptionsModel.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				7BF8CE651D33B5E6009CFBE6 /* PostalCodeValidatorTests.swift */,
 				7BF8CE691D33D1D6009CFBE6 /* BoolValidatorTests.swift */,
 				7BF8CE6F1D33DDC3009CFBE6 /* DNINIEValidatorTests.swift */,
+				7BC755F31D3E26C70009EC46 /* AgeValidatorTests.swift */,
 			);
 			name = Validator;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 				7B87EC171D33874800061622 /* PhoneValidator.swift */,
 				7BF8CE6B1D33D285009CFBE6 /* BoolValidator.swift */,
 				7BF8CE6D1D33D601009CFBE6 /* DNINIEValidator.swift */,
+				7BC755F11D3E248A0009EC46 /* AgeValidator.swift */,
 			);
 			name = Validators;
 			sourceTree = "<group>";
@@ -484,6 +490,7 @@
 				7B90DFD61D2BC08A005101DA /* RegexValidator.swift in Sources */,
 				7B87EC161D33872400061622 /* PostalCodeValidator.swift in Sources */,
 				7BC3649B1D3D270100C4AB41 /* OptionsPickerComponent.swift in Sources */,
+				7BC755F21D3E248A0009EC46 /* AgeValidator.swift in Sources */,
 				7B90DFD81D2BC43A005101DA /* MailValidator.swift in Sources */,
 				7BC364991D3D26EA00C4AB41 /* DatePickerComponent.swift in Sources */,
 				7BDBDE601D23B34300665CF3 /* FormFieldOptionsModel.swift in Sources */,
@@ -506,6 +513,7 @@
 				7BDC5EED1D33999D00A753BC /* LengthValidatorTests.swift in Sources */,
 				7BDC5EEF1D339DE300A753BC /* RegexValidatorTests.swift in Sources */,
 				7B87EC1B1D33895600061622 /* ValidatorTests.swift in Sources */,
+				7BC755F41D3E26C70009EC46 /* AgeValidatorTests.swift in Sources */,
 				7B8C9C361D22567A0066AAA3 /* GIGFormularyTests.swift in Sources */,
 				7BF8CE701D33DDC3009CFBE6 /* DNINIEValidatorTests.swift in Sources */,
 				7BF8CE601D33B143009CFBE6 /* NumericValidatorTests.swift in Sources */,

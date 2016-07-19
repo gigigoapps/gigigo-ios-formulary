@@ -13,6 +13,7 @@ class Validator:NSObject {
     var mandatory: Bool
     var minLength: Int?
     var maxLength: Int?
+    var minAge: Int?
     
     override init() {        
         self.mandatory = false

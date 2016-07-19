@@ -14,7 +14,7 @@ class DatePickerComponent: UIDatePicker {
     
     var textField: UITextField?
     
-    var birthdate: NSDate? {
+    var dateSelected: NSDate? {
         get {
             return !(self.textField!.text?.isEmpty ?? true) ? self.datePicker.date : nil
         }
@@ -87,6 +87,9 @@ class DatePickerComponent: UIDatePicker {
         toolBar.userInteractionEnabled = true
         toolBar.sizeToFit()
         
+        toolBar.backgroundColor = UIColor.redColor()
+        self.datePicker.backgroundColor = UIColor.blueColor()
+        
         self.textField!.inputAccessoryView = toolBar
     }
     
@@ -97,7 +100,7 @@ class DatePickerComponent: UIDatePicker {
     
     @objc private func onDoneTap() {
         self.onDatePickerValueChanged(self.datePicker)
-        self.endEditing(true)
+        self.textField?.endEditing(true)
     }
     
     // MARK: - FormDelegate

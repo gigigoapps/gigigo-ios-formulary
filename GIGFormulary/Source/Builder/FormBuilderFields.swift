@@ -46,7 +46,8 @@ class FormBuilderFields: NSObject {
                                .VALIDATOR_POSTALCODE: PostalCodeValidator.self,
                                .VALIDATOR_PHONE: PhoneValidator.self,
                                .VALIDATOR_BOOL: BoolValidator.self,
-                               .VALIDATOR_DNINIE: DNINIEValidator.self]
+                               .VALIDATOR_DNINIE: DNINIEValidator.self,
+                               .VALIDATOR_AGE: AgeValidator.self]
     }
     
     private func createField(fieldDic: [String:AnyObject], tag: Int) -> FormField {
@@ -56,12 +57,12 @@ class FormBuilderFields: NSObject {
             
             let typeField = self.listTypeFields[TypeField(rawValue: formFieldM.type!)!]
             let field = typeField!.init()
+            field.formFieldM = formFieldM
+            field.tag = tag
             field.delegate = self.formController
             field.validator = self.validatorToField(formFieldM)
             field.keyBoard = self.keyboardToField(formFieldM)
-            field.insertData(formFieldM)
-            field.tag = tag
-            field.formFieldM = formFieldM
+            field.insertData()
             return field
         }
         catch {
@@ -76,6 +77,7 @@ class FormBuilderFields: NSObject {
             let validator = typeValidator!.init(mandatory: formFieldM.mandatory)
             validator.minLength = formFieldM.minLengthValue
             validator.maxLength = formFieldM.maxLengthValue
+            validator.minAge = formFieldM.minAge
             return validator
         }
         else {
