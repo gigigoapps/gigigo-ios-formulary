@@ -73,6 +73,7 @@ class PickerFormField: FormField {
         else {
             self.pickerDate = DatePickerComponent()
             self.pickerDate?.styles = self.formFieldM?.style
+            self.pickerDate?.textAcceptButton = self.formFieldM?.textAcceptButton
             self.pickerDate!.initTextField(self.textTextField)
         }
         self.loadData(self.formFieldM!)

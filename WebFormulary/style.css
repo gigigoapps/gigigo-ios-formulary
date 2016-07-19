@@ -516,3 +516,27 @@
 .stylePicker{
     height: 205px;
 }
+.buttonRemoveText {
+    height: 280px;
+}
+    .buttonRemoveText p {
+        margin-top: 100px;
+    }
+.minAgeContainer {
+    height: 43px;
+    width: 100%;
+}
+    .minAgeContainer input{
+        float: left;
+        height: 26px;
+        margin-right: 16px;
+        margin-top: 0;
+        width: 246px;
+    }
+    .minAgeContainer p {
+        float: left;
+        margin-left: 47px;
+        margin-right: -48px;
+        margin-top: 3px;
+        width: 148px;
+    }

@@ -1,70 +1,37 @@
 {
     "fields":[
               {
-              "tag": 0,
-              "type": "picker",
-              "label": "wqeeqwe",
-              "textError": "qwrwq",
+              "tag": 2,
+              "type": "datePicker",
+              "label": "gfd",
+              "textError": "dfgd",
               "mandatory": false,
-              "listOptions": [
-                              {
-                              "key": "KeyNoSelected",
-                              "value": "caso base"
-                              }
-                              ],
-              "textAcceptButton": "wqerwq",
+              "textAcceptButton": "dfsgsd",
+              "minAge": 43,
+              "validator": "age",
               "style": {
-              "backgroundColorField": "#CC3CC4",
-              "titleColor": "#21CC23",
-              "errorColor": "#CC1A1E",
-              "containerAcceptColorPicker": "#CC60BF"
+              "backgroundColorField": "#CC5225",
+              "titleColor": "#B2CC00",
+              "sizeTitle": 30,
+              "sizeError": 12,
+              "acceptColorPicker": "#4FCC4F",
+              "backgroundPickerColorPicker": "#B2CC00"
               }
               },
               {
-              "tag": 1,
-              "type": "picker",
-              "label": "wrerq",
+              "tag": 4,
+              "type": "datePicker",
+              "label": "minima",
               "textError": "error_generic_field",
-              "mandatory": false,
-              "listOptions": [
-                              {
-                              "key": "KeyNoSelected",
-                              "value": "caso base"
-                              }
-                              ]
-              },
-              {
-              "tag": 2,
-              "type": "picker",
-              "label": "etrewt",
-              "textError": "wer",
               "mandatory": true,
-              "listOptions": [
-                              {
-                              "key": "KeyNoSelected",
-                              "value": "caso base"
-                              },
-                              {
-                              "key": "wer",
-                              "value": "twe"
-                              },
-                              {
-                              "key": "twer",
-                              "value": "rtwert"
-                              },
-                              {
-                              "key": "wert",
-                              "value": "wert"
-                              }
-                              ],
-              "textAcceptButton": "aaaa",
+              "textAcceptButton": "rr",
+              "minAge": 10,
+              "validator": "age",
               "style": {
-              "backgroundColorField": "#65CC00",
-              "sizeTitle": 11,
-              "sizeError": 60,
-              "acceptColorPicker": "#96CC00",
-              "containerAcceptColorPicker": "#96CC00",
-              "backgroundPickerColorPicker": "#CCBA00"
+              "backgroundColorField": "#B5CC1A",
+              "sizeTitle": 20,
+              "sizeError": 32,
+              "backgroundPickerColorPicker": "#7848CC"
               }
               }
               ] 

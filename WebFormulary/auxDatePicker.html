@@ -1,0 +1,66 @@
+                                   <!--  AÑADIR  DATE PICKER          -->
+           <!-- -->
+
+<div class="cellConstructor pickerConstructor" id="createField">
+   <div class="row">
+       <div class="col-md-10">
+           <div class="containerTextFieldTop">
+               <div class="titleTextField">
+                   <p>Titulo*:</p>
+                   <input type="text" name="titleTextField" id="titleTextField">                                       
+                </div>                                 
+           </div>
+           <div id="containerErrorMandatoryPicker">
+                <div class="errorTextField errorTextFieldPicker">
+                   <p class="textErrorP">Texto error:</p>
+                   <input type="text" name="errorTextField"id="errorTextField">
+                </div>
+                <div class="mandatoryTextField optionModel">
+                      <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">
+                     <p>Es obligatorio?</p>
+                </div> 
+           </div>  
+           
+           <div class="acceptButtonTextField">
+               <p>Titulo aceptar picker:</p>
+               <input type="text" name="acceptButtonTextField" id="acceptButtonTextField">                                       
+            </div>  
+
+
+           <div class="minAgeContainer">
+               <p>Edad minima:</p>
+               <input type="text" name="minAgeContainer" id="minAgeContainer">                                       
+            </div>  
+
+
+            <div class="styleField"> 
+              <h4>Estilos de celda:</h4>
+               <div class="sizeZone">
+                  <p>Tamaño titulo:</p>
+                  <input id="sizeTitle" type="text" name="element">
+                  <p>Tamaño texto error:</p>
+                  <input id="sizeError" type="text" name="element">
+               </div>
+                <div class="colorZone pickerColorZone">
+                   <p>Color de la celda:</p>
+                   <div id="cellColor" class="cellColor"  onclick="cellColorOpen(\'cellColor\')"></div>
+                   <p class="colorTittleP">Color titulo:</p>
+                   <div id="titleColor" class="cellColor"  onclick="cellColorOpen(\'titleColor\')"></div>
+                   <p class="colorTittleP">Color Error:</p>
+                   <div id="errorColor" class="cellColor"  onclick="cellColorOpen(\'errorColor\')"></div>
+                   <p class="nextColor">Estilos picker selector</p>
+                   <p class="colorOKPicker">Color texto OK:</p>
+                   <div id="aceptColor" class="cellColor"  onclick="cellColorOpen(\'aceptColor\')"></div>
+                   <p class="colorTittleP">Color contenedor OK:</p>
+                   <div id="containerAceptColor" class="cellColor" onclick="cellColorOpen(\'containerAceptColor\')"></div>
+                   <p class="colorTittleP">Color fondo:</p>
+                   <div id="backgroundPickerColor" class="cellColor" onclick="cellColorOpen(\'backgroundPickerColor\')"></div>
+               </div>
+            </div>
+            <div class="spaceSeparate"></div>
+       </div>
+       <div class="col-md-2 buttonAdd buttonAddPicker" onclick="addField()">
+           <p>+</p>
+       </div>
+   </div>
+</div> 

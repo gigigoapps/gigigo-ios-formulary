@@ -35,6 +35,9 @@ var indexField = 0
                 else if (fieldSelected == "Picker") {
                     validatePickerField();
                 }
+                else if (fieldSelected == "DatePicker") {
+                    validateDatePickerField();
+                }
             }
         
             function resetTypeField() {
@@ -63,6 +66,9 @@ var indexField = 0
                 else if (typeField == "Picker") {
                     idPickerField = 1; // Reset Picker
                     html = '<div class="cellConstructor pickerConstructor"id="createField"><div class="row"><div class="col-md-10"><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"></div></div><div id="containerErrorMandatoryPicker"><div class="errorTextField errorTextFieldPicker"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"></div><div class="mandatoryTextField optionModel"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"><p>Es obligatorio?</p></div></div><div class="acceptButtonTextField"><p>Titulo aceptar picker:</p><input type="text"name="acceptButtonTextField"id="acceptButtonTextField"></div><div id="valuesOptionsSelector"><div id="containerPickerFieldAdd"><p id="addFieldPickerText">Añadir campos del picker:</p><div id="sumatoryPicker"><p onclick="addContainerPicker()">+</p></div></div><div id="pickerFieldsInsert"><div class="containerPickerField"id="containerPickerField'+idPickerField+'"><input id="inputKeyPickerField0"type="text"name="element"placeholder="Clave Picker"value="KeyNoSelected"disabled readonly><input id="inputValuePickerField0"type="text"name="element"placeholder="Valor picker por defecto"></div></div></div><div class="styleField"><h4>Estilos de celda:</h4><div class="sizeZone"><p>Tamaño titulo:</p><input id="sizeTitle"type="text"name="element"><p>Tamaño texto error:</p><input id="sizeError"type="text"name="element"></div><div class="colorZone pickerColorZone"><p>Color de la celda:</p><div id="cellColor"class="cellColor"onclick="cellColorOpen(\'cellColor\')"></div><p class="colorTittleP">Color titulo:</p><div id="titleColor"class="cellColor"onclick="cellColorOpen(\'titleColor\')"></div><p class="colorTittleP">Color Error:</p><div id="errorColor"class="cellColor"onclick="cellColorOpen(\'errorColor\')"></div><p class="nextColor">Estilos picker selector</p><p class="colorOKPicker">Color texto OK:</p><div id="aceptColor"class="cellColor"onclick="cellColorOpen(\'aceptColor\')"></div><p class="colorTittleP">Color contenedor OK:</p><div id="containerAceptColor"class="cellColor"onclick="cellColorOpen(\'containerAceptColor\')"></div><p class="colorTittleP">Color fondo:</p><div id="backgroundPickerColor"class="cellColor"onclick="cellColorOpen(\'backgroundPickerColor\')"></div></div></div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonAdd buttonAddPicker"onclick="addField()"><p>+</p></div></div></div>';
+                }
+                else if (typeField == "DatePicker") {
+                    html = '<div class="cellConstructor pickerConstructor"id="createField"><div class="row"><div class="col-md-10"><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"></div></div><div id="containerErrorMandatoryPicker"><div class="errorTextField errorTextFieldPicker"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"></div><div class="mandatoryTextField optionModel"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"><p>Es obligatorio?</p></div></div><div class="acceptButtonTextField"><p>Titulo aceptar picker:</p><input type="text"name="acceptButtonTextField"id="acceptButtonTextField"></div><div class="minAgeContainer"><p>Edad minima:</p><input type="text"name="minAgeContainer"id="minAgeContainer"></div><div class="styleField"><h4>Estilos de celda:</h4><div class="sizeZone"><p>Tamaño titulo:</p><input id="sizeTitle"type="text"name="element"><p>Tamaño texto error:</p><input id="sizeError"type="text"name="element"></div><div class="colorZone pickerColorZone"><p>Color de la celda:</p><div id="cellColor"class="cellColor"onclick="cellColorOpen(\'cellColor\')"></div><p class="colorTittleP">Color titulo:</p><div id="titleColor"class="cellColor"onclick="cellColorOpen(\'titleColor\')"></div><p class="colorTittleP">Color Error:</p><div id="errorColor"class="cellColor"onclick="cellColorOpen(\'errorColor\')"></div><p class="nextColor">Estilos picker selector</p><p class="colorOKPicker">Color texto OK:</p><div id="aceptColor"class="cellColor"onclick="cellColorOpen(\'aceptColor\')"></div><p class="colorTittleP">Color contenedor OK:</p><div id="containerAceptColor"class="cellColor"onclick="cellColorOpen(\'containerAceptColor\')"></div><p class="colorTittleP">Color fondo:</p><div id="backgroundPickerColor"class="cellColor"onclick="cellColorOpen(\'backgroundPickerColor\')"></div></div></div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonAdd buttonAddPicker"onclick="addField()"><p>+</p></div></div></div>';
                 }
 
                 $("#containterElementField").append(html)
@@ -241,7 +247,7 @@ function createField(title,placeHolder,error,mandatory,cellColor,keyboard,valida
     var htmlFontSize = getStyleSize (sizeTitle, sizeError);
     var styles =  htmlFontSize + htmlBackgroundColor;
 
-    var html = '<div class="cellConstructor" id="fieldNumber'+indexField+'"><div class="row"><div class="col-md-10"><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text" name="titleTextField" id="titleTextField" disabled value="'+title+'"></div><div class="keyboardResult">Keyboard:'+keyboard+'</div></div><div class="containerTextFieldCenter"><div class="inputTextField"><p>PlaceHolder:</p><input type="text" name="palceHolderTextField" id="palceHolderTextField" disabled value="'+placeHolder+'"></div><div class="mandatoryTextField"><input type="checkbox" name="mandatory" value="mandatory" id="mandatory" '+valueCheck+' disabled readonly><p>Es obligatorio?</p></div><div class="validatorResult">Validator:'+validator+'</div></div><div class="errorTextField"><p class="textErrorP">Texto error:</p><input type="text" name="errorTextField"id="errorTextField" disabled value="'+error+'"><p>minLength:</p><input class="inputWidth" type="text" name="minLength"id="minLength" disabled readonly value="'+minLength+'"><p>maxLength:</p><input class="inputWidth" type="text" name="maxLength"id="maxLength" disabled readonly value="'+maxLength+'"></div><div class="styleField stylePicker"> <h4>Estilos de celda:</h4>'+styles+' </div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonRemove" onclick="removeField('+indexField+')"><p>-</p></div></div></div> ';
+    var html = '<div class="cellConstructor" id="fieldNumber'+indexField+'"><div class="row"><div class="col-md-10"><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text" name="titleTextField" id="titleTextField" disabled value="'+title+'"></div><div class="keyboardResult">Keyboard:'+keyboard+'</div></div><div class="containerTextFieldCenter"><div class="inputTextField"><p>PlaceHolder:</p><input type="text" name="palceHolderTextField" id="palceHolderTextField" disabled value="'+placeHolder+'"></div><div class="mandatoryTextField"><input type="checkbox" name="mandatory" value="mandatory" id="mandatory" '+valueCheck+' disabled readonly><p>Es obligatorio?</p></div><div class="validatorResult">Validator:'+validator+'</div></div><div class="errorTextField"><p class="textErrorP">Texto error:</p><input type="text" name="errorTextField"id="errorTextField" disabled value="'+error+'"><p>minLength:</p><input class="inputWidth" type="text" name="minLength"id="minLength" disabled readonly value="'+minLength+'"><p>maxLength:</p><input class="inputWidth" type="text" name="maxLength"id="maxLength" disabled readonly value="'+maxLength+'"></div><div class="styleField"> <h4>Estilos de celda:</h4>'+styles+' </div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonRemove buttonRemoveText" onclick="removeField('+indexField+')"><p>-</p></div></div></div> ';
 
     $("#containerListItemsCreated").append(html);
     resetTypeField();
@@ -330,7 +336,7 @@ function createPickerField(title,error,mandatory,cellColor,titleColor,errorColor
         }
     }
 
-    var html = '<div class="cellConstructor pickerConstructor"id="fieldNumber'+indexField+'"><div class="row"><div class="col-md-10"><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"value="'+title+'"disabled readonly></div></div><div class="acceptButtonTextField editVersionAccept"><p>Titulo aceptar picker:</p><input type="text"name="acceptButtonTextField"id="acceptButtonTextField"disabled readonly value="'+acceptButtonTextField+'"></div><div id="containerErrorMandatoryPicker"><div class="errorTextField errorTextFieldPicker"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"disabled readonly value="'+error+'"></div><div class="mandatoryTextField optionModel"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"'+valueCheck+'disabled readonly><p>Es obligatorio?</p></div></div><div id="valuesOptionsSelector"><div id="pickerFieldsInsert"><p>Valores creados:</p>'+htmlPickerItems+'</div></div><div class="styleField"><h4>Estilos de celda:</h4>'+styles+'</div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonRemove buttonAddPicker"onclick="removeField('+indexField+')"><p>-</p></div></div></div>';
+    var html = '<div class="cellConstructor pickerConstructor"id="fieldNumber'+indexField+'"><div class="row"><div class="col-md-10"><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"value="'+title+'"disabled readonly></div></div><div class="acceptButtonTextField editVersionAccept"><p>Titulo aceptar picker:</p><input type="text"name="acceptButtonTextField"id="acceptButtonTextField"disabled readonly value="'+acceptButtonTextField+'"></div><div id="containerErrorMandatoryPicker"><div class="errorTextField errorTextFieldPicker"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"disabled readonly value="'+error+'"></div><div class="mandatoryTextField optionModel"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"'+valueCheck+'disabled readonly><p>Es obligatorio?</p></div></div><div id="valuesOptionsSelector"><div id="pickerFieldsInsert"><p>Valores creados:</p>'+htmlPickerItems+'</div></div><div class="styleField stylePicker"><h4>Estilos de celda:</h4>'+styles+'</div></div><div class="col-md-2 buttonRemove buttonAddPicker"onclick="removeField('+indexField+')"><p>-</p></div></div></div>';
     $("#containerListItemsCreated").append(html);
     resetTypeField();
 }
@@ -364,6 +370,70 @@ function savePickerField(type,title,error,mandatory,cellColor,titleColor,errorCo
               
     if (acceptButtonTextField.length > 0) {
         itemSave["textAcceptButton"] = acceptButtonTextField
+    }  
+
+    var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor);
+    if (styles != null) {
+        itemSave["style"] = styles
+    }    
+
+    //-- SAVE ITEMS --
+    listFieldsResult.push(itemSave)
+    
+    for (var i=0; i<listFieldsResult.length; i++) {
+        $.each(listFieldsResult[i], function(index, val) {
+            console.log("key:"+index+" - value:"+val);
+        });
+    }
+    
+    indexField++;
+}
+
+//======================================
+//            DATE   PICKER           //
+//======================================
+
+
+//-- DATE PICKER YA CREADO SOLO MOSTRAR --
+function createDatePickerField(title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer) {
+    var valueCheck = ""
+    if (mandatory) {
+        valueCheck = "checked"
+    }
+
+    //-- Recover Styles --
+    var htmlColorBasic = getStyleColor(cellColor,titleColor,errorColor);
+    var htmlFontSize = getStyleSize (sizeTitle, sizeError);
+    var htmlColorPicker = getStyleColorPicker (aceptColor,containerAceptColor,backgroundPickerColor);
+    var styles = htmlFontSize + htmlColorBasic + htmlColorPicker;
+
+
+    var html = '<div class="cellConstructor pickerConstructor"id="fieldNumber'+indexField+'"><div class="row"><div class="col-md-10"><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"value="'+title+'"disabled readonly></div></div><div id="containerErrorMandatoryPicker"><div class="errorTextField errorTextFieldPicker"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"disabled readonly value="'+error+'"></div><div class="mandatoryTextField optionModel"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"'+valueCheck+'disabled readonly><p>Es obligatorio?</p></div></div><div class="minAgeContainer"><p>Edad minima:</p><input type="text"name="minAgeContainer"id="minAgeContainer"value="'+minAgeContainer+'"disabled readonly></div><div class="styleField"><h4>Estilos de celda:</h4>'+styles+'</div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonRemove buttonAddPicker"onclick="removeField('+indexField+')"><p>-</p></div></div></div>';
+       $("#containerListItemsCreated").append(html);
+    resetTypeField();
+}
+
+function saveDatePickerField(type,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer) {
+    
+    //-- MANDATORY FIELDS --
+
+    var itemSave = {
+        "tag":indexField,
+        "type":type,
+        "label":title,
+        "textError":error,
+        "mandatory":mandatory
+    }
+    
+    //-- OPTIONAL FIELDS --
+              
+    if (acceptButtonTextField.length > 0) {
+        itemSave["textAcceptButton"] = acceptButtonTextField
+    }  
+              
+    if (minAgeContainer.length > 0) {
+        itemSave["minAge"] = parseInt(minAgeContainer) 
+        itemSave["validator"] = "age"
     }  
 
     var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor);
@@ -418,6 +488,39 @@ function validateTextField() {
     }
 }
 
+//=== DATE PICKER ===
+function validateDatePickerField() {
+    var title = $("#titleTextField").val()
+    var error = $("#errorTextField").val()
+    var mandatory = $('#mandatory').is(':checked');
+
+    // Optional
+    var acceptButtonTextField = $("#acceptButtonTextField").val()
+    var minAgeContainer = $("#minAgeContainer").val()    
+
+    // Style
+    var cellColor = $("#cellColor").text()
+    var titleColor = $("#titleColor").text()
+    var errorColor = $("#errorColor").text()
+    var sizeTitle = $("#sizeTitle").val()
+    var sizeError = $("#sizeError").val()
+    var aceptColor = $("#aceptColor").text()
+    var containerAceptColor = $("#containerAceptColor").text()
+    var backgroundPickerColor = $("#backgroundPickerColor").text()
+    
+    if (error.length == 0) {
+        error = "error_generic_field"
+    }
+
+    if (title.length > 0) {
+        createDatePickerField(title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer);
+        saveDatePickerField("datePicker",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer);
+    }
+    else {
+        alert("Los campos con asterisco son obligatorios");
+    }
+}
+
 //=== PICKER ===
 function validatePickerField() {
     var title = $("#titleTextField").val()
@@ -436,7 +539,6 @@ function validatePickerField() {
     var aceptColor = $("#aceptColor").text()
     var containerAceptColor = $("#containerAceptColor").text()
     var backgroundPickerColor = $("#backgroundPickerColor").text()
-
     
     if (error.length == 0) {
         error = "error_generic_field"
