@@ -6,4 +6,9 @@
   Copyright © 2016 gigigo. All rights reserved.
 */
 
+
+//-- Generic --
 "error_generic_field" = "texto de error";
+
+//-- Picker --
+"gig_form_accept_button_picker" = "OK";

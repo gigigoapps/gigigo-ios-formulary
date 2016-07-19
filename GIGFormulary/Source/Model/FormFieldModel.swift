@@ -27,6 +27,7 @@ class FormFieldModel: NSObject {
     var minLengthValue: Int?
     var maxLengthValue: Int?
     var minAge: Int?
+    var textAcceptButton: String?
        
     // MARK: Public Method
     
@@ -53,6 +54,7 @@ class FormFieldModel: NSObject {
         let maxLength = json["maxLength"] as? Int
         let minLength = json["minLength"] as? Int
         let minAge = json["minAge"] as? Int
+        let textAcceptButton = json["textAcceptButton"] as? String
         
         
         //== INSERT DATA ==
@@ -100,6 +102,12 @@ class FormFieldModel: NSObject {
         }
         if (minAge != nil) {
             self.minAge = minAge
+        }
+        if (textAcceptButton != nil) {
+            self.textAcceptButton = NSLocalizedString(textAcceptButton!, comment: "")
+        }
+        else {
+            self.textAcceptButton = NSLocalizedString("gig_form_accept_button_picker", comment: "")
         }
     }
 }

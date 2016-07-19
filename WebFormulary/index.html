@@ -64,7 +64,51 @@
                    <!-- ZONA DE PRUEBAS -->
 
 
- 
+               <!--  FIELD CREADO PICKER -->
+<!-- 
+               <div class="cellConstructor pickerConstructor" id="fieldNumber'+indexField+'">
+                       <div class="row">
+                           <div class="col-md-10">
+                               <div class="containerTextFieldTop">
+                                   <div class="titleTextField">
+                                       <p>Titulo*:</p>
+                                       <input type="text" name="titleTextField" id="titleTextField" value="'+title+'"  disabled readonly>                                       
+                                    </div>                                 
+                               </div>
+           
+                              <div class="acceptButtonTextField editVersionAccept">
+                                 <p>Titulo aceptar picker:</p>
+                                 <input type="text" name="acceptButtonTextField" id="acceptButtonTextField" disabled readonly value="'+acceptButtonTextField+'">                                       
+                              </div>  
+                               <div id="containerErrorMandatoryPicker">
+                                    <div class="errorTextField errorTextFieldPicker">
+                                       <p class="textErrorP">Texto error:</p>
+                                       <input type="text" name="errorTextField" id="errorTextField"  disabled readonly value="'+error+'">
+                                    </div>
+                                    <div class="mandatoryTextField optionModel">
+                                          <input type="checkbox" name="mandatory" value="mandatory" id="mandatory" '+valueCheck+' disabled readonly>
+                                         <p>Es obligatorio?</p>
+                                    </div> 
+                               </div>   
+
+                               <div id="valuesOptionsSelector">     
+                                  <div id="pickerFieldsInsert">
+                                      <p>Valores creados:</p>
+                                      '+htmlPickerItems+'
+                                  </div>
+                                </div> 
+
+                              <div class="styleField stylePicker"> 
+                                  <h4>Estilos de celda:</h4>
+                                    '+styles+' 
+                              </div>
+                           </div>
+                           <div class="col-md-2 buttonRemove buttonAddPicker" onclick="removeField('+indexField+')">
+                              <p>-</p>
+                           </div>
+                       </div>
+                  </div>-->
+
                    
                    <!-- FIN ZONA DE PRUEBAS -->
                    
@@ -310,9 +354,10 @@
 
 
 
-
+ 
                     <!--  AÑADIR  PICKER          -->
            <!--
+
 <div class="cellConstructor pickerConstructor" id="createField">
    <div class="row">
        <div class="col-md-10">
@@ -331,8 +376,12 @@
                       <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">
                      <p>Es obligatorio?</p>
                 </div> 
-           </div>   
-
+           </div>  
+           
+           <div class="acceptButtonTextField">
+               <p>Titulo aceptar picker:</p>
+               <input type="text" name="acceptButtonTextField" id="acceptButtonTextField">                                       
+            </div>  
            <div id="valuesOptionsSelector"> 
               <div id="containerPickerFieldAdd">
                  <p id="addFieldPickerText">Añadir campos del picker:</p> 
@@ -379,8 +428,7 @@
            <p>+</p>
        </div>
    </div>
-</div>
- -->
+</div> -->
                
                <!--  FIELD CREADO PICKER -->
 <!-- 

@@ -14,6 +14,7 @@ class DatePickerComponent: UIDatePicker {
     
     var textField: UITextField?
     var styles: FormFieldStyleModel?
+    var textAcceptButton: String?
     
     var dateSelected: NSDate? {
         get {
@@ -61,13 +62,13 @@ class DatePickerComponent: UIDatePicker {
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: NSLocalizedString("app_name", comment: ""), style: UIBarButtonItemStyle.Done, target: self, action: #selector(onDoneTap))
-        doneButton.tintColor = self.styles?.aceptColorPicker
+        let doneButton = UIBarButtonItem(title: self.textAcceptButton, style: UIBarButtonItemStyle.Done, target: self, action: #selector(onDoneTap))
+        doneButton.tintColor = self.styles?.acceptColorPicker
         toolBar.setItems([space, doneButton], animated: false)
         toolBar.userInteractionEnabled = true
         toolBar.sizeToFit()
         
-        toolBar.backgroundColor = self.styles?.containerAceptColorPicker
+        toolBar.backgroundColor = self.styles?.containerAcceptColorPicker
         self.datePicker.backgroundColor = self.styles?.backgroundPickerColorPicker
         
         self.textField!.inputAccessoryView = toolBar

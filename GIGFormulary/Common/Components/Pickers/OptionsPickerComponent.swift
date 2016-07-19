@@ -11,6 +11,7 @@ import UIKit
 class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var styles: FormFieldStyleModel?
+    var textAcceptButton: String?
     var items: [FormFieldOptionsModel] = [] {
         didSet {
             self.picker.reloadAllComponents()
@@ -74,10 +75,10 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
-        toolBar.backgroundColor = self.styles?.containerAceptColorPicker
+        toolBar.backgroundColor = self.styles?.containerAcceptColorPicker
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: NSLocalizedString("app_name", comment: ""), style: UIBarButtonItemStyle.Done, target: self, action: #selector(onDoneTap))
-        doneButton.tintColor = self.styles?.aceptColorPicker
+        let doneButton = UIBarButtonItem(title:self.textAcceptButton, style: UIBarButtonItemStyle.Done, target: self, action: #selector(onDoneTap))
+        doneButton.tintColor = self.styles?.acceptColorPicker
 
         toolBar.setItems([space, doneButton], animated: false)
         toolBar.userInteractionEnabled = true

@@ -66,6 +66,7 @@ class PickerFormField: FormField {
         if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
             self.pickerOptions = OptionsPickerComponent()
             self.pickerOptions?.styles = self.formFieldM?.style
+            self.pickerOptions?.textAcceptButton = self.formFieldM?.textAcceptButton
             self.pickerOptions!.initTextField(self.textTextField)
             self.pickerOptions!.items = self.formFieldM!.options!
         }
@@ -83,7 +84,8 @@ class PickerFormField: FormField {
     override func validate() -> Bool {
         var status = true
         if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
-            status = self.pickerOptions?.selectedIndex == 0 ? false : true
+            self.validator = OptionValidator(mandatory: self.formFieldM!.mandatory)
+            status = self.validator!.validate(self.pickerOptions?.selectedIndex)
         }
         else {
             status = self.validator!.validate(self.pickerDate?.dateSelected)

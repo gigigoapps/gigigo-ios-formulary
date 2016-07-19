@@ -474,7 +474,7 @@
     width: 100%;
 }
 .pickerConstructor{
-    height: 370px;
+    min-height: 410px;
 }
 .pickerColorZone {
     height: 119px;
@@ -483,12 +483,36 @@
     margin-left: 12px;
 }
 .buttonAddPicker {
-    height: 368px;
+    height: 416px;
 }
     .buttonAddPicker p {
-        margin-top: 139px;
+        margin-top: 169px;
     }
     
 .withOutStyle{
     width: 100%;
+}
+.acceptButtonTextField {
+    height: 43px;
+    width: 100%;
+}
+    .acceptButtonTextField input{
+        float: left;
+        height: 26px;
+        margin-right: 16px;
+        margin-top: 0;
+        width: 246px;
+    }
+    .acceptButtonTextField p {
+        float: left;
+        margin-left: 2px;
+        margin-right: -2px;
+        margin-top: 3px;
+        width: 148px;
+    }
+.editVersionAccept {
+    height: 33px;
+}
+.stylePicker{
+    height: 205px;
 }

@@ -3,19 +3,68 @@
               {
               "tag": 0,
               "type": "picker",
-              "label": "fsdfsad",
+              "label": "wqeeqwe",
+              "textError": "qwrwq",
+              "mandatory": false,
+              "listOptions": [
+                              {
+                              "key": "KeyNoSelected",
+                              "value": "caso base"
+                              }
+                              ],
+              "textAcceptButton": "wqerwq",
+              "style": {
+              "backgroundColorField": "#CC3CC4",
+              "titleColor": "#21CC23",
+              "errorColor": "#CC1A1E",
+              "containerAcceptColorPicker": "#CC60BF"
+              }
+              },
+              {
+              "tag": 1,
+              "type": "picker",
+              "label": "wrerq",
               "textError": "error_generic_field",
               "mandatory": false,
               "listOptions": [
                               {
                               "key": "KeyNoSelected",
-                              "value": "sfsdfasfasd"
+                              "value": "caso base"
+                              }
+                              ]
+              },
+              {
+              "tag": 2,
+              "type": "picker",
+              "label": "etrewt",
+              "textError": "wer",
+              "mandatory": true,
+              "listOptions": [
+                              {
+                              "key": "KeyNoSelected",
+                              "value": "caso base"
+                              },
+                              {
+                              "key": "wer",
+                              "value": "twe"
+                              },
+                              {
+                              "key": "twer",
+                              "value": "rtwert"
+                              },
+                              {
+                              "key": "wert",
+                              "value": "wert"
                               }
                               ],
+              "textAcceptButton": "aaaa",
               "style": {
-              "aceptColorPicker": "#CC6300",
-              "containerAceptColorPicker": "#758ECC",
-              "backgroundPickerColorPicker": "#33CC00"
+              "backgroundColorField": "#65CC00",
+              "sizeTitle": 11,
+              "sizeError": 60,
+              "acceptColorPicker": "#96CC00",
+              "containerAcceptColorPicker": "#96CC00",
+              "backgroundPickerColorPicker": "#CCBA00"
               }
               }
               ] 
