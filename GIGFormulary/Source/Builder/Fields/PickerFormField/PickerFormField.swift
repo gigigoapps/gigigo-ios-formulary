@@ -37,6 +37,31 @@ class PickerFormField: FormField {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    // MARK: GIGFormField (Override)
+    
+    override internal var fieldValue: AnyObject? {
+        get {
+            if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
+                return (self.formFieldM!.options![self.pickerOptions!.selectedIndex!]).idOption
+            }
+            else {
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "dd-MM-yyyy"
+                return dateFormatter.stringFromDate(self.pickerDate!.dateSelected!)
+            }
+        }
+        set {
+          //  self.buttonAccept.selected = fieldValue as! Bool
+            if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
+                self.pickerOptions?.selectedIndex = fieldValue as? Int
+            }
+            else {
+               // self.pickerDate?.dateSelected // TODO EDU falta meter aqui el valor de tipo DATE
+            }
+        }
+    }
+    
     // MARK: Private Method
     
     private func initializeView() {

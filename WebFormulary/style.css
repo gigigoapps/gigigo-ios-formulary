@@ -49,13 +49,13 @@
             color: white;
             float: right;
             font-size: 49px;
-            height: 272px;
+            height: 313px;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonAdd p{
-                margin-top: 100px;
+                margin-top: 120px;
             }
             .buttonAdd:hover {
                 background-color: skyblue;
@@ -483,10 +483,10 @@
     margin-left: 12px;
 }
 .buttonAddPicker {
-    height: 416px;
+    height: 458px;
 }
     .buttonAddPicker p {
-        margin-top: 169px;
+        margin-top: 197px;
     }
     
 .withOutStyle{
@@ -540,3 +540,24 @@
         margin-top: 3px;
         width: 148px;
     }
+.keyTextField {
+    height: 32px;
+    margin-left: 107px;
+    margin-top: 10px;
+    width: 100%;
+}
+    .keyTextField input{
+        float: left;
+        height: 26px;
+        margin-top: 0;
+        width: 248px;
+    }
+    .keyTextField p{
+        float: left;
+        margin-right: 10px;
+        margin-top: 2px;
+        width: 30px;
+    }
+#keyTextField {
+
+}

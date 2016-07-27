@@ -3,8 +3,8 @@
               {
               "tag": 0,
               "type": "boolean",
-              "label": "Es la trucha ideal, que viene y se va! donde hay truchas hay verdad, y muchas horas que hacer demas",
-              "textError": "Texto de error conmucho marron nanino nino nano tiroro",
+              "label": "aaaa",
+              "textError": "vvvvvvv",
               "mandatory": true,
               "validator": "bool"
               },
@@ -13,7 +13,62 @@
               "type": "text",
               "label": "yyyyyyy",
               "textError": "error_generic_field",
-              "mandatory": true
+              "mandatory": false
+              },
+              {
+              "tag": 2,
+              "type": "picker",
+              "label": "picker molon",
+              "textError": "okjsfg sfklj ",
+              "mandatory": false,
+              "listOptions": [
+                              {
+                              "key": "KeyNoSelected",
+                              "value": "Elige el producto"
+                              },
+                              {
+                              "key": "clave1",
+                              "value": "ewrew"
+                              },
+                              {
+                              "key": "clave2",
+                              "value": "qwreq"
+                              },
+                              {
+                              "key": "clave3",
+                              "value": "werwerq"
+                              }
+                              ],
+              "textAcceptButton": "retre"
+              },
+              {
+              "tag": 3,
+              "type": "datePicker",
+              "label": "sadfsaf",
+              "textError": "werew",
+              "mandatory": true,
+              "textAcceptButton": "werewrw",
+              "minAge": 32,
+              "validator": "age"
+              },
+              {
+              "tag": 4,
+              "type": "text",
+              "label": "asdsadsa",
+              "textError": "asdsa",
+              "mandatory": true,
+              "placeHolder": "asdasdas",
+              "minLength": 12,
+              "maxLength": 33,
+              "keyboard": "FormKeyboardTypeEmail",
+              "validator": "email",
+              "style": {
+              "backgroundColorField": "#AA55CC",
+              "titleColor": "#CC3518",
+              "errorColor": "#2ACC22",
+              "sizeTitle": 50,
+              "sizeError": 30
+              }
               }
               ] 
 }

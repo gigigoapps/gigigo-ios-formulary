@@ -9,12 +9,19 @@
 import UIKit
 import GIGLibrary
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, PFormController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let formController = FormController(viewContainerFormulary: self.view)
-        formController.loadFieldsFromJSONFile("json_formulary.json")        
+        formController.loadFieldsFromJSONFile("json_formulary.json")
+        formController.delegate = self
+    }
+    
+    // MARK: PFormController
+    
+    func recoverFormModel(formValues: [String : String]) {
+        
     }
 }

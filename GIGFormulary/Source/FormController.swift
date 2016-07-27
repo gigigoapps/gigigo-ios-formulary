@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol PFormController {
+    func recoverFormModel(formValues: [String: String])
+}
+
 class FormController: NSObject, PFormField, PFormBuilderViews {
+    // Public Var
+    var delegate: PFormController?
     
     // CLASS
     var formViews: FormBuilderViews?
@@ -43,30 +49,21 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         }
     }
     
-    
     private func validateFields() -> Bool {
         var valid = true
         for field in self.formFields {
             valid = field.validate()
+            self.formValues["\(field.tag)"] = field.fieldValue as? String
         }
         return valid
     }
-    /*
-    {
-    BOOL valid = YES;
-    
-    for (GIGFormField *field in self.formFields)
-    {
-    valid = ([field validate] && valid);
-    }
-    
-    return valid;
-    }
-    */
+ 
     // MARK: PFormBuilderViews
     
     func sendButtonAction() {
-        self.validateFields()
+        if (self.validateFields()) {
+            self.delegate?.recoverFormModel(self.formValues)
+        }
     }
     
     
