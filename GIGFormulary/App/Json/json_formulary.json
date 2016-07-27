@@ -1,20 +1,19 @@
 {
     "fields":[
               {
-              "tag": 2,
-              "type": "datePicker",
-              "label": "datepicker",
-              "textError": "error_generic_field",
-              "mandatory": false,
-              "minAge": 18,
-              "validator": "age"
+              "tag": 0,
+              "type": "boolean",
+              "label": "Es la trucha ideal, que viene y se va! donde hay truchas hay verdad, y muchas horas que hacer demas",
+              "textError": "Texto de error conmucho marron nanino nino nano tiroro",
+              "mandatory": true,
+              "validator": "bool"
               },
               {
-              "tag": 3,
+              "tag": 1,
               "type": "text",
-              "label": "tipo texto",
+              "label": "yyyyyyy",
               "textError": "error_generic_field",
-              "mandatory": false
+              "mandatory": true
               }
               ] 
 }

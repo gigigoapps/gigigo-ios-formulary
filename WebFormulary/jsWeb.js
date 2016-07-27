@@ -489,6 +489,10 @@ function saveBooleanField(type,title,error,mandatory,cellColor,titleColor,errorC
         "textError":error,
         "mandatory":mandatory,
     }
+              
+    if (mandatory) {
+        itemSave["validator"] = "bool"
+    }  
     
     //-- OPTIONAL FIELDS --
     var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,"","","");

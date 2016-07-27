@@ -28,8 +28,8 @@ class FormBuilderViews: NSObject {
     init(viewContainerFormulary: UIView, formController: FormController) {
         self.viewContainerFormulary = viewContainerFormulary
         self.viewFormulary = viewContainerFormulary.subviews[0]
-        self.viewContainerField = self.viewFormulary.subviews[2]
-        self.buttonSend = self.viewFormulary.subviews[1] as! UIButton
+        self.viewContainerField = self.viewFormulary.subviews[1]
+        self.buttonSend = self.viewFormulary.subviews[2] as! UIButton
         viewContainerFormulary.removeSubviews()
         
         super.init()
@@ -79,7 +79,6 @@ class FormBuilderViews: NSObject {
         self.viewContainerFormulary.addSubview(self.scrollView)        
         
         //-- Constraint --
-        
         gig_autoresize(self.viewFormulary, false)
         gig_layout_fit_horizontal(self.viewFormulary);
         gig_layout_top(self.viewFormulary, 0);

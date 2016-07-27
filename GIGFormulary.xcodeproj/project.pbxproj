@@ -13,6 +13,8 @@
 		23582CE11D25550600B04CE5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23582CE01D25550600B04CE5 /* Localizable.strings */; };
 		23F039BE1D2D432F000DB7AA /* LengthValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F039BD1D2D432F000DB7AA /* LengthValidator.swift */; };
 		7B1307E91D3396CA000231E8 /* GIGLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 232776581D2513AD00FEFE8C /* GIGLibrary.framework */; };
+		7B7A64DC1D48C349007C598C /* BooleanFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7A64DB1D48C349007C598C /* BooleanFormField.swift */; };
+		7B7A64DE1D48C35A007C598C /* BooleanFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7A64DD1D48C35A007C598C /* BooleanFormField.xib */; };
 		7B87EC141D3385EA00061622 /* NumericValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87EC131D3385EA00061622 /* NumericValidator.swift */; };
 		7B87EC161D33872400061622 /* PostalCodeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87EC151D33872400061622 /* PostalCodeValidator.swift */; };
 		7B87EC181D33874800061622 /* PhoneValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87EC171D33874800061622 /* PhoneValidator.swift */; };
@@ -87,6 +89,8 @@
 		232776601D25291C00FEFE8C /* json_formulary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = json_formulary.json; path = App/Json/json_formulary.json; sourceTree = "<group>"; };
 		23582CE01D25550600B04CE5 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Resources/Localizable.strings; sourceTree = "<group>"; };
 		23F039BD1D2D432F000DB7AA /* LengthValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LengthValidator.swift; path = Source/Validators/LengthValidator.swift; sourceTree = "<group>"; };
+		7B7A64DB1D48C349007C598C /* BooleanFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BooleanFormField.swift; path = Source/Builder/Fields/BooleanFormField/BooleanFormField.swift; sourceTree = "<group>"; };
+		7B7A64DD1D48C35A007C598C /* BooleanFormField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BooleanFormField.xib; path = Source/Builder/Fields/BooleanFormField/BooleanFormField.xib; sourceTree = "<group>"; };
 		7B87EC131D3385EA00061622 /* NumericValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumericValidator.swift; path = Source/Validators/NumericValidator.swift; sourceTree = "<group>"; };
 		7B87EC151D33872400061622 /* PostalCodeValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostalCodeValidator.swift; path = Source/Validators/PostalCodeValidator.swift; sourceTree = "<group>"; };
 		7B87EC171D33874800061622 /* PhoneValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneValidator.swift; path = Source/Validators/PhoneValidator.swift; sourceTree = "<group>"; };
@@ -189,6 +193,15 @@
 				23582CE01D25550600B04CE5 /* Localizable.strings */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		7B7A64DA1D48C329007C598C /* BooleanFormField */ = {
+			isa = PBXGroup;
+			children = (
+				7B7A64DD1D48C35A007C598C /* BooleanFormField.xib */,
+				7B7A64DB1D48C349007C598C /* BooleanFormField.swift */,
+			);
+			name = BooleanFormField;
 			sourceTree = "<group>";
 		};
 		7B87EC191D33893500061622 /* Validator */ = {
@@ -327,6 +340,7 @@
 		7B8C9C621D2265B30066AAA3 /* Fields */ = {
 			isa = PBXGroup;
 			children = (
+				7B7A64DA1D48C329007C598C /* BooleanFormField */,
 				7B8C9C661D2272FE0066AAA3 /* PickerFormField */,
 				7B8C9C651D2266010066AAA3 /* TextFormField */,
 				7BDBDE5C1D23AE8500665CF3 /* FormField.swift */,
@@ -464,6 +478,7 @@
 				7B8C9C6A1D22B2900066AAA3 /* PickerFormField.xib in Resources */,
 				23582CE11D25550600B04CE5 /* Localizable.strings in Resources */,
 				7B8C9C261D22567A0066AAA3 /* Main.storyboard in Resources */,
+				7B7A64DE1D48C35A007C598C /* BooleanFormField.xib in Resources */,
 				7B8C9C6C1D22B2AC0066AAA3 /* TextFormField.xib in Resources */,
 				232776611D25291C00FEFE8C /* json_formulary.json in Resources */,
 			);
@@ -487,6 +502,7 @@
 				7BDBDE5D1D23AE8500665CF3 /* FormField.swift in Sources */,
 				7B8C9C531D22577C0066AAA3 /* FormController.swift in Sources */,
 				7B87EC181D33874800061622 /* PhoneValidator.swift in Sources */,
+				7B7A64DC1D48C349007C598C /* BooleanFormField.swift in Sources */,
 				7BDBDE641D23BFA300665CF3 /* FormBuilderViews.swift in Sources */,
 				7B8C9C681D2273180066AAA3 /* PickerFormField.swift in Sources */,
 				7BC59C7C1D267378008507CE /* Validator.swift in Sources */,
