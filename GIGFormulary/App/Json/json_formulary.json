@@ -3,36 +3,18 @@
               {
               "tag": 2,
               "type": "datePicker",
-              "label": "gfd",
-              "textError": "dfgd",
+              "label": "datepicker",
+              "textError": "error_generic_field",
               "mandatory": false,
-              "textAcceptButton": "dfsgsd",
-              "minAge": 43,
-              "validator": "age",
-              "style": {
-              "backgroundColorField": "#CC5225",
-              "titleColor": "#B2CC00",
-              "sizeTitle": 30,
-              "sizeError": 12,
-              "acceptColorPicker": "#4FCC4F",
-              "backgroundPickerColorPicker": "#B2CC00"
-              }
+              "minAge": 18,
+              "validator": "age"
               },
               {
-              "tag": 4,
-              "type": "datePicker",
-              "label": "minima",
+              "tag": 3,
+              "type": "text",
+              "label": "tipo texto",
               "textError": "error_generic_field",
-              "mandatory": true,
-              "textAcceptButton": "rr",
-              "minAge": 10,
-              "validator": "age",
-              "style": {
-              "backgroundColorField": "#B5CC1A",
-              "sizeTitle": 20,
-              "sizeError": 32,
-              "backgroundPickerColorPicker": "#7848CC"
-              }
+              "mandatory": false
               }
               ] 
 }
