@@ -4,200 +4,202 @@ var fieldSelected = ""
 var listFieldsResult = []
 var indexField = 0
 
+
+function removeField(idRemove){
+    var auxListFieldsResult = [];
+    
+    for (var i=0; i<listFieldsResult.length; i++) {
         
-            function removeField(idRemove){
-                var auxListFieldsResult = [];
-                
-                for (var i=0; i<listFieldsResult.length; i++) {
-                    
-                    var find = false;
-                    
-                    $.each(listFieldsResult[i], function(index, val) {
-                        if (index == "tag" && val == idRemove){
-                            find = true;
+        var find = false;
+        
+        $.each(listFieldsResult[i], function(index, val) {
+            if (index == "tag" && val == idRemove){
+                find = true;
+            }
+        });
+        
+        if (!find) {
+            auxListFieldsResult.push(listFieldsResult[i])
+        }
+    }
+    
+    listFieldsResult = auxListFieldsResult;
+    
+    $("#fieldNumber"+idRemove).slideUp();
+}
+            
+function addField() {
+    if (fieldSelected == "Text") {
+        validateTextField();
+    }
+    else if (fieldSelected == "Picker") {
+        validatePickerField();
+    }
+    else if (fieldSelected == "DatePicker") {
+        validateDatePickerField();
+    }
+    else if (fieldSelected == "Boolean") {
+        validateBooleanField();
+    }
+}
+
+function resetTypeField() {
+    clearTypeField()
+    $(".selectTypeField").val("None");
+}
+
+function clearTypeField(){
+    $("#createField").slideUp(function(){
+           $("#containterElementField").empty()
+    });
+}
+
+//======================================
+//          ADD NEW FILED             //
+//======================================
+
+function createElementField(typeField) {
+    $("#containterElementField").empty()
+    fieldSelected = typeField;
+    var html = '';
+    var htmlFont = getFontPositionZone()
+
+    if (typeField == "Text") {
+        html = ' <div class="cellConstructor" id="createField"> <div class="row"> <div class="col-md-10"> <div class="keyTextField"> <p>key*:</p><input type="text" name="keyTextField" id="keyTextField"> </div><div class="containerTextFieldTop"> <div class="titleTextField"> <p>Titulo*:</p><input type="text" name="titleTextField" id="titleTextField"> </div><select id="selectTypeKeyboard"> <option value="None">Elegir tipo de teclado</option> <option value="FormKeyboardTypeText">Texto</option> <option value="FormKeyboardTypeEmail">Email</option> <option value="FormKeyboardTypeNumbers">Nuerico</option> <option value="FormKeyboardTypeNumberPad">NuericoPad</option> </select> </div><div class="containerTextFieldCenter"> <div class="inputTextField"> <p>PlaceHolder:</p><input type="text" name="palceHolderTextField" id="palceHolderTextField"> </div><div class="mandatoryTextField"> <input type="checkbox" name="mandatory" value="mandatory" id="mandatory"> <p>Es obligatorio?</p></div><select id="selectTypeValidator"> <option value="None">Tipo validador</option> <option value="text">Texto</option> <option value="email">Email</option> <option value="lengthText">Long texto</option> <option value="numeric">Numérico</option> <option value="postalCode">Código postal</option> <option value="phone">Teléfono</option> <option value="dniNie">DNI/NIE</option> </select> </div><div class="errorTextField"> <p class="textErrorP">Texto error:</p><input type="text" name="errorTextField"id="errorTextField"> <p>minLength:</p><input class="inputWidth" type="text" name="minLength"id="minLength"> <p>maxLength:</p><input class="inputWidth" type="text" name="maxLength"id="maxLength"> </div><div class="styleField"> <h4>Estilos de celda:</h4> <div class="colorZone"> '+colorBasicZone+' </div><div class="sizeZone"> <p>Tamaño titulo:</p><input id="sizeTitle" type="text" name="element"> <p>Tamaño texto error:</p><input id="sizeError" type="text" name="element"> </div>'+htmlFont+' </div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonAdd" onclick="addField()"> <p>+</p></div></div></div>'; 
+
+    }
+    else if (typeField == "Picker") {
+        idPickerField = 1; // Reset Picker
+        html = '<div class="cellConstructor pickerConstructor" id="createField"> <div class="row"> <div class="col-md-10"> <div class="keyTextField"> <p>key*:</p><input type="text" name="keyTextField" id="keyTextField"> </div><div class="containerTextFieldTop"> <div class="titleTextField"> <p>Titulo*:</p><input type="text" name="titleTextField" id="titleTextField"> </div></div><div id="containerErrorMandatoryPicker"> <div class="errorTextField errorTextFieldPicker"> <p class="textErrorP">Texto error:</p><input type="text" name="errorTextField"id="errorTextField"> </div><div class="mandatoryTextField optionModel"> <input type="checkbox" name="mandatory" value="mandatory" id="mandatory"> <p>Es obligatorio?</p></div></div><div class="acceptButtonTextField"> <p>Titulo aceptar picker:</p><input type="text" name="acceptButtonTextField" id="acceptButtonTextField"> </div><div id="valuesOptionsSelector"> <div id="containerPickerFieldAdd"> <p id="addFieldPickerText">Añadir campos del picker:</p><div id="sumatoryPicker"> <p onclick="addContainerPicker()">+</p></div></div><div id="pickerFieldsInsert"> <div class="containerPickerField" id="containerPickerField'+idPickerField+'"> <input id="inputKeyPickerField0" type="text" name="element" placeholder="Clave Picker" value="KeyNoSelected" disabled readonly> <input id="inputValuePickerField0" type="text" name="element" placeholder="Valor picker por defecto"> </div></div></div><div class="styleField"> <h4>Estilos de celda:</h4> <div class="sizeZone"> <p>Tamaño titulo:</p><input id="sizeTitle" type="text" name="element"> <p>Tamaño texto error:</p><input id="sizeError" type="text" name="element"> </div>'+htmlFont+' <div class="colorZone pickerColorZone"> '+colorBasicZone+' <p class="nextColor">Estilos picker selector</p><p class="colorOKPicker">Color texto OK:</p><input type="color" value="#ffffff" id="aceptColor" class="cellColorCreate"><input id="aceptColorHex" class="inputColorHex" placeholder="#ffffff"> <p class="colorTittleP">Color contenedor OK:</p><input type="color" value="#ffffff" id="containerAceptColor" class="cellColorCreate"><input id="containerAceptColorHex" class="inputColorHex" placeholder="#ffffff"> <p class="colorTittleP">Color fondo:</p><input type="color" value="#ffffff" id="backgroundPickerColor" class="cellColorCreate"><input id="backgroundPickerColorHex" class="inputColorHex" placeholder="#ffffff"> </div></div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonAdd buttonAddPicker" onclick="addField()"> <p>+</p></div></div></div>';
+
+
+        
+    }
+    else if (typeField == "DatePicker") {
+        html = '<div class="cellConstructor pickerConstructor"id="createField"><div class="row"><div class="col-md-10"><div class="keyTextField"><p>key*:</p><input type="text"name="keyTextField"id="keyTextField"></div><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"></div></div><div id="containerErrorMandatoryPicker"><div class="errorTextField errorTextFieldPicker"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"></div><div class="mandatoryTextField optionModel"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"><p>Es obligatorio?</p></div></div><div class="acceptButtonTextField"><p>Titulo aceptar picker:</p><input type="text"name="acceptButtonTextField"id="acceptButtonTextField"></div><div class="minAgeContainer"><p>Edad minima:</p><input type="text"name="minAgeContainer"id="minAgeContainer"></div><div class="styleField"><h4>Estilos de celda:</h4><div class="sizeZone"><p>Tamaño titulo:</p><input id="sizeTitle"type="text"name="element"><p>Tamaño texto error:</p><input id="sizeError"type="text"name="element"></div><div class="colorZone pickerColorZone"><p>Color de la celda:</p><div id="cellColor"class="cellColor"onclick="cellColorOpen(\'cellColor\')"></div><p class="colorTittleP">Color titulo:</p><div id="titleColor"class="cellColor"onclick="cellColorOpen(\'titleColor\')"></div><p class="colorTittleP">Color Error:</p><div id="errorColor"class="cellColor"onclick="cellColorOpen(\'errorColor\')"></div><p class="nextColor">Estilos picker selector</p><p class="colorOKPicker">Color texto OK:</p><div id="aceptColor"class="cellColor"onclick="cellColorOpen(\'aceptColor\')"></div><p class="colorTittleP">Color contenedor OK:</p><div id="containerAceptColor"class="cellColor"onclick="cellColorOpen(\'containerAceptColor\')"></div><p class="colorTittleP">Color fondo:</p><div id="backgroundPickerColor"class="cellColor"onclick="cellColorOpen(\'backgroundPickerColor\')"></div></div></div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonAdd buttonAddPicker"onclick="addField()"><p>+</p></div></div></div>';
+
+    }
+    else if (typeField == "Boolean") {
+        html = '<div class="cellConstructor"id="createField"><div class="row"><div class="col-md-10"><div class="keyTextField"><p>key*:</p><input type="text"name="keyTextField"id="keyTextField"></div><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"></div></div><div class="containerTextFieldCenter"><div class="mandatoryTextField"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"><p>Es obligatorio?</p></div></div><div class="errorTextField"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"></div><div class="styleField"><h4>Estilos de celda:</h4><div class="colorZone"><p>Color de la celda:</p><div id="cellColor"class="cellColor"onclick="cellColorOpen(\'cellColor\')"></div><p class="colorTittleP">Color titulo:</p><div id="titleColor"class="cellColor"onclick="cellColorOpen(\'titleColor\')"></div><p class="colorTittleP">Color Error:</p><div id="errorColor"class="cellColor"onclick="cellColorOpen(\'errorColor\')"></div></div><div class="sizeZone"><p>Tamaño titulo:</p><input id="sizeTitle"type="text"name="element"><p>Tamaño texto error:</p><input id="sizeError"type="text"name="element"></div></div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonAdd"onclick="addField()"><p>+</p></div></div></div>';
+
+    }
+
+    $("#containterElementField").append(html)
+
+    launchEventColors();
+    createEventFont();
+}
+
+function createEventFont() {
+     $("#selectTypeFont").change(function() {
+         if (this.value == "custom") {
+            $("#custonFont").css("display","block");
+         }
+         else {
+            $("#custonFont").css("display","none");
+         }
+    });
+}
+
+function syntaxHighlight(json) {
+if (typeof json != 'string') {
+    json = JSON.stringify(json, undefined, 2);
+}
+json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                    var cls = 'number';
+                    if (/^"/.test(match)) {
+                        if (/:$/.test(match)) {
+                        cls = 'key';
+                        } else {
+                        cls = 'string';
                         }
-                    });
+                        } else if (/true|false/.test(match)) {
+                        cls = 'boolean';
+                        } else if (/null/.test(match)) {
+                        cls = 'null';
+                        }
+                        return '<span class="' + cls + '">' + match + '</span>';
+                        });
+ }
                     
-                    if (!find) {
-                        auxListFieldsResult.push(listFieldsResult[i])
-                    }
-                }
-                
-                listFieldsResult = auxListFieldsResult;
-                
-                $("#fieldNumber"+idRemove).slideUp();
-            }
-                        
-            function addField() {
-                if (fieldSelected == "Text") {
-                    validateTextField();
-                }
-                else if (fieldSelected == "Picker") {
-                    validatePickerField();
-                }
-                else if (fieldSelected == "DatePicker") {
-                    validateDatePickerField();
-                }
-                else if (fieldSelected == "Boolean") {
-                    validateBooleanField();
-                }
-            }
-        
-            function resetTypeField() {
-                clearTypeField()
-                $(".selectTypeField").val("None");
-            }
-        
-            function clearTypeField(){
-                $("#createField").slideUp(function(){
-                       $("#containterElementField").empty()
-                });
-            }
-        
-            //======================================
-            //          ADD NEW FILED             //
-            //======================================
-        
-            function createElementField(typeField) {
-                $("#containterElementField").empty()
-                fieldSelected = typeField;
-                var html = '';
-                var htmlFont = getFontPositionZone()
-
-                if (typeField == "Text") {
-                    html = ' <div class="cellConstructor" id="createField"> <div class="row"> <div class="col-md-10"> <div class="keyTextField"> <p>key*:</p><input type="text" name="keyTextField" id="keyTextField"> </div><div class="containerTextFieldTop"> <div class="titleTextField"> <p>Titulo*:</p><input type="text" name="titleTextField" id="titleTextField"> </div><select id="selectTypeKeyboard"> <option value="None">Elegir tipo de teclado</option> <option value="FormKeyboardTypeText">Texto</option> <option value="FormKeyboardTypeEmail">Email</option> <option value="FormKeyboardTypeNumbers">Nuerico</option> <option value="FormKeyboardTypeNumberPad">NuericoPad</option> </select> </div><div class="containerTextFieldCenter"> <div class="inputTextField"> <p>PlaceHolder:</p><input type="text" name="palceHolderTextField" id="palceHolderTextField"> </div><div class="mandatoryTextField"> <input type="checkbox" name="mandatory" value="mandatory" id="mandatory"> <p>Es obligatorio?</p></div><select id="selectTypeValidator"> <option value="None">Tipo validador</option> <option value="text">Texto</option> <option value="email">Email</option> <option value="lengthText">Long texto</option> <option value="numeric">Numérico</option> <option value="postalCode">Código postal</option> <option value="phone">Teléfono</option> <option value="dniNie">DNI/NIE</option> </select> </div><div class="errorTextField"> <p class="textErrorP">Texto error:</p><input type="text" name="errorTextField"id="errorTextField"> <p>minLength:</p><input class="inputWidth" type="text" name="minLength"id="minLength"> <p>maxLength:</p><input class="inputWidth" type="text" name="maxLength"id="maxLength"> </div><div class="styleField"> <h4>Estilos de celda:</h4> <div class="colorZone"> '+colorBasicZone+' </div><div class="sizeZone"> <p>Tamaño titulo:</p><input id="sizeTitle" type="text" name="element"> <p>Tamaño texto error:</p><input id="sizeError" type="text" name="element"> </div>'+htmlFont+' </div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonAdd" onclick="addField()"> <p>+</p></div></div></div>'; 
-
-                }
-                else if (typeField == "Picker") {
-                    idPickerField = 1; // Reset Picker
-                    html = '<div class="cellConstructor pickerConstructor"id="createField"><div class="row"><div class="col-md-10"><div class="keyTextField"><p>key*:</p><input type="text"name="keyTextField"id="keyTextField"></div><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"></div></div><div id="containerErrorMandatoryPicker"><div class="errorTextField errorTextFieldPicker"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"></div><div class="mandatoryTextField optionModel"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"><p>Es obligatorio?</p></div></div><div class="acceptButtonTextField"><p>Titulo aceptar picker:</p><input type="text"name="acceptButtonTextField"id="acceptButtonTextField"></div><div id="valuesOptionsSelector"><div id="containerPickerFieldAdd"><p id="addFieldPickerText">Añadir campos del picker:</p><div id="sumatoryPicker"><p onclick="addContainerPicker()">+</p></div></div><div id="pickerFieldsInsert"><div class="containerPickerField"id="containerPickerField'+idPickerField+'"><input id="inputKeyPickerField0"type="text"name="element"placeholder="Clave Picker"value="KeyNoSelected"disabled readonly><input id="inputValuePickerField0"type="text"name="element"placeholder="Valor picker por defecto"></div></div></div><div class="styleField"><h4>Estilos de celda:</h4><div class="sizeZone"><p>Tamaño titulo:</p><input id="sizeTitle"type="text"name="element"><p>Tamaño texto error:</p><input id="sizeError"type="text"name="element"></div><div class="colorZone pickerColorZone"><p>Color de la celda:</p><div id="cellColor"class="cellColor"onclick="cellColorOpen(\'cellColor\')"></div><p class="colorTittleP">Color titulo:</p><div id="titleColor"class="cellColor"onclick="cellColorOpen(\'titleColor\')"></div><p class="colorTittleP">Color Error:</p><div id="errorColor"class="cellColor"onclick="cellColorOpen(\'errorColor\')"></div><p class="nextColor">Estilos picker selector</p><p class="colorOKPicker">Color texto OK:</p><div id="aceptColor"class="cellColor"onclick="cellColorOpen(\'aceptColor\')"></div><p class="colorTittleP">Color contenedor OK:</p><div id="containerAceptColor"class="cellColor"onclick="cellColorOpen(\'containerAceptColor\')"></div><p class="colorTittleP">Color fondo:</p><div id="backgroundPickerColor"class="cellColor"onclick="cellColorOpen(\'backgroundPickerColor\')"></div></div></div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonAdd buttonAddPicker"onclick="addField()"><p>+</p></div></div></div>';
-
-                }
-                else if (typeField == "DatePicker") {
-                    html = '<div class="cellConstructor pickerConstructor"id="createField"><div class="row"><div class="col-md-10"><div class="keyTextField"><p>key*:</p><input type="text"name="keyTextField"id="keyTextField"></div><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"></div></div><div id="containerErrorMandatoryPicker"><div class="errorTextField errorTextFieldPicker"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"></div><div class="mandatoryTextField optionModel"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"><p>Es obligatorio?</p></div></div><div class="acceptButtonTextField"><p>Titulo aceptar picker:</p><input type="text"name="acceptButtonTextField"id="acceptButtonTextField"></div><div class="minAgeContainer"><p>Edad minima:</p><input type="text"name="minAgeContainer"id="minAgeContainer"></div><div class="styleField"><h4>Estilos de celda:</h4><div class="sizeZone"><p>Tamaño titulo:</p><input id="sizeTitle"type="text"name="element"><p>Tamaño texto error:</p><input id="sizeError"type="text"name="element"></div><div class="colorZone pickerColorZone"><p>Color de la celda:</p><div id="cellColor"class="cellColor"onclick="cellColorOpen(\'cellColor\')"></div><p class="colorTittleP">Color titulo:</p><div id="titleColor"class="cellColor"onclick="cellColorOpen(\'titleColor\')"></div><p class="colorTittleP">Color Error:</p><div id="errorColor"class="cellColor"onclick="cellColorOpen(\'errorColor\')"></div><p class="nextColor">Estilos picker selector</p><p class="colorOKPicker">Color texto OK:</p><div id="aceptColor"class="cellColor"onclick="cellColorOpen(\'aceptColor\')"></div><p class="colorTittleP">Color contenedor OK:</p><div id="containerAceptColor"class="cellColor"onclick="cellColorOpen(\'containerAceptColor\')"></div><p class="colorTittleP">Color fondo:</p><div id="backgroundPickerColor"class="cellColor"onclick="cellColorOpen(\'backgroundPickerColor\')"></div></div></div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonAdd buttonAddPicker"onclick="addField()"><p>+</p></div></div></div>';
-
-                }
-                else if (typeField == "Boolean") {
-                    html = '<div class="cellConstructor"id="createField"><div class="row"><div class="col-md-10"><div class="keyTextField"><p>key*:</p><input type="text"name="keyTextField"id="keyTextField"></div><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"></div></div><div class="containerTextFieldCenter"><div class="mandatoryTextField"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"><p>Es obligatorio?</p></div></div><div class="errorTextField"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"></div><div class="styleField"><h4>Estilos de celda:</h4><div class="colorZone"><p>Color de la celda:</p><div id="cellColor"class="cellColor"onclick="cellColorOpen(\'cellColor\')"></div><p class="colorTittleP">Color titulo:</p><div id="titleColor"class="cellColor"onclick="cellColorOpen(\'titleColor\')"></div><p class="colorTittleP">Color Error:</p><div id="errorColor"class="cellColor"onclick="cellColorOpen(\'errorColor\')"></div></div><div class="sizeZone"><p>Tamaño titulo:</p><input id="sizeTitle"type="text"name="element"><p>Tamaño texto error:</p><input id="sizeError"type="text"name="element"></div></div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonAdd"onclick="addField()"><p>+</p></div></div></div>';
-
-                }
-
-                $("#containterElementField").append(html)
-
-                launchEventColors();
-                createEventFont();
-            }
-
-            function createEventFont() {
-                 $("#selectTypeFont").change(function() {
-                     if (this.value == "custom") {
-                        $("#custonFont").css("display","block");
-                     }
-                     else {
-                        $("#custonFont").css("display","none");
-                     }
-                });
-            }
-        
-            function syntaxHighlight(json) {
-            if (typeof json != 'string') {
-                json = JSON.stringify(json, undefined, 2);
-            }
-            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-                                var cls = 'number';
-                                if (/^"/.test(match)) {
-                                    if (/:$/.test(match)) {
-                                    cls = 'key';
-                                    } else {
-                                    cls = 'string';
-                                    }
-                                    } else if (/true|false/.test(match)) {
-                                    cls = 'boolean';
-                                    } else if (/null/.test(match)) {
-                                    cls = 'null';
-                                    }
-                                    return '<span class="' + cls + '">' + match + '</span>';
-                                    });
-             }
-                                
-                                
-                                
-              function copiarAlPortapapeles() {
-                    var aux = document.createElement("input");
-                                
-                    var recoverJSON = JSON.stringify(listFieldsResult, undefined, 4);
-                    recoverJSON = '{ \n "fields":'+recoverJSON+' \n}';
-                                
-                    aux.setAttribute("value", recoverJSON);
-                    document.body.appendChild(aux);
-                    aux.select();
-                    document.execCommand("copy");
-                    document.body.removeChild(aux);
-                }
+                    
+                    
+  function copiarAlPortapapeles() {
+        var aux = document.createElement("input");
+                    
+        var recoverJSON = JSON.stringify(listFieldsResult, undefined, 4);
+        recoverJSON = '{ \n "fields":'+recoverJSON+' \n}';
+                    
+        aux.setAttribute("value", recoverJSON);
+        document.body.appendChild(aux);
+        aux.select();
+        document.execCommand("copy");
+        document.body.removeChild(aux);
+    }
 
 
 
-        
-            //======================================
-            //          GENERAR JSON              //
-            //======================================
 
-                                
-            function output(inp) {
-                 document.body.appendChild(document.createElement('pre')).innerHTML = inp;
-            }
-                             
+//======================================
+//          GENERAR JSON              //
+//======================================
 
-            $(".selectTypeField").change(function() {
-                 createElementField(this.value)
-            });             
-                                
-        
-            function copyList(listFields) {
-                var copyListFields = JSON.parse(JSON.stringify(listFields));
+                    
+function output(inp) {
+     document.body.appendChild(document.createElement('pre')).innerHTML = inp;
+}
+                 
 
-                for (var i = 0; i < copyListFields.length; i++) {
-                    var field = copyListFields[i];
-                    delete field["tag"];
-                    copyListFields[i] = field;
-                }
+$(".selectTypeField").change(function() {
+     createElementField(this.value)
+});             
+                    
 
-                return copyListFields;
-            }
-            
-            $("#buttonGenerateJson").click(function() {
-                $("#containerJsonItemsCreated").empty()
-                var copyListField = copyList(listFieldsResult);
-                var recoverJSON = JSON.stringify(copyListField, undefined, 4);
-                recoverJSON = '{ \n "fields":'+recoverJSON+' \n}';
-               $("#containerJsonItemsCreated").append("<button class='btn butonCopyPaste' data-clipboard-action='copy' data-clipboard-target='#bar'>Copiar</button><textarea id='bar'>"+recoverJSON+"</textarea><pre>"+syntaxHighlight(recoverJSON)+"</pre>")
-            });
-             
-            var idColor = ""           
-            function cellColorOpen(idCellColor) {
-            	idColor = idCellColor;
-                $("#ControlColor").show();
-            }
-                                
-            $("#closeSaveColor").click(function() {
-                $("#ControlColor").hide();
-                $("#"+idColor).css("background-color", $("#testPatch").text());
-                $("#"+idColor).empty()
-                $("#"+idColor).append("<p id='colorId'>"+$("#testPatch").text()+"</p>");
-            });
-                                
-            var clipboard = new Clipboard('.btn');
-            
-            clipboard.on('success', function(e) {
-                         console.log("OK");
-                         console.log(e);
-                         });
-            
-            clipboard.on('error', function(e) {
-                         console.log("OK");
-                         console.log(e);
-                         });
+function copyList(listFields) {
+    var copyListFields = JSON.parse(JSON.stringify(listFields));
+
+    for (var i = 0; i < copyListFields.length; i++) {
+        var field = copyListFields[i];
+        delete field["tag"];
+        copyListFields[i] = field;
+    }
+
+    return copyListFields;
+}
+
+$("#buttonGenerateJson").click(function() {
+    $("#containerJsonItemsCreated").empty()
+    var copyListField = copyList(listFieldsResult);
+    var recoverJSON = JSON.stringify(copyListField, undefined, 4);
+    recoverJSON = '{ \n "fields":'+recoverJSON+' \n}';
+   $("#containerJsonItemsCreated").append("<button class='btn butonCopyPaste' data-clipboard-action='copy' data-clipboard-target='#bar'>Copiar</button><textarea id='bar'>"+recoverJSON+"</textarea><pre>"+syntaxHighlight(recoverJSON)+"</pre>")
+});
+ 
+var idColor = ""           
+function cellColorOpen(idCellColor) {
+	idColor = idCellColor;
+    $("#ControlColor").show();
+}
+                    
+$("#closeSaveColor").click(function() {
+    $("#ControlColor").hide();
+    $("#"+idColor).css("background-color", $("#testPatch").text());
+    $("#"+idColor).empty()
+    $("#"+idColor).append("<p id='colorId'>"+$("#testPatch").text()+"</p>");
+});
+                    
+var clipboard = new Clipboard('.btn');
+
+clipboard.on('success', function(e) {
+             console.log("OK");
+             console.log(e);
+             });
+
+clipboard.on('error', function(e) {
+             console.log("OK");
+             console.log(e);
+             });
 
 
 
@@ -283,94 +285,6 @@ function getStylesJson(cellColor,titleColor,errorColor,sizeTitle, sizeError,acep
     else {
         return null;
     }
-}
-
-//======================================
-//               PICKER               //
-//======================================
-var idPickerField = 1
-function addContainerPicker() {
-    $("#pickerFieldsInsert").append('<div class="containerPickerField" id="containerPickerField'+idPickerField+'"><input id="inputKeyPickerField'+idPickerField+'" type="text" name="element" placeholder="Clave Picker"><input id="inputValuePickerField'+idPickerField+'" type="text" name="element" placeholder="Valor picker"><p onclick="removeContainerPicker('+idPickerField+')">-</p></div>');
-    idPickerField++;
-}
-
-function removeContainerPicker(idContainerPicker) {
-    $("#containerPickerField"+idContainerPicker).slideUp(function(){
-           $("#containerPickerField"+idContainerPicker).remove()
-    });
-}
-
-//-- PICKER YA CREADO SOLO MOSTRAR --
-function createPickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField) {
-    var valueCheck = ""
-    if (mandatory) {
-        valueCheck = "checked"
-    }
-
-    //-- Recover Styles --
-    var htmlColorBasic = getStyleColor(cellColor,titleColor,errorColor);
-    var htmlFontSize = getStyleSize (sizeTitle, sizeError);
-    var htmlColorPicker = getStyleColorPicker (aceptColor,containerAceptColor,backgroundPickerColor);
-    var styles = htmlFontSize + htmlColorBasic + htmlColorPicker;
-
-    //-- Create options fields --
-    var htmlPickerItems = '';
-    for (var i = 0; i < idPickerField; i++) {
-        var idKey = $("#inputKeyPickerField"+i).val()
-        var idValue = $("#inputValuePickerField"+i).val()
-
-        if (idKey != undefined && idValue != undefined) {
-                htmlPickerItems = htmlPickerItems + '<div class="containerPickerField"><input type="text" name="element" value="'+idKey+'" disabled readonly><input type="text" name="element" value="'+idValue+'" disabled readonly></div>';
-        }
-    }
-
-    var html = '<div class="cellConstructor pickerConstructor"id="fieldNumber'+indexField+'"><div class="row"><div class="col-md-10"><div class="keyTextField"><p>key*:</p><input type="text"name="keyTextField"id="keyTextField"disabled value="'+keyTextField+'"></div><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"value="'+title+'"disabled readonly></div></div><div id="containerErrorMandatoryPicker"><div class="errorTextField errorTextFieldPicker"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"disabled readonly value="'+error+'"></div><div class="mandatoryTextField optionModel"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"'+valueCheck+'disabled readonly><p>Es obligatorio?</p></div></div><div class="minAgeContainer"><p>Edad minima:</p><input type="text"name="minAgeContainer"id="minAgeContainer"value="'+minAgeContainer+'"disabled readonly></div><div class="styleField"><h4>Estilos de celda:</h4>'+styles+'</div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonRemove buttonAddPicker"onclick="removeField('+indexField+')"><p>-</p></div></div></div>';
-
-    $("#containerListItemsCreated").append(html);
-    resetTypeField();
-}
-
-function savePickerField(keyTextField,type,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField) {
-    
-    //-- MANDATORY FIELDS --
-    var listOptions = [];
-    for (var i = 0; i < idPickerField; i++) {
-        var idKey = $("#inputKeyPickerField"+i).val()
-        var idValue = $("#inputValuePickerField"+i).val()
-        var options = {
-            "key": idKey,
-            "value":idValue
-        }
-        if (idKey != undefined && idValue != undefined) {
-            listOptions.push(options)
-        }        
-    }
-
-    var itemSave = {
-        "key":keyTextField,
-        "tag":indexField,
-        "type":type,
-        "label":title,
-        "textError":error,
-        "mandatory":mandatory,
-        "listOptions":listOptions
-    }
-    
-    //-- OPTIONAL FIELDS --
-              
-    if (acceptButtonTextField.length > 0) {
-        itemSave["textAcceptButton"] = acceptButtonTextField
-    }  
-
-    var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor);
-    if (styles != null) {
-        itemSave["style"] = styles
-    }    
-
-    //-- SAVE ITEMS --
-    listFieldsResult.push(itemSave)
-    
-    indexField++;
 }
 
 //======================================
