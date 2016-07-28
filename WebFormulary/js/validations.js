@@ -47,11 +47,7 @@ function validateTextField() {
     if (font == "custom") {
         font = $("#custonFont").val()
     }
-    
-    if (error.length == 0) {
-        error = "error_generic_field"
-    }
-    
+        
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
         createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font);
         saveField(keyTextField,"text",title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font)

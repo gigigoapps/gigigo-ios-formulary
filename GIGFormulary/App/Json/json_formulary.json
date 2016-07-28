@@ -1,17 +1,10 @@
 {
     "fields":[
               {
-              "key": "sdfs",
+              "key": "rty",
               "type": "text",
-              "label": "sdfds",
-              "textError": "error_generic_field",
-              "mandatory": false,
-              "placeHolder": "sdfds",
-              "style": {
-              "sizeTitle": 42,
-              "sizeError": 12,
-              "font": "sdfds"
-              }
+              "label": "rty",
+              "mandatory": true
               }
               ] 
 }

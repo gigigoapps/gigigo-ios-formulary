@@ -49,11 +49,20 @@ class FormFieldStyleModel: NSObject {
         if (acceptColorPicker != nil) {
             self.acceptColorPicker = self.stringToHexColor(acceptColorPicker!)
         }
+        else {
+            self.acceptColorPicker = UIColor.blackColor()
+        }
         if (containerAcceptColorPicker != nil) {
             self.containerAcceptColorPicker = self.stringToHexColor(containerAcceptColorPicker!)
         }
+        else {
+            self.containerAcceptColorPicker = UIColor.grayColor()
+        }
         if (backgroundPickerColorPicker != nil) {
             self.backgroundPickerColorPicker = self.stringToHexColor(backgroundPickerColorPicker!)
+        }
+        else {
+            self.containerAcceptColorPicker = UIColor.grayColor()
         }
         if (font != nil) {
             if (sizeTitle != nil) {

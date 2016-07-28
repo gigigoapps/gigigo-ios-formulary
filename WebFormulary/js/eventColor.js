@@ -3,11 +3,17 @@
 var cellColorEvent;
 var titleColorEvent;
 var errorColorEvent;
+var aceptColorEvent;
+var containerAceptColorEvent;
+var backgroundPickerColorEvent;
 
 function launchEventColors() {
 	cellColorEvent = document.getElementById("cellColor");
 	titleColorEvent = document.getElementById("titleColor");
 	errorColorEvent = document.getElementById("errorColor");
+	aceptColorEvent = document.getElementById("aceptColor");
+	containerAceptColorEvent = document.getElementById("containerAceptColor");
+	backgroundPickerColorEvent = document.getElementById("backgroundPickerColor");
 
 	if (cellColorEvent) {
 		cellColorEvent.addEventListener("input", function() {
@@ -26,4 +32,22 @@ function launchEventColors() {
 		    $("#errorColorHex").val(errorColorEvent.value)
 		}, false);
 	}
+
+	if (aceptColorEvent) {
+		aceptColorEvent.addEventListener("input", function() {
+		    $("#aceptColorHex").val(aceptColorEvent.value)
+		}, false);
+	}
+
+	if (containerAceptColorEvent) {
+		containerAceptColorEvent.addEventListener("input", function() {
+		    $("#containerAceptColorHex").val(containerAceptColorEvent.value)
+		}, false);
+	}
+
+	if (backgroundPickerColorEvent) {
+		backgroundPickerColorEvent.addEventListener("input", function() {
+		    $("#backgroundPickerColorHex").val(backgroundPickerColorEvent.value)
+		}, false);
+	}	
 }

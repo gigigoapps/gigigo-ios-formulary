@@ -526,10 +526,10 @@
     height: 205px;
 }
 .buttonRemoveText {
-    height: 280px;
+    height: 340px;
 }
     .buttonRemoveText p {
-        margin-top: 100px;
+        margin-top: 130px;
     }
 .minAgeContainer {
     height: 43px;
@@ -605,6 +605,12 @@
     width: 290px;
     margin-right: 20px;
 }
+.alignZone {
+    margin-left: 71px;
+}
+    .alignZone input {
+        width: auto;
+    }
 
 
 

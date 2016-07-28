@@ -25,8 +25,9 @@ function createPickerField(keyTextField,title,error,mandatory,cellColor,titleCol
     var htmlColorBasic = getStyleColor(cellColor,titleColor,errorColor);
     var htmlFontSize = getStyleSize (sizeTitle, sizeError);
     var htmlColorPicker = getStyleColorPicker (aceptColor,containerAceptColor,backgroundPickerColor);
-    
-    var styles = htmlFontSize + htmlColorBasic + htmlColorPicker;
+    var htmlAlingFont = getAlignFont(align,font)
+
+    var styles = htmlFontSize + htmlColorBasic + htmlAlingFont + htmlColorPicker;
 
     //-- Create options fields --
     var htmlPickerItems = '';
