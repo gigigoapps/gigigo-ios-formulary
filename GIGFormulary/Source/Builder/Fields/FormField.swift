@@ -10,7 +10,7 @@ import UIKit
 import GIGLibrary
 
 
-protocol PFormField: PTextFormField, PPickerFormField {
+protocol PFormField: PTextFormField {
 }
 
 public class FormField: UIView{

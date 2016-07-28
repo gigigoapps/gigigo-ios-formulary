@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>ProColor</title>
+<script type='text/javascript' src='prototype.compressed.js'></script>
+<script type='text/javascript' src='procolor.compressed.js'></script>
+<link rel='stylesheet' type='text/css' href='docs.css' />
+</head>
+
+<body><div class='wrapper'>
+
+<!--============================================================================================-->
+
+<div class='header'>
+
+<h1 style='margin-bottom:0;'>ProColor</h1>
+<p style='margin-top:0;font-style:italic;color:#999;'>Copyright &copy; 2009 by the Phantom Inker.  All rights reserved.</p>
+
+<p><b>Overview &amp; Usage</b>
+| <a href='options.html'>Options</a>
+| <a href='api.html'>Public API</a>
+| <a href='examples.html'>Examples</a>
+| <a href='license.html'>License</a></p>
+
+</div>
+
+<!--============================================================================================-->
+<hr />
+
+<div style='width:22em;padding:0.5em 1em;border:1px solid #999;background-color:#EEE;float:right;margin:1em 2em 2em 2em;font-size:10pt;'>
+ProColor has been tested and found to perform correctly in the following browsers:
+
+<ul style='margin-bottom:0;margin-top:0.5em;'>
+<li>Microsoft Internet Explorer 6.0</li>
+<li>Microsoft Internet Explorer 7</li>
+<li>Microsoft Internet Explorer 8 RC1</li>
+<li>Mozilla Firefox 3.0.6</li>
+<li>Apple Safari 3.2.1</li>
+<li>Opera 9.63</li>
+<li>Google Chrome 1.0.154</li>
+</ul>
+</div>
+
+<h2>Overview</h2>
+
+<p>ProColor is a simple, flexible, easy-to-use color-picker for the
+<a href="http://prototypejs.org">Prototype</a> Javascript
+framework.  ProColor is designed to be friendly to artists and programmers both.  This user's
+manual both documents ProColor and demonstrates it in action.</p>
+
+<p>ProColor is compatible with IE6+, Firefox 2+, Safari 3+, Opera 9+, and Chrome.  It is not
+compatible with very old browsers, but it does at least fall back to a simple text-edit field
+for old browsers.  It runs very well on Safari and Chome, reasonably well on Firefox and Opera,
+and is usable (if slow) on IE.</p>
+
+<div style='clear:both;'>
+
+<!--============================================================================================-->
+<hr />
+
+<h2>Basic Usage</h2>
+
+<p>Usage is straightforward.  Include "prototype.js" and then "procolor.js" (or better yet,
+include the compressed version, "procolor.compressed.js"), and then make this call to create
+a color-picker:
+
+<xmp style='margin-left:2em;'>new ProColor(options);</xmp>
+
+<p>For example, for a static color picker:</p>
+
+<xmp style='margin-left:2em;'>new ProColor({ mode:'static', parent:container_element });</xmp>
+
+<p>Or for a drop-down/popup color picker:</p>
+
+<xmp style='margin-left:2em;'>new ProColor({ mode:'popup', input:input_element });</xmp>
+
+<p>If you want a drop-down color picker the easy way, it's better to use the button factory
+method to create them:</p>
+
+<xmp style='margin-left:2em;'><input type='text' value='#FF0000' id='mycolor' />
+...
+ProColor.prototype.attachButton('mycolor', options);</xmp>
+
+<p>Or if that's still too hard, you can make it even simpler by using the automatic factory
+method that runs during onload.  This factory method uses the current setting of
+ProColor.prototype.options for its options, and creates a button attached to any
+<tt>&lt;input&gt;</tt> whose class contains 'procolor':
+
+<xmp style='margin-left:2em;'><input type='text' value='#FF0000' class='procolor' /></xmp>
+
+<p>Examples of all of these methods of creating a color-picker are included in this user's manual.</p>
+
+<p>The only files required to actually use ProColor are <tt>prototype.js</tt> (Prototype),
+<tt>procolor.js</tt> or <tt>procolor.compressed.js</tt>, and the various PNG and GIF and JPEG
+images found in the <tt>img/</tt> directory:</p>
+
+<ul>
+<li><tt>procolor_win_bars.png</tt></li>
+<li><tt>procolor_win_bg.gif</tt> (used only by IE6)</li>
+<li><tt>procolor_win_bg.png</tt></li>
+<li><tt>procolor_win_boxes.png</tt></li>
+<li><tt>procolor_win_close.png</tt></li>
+<li><tt>procolor_win_drop.png</tt></li>
+<li><tt>procolor_win_palette_raw.png</tt></li>
+<li><tt>procolor_win_sel_circle.gif</tt> (used only by IE6)</li>
+<li><tt>procolor_win_sel_circle.png</tt></li>
+<li><tt>procolor_win_sel_rect.gif</tt> (used only by IE6)</li>
+<li><tt>procolor_win_sel_rect.png</tt></li>
+<li><tt>procolor_win_wheel_black.png</tt></li>
+<li><tt>procolor_win_wheel_rgb.jpg</tt></li>
+</ul>
+
+</div></body>
+</html>

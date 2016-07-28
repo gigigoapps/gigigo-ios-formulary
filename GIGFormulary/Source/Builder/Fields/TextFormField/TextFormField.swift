@@ -12,7 +12,6 @@ import GIGLibrary
 
 protocol PTextFormField {
     func scrollRectToVisible(field: FormField)
-    func didChangeValue(field: FormField, text: String)
     func formFieldDidFinish(field: FormField)
 }
 
@@ -134,12 +133,11 @@ class TextFormField: FormField, UITextFieldDelegate {
             if (styleField!.errorColor != nil) {
                 self.errorLabel.textColor = styleField!.errorColor!
             }
-            if (styleField!.sizeTitle != nil) {
-                self.titleLabel.font = UIFont.systemFontOfSize(styleField!.sizeTitle!)
-              //  self.titleLabel.font = UIFont(name: <#T##String#>, size: styleField!.sizeTitle!)  TODO EDU AMPLIACION
+            if (styleField!.fontTitle != nil) {
+                self.titleLabel.font = styleField?.fontTitle
             }
-            if (styleField!.sizeError != nil) {
-                self.errorLabel.font = UIFont.systemFontOfSize(styleField!.sizeError!)
+            if (styleField!.fontError != nil) {
+                self.errorLabel.font = styleField?.fontError
             }
         }
     }
@@ -148,10 +146,6 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
         self.delegate!.scrollRectToVisible(self)
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        self.delegate?.didChangeValue(self, text: textField.text!)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

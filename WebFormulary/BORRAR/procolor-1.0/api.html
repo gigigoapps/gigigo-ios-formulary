@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>API - ProColor</title>
+<script type='text/javascript' src='prototype.compressed.js'></script>
+<script type='text/javascript' src='procolor.compressed.js'></script>
+<link rel='stylesheet' type='text/css' href='docs.css' />
+</head>
+
+<body><div class='wrapper'>
+
+<!--============================================================================================-->
+
+<div class='header'>
+
+<h1 style='margin-bottom:0;'>ProColor</h1>
+<p style='margin-top:0;font-style:italic;color:#999;'>Copyright &copy; 2009 by the Phantom Inker.  All rights reserved.</p>
+
+<p><a href='index.html'>Overview &amp; Usage</a>
+| <a href='options.html'>Options</a>
+| <b>Public API</b>
+| <a href='examples.html'>Examples</a>
+| <a href='license.html'>License</a></p>
+
+</div>
+
+<!--============================================================================================-->
+<hr />
+
+<h2>ProColor Public API</h2>
+
+<p>Many of ProColor's methods and members are for internal use only.  However, these members
+and methods are all public:</p>
+
+<ul class='options'>
+<li><tt>new ProColor(options)</tt><br />
+	Creates, displays, and returns a new ProColor object with the given options.</li>
+
+<li><tt>procolor.color</tt><br />
+	The current color as selected by the user.  This will always be a string in canonical hex RGB
+	form, '<tt>#RRGGBB</tt>".</li>
+
+<li><tt>procolor.div</tt><br />
+	The dynamically-created containing element of the color-picker and all of its child controls.
+	This element is publicly-visible, but its child elements should be considered implementation
+	details, and they can and will likely change in future versions of ProColor.</li>
+
+<li><tt>procolor.options.imgPath</tt><br />
+	This variable is used to control the image path used by the automatic-attachment routine,
+	which creates ProColor objects attached to <tt>&lt;input&gt;</tt> controls whose classes
+	contain '<tt>procolor</tt>'.  The default image path is '<tt>img/procolor_win_</tt>'.  You
+	must set this value in your page's <tt>&lt;head&gt;</tt> if you are going to set it at all.</li>
+
+<li><tt>procolor.options.showInField</tt><br />
+	This variable controls how the automatically-attached ProColor objects will have their
+	<tt>showInField</tt> option set.  You
+	must set this value in your page's <tt>&lt;head&gt;</tt> if you are going to set it at all.</li>
+
+<li><tt>procolor.positionPopup()</tt><br />
+	If this is a popup and the associated input element is moved on the page, you should call this
+	method to reposition the popup above or below the moved input element.</li>
+
+<li><tt>procolor.close()</tt><br />
+	Closes and destroys a color-picker.  The ProColor object will still exist after calling this
+	function, but none of its elements will exist anymore.  Note that the <tt>procolor.color</tt>
+	member will still be valid after this is called.</li>
+
+<li><tt>procolor.update(mode, color, sources)</tt><br />
+	Programmatically change the selected color.  <tt>mode</tt> must be either <tt>"rgb"</tt> or
+	<tt>"hsb"</tt>, and the <tt>color</tt> must be an object of one of the following two forms,
+	depending on the mode:<br />
+	<br />
+	<tt>&nbsp;&nbsp;&nbsp;&nbsp;{ r:red, g:green, b:blue }</tt><br />
+	<tt>&nbsp;&nbsp;&nbsp;&nbsp;{ hue:hue, sat:saturation, brt:brightness</tt><br />
+	<br />
+	The RGB values range from 0 to 255, inclusive, and the HSB values range from 0 to 359 (hue)
+	and 0 to 100 (saturation &amp; brightness).  Fractional values are allowed, and values
+	outside allowed ranges will be clipped.<br />
+	<br />
+	The <tt>sources</tt> is an array of strings describing parts of the color-picker that
+	should <i>not</i> be updated.  If <tt>update()</tt> is called externally (i.e., by you),
+	this array should always be empty (i.e., it should always be <tt>[]</tt>).<br />
+	<br />
+	This method updates the visual appearance of the color-picker, and also updates the
+	input field (if appropriate) and updates <tt>procolor.color</tt>.</li>
+
+<li><tt>procolor.formatOutput(color, format)</tt><br />
+	Given a color in a recognizable format (like "#RRGGBB"), convert that color to the
+	given output format.  This uses the same formatting logic as the <tt>outputFormat</tt>
+	option above.</li>
+
+<li><tt>procolor.decodeHexColor(color)</tt><br />
+	Given a color in a recognizable format (like "#RRGGBB"), convert that to a clean RGB object,
+	same as would be passed to <tt>procolor.update()</tt>.  This tries several different ways
+	to decode the color.  If it is unable to decode the color, it returns <tt>false</tt> instead
+	of an RGB object.</li>
+
+<li><tt>procolor.trueBrightness(rgb)</tt><br />
+	Given an RGB object describing a color, this returns the brightness of that object, on the
+	range of [0,1].  This is weighted according to human color perception, with weights of
+	0.3, 0.59, and 0.11, for red, green, and blue respectively.</li>
+
+<li><tt>procolor.computeTextColor(rgb)</tt><br />
+	Given an RGB object describing a background color, this will return a new RGB object
+	describing a similarly-hued color that can be used for displaying legible text against
+	that background.</li>
+
+<li><tt>procolor.RGBtoHSB(rgb)</tt><br />
+	Given an RGB color object, this returns an equivalent HSB color object,
+	always with valid (but possibly with fractional) integer values.</li>
+
+<li><tt>procolor.HSBtoRGB(rgb)</tt><br />
+	Given an HSB color object, this returns an equivalent RGB color object,
+	always with valid (but possibly with fractional) integer values.</li>
+
+<li><tt>procolor.acceptAndClose()</tt><br />
+	Simulate the user pressing Enter or double-clicking on the color-picker; this calls
+	<tt>options.onAcceptClick</tt>, and then <tt>procolor.Close()</tt> (but only if this
+	is in '<tt>popup</tt>' mode.</li>
+
+<li><tt>procolor.cancelAndClose()</tt><br />
+	Simulate the user pressing Esc or clicking outside the color-picker; this calls
+	<tt>options.onCancelClick</tt>, and then <tt>procolor.Close()</tt> (but only if this
+	is in '<tt>popup</tt>' mode.</li>
+</ul>
+
+<!--============================================================================================-->
+<hr />
+
+<h2>MouseCapture Public API</h2>
+
+<p>ProColor uses a small library named "MouseCapture" for performing mouse tracking, and you can
+use it in your own programs.  Its usage is very simple; create a MouseCapture object, call
+mousecapture.begin(), and then within your callback, call mousecapture.end() when the mouse
+button is released.  Its API is documented below:</p>
+
+<ul class='options'>
+<li><tt>new MouseCapture()</tt><br />
+	Creates and returns a new MouseCapture object with the given options.  A MouseCapture
+	object can be used to capture mouse input from a mouse-button-press until its release.</li>
+
+<li><tt>mousecapture.setCursor(cursor)</tt><br />
+	In the current mouse capture, change the mouse cursor to the given type.  This takes a
+	standard CSS cursor type, such as 'default' or 'pointer' or 'crosshair'.</li>
+
+<li><tt>mousecapture.begin(callback)</tt><br />
+	Begin the mouse capture.  This will capture all mouse and keyboard input events and send
+	them to the given callback function.  The callback will be called as <tt>callback(event, eventType)</tt>.</li>
+
+<li><tt>mousecapture.end()</tt><br />
+	This ends a mouse capture and allows events to propagate normally.</li>
+</ul>
+
+</div></body>
+</html>

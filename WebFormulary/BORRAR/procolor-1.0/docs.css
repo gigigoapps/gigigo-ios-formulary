@@ -1,0 +1,44 @@
+
+body {
+	font: 11pt Verdana,Tahoma,Arial,Helv,Helvetica;
+	background-color: #DEF;
+	color: #000;
+	padding: 0;
+	margin: 0;
+}
+
+div.wrapper {
+	margin: 0 2em;
+	padding: 0.5em 1em;
+	border-left: 1px solid #CDE;
+	border-right: 1px solid #CDE;
+	background-color: #FFF;
+}
+
+div.header {
+	text-align:center;
+}
+
+h1 { margin: 0; }
+
+input {
+	border: 1px solid #999;
+	width: 6em;
+}
+
+ul.options li {
+	margin-top: 1em;
+}
+
+ul.collapsed {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+ul.collapsed li {
+	margin-top: 0;
+}
+
+xmp {
+	font: 10pt Courier,mono,monospace;
+}

@@ -51,7 +51,7 @@ class FormBuilderFields: NSObject {
                                .VALIDATOR_AGE: AgeValidator.self]
     }
     
-    private func createField(fieldDic: [String:AnyObject], tag: Int) -> FormField {
+    private func createField(fieldDic: [String:AnyObject]) -> FormField {
         do {
             let formFieldM = FormFieldModel()
             try formFieldM.parseDictionary(fieldDic)
@@ -59,7 +59,6 @@ class FormBuilderFields: NSObject {
             let typeField = self.listTypeFields[TypeField(rawValue: formFieldM.type!)!]
             let field = typeField!.init()
             field.formFieldM = formFieldM
-            field.tag = tag
             field.delegate = self.formController
             field.validator = self.validatorToField(formFieldM)
             field.keyBoard = self.keyboardToField(formFieldM)
@@ -100,10 +99,8 @@ class FormBuilderFields: NSObject {
     func fieldsFromJSONFile(file: String) -> [FormField] {
         let listFormDic = NSBundle.mainBundle().loadJSONFile(file, rootNode: "fields") as! [[String: AnyObject]]
         var listFormField = [FormField]()
-        var tag = 0
         for fieldDic in listFormDic {
-            listFormField.append(self.createField(fieldDic, tag: tag))
-            tag += 1
+            listFormField.append(self.createField(fieldDic))
         }
         
         return listFormField

@@ -12,12 +12,13 @@ import GIGLibrary
 class FormFieldModel: NSObject {
     
     //-- Mandatory --
+    var key: String?
     var type: String?
     var label: String?
-    var textError: String?
     
     //-- Optional --    
     var placeHolder: String?
+    var textError: String?
     var mandatory = false
     var keyboard: String?
     var options: [FormFieldOptionsModel]?
@@ -42,6 +43,10 @@ class FormFieldModel: NSObject {
             print("❌❌❌ label Not Found")
             throw ThrowError.MandatoryElementNotFound
         }
+        guard let key = json["key"] as? String else {
+            print("❌❌❌ key Not Found")
+            throw ThrowError.MandatoryElementNotFound
+        }
         
         //-- Optional --
         let placeHolder = json["placeHolder"] as? String
@@ -61,6 +66,7 @@ class FormFieldModel: NSObject {
         //-- Mandatory--
         self.type = type
         self.label = label
+        self.key = key
         
         //-- Optional--
         if (textError != nil) {

@@ -1,7 +1,6 @@
                <!--  http://www.danstools.com/javascript-minify/ -->
                    
                      <!--  AÑADIR   TEXTFIELD    -->                   
-                               
  <div class="cellConstructor" id="createField">
      <div class="row">
          <div class="col-md-10">
@@ -52,12 +51,7 @@
               <div class="styleField"> 
                 <h4>Estilos de celda:</h4>
                   <div class="colorZone">
-                     <p>Color de la celda:</p>
-                     <div id="cellColor" class="cellColor"  onclick="cellColorOpen(\'cellColor\')"></div>
-                     <p class="colorTittleP">Color titulo:</p>
-                     <div id="titleColor" class="cellColor"  onclick="cellColorOpen(\'titleColor\')"></div>
-                     <p class="colorTittleP">Color Error:</p>
-                     <div id="errorColor" class="cellColor"  onclick="cellColorOpen(\'errorColor\')"></div>
+                    '+colorBasicZone+'
                  </div>                                   
                  <div class="sizeZone">
                     <p>Tamaño titulo:</p>
@@ -65,6 +59,10 @@
                     <p>Tamaño texto error:</p>
                     <input id="sizeError" type="text" name="element">
                  </div>
+
+                 '+htmlFont+'
+
+
               </div>
               <div class="spaceSeparate"></div>
          </div>

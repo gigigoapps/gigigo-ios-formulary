@@ -49,13 +49,13 @@
             color: white;
             float: right;
             font-size: 49px;
-            height: 313px;
+            height: 364px;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonAdd p{
-                margin-top: 120px;
+                margin-top: 150px;
             }
             .buttonAdd:hover {
                 background-color: skyblue;
@@ -259,12 +259,21 @@
              position: absolute !important;
              visibility: hidden !important;
         }
-        
+
         .cellColor {
             border: 1px solid black;
             height: 30px;
             width: 100px;
             float:left;
+            margin-top: 0px;
+        }
+        
+        .cellColorCreate {
+            border: 1px solid black;
+            height: 30px;
+            width: 54px;
+            float:left;
+            margin-top: 0px;
         }
         .colorZone {
             float: left;
@@ -561,3 +570,48 @@
 #keyTextField {
 
 }
+.inputColorHex {
+    float: left;
+    height: 30px;
+    margin-left: 5px;
+    margin-top: 0;
+    width: 65px;
+}
+
+.fontPositionZone {
+    float: left;
+    height: 50px;
+    margin-left: 72px;
+    width: 100%;
+}
+    .fontPositionZone p{
+        float: left;
+        margin-right: 8px;
+        margin-top: 10px;
+        width: auto;
+    }
+    .fontPositionZone select{
+        float: left;
+        margin-top: 0;
+        width: 180px;
+    }
+#custonFont{
+    display: none;
+    float: left;
+    margin-top: 2px;
+    width: 200px;
+}
+#selectTypeFont{
+    width: 290px;
+    margin-right: 20px;
+}
+
+
+
+
+
+
+
+
+
+

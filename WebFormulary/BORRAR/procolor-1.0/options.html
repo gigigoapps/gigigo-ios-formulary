@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Options - ProColor</title>
+<script type='text/javascript' src='prototype.compressed.js'></script>
+<script type='text/javascript' src='procolor.compressed.js'></script>
+<link rel='stylesheet' type='text/css' href='docs.css' />
+</head>
+
+<body><div class='wrapper'>
+
+<!--============================================================================================-->
+
+<div class='header'>
+
+<h1 style='margin-bottom:0;'>ProColor</h1>
+<p style='margin-top:0;font-style:italic;color:#999;'>Copyright &copy; 2009 by the Phantom Inker.  All rights reserved.</p>
+
+<p><a href='index.html'>Overview &amp; Usage</a>
+| <b>Options</b>
+| <a href='api.html'>Public API</a>
+| <a href='examples.html'>Examples</a>
+| <a href='license.html'>License</a></p>
+
+</div>
+
+<!--============================================================================================-->
+<hr />
+
+<h2>Options</h2>
+
+<p>ProColor offers many different options for configuring its behavior when a new ProColor object
+is created.  All of the important ones are documented below.  To see examples of these options
+in use, look at the <a href='examples.html'>examples page</a>.</p>
+
+<h3>Options:</h3>
+
+<ul class='options'>
+<li><tt>mode</tt>: Either '<tt>static</tt>' or '<tt>popup</tt>'.</li>
+
+<li><tt>input</tt>: Input textbox or hidden field to record color in.
+	(Format: '<tt>#RRGGBB</tt>' string.)</li>
+
+<li><tt>showInField</tt>: Show the current color as the input field's background
+	color (default: <tt>false</tt>).</li>
+
+<li><tt>parent</tt>: In static mode, the containing element to insert this into.
+	In popup mode, this is the element the popup should be attached to (usually
+	the same as input).</li>
+
+<li><tt>closeButton</tt>: Show close button (default: <tt>false</tt> for '<tt>static</tt>',
+	<tt>true</tt> for '<tt>popup</tt>').</li>
+
+<li><tt>color</tt>: Initial color to select (default: extract from input field, or
+	use '<tt>#FFFFFF</tt>').</li>
+
+<li><tt>imgPath</tt>: URL to dir containing ProColor's <tt>.png</tt> files, if they're not in the same place
+	as the <tt>.js</tt> file.  This is directly prepended to the names of the files, so
+	it usually must have a trailing '<tt>/</tt>'.</li>
+
+<li><tt>width</tt>: Dimensions of the color picker, in pixels.  Default width is '<tt>360</tt>' pixels.</li>
+
+<li><tt>height</tt>: Dimensions of the color picker, in pixels.  Default height is '<tt>192</tt>' pixels.</li>
+
+<li><tt>offsetx</tt>: Offset of color picker's content, from its left edge, in pixels.  Default is '<tt>0</tt>' pixels.</li>
+
+<li><tt>offsety</tt>: Offset of color picker's content, from its top edge, in pixels.  Default is '<tt>0</tt>' pixels.</li>
+
+<li><tt>editbg</tt>: Background color of color picker's edit fields.  Default is '<tt>#FFFFFF</tt>'.</li>
+
+<li><tt>edittext</tt>: Color of text in color picker's edit fields:  Default is '<tt>#4C4C4C</tt>'.</li>
+
+<li><tt>outputFormat</tt>: How to format the text in the textbox.  A format string that accepts:
+
+	<ul class='collapsed'>
+	<li><tt>{RR}</tt> - Two-digit red hex value.</li>
+	<li><tt>{GG}</tt> - Two-digit green hex value.</li>
+	<li><tt>{BB}</tt> - Two-digit blue hex value.</li>
+	<li><tt>{R}</tt> - One-digit red hex value.</li>
+	<li><tt>{G}</tt> - One-digit green hex value.</li>
+	<li><tt>{B}</tt> - One-digit blue hex value.</li>
+	<li><tt>{red}</tt> - Decimal red (0-255).</li>
+	<li><tt>{grn}</tt> - Decimal green (0-255).</li>
+	<li><tt>{blu}</tt> - Decimal blue (0-255).</li>
+	<li><tt>{hue}</tt> - Decimal hue (0-359).</li>
+	<li><tt>{sat}</tt> - Decimal saturation (0-100).</li>
+	<li><tt>{brt}</tt> - Decimal brightness (0-100).</li>
+	<li><tt>.</tt> - All other characters will be copied as-is.</li>
+	</ul>
+
+	In addition, you may use tokens like {rr} to request lowercase hex instead
+	of uppercase.  The default format string is "<tt>#{RR}{GG}{BB}</tt>".</li>
+
+<li><tt>onOpening</tt>: Called when the color picker is about to appear but has not yet appeared:
+	<tt>callback(this, 'opening')</tt>.  (Note that the color picker's <tt>&lt;div&gt;</tt> has <i>not</i>
+	been created when <tt>onOpening</tt> is called --- the color picker object has been created and
+	its options initialized, but no elements have yet been created.)
+	The return value of your callback is ignored.</li>
+
+<li><tt>onOpened</tt>: Called after the color picker has appeared, just before returning control back to
+	the browser:
+	<tt>callback(this, 'opened')</tt>.  The return value of your callback is ignored.</li>
+
+<li><tt>onClosing</tt>: Called when the color picker is about to be destroyed but has not yet been destroyed:
+	<tt>callback(this, 'closing')</tt>.  The return value of your callback is ignored.</li>
+
+<li><tt>onClosed</tt>: Called after the color picker has been destroyed, just before the code returns
+	control to the browser:
+	<tt>callback(this, 'closed').</tt> (Note that the color picker object still exists, but all of
+	its elements and event handlers have been destroyed by this point.)  The return value of your callback is ignored.</li>
+
+<li><tt>onChanging</tt>: Called when the color is changing:  <tt>callback(this, 'changing')</tt>.  (This is called
+	many times while the color is changing during a mouse-drag operation, for example, and is always
+	called <i>after</i> the color-picker's <tt>color</tt> member has been updated.)  The return value of your callback is ignored.</li>
+
+<li><tt>onChanged</tt>: Called when the color has changed:  <tt>callback(this, 'changed')</tt>.  (This
+	is called after the user has made a definitive change to the color, such as when the mouse button
+	is released, or when the user types in a new color.  This is always called <i>after</i> the
+	color-picker's <tt>color</tt> member has been updated.)  The return value of your callback is ignored.</li>
+
+<li><tt>onCancelClick</tt>: Called when user presses Esc or clicks outside the color-picker popup:
+	<tt>callback(this, 'cancelclick')</tt>.  The return value of your callback is ignored.</li>
+
+<li><tt>onAcceptClick</tt>: Called when user presses Enter or double-clicks:
+	<tt>callback(this, 'acceptclick')</tt>.  The return value of your callback is ignored.</li>
+
+<li><tt>onCloseButton</tt>: Called when user clicks the close button, before closing the color-picker:
+	<tt>callback(this, 'closebutton')</tt>.  This function must return a value indicating whether
+	the color-picker should be closed, <tt>true</tt> to close the color-picker, or <tt>false</tt>
+	to leave it open.</li>
+</ul>
+
+</div></body>
+</html>

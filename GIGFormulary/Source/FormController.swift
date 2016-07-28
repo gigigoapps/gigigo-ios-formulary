@@ -53,7 +53,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         var valid = true
         for field in self.formFields {
             valid = field.validate()
-            self.formValues["\(field.tag)"] = field.fieldValue as? String
+            self.formValues["\(field.formFieldM!.key!)"] = field.fieldValue as? String
         }
         return valid
     }
@@ -72,10 +72,6 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         self.formViews?.scrollRectToVisible(field)
     }
     
-    func didChangeValue(field: FormField, text: String) {
-        self.formValues["\(field.tag)"] = text
-    }
-    
     func formFieldDidFinish(field: FormField) {
         let nextField = self.nextFieldTo(field)
         self.formViews?.changeFocusField(nextField)
@@ -83,11 +79,5 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         if (nextField == nil) {
              self.validateFields()
         }
-    }
-    
-    //MARK: PPickerFormField
-    
-    func borrarProtocolo2() {
-        
     }
 }

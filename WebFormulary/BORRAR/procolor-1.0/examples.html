@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Examples - ProColor</title>
+<script type='text/javascript' src='prototype.compressed.js'></script>
+<script type='text/javascript' src='procolor.compressed.js'></script>
+<link rel='stylesheet' type='text/css' href='docs.css' />
+</head>
+
+<body><div class='wrapper'>
+
+<!--============================================================================================-->
+
+<div class='header'>
+
+<h1 style='margin-bottom:0;'>ProColor</h1>
+<p style='margin-top:0;font-style:italic;color:#999;'>Copyright &copy; 2009 by the Phantom Inker.  All rights reserved.</p>
+
+<p><a href='index.html'>Overview &amp; Usage</a>
+| <a href='options.html'>Options</a>
+| <a href='api.html'>Public API</a>
+| <b>Examples</b>
+| <a href='license.html'>License</a></p>
+
+</div>
+
+<!--============================================================================================-->
+<hr />
+
+<h2>Example #1</h2>
+
+<p>This first example demonstrates including the ProColor color-picker as a static page element.
+Notice that the color-picker window is tied to the input textbox, and that the events generated
+by the color-picker are captured and displayed below the color-picker.  Notice also that we
+use unusual color-formatting here, which ProColor allows.</p>
+
+<input id="hex" style="width: 6em;" type="text" />
+
+<div id="colorpicker"></div>
+
+<div style="margin: 1em 0pt 3em;">
+  Most recent action: <span id="log"><b>none</b></span>
+</div>
+
+<script type="text/javascript"><!--
+	new ProColor({
+		mode:'static',
+		parent:'colorpicker',
+		imgPath:'img/procolor_win_',
+		input:'hex',
+		showInField: true,
+		color:'#FF0000',
+		outputFormat:'(#{RR}{GG}{BB})',
+		onChanged:function(pc) { $('log').innerHTML = "<b>choose " + pc.color + "</b>"; },
+		onAcceptClick:function(pc) { $('log').innerHTML = "<b>done " + pc.color + "</b>"; },
+		onCancelClick:function(pc) { $('log').innerHTML = "<b>cancel</b>"; },
+		onCloseButton:function(pc) { $('log').innerHTML = "<b>close</b>"; }
+	});
+--></script>
+
+<h4 style='margin:0;'>Complete source code:</h4>
+
+<xmp style='margin-left:2em;margin-top:0;'><input id="hex" style="width: 6em;" type="text" />
+
+<div id="colorpicker"></div>
+
+<div style="margin: 1em 0pt 3em;">
+  Most recent action: <span id="log"><b>none</b></span>
+</div>
+
+<script type="text/javascript"><!--
+new ProColor({
+  mode:'static',
+  parent:'colorpicker',
+  imgPath:'img/procolor_win_',
+  input:'hex',
+  showInField: true,
+  color:'#FF0000',
+  outputFormat:'(#{RR}{GG}{BB})',
+  onChanged:function(pc) { $('log').innerHTML = "<b>choose " + pc.color + "</b>"; },
+  onAcceptClick:function(pc) { $('log').innerHTML = "<b>done " + pc.color + "</b>"; },
+  onCancelClick:function(pc) { $('log').innerHTML = "<b>cancel</b>"; },
+  onCloseButton:function(pc) { $('log').innerHTML = "<b>close</b>"; }
+});
+--></script>
+</xmp>
+
+<!--============================================================================================-->
+<hr />
+
+<h2>Example #2</h2>
+
+<p>In this example, we use the dropdown-button functionality provided by ProColor.  Clicking the
+dropdown button generates a color-picker popup window, and clicking outside that window (or clicking
+the color-picker's X button) closes it.  Again, the color-picker is fully synchronized to the
+input field at all times, and the button object works in lieu of the color-picker window, when
+necessary, to ensure that the input field has a valid input value (and background/text color) at
+all times.</p>
+
+<div style="text-align: center; margin-bottom: 3em;">
+  <input id="hex2" value="#FF0000" style="width: 6em;" type="text" />
+</div>
+
+<script type="text/javascript"><!--
+  ProColor.prototype.attachButton('hex2', { imgPath:'img/procolor_win_', showInField: true });
+--></script>
+
+<h4 style='margin:0;'>Complete source code:</h4>
+
+<xmp style='margin-left:2em;margin-top:0;'><div style="text-align: center; margin-bottom: 3em;">
+  <input id="hex2" value="#FF0000" style="width: 6em;" type="text" />
+</div>
+
+<script type="text/javascript"><!--
+  ProColor.prototype.attachButton('hex2', { imgPath:'img/procolor_win_', showInField: true });
+--></script>
+</xmp>
+
+<!--============================================================================================-->
+<hr />
+
+<h2>Example #3</h2>
+
+<h4 style='margin:0;'>Complete source code for this next example:</h4>
+
+<xmp style='margin-left:2em;margin-top:0;'><div style="text-align: right; margin-bottom: 3em;">
+  <input id="hex3" value="#FF0000" style="width: 6em;" type="text" class="procolor" />
+</div>
+</xmp>
+
+<p>This very lightweight example shows how you can easily add ProColor to existing pages with
+minimal changes.  The input field below simply has "procolor" as part of its classname, and
+ProColor can automatically pick up on that and generate a suitable popup button.  Notice also
+how ProColor's color-picker is smart enough to stay on-screen despite being positioned at the
+bottom-right corner of the document.</p>
+
+<div style="text-align: right; margin-bottom: 1em;">
+  <input id="hex3" value="#FF0000" style="width: 6em;" type="text" class="procolor" />
+</div>
+
+</div></body>
+</html>

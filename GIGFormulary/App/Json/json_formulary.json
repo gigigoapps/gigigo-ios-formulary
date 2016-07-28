@@ -1,73 +1,16 @@
 {
     "fields":[
               {
-              "tag": 0,
-              "type": "boolean",
-              "label": "aaaa",
-              "textError": "vvvvvvv",
-              "mandatory": true,
-              "validator": "bool"
-              },
-              {
-              "tag": 1,
+              "key": "clave",
               "type": "text",
-              "label": "yyyyyyy",
+              "label": "titular",
               "textError": "error_generic_field",
-              "mandatory": false
-              },
-              {
-              "tag": 2,
-              "type": "picker",
-              "label": "picker molon",
-              "textError": "okjsfg sfklj ",
-              "mandatory": false,
-              "listOptions": [
-                              {
-                              "key": "KeyNoSelected",
-                              "value": "Elige el producto"
-                              },
-                              {
-                              "key": "clave1",
-                              "value": "ewrew"
-                              },
-                              {
-                              "key": "clave2",
-                              "value": "qwreq"
-                              },
-                              {
-                              "key": "clave3",
-                              "value": "werwerq"
-                              }
-                              ],
-              "textAcceptButton": "retre"
-              },
-              {
-              "tag": 3,
-              "type": "datePicker",
-              "label": "sadfsaf",
-              "textError": "werew",
               "mandatory": true,
-              "textAcceptButton": "werewrw",
-              "minAge": 32,
-              "validator": "age"
-              },
-              {
-              "tag": 4,
-              "type": "text",
-              "label": "asdsadsa",
-              "textError": "asdsa",
-              "mandatory": true,
-              "placeHolder": "asdasdas",
-              "minLength": 12,
-              "maxLength": 33,
-              "keyboard": "FormKeyboardTypeEmail",
-              "validator": "email",
               "style": {
-              "backgroundColorField": "#AA55CC",
-              "titleColor": "#CC3518",
-              "errorColor": "#2ACC22",
-              "sizeTitle": 50,
-              "sizeError": 30
+              "sizeTitle": 23,
+              "sizeError": 15,
+              "align": "alignCenter",
+              "font": "AmericanTypewriter"
               }
               }
               ] 

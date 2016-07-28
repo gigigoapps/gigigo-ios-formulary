@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol PPickerFormField {
-    func borrarProtocolo2()
-}
-
 class PickerFormField: FormField {
     
     @IBOutlet var titleLabel: UILabel!

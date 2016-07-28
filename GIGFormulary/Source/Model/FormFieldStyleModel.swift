@@ -14,11 +14,12 @@ class FormFieldStyleModel: NSObject {
     var backgroundColorField: UIColor?
     var titleColor: UIColor?
     var errorColor: UIColor?
-    var sizeTitle: CGFloat?
-    var sizeError: CGFloat?
     var acceptColorPicker: UIColor?
     var containerAcceptColorPicker: UIColor?
     var backgroundPickerColorPicker: UIColor?
+    var fontTitle: UIFont?
+    var fontError: UIFont?
+    var align: NSTextAlignment?
     
     func parseDictionary(json: [String:AnyObject]) {
         //== PREPARE DATA ==
@@ -31,6 +32,9 @@ class FormFieldStyleModel: NSObject {
         let acceptColorPicker = json["acceptColorPicker"] as? String
         let containerAcceptColorPicker = json["containerAcceptColorPicker"] as? String
         let backgroundPickerColorPicker = json["backgroundPickerColorPicker"] as? String
+        let align = json["align"] as? String
+        let font = json["font"] as? String
+        
         
         //== INSERT DATA ==
         if (backgroundColorField != nil) {
@@ -42,12 +46,6 @@ class FormFieldStyleModel: NSObject {
         if (errorColor != nil) {
             self.errorColor = self.stringToHexColor(errorColor!)
         }
-        if (sizeTitle != nil) {
-            self.sizeTitle = sizeTitle
-        }
-        if (sizeError != nil) {
-            self.sizeError = sizeError
-        }
         if (acceptColorPicker != nil) {
             self.acceptColorPicker = self.stringToHexColor(acceptColorPicker!)
         }
@@ -56,6 +54,31 @@ class FormFieldStyleModel: NSObject {
         }
         if (backgroundPickerColorPicker != nil) {
             self.backgroundPickerColorPicker = self.stringToHexColor(backgroundPickerColorPicker!)
+        }
+        if (font != nil) {
+            if (sizeTitle != nil) {
+                self.fontTitle = UIFont (name: font!, size: sizeTitle!)
+            }
+            if (sizeError != nil) {
+                self.fontError = UIFont (name: font!, size: sizeError!)
+            }
+        }
+        else {
+            if (sizeTitle != nil) {
+                self.fontTitle = UIFont.systemFontOfSize(sizeTitle!)
+            }
+            if (sizeError != nil) {
+                self.fontError = UIFont.systemFontOfSize(sizeTitle!)
+            }
+        }
+
+        if (align != nil) {
+            switch align! {
+                case "alignCenter": self.align = NSTextAlignment.Center
+                case "alignRight": self.align = NSTextAlignment.Right
+                case "alignLeft": self.align = NSTextAlignment.Left
+                default: self.align = NSTextAlignment.Center
+            }
         }
         
         if (mandatoryIcon != nil) {
