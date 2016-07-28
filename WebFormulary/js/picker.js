@@ -15,7 +15,7 @@ function removeContainerPicker(idContainerPicker) {
 }
 
 //-- PICKER YA CREADO SOLO MOSTRAR --
-function createPickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField) {
+function createPickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font) {
     var valueCheck = ""
     if (mandatory) {
         valueCheck = "checked"
@@ -45,7 +45,7 @@ function createPickerField(keyTextField,title,error,mandatory,cellColor,titleCol
     resetTypeField();
 }
 
-function savePickerField(keyTextField,type,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField) {
+function savePickerField(keyTextField,type,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font) {
     
     //-- MANDATORY FIELDS --
     var listOptions = [];
@@ -77,7 +77,7 @@ function savePickerField(keyTextField,type,title,error,mandatory,cellColor,title
         itemSave["textAcceptButton"] = acceptButtonTextField
     }  
 
-    var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor);
+    var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,align,font);
     if (styles != null) {
         itemSave["style"] = styles
     }    
