@@ -139,6 +139,9 @@ class TextFormField: FormField, UITextFieldDelegate {
             if (styleField!.fontError != nil) {
                 self.errorLabel.font = styleField?.fontError
             }
+            if (styleField!.align != nil) {
+                self.titleLabel.textAlignment = styleField!.align!
+            }
         }
     }
     

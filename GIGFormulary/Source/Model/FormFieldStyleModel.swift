@@ -59,8 +59,16 @@ class FormFieldStyleModel: NSObject {
             if (sizeTitle != nil) {
                 self.fontTitle = UIFont (name: font!, size: sizeTitle!)
             }
+            if (self.fontTitle == nil) {  // control if font no found
+                print("🌀🌀🌀 Font in title no found")
+                self.fontTitle = UIFont.systemFontOfSize(sizeTitle!)
+            }
             if (sizeError != nil) {
                 self.fontError = UIFont (name: font!, size: sizeError!)
+            }
+            if (self.fontError == nil) {  // control if font no found
+                print("🌀🌀🌀 Font in error no found")
+                self.fontError = UIFont.systemFontOfSize(sizeError!)
             }
         }
         else {
@@ -68,7 +76,7 @@ class FormFieldStyleModel: NSObject {
                 self.fontTitle = UIFont.systemFontOfSize(sizeTitle!)
             }
             if (sizeError != nil) {
-                self.fontError = UIFont.systemFontOfSize(sizeTitle!)
+                self.fontError = UIFont.systemFontOfSize(sizeError!)
             }
         }
 

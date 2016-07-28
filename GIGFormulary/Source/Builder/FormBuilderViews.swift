@@ -69,6 +69,7 @@ class FormBuilderViews: NSObject {
     // MARK : Actions
     
     func buttonAction() {
+        self.viewContainerFormulary.endEditing(true)
         self.delegate?.sendButtonAction()
     }
     

@@ -135,6 +135,14 @@ var indexField = 0
                     document.execCommand("copy");
                     document.body.removeChild(aux);
                 }
+
+
+
+        
+            //======================================
+            //          GENERAR JSON              //
+            //======================================
+
                                 
             function output(inp) {
                  document.body.appendChild(document.createElement('pre')).innerHTML = inp;
@@ -146,11 +154,22 @@ var indexField = 0
             });             
                                 
         
+            function copyList(listFields) {
+                var copyListFields = JSON.parse(JSON.stringify(listFields));
 
+                for (var i = 0; i < copyListFields.length; i++) {
+                    var field = copyListFields[i];
+                    delete field["tag"];
+                    copyListFields[i] = field;
+                }
+
+                return copyListFields;
+            }
             
             $("#buttonGenerateJson").click(function() {
                 $("#containerJsonItemsCreated").empty()
-                var recoverJSON = JSON.stringify(listFieldsResult, undefined, 4);
+                var copyListField = copyList(listFieldsResult);
+                var recoverJSON = JSON.stringify(copyListField, undefined, 4);
                 recoverJSON = '{ \n "fields":'+recoverJSON+' \n}';
                $("#containerJsonItemsCreated").append("<button class='btn butonCopyPaste' data-clipboard-action='copy' data-clipboard-target='#bar'>Copiar</button><textarea id='bar'>"+recoverJSON+"</textarea><pre>"+syntaxHighlight(recoverJSON)+"</pre>")
             });
@@ -351,12 +370,6 @@ function savePickerField(keyTextField,type,title,error,mandatory,cellColor,title
     //-- SAVE ITEMS --
     listFieldsResult.push(itemSave)
     
-    for (var i=0; i<listFieldsResult.length; i++) {
-        $.each(listFieldsResult[i], function(index, val) {
-            console.log("key:"+index+" - value:"+val);
-        });
-    }
-    
     indexField++;
 }
 
@@ -415,13 +428,7 @@ function saveDatePickerField(keyTextField,type,title,error,mandatory,cellColor,t
 
     //-- SAVE ITEMS --
     listFieldsResult.push(itemSave)
-    
-    for (var i=0; i<listFieldsResult.length; i++) {
-        $.each(listFieldsResult[i], function(index, val) {
-            console.log("key:"+index+" - value:"+val);
-        });
-    }
-    
+        
     indexField++;
 }
 

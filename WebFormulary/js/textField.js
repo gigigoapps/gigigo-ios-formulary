@@ -23,6 +23,7 @@ function createField(keyTextField,title,placeHolder,error,mandatory,cellColor,ke
 function saveField(keyTextField,type,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font) {
     //-- Mandatory Fiedls --
     var itemSave = {
+        "tag":indexField,
         "key":keyTextField,
         "type":type,
         "label":title,
@@ -55,11 +56,12 @@ function saveField(keyTextField,type,title,placeHolder,error,mandatory,cellColor
     
     listFieldsResult.push(itemSave)
     
+    /*
     for (var i=0; i<listFieldsResult.length; i++) {
         $.each(listFieldsResult[i], function(index, val) {
             console.log("key:"+index+" - value:"+val);
         });
-    }
+    }*/
     
     indexField++;
 }

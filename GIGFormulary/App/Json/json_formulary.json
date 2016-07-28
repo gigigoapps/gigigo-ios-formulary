@@ -1,16 +1,16 @@
 {
     "fields":[
               {
-              "key": "clave",
+              "key": "sdfs",
               "type": "text",
-              "label": "titular",
+              "label": "sdfds",
               "textError": "error_generic_field",
-              "mandatory": true,
+              "mandatory": false,
+              "placeHolder": "sdfds",
               "style": {
-              "sizeTitle": 23,
-              "sizeError": 15,
-              "align": "alignCenter",
-              "font": "AmericanTypewriter"
+              "sizeTitle": 42,
+              "sizeError": 12,
+              "font": "sdfds"
               }
               }
               ] 

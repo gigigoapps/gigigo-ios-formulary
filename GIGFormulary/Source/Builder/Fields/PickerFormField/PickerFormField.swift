@@ -159,12 +159,14 @@ class PickerFormField: FormField {
             if (styleField!.errorColor != nil) {
                 self.errorLabel.textColor = styleField!.errorColor!
             }
-            if (styleField!.sizeTitle != nil) {
-                self.titleLabel.font = UIFont.systemFontOfSize(styleField!.sizeTitle!)
-                //  self.titleLabel.font = UIFont(name: <#T##String#>, size: styleField!.sizeTitle!)  TODO EDU AMPLIACION
+            if (styleField!.fontTitle != nil) {
+                self.titleLabel.font = styleField?.fontTitle
             }
-            if (styleField!.sizeError != nil) {
-                self.errorLabel.font = UIFont.systemFontOfSize(styleField!.sizeError!)
+            if (styleField!.fontError != nil) {
+                self.errorLabel.font = styleField?.fontError
+            }
+            if (styleField!.align != nil) {
+                self.titleLabel.textAlignment = styleField!.align!
             }
         }
     }
