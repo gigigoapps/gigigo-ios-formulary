@@ -8,7 +8,7 @@
         <!--View Controller-->
         <scene sceneID="wjK-aM-c5r">
             <objects>
-                <viewController id="Y9B-cC-nfA" customClass="ViewController" customModule="GIGFormulary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y9B-cC-nfA" customClass="ViewController" customModule="DemoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s6o-l7-lop"/>
                         <viewControllerLayoutGuide type="bottom" id="15V-QI-XJz"/>

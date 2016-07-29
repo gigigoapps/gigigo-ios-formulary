@@ -19,6 +19,37 @@
 		7B7D727F1D4B7BDE003FFEE8 /* RegexValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72731D4B7BDE003FFEE8 /* RegexValidatorTests.swift */; };
 		7B7D72801D4B7BDE003FFEE8 /* StringValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72741D4B7BDE003FFEE8 /* StringValidatorTests.swift */; };
 		7B7D72811D4B7BDE003FFEE8 /* ValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72751D4B7BDE003FFEE8 /* ValidatorTests.swift */; };
+		7B7D72F41D4B8296003FFEE8 /* DatePickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72CD1D4B8296003FFEE8 /* DatePickerComponent.swift */; };
+		7B7D72F51D4B8296003FFEE8 /* OptionsPickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72CE1D4B8296003FFEE8 /* OptionsPickerComponent.swift */; };
+		7B7D72F61D4B8296003FFEE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D72D01D4B8296003FFEE8 /* Assets.xcassets */; };
+		7B7D72F71D4B8296003FFEE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D72D11D4B8296003FFEE8 /* Localizable.strings */; };
+		7B7D72F81D4B8296003FFEE8 /* BooleanFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72D61D4B8296003FFEE8 /* BooleanFormField.swift */; };
+		7B7D72F91D4B8296003FFEE8 /* BooleanFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D72D71D4B8296003FFEE8 /* BooleanFormField.xib */; };
+		7B7D72FA1D4B8296003FFEE8 /* FormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72D81D4B8296003FFEE8 /* FormField.swift */; };
+		7B7D72FB1D4B8296003FFEE8 /* PickerFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72DA1D4B8296003FFEE8 /* PickerFormField.swift */; };
+		7B7D72FC1D4B8296003FFEE8 /* PickerFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D72DB1D4B8296003FFEE8 /* PickerFormField.xib */; };
+		7B7D72FD1D4B8296003FFEE8 /* TextFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72DD1D4B8296003FFEE8 /* TextFormField.swift */; };
+		7B7D72FE1D4B8296003FFEE8 /* TextFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D72DE1D4B8296003FFEE8 /* TextFormField.xib */; };
+		7B7D72FF1D4B8296003FFEE8 /* FormBuilderFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72DF1D4B8296003FFEE8 /* FormBuilderFields.swift */; };
+		7B7D73001D4B8296003FFEE8 /* FormBuilderViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72E01D4B8296003FFEE8 /* FormBuilderViews.swift */; };
+		7B7D73011D4B8296003FFEE8 /* FormConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72E11D4B8296003FFEE8 /* FormConstant.swift */; };
+		7B7D73021D4B8296003FFEE8 /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72E21D4B8296003FFEE8 /* FormController.swift */; };
+		7B7D73031D4B8296003FFEE8 /* FormFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72E41D4B8296003FFEE8 /* FormFieldModel.swift */; };
+		7B7D73041D4B8296003FFEE8 /* FormFieldOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72E51D4B8296003FFEE8 /* FormFieldOptionsModel.swift */; };
+		7B7D73051D4B8296003FFEE8 /* FormFieldStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72E61D4B8296003FFEE8 /* FormFieldStyleModel.swift */; };
+		7B7D73061D4B8296003FFEE8 /* AgeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72E81D4B8296003FFEE8 /* AgeValidator.swift */; };
+		7B7D73071D4B8296003FFEE8 /* BoolValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72E91D4B8296003FFEE8 /* BoolValidator.swift */; };
+		7B7D73081D4B8296003FFEE8 /* DNINIEValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72EA1D4B8296003FFEE8 /* DNINIEValidator.swift */; };
+		7B7D73091D4B8296003FFEE8 /* LengthValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72EB1D4B8296003FFEE8 /* LengthValidator.swift */; };
+		7B7D730A1D4B8296003FFEE8 /* MailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72EC1D4B8296003FFEE8 /* MailValidator.swift */; };
+		7B7D730B1D4B8296003FFEE8 /* NumericValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72ED1D4B8296003FFEE8 /* NumericValidator.swift */; };
+		7B7D730C1D4B8296003FFEE8 /* OptionValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72EE1D4B8296003FFEE8 /* OptionValidator.swift */; };
+		7B7D730D1D4B8296003FFEE8 /* PhoneValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72EF1D4B8296003FFEE8 /* PhoneValidator.swift */; };
+		7B7D730E1D4B8296003FFEE8 /* PostalCodeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72F01D4B8296003FFEE8 /* PostalCodeValidator.swift */; };
+		7B7D730F1D4B8296003FFEE8 /* RegexValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72F11D4B8296003FFEE8 /* RegexValidator.swift */; };
+		7B7D73101D4B8296003FFEE8 /* StringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72F21D4B8296003FFEE8 /* StringValidator.swift */; };
+		7B7D73111D4B8296003FFEE8 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72F31D4B8296003FFEE8 /* Validator.swift */; };
+		7B7D73151D4B83BC003FFEE8 /* json_formulary.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D73131D4B831B003FFEE8 /* json_formulary.json */; };
 		7BB82EF61D4B5DB800DC85F5 /* GIGFormulary.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BB82EF51D4B5DB800DC85F5 /* GIGFormulary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7BB82EFD1D4B5DB800DC85F5 /* GIGFormulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82EF21D4B5DB800DC85F5 /* GIGFormulary.framework */; };
 		7BB82F021D4B5DB800DC85F5 /* GIGFormularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB82F011D4B5DB800DC85F5 /* GIGFormularyTests.swift */; };
@@ -81,6 +112,37 @@
 		7B7D72731D4B7BDE003FFEE8 /* RegexValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexValidatorTests.swift; sourceTree = "<group>"; };
 		7B7D72741D4B7BDE003FFEE8 /* StringValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringValidatorTests.swift; sourceTree = "<group>"; };
 		7B7D72751D4B7BDE003FFEE8 /* ValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorTests.swift; sourceTree = "<group>"; };
+		7B7D72CD1D4B8296003FFEE8 /* DatePickerComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerComponent.swift; sourceTree = "<group>"; };
+		7B7D72CE1D4B8296003FFEE8 /* OptionsPickerComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsPickerComponent.swift; sourceTree = "<group>"; };
+		7B7D72D01D4B8296003FFEE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7B7D72D11D4B8296003FFEE8 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		7B7D72D61D4B8296003FFEE8 /* BooleanFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooleanFormField.swift; sourceTree = "<group>"; };
+		7B7D72D71D4B8296003FFEE8 /* BooleanFormField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BooleanFormField.xib; sourceTree = "<group>"; };
+		7B7D72D81D4B8296003FFEE8 /* FormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormField.swift; sourceTree = "<group>"; };
+		7B7D72DA1D4B8296003FFEE8 /* PickerFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerFormField.swift; sourceTree = "<group>"; };
+		7B7D72DB1D4B8296003FFEE8 /* PickerFormField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerFormField.xib; sourceTree = "<group>"; };
+		7B7D72DD1D4B8296003FFEE8 /* TextFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFormField.swift; sourceTree = "<group>"; };
+		7B7D72DE1D4B8296003FFEE8 /* TextFormField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFormField.xib; sourceTree = "<group>"; };
+		7B7D72DF1D4B8296003FFEE8 /* FormBuilderFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormBuilderFields.swift; sourceTree = "<group>"; };
+		7B7D72E01D4B8296003FFEE8 /* FormBuilderViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormBuilderViews.swift; sourceTree = "<group>"; };
+		7B7D72E11D4B8296003FFEE8 /* FormConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormConstant.swift; sourceTree = "<group>"; };
+		7B7D72E21D4B8296003FFEE8 /* FormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormController.swift; sourceTree = "<group>"; };
+		7B7D72E41D4B8296003FFEE8 /* FormFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormFieldModel.swift; sourceTree = "<group>"; };
+		7B7D72E51D4B8296003FFEE8 /* FormFieldOptionsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormFieldOptionsModel.swift; sourceTree = "<group>"; };
+		7B7D72E61D4B8296003FFEE8 /* FormFieldStyleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormFieldStyleModel.swift; sourceTree = "<group>"; };
+		7B7D72E81D4B8296003FFEE8 /* AgeValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgeValidator.swift; sourceTree = "<group>"; };
+		7B7D72E91D4B8296003FFEE8 /* BoolValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolValidator.swift; sourceTree = "<group>"; };
+		7B7D72EA1D4B8296003FFEE8 /* DNINIEValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNINIEValidator.swift; sourceTree = "<group>"; };
+		7B7D72EB1D4B8296003FFEE8 /* LengthValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LengthValidator.swift; sourceTree = "<group>"; };
+		7B7D72EC1D4B8296003FFEE8 /* MailValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailValidator.swift; sourceTree = "<group>"; };
+		7B7D72ED1D4B8296003FFEE8 /* NumericValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericValidator.swift; sourceTree = "<group>"; };
+		7B7D72EE1D4B8296003FFEE8 /* OptionValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionValidator.swift; sourceTree = "<group>"; };
+		7B7D72EF1D4B8296003FFEE8 /* PhoneValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneValidator.swift; sourceTree = "<group>"; };
+		7B7D72F01D4B8296003FFEE8 /* PostalCodeValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostalCodeValidator.swift; sourceTree = "<group>"; };
+		7B7D72F11D4B8296003FFEE8 /* RegexValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexValidator.swift; sourceTree = "<group>"; };
+		7B7D72F21D4B8296003FFEE8 /* StringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringValidator.swift; sourceTree = "<group>"; };
+		7B7D72F31D4B8296003FFEE8 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		7B7D73131D4B831B003FFEE8 /* json_formulary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json_formulary.json; sourceTree = "<group>"; };
 		7BB82EF21D4B5DB800DC85F5 /* GIGFormulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GIGFormulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BB82EF51D4B5DB800DC85F5 /* GIGFormulary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GIGFormulary.h; sourceTree = "<group>"; };
 		7BB82EF71D4B5DB800DC85F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -145,6 +207,137 @@
 			path = Validator;
 			sourceTree = "<group>";
 		};
+		7B7D72CA1D4B8296003FFEE8 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7B7D72CB1D4B8296003FFEE8 /* Components */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		7B7D72CB1D4B8296003FFEE8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7B7D72CC1D4B8296003FFEE8 /* Pickers */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		7B7D72CC1D4B8296003FFEE8 /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				7B7D72CD1D4B8296003FFEE8 /* DatePickerComponent.swift */,
+				7B7D72CE1D4B8296003FFEE8 /* OptionsPickerComponent.swift */,
+			);
+			path = Pickers;
+			sourceTree = "<group>";
+		};
+		7B7D72CF1D4B8296003FFEE8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7B7D72D01D4B8296003FFEE8 /* Assets.xcassets */,
+				7B7D72D11D4B8296003FFEE8 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7B7D72D21D4B8296003FFEE8 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7B7D72D31D4B8296003FFEE8 /* Builder */,
+				7B7D72E31D4B8296003FFEE8 /* Model */,
+				7B7D72E71D4B8296003FFEE8 /* Validators */,
+				7B7D72E11D4B8296003FFEE8 /* FormConstant.swift */,
+				7B7D72E21D4B8296003FFEE8 /* FormController.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		7B7D72D31D4B8296003FFEE8 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				7B7D72D41D4B8296003FFEE8 /* Fields */,
+				7B7D72DF1D4B8296003FFEE8 /* FormBuilderFields.swift */,
+				7B7D72E01D4B8296003FFEE8 /* FormBuilderViews.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		7B7D72D41D4B8296003FFEE8 /* Fields */ = {
+			isa = PBXGroup;
+			children = (
+				7B7D72D51D4B8296003FFEE8 /* BooleanFormField */,
+				7B7D72D91D4B8296003FFEE8 /* PickerFormField */,
+				7B7D72DC1D4B8296003FFEE8 /* TextFormField */,
+				7B7D72D81D4B8296003FFEE8 /* FormField.swift */,
+			);
+			path = Fields;
+			sourceTree = "<group>";
+		};
+		7B7D72D51D4B8296003FFEE8 /* BooleanFormField */ = {
+			isa = PBXGroup;
+			children = (
+				7B7D72D71D4B8296003FFEE8 /* BooleanFormField.xib */,
+				7B7D72D61D4B8296003FFEE8 /* BooleanFormField.swift */,
+			);
+			path = BooleanFormField;
+			sourceTree = "<group>";
+		};
+		7B7D72D91D4B8296003FFEE8 /* PickerFormField */ = {
+			isa = PBXGroup;
+			children = (
+				7B7D72DB1D4B8296003FFEE8 /* PickerFormField.xib */,
+				7B7D72DA1D4B8296003FFEE8 /* PickerFormField.swift */,
+			);
+			path = PickerFormField;
+			sourceTree = "<group>";
+		};
+		7B7D72DC1D4B8296003FFEE8 /* TextFormField */ = {
+			isa = PBXGroup;
+			children = (
+				7B7D72DE1D4B8296003FFEE8 /* TextFormField.xib */,
+				7B7D72DD1D4B8296003FFEE8 /* TextFormField.swift */,
+			);
+			path = TextFormField;
+			sourceTree = "<group>";
+		};
+		7B7D72E31D4B8296003FFEE8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7B7D72E41D4B8296003FFEE8 /* FormFieldModel.swift */,
+				7B7D72E51D4B8296003FFEE8 /* FormFieldOptionsModel.swift */,
+				7B7D72E61D4B8296003FFEE8 /* FormFieldStyleModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7B7D72E71D4B8296003FFEE8 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				7B7D72E81D4B8296003FFEE8 /* AgeValidator.swift */,
+				7B7D72E91D4B8296003FFEE8 /* BoolValidator.swift */,
+				7B7D72EA1D4B8296003FFEE8 /* DNINIEValidator.swift */,
+				7B7D72EB1D4B8296003FFEE8 /* LengthValidator.swift */,
+				7B7D72EC1D4B8296003FFEE8 /* MailValidator.swift */,
+				7B7D72ED1D4B8296003FFEE8 /* NumericValidator.swift */,
+				7B7D72EE1D4B8296003FFEE8 /* OptionValidator.swift */,
+				7B7D72EF1D4B8296003FFEE8 /* PhoneValidator.swift */,
+				7B7D72F01D4B8296003FFEE8 /* PostalCodeValidator.swift */,
+				7B7D72F11D4B8296003FFEE8 /* RegexValidator.swift */,
+				7B7D72F21D4B8296003FFEE8 /* StringValidator.swift */,
+				7B7D72F31D4B8296003FFEE8 /* Validator.swift */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
+		7B7D73121D4B831B003FFEE8 /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				7B7D73131D4B831B003FFEE8 /* json_formulary.json */,
+			);
+			path = Json;
+			sourceTree = "<group>";
+		};
 		7BB82EE81D4B5DB800DC85F5 = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +362,9 @@
 		7BB82EF41D4B5DB800DC85F5 /* GIGFormulary */ = {
 			isa = PBXGroup;
 			children = (
+				7B7D72CA1D4B8296003FFEE8 /* Common */,
+				7B7D72CF1D4B8296003FFEE8 /* Resources */,
+				7B7D72D21D4B8296003FFEE8 /* Source */,
 				7BB82EF71D4B5DB800DC85F5 /* Info.plist */,
 				7BB82EF51D4B5DB800DC85F5 /* GIGFormulary.h */,
 			);
@@ -188,6 +384,7 @@
 		7BB82F111D4B5E2200DC85F5 /* DemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				7B7D73121D4B831B003FFEE8 /* Json */,
 				7BB82F121D4B5E2200DC85F5 /* AppDelegate.swift */,
 				7BB82F141D4B5E2200DC85F5 /* ViewController.swift */,
 				7BB82F161D4B5E2200DC85F5 /* Main.storyboard */,
@@ -322,6 +519,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B7D72F91D4B8296003FFEE8 /* BooleanFormField.xib in Resources */,
+				7B7D72F61D4B8296003FFEE8 /* Assets.xcassets in Resources */,
+				7B7D72FC1D4B8296003FFEE8 /* PickerFormField.xib in Resources */,
+				7B7D72F71D4B8296003FFEE8 /* Localizable.strings in Resources */,
+				7B7D72FE1D4B8296003FFEE8 /* TextFormField.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +539,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BB82F1D1D4B5E2200DC85F5 /* LaunchScreen.storyboard in Resources */,
+				7B7D73151D4B83BC003FFEE8 /* json_formulary.json in Resources */,
 				7BB82F1A1D4B5E2200DC85F5 /* Assets.xcassets in Resources */,
 				7BB82F181D4B5E2200DC85F5 /* Main.storyboard in Resources */,
 			);
@@ -349,6 +552,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B7D73091D4B8296003FFEE8 /* LengthValidator.swift in Sources */,
+				7B7D730D1D4B8296003FFEE8 /* PhoneValidator.swift in Sources */,
+				7B7D730E1D4B8296003FFEE8 /* PostalCodeValidator.swift in Sources */,
+				7B7D730A1D4B8296003FFEE8 /* MailValidator.swift in Sources */,
+				7B7D73061D4B8296003FFEE8 /* AgeValidator.swift in Sources */,
+				7B7D73051D4B8296003FFEE8 /* FormFieldStyleModel.swift in Sources */,
+				7B7D73071D4B8296003FFEE8 /* BoolValidator.swift in Sources */,
+				7B7D72FF1D4B8296003FFEE8 /* FormBuilderFields.swift in Sources */,
+				7B7D72F51D4B8296003FFEE8 /* OptionsPickerComponent.swift in Sources */,
+				7B7D73001D4B8296003FFEE8 /* FormBuilderViews.swift in Sources */,
+				7B7D73041D4B8296003FFEE8 /* FormFieldOptionsModel.swift in Sources */,
+				7B7D72FB1D4B8296003FFEE8 /* PickerFormField.swift in Sources */,
+				7B7D72F81D4B8296003FFEE8 /* BooleanFormField.swift in Sources */,
+				7B7D730C1D4B8296003FFEE8 /* OptionValidator.swift in Sources */,
+				7B7D72FD1D4B8296003FFEE8 /* TextFormField.swift in Sources */,
+				7B7D73011D4B8296003FFEE8 /* FormConstant.swift in Sources */,
+				7B7D72FA1D4B8296003FFEE8 /* FormField.swift in Sources */,
+				7B7D73031D4B8296003FFEE8 /* FormFieldModel.swift in Sources */,
+				7B7D730B1D4B8296003FFEE8 /* NumericValidator.swift in Sources */,
+				7B7D73081D4B8296003FFEE8 /* DNINIEValidator.swift in Sources */,
+				7B7D730F1D4B8296003FFEE8 /* RegexValidator.swift in Sources */,
+				7B7D73101D4B8296003FFEE8 /* StringValidator.swift in Sources */,
+				7B7D73111D4B8296003FFEE8 /* Validator.swift in Sources */,
+				7B7D72F41D4B8296003FFEE8 /* DatePickerComponent.swift in Sources */,
+				7B7D73021D4B8296003FFEE8 /* FormController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +813,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.DemoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -601,6 +830,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.DemoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

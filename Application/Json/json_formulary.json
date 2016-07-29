@@ -1,0 +1,43 @@
+{
+    "fields":[
+              {
+              "key": "edad",
+              "type": "datePicker",
+              "label": "ttitulo edad",
+              "textError": "texto error edad",
+              "mandatory": true,
+              "textAcceptButton": "oki doki",
+              "minAge": 20,
+              "validator": "age",
+              "style": {
+              "backgroundColorField": "#ff374b",
+              "titleColor": "#4b68ff",
+              "errorColor": "#40ff31",
+              "sizeTitle": 16,
+              "sizeError": 12,
+              "acceptColorPicker": "#383aff",
+              "containerAcceptColorPicker": "#fd64ff",
+              "backgroundPickerColorPicker": "#f8ff5c",
+              "align": "alignRight",
+              "font": "AppleSDGothicNeo-SemiBold"
+              }
+              },
+              {
+              "key": "terms",
+              "type": "boolean",
+              "label": "titulo del terminos",
+              "textError": "texto error de terminos",
+              "mandatory": true,
+              "validator": "bool",
+              "style": {
+              "backgroundColorField": "#4cffef",
+              "titleColor": "#4b68ff",
+              "errorColor": "#ffa3b8",
+              "sizeTitle": 14,
+              "sizeError": 57,
+              "align": "alignCenter",
+              "font": "AppleSDGothicNeo-SemiBold"
+              }
+              }
+              ] 
+}
