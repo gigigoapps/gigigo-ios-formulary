@@ -71,9 +71,9 @@ function validateDatePickerField() {
     var errorColor = $("#errorColorHex").val()
     var sizeTitle = $("#sizeTitle").val()
     var sizeError = $("#sizeError").val()
-    var aceptColor = $("#aceptColor").text()
-    var containerAceptColor = $("#containerAceptColor").text()
-    var backgroundPickerColor = $("#backgroundPickerColor").text()
+    var aceptColor = $("#aceptColorHex").val()
+    var containerAceptColor = $("#containerAceptColorHex").val()
+    var backgroundPickerColor = $("#backgroundPickerColorHex").val()
     var align = document.getElementById("selectTypeAlign").value;
     var font = document.getElementById("selectTypeFont").value;
 

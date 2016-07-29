@@ -42,9 +42,12 @@ class PickerFormField: FormField {
                 return (self.formFieldM!.options![self.pickerOptions!.selectedIndex!]).idOption
             }
             else {
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "dd-MM-yyyy"
-                return dateFormatter.stringFromDate(self.pickerDate!.dateSelected!)
+                if (self.pickerDate!.dateSelected != nil) {
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "dd-MM-yyyy"
+                    return dateFormatter.stringFromDate(self.pickerDate!.dateSelected!)
+                }
+                return self.pickerDate!.dateSelected
             }
         }
         set {
