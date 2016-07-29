@@ -45,20 +45,21 @@
                   <p>Tamaño texto error:</p>
                   <input id="sizeError" type="text" name="element">
                </div>
+
+                 '+htmlFont+'
+
                 <div class="colorZone pickerColorZone">
                    <p>Color de la celda:</p>
-                   <div id="cellColor" class="cellColor"  onclick="cellColorOpen(\'cellColor\')"></div>
-                   <p class="colorTittleP">Color titulo:</p>
-                   <div id="titleColor" class="cellColor"  onclick="cellColorOpen(\'titleColor\')"></div>
-                   <p class="colorTittleP">Color Error:</p>
-                   <div id="errorColor" class="cellColor"  onclick="cellColorOpen(\'errorColor\')"></div>
+                    '+colorBasicZone+'
+
                    <p class="nextColor">Estilos picker selector</p>
                    <p class="colorOKPicker">Color texto OK:</p>
-                   <div id="aceptColor" class="cellColor"  onclick="cellColorOpen(\'aceptColor\')"></div>
+                   <input type="color" value="#ffffff" id="aceptColor" class="cellColorCreate"><input id="aceptColorHex" class="inputColorHex" placeholder="#ffffff">
                    <p class="colorTittleP">Color contenedor OK:</p>
-                   <div id="containerAceptColor" class="cellColor" onclick="cellColorOpen(\'containerAceptColor\')"></div>
+                   <input type="color" value="#ffffff" id="containerAceptColor" class="cellColorCreate"><input id="containerAceptColorHex" class="inputColorHex" placeholder="#ffffff">
                    <p class="colorTittleP">Color fondo:</p>
-                   <div id="backgroundPickerColor" class="cellColor" onclick="cellColorOpen(\'backgroundPickerColor\')"></div>
+                   <input type="color" value="#ffffff" id="backgroundPickerColor" class="cellColorCreate"><input id="backgroundPickerColorHex" class="inputColorHex" placeholder="#ffffff">
+
                </div>
             </div>
             <div class="spaceSeparate"></div>
