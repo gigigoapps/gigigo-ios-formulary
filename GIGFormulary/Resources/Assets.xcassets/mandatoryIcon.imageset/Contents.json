@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "mandatoryIcon.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "asterisk.png",
+      "filename" : "mandatoryIcon@2x.png",
       "scale" : "2x"
     },
     {

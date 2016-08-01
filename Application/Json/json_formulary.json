@@ -4,7 +4,7 @@
               "key": "edad",
               "type": "datePicker",
               "label": "ttitulo edad",
-              "textError": "texto error edad",
+              "textError": "date_error_text",
               "mandatory": true,
               "textAcceptButton": "oki doki",
               "minAge": 20,
@@ -26,7 +26,6 @@
               "key": "terms",
               "type": "boolean",
               "label": "titulo del terminos",
-              "textError": "texto error de terminos",
               "mandatory": true,
               "validator": "bool",
               "style": {
@@ -34,7 +33,7 @@
               "titleColor": "#4b68ff",
               "errorColor": "#ffa3b8",
               "sizeTitle": 14,
-              "sizeError": 57,
+              "sizeError": 20,
               "align": "alignCenter",
               "font": "AppleSDGothicNeo-SemiBold"
               }

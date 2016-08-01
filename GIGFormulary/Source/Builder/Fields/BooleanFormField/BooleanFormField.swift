@@ -85,7 +85,7 @@ class BooleanFormField: FormField {
     private func initializeView() {
         self.titleLabel.numberOfLines = 0
         self.errorLabel.numberOfLines = 0
-        self.mandotoryImage.image = UIImage(named: "mandatoryIcon")
+        self.mandotoryImage.image = UIImage(named: "mandatoryIcon", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
     }
     
     // MARK: Load data field
@@ -136,10 +136,12 @@ class BooleanFormField: FormField {
     
     @IBAction func actionButtonAccept(sender: AnyObject) {
         if (self.buttonAccept.selected) {
-            self.buttonAccept.setBackgroundImage(UIImage(named: "checkBox"), forState: UIControlState.Normal)
+            let image = UIImage(named: "checkBox", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+            self.buttonAccept.setBackgroundImage(image, forState: UIControlState.Normal)
         }
         else {
-            self.buttonAccept.setBackgroundImage(UIImage(named: "chackBoxOn"), forState: UIControlState.Selected)
+            let image = UIImage(named: "chackBoxOn", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+            self.buttonAccept.setBackgroundImage(image, forState: UIControlState.Selected)
         }
         self.buttonAccept.selected = !self.buttonAccept.selected
     }

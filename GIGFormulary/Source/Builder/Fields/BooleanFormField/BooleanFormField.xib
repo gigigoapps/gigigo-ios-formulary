@@ -106,6 +106,6 @@
         </view>
     </objects>
     <resources>
-        <image name="checkBox" width="29" height="29"/>
+        <image name="checkBox" width="58" height="58"/>
     </resources>
 </document>

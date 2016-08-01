@@ -63,6 +63,7 @@
 		7BB82F8F1D4B69B400DC85F5 /* GIGLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7BB82F911D4B723D00DC85F5 /* GIGLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */; };
 		7BB82FAC1D4B753C00DC85F5 /* GIGLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7BC7EB861D4F47D60022D1C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7BC7EB841D4F47580022D1C5 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,7 @@
 		7BB82F1C1D4B5E2200DC85F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BB82F1E1D4B5E2200DC85F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GIGLibrary.framework; path = Carthage/Build/iOS/GIGLibrary.framework; sourceTree = "<group>"; };
+		7BC7EB841D4F47580022D1C5 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,6 +393,7 @@
 				7BB82F191D4B5E2200DC85F5 /* Assets.xcassets */,
 				7BB82F1B1D4B5E2200DC85F5 /* LaunchScreen.storyboard */,
 				7BB82F1E1D4B5E2200DC85F5 /* Info.plist */,
+				7BC7EB841D4F47580022D1C5 /* Localizable.strings */,
 			);
 			name = DemoApp;
 			path = Application;
@@ -538,6 +541,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BC7EB861D4F47D60022D1C5 /* Localizable.strings in Resources */,
 				7BB82F1D1D4B5E2200DC85F5 /* LaunchScreen.storyboard in Resources */,
 				7B7D73151D4B83BC003FFEE8 /* json_formulary.json in Resources */,
 				7BB82F1A1D4B5E2200DC85F5 /* Assets.xcassets in Resources */,

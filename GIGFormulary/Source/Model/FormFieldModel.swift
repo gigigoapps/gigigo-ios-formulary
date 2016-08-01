@@ -73,7 +73,7 @@ class FormFieldModel: NSObject {
             self.textError = NSLocalizedString(textError!, comment: "")
         }
         else {
-            self.textError = NSLocalizedString("error_generic_field", comment: "")
+            self.textError = NSLocalizedString("error_generic_field", tableName: nil, bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "error_generic_field")
         }
         if (placeHolder != nil) {
             self.placeHolder = placeHolder
@@ -113,7 +113,7 @@ class FormFieldModel: NSObject {
             self.textAcceptButton = NSLocalizedString(textAcceptButton!, comment: "")
         }
         else {
-            self.textAcceptButton = NSLocalizedString("gig_form_accept_button_picker", comment: "")
+            self.textAcceptButton = NSLocalizedString("gig_form_accept_button_picker", tableName: nil, bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "gig_form_accept_button_picker")
         }
     }
 }
