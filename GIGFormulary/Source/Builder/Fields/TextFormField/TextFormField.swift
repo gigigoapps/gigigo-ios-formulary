@@ -93,7 +93,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     private func initializeView() {
         self.titleLabel.numberOfLines = 0
         self.errorLabel.numberOfLines = 0
-        self.mandotoryImage.image = UIImage(named: "mandatoryIcon")
+        self.mandotoryImage.image = UIImage(named: "mandatoryIcon", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
         self.textTextField.delegate = self
     }
     

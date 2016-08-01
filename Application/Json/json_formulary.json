@@ -16,6 +16,45 @@
                               "value": "titulo primer elemento"
                               }
                               ]
+              },
+              {
+              "key": "nombre",
+              "type": "text",
+              "label": "nombre user tipo texto",
+              "mandatory": true,
+              "placeHolder": "nombre del usuario",
+              "style": {
+              "backgroundColorField": "#93b7ff",
+              "titleColor": "#7fff72",
+              "errorColor": "#c51eff",
+              "align": "alignRight"
+              }
+              },
+              {
+              "key": "apellido",
+              "type": "text",
+              "label": "apellido del user"
+              },
+              {
+              "key": "telefono",
+              "type": "text",
+              "label": "telefono del usuario",
+              "keyboard": "FormKeyboardTypeNumbers"
+              },
+              {
+              "key": "edad",
+              "type": "datePicker",
+              "label": "edad del usuario",
+              "textError": "error_generic_field",
+              "mandatory": true
+              },
+              {
+              "key": "terminos",
+              "type": "boolean",
+              "label": "acepte terminos y condiciones",
+              "textError": "error_generic_field",
+              "mandatory": true,
+              "validator": "bool"
               }
               ] 
 }

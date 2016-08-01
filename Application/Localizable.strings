@@ -7,4 +7,4 @@
 */
 
 "error_generic_field" = "aunque es la misma clave que el framework no se sobre escribe";
-"error_way" = "Este es un error way";
+"error_way" = "Este es un error way localizado en la app";

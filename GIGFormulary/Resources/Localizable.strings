@@ -8,7 +8,7 @@
 
 
 //-- Generic --
-"error_generic_field" = "texto de error";
+"error_generic_field" = "texto de error del framework";
 
 //-- Picker --
 "gig_form_accept_button_picker" = "OK";
