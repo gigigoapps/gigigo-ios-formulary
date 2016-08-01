@@ -8,13 +8,13 @@
 
 import UIKit
 
-public protocol PFormController {
+protocol PFormController {
     func recoverFormModel(formValues: [String: String])
 }
 
-public class FormController: NSObject, PFormField, PFormBuilderViews {
+class FormController: NSObject, PFormField, PFormBuilderViews {
     // Public Var
-    public var delegate: PFormController?
+    var delegate: PFormController?
     
     // CLASS
     var formViews: FormBuilderViews?
@@ -23,7 +23,7 @@ public class FormController: NSObject, PFormField, PFormBuilderViews {
     var formFields = [FormField]()
     var formValues = [String: String]()
     
-    public init(viewContainerFormulary: UIView) {
+    init(viewContainerFormulary: UIView) {
         super.init()
         
         self.formViews = FormBuilderViews(viewContainerFormulary: viewContainerFormulary,formController: self)
@@ -31,7 +31,7 @@ public class FormController: NSObject, PFormField, PFormBuilderViews {
     
     // MARK: Public Method
     
-    public func loadFieldsFromJSONFile(jsonFile: String) {
+    func loadFieldsFromJSONFile(jsonFile: String) {
         let builder = FormBuilderFields(formController: self)
         self.formFields = builder.fieldsFromJSONFile(jsonFile)        
         self.formViews!.updateFormularyContent(self.formFields)

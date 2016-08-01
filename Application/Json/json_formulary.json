@@ -4,8 +4,8 @@
               "key": "clave guay",
               "type": "picker",
               "label": "titulo guay",
-              "textError": "error way",
-              "mandatory": false,
+              "textError": "error_way",
+              "mandatory": true,
               "listOptions": [
                               {
                               "key": "KeyNoSelected",

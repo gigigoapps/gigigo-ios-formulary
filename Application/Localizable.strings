@@ -6,5 +6,5 @@
   Copyright © 2016 gigigo. All rights reserved.
 */
 
-"error_generic_field" = "texto de error LOCAL";
-"date_error_text" = "Probando texto error";
+"error_generic_field" = "aunque es la misma clave que el framework no se sobre escribe";
+"error_way" = "Este es un error way";

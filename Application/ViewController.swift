@@ -9,14 +9,14 @@
 import UIKit
 import GIGFormulary
 
-class ViewController: UIViewController, PFormController {
+class ViewController: UIViewController, PFormulary {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let formController = FormController(viewContainerFormulary: self.view)
-        formController.loadFieldsFromJSONFile("json_formulary.json")
-        formController.delegate = self
+        let formulary = Formulary.shared
+        formulary.start(self.view, jsonFile: "json_formulary.json")
+        formulary.delegate = self
     }
     
     // MARK: PFormController
