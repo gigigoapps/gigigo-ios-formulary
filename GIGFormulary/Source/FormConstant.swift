@@ -39,6 +39,7 @@ enum ThrowError: ErrorType {
     case InvalidParse
     case MandatoryElementNotFound
     case MandatoryElementEmpty
+    case MandatoryElementIncorrectType
 }
 
 class FormConstant: NSObject {}

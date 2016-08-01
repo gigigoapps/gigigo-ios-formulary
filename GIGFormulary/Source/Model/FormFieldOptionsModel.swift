@@ -16,7 +16,7 @@ class FormFieldOptionsModel: NSObject {
     
     class func parseListOptionsJson(json:[[String: AnyObject]]) throws ->[FormFieldOptionsModel] {
         do {
-            return try (json.map(parseOptionsJson))
+            return try (json.map(parseOptionsJson))              
         }
         catch (let throwError){
             throw throwError
@@ -38,11 +38,11 @@ class FormFieldOptionsModel: NSObject {
         
         //== PREPARE DATA ==
         //-- Mandatory --
-        guard let key = json["key"] as? String else {
+        guard let key = json["key"] as? String where key.characters.count > 0 else {
             print("❌❌❌ key value Not Found")
             throw ThrowError.MandatoryElementNotFound
         }
-        guard let value = json["value"] as? String else {
+        guard let value = json["value"] as? String where value.characters.count > 0 else {
             print("❌❌❌ value Options Not Found")
             throw ThrowError.MandatoryElementNotFound
         }

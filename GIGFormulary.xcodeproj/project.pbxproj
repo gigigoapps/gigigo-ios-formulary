@@ -64,6 +64,7 @@
 		7BB82F911D4B723D00DC85F5 /* GIGLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */; };
 		7BB82FAC1D4B753C00DC85F5 /* GIGLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7BC7EB861D4F47D60022D1C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7BC7EB841D4F47580022D1C5 /* Localizable.strings */; };
+		7BC7EB891D4F53240022D1C5 /* FormFieldModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC7EB881D4F53240022D1C5 /* FormFieldModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +160,7 @@
 		7BB82F1E1D4B5E2200DC85F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GIGLibrary.framework; path = Carthage/Build/iOS/GIGLibrary.framework; sourceTree = "<group>"; };
 		7BC7EB841D4F47580022D1C5 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		7BC7EB881D4F53240022D1C5 /* FormFieldModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormFieldModelTests.swift; path = Model/FormFieldModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +381,7 @@
 				7BB82F031D4B5DB800DC85F5 /* Info.plist */,
 				7BB82F011D4B5DB800DC85F5 /* GIGFormularyTests.swift */,
 				7B7D72691D4B7BDE003FFEE8 /* Validator */,
+				7BC7EB871D4F52950022D1C5 /* Model */,
 			);
 			path = GIGFormularyTests;
 			sourceTree = "<group>";
@@ -405,6 +408,14 @@
 				7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7BC7EB871D4F52950022D1C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7BC7EB881D4F53240022D1C5 /* FormFieldModelTests.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -598,6 +609,7 @@
 				7B7D72781D4B7BDE003FFEE8 /* DNINIEValidatorTests.swift in Sources */,
 				7B7D72791D4B7BDE003FFEE8 /* LengthValidatorTests.swift in Sources */,
 				7B7D727B1D4B7BDE003FFEE8 /* NumericValidatorTests.swift in Sources */,
+				7BC7EB891D4F53240022D1C5 /* FormFieldModelTests.swift in Sources */,
 				7B7D72761D4B7BDE003FFEE8 /* AgeValidatorTests.swift in Sources */,
 				7BB82F021D4B5DB800DC85F5 /* GIGFormularyTests.swift in Sources */,
 				7B7D727C1D4B7BDE003FFEE8 /* OptionValidatorTests.swift in Sources */,

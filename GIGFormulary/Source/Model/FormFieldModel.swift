@@ -34,16 +34,17 @@ class FormFieldModel: NSObject {
     
     func parseDictionary(json: [String:AnyObject]) throws {
         //== PREPARE DATA ==
+        
         //-- Mandatory --
-        guard let type = json["type"] as? String else {
+        guard let type = json["type"] as? String where type.characters.count > 0 else {
             print("❌❌❌ type Not Found")
             throw ThrowError.MandatoryElementNotFound
         }
-        guard let label = json["label"] as? String else {
+        guard let label = json["label"] as? String where label.characters.count > 0 else {
             print("❌❌❌ label Not Found")
             throw ThrowError.MandatoryElementNotFound
         }
-        guard let key = json["key"] as? String else {
+        guard let key = json["key"] as? String where key.characters.count > 0 else {
             print("❌❌❌ key Not Found")
             throw ThrowError.MandatoryElementNotFound
         }
@@ -51,7 +52,7 @@ class FormFieldModel: NSObject {
         //-- Optional --
         let placeHolder = json["placeHolder"] as? String
         let mandatory = json["mandatory"] as? Bool
-        let options = json["listOptions"] as? [[String: AnyObject]]
+        
         let style = json["style"] as? [String: AnyObject]
         let textError = json["textError"] as? String
         let validator = json["validator"] as? String
@@ -81,9 +82,18 @@ class FormFieldModel: NSObject {
         if (mandatory != nil) {
             self.mandatory = mandatory!
         }
-        if (options != nil) {
+
+        if (json["listOptions"] != nil) {
+            guard let listOptions = json["listOptions"] as? [[String: AnyObject]] else {
+                print("❌❌❌ listOptions incorrect type")
+                throw ThrowError.MandatoryElementIncorrectType
+            }
+            if listOptions.count == 0 {
+                print("❌❌❌ listOptions empty")
+                throw ThrowError.MandatoryElementEmpty
+            }
             do {
-                self.options = try FormFieldOptionsModel.parseListOptionsJson(options!)
+                self.options = try FormFieldOptionsModel.parseListOptionsJson(listOptions)
             }
             catch {
                 print("❌❌❌ options Not Found")
