@@ -1,30 +1,25 @@
 {
     "fields":[
               {
-              "key": "error_way",
-              "type": "boolean",
-              "label": "error_way",
-              "textError": "error_way",
-              "mandatory": true,
-              "validator": "bool",
-              "style": {
-              "mandatoryIcon": "checkBoxAppOff",
-              "checkBox": {
-              "checkBoxOn": "checkBoxAppOn",
-              "checkBoxOff": "checkBoxAppOff"
-              }
-              }
-              },
-              {
-              "key": "error_way",
-              "mandatory": true,
+              "key": "a1",
               "type": "text",
               "label": "error_way",
               "textError": "error_way",
-              "placeHolder": "error_way"
+              "placeHolder": "error_way",
+              "style": {
+              "backgroundColorField": "#2efff7",
+              "align": "alignCenter"
+              }
               },
               {
-              "key": "error_way",
+              "key": "a2",
+              "type": "text",
+              "label": "error_way2",
+              "textError": "error_way2",
+              "placeHolder": "error_way2"
+              },
+              {
+              "key": "a3",
               "type": "picker",
               "label": "error_way",
               "textError": "error_way",
@@ -33,17 +28,42 @@
                               {
                               "key": "KeyNoSelected",
                               "value": "error_way"
+                              },
+                              {
+                              "key": "clave1",
+                              "value": "error_way"
+                              },
+                              {
+                              "key": "clave2",
+                              "value": "error_way2"
                               }
                               ],
               "textAcceptButton": "error_way"
               },
               {
-              "key": "error_way",
+              "key": "a4",
               "type": "datePicker",
               "label": "error_way",
               "textError": "error_way",
-              "mandatory": true,
-              "textAcceptButton": "error_way"
+              "mandatory": false,
+              "textAcceptButton": "error_way",
+              "minAge": 2,
+              "validator": "age"
+              },
+              {
+              "key": "a5",
+              "type": "text",
+              "label": "error_way"
+              },
+              {
+              "key": "a6",
+              "type": "text",
+              "label": "error_way"
+              },
+              {
+              "key": "a7",
+              "type": "text",
+              "label": "A"
               }
               ] 
 }
