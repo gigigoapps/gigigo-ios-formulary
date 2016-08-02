@@ -16,12 +16,19 @@ public class Formulary: PFormController {
     public static let shared = Formulary()
     public var delegate: PFormulary?
     
+    //-- Private Var --
+    var formController: FormController?
+    
     // MARK: Start
     
     public func start(viewContainerFormulary: UIView, jsonFile: String) {
-        let formController = FormController(viewContainerFormulary: viewContainerFormulary)
-        formController.loadFieldsFromJSONFile(jsonFile)
-        formController.delegate = self
+        self.formController = FormController(viewContainerFormulary: viewContainerFormulary)
+        self.formController!.loadFieldsFromJSONFile(jsonFile)
+        self.formController!.delegate = self
+    }
+    
+    public func populateData(values: [String:String]) {
+        self.formController!.populateData(values)
     }
     
     // MARK: PFormulary

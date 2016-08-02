@@ -17,6 +17,11 @@ class ViewController: UIViewController, PFormulary {
         let formulary = Formulary.shared
         formulary.start(self.view, jsonFile: "json_formulary.json")
         formulary.delegate = self
+        
+        
+        //-- Case: Populate data --
+        let dic = ["user":"eduardo"]
+        formulary.populateData(dic)
     }
     
     // MARK: PFormController

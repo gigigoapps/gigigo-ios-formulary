@@ -37,6 +37,15 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         self.formViews!.updateFormularyContent(self.formFields)
     }
     
+    func populateData(values: [String:String]) {
+        /*
+            [fieldValues enumerateWithBlock:^(NSString *fieldTag, id value) {
+                RCOFormField *field = [self fieldWithTag:fieldTag];
+                field.fieldValue = value;
+            }];
+        */
+    }
+    
     // MARK: Private Method
 
     private func nextFieldTo(field: FormField) -> FormField?{
@@ -65,7 +74,6 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
             self.delegate?.recoverFormModel(self.formValues)
         }
     }
-    
     
     // MARK: PTextFormField
     func scrollRectToVisible(field: FormField) {
