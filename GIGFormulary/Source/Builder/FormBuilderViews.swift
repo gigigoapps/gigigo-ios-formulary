@@ -48,6 +48,7 @@ class FormBuilderViews: NSObject {
         self.prepareFormulary()
         self.delegate = formController
         self.buttonSend.addTarget(self, action: #selector(self.buttonAction), forControlEvents: UIControlEvents.TouchUpInside)
+        self.scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hideComponent)))
     }
     
     // MARK : Public Method
@@ -85,6 +86,10 @@ class FormBuilderViews: NSObject {
     }
     
     // MARK : Private Method
+    
+    func hideComponent() {
+        self.scrollView.endEditing(true)
+    }
     
     func prepareFormulary() {
         self.scrollView.addSubview(self.viewFormulary)

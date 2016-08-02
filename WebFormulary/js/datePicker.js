@@ -34,17 +34,20 @@ function saveDatePickerField(keyTextField,type,title,error,mandatory,cellColor,t
         "key":keyTextField,
         "tag":indexField,
         "type":type,
-        "label":title,
-        "textError":error,
-        "mandatory":mandatory
+        "label":title
     }
     
     //-- OPTIONAL FIELDS --
-              
+
+    if (mandatory) {
+        itemSave["mandatory"] = mandatory
+    }   
+    if (textError.length > 0) {
+        itemSave["textError"] = textError
+    }               
     if (acceptButtonTextField.length > 0) {
         itemSave["textAcceptButton"] = acceptButtonTextField
-    }  
-              
+    }                
     if (minAgeContainer.length > 0) {
         itemSave["minAge"] = parseInt(minAgeContainer) 
         itemSave["validator"] = "age"

@@ -68,16 +68,20 @@ function savePickerField(keyTextField,type,title,error,mandatory,cellColor,title
         "tag":indexField,
         "type":type,
         "label":title,
-        "textError":error,
-        "mandatory":mandatory,
         "listOptions":listOptions
     }
     
     //-- OPTIONAL FIELDS --
-              
+
+    if (mandatory) {
+        itemSave["mandatory"] = mandatory
+    }   
+    if (textError.length > 0) {
+        itemSave["textError"] = textError
+    }               
     if (acceptButtonTextField.length > 0) {
         itemSave["textAcceptButton"] = acceptButtonTextField
-    }  
+    } 
 
     var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,align,font,imageMandatory,"","");
     if (styles != null) {
