@@ -16,11 +16,6 @@ public class Formulary: PFormController {
     public static let shared = Formulary()
     public var delegate: PFormulary?
     
-    //-- optional images --
-    public var mandatoryIcon: UIImage?
-    public var checkBoxOn: UIImage?
-    public var checkBoxOff: UIImage?
-    
     // MARK: Start
     
     public func start(viewContainerFormulary: UIView, jsonFile: String) {

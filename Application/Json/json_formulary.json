@@ -1,10 +1,28 @@
 {
     "fields":[
               {
+              "key": "apellido",
+              "type": "text",
+              "label": "apellido del user",
+              "style": {
+              "mandatoryIcon":"chackBoxOn",
+              "backgroundColorField": "#93b7ff",
+              "titleColor": "#7fff72",
+              "errorColor": "#c51eff",
+              "align": "alignRight"
+              }
+              },
+              {
               "key": "clave guay",
               "type": "picker",
               "label": "titulo guay",
               "textError": "error_way",
+              "style": {
+              "backgroundColorField": "#93b7ff",
+              "titleColor": "#7fff72",
+              "errorColor": "#c51eff",
+              "align": "alignRight"
+              },
               "mandatory": true,
               "listOptions": [
                               {
@@ -24,6 +42,7 @@
               "mandatory": true,
               "placeHolder": "nombre del usuario",
               "style": {
+              "mandatoryIcon":"chackBoxOn",
               "backgroundColorField": "#93b7ff",
               "titleColor": "#7fff72",
               "errorColor": "#c51eff",
@@ -31,22 +50,43 @@
               }
               },
               {
-              "key": "apellido",
-              "type": "text",
-              "label": "apellido del user"
-              },
-              {
               "key": "telefono",
               "type": "text",
               "label": "telefono del usuario",
-              "keyboard": "FormKeyboardTypeNumbers"
+              "keyboard": "FormKeyboardTypeNumbers",
+              "style": {
+              "mandatoryIcon":"chackBoxOn",
+              "backgroundColorField": "#93b7ff",
+              "titleColor": "#7fff72",
+              "errorColor": "#c51eff",
+              "align": "alignRight"
+              }
+              },
+              {
+              "key": "salmon",
+              "type": "text",
+              "label": "salmon del user",
+              "style": {
+              "mandatoryIcon":"chackBoxOn",
+              "backgroundColorField": "#93b7ff",
+              "titleColor": "#7fff72",
+              "errorColor": "#c51eff",
+              "align": "alignRight"
+              }
               },
               {
               "key": "edad",
               "type": "datePicker",
               "label": "edad del usuario",
               "textError": "error_generic_field",
-              "mandatory": true
+              "mandatory": true,
+              "style": {
+              "mandatoryIcon":"checkBoxAppOn",
+              "backgroundColorField": "#93b7ff",
+              "titleColor": "#7fff72",
+              "errorColor": "#c51eff",
+              "align": "alignRight"
+              }
               },
               {
               "key": "terminos",
@@ -54,7 +94,30 @@
               "label": "acepte terminos y condiciones",
               "textError": "error_generic_field",
               "mandatory": true,
-              "validator": "bool"
+              "validator": "bool",
+              "style": {
+              "mandatoryIcon":"chackBoxOn",
+              "backgroundColorField": "#93b7ff",
+              "titleColor": "#7fff72",
+              "errorColor": "#c51eff",
+              "align": "alignRight",
+              "checkBox": {
+                    "checkBoxOn":"checkBoxAppOn",
+                    "checkBoxOff":"checkBoxAppOff"
+                }
+              }
+              },
+              {
+              "key": "perro",
+              "type": "text",
+              "label": "perro del user",
+              "style": {
+              "mandatoryIcon":"chackBoxOn",
+              "backgroundColorField": "#93b7ff",
+              "titleColor": "#7fff72",
+              "errorColor": "#c51eff",
+              "align": "alignRight"
+              }
               }
               ] 
 }

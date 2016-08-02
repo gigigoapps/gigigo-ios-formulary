@@ -122,7 +122,7 @@ class TextFormField: FormField, UITextFieldDelegate {
         let styleField = formFieldM.style
         if (styleField != nil) {
             if (styleField!.mandatoryIcon != nil) {
-                self.mandotoryImage.image = UIImage() // TODO EDU, aqui habria q cargar la imagen q fuera
+                self.mandotoryImage.image = styleField?.mandatoryIcon
             }
             if (styleField!.backgroundColorField != nil) {
                 self.viewContainer.backgroundColor = styleField!.backgroundColorField!

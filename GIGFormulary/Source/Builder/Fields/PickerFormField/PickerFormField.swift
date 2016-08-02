@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PickerFormField: FormField {
+class PickerFormField: FormField, POptionsPickerComponent {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var textTextField: UITextField!
@@ -93,6 +93,7 @@ class PickerFormField: FormField {
             self.pickerOptions?.textAcceptButton = self.formFieldM?.textAcceptButton
             self.pickerOptions!.initTextField(self.textTextField)
             self.pickerOptions!.items = self.formFieldM!.options!
+            self.pickerOptions?.delegateOption = self
         }
         else {
             self.pickerDate = DatePickerComponent()
@@ -125,6 +126,12 @@ class PickerFormField: FormField {
         
         return status
     }
+    
+    // MARK: POptionsPickerComponent
+    
+    func formFieldDidFinish() {
+        self.delegate?.formFieldDidFinish(self)
+    }
         
     // MARK: Load data field
     
@@ -151,7 +158,7 @@ class PickerFormField: FormField {
         let styleField = formFieldM.style
         if (styleField != nil) {
             if (styleField!.mandatoryIcon != nil) {
-                self.mandotoryImage.image = UIImage() // TODO EDU, aqui habria q cargar la imagen q fuera
+                self.mandotoryImage.image = styleField?.mandatoryIcon
             }
             if (styleField!.backgroundColorField != nil) {
                 self.viewContainer.backgroundColor = styleField!.backgroundColorField!
@@ -172,5 +179,17 @@ class PickerFormField: FormField {
                 self.titleLabel.textAlignment = styleField!.align!
             }
         }
+    }
+        
+    // MARK: UIResponser (Overrride)
+    override func canBecomeFirstResponder() -> Bool {
+        return self.textTextField.canBecomeFirstResponder()
+    }
+    
+    override func becomeFirstResponder() -> Bool {
+        return self.textTextField.becomeFirstResponder()
+    }
+    override func resignFirstResponder() -> Bool {
+        return self.textTextField.resignFirstResponder()
     }
 }

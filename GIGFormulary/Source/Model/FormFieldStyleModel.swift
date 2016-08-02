@@ -20,6 +20,8 @@ class FormFieldStyleModel: NSObject {
     var fontTitle: UIFont?
     var fontError: UIFont?
     var align: NSTextAlignment?
+    var checkBoxOn: UIImage?
+    var checkBoxOff: UIImage?
     
     func parseDictionary(json: [String:AnyObject]) {
         //== PREPARE DATA ==
@@ -34,8 +36,8 @@ class FormFieldStyleModel: NSObject {
         let backgroundPickerColorPicker = json["backgroundPickerColorPicker"] as? String
         let align = json["align"] as? String
         let font = json["font"] as? String
-        
-        
+        let checkBox = json["checkBox"] as? [String:String]
+
         //== INSERT DATA ==
         if (backgroundColorField != nil) {
             self.backgroundColorField = self.stringToHexColor(backgroundColorField!)
@@ -88,7 +90,6 @@ class FormFieldStyleModel: NSObject {
                 self.fontError = UIFont.systemFontOfSize(sizeError!)
             }
         }
-
         if (align != nil) {
             switch align! {
                 case "alignCenter": self.align = NSTextAlignment.Center
@@ -97,9 +98,18 @@ class FormFieldStyleModel: NSObject {
                 default: self.align = NSTextAlignment.Center
             }
         }
-        
         if (mandatoryIcon != nil) {
-            //self.mandatoryIcon = mandatoryIcon  // TODO EDU , cargar una imagen desde donde????
+            self.mandatoryIcon = UIImage(named: mandatoryIcon!)
+        }
+        if (checkBox != nil) {
+            let checkBoxOn = checkBox!["checkBoxOn"]
+            let checkBoxOff = checkBox!["checkBoxOff"]
+            if (checkBoxOn != nil) {
+                self.checkBoxOn = UIImage(named: checkBoxOn!)
+            }
+            if (checkBoxOff != nil) {
+                self.checkBoxOff = UIImage(named: checkBoxOff!)
+            }
         }
     }
     

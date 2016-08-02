@@ -75,7 +75,6 @@ class DatePickerComponent: UIDatePicker {
     }
     
     @objc private func onDatePickerValueChanged(value: UIDatePicker) {
-      //  self.text = self.dateFormatter.stringFromDate(value.date)
         self.textField?.text = self.dateFormatter.stringFromDate(value.date)
     }
     

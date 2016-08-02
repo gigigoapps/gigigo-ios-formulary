@@ -19,6 +19,9 @@ class BooleanFormField: FormField {
     @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
     
+    //-- Local var --
+    var checkBoxOn: UIImage?
+    var checkBoxOff: UIImage?
     
     // MARK: INIT
     
@@ -86,6 +89,8 @@ class BooleanFormField: FormField {
         self.titleLabel.numberOfLines = 0
         self.errorLabel.numberOfLines = 0
         self.mandotoryImage.image = UIImage(named: "mandatoryIcon", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+        self.checkBoxOn = UIImage(named: "chackBoxOn", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+        self.checkBoxOff = UIImage(named: "checkBox", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
     }
     
     // MARK: Load data field
@@ -108,7 +113,7 @@ class BooleanFormField: FormField {
         let styleField = formFieldM.style
         if (styleField != nil) {
             if (styleField!.mandatoryIcon != nil) {
-                self.mandotoryImage.image = UIImage() // TODO EDU, aqui habria q cargar la imagen q fuera
+                self.mandotoryImage.image = styleField?.mandatoryIcon
             }
             if (styleField!.backgroundColorField != nil) {
                 self.viewContainer.backgroundColor = styleField!.backgroundColorField!
@@ -128,6 +133,13 @@ class BooleanFormField: FormField {
             if (styleField!.align != nil) {
                 self.titleLabel.textAlignment = styleField!.align!
             }
+            if (styleField!.checkBoxOn != nil) {
+                self.checkBoxOn = styleField!.checkBoxOn!
+            }
+            if (styleField!.checkBoxOff != nil) {
+                self.checkBoxOff = styleField!.checkBoxOff!
+                self.buttonAccept.setBackgroundImage(self.checkBoxOff, forState: UIControlState.Normal)
+            }
         }
     }
     
@@ -136,12 +148,10 @@ class BooleanFormField: FormField {
     
     @IBAction func actionButtonAccept(sender: AnyObject) {
         if (self.buttonAccept.selected) {
-            let image = UIImage(named: "checkBox", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-            self.buttonAccept.setBackgroundImage(image, forState: UIControlState.Normal)
+            self.buttonAccept.setBackgroundImage(self.checkBoxOff, forState: UIControlState.Normal)
         }
         else {
-            let image = UIImage(named: "chackBoxOn", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-            self.buttonAccept.setBackgroundImage(image, forState: UIControlState.Selected)
+            self.buttonAccept.setBackgroundImage(self.checkBoxOn, forState: UIControlState.Selected)
         }
         self.buttonAccept.selected = !self.buttonAccept.selected
     }

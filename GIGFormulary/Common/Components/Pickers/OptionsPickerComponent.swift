@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol POptionsPickerComponent {
+    func formFieldDidFinish()
+}
+
 class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    var delegateOption: POptionsPickerComponent?
     var styles: FormFieldStyleModel?
     var textAcceptButton: String?
     var items: [FormFieldOptionsModel] = [] {
@@ -92,6 +97,7 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
         if !self.items.isEmpty {
             let selectedRow = self.picker.selectedRowInComponent(0)
             self.textField?.text = self.items[selectedRow].textOption
+            self.delegateOption?.formFieldDidFinish()
         }
         self.textField?.endEditing(true)
     }
