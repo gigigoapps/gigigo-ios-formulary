@@ -8,10 +8,14 @@
 
 import UIKit
 
+protocol PDatePickerComponent {
+    func formFieldDidFinishDate()
+}
+
 class DatePickerComponent: UIDatePicker {
     
     // Public properties
-    
+    var delegateDate: PDatePickerComponent?
     var textField: UITextField?
     var styles: FormFieldStyleModel?
     var textAcceptButton: String?
@@ -81,6 +85,7 @@ class DatePickerComponent: UIDatePicker {
     @objc private func onDoneTap() {
         self.onDatePickerValueChanged(self.datePicker)
         self.textField?.endEditing(true)
+        self.delegateDate?.formFieldDidFinishDate()
     }
     
     // MARK: - FormDelegate

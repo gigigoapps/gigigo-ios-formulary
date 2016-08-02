@@ -156,4 +156,9 @@ class BooleanFormField: FormField {
         }
         self.buttonAccept.selected = !self.buttonAccept.selected
     }
+    
+    // MARK: UIResponser (Overrride)
+    override func canBecomeFirstResponder() -> Bool {
+        return false
+    }
 }

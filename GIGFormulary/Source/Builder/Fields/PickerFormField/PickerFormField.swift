@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PickerFormField: FormField, POptionsPickerComponent {
+class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var textTextField: UITextField!
@@ -51,7 +51,6 @@ class PickerFormField: FormField, POptionsPickerComponent {
             }
         }
         set {
-          //  self.buttonAccept.selected = fieldValue as! Bool
             if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
                 self.pickerOptions?.selectedIndex = fieldValue as? Int
             }
@@ -100,6 +99,7 @@ class PickerFormField: FormField, POptionsPickerComponent {
             self.pickerDate?.styles = self.formFieldM?.style
             self.pickerDate?.textAcceptButton = self.formFieldM?.textAcceptButton
             self.pickerDate!.initTextField(self.textTextField)
+            self.pickerDate?.delegateDate = self
         }
         self.loadData(self.formFieldM!)
         self.loadMandatory(self.formFieldM!.mandatory)
@@ -132,7 +132,13 @@ class PickerFormField: FormField, POptionsPickerComponent {
     func formFieldDidFinish() {
         self.delegate?.formFieldDidFinish(self)
     }
-        
+    
+    // MARK: PDatePickerComponent
+    
+    func formFieldDidFinishDate() {
+        self.delegate?.formFieldDidFinish(self)
+    }
+    
     // MARK: Load data field
     
     private func loadData(formFieldM: FormFieldModel) {

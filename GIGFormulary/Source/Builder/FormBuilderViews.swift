@@ -64,11 +64,11 @@ class FormBuilderViews: NSObject {
     func changeFocusField(field: FormField?) {
         if (field != nil)
         {
-            if ((field?.canBecomeFirstResponder()) != nil) {
+            if (field?.canBecomeFirstResponder() == true) {
                 field?.becomeFirstResponder()
             }
             else {
-                field?.resignFirstResponder()
+                self.viewContainerFormulary.endEditing(true)
             }
         }
         else

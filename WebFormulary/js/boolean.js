@@ -34,8 +34,8 @@ function saveBooleanField(keyTextField,type,title,error,mandatory,cellColor,titl
     if (mandatory) {
         itemSave["mandatory"] = mandatory
     }   
-    if (textError.length > 0) {
-        itemSave["textError"] = textError
+    if (error.length > 0) {
+        itemSave["textError"] = error
     }               
     if (mandatory) {
         itemSave["validator"] = "bool"

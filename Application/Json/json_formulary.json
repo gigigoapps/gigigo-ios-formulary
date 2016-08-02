@@ -64,6 +64,12 @@
               "key": "a7",
               "type": "text",
               "label": "A"
+              },
+              {
+              "key": "a",
+              "type": "boolean",
+              "label": "a",
+              "textError": "error_generic_field"
               }
               ] 
 }
