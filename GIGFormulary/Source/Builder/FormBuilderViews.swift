@@ -21,6 +21,7 @@ class FormBuilderViews: NSObject {
     var scrollView = UIScrollView()
     var buttonSend = UIButton()
     var viewContainerField = UIView()
+    let notificationCenter = NSNotificationCenter.defaultCenter()
     
     //-- Var --
     var delegate: PFormBuilderViews?
@@ -40,15 +41,15 @@ class FormBuilderViews: NSObject {
         else {
             print("❌❌❌ viewContainerFormulary Not Found")
         }
-
+        
         viewContainerFormulary.removeSubviews()
         
         super.init()
         
         self.prepareFormulary()
+        self.events()
+        self.notifications()
         self.delegate = formController
-        self.buttonSend.addTarget(self, action: #selector(self.buttonAction), forControlEvents: UIControlEvents.TouchUpInside)
-        self.scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hideComponent)))
     }
     
     // MARK : Public Method
@@ -87,28 +88,37 @@ class FormBuilderViews: NSObject {
     
     // MARK : Private Method
     
+    private func notifications() {
+        self.notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
+        self.notificationCenter.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+        // [self.notificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        // [self.notificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    }
+    
+    private func events() {
+        self.buttonSend.addTarget(self, action: #selector(self.buttonAction), forControlEvents: UIControlEvents.TouchUpInside)
+        self.scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hideComponent)))
+    }
+    
     func hideComponent() {
         self.scrollView.endEditing(true)
     }
     
     func prepareFormulary() {
         self.scrollView.addSubview(self.viewFormulary)
-        self.viewContainerFormulary.addSubview(self.scrollView)        
+        self.viewContainerFormulary.addSubview(self.scrollView)
         
         //-- Constraint --
         gig_autoresize(self.viewFormulary, false)
         gig_layout_fit_horizontal(self.viewFormulary);
         gig_layout_top(self.viewFormulary, 0);
         gig_layout_bottom(self.viewFormulary, 0)
+        gig_constrain_width(self.viewFormulary, UIScreen.mainScreen().bounds.size.width);
         
         gig_autoresize(self.scrollView, false)
         gig_layout_fit_horizontal(self.scrollView);
         gig_layout_top(self.scrollView, 0);
         gig_layout_bottom(self.scrollView, 0)
-        
-        // TODO EDU habria q ver como solucionar esta mierda T_T
-         self.scrollView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[viewContainer(==\(self.viewContainerFormulary.frame.width))]|", options: [], metrics: nil, views: ["viewContainer":viewFormulary]))
-        
     }
     
     func addFields(listFields: [FormField]) {
@@ -134,7 +144,24 @@ class FormBuilderViews: NSObject {
         }
         
         if (self.viewContainerField.subviews.count > 0) {
-             gig_layout_bottom(lastView, 0);
+            gig_layout_bottom(lastView, 0);
         }
+    }
+    
+    // MARK:  NOTIFICATIONS
+    
+    func keyboardWillShow(notification: NSNotification) {
+        let dict:NSDictionary = notification.userInfo! as NSDictionary
+        let s:NSValue = dict.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardFrame :CGRect = s.CGRectValue()
+        UIView.animateWithDuration(0.25) {
+            self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.size.height, 0);
+            self.scrollView.scrollIndicatorInsets = self.scrollView.contentInset;
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        self.scrollView.contentInset = UIEdgeInsetsZero;
+        self.scrollView.scrollIndicatorInsets = self.scrollView.contentInset;
     }
 }

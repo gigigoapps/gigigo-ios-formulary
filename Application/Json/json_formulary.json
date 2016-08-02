@@ -19,6 +19,34 @@
               "placeHolder": "error_way2"
               },
               {
+              "key": "a21",
+              "type": "text",
+              "label": "error_way2",
+              "textError": "error_way2",
+              "placeHolder": "error_way2"
+              },
+              {
+              "key": "a22",
+              "type": "text",
+              "label": "error_way2",
+              "textError": "error_way2",
+              "placeHolder": "error_way2"
+              },
+              {
+              "key": "a23",
+              "type": "text",
+              "label": "error_way2",
+              "textError": "error_way2",
+              "placeHolder": "error_way2"
+              },
+              {
+              "key": "a2",
+              "type": "text",
+              "label": "error_way2",
+              "textError": "error_way2",
+              "placeHolder": "error_way2"
+              },
+              {
               "key": "a3",
               "type": "picker",
               "label": "error_way",
@@ -70,6 +98,13 @@
               "type": "boolean",
               "label": "a",
               "textError": "error_generic_field"
+              },
+              {
+              "key": "a21",
+              "type": "text",
+              "label": "error_way2",
+              "textError": "error_way2",
+              "placeHolder": "error_way2"
               }
               ] 
 }
