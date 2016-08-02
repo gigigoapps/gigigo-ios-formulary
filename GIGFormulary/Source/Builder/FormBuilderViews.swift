@@ -26,27 +26,15 @@ class FormBuilderViews: NSObject {
     //-- Var --
     var delegate: PFormBuilderViews?
     
+    // MARK: Init
+    
     init(viewContainerFormulary: UIView, formController: FormController) {
         self.viewContainerFormulary = viewContainerFormulary
-        if (viewContainerFormulary.subviews.count > 0) {
-            self.viewFormulary = viewContainerFormulary.subviews[0]
-            if (self.viewFormulary.subviews.count > 1) {
-                self.viewContainerField = self.viewFormulary.subviews[1]
-                self.buttonSend = self.viewFormulary.subviews[2] as! UIButton
-            }
-            else {
-                print("❌❌❌ ViewFormFields or Button send Not Found. Create this in StoryBoard")
-            }
-        }
-        else {
-            print("❌❌❌ viewContainerFormulary Not Found")
-        }
-        
-        viewContainerFormulary.removeSubviews()
         
         super.init()
         
         self.prepareFormulary()
+        self.initializeConstraints()
         self.events()
         self.notifications()
         self.delegate = formController
@@ -88,11 +76,27 @@ class FormBuilderViews: NSObject {
     
     // MARK : Private Method
     
+    private func prepareFormulary() {
+        if (self.viewContainerFormulary.subviews.count > 0) {
+            self.viewFormulary = self.viewContainerFormulary.subviews[0]
+            if (self.viewFormulary.subviews.count > 1) {
+                self.viewContainerField = self.viewFormulary.subviews[1]
+                self.buttonSend = self.viewFormulary.subviews[2] as! UIButton
+            }
+            else {
+                print("❌❌❌ ViewFormFields or Button send Not Found. Create this in StoryBoard")
+            }
+        }
+        else {
+            print("❌❌❌ viewContainerFormulary Not Found")
+        }
+        
+        self.viewContainerFormulary.removeSubviews()
+    }
+    
     private func notifications() {
         self.notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         self.notificationCenter.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
-        // [self.notificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-        // [self.notificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
     
     private func events() {
@@ -104,17 +108,17 @@ class FormBuilderViews: NSObject {
         self.scrollView.endEditing(true)
     }
     
-    func prepareFormulary() {
+    private func initializeConstraints() {
         self.scrollView.addSubview(self.viewFormulary)
         self.viewContainerFormulary.addSubview(self.scrollView)
-        
+    
         //-- Constraint --
         gig_autoresize(self.viewFormulary, false)
         gig_layout_fit_horizontal(self.viewFormulary);
         gig_layout_top(self.viewFormulary, 0);
         gig_layout_bottom(self.viewFormulary, 0)
         gig_constrain_width(self.viewFormulary, UIScreen.mainScreen().bounds.size.width);
-        
+    
         gig_autoresize(self.scrollView, false)
         gig_layout_fit_horizontal(self.scrollView);
         gig_layout_top(self.scrollView, 0);
