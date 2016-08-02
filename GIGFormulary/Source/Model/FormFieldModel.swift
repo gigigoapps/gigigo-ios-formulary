@@ -48,7 +48,7 @@ class FormFieldModel: NSObject {
             print("❌❌❌ key Not Found")
             throw ThrowError.MandatoryElementNotFound
         }
-        
+    
         //-- Optional --
         let placeHolder = json["placeHolder"] as? String
         let mandatory = json["mandatory"] as? Bool
@@ -66,7 +66,7 @@ class FormFieldModel: NSObject {
         //== INSERT DATA ==
         //-- Mandatory--
         self.type = type
-        self.label = label
+        self.label = NSLocalizedString(label, comment: "")
         self.key = key
         
         //-- Optional--
@@ -77,7 +77,7 @@ class FormFieldModel: NSObject {
             self.textError = NSLocalizedString("error_generic_field", tableName: nil, bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "error_generic_field")
         }
         if (placeHolder != nil) {
-            self.placeHolder = placeHolder
+            self.placeHolder = NSLocalizedString(placeHolder!, comment: "")
         }
         if (mandatory != nil) {
             self.mandatory = mandatory!

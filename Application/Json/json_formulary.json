@@ -1,123 +1,49 @@
 {
     "fields":[
               {
-              "key": "apellido",
-              "type": "text",
-              "label": "apellido del user",
+              "key": "error_way",
+              "type": "boolean",
+              "label": "error_way",
+              "textError": "error_way",
+              "mandatory": true,
+              "validator": "bool",
               "style": {
-              "mandatoryIcon":"chackBoxOn",
-              "backgroundColorField": "#93b7ff",
-              "titleColor": "#7fff72",
-              "errorColor": "#c51eff",
-              "align": "alignRight"
+              "mandatoryIcon": "checkBoxAppOff",
+              "checkBox": {
+              "checkBoxOn": "checkBoxAppOn",
+              "checkBoxOff": "checkBoxAppOff"
+              }
               }
               },
               {
-              "key": "clave guay",
-              "type": "picker",
-              "label": "titulo guay",
+              "key": "error_way",
+              "mandatory": true,
+              "type": "text",
+              "label": "error_way",
               "textError": "error_way",
-              "style": {
-              "backgroundColorField": "#93b7ff",
-              "titleColor": "#7fff72",
-              "errorColor": "#c51eff",
-              "align": "alignRight"
+              "placeHolder": "error_way"
               },
+              {
+              "key": "error_way",
+              "type": "picker",
+              "label": "error_way",
+              "textError": "error_way",
               "mandatory": true,
               "listOptions": [
                               {
                               "key": "KeyNoSelected",
-                              "value": "elige un elemento"
-                              },
-                              {
-                              "key": "clave1",
-                              "value": "titulo primer elemento"
+                              "value": "error_way"
                               }
-                              ]
+                              ],
+              "textAcceptButton": "error_way"
               },
               {
-              "key": "nombre",
-              "type": "text",
-              "label": "nombre user tipo texto",
-              "mandatory": true,
-              "placeHolder": "nombre del usuario",
-              "style": {
-              "mandatoryIcon":"chackBoxOn",
-              "backgroundColorField": "#93b7ff",
-              "titleColor": "#7fff72",
-              "errorColor": "#c51eff",
-              "align": "alignRight"
-              }
-              },
-              {
-              "key": "telefono",
-              "type": "text",
-              "label": "telefono del usuario",
-              "keyboard": "FormKeyboardTypeNumbers",
-              "style": {
-              "mandatoryIcon":"chackBoxOn",
-              "backgroundColorField": "#93b7ff",
-              "titleColor": "#7fff72",
-              "errorColor": "#c51eff",
-              "align": "alignRight"
-              }
-              },
-              {
-              "key": "salmon",
-              "type": "text",
-              "label": "salmon del user",
-              "style": {
-              "mandatoryIcon":"chackBoxOn",
-              "backgroundColorField": "#93b7ff",
-              "titleColor": "#7fff72",
-              "errorColor": "#c51eff",
-              "align": "alignRight"
-              }
-              },
-              {
-              "key": "edad",
+              "key": "error_way",
               "type": "datePicker",
-              "label": "edad del usuario",
-              "textError": "error_generic_field",
+              "label": "error_way",
+              "textError": "error_way",
               "mandatory": true,
-              "style": {
-              "mandatoryIcon":"checkBoxAppOn",
-              "backgroundColorField": "#93b7ff",
-              "titleColor": "#7fff72",
-              "errorColor": "#c51eff",
-              "align": "alignRight"
-              }
-              },
-              {
-              "key": "terminos",
-              "type": "boolean",
-              "label": "acepte terminos y condiciones",
-              "textError": "error_generic_field",
-              "mandatory": true,
-              "validator": "bool",
-              "style": {
-              "mandatoryIcon":"chackBoxOn",
-              "backgroundColorField": "#93b7ff",
-              "titleColor": "#7fff72",
-              "errorColor": "#c51eff",
-              "align": "alignRight",
-              "checkBox": {
-                    "checkBoxOn":"checkBoxAppOn",
-                    "checkBoxOff":"checkBoxAppOff"
-                }
-              }
-              },
-              {
-              "key": "perro",
-              "type": "text",
-              "label": "perro del user",
-              "style": {
-              "mandatoryIcon":"chackBoxOn",
-              "backgroundColorField": "#93b7ff",
-              "titleColor": "#7fff72",
-              "errorColor": "#c51eff",
-              "align": "alignRight"
-              }
+              "textAcceptButton": "error_way"
               }
               ] 
 }

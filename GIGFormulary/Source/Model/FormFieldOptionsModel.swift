@@ -50,7 +50,7 @@ class FormFieldOptionsModel: NSObject {
         //== INSERT DATA ==
         //-- Mandatory--
         activity.idOption = key
-        activity.textOption = value
+        activity.textOption = NSLocalizedString(value, comment: "")
 
         return activity
     }

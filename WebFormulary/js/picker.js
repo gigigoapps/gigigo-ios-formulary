@@ -15,7 +15,7 @@ function removeContainerPicker(idContainerPicker) {
 }
 
 //-- PICKER YA CREADO SOLO MOSTRAR --
-function createPickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font) {
+function createPickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory) {
     var valueCheck = ""
     if (mandatory) {
         valueCheck = "checked"
@@ -26,8 +26,9 @@ function createPickerField(keyTextField,title,error,mandatory,cellColor,titleCol
     var htmlFontSize = getStyleSize (sizeTitle, sizeError);
     var htmlColorPicker = getStyleColorPicker (aceptColor,containerAceptColor,backgroundPickerColor);
     var htmlAlingFont = getAlignFont(align,font)
+    var htmlImages = recoverHtmlImageMandatory(imageMandatory)
 
-    var styles = htmlFontSize + htmlColorBasic + htmlAlingFont + htmlColorPicker;
+    var styles = htmlFontSize + htmlColorBasic + htmlAlingFont + htmlImages + htmlColorPicker;
 
     //-- Create options fields --
     var htmlPickerItems = '';
@@ -46,7 +47,7 @@ function createPickerField(keyTextField,title,error,mandatory,cellColor,titleCol
     resetTypeField();
 }
 
-function savePickerField(keyTextField,type,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font) {
+function savePickerField(keyTextField,type,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory) {
     
     //-- MANDATORY FIELDS --
     var listOptions = [];
@@ -78,7 +79,7 @@ function savePickerField(keyTextField,type,title,error,mandatory,cellColor,title
         itemSave["textAcceptButton"] = acceptButtonTextField
     }  
 
-    var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,align,font);
+    var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,align,font,imageMandatory,"","");
     if (styles != null) {
         itemSave["style"] = styles
     }    

@@ -91,6 +91,7 @@ class BooleanFormField: FormField {
         self.mandotoryImage.image = UIImage(named: "mandatoryIcon", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
         self.checkBoxOn = UIImage(named: "chackBoxOn", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
         self.checkBoxOff = UIImage(named: "checkBox", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+        self.buttonAccept.setBackgroundImage(self.checkBoxOff, forState: UIControlState.Normal)
     }
     
     // MARK: Load data field

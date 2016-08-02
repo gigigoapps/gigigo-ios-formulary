@@ -49,13 +49,13 @@
             color: white;
             float: right;
             font-size: 49px;
-            height: 364px;
+            height: 414px;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonAdd p{
-                margin-top: 150px;
+                margin-top: 170px;
             }
             .buttonAdd:hover {
                 background-color: skyblue;
@@ -492,10 +492,10 @@
     margin-left: 12px;
 }
 .buttonAddPicker {
-    height: 508px;
+    height: 559px;
 }
     .buttonAddPicker p {
-        margin-top: 217px;
+        margin-top: 247px;
     }
     
 .withOutStyle{
@@ -526,7 +526,7 @@
     height: 205px;
 }
 .buttonRemoveText {
-    height: 366px;
+    height: 390px;
 }
     .buttonRemoveText p {
         margin-top: 150px;
@@ -612,6 +612,24 @@
         width: auto;
     }
 
+.imagesZone {
+    float: left;
+    height: 51px;
+    margin-left: 21px;
+    width: 100%;
+}
+    .imagesZone p {
+        float: left;
+        margin-top: 15px;
+    }
+    .imagesZone input {
+        float: left;
+        height: 25px;
+        margin-left: 12px;
+        margin-right: 10px;
+        margin-top: 13px;
+        width: 90px;
+    }
 
 
 
