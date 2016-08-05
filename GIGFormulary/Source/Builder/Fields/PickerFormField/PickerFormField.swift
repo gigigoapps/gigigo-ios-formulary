@@ -47,15 +47,17 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
                     dateFormatter.dateFormat = "dd-MM-yyyy"
                     return dateFormatter.stringFromDate(self.pickerDate!.dateSelected!)
                 }
-                return self.pickerDate!.dateSelected
+                return ""
             }
         }
         set {
             if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
-                self.pickerOptions?.selectedIndex = fieldValue as? Int
+                self.pickerOptions?.selectedIndex = newValue as? Int
             }
             else {
-               // self.pickerDate?.dateSelected // TODO EDU falta meter aqui el valor de tipo DATE
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "dd-MM-yyyy"
+                self.pickerDate?.dateSelected = dateFormatter.dateFromString(newValue! as! String)
             }
         }
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PFormController {
-    func recoverFormModel(formValues: [String: String])
+    func recoverFormModel(formValues: [String: AnyObject])
 }
 
 class FormController: NSObject, PFormField, PFormBuilderViews {
@@ -21,7 +21,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     
     // VAR
     var formFields = [FormField]()
-    var formValues = [String: String]()
+    var formValues = [String: AnyObject]()
     
     init(viewContainerFormulary: UIView) {
         super.init()
@@ -37,13 +37,17 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         self.formViews!.updateFormularyContent(self.formFields)
     }
     
-    func populateData(values: [String:String]) {
-        /*
-            [fieldValues enumerateWithBlock:^(NSString *fieldTag, id value) {
-                RCOFormField *field = [self fieldWithTag:fieldTag];
-                field.fieldValue = value;
-            }];
-        */
+    func populateData(values: [String:AnyObject]) {
+        var _ = values.map {key, value -> [String: AnyObject] in
+            var _ = self.formFields.map { formField -> FormField in
+                if (formField.formFieldM?.key == key) {
+                    formField.fieldValue = value
+                    self.formValues[key] = value as? String
+                }
+                return formField
+            }
+            return [key: value]
+        }
     }
     
     // MARK: Private Method
@@ -62,7 +66,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         var valid = true
         for field in self.formFields {
             valid = field.validate()
-            self.formValues["\(field.formFieldM!.key!)"] = field.fieldValue as? String
+            self.formValues["\(field.formFieldM!.key!)"] = field.fieldValue
         }
         return valid
     }

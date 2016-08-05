@@ -17,16 +17,16 @@ class ViewController: UIViewController, PFormulary {
         let formulary = Formulary.shared
         formulary.start(self.view, jsonFile: "json_formulary.json")
         formulary.delegate = self
-        
+
         
         //-- Case: Populate data --
-        let dic = ["user":"eduardo"]
+        let dic = ["a1":"eduardo"]
         formulary.populateData(dic)
     }
     
     // MARK: PFormController
     
-    func recoverFormModel(formValues: [String : String]) {
+    func recoverFormModel(formValues: [String : AnyObject]) {
         
     }
 }

@@ -1,110 +1,12 @@
 {
     "fields":[
               {
-              "key": "a1",
-              "type": "text",
-              "label": "error_way",
-              "textError": "error_way",
-              "placeHolder": "error_way",
-              "style": {
-              "backgroundColorField": "#2efff7",
-              "align": "alignCenter"
-              }
-              },
-              {
-              "key": "a2",
-              "type": "text",
-              "label": "error_way2",
-              "textError": "error_way2",
-              "placeHolder": "error_way2"
-              },
-              {
-              "key": "a21",
-              "type": "text",
-              "label": "error_way2",
-              "textError": "error_way2",
-              "placeHolder": "error_way2"
-              },
-              {
-              "key": "a22",
-              "type": "text",
-              "label": "error_way2",
-              "textError": "error_way2",
-              "placeHolder": "error_way2"
-              },
-              {
-              "key": "a23",
-              "type": "text",
-              "label": "error_way2",
-              "textError": "error_way2",
-              "placeHolder": "error_way2"
-              },
-              {
-              "key": "a2",
-              "type": "text",
-              "label": "error_way2",
-              "textError": "error_way2",
-              "placeHolder": "error_way2"
-              },
-              {
-              "key": "a3",
-              "type": "picker",
-              "label": "error_way",
-              "textError": "error_way",
-              "mandatory": true,
-              "listOptions": [
-                              {
-                              "key": "KeyNoSelected",
-                              "value": "error_way"
-                              },
-                              {
-                              "key": "clave1",
-                              "value": "error_way"
-                              },
-                              {
-                              "key": "clave2",
-                              "value": "error_way2"
-                              }
-                              ],
-              "textAcceptButton": "error_way"
-              },
-              {
-              "key": "a4",
-              "type": "datePicker",
-              "label": "error_way",
-              "textError": "error_way",
-              "mandatory": false,
-              "textAcceptButton": "error_way",
-              "minAge": 2,
-              "validator": "age"
-              },
-              {
-              "key": "a5",
-              "type": "text",
-              "label": "error_way"
-              },
-              {
-              "key": "a6",
-              "type": "text",
-              "label": "error_way"
-              },
-              {
-              "key": "a7",
-              "type": "text",
-              "label": "A"
-              },
-              {
-              "key": "a",
+              "key": "xxx",
               "type": "boolean",
-              "label": "a",
-              "textError": "error_generic_field"
-              },
-              {
-              "key": "a21",
-              "type": "text",
-              "label": "error_way2",
-              "textError": "error_way2",
-              "placeHolder": "error_way2"
+              "label": "xxx",
+              "mandatory": true,
+              "textError": "error_generic_field",
+              "validator": "bool"
               }
               ] 
 }

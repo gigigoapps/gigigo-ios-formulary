@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol PFormulary {
-    func recoverFormModel(formValues: [String: String])
+    func recoverFormModel(formValues: [String: AnyObject])
 }
 
 public class Formulary: PFormController {
@@ -33,7 +33,7 @@ public class Formulary: PFormController {
     
     // MARK: PFormulary
 
-    public func recoverFormModel(formValues: [String : String]) {
+    public func recoverFormModel(formValues: [String : AnyObject]) {
         self.delegate?.recoverFormModel(formValues)
     }
 }

@@ -69,7 +69,7 @@ class TextFormField: FormField, UITextFieldDelegate {
             return self.textTextField.text?.characters.count > 0 ? self.textTextField.text : nil
         }
         set {
-            self.textTextField.text = "\(self.fieldValue)"
+            self.textTextField.text = "\(newValue!)"
         }
     }
     

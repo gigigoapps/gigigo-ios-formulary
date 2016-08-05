@@ -64,7 +64,7 @@ class BooleanFormField: FormField {
             return self.buttonAccept.selected
         }
         set {
-            self.buttonAccept.selected = fieldValue as! Bool
+            self.buttonAccept.selected = newValue as! Bool
         }
     }
     
