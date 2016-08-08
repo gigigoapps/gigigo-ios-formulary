@@ -1,48 +1,20 @@
 {
     "fields":[
               {
-              "key": "name",
+              "key": "zxc",
               "type": "text",
-              "label": "nombre:",
-              "placeHolder": "nombre del usuario",
-              "value": "eduardo parada"
-              },
-              {
-              "key": "genre",
-              "type": "picker",
-              "label": "Genero:",
-              "value": "male",
-              "listOptions": [
-                              {
-                              "key": "KeyNoSelected",
-                              "value": "Selecciona un género"
-                              },
-                              {
-                              "key": "male",
-                              "value": "masculino"
-                              },
-                              {
-                              "key": "female",
-                              "value": "femenino"
-                              }
-                              ],
-              "textError": "error_generic_field"
-              },
-              {
-              "key": "age",
-              "type": "datePicker",
-              "label": "edad",
-              "textError": "error_generic_field",
-              "mandatory": true,
-              "value": "01/08/2012"
-              },
-              {
-              "key": "terms",
-              "type": "boolean",
-              "label": "Términos",
-              "textError": "error_generic_field",
-              "mandatory": true,
-              "validator": "bool"
+              "label": "zcxz",
+              "textError": "czxc",
+              "placeHolder": "zxczx",
+              "style": {
+              "backgroundColorField": "#3b75ff",
+              "titleColor": "#ff5d40",
+              "errorColor": "#42ff41",
+              "sizeTitle": 18,
+              "sizeError": 18,
+              "align": "alignLeft",
+              "font": "AppleSDGothicNeo-Regular"
+              }
               }
               ] 
 }

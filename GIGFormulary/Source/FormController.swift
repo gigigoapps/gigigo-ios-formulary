@@ -66,7 +66,8 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         var valid = true
         for field in self.formFields {
             valid = field.validate()
-            self.formValues["\(field.formFieldM!.key!)"] = field.fieldValue
+            let value = field.fieldValue as? String
+            self.formValues["\(field.formFieldM!.key!)"] =  (value != nil) ? value : ""
         }
         return valid
     }

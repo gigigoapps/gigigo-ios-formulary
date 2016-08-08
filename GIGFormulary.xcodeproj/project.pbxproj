@@ -76,6 +76,13 @@
 			remoteGlobalIDString = 7BB82EF11D4B5DB800DC85F5;
 			remoteInfo = GIGFormulary;
 		};
+		7BE37D551D58AC0D0084FE0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BB82EE91D4B5DB800DC85F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BB82EF11D4B5DB800DC85F5;
+			remoteInfo = GIGFormulary;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -484,6 +491,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7BE37D561D58AC0D0084FE0E /* PBXTargetDependency */,
 			);
 			name = DemoApp;
 			productName = Application;
@@ -636,6 +644,11 @@
 			isa = PBXTargetDependency;
 			target = 7BB82EF11D4B5DB800DC85F5 /* GIGFormulary */;
 			targetProxy = 7BB82EFE1D4B5DB800DC85F5 /* PBXContainerItemProxy */;
+		};
+		7BE37D561D58AC0D0084FE0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7BB82EF11D4B5DB800DC85F5 /* GIGFormulary */;
+			targetProxy = 7BE37D551D58AC0D0084FE0E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

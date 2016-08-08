@@ -66,7 +66,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     override internal var fieldValue: AnyObject? {
         get {
-            return self.textTextField.text?.characters.count > 0 ? self.textTextField.text : "" // TODO EDU creo q esto no vale para nada
+            return self.textTextField.text?.characters.count > 0 ? self.textTextField.text : nil
         }
         set {
             self.textTextField.text = "\(newValue!)"

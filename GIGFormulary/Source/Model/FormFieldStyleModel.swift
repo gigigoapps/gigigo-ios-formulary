@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GIGLibrary
 
 class FormFieldStyleModel: NSObject {
     
@@ -40,28 +41,29 @@ class FormFieldStyleModel: NSObject {
 
         //== INSERT DATA ==
         if (backgroundColorField != nil) {
-            self.backgroundColorField = self.stringToHexColor(backgroundColorField!)
+            self.backgroundColorField = UIColor(fromHexString: backgroundColorField!)
+    
         }
         if (titleColor != nil) {
-            self.titleColor = self.stringToHexColor(titleColor!)
+            self.titleColor = UIColor(fromHexString: titleColor!)
         }
         if (errorColor != nil) {
-            self.errorColor = self.stringToHexColor(errorColor!)
+            self.errorColor = UIColor(fromHexString: errorColor!)
         }
         if (acceptColorPicker != nil) {
-            self.acceptColorPicker = self.stringToHexColor(acceptColorPicker!)
+            self.acceptColorPicker = UIColor(fromHexString: acceptColorPicker!)
         }
         else {
             self.acceptColorPicker = UIColor.blackColor()
         }
         if (containerAcceptColorPicker != nil) {
-            self.containerAcceptColorPicker = self.stringToHexColor(containerAcceptColorPicker!)
+            self.containerAcceptColorPicker = UIColor(fromHexString: containerAcceptColorPicker!)
         }
         else {
             self.containerAcceptColorPicker = UIColor.grayColor()
         }
         if (backgroundPickerColorPicker != nil) {
-            self.backgroundPickerColorPicker = self.stringToHexColor(backgroundPickerColorPicker!)
+            self.backgroundPickerColorPicker = UIColor(fromHexString: backgroundPickerColorPicker!)
         }
         else {
             self.containerAcceptColorPicker = UIColor.grayColor()
@@ -111,33 +113,5 @@ class FormFieldStyleModel: NSObject {
                 self.checkBoxOff = UIImage(named: checkBoxOff!)
             }
         }
-    }
-    
-    // MARK: Private Method
-    
-    private func stringToHexColor(hexString: String) -> UIColor? {  // TODO EDU , esto habria que meterlo en la gigLib
-        let hexStringAlpha = "\(hexString)FF"
-        let r, g, b, a: CGFloat
-        
-        if hexStringAlpha.hasPrefix("#") {
-            let start = hexStringAlpha.startIndex.advancedBy(1)
-            let hexColor = hexStringAlpha.substringFromIndex(start)
-            
-            if hexColor.characters.count == 8 {
-                let scanner = NSScanner(string: hexColor)
-                var hexNumber: UInt64 = 0
-                
-                if scanner.scanHexLongLong(&hexNumber) {
-                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
-                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
-                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
-                    a = CGFloat(hexNumber & 0x000000ff) / 255
-                    
-                    return UIColor.init(red: r, green: g, blue: b, alpha: a)
-                }
-            }
-        }
-        
-        return nil
     }
 }
