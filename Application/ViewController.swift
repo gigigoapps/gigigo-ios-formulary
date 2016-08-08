@@ -20,8 +20,8 @@ class ViewController: UIViewController, PFormulary {
 
         
         //-- Case: Populate data --
-        let dic = ["a1":"eduardo"]
-        formulary.populateData(dic)
+        //let dic = ["a1":"eduardo"]
+        //formulary.populateData(dic)
     }
     
     // MARK: PFormController

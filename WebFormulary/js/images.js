@@ -7,11 +7,23 @@ function getHtmlAllImage() {
 }
 
 function recoverHtmlImageMandatory(imageMandatory) {
-	return '<div class="imagesZone"><p>Imagen obligatorio:</p><input id="imageMandatory"type="text"name="element" disabled readonly value="'+imageMandatory+'"></div>';
+
+    var htmlImage =  '<div class="imagesZone withOutStyle2"><p>Sin estilo de imagenes</p></div>';
+    if (imageMandatory != "") {
+		htmlImage = '<div class="imagesZone"><p>Imagen obligatorio:</p><input id="imageMandatory"type="text"name="element" disabled readonly value="'+imageMandatory+'"></div>';
+	}
+
+	return htmlImage
 }
 
 function recoverHtmlAllImage(imageMandatory,imageCheckBoxOn,imageCheckBoxOff) {
-	return '<div class="imagesZone"><p>Imagen obligatorio:</p><input id="imageMandatory"type="text"name="element" disabled readonly value="'+imageMandatory+'"><p>Imagen checkBox On:</p><input id="imageCheckBoxOn"type="text"name="element" disabled readonly value="'+imageCheckBoxOn+'"><p>Imagen checkBox Off:</p><input id="imageCheckBoxOff"type="text"name="element" disabled readonly value="'+imageCheckBoxOff+'"></div>';
+
+    var htmlImage =  '<div class="imagesZone withOutStyle2"><p>Sin estilo de imagenes</p></div>';
+    if (imageMandatory != "" || imageCheckBoxOn != "" || imageCheckBoxOff != "") {
+		htmlImage = '<div class="imagesZone"><p>Imagen obligatorio:</p><input id="imageMandatory"type="text"name="element" disabled readonly value="'+imageMandatory+'"><p>Imagen checkBox On:</p><input id="imageCheckBoxOn"type="text"name="element" disabled readonly value="'+imageCheckBoxOn+'"><p>Imagen checkBox Off:</p><input id="imageCheckBoxOff"type="text"name="element" disabled readonly value="'+imageCheckBoxOff+'"></div>';
+	}
+
+	return htmlImage
 }
 
 

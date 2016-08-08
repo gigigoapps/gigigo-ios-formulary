@@ -26,7 +26,7 @@ function createDatePickerField(keyTextField,title,error,mandatory,cellColor,titl
     resetTypeField();
 }
 
-function saveDatePickerField(keyTextField,type,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer,align,font,imageMandatory) {
+function saveDatePickerField(keyTextField,type,title,textError,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer,align,font,imageMandatory) {
     
     //-- MANDATORY FIELDS --
 

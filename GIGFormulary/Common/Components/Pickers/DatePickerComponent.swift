@@ -33,13 +33,16 @@ class DatePickerComponent: UIDatePicker {
         }
     }
     
-    // Private properties
+    // MARK: Private properties
+   
     private let datePicker = UIDatePicker()
     private var dateFormatter: NSDateFormatter {
         let formatter = NSDateFormatter()
-        formatter.setLocalizedDateFormatFromTemplate("ddMMyyyy")
+        formatter.setLocalizedDateFormatFromTemplate("dd/MM/yyyy")
         return formatter
     }
+    
+    // MARK: Public Method
     
     func initTextField(textField: UITextField) {
         self.textField = textField
@@ -47,11 +50,19 @@ class DatePickerComponent: UIDatePicker {
         self.setupDoneToolbar()
     }
     
+    func populateData(value: AnyObject?) {
+        if (value != nil) {
+            let dateValue = value as! String
+            self.dateSelected = self.dateFormatter.dateFromString(dateValue)            
+        }
+    }
+    
     // MARK - Private Helpers
     
     private func setupDatePicker() {
         self.datePicker.datePickerMode = UIDatePickerMode.Date
         self.datePicker.maximumDate = NSDate()
+        self.datePicker.locale = NSLocale(localeIdentifier: "es_ES")
         self.datePicker.addTarget(
             self,
             action: #selector(onDatePickerValueChanged),
@@ -87,13 +98,4 @@ class DatePickerComponent: UIDatePicker {
         self.textField?.endEditing(true)
         self.delegateDate?.formFieldDidFinishDate()
     }
-    
-    // MARK: - FormDelegate
-    
-    func formUserDidTapGo() {}
-    
-    func formUserBeginEditingTap(sender: FormField) {
-        self.textField!.text = "10/29/29999"
-    }
-
 }

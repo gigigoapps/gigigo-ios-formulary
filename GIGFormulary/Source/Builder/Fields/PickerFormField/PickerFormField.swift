@@ -43,9 +43,9 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
             }
             else {
                 if (self.pickerDate!.dateSelected != nil) {
-                    let dateFormatter = NSDateFormatter()
-                    dateFormatter.dateFormat = "dd-MM-yyyy"
-                    return dateFormatter.stringFromDate(self.pickerDate!.dateSelected!)
+                    let formatter = NSDateFormatter()
+                    formatter.setLocalizedDateFormatFromTemplate("dd/MM/yyyy")
+                    return formatter.stringFromDate(self.pickerDate!.dateSelected!)
                 }
                 return ""
             }
@@ -56,7 +56,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
             }
             else {
                 let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "dd-MM-yyyy"
+                dateFormatter.dateFormat = "dd/MM/yyyy"
                 self.pickerDate?.dateSelected = dateFormatter.dateFromString(newValue! as! String)
             }
         }
@@ -94,6 +94,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
             self.pickerOptions?.textAcceptButton = self.formFieldM?.textAcceptButton
             self.pickerOptions!.initTextField(self.textTextField)
             self.pickerOptions!.items = self.formFieldM!.options!
+            self.pickerOptions?.populateData(self.formFieldM!.value)
             self.pickerOptions?.delegateOption = self
         }
         else {
@@ -101,6 +102,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
             self.pickerDate?.styles = self.formFieldM?.style
             self.pickerDate?.textAcceptButton = self.formFieldM?.textAcceptButton
             self.pickerDate!.initTextField(self.textTextField)
+            self.pickerDate?.populateData(self.formFieldM?.value)
             self.pickerDate?.delegateDate = self
         }
         self.loadData(self.formFieldM!)

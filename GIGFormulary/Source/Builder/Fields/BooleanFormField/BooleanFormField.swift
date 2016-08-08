@@ -99,6 +99,9 @@ class BooleanFormField: FormField {
     private func loadData(formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label
         self.errorLabel.text = formFieldM.textError
+        if (formFieldM.value != nil && (formFieldM.value as? Bool)!) {
+            self.changeState()
+        }
     }
     
     private func loadMandatory(isMandatory: Bool) {
@@ -144,10 +147,7 @@ class BooleanFormField: FormField {
         }
     }
     
-    
-    // MARK: Actions
-    
-    @IBAction func actionButtonAccept(sender: AnyObject) {
+    private func changeState() {
         if (self.buttonAccept.selected) {
             self.buttonAccept.setBackgroundImage(self.checkBoxOff, forState: UIControlState.Normal)
         }
@@ -155,6 +155,12 @@ class BooleanFormField: FormField {
             self.buttonAccept.setBackgroundImage(self.checkBoxOn, forState: UIControlState.Selected)
         }
         self.buttonAccept.selected = !self.buttonAccept.selected
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func actionButtonAccept(sender: AnyObject) {
+        self.changeState()
     }
     
     // MARK: UIResponser (Overrride)

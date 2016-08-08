@@ -66,7 +66,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     override internal var fieldValue: AnyObject? {
         get {
-            return self.textTextField.text?.characters.count > 0 ? self.textTextField.text : nil
+            return self.textTextField.text?.characters.count > 0 ? self.textTextField.text : "" // TODO EDU creo q esto no vale para nada
         }
         set {
             self.textTextField.text = "\(newValue!)"
@@ -103,6 +103,9 @@ class TextFormField: FormField, UITextFieldDelegate {
         self.titleLabel.text = formFieldM.label
         self.textTextField.placeholder = formFieldM.placeHolder
         self.errorLabel.text = formFieldM.textError
+        if (self.formFieldM?.value != nil) {
+            self.textTextField.text = self.formFieldM?.value as? String
+        }
     }
     
     private func loadMandatory(isMandatory: Bool) {

@@ -48,6 +48,21 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
         self.setupDoneToolbar()
     }
     
+    func populateData(value: AnyObject?) {
+        if (value != nil) {
+            let key = value as! String
+            
+            var index = 0
+            for item in self.items {
+                if (item.idOption == key) {
+                    break
+                }
+                index += 1
+            }
+            self.selectedIndex = index
+        }
+    }
+    
     // MARK: DataSource
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
