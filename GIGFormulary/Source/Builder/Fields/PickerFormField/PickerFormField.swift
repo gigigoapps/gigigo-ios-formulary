@@ -25,7 +25,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.awakeFromNib(frame, classField: self.dynamicType)
+        self.awakeFromNib(frame, classField: type(of: self))
         self.initializeView()
     }
     
@@ -43,11 +43,11 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
             }
             else {
                 if (self.pickerDate!.dateSelected != nil) {
-                    let formatter = NSDateFormatter()
+                    let formatter = DateFormatter()
                     formatter.setLocalizedDateFormatFromTemplate("dd/MM/yyyy")
-                    return formatter.stringFromDate(self.pickerDate!.dateSelected!)
+                    return formatter.string(from: self.pickerDate!.dateSelected! as Date) as AnyObject?
                 }
-                return ""
+                return "" as AnyObject?
             }
         }
         set {
@@ -55,34 +55,34 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
                 self.pickerOptions?.selectedIndex = newValue as? Int
             }
             else {
-                let dateFormatter = NSDateFormatter()
+                let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "dd/MM/yyyy"
-                self.pickerDate?.dateSelected = dateFormatter.dateFromString(newValue! as! String)
+                self.pickerDate?.dateSelected = dateFormatter.date(from: newValue! as! String)
             }
         }
     }
     
     // MARK: Private Method
     
-    private func initializeView() {
+    fileprivate func initializeView() {
         self.titleLabel.numberOfLines = 0
         self.errorLabel.numberOfLines = 0
-        self.mandotoryImage.image = UIImage(named: "mandatoryIcon", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+        self.mandotoryImage.image = UIImage(named: "mandatoryIcon", in: Bundle(for: type(of: self)), compatibleWith: nil)
     }
     
-    private func showError() {
-        UIView.animateWithDuration(0.5) {
+    fileprivate func showError() {
+        UIView.animate(withDuration: 0.5, animations: {
             self.errorLabel.sizeToFit()
             self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
             self.layoutIfNeeded()
-        }
+        }) 
     }
     
-    private func hideError() {
-        UIView.animateWithDuration(0.5) {
+    fileprivate func hideError() {
+        UIView.animate(withDuration: 0.5, animations: {
             self.heightErrorLabelConstraint.constant = 0
             self.layoutIfNeeded()
-        }
+        }) 
     }
     
     // MARK: Overrride Method
@@ -115,10 +115,10 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         var status = true
         if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
             self.validator = OptionValidator(mandatory: self.formFieldM!.mandatory)
-            status = self.validator!.validate(self.pickerOptions?.selectedIndex)
+            status = self.validator!.validate(self.pickerOptions?.selectedIndex as AnyObject?)
         }
         else {
-            status = self.validator!.validate(self.pickerDate?.dateSelected)
+            status = self.validator!.validate(self.pickerDate?.dateSelected as AnyObject?)
         }
         
         if (!status) {
@@ -145,13 +145,13 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     
     // MARK: Load data field
     
-    private func loadData(formFieldM: FormFieldModel) {
+    fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label
         self.textTextField.placeholder = formFieldM.placeHolder
         self.errorLabel.text = formFieldM.textError
     }
     
-    private func loadMandatory(isMandatory: Bool) {
+    fileprivate func loadMandatory(_ isMandatory: Bool) {
         if (isMandatory) {
             self.widthMandatoryImageConstraint.constant = 30
         }
@@ -160,11 +160,11 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         }
     }
     
-    private func loadKeyboard(formFieldM: FormFieldModel) {
+    fileprivate func loadKeyboard(_ formFieldM: FormFieldModel) {
         self.textTextField.keyboardType = self.keyBoard!
     }
     
-    private func loadCustomStyleField(formFieldM: FormFieldModel) {
+    fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel) {
         let styleField = formFieldM.style
         if (styleField != nil) {
             if (styleField!.mandatoryIcon != nil) {
@@ -192,8 +192,8 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     }
         
     // MARK: UIResponser (Overrride)
-    override func canBecomeFirstResponder() -> Bool {
-        return self.textTextField.canBecomeFirstResponder()
+    override var canBecomeFirstResponder : Bool {
+        return self.textTextField.canBecomeFirstResponder
     }
     
     override func becomeFirstResponder() -> Bool {

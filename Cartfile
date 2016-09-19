@@ -1,1 +1,1 @@
-git "https://bitbucket.org/gigigo/gigigo-giglibrary-ios" ~> 1.0
+git "https://bitbucket.org/gigigo/gigigo-giglibrary-ios" "develop"

@@ -27,7 +27,7 @@ class Validator:NSObject {
     
     // MARK:Public Method    
     
-    func validate(value: AnyObject?) -> Bool{
+    func validate(_ value: AnyObject?) -> Bool{
         if (value == nil && self.mandatory) {
             return false
         }

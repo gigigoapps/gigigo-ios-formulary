@@ -24,7 +24,7 @@ class FormFieldStyleModel: NSObject {
     var checkBoxOn: UIImage?
     var checkBoxOff: UIImage?
     
-    func parseDictionary(json: [String:AnyObject]) {
+    func parseDictionary(_ json: [String:AnyObject]) {
         //== PREPARE DATA ==
         let mandatoryIcon = json["mandatoryIcon"] as? String
         let backgroundColorField = json["backgroundColorField"] as? String
@@ -54,19 +54,19 @@ class FormFieldStyleModel: NSObject {
             self.acceptColorPicker = UIColor(fromHexString: acceptColorPicker!)
         }
         else {
-            self.acceptColorPicker = UIColor.blackColor()
+            self.acceptColorPicker = UIColor.black
         }
         if (containerAcceptColorPicker != nil) {
             self.containerAcceptColorPicker = UIColor(fromHexString: containerAcceptColorPicker!)
         }
         else {
-            self.containerAcceptColorPicker = UIColor.grayColor()
+            self.containerAcceptColorPicker = UIColor.gray
         }
         if (backgroundPickerColorPicker != nil) {
             self.backgroundPickerColorPicker = UIColor(fromHexString: backgroundPickerColorPicker!)
         }
         else {
-            self.containerAcceptColorPicker = UIColor.grayColor()
+            self.containerAcceptColorPicker = UIColor.gray
         }
         if (font != nil) {
             if (sizeTitle != nil) {
@@ -74,30 +74,30 @@ class FormFieldStyleModel: NSObject {
             }
             if (self.fontTitle == nil) {  // control if font no found
                 print("🌀🌀🌀 Font in title no found")
-                self.fontTitle = UIFont.systemFontOfSize(sizeTitle!)
+                self.fontTitle = UIFont.systemFont(ofSize: sizeTitle!)
             }
             if (sizeError != nil) {
                 self.fontError = UIFont (name: font!, size: sizeError!)
             }
             if (self.fontError == nil) {  // control if font no found
                 print("🌀🌀🌀 Font in error no found")
-                self.fontError = UIFont.systemFontOfSize(sizeError!)
+                self.fontError = UIFont.systemFont(ofSize: sizeError!)
             }
         }
         else {
             if (sizeTitle != nil) {
-                self.fontTitle = UIFont.systemFontOfSize(sizeTitle!)
+                self.fontTitle = UIFont.systemFont(ofSize: sizeTitle!)
             }
             if (sizeError != nil) {
-                self.fontError = UIFont.systemFontOfSize(sizeError!)
+                self.fontError = UIFont.systemFont(ofSize: sizeError!)
             }
         }
         if (align != nil) {
             switch align! {
-                case "alignCenter": self.align = NSTextAlignment.Center
-                case "alignRight": self.align = NSTextAlignment.Right
-                case "alignLeft": self.align = NSTextAlignment.Left
-                default: self.align = NSTextAlignment.Center
+                case "alignCenter": self.align = NSTextAlignment.center
+                case "alignRight": self.align = NSTextAlignment.right
+                case "alignLeft": self.align = NSTextAlignment.left
+                default: self.align = NSTextAlignment.center
             }
         }
         if (mandatoryIcon != nil) {

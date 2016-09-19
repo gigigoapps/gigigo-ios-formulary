@@ -8,11 +8,31 @@
 
 import UIKit
 import GIGLibrary
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 
 protocol PTextFormField {
-    func scrollRectToVisible(field: FormField)
-    func formFieldDidFinish(field: FormField)
+    func scrollRectToVisible(_ field: FormField)
+    func formFieldDidFinish(_ field: FormField)
 }
 
 
@@ -31,7 +51,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-         self.awakeFromNib(frame, classField: self.dynamicType)
+         self.awakeFromNib(frame, classField: type(of: self))
         self.initializeView()
     }
     
@@ -65,8 +85,8 @@ class TextFormField: FormField, UITextFieldDelegate {
     // MARK: GIGFormField (Override)
     
     override internal var fieldValue: AnyObject? {
-        get {
-            return self.textTextField.text?.characters.count > 0 ? self.textTextField.text : nil
+        get {            
+            return self.textTextField.text?.characters.count > 0 ? self.textTextField.text as AnyObject? : nil
         }
         set {
             self.textTextField.text = "\(newValue!)"
@@ -75,31 +95,31 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     // MARK: Private Method    
     
-    private func showError() {
-        UIView.animateWithDuration(0.5) {
+    fileprivate func showError() {
+        UIView.animate(withDuration: 0.5, animations: {
             self.errorLabel.sizeToFit()
             self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
             self.layoutIfNeeded()
-        }
+        }) 
     }
     
-    private func hideError() {
-        UIView.animateWithDuration(0.5) {
+    fileprivate func hideError() {
+        UIView.animate(withDuration: 0.5, animations: {
             self.heightErrorLabelConstraint.constant = 0
             self.layoutIfNeeded()
-        }
+        }) 
     }
     
-    private func initializeView() {
+    fileprivate func initializeView() {
         self.titleLabel.numberOfLines = 0
         self.errorLabel.numberOfLines = 0
-        self.mandotoryImage.image = UIImage(named: "mandatoryIcon", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+        self.mandotoryImage.image = UIImage(named: "mandatoryIcon", in: Bundle(for: type(of: self)), compatibleWith: nil)
         self.textTextField.delegate = self
     }
     
     // MARK: Load data field
     
-    private func loadData(formFieldM: FormFieldModel) {
+    fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label
         self.textTextField.placeholder = formFieldM.placeHolder
         self.errorLabel.text = formFieldM.textError
@@ -108,7 +128,7 @@ class TextFormField: FormField, UITextFieldDelegate {
         }
     }
     
-    private func loadMandatory(isMandatory: Bool) {
+    fileprivate func loadMandatory(_ isMandatory: Bool) {
         if (isMandatory) {
             self.widthMandatoryImageConstraint.constant = 30
         }
@@ -117,11 +137,11 @@ class TextFormField: FormField, UITextFieldDelegate {
         }
     }
     
-    private func loadKeyboard(formFieldM: FormFieldModel) {
+    fileprivate func loadKeyboard(_ formFieldM: FormFieldModel) {
         self.textTextField.keyboardType = self.keyBoard!
     }
     
-    private func loadCustomStyleField(formFieldM: FormFieldModel) {
+    fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel) {
         let styleField = formFieldM.style
         if (styleField != nil) {
             if (styleField!.mandatoryIcon != nil) {
@@ -150,25 +170,25 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     // MARK: UITextFieldDelegate
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         self.delegate!.scrollRectToVisible(self)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.delegate?.formFieldDidFinish(self)
         return false
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {        
-        let textFieldText: NSString = textField.text ?? ""
-        let finalString = textFieldText.stringByReplacingCharactersInRange(range, withString: string)    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {        
+        let textFieldText: NSString = textField.text as NSString? ?? ""
+        let finalString = textFieldText.replacingCharacters(in: range, with: string)    
         let lengthValidator = LengthValidator(minLength: self.formFieldM!.minLengthValue, maxLength: self.formFieldM!.maxLengthValue)
         return lengthValidator.controlCharacters(finalString)
     }
     
     // MARK: UIResponser (Overrride)
-    override func canBecomeFirstResponder() -> Bool {
-        return self.textTextField.canBecomeFirstResponder()
+    override var canBecomeFirstResponder : Bool {
+        return self.textTextField.canBecomeFirstResponder
     }
     
     override func becomeFirstResponder() -> Bool {

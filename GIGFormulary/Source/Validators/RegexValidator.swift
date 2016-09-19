@@ -20,7 +20,7 @@ class RegexValidator: StringValidator {
     
     init(regexPattern: String?, mandatory: Bool) {
         if (regexPattern != nil) {
-            self.regex = NSRegularExpression(pattern: regexPattern)
+            self.regex = NSRegularExpression(pattern: regexPattern!)
         }        
         
         super.init(mandatory: mandatory)
@@ -32,7 +32,7 @@ class RegexValidator: StringValidator {
     
     // MARK: Public Method
 
-    override func validate(value: AnyObject?) -> Bool{
+    override func validate(_ value: AnyObject?) -> Bool{
         if (!super.validate(value))  {
             return false
         }

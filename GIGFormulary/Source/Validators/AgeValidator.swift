@@ -7,13 +7,33 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 class AgeValidator: Validator {
-    override func validate(value: AnyObject?) -> Bool{
+    override func validate(_ value: AnyObject?) -> Bool{
         if (!super.validate(value))  {
             return false
         }
-        let date = value as? NSDate
+        let date = value as? Date
         
         if (date == nil && !self.mandatory) {
             return true
@@ -28,24 +48,24 @@ class AgeValidator: Validator {
     
     // MARK: Private Method
     
-    private func isValidAge(birthday: NSDate) -> Bool{
+    fileprivate func isValidAge(_ birthday: Date) -> Bool{
         return calculateAge(birthday) >= self.minAge ? true : false
     }
     
-    private func calculateAge (birthday: NSDate) -> NSInteger {        
-        let calendar : NSCalendar = NSCalendar.currentCalendar()
-        let unitFlags : NSCalendarUnit = [NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day]
-        let dateComponentNow : NSDateComponents = calendar.components(unitFlags, fromDate: NSDate())
-        let dateComponentBirth : NSDateComponents = calendar.components(unitFlags, fromDate: birthday)
+    fileprivate func calculateAge (_ birthday: Date) -> NSInteger {        
+        let calendar : Calendar = Calendar.current
+        let unitFlags : NSCalendar.Unit = [NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day]
+        let dateComponentNow : DateComponents = (calendar as NSCalendar).components(unitFlags, from: Date())
+        let dateComponentBirth : DateComponents = (calendar as NSCalendar).components(unitFlags, from: birthday)
         
         if ( (dateComponentNow.month < dateComponentBirth.month) ||
             ((dateComponentNow.month == dateComponentBirth.month) && (dateComponentNow.day < dateComponentBirth.day))
             )
         {
-            return dateComponentNow.year - dateComponentBirth.year - 1
+            return dateComponentNow.year! - dateComponentBirth.year! - 1
         }
         else {
-            return dateComponentNow.year - dateComponentBirth.year
+            return dateComponentNow.year! - dateComponentBirth.year!
         }
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PFormController {
-    func recoverFormModel(formValues: [String: AnyObject])
+    func recoverFormModel(_ formValues: [String: AnyObject])
 }
 
 class FormController: NSObject, PFormField, PFormBuilderViews {
@@ -31,18 +31,18 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     
     // MARK: Public Method
     
-    func loadFieldsFromJSONFile(jsonFile: String) {
+    func loadFieldsFromJSONFile(_ jsonFile: String) {
         let builder = FormBuilderFields(formController: self)
         self.formFields = builder.fieldsFromJSONFile(jsonFile)        
         self.formViews!.updateFormularyContent(self.formFields)
     }
     
-    func populateData(values: [String:AnyObject]) {
+    func populateData(_ values: [String:AnyObject]) {
         var _ = values.map {key, value -> [String: AnyObject] in
             var _ = self.formFields.map { formField -> FormField in
                 if (formField.formFieldM?.key == key) {
                     formField.fieldValue = value
-                    self.formValues[key] = value as? String
+                    self.formValues[key] = value as? String as AnyObject?
                 }
                 return formField
             }
@@ -52,8 +52,8 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     
     // MARK: Private Method
 
-    private func nextFieldTo(field: FormField) -> FormField?{
-        let nextField =  self.formFields.indexOf(field)!+1
+    fileprivate func nextFieldTo(_ field: FormField) -> FormField?{
+        let nextField =  self.formFields.index(of: field)!+1
         if (nextField < self.formFields.count) {
             return self.formFields[nextField]
         }
@@ -62,12 +62,12 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         }
     }
     
-    private func validateFields() -> Bool {
+    fileprivate func validateFields() -> Bool {
         var valid = true
         for field in self.formFields {
             valid = field.validate()
-            let value = field.fieldValue as? String
-            self.formValues["\(field.formFieldM!.key!)"] =  (value != nil) ? value : ""
+            let value = field.fieldValue as? String            
+            self.formValues["\(field.formFieldM!.key!)"] =  (value != nil) ? value as AnyObject? : "" as AnyObject?
         }
         return valid
     }
@@ -81,16 +81,16 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     }
     
     // MARK: PTextFormField
-    func scrollRectToVisible(field: FormField) {
+    func scrollRectToVisible(_ field: FormField) {
         self.formViews?.scrollRectToVisible(field)
     }
     
-    func formFieldDidFinish(field: FormField) {
+    func formFieldDidFinish(_ field: FormField) {
         let nextField = self.nextFieldTo(field)
         self.formViews?.changeFocusField(nextField)
         
         if (nextField == nil) {
-             self.validateFields()
+             let _ = self.validateFields()
         }
     }
 }

@@ -9,31 +9,31 @@
 import UIKit
 
 public protocol PFormulary {
-    func recoverFormModel(formValues: [String: AnyObject])
+    func recoverFormModel(_ formValues: [String: AnyObject])
 }
 
-public class Formulary: PFormController {
-    public static let shared = Formulary()
-    public var delegate: PFormulary?
+open class Formulary: PFormController {
+    open static let shared = Formulary()
+    open var delegate: PFormulary?
     
     //-- Private Var --
     var formController: FormController?
     
     // MARK: Start
     
-    public func start(viewContainerFormulary: UIView, jsonFile: String) {
+    open func start(_ viewContainerFormulary: UIView, jsonFile: String) {
         self.formController = FormController(viewContainerFormulary: viewContainerFormulary)
         self.formController!.loadFieldsFromJSONFile(jsonFile)
         self.formController!.delegate = self
     }
     
-    public func populateData(values: [String:String]) {
-        self.formController!.populateData(values)
+    open func populateData(_ values: [String:String]) {
+        self.formController!.populateData(values as [String : AnyObject])
     }
     
     // MARK: PFormulary
 
-    public func recoverFormModel(formValues: [String : AnyObject]) {
+    open func recoverFormModel(_ formValues: [String : AnyObject]) {
         self.delegate?.recoverFormModel(formValues)
     }
 }
