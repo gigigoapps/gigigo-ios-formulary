@@ -136,6 +136,27 @@ SWIFT_CLASS("_TtC10GIGLibrary5Alert")
 /// Date from string with ISO format.
 + (NSDate * _Nullable)dateFromString:(NSString * _Nonnull)dateString format:(NSString * _Nonnull)format;
 + (NSDate * _Nonnull)today;
+
+/// Set the time to a NSDate\Important 
+///
+/// The time is set in local time respecting the user time zone.
+/// Examples (in Spain):
+///
+/// <ul><li>setHour(14) to a summer date (UTC+2) returns -> 12:00:00 +0000</li><li>setHour(14) to a winter date (UTC+1) returns -> 13:00:00 +0000</li></ul>\Author 
+/// Alejandro Jiménez\Since 
+///
+/// 1.1.3
+///
+/// \param hour The hour to be set
+///
+/// \param minutes The minutes to be set. Optional, 0 by default
+///
+/// \param seconds The seconds to be set. Optional, 0 by default
+///
+/// \param error An error of type ErrorDate
+///
+/// \returns  A new NSDate with the same date and the time set.
+- (NSDate * _Nullable)setHour:(NSInteger)hour minutes:(NSInteger)minutes seconds:(NSInteger)seconds error:(NSError * _Nullable * _Null_unspecified)error;
 @end
 
 
