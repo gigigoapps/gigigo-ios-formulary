@@ -39,7 +39,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     override internal var fieldValue: AnyObject? {
         get {
             if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
-                return (self.formFieldM!.options![self.pickerOptions!.selectedIndex!]).idOption
+                return (self.formFieldM!.options![self.pickerOptions!.selectedIndex!]).idOption as AnyObject?
             }
             else {
                 if (self.pickerDate!.dateSelected != nil) {
