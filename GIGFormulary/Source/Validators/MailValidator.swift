@@ -13,7 +13,7 @@ class MailValidator: RegexValidator {
     required init(mandatory: Bool) {
         let pattern = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$"
         do {
-            let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.CaseInsensitive)
+            let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
             super.init(regex: regex, mandatory: mandatory)
         }
         catch  {

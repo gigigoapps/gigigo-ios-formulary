@@ -29,16 +29,16 @@ class FormBuilderFields: NSObject {
     
     // MARK: Private Method
     
-    private func initializeTypes() {
+    fileprivate func initializeTypes() {
         self.listTypeFields = [.TEXT_FORM_FIELD: TextFormField.self,
                                .PICKER_FORM_FIELD: PickerFormField.self,
                                .DATEPICKER_FORM_FIELD: PickerFormField.self,
                                .BOOLEAN_FORM_FIELD: BooleanFormField.self]
         
-        self.keyboardTypes  = [.KEYBOARD_TEXT: .Default,
-                              .KEYBOARD_EMAIL: .EmailAddress,
-                              .KEYBOARD_NUMBER: .NumbersAndPunctuation,
-                              .KEYBOARD_NUMBERPAD: .NumberPad]
+        self.keyboardTypes  = [.KEYBOARD_TEXT: .default,
+                              .KEYBOARD_EMAIL: .emailAddress,
+                              .KEYBOARD_NUMBER: .numbersAndPunctuation,
+                              .KEYBOARD_NUMBERPAD: .numberPad]
 
         self.validatorsType = [.VALIDATOR_TEXT: StringValidator.self,
                                .VALIDATOR_EMAIL: MailValidator.self,
@@ -51,7 +51,7 @@ class FormBuilderFields: NSObject {
                                .VALIDATOR_AGE: AgeValidator.self]
     }
     
-    private func createField(fieldDic: [String:AnyObject]) -> FormField {
+    fileprivate func createField(_ fieldDic: [String:AnyObject]) -> FormField {
         do {
             let formFieldM = FormFieldModel()
             try formFieldM.parseDictionary(fieldDic)
@@ -71,7 +71,7 @@ class FormBuilderFields: NSObject {
         }
     }
     
-    private func validatorToField(formFieldM: FormFieldModel) -> Validator?{
+    fileprivate func validatorToField(_ formFieldM: FormFieldModel) -> Validator?{
         if (formFieldM.validator != nil) {
             let typeValidator = self.validatorsType[TypeValidator(rawValue: formFieldM.validator!)!]
             let validator = typeValidator!.init(mandatory: formFieldM.mandatory)
@@ -85,20 +85,20 @@ class FormBuilderFields: NSObject {
         }
     }
     
-    private func keyboardToField(formFieldM: FormFieldModel) -> UIKeyboardType?{
+    fileprivate func keyboardToField(_ formFieldM: FormFieldModel) -> UIKeyboardType?{
         if (formFieldM.keyBoard != nil) {
             return self.keyboardTypes[TypeKeyBoard(rawValue: formFieldM.keyBoard!)!]
         }
         else {
-            return UIKeyboardType.Default
+            return UIKeyboardType.default
         }
     }
     
     // MARK: Public Method
     
-    func fieldsFromJSONFile(file: String) -> [FormField] {
+    func fieldsFromJSONFile(_ file: String) -> [FormField] {
         var listFormField = [FormField]()
-        let jsonRecover = NSBundle.mainBundle().loadJSONFile(file, rootNode: "fields")
+        let jsonRecover = Bundle.main.loadJSONFile(file, rootNode: "fields")
         if (jsonRecover != nil) {
             let listFormDic = jsonRecover as! [[String: AnyObject]]
             for fieldDic in listFormDic {

@@ -9,7 +9,7 @@
 import UIKit
 
 class BoolValidator: Validator {
-    override func validate(value: AnyObject?) -> Bool{
+    override func validate(_ value: AnyObject?) -> Bool{
         if (!super.validate(value)) {
             return false
         }

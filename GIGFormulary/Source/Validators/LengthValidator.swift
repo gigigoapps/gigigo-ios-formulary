@@ -7,6 +7,26 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class LengthValidator: StringValidator {
 
@@ -20,8 +40,8 @@ class LengthValidator: StringValidator {
         self.maxLength = maxLength
     }
     
-    func controlCharacters(value: String) -> Bool {
-        if (!super.validate(value))  {
+    func controlCharacters(_ value: String) -> Bool {
+        if (!super.validate(value as AnyObject?))  {
             return false
         }
         
@@ -34,7 +54,7 @@ class LengthValidator: StringValidator {
     
     // MARK: - OVERRIDE (Validator)
     
-    override func validate(value: AnyObject?) -> Bool{
+    override func validate(_ value: AnyObject?) -> Bool{
         if (!super.validate(value))  {
             return false
         }

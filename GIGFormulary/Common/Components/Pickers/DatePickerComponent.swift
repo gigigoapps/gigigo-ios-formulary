@@ -20,7 +20,7 @@ class DatePickerComponent: UIDatePicker {
     var styles: FormFieldStyleModel?
     var textAcceptButton: String?
     
-    var dateSelected: NSDate? {
+    var dateSelected: Date? {
         get {
             return !(self.textField!.text?.isEmpty ?? true) ? self.datePicker.date : nil
         }
@@ -35,52 +35,52 @@ class DatePickerComponent: UIDatePicker {
     
     // MARK: Private properties
    
-    private let datePicker = UIDatePicker()
-    private var dateFormatter: NSDateFormatter {
-        let formatter = NSDateFormatter()
+    fileprivate let datePicker = UIDatePicker()
+    fileprivate var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("dd/MM/yyyy")
         return formatter
     }
     
     // MARK: Public Method
     
-    func initTextField(textField: UITextField) {
+    func initTextField(_ textField: UITextField) {
         self.textField = textField
         self.setupDatePicker()
         self.setupDoneToolbar()
     }
     
-    func populateData(value: AnyObject?) {
+    func populateData(_ value: AnyObject?) {
         if (value != nil) {
             let dateValue = value as! String
-            self.dateSelected = self.dateFormatter.dateFromString(dateValue)            
+            self.dateSelected = self.dateFormatter.date(from: dateValue)            
         }
     }
     
     // MARK - Private Helpers
     
-    private func setupDatePicker() {
-        self.datePicker.datePickerMode = UIDatePickerMode.Date
-        self.datePicker.maximumDate = NSDate()
-        self.datePicker.locale = NSLocale(localeIdentifier: "es_ES")
+    fileprivate func setupDatePicker() {
+        self.datePicker.datePickerMode = UIDatePickerMode.date
+        self.datePicker.maximumDate = Date()
+        self.datePicker.locale = Locale(identifier: "es_ES")
         self.datePicker.addTarget(
             self,
             action: #selector(onDatePickerValueChanged),
-            forControlEvents: UIControlEvents.ValueChanged
+            for: UIControlEvents.valueChanged
         )
         self.textField!.inputView = self.datePicker
     }
     
-    private func setupDoneToolbar() {
+    fileprivate func setupDoneToolbar() {
         // datepicker toolbar setup
         let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.Default
-        toolBar.translucent = true
-        let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: self.textAcceptButton, style: UIBarButtonItemStyle.Done, target: self, action: #selector(onDoneTap))
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: self.textAcceptButton, style: UIBarButtonItemStyle.done, target: self, action: #selector(onDoneTap))
         doneButton.tintColor = self.styles?.acceptColorPicker
         toolBar.setItems([space, doneButton], animated: false)
-        toolBar.userInteractionEnabled = true
+        toolBar.isUserInteractionEnabled = true
         toolBar.sizeToFit()
         
         toolBar.backgroundColor = self.styles?.containerAcceptColorPicker
@@ -89,11 +89,11 @@ class DatePickerComponent: UIDatePicker {
         self.textField!.inputAccessoryView = toolBar
     }
     
-    @objc private func onDatePickerValueChanged(value: UIDatePicker) {
-        self.textField?.text = self.dateFormatter.stringFromDate(value.date)
+    @objc fileprivate func onDatePickerValueChanged(_ value: UIDatePicker) {
+        self.textField?.text = self.dateFormatter.string(from: value.date)
     }
     
-    @objc private func onDoneTap() {
+    @objc fileprivate func onDoneTap() {
         self.onDatePickerValueChanged(self.datePicker)
         self.textField?.endEditing(true)
         self.delegateDate?.formFieldDidFinishDate()

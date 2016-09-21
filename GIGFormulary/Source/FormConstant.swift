@@ -35,11 +35,11 @@ enum TypeValidator: String {
     case VALIDATOR_AGE = "age"
 }
 
-enum ThrowError: ErrorType {
-    case InvalidParse
-    case MandatoryElementNotFound
-    case MandatoryElementEmpty
-    case MandatoryElementIncorrectType
+enum ThrowError: Error {
+    case invalidParse
+    case mandatoryElementNotFound
+    case mandatoryElementEmpty
+    case mandatoryElementIncorrectType
 }
 
 class FormConstant: NSObject {}

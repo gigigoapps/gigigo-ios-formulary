@@ -9,7 +9,7 @@
 import UIKit
 
 class DNINIEValidator: StringValidator {
-    override func validate(value: AnyObject?) -> Bool{
+    override func validate(_ value: AnyObject?) -> Bool{
         if (!super.validate(value))  {
             return false
         }
@@ -26,29 +26,29 @@ class DNINIEValidator: StringValidator {
         return true
     }
     
-    func isValidNieNif(value: String) -> Bool{
+    func isValidNieNif(_ value: String) -> Bool{
         var num: String
         var letter: String
         var letterDni: String
-        let valueUpper = value.uppercaseString
+        let valueUpper = value.uppercased()
         
         if (self.validateCharsForDNI(valueUpper) || self.validateCharsForNIE(valueUpper)) {
-            let myRange = valueUpper.startIndex.advancedBy(0)..<valueUpper.startIndex.advancedBy(valueUpper.characters.count - 1)
-            num = valueUpper.substringWithRange(myRange)
-            num = num.stringByReplacingOccurrencesOfString("X", withString: "0")
-            num = num.stringByReplacingOccurrencesOfString("Y", withString: "1")
-            num = num.stringByReplacingOccurrencesOfString("Z", withString: "2")
+            let myRange = valueUpper.characters.index(valueUpper.startIndex, offsetBy: 0)..<valueUpper.characters.index(valueUpper.startIndex, offsetBy: valueUpper.characters.count - 1)
+            num = valueUpper.substring(with: myRange)
+            num = num.replacingOccurrences(of: "X", with: "0")
+            num = num.replacingOccurrences(of: "Y", with: "1")
+            num = num.replacingOccurrences(of: "Z", with: "2")
             
-            let rangeLetter = valueUpper.startIndex.advancedBy(valueUpper.characters.count - 1)..<valueUpper.startIndex.advancedBy(valueUpper.characters.count)
-            letter = valueUpper.substringWithRange(rangeLetter)
+            let rangeLetter = valueUpper.characters.index(valueUpper.startIndex, offsetBy: valueUpper.characters.count - 1)..<valueUpper.characters.index(valueUpper.startIndex, offsetBy: valueUpper.characters.count)
+            letter = valueUpper.substring(with: rangeLetter)
                         
-            let badCharacters = NSCharacterSet.decimalDigitCharacterSet().invertedSet
-            if num.rangeOfCharacterFromSet(badCharacters) == nil {
+            let badCharacters = CharacterSet.decimalDigits.inverted
+            if num.rangeOfCharacter(from: badCharacters) == nil {
                 var numberInt: Int = Int(num)!
                 numberInt = numberInt % 23
                 letterDni = "TRWAGMYFPDXBNJZSQVHLCKE"
-                let rangeDNI = letterDni.startIndex.advancedBy(numberInt)..<letterDni.startIndex.advancedBy(numberInt + 1)
-                letterDni = letterDni.substringWithRange(rangeDNI)
+                let rangeDNI = letterDni.characters.index(letterDni.startIndex, offsetBy: numberInt)..<letterDni.characters.index(letterDni.startIndex, offsetBy: numberInt + 1)
+                letterDni = letterDni.substring(with: rangeDNI)
                 
                 if (letterDni == letter) {
                     return true
@@ -65,16 +65,17 @@ class DNINIEValidator: StringValidator {
         }
     }
     
-    func validateCharsForDNI(value: String) -> Bool{
+    func validateCharsForDNI(_ value: String) -> Bool{
         return self.validateRegex(value, regex: "[0-9]{8}[A-Za-z]")
     }
     
-    func validateCharsForNIE(value : String) -> Bool {
+    func validateCharsForNIE(_ value : String) -> Bool {
         return self.validateRegex(value,regex: "^[KkLlMmXxYyZz]{1}[0-9]{7}[a-zA-Z]{1}$")
     }
     
-    func validateRegex (value: String, regex: String) -> Bool {
-        let regex = NSRegularExpression(pattern: regex)
-        return (regex?.matchesString(value))!
+    func validateRegex (_ value: String, regex: String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: regex,
+                                             options: [.caseInsensitive])
+        return (regex.matchesString(value))
     }
 }

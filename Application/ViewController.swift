@@ -26,7 +26,7 @@ class ViewController: UIViewController, PFormulary {
     
     // MARK: PFormController
     
-    func recoverFormModel(formValues: [String : AnyObject]) {
+    func recoverFormModel(_ formValues: [String : AnyObject]) {
         
     }
 }

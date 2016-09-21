@@ -21,7 +21,7 @@ class FormBuilderViews: NSObject {
     var scrollView = UIScrollView()
     var buttonSend = UIButton()
     var viewContainerField = UIView()
-    let notificationCenter = NSNotificationCenter.defaultCenter()
+    let notificationCenter = NotificationCenter.default
     
     //-- Var --
     var delegate: PFormBuilderViews?
@@ -42,19 +42,19 @@ class FormBuilderViews: NSObject {
     
     // MARK : Public Method
     
-    func updateFormularyContent(listFields: [FormField]) {
+    func updateFormularyContent(_ listFields: [FormField]) {
         self.viewContainerFormulary.removeFromSuperview()
         self.addFields(listFields)
     }
     
-    func scrollRectToVisible(field: FormField) {
+    func scrollRectToVisible(_ field: FormField) {
         self.scrollView.scrollRectToVisible(field.frame, animated: true)
     }
     
-    func changeFocusField(field: FormField?) {
+    func changeFocusField(_ field: FormField?) {
         if (field != nil)
         {
-            if (field?.canBecomeFirstResponder() == true) {
+            if (field?.canBecomeFirstResponder == true) {
                 field?.becomeFirstResponder()
             }
             else {
@@ -76,7 +76,7 @@ class FormBuilderViews: NSObject {
     
     // MARK : Private Method
     
-    private func prepareFormulary() {
+    fileprivate func prepareFormulary() {
         if (self.viewContainerFormulary.subviews.count > 0) {
             self.viewFormulary = self.viewContainerFormulary.subviews[0]
             if (self.viewFormulary.subviews.count > 1) {
@@ -94,13 +94,13 @@ class FormBuilderViews: NSObject {
         self.viewContainerFormulary.removeSubviews()
     }
     
-    private func notifications() {
-        self.notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
-        self.notificationCenter.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+    fileprivate func notifications() {
+        self.notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        self.notificationCenter.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    private func events() {
-        self.buttonSend.addTarget(self, action: #selector(self.buttonAction), forControlEvents: UIControlEvents.TouchUpInside)
+    fileprivate func events() {
+        self.buttonSend.addTarget(self, action: #selector(self.buttonAction), for: UIControlEvents.touchUpInside)
         self.scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hideComponent)))
     }
     
@@ -108,7 +108,7 @@ class FormBuilderViews: NSObject {
         self.scrollView.endEditing(true)
     }
     
-    private func initializeConstraints() {
+    fileprivate func initializeConstraints() {
         self.scrollView.addSubview(self.viewFormulary)
         self.viewContainerFormulary.addSubview(self.scrollView)
     
@@ -117,7 +117,7 @@ class FormBuilderViews: NSObject {
         gig_layout_fit_horizontal(self.viewFormulary);
         gig_layout_top(self.viewFormulary, 0);
         gig_layout_bottom(self.viewFormulary, 0)
-        gig_constrain_width(self.viewFormulary, UIScreen.mainScreen().bounds.size.width);
+        gig_constrain_width(self.viewFormulary, UIScreen.main.bounds.size.width);
     
         gig_autoresize(self.scrollView, false)
         gig_layout_fit_horizontal(self.scrollView);
@@ -125,7 +125,7 @@ class FormBuilderViews: NSObject {
         gig_layout_bottom(self.scrollView, 0)
     }
     
-    func addFields(listFields: [FormField]) {
+    func addFields(_ listFields: [FormField]) {
         var lastView = UIView()
         var firstTime = true
         for field in listFields {
@@ -154,18 +154,18 @@ class FormBuilderViews: NSObject {
     
     // MARK:  NOTIFICATIONS
     
-    func keyboardWillShow(notification: NSNotification) {
-        let dict:NSDictionary = notification.userInfo! as NSDictionary
-        let s:NSValue = dict.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
-        let keyboardFrame :CGRect = s.CGRectValue()
-        UIView.animateWithDuration(0.25) {
+    func keyboardWillShow(_ notification: Notification) {
+        let dict:NSDictionary = (notification as NSNotification).userInfo! as NSDictionary
+        let s:NSValue = dict.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardFrame :CGRect = s.cgRectValue
+        UIView.animate(withDuration: 0.25, animations: {
             self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.size.height, 0);
             self.scrollView.scrollIndicatorInsets = self.scrollView.contentInset;
-        }
+        }) 
     }
     
-    func keyboardWillHide(notification: NSNotification) {
-        self.scrollView.contentInset = UIEdgeInsetsZero;
+    func keyboardWillHide(_ notification: Notification) {
+        self.scrollView.contentInset = UIEdgeInsets.zero;
         self.scrollView.scrollIndicatorInsets = self.scrollView.contentInset;
     }
 }

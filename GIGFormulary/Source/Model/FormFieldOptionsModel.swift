@@ -14,7 +14,7 @@ class FormFieldOptionsModel: NSObject {
     
     // MARK: Public methods
     
-    class func parseListOptionsJson(json:[[String: AnyObject]]) throws ->[FormFieldOptionsModel] {
+    class func parseListOptionsJson(_ json:[[String: AnyObject]]) throws ->[FormFieldOptionsModel] {
         do {
             return try (json.map(parseOptionsJson))              
         }
@@ -23,7 +23,7 @@ class FormFieldOptionsModel: NSObject {
         }
     }
     
-    class func parseOptionsJson(json: [String: AnyObject]) throws -> FormFieldOptionsModel{
+    class func parseOptionsJson(_ json: [String: AnyObject]) throws -> FormFieldOptionsModel{
         let activity = FormFieldOptionsModel()
         
         do {
@@ -34,17 +34,17 @@ class FormFieldOptionsModel: NSObject {
         }
     }
     
-    class func parseOption(json: [String: AnyObject], activity: FormFieldOptionsModel) throws ->  FormFieldOptionsModel {
+    class func parseOption(_ json: [String: AnyObject], activity: FormFieldOptionsModel) throws ->  FormFieldOptionsModel {
         
         //== PREPARE DATA ==
         //-- Mandatory --
-        guard let key = json["key"] as? String where key.characters.count > 0 else {
+        guard let key = json["key"] as? String , key.characters.count > 0 else {
             print("❌❌❌ key value Not Found")
-            throw ThrowError.MandatoryElementNotFound
+            throw ThrowError.mandatoryElementNotFound
         }
-        guard let value = json["value"] as? String where value.characters.count > 0 else {
+        guard let value = json["value"] as? String , value.characters.count > 0 else {
             print("❌❌❌ value Options Not Found")
-            throw ThrowError.MandatoryElementNotFound
+            throw ThrowError.mandatoryElementNotFound
         }
         
         //== INSERT DATA ==

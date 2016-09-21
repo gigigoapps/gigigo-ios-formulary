@@ -27,7 +27,7 @@ class BooleanFormField: FormField {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.awakeFromNib(frame, classField: self.dynamicType)
+        self.awakeFromNib(frame, classField: type(of: self))
         self.initializeView()
     }
     
@@ -61,42 +61,42 @@ class BooleanFormField: FormField {
     
     override internal var fieldValue: AnyObject? {
         get {
-            return self.buttonAccept.selected
+            return self.buttonAccept.isSelected as AnyObject?
         }
         set {
-            self.buttonAccept.selected = newValue as! Bool
+            self.buttonAccept.isSelected = newValue as! Bool
         }
     }
     
     // MARK: Private Method
     
-    private func showError() {
-        UIView.animateWithDuration(0.5) {
+    fileprivate func showError() {
+        UIView.animate(withDuration: 0.5, animations: {
             self.errorLabel.sizeToFit()
             self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
             self.layoutIfNeeded()
-        }
+        }) 
     }
     
-    private func hideError() {
-        UIView.animateWithDuration(0.5) {
+    fileprivate func hideError() {
+        UIView.animate(withDuration: 0.5, animations: {
             self.heightErrorLabelConstraint.constant = 0
             self.layoutIfNeeded()
-        }
+        }) 
     }
     
-    private func initializeView() {
+    fileprivate func initializeView() {
         self.titleLabel.numberOfLines = 0
         self.errorLabel.numberOfLines = 0
-        self.mandotoryImage.image = UIImage(named: "mandatoryIcon", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-        self.checkBoxOn = UIImage(named: "chackBoxOn", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-        self.checkBoxOff = UIImage(named: "checkBox", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-        self.buttonAccept.setBackgroundImage(self.checkBoxOff, forState: UIControlState.Normal)
+        self.mandotoryImage.image = UIImage(named: "mandatoryIcon", in: Bundle(for: type(of: self)), compatibleWith: nil)
+        self.checkBoxOn = UIImage(named: "chackBoxOn", in: Bundle(for: type(of: self)), compatibleWith: nil)
+        self.checkBoxOff = UIImage(named: "checkBox", in: Bundle(for: type(of: self)), compatibleWith: nil)
+        self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
     }
     
     // MARK: Load data field
     
-    private func loadData(formFieldM: FormFieldModel) {
+    fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label
         self.errorLabel.text = formFieldM.textError
         if (formFieldM.value != nil && (formFieldM.value as? Bool)!) {
@@ -104,7 +104,7 @@ class BooleanFormField: FormField {
         }
     }
     
-    private func loadMandatory(isMandatory: Bool) {
+    fileprivate func loadMandatory(_ isMandatory: Bool) {
         if (isMandatory) {
             self.widthMandatoryImageConstraint.constant = 30
         }
@@ -113,7 +113,7 @@ class BooleanFormField: FormField {
         }
     }
     
-    private func loadCustomStyleField(formFieldM: FormFieldModel) {
+    fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel) {
         let styleField = formFieldM.style
         if (styleField != nil) {
             if (styleField!.mandatoryIcon != nil) {
@@ -142,29 +142,29 @@ class BooleanFormField: FormField {
             }
             if (styleField!.checkBoxOff != nil) {
                 self.checkBoxOff = styleField!.checkBoxOff!
-                self.buttonAccept.setBackgroundImage(self.checkBoxOff, forState: UIControlState.Normal)
+                self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
             }
         }
     }
     
-    private func changeState() {
-        if (self.buttonAccept.selected) {
-            self.buttonAccept.setBackgroundImage(self.checkBoxOff, forState: UIControlState.Normal)
+    fileprivate func changeState() {
+        if (self.buttonAccept.isSelected) {
+            self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
         }
         else {
-            self.buttonAccept.setBackgroundImage(self.checkBoxOn, forState: UIControlState.Selected)
+            self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
         }
-        self.buttonAccept.selected = !self.buttonAccept.selected
+        self.buttonAccept.isSelected = !self.buttonAccept.isSelected
     }
     
     // MARK: Actions
     
-    @IBAction func actionButtonAccept(sender: AnyObject) {
+    @IBAction func actionButtonAccept(_ sender: AnyObject) {
         self.changeState()
     }
     
     // MARK: UIResponser (Overrride)
-    override func canBecomeFirstResponder() -> Bool {
+    override var canBecomeFirstResponder : Bool {
         return false
     }
 }

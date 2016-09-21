@@ -33,21 +33,21 @@ class FormFieldModel: NSObject {
        
     // MARK: Public Method
     
-    func parseDictionary(json: [String:AnyObject]) throws {
+    func parseDictionary(_ json: [String:AnyObject]) throws {
         //== PREPARE DATA ==
         
         //-- Mandatory --
-        guard let type = json["type"] as? String where type.characters.count > 0 else {
+        guard let type = json["type"] as? String , type.characters.count > 0 else {
             print("❌❌❌ type Not Found")
-            throw ThrowError.MandatoryElementNotFound
+            throw ThrowError.mandatoryElementNotFound
         }
-        guard let label = json["label"] as? String where label.characters.count > 0 else {
+        guard let label = json["label"] as? String , label.characters.count > 0 else {
             print("❌❌❌ label Not Found")
-            throw ThrowError.MandatoryElementNotFound
+            throw ThrowError.mandatoryElementNotFound
         }
-        guard let key = json["key"] as? String where key.characters.count > 0 else {
+        guard let key = json["key"] as? String , key.characters.count > 0 else {
             print("❌❌❌ key Not Found")
-            throw ThrowError.MandatoryElementNotFound
+            throw ThrowError.mandatoryElementNotFound
         }
     
         //-- Optional --
@@ -76,7 +76,7 @@ class FormFieldModel: NSObject {
             self.textError = NSLocalizedString(textError!, comment: "")
         }
         else {
-            self.textError = NSLocalizedString("error_generic_field", tableName: nil, bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "error_generic_field")
+            self.textError = NSLocalizedString("error_generic_field", tableName: nil, bundle: Bundle(for: type(of: self)), value: "", comment: "error_generic_field")
         }
         if (placeHolder != nil) {
             self.placeHolder = NSLocalizedString(placeHolder!, comment: "")
@@ -88,18 +88,18 @@ class FormFieldModel: NSObject {
         if (json["listOptions"] != nil) {
             guard let listOptions = json["listOptions"] as? [[String: AnyObject]] else {
                 print("❌❌❌ listOptions incorrect type")
-                throw ThrowError.MandatoryElementIncorrectType
+                throw ThrowError.mandatoryElementIncorrectType
             }
             if listOptions.count == 0 {
                 print("❌❌❌ listOptions empty")
-                throw ThrowError.MandatoryElementEmpty
+                throw ThrowError.mandatoryElementEmpty
             }
             do {
                 self.options = try FormFieldOptionsModel.parseListOptionsJson(listOptions)
             }
             catch {
                 print("❌❌❌ options Not Found")
-                throw ThrowError.MandatoryElementNotFound
+                throw ThrowError.mandatoryElementNotFound
             }
         }
         if (style != nil) {
@@ -125,7 +125,7 @@ class FormFieldModel: NSObject {
             self.textAcceptButton = NSLocalizedString(textAcceptButton!, comment: "")
         }
         else {
-            self.textAcceptButton = NSLocalizedString("gig_form_accept_button_picker", tableName: nil, bundle: NSBundle(forClass: self.dynamicType), value: "", comment: "gig_form_accept_button_picker")
+            self.textAcceptButton = NSLocalizedString("gig_form_accept_button_picker", tableName: nil, bundle: Bundle(for: type(of: self)), value: "", comment: "gig_form_accept_button_picker")
         }
         if (value != nil) {
             self.value = value

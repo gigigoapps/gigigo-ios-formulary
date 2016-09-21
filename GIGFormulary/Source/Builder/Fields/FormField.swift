@@ -13,9 +13,9 @@ import GIGLibrary
 protocol PFormField: PTextFormField {
 }
 
-public class FormField: UIView{
+open class FormField: UIView{
     
-    public var fieldValue: AnyObject?
+    open var fieldValue: AnyObject?
     
     //-- LOCAL VAR --
     var viewContainer: UIView!
@@ -35,7 +35,7 @@ public class FormField: UIView{
     
     // MARK: Initialize XIBS 
     
-    func xibSetup(classField: AnyClass) {
+    func xibSetup(_ classField: AnyClass) {
         self.viewContainer = loadViewFromNib(classField)
         
         addSubview(self.viewContainer)
@@ -46,15 +46,15 @@ public class FormField: UIView{
         gig_layout_bottom(self.viewContainer, 0)
     }
     
-    func loadViewFromNib(classField: AnyClass) -> UIView {
-        let bundle = NSBundle(forClass: classField)
+    func loadViewFromNib(_ classField: AnyClass) -> UIView {
+        let bundle = Bundle(for: classField)
         let classString = NSStringFromClass(classField)
-        let nib = UINib(nibName: classString.componentsSeparatedByString(".").last!, bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let nib = UINib(nibName: classString.components(separatedBy: ".").last!, bundle: bundle)
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
     }
     
-    func awakeFromNib(frame: CGRect, classField: AnyClass) {
+    func awakeFromNib(_ frame: CGRect, classField: AnyClass) {
         super.awakeFromNib()
         self.xibSetup(classField)
     }
