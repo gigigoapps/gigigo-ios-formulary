@@ -13,7 +13,7 @@ import GIGLibrary
 class SecondTypeVC: UIViewController, PFormulary  {
     
     @IBOutlet var button: UIButton!
-    @IBOutlet var viewContain: UIView!
+    @IBOutlet var scrollView: UIScrollView!
     
 
     override func viewDidLoad() {
@@ -23,20 +23,16 @@ class SecondTypeVC: UIViewController, PFormulary  {
         let viewContainterForm = formulary.start(self.button, jsonFile: "json_formulary.json")
         formulary.delegate = self
         
-        
-        
-        viewContainterForm.frame = CGRect(x: viewContainterForm.frame.origin.x,
-                                          y: viewContainterForm.frame.origin.y,
-                                          width: self.view.frame.size.width,
-                                          height: 300)
-        
 
         //-- Insert in view --
-        self.viewContain.addSubview(viewContainterForm)
-        gig_autoresize(self.viewContain, false)
-        gig_layout_fit_horizontal(self.viewContain);
-        gig_layout_top(self.viewContain, 0);
-        //gig_layout_bottom(self.viewContain, 0)
+        self.scrollView.addSubview(viewContainterForm)
+        
+        //-- Autolayout --
+        gig_autoresize(viewContainterForm, false)
+        gig_layout_fit_horizontal(viewContainterForm);
+        gig_constrain_width(viewContainterForm, UIScreen.main.bounds.size.width);
+        gig_layout_top(viewContainterForm, 0);
+        gig_layout_bottom(viewContainterForm, 0)
     }
     
     // MARK: PFormController
