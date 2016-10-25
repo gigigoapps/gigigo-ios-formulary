@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7B6191D21DBF92EE00E3BC87 /* GIGLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B6191D51DBF935300E3BC87 /* GIGFormulary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82EF21D4B5DB800DC85F5 /* GIGFormulary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7B6191D81DBF98FA00E3BC87 /* SecondTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6191D61DBF988C00E3BC87 /* SecondTypeVC.swift */; };
 		7B7D72761D4B7BDE003FFEE8 /* AgeValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D726A1D4B7BDE003FFEE8 /* AgeValidatorTests.swift */; };
 		7B7D72771D4B7BDE003FFEE8 /* BoolValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D726B1D4B7BDE003FFEE8 /* BoolValidatorTests.swift */; };
 		7B7D72781D4B7BDE003FFEE8 /* DNINIEValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D726C1D4B7BDE003FFEE8 /* DNINIEValidatorTests.swift */; };
@@ -111,6 +112,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7B6191D61DBF988C00E3BC87 /* SecondTypeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondTypeVC.swift; sourceTree = "<group>"; };
 		7B7D726A1D4B7BDE003FFEE8 /* AgeValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgeValidatorTests.swift; sourceTree = "<group>"; };
 		7B7D726B1D4B7BDE003FFEE8 /* BoolValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolValidatorTests.swift; sourceTree = "<group>"; };
 		7B7D726C1D4B7BDE003FFEE8 /* DNINIEValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNINIEValidatorTests.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 			children = (
 				7B7D73121D4B831B003FFEE8 /* Json */,
 				7BB82F121D4B5E2200DC85F5 /* AppDelegate.swift */,
+				7B6191D61DBF988C00E3BC87 /* SecondTypeVC.swift */,
 				7BB82F141D4B5E2200DC85F5 /* ViewController.swift */,
 				7BB82F161D4B5E2200DC85F5 /* Main.storyboard */,
 				7BB82F191D4B5E2200DC85F5 /* Assets.xcassets */,
@@ -638,6 +641,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B6191D81DBF98FA00E3BC87 /* SecondTypeVC.swift in Sources */,
 				7BB82F151D4B5E2200DC85F5 /* ViewController.swift in Sources */,
 				7BB82F131D4B5E2200DC85F5 /* AppDelegate.swift in Sources */,
 			);

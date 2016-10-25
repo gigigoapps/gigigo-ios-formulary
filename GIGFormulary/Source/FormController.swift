@@ -25,8 +25,13 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     
     init(viewContainerFormulary: UIView) {
         super.init()
-        
-        self.formViews = FormBuilderViews(viewContainerFormulary: viewContainerFormulary,formController: self)
+        self.formViews = FormBuilderViews(viewContainerFormulary: viewContainerFormulary,
+                                                  formController: self)
+    }
+    
+    init(button: UIButton) {
+        super.init()
+        self.formViews = FormBuilderViews(button: button, formController: self)
     }
     
     // MARK: Public Method
@@ -48,6 +53,10 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
             }
             return [key: value]
         }
+    }
+    
+    func recoverView() -> UIView {
+        return self.formViews!.recoverViewContainer()
     }
     
     // MARK: Private Method
