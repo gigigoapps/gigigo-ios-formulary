@@ -148,7 +148,7 @@ class FormBuilderViews: NSObject {
         var lastView = UIView()
         var firstTime = true
         for field in listFields {
-            field.viewPpal = self.viewContainerFormulary
+            field.viewPpal = self.viewContainerField
             self.viewContainerField.addSubview(field)
             
             gig_autoresize(field, false)
