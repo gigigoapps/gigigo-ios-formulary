@@ -28,14 +28,14 @@ class LengthValidatorTests: XCTestCase {
     func test_length_mandatory() {
         self.validator = LengthValidator(mandatory: true)
         
-        XCTAssertFalse(self.validator.validate(""))
+        XCTAssertFalse(self.validator.validate("" as AnyObject?))
         XCTAssertFalse(self.validator.validate(nil))
     }
     
     func test_length_optional() {
         self.validator = LengthValidator(mandatory: false)
         
-        XCTAssertTrue(self.validator.validate(""))
+        XCTAssertTrue(self.validator.validate("" as AnyObject?))
         XCTAssertTrue(self.validator.validate(nil))
     }
     
@@ -43,61 +43,61 @@ class LengthValidatorTests: XCTestCase {
         self.validator = LengthValidator(minLength: nil, maxLength: 2)
         self.validator.mandatory = true
         
-        XCTAssertFalse(self.validator.validate(""))
-        XCTAssertTrue(self.validator.validate("1"))
-        XCTAssertTrue(self.validator.validate("12"))
-        XCTAssertFalse(self.validator.validate("123"))
+        XCTAssertFalse(self.validator.validate("" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("1" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("12" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("123" as AnyObject?))
     }
     
     func test_optional_with_max_length() {
         self.validator = LengthValidator(minLength: nil, maxLength: 2)
         self.validator.mandatory = false
         
-        XCTAssertTrue(self.validator.validate(""))
-        XCTAssertTrue(self.validator.validate("1"))
-        XCTAssertTrue(self.validator.validate("12"))
-        XCTAssertFalse(self.validator.validate("123"))
+        XCTAssertTrue(self.validator.validate("" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("1" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("12" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("123" as AnyObject?))
     }
     
     func test_mandatory_with_min_length() {
         self.validator = LengthValidator(minLength: 2, maxLength: nil)
         self.validator.mandatory = true
         
-        XCTAssertFalse(self.validator.validate(""))
-        XCTAssertFalse(self.validator.validate("1"))
-        XCTAssertTrue(self.validator.validate("12"))
-        XCTAssertTrue(self.validator.validate("123"))
+        XCTAssertFalse(self.validator.validate("" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("1" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("12" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("123" as AnyObject?))
     }
     
     func test_optional_with_min_length() {
         self.validator = LengthValidator(minLength: 2, maxLength: nil)
         self.validator.mandatory = false
         
-        XCTAssertTrue(self.validator.validate(""))
-        XCTAssertFalse(self.validator.validate("1"))
-        XCTAssertTrue(self.validator.validate("12"))
-        XCTAssertTrue(self.validator.validate("123"))
+        XCTAssertTrue(self.validator.validate("" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("1" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("12" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("123" as AnyObject?))
     }
     
     func test_mandatory_with_min_length_and_max_length() {
         self.validator = LengthValidator(minLength: 2, maxLength: 3)
         self.validator.mandatory = true
         
-        XCTAssertFalse(self.validator.validate(""))
-        XCTAssertFalse(self.validator.validate("1"))
-        XCTAssertTrue(self.validator.validate("12"))
-        XCTAssertTrue(self.validator.validate("123"))
-        XCTAssertFalse(self.validator.validate("1234"))
+        XCTAssertFalse(self.validator.validate("" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("1" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("12" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("123" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("1234" as AnyObject?))
     }
     
     func test_optional_with_min_length_and_max_length() {
         self.validator = LengthValidator(minLength: 2, maxLength: 3)
         self.validator.mandatory = false
         
-        XCTAssertTrue(self.validator.validate(""))
-        XCTAssertFalse(self.validator.validate("1"))
-        XCTAssertTrue(self.validator.validate("12"))
-        XCTAssertTrue(self.validator.validate("123"))
-        XCTAssertFalse(self.validator.validate("1234"))
+        XCTAssertTrue(self.validator.validate("" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("1" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("12" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("123" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("1234" as AnyObject?))
     }
 }

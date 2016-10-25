@@ -28,18 +28,18 @@ class PostalCodeValidatorTests: XCTestCase {
     // MARK: TESTS
     
     func test_valid_postal_codes() {
-        XCTAssertTrue(self.validator.validate("1234"))
-        XCTAssertTrue(self.validator.validate("01234"))
-        XCTAssertTrue(self.validator.validate("12345"))
+        XCTAssertTrue(self.validator.validate("1234" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("01234" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("12345" as AnyObject?))
     }
     
     func test_invalid_postal_codes() {
-        XCTAssertFalse(self.validator.validate("0234"))
-        XCTAssertFalse(self.validator.validate("123"))
-        XCTAssertFalse(self.validator.validate(""))
-        XCTAssertFalse(self.validator.validate("1"))
-        XCTAssertFalse(self.validator.validate("123456"))
-        XCTAssertFalse(self.validator.validate("00123"))
-        XCTAssertFalse(self.validator.validate("123a"))
+        XCTAssertFalse(self.validator.validate("0234" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("123" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("1" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("123456" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("00123" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("123a" as AnyObject?))
     }
 }

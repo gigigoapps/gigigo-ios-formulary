@@ -32,22 +32,22 @@ class OptionValidatorTests: XCTestCase {
     }
     
     func test_correct_option_mandatory() {
-        XCTAssertTrue(self.validator.validate(1))
-        XCTAssertTrue(self.validator.validate(2))
-        XCTAssertTrue(self.validator.validate(3))
-        XCTAssertTrue(self.validator.validate(4))
-        XCTAssertTrue(self.validator.validate(5))
+        XCTAssertTrue(self.validator.validate(1 as AnyObject?))
+        XCTAssertTrue(self.validator.validate(2 as AnyObject?))
+        XCTAssertTrue(self.validator.validate(3 as AnyObject?))
+        XCTAssertTrue(self.validator.validate(4 as AnyObject?))
+        XCTAssertTrue(self.validator.validate(5 as AnyObject?))
     }
     
     func test_incorrect_option_mandatory() {
-        XCTAssertFalse(self.validator.validate(0))
+        XCTAssertFalse(self.validator.validate(0 as AnyObject?))
     }
     
     func test_verify_optional() {
         self.validator.mandatory = false
         XCTAssertTrue(self.validator.validate(nil))
-        XCTAssertTrue(self.validator.validate(0))
-        XCTAssertTrue(self.validator.validate(1))
-        XCTAssertTrue(self.validator.validate(2))
+        XCTAssertTrue(self.validator.validate(0 as AnyObject?))
+        XCTAssertTrue(self.validator.validate(1 as AnyObject?))
+        XCTAssertTrue(self.validator.validate(2 as AnyObject?))
     }
 }

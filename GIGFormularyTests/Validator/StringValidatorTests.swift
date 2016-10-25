@@ -31,10 +31,10 @@ class StringValidatorTests: XCTestCase {
         self.validator.mandatory = true;
         
         XCTAssertFalse(self.validator.validate(nil));
-        XCTAssertFalse(self.validator.validate(""));
-        XCTAssertTrue(self.validator.validate("Hola"));
+        XCTAssertFalse(self.validator.validate("" as AnyObject?));
+        XCTAssertTrue(self.validator.validate("Hola" as AnyObject?));
         let dic = [String: String]()
-        XCTAssertFalse(self.validator.validate(dic));
+        XCTAssertFalse(self.validator.validate(dic as AnyObject?));
     }
     
     func test_validate_optional()
@@ -42,8 +42,8 @@ class StringValidatorTests: XCTestCase {
         self.validator.mandatory = false;
     
         XCTAssertTrue(self.validator.validate(nil));
-        XCTAssertTrue(self.validator.validate(""));
+        XCTAssertTrue(self.validator.validate("" as AnyObject?));
         let dic = [String: String]()
-        XCTAssertFalse(self.validator.validate(dic));
+        XCTAssertFalse(self.validator.validate(dic as AnyObject?));
     }
 }

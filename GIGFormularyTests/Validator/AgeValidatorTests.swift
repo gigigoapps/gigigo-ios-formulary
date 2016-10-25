@@ -34,18 +34,18 @@ class AgeValidatorTests: XCTestCase {
     func test_correct_age_mandatory() {
         self.validator.minAge = 18
         
-        let date = NSDate(timeIntervalSince1970: 411523200)
-        XCTAssertTrue(self.validator.validate(date))
+        let date = Date(timeIntervalSince1970: 411523200)
+        XCTAssertTrue(self.validator.validate(date as AnyObject?))
         
-        let date18Age = NSDate(timeIntervalSince1970: 883612800)
-        XCTAssertTrue(self.validator.validate(date18Age))
+        let date18Age = Date(timeIntervalSince1970: 883612800)
+        XCTAssertTrue(self.validator.validate(date18Age as AnyObject?))
     }
     
     func test_incorrect_age_mandatory() {
         self.validator.minAge = 12
         
-        let date = NSDate(timeIntervalSince1970: 1262304000)
-        XCTAssertFalse(self.validator.validate(date))
+        let date = Date(timeIntervalSince1970: 1262304000)
+        XCTAssertFalse(self.validator.validate(date as AnyObject?))
     }
     
     func test_verify_optional() {

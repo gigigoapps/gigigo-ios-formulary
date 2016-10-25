@@ -66,31 +66,36 @@ class RegexValidatorTests: XCTestCase {
     }
     
     func test_init_with_regexp() {
-        let regexp = NSRegularExpression(pattern: ".{3}")
-        self.validator = RegexValidator(regex: regexp, mandatory: true)
-        
-        XCTAssertTrue(self.validator.mandatory)
-        XCTAssertTrue(self.validator.regex?.pattern == regexp.pattern)
+        do {
+            let regexp = try NSRegularExpression(pattern: ".{3}")
+            self.validator = RegexValidator(regex: regexp, mandatory: true)
+            
+            XCTAssertTrue(self.validator.mandatory)
+            XCTAssertTrue(self.validator.regex?.pattern == regexp.pattern)
+        }
+        catch {
+            
+        }
     }
     
     func test_validate_mandatory() {
         self.validator.mandatory = true
         
         XCTAssertFalse(self.validator.validate(nil))
-        XCTAssertFalse(self.validator.validate(""))
+        XCTAssertFalse(self.validator.validate("" as AnyObject?))
     }
     
     func test_validate_optional() {
         self.validator.mandatory = false
         
         XCTAssertTrue(self.validator.validate(nil))
-        XCTAssertTrue(self.validator.validate(""))
+        XCTAssertTrue(self.validator.validate("" as AnyObject?))
     }
     
     func test_validate_regexp() {
         self.validator = RegexValidator(regexPattern: ".{3}", mandatory: true)
-        XCTAssertFalse(self.validator.validate("a"))
-        XCTAssertTrue(self.validator.validate("aaa"))
-        XCTAssertTrue(self.validator.validate("aaaa"))
+        XCTAssertFalse(self.validator.validate("a" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("aaa" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("aaaa" as AnyObject?))
     }
 }
