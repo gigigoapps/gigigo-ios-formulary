@@ -99,14 +99,14 @@ class TextFormField: FormField, UITextFieldDelegate {
         UIView.animate(withDuration: 0.5, animations: {
             self.errorLabel.sizeToFit()
             self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
-            self.layoutIfNeeded()
+            self.viewPpal?.layoutIfNeeded()
         }) 
     }
     
     fileprivate func hideError() {
         UIView.animate(withDuration: 0.5, animations: {
             self.heightErrorLabelConstraint.constant = 0
-            self.layoutIfNeeded()
+            self.viewPpal?.layoutIfNeeded()
         }) 
     }
     

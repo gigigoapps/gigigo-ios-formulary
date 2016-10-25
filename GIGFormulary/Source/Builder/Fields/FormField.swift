@@ -23,6 +23,7 @@ open class FormField: UIView{
     var validator: Validator?
     var keyBoard: UIKeyboardType?
     var formFieldM: FormFieldModel?
+    var viewPpal: UIView?
     
     //-- Init Xib --
     override init(frame: CGRect) {
