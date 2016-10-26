@@ -46,6 +46,63 @@
               "mandatory": true,
               "textError": "error texto picker",
               "textAcceptButton": "acepta"
+              },
+              {
+              "key": "b",
+              "type": "text",
+              "label": "soy un titulo",
+              "mandatory": true,
+              "textError": "errrrror",
+              "placeHolder": "mete algo aqui",
+              "keyboard": "FormKeyboardTypeEmail",
+              "validator": "text",
+              "style": {
+              "backgroundColorField": "#648cff",
+              "titleColor": "#94ff9a",
+              "errorColor": "#ff4a4c",
+              "sizeTitle": 30,
+              "sizeError": 22,
+              "align": "alignCenter",
+              "font": "AppleSDGothicNeo-SemiBold"
               }
-              ] 
+              },
+              {
+              "key": "c",
+              "type": "text",
+              "label": "soy un titulo",
+              "mandatory": true,
+              "textError": "errrrror",
+              "placeHolder": "mete algo aqui",
+              "keyboard": "FormKeyboardTypeEmail",
+              "validator": "text",
+              "style": {
+              "backgroundColorField": "#648cff",
+              "titleColor": "#94ff9a",
+              "errorColor": "#ff4a4c",
+              "sizeTitle": 30,
+              "sizeError": 22,
+              "align": "alignCenter",
+              "font": "AppleSDGothicNeo-SemiBold"
+              }
+              },
+              {
+              "key": "d",
+              "type": "text",
+              "label": "soy un titulo",
+              "mandatory": true,
+              "textError": "errrrror",
+              "placeHolder": "mete algo aqui",
+              "keyboard": "FormKeyboardTypeEmail",
+              "validator": "text",
+              "style": {
+              "backgroundColorField": "#648cff",
+              "titleColor": "#94ff9a",
+              "errorColor": "#ff4a4c",
+              "sizeTitle": 30,
+              "sizeError": 22,
+              "align": "alignCenter",
+              "font": "AppleSDGothicNeo-SemiBold"
+              }
+              },
+              ]
 }

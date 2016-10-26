@@ -40,6 +40,17 @@ class FormBuilderViews: NSObject {
         self.delegate = formController
     }
     
+    init (button: UIButton, formController: FormController) {
+        self.viewContainerFormulary = UIView()
+        self.buttonSend = button
+        
+        super.init()
+        
+        self.events()
+        self.notifications()
+        self.delegate = formController
+    }
+    
     // MARK : Public Method
     
     func updateFormularyContent(_ listFields: [FormField]) {
@@ -65,6 +76,12 @@ class FormBuilderViews: NSObject {
         {
             self.viewContainerFormulary.endEditing(true)
         }
+    }
+    
+    //-- Second type formulary --
+    
+    func recoverViewContainer() -> UIView {
+        return self.viewContainerField
     }
     
     // MARK : Actions
@@ -102,10 +119,12 @@ class FormBuilderViews: NSObject {
     fileprivate func events() {
         self.buttonSend.addTarget(self, action: #selector(self.buttonAction), for: UIControlEvents.touchUpInside)
         self.scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hideComponent)))
+        self.viewContainerField.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hideComponent)))
     }
     
     func hideComponent() {
         self.scrollView.endEditing(true)
+        self.viewContainerField.endEditing(true)
     }
     
     fileprivate func initializeConstraints() {
@@ -129,7 +148,7 @@ class FormBuilderViews: NSObject {
         var lastView = UIView()
         var firstTime = true
         for field in listFields {
-            field.viewPpal = self.viewContainerFormulary
+            field.viewPpal = self.viewContainerField
             self.viewContainerField.addSubview(field)
             
             gig_autoresize(field, false)
