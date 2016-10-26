@@ -1,52 +1,25 @@
 {
     "fields":[
               {
-              "key": "a",
+              "key": "a1",
               "type": "text",
-              "label": "soy un titulo",
-              "mandatory": true,
-              "textError": "errrrror",
-              "placeHolder": "mete algo aqui",
-              "keyboard": "FormKeyboardTypeEmail",
-              "validator": "custom",
-              "customRegex": "^([0-9])+$",
-              "style": {
-                "backgroundColorField": "#648cff",
-                "titleColor": "#94ff9a",
-                "errorColor": "#ff4a4c",
-                "sizeTitle": 30,
-                "sizeError": 22,
-                "align": "alignCenter",
-                "font": "AppleSDGothicNeo-SemiBold"
-              }
+              "label": "validador sin",
+              "mandatory": true
               },
               {
-              "key": "cc",
-              "type": "boolean",
-              "label": "elige o no",
-              "textError": "error"
+              "key": "a2",
+              "type": "text",
+              "label": "validador email",
+              "validator": "email",
+              "mandatory": true
               },
               {
-              "key": "bb",
-              "type": "picker",
-              "label": "titul picker",
-              "listOptions": [
-                              {
-                              "key": "KeyNoSelected",
-                              "value": "por defecto"
-                              },
-                              {
-                              "key": "a",
-                              "value": "opcion 1"
-                              },
-                              {
-                              "key": "b",
-                              "value": "opcion 2"
-                              }
-                              ],
-              "mandatory": true,
-              "textError": "error texto picker",
-              "textAcceptButton": "acepta"
+              "key": "a3",
+              "type": "text",
+              "label": "validador custom",
+              "validator": "customValidator",
+              "customValidator": "^([0-9])+$",
+              "mandatory": true
               }
-              ]
+              ] 
 }

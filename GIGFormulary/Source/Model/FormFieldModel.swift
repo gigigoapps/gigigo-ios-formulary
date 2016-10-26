@@ -65,7 +65,7 @@ class FormFieldModel: NSObject {
         let minAge = json["minAge"] as? Int
         let textAcceptButton = json["textAcceptButton"] as? String
         let value = json["value"]
-        let custom = json["customRegex"] as? String
+        let custom = json["customValidator"] as? String
         
         
         //== INSERT DATA ==

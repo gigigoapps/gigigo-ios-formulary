@@ -76,7 +76,9 @@ class FormBuilderFields: NSObject {
         guard
             let validate = formFieldM.validator,
             let typeValidate = TypeValidator(rawValue: validate)
-            else { return Validator(mandatory: formFieldM.mandatory) }
+            else {
+                return Validator(mandatory: formFieldM.mandatory)
+        }
         
         let typeValidator = self.validatorsType[typeValidate]
         let validator: Validator
