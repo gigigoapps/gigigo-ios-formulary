@@ -34,6 +34,10 @@ class LengthValidator: StringValidator {
         super.init(mandatory: mandatory)
     }
     
+    required init(mandatory: Bool, custom: String) {
+        super.init(mandatory: mandatory, custom: custom)
+    }
+    
     init (minLength: Int?, maxLength: Int?) {
         super.init()
         self.minLength = minLength

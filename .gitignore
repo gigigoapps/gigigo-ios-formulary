@@ -23,3 +23,5 @@ Carthage/Checkouts
 Carthage/Build/Mac
 Carthage/Build/tvOS
 Carthage/Build/watchOS
+/WebFormulary/HTML5Application/nbproject/private/
+/WebFormulary/nbproject/private/

@@ -19,17 +19,20 @@ class FormFieldModel: NSObject {
     //-- Optional --    
     var placeHolder: String?
     var textError: String?
-    var mandatory = false
     var keyboard: String?
     var options: [FormFieldOptionsModel]?
     var style: FormFieldStyleModel?
     var validator: String?
     var keyBoard: String?
+    var textAcceptButton: String?
+    var value: AnyObject?
+    //-- Validate --
     var minLengthValue: Int?
     var maxLengthValue: Int?
     var minAge: Int?
-    var textAcceptButton: String?
-    var value: AnyObject?
+    var mandatory = false
+    var custom: String?
+    
        
     // MARK: Public Method
     
@@ -53,7 +56,6 @@ class FormFieldModel: NSObject {
         //-- Optional --
         let placeHolder = json["placeHolder"] as? String
         let mandatory = json["mandatory"] as? Bool
-        
         let style = json["style"] as? [String: AnyObject]
         let textError = json["textError"] as? String
         let validator = json["validator"] as? String
@@ -63,6 +65,7 @@ class FormFieldModel: NSObject {
         let minAge = json["minAge"] as? Int
         let textAcceptButton = json["textAcceptButton"] as? String
         let value = json["value"]
+        let custom = json["customValidator"] as? String
         
         
         //== INSERT DATA ==
@@ -80,9 +83,6 @@ class FormFieldModel: NSObject {
         }
         if (placeHolder != nil) {
             self.placeHolder = NSLocalizedString(placeHolder!, comment: "")
-        }
-        if (mandatory != nil) {
-            self.mandatory = mandatory!
         }
 
         if (json["listOptions"] != nil) {
@@ -112,6 +112,17 @@ class FormFieldModel: NSObject {
         if (keyBoard != nil) {
             self.keyBoard = keyBoard
         }
+        if (textAcceptButton != nil) {
+            self.textAcceptButton = NSLocalizedString(textAcceptButton!, comment: "")
+        }
+        else {
+            self.textAcceptButton = NSLocalizedString("gig_form_accept_button_picker", tableName: nil, bundle: Bundle(for: type(of: self)), value: "", comment: "gig_form_accept_button_picker")
+        }
+        if (value != nil) {
+            self.value = value
+        }
+        
+        //-- Validate --
         if (maxLengthValue != nil) {
             self.maxLengthValue = maxLength
         }
@@ -121,14 +132,11 @@ class FormFieldModel: NSObject {
         if (minAge != nil) {
             self.minAge = minAge
         }
-        if (textAcceptButton != nil) {
-            self.textAcceptButton = NSLocalizedString(textAcceptButton!, comment: "")
+        if (mandatory != nil) {
+            self.mandatory = mandatory!
         }
-        else {
-            self.textAcceptButton = NSLocalizedString("gig_form_accept_button_picker", tableName: nil, bundle: Bundle(for: type(of: self)), value: "", comment: "gig_form_accept_button_picker")
-        }
-        if (value != nil) {
-            self.value = value
+        if (custom != nil) {
+            self.custom = custom!
         }
     }
 }

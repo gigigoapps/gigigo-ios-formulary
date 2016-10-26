@@ -9,6 +9,7 @@
 import UIKit
 
 class OptionValidator: Validator {
+    
     override func validate(_ value: AnyObject?) -> Bool{
         if (!super.validate(value)) {
             return false

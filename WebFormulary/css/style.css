@@ -367,6 +367,7 @@
     float: left;
     margin-left: 16px;
     margin-top: 22px;
+    margin-right: 20px;
 }
  
 .keyboardResult{
@@ -634,8 +635,18 @@
     margin-left: 31px;
 }
 
+#custonValidator {
+    position: relative;
+    top: 9px;
+    width: 100px;
+    margin-top: 0px;
+    display: none;
+}
 
-
+#customValidatorTextField{
+    width: 200px;
+    margin: 13px 0 0 17px;
+}
 
 
 

@@ -53,6 +53,7 @@
 		7B7D73101D4B8296003FFEE8 /* StringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72F21D4B8296003FFEE8 /* StringValidator.swift */; };
 		7B7D73111D4B8296003FFEE8 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72F31D4B8296003FFEE8 /* Validator.swift */; };
 		7B7D73151D4B83BC003FFEE8 /* json_formulary.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D73131D4B831B003FFEE8 /* json_formulary.json */; };
+		7BA59F161DC09A7D000D66AA /* CustomValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA59F151DC09A7D000D66AA /* CustomValidator.swift */; };
 		7BB82EF61D4B5DB800DC85F5 /* GIGFormulary.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BB82EF51D4B5DB800DC85F5 /* GIGFormulary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7BB82EFD1D4B5DB800DC85F5 /* GIGFormulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82EF21D4B5DB800DC85F5 /* GIGFormulary.framework */; };
 		7BB82F021D4B5DB800DC85F5 /* GIGFormularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB82F011D4B5DB800DC85F5 /* GIGFormularyTests.swift */; };
@@ -156,6 +157,7 @@
 		7B7D72F21D4B8296003FFEE8 /* StringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringValidator.swift; sourceTree = "<group>"; };
 		7B7D72F31D4B8296003FFEE8 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		7B7D73131D4B831B003FFEE8 /* json_formulary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json_formulary.json; sourceTree = "<group>"; };
+		7BA59F151DC09A7D000D66AA /* CustomValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomValidator.swift; sourceTree = "<group>"; };
 		7BB82EF21D4B5DB800DC85F5 /* GIGFormulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GIGFormulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BB82EF51D4B5DB800DC85F5 /* GIGFormulary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GIGFormulary.h; sourceTree = "<group>"; };
 		7BB82EF71D4B5DB800DC85F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				7B7D72F11D4B8296003FFEE8 /* RegexValidator.swift */,
 				7B7D72F21D4B8296003FFEE8 /* StringValidator.swift */,
 				7B7D72F31D4B8296003FFEE8 /* Validator.swift */,
+				7BA59F151DC09A7D000D66AA /* CustomValidator.swift */,
 			);
 			path = Validators;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				7B7D72F81D4B8296003FFEE8 /* BooleanFormField.swift in Sources */,
 				7B7D730C1D4B8296003FFEE8 /* OptionValidator.swift in Sources */,
 				7B7D72FD1D4B8296003FFEE8 /* TextFormField.swift in Sources */,
+				7BA59F161DC09A7D000D66AA /* CustomValidator.swift in Sources */,
 				7B7D73011D4B8296003FFEE8 /* FormConstant.swift in Sources */,
 				7B7D72FA1D4B8296003FFEE8 /* FormField.swift in Sources */,
 				7B7D73031D4B8296003FFEE8 /* FormFieldModel.swift in Sources */,
