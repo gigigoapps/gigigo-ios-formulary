@@ -26,6 +26,10 @@ class RegexValidator: StringValidator {
         super.init(mandatory: mandatory)
     }
     
+    required init(mandatory: Bool, custom: String) {
+        super.init(mandatory: mandatory, custom: custom)
+    }
+    
     required init(mandatory: Bool) {
         super.init(mandatory: mandatory)
     }

@@ -19,5 +19,9 @@ class MailValidator: RegexValidator {
         catch  {
             super.init(regexPattern: pattern, mandatory: mandatory)
         }
+    }    
+    
+    required init(mandatory: Bool, custom: String) {
+        super.init(mandatory: mandatory, custom: custom)
     }
 }

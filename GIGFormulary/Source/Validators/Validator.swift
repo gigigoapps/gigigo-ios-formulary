@@ -8,12 +8,13 @@
 
 import UIKit
 
-class Validator:NSObject {
+class Validator: NSObject {
     
     var mandatory: Bool
     var minLength: Int?
     var maxLength: Int?
     var minAge: Int?
+    var custom: String?
     
     override init() {        
         self.mandatory = false
@@ -21,6 +22,12 @@ class Validator:NSObject {
     }
     
     required init(mandatory: Bool) {
+        self.mandatory = mandatory
+        super.init()
+    }
+    
+    required init (mandatory: Bool, custom: String) {
+        self.custom = custom
         self.mandatory = mandatory
         super.init()
     }

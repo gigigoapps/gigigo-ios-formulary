@@ -48,7 +48,8 @@ class FormBuilderFields: NSObject {
                                .VALIDATOR_PHONE: PhoneValidator.self,
                                .VALIDATOR_BOOL: BoolValidator.self,
                                .VALIDATOR_DNINIE: DNINIEValidator.self,
-                               .VALIDATOR_AGE: AgeValidator.self]
+                               .VALIDATOR_AGE: AgeValidator.self,
+                               .VALIDATOR_CUSTOM: CustomValidator.self]
     }
     
     fileprivate func createField(_ fieldDic: [String:AnyObject]) -> FormField {
@@ -71,18 +72,24 @@ class FormBuilderFields: NSObject {
         }
     }
     
-    fileprivate func validatorToField(_ formFieldM: FormFieldModel) -> Validator?{
-        if (formFieldM.validator != nil) {
-            let typeValidator = self.validatorsType[TypeValidator(rawValue: formFieldM.validator!)!]
-            let validator = typeValidator!.init(mandatory: formFieldM.mandatory)
-            validator.minLength = formFieldM.minLengthValue
-            validator.maxLength = formFieldM.maxLengthValue
-            validator.minAge = formFieldM.minAge
-            return validator
+    fileprivate func validatorToField(_ formFieldM: FormFieldModel) -> Validator?{        
+        guard
+            let validate = formFieldM.validator,
+            let typeValidate = TypeValidator(rawValue: validate)
+            else { return Validator(mandatory: formFieldM.mandatory) }
+        
+        let typeValidator = self.validatorsType[typeValidate]
+        let validator: Validator
+        if let custom = formFieldM.custom {
+            validator = typeValidator!.init(mandatory: formFieldM.mandatory, custom: custom)
         }
         else {
-            return Validator(mandatory: formFieldM.mandatory)
+            validator = typeValidator!.init(mandatory: formFieldM.mandatory)
         }
+        validator.minLength = formFieldM.minLengthValue
+        validator.maxLength = formFieldM.maxLengthValue
+        validator.minAge = formFieldM.minAge
+        return validator
     }
     
     fileprivate func keyboardToField(_ formFieldM: FormFieldModel) -> UIKeyboardType?{
