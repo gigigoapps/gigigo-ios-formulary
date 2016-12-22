@@ -120,4 +120,12 @@ class FormBuilderFields: NSObject {
         
         return listFormField
     }
+    
+    func fieldsFromDictionary(_ listItems: [[String: AnyObject]]) -> [FormField] {
+        var listFormField = [FormField]()
+        for fieldDic in listItems {
+            listFormField.append(self.createField(fieldDic))
+        }
+        return listFormField
+    }
 }

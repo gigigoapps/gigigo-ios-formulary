@@ -27,14 +27,20 @@ open class Formulary: PFormController {
         self.formController!.delegate = self
     }
     
+    open func start(_ viewContainerFormulary: UIView, listItems: [[String: AnyObject]]) {
+        self.formController = FormController(viewContainerFormulary: viewContainerFormulary)
+        self.formController!.loadFieldsFromJSONDictionary(listItems)
+        self.formController!.delegate = self
+    }
+    
     open func start(_ button: UIButton, jsonFile: String) -> UIView {
         self.formController = FormController(button: button)
         self.formController!.loadFieldsFromJSONFile(jsonFile)
         self.formController!.delegate = self
         
         return self.formController!.recoverView()
-    }
-    
+    }    
+
     open func populateData(_ values: [String:String]) {
         self.formController!.populateData(values as [String : AnyObject])
     }

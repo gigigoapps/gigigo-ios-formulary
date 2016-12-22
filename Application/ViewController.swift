@@ -14,10 +14,39 @@ class ViewController: UIViewController, PFormulary {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let formulary = Formulary.shared
-        formulary.start(self.view, jsonFile: "json_formulary.json")
-        formulary.delegate = self
+        
+        //-- Create form Type with JSON --
+        
+        // let formulary = Formulary.shared
+        // formulary.start(self.view, jsonFile: "json_formulary.json")
+        // formulary.delegate = self
 
+        
+        //-- Create form Type with Array Dic --
+        
+        let dic1:[String: AnyObject] = ["key": "a1" as AnyObject,
+                    "type": "text" as AnyObject,
+                    "label": "validador sin" as AnyObject,
+                    "mandatory": true as AnyObject]
+        
+        let dic2:[String: AnyObject]  = ["key": "a2" as AnyObject,
+                    "type": "text" as AnyObject,
+                    "label": "validador email" as AnyObject,
+                    "validator": "email" as AnyObject,
+                    "mandatory": true as AnyObject]
+        
+        let dic3:[String: AnyObject]  = ["key": "a3" as AnyObject,
+                    "type": "text" as AnyObject,
+                    "label": "validador custom" as AnyObject,
+                    "validator": "customValidator" as AnyObject,
+                    "customValidator": "^([0-9])+$" as AnyObject,
+                    "mandatory": true as AnyObject]
+        
+        let formulary = Formulary.shared
+        formulary.start(self.view, listItems: [dic1, dic2, dic3])
+        formulary.delegate = self
+        
+        
         
         //-- Case: Populate data --
         //let dic = ["a1":"eduardo"]

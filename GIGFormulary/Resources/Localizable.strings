@@ -8,7 +8,7 @@
 
 
 //-- Generic --
-"error_generic_field" = "texto de error del framework";
+"error_generic_field" = "El campo no puede ser vacio";
 
 //-- Picker --
 "gig_form_accept_button_picker" = "OK";

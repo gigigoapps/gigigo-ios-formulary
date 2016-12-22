@@ -42,6 +42,12 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         self.formViews!.updateFormularyContent(self.formFields)
     }
     
+    func loadFieldsFromJSONDictionary(_ listItems: [[String: AnyObject]]) {
+        let builder = FormBuilderFields(formController: self)
+        self.formFields = builder.fieldsFromDictionary(listItems)
+        self.formViews!.updateFormularyContent(self.formFields)
+    }
+    
     func populateData(_ values: [String:AnyObject]) {
         var _ = values.map {key, value -> [String: AnyObject] in
             var _ = self.formFields.map { formField -> FormField in
