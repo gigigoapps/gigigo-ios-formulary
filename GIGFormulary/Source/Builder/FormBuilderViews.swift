@@ -156,7 +156,7 @@ class FormBuilderViews: NSObject {
             
             if (!firstTime)
             {
-                gig_layout_below(field, lastView, 10);
+                gig_layout_below(field, lastView, 3);
             }
             else
             {
