@@ -26,6 +26,7 @@ class FormFieldModel: NSObject {
     var keyBoard: String?
     var textAcceptButton: String?
     var value: AnyObject?
+    var isPassword = false
     //-- Validate --
     var minLengthValue: Int?
     var maxLengthValue: Int?
@@ -66,6 +67,7 @@ class FormFieldModel: NSObject {
         let textAcceptButton = json["textAcceptButton"] as? String
         let value = json["value"]
         let custom = json["customValidator"] as? String
+        let isPassword = json["isPassword"] as? Bool
         
         
         //== INSERT DATA ==
@@ -121,12 +123,15 @@ class FormFieldModel: NSObject {
         if (value != nil) {
             self.value = value
         }
+        if (isPassword != nil) {
+            self.isPassword = isPassword!
+        }
         
         //-- Validate --
-        if (maxLengthValue != nil) {
+        if (maxLength != nil) {
             self.maxLengthValue = maxLength
         }
-        if (minLengthValue != nil) {
+        if (minLength != nil) {
             self.minLengthValue = minLength
         }
         if (minAge != nil) {

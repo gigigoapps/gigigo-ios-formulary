@@ -80,6 +80,7 @@ class TextFormField: FormField, UITextFieldDelegate {
         self.loadMandatory(self.formFieldM!.mandatory)
         self.loadCustomStyleField(self.formFieldM!)
         self.loadKeyboard(self.formFieldM!)
+        self.loadCustomField(self.formFieldM!)
     }
     
     // MARK: GIGFormField (Override)
@@ -118,6 +119,10 @@ class TextFormField: FormField, UITextFieldDelegate {
     }
     
     // MARK: Load data field
+    
+    fileprivate func loadCustomField(_ formFieldM: FormFieldModel) {
+        self.textTextField.isSecureTextEntry = formFieldM.isPassword
+    }
     
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label

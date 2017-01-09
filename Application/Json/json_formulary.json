@@ -1,25 +1,15 @@
 {
     "fields":[
               {
-              "key": "a1",
+              "key": "sfsd",
               "type": "text",
-              "label": "validador sin",
-              "mandatory": true
-              },
-              {
-              "key": "a2",
-              "type": "text",
-              "label": "validador email",
-              "validator": "email",
-              "mandatory": true
-              },
-              {
-              "key": "a3",
-              "type": "text",
-              "label": "validador custom",
-              "validator": "customValidator",
-              "customValidator": "^([0-9])+$",
-              "mandatory": true
+              "label": "sdfsd",
+              "textError": "sdfs",
+              "placeHolder": "sdfs",
+              "minLength": 6,
+              "mandatory": true,
+              "validator": "lengthText",
+              "isPassword": true
               }
               ] 
 }

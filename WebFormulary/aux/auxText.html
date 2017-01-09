@@ -29,8 +29,8 @@
                  </div>
                  <div class="mandatoryTextField">
                      <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">
-                         <p>Es obligatorio?</p>
-                  </div>
+                     <p>Es obligatorio?</p>
+                 </div>
                   
                   <select id="selectTypeValidator">
                       <option value="None">Tipo validador</option>
@@ -51,7 +51,13 @@
                  <p>minLength:</p><input class="inputWidth" type="text" name="minLength"id="minLength">
                  <p>maxLength:</p><input class="inputWidth" type="text" name="maxLength"id="maxLength">
               </div>
-              <div class="styleField"> 
+             
+             <div class="passwordTextField">
+                 <input type="checkbox" name="passwordTextField" value="passwordTextField" id="passwordTextField">
+                 <p>Es password?</p>
+              </div>
+             
+              <div class="styleField">
                    <h4>Estilos de celda:</h4>
                         <div class="colorZone">
                         '+colorBasicZone+'
@@ -110,6 +116,10 @@
                 <input class="inputWidth" type="text" name="minLength"id="minLength" disabled readonly value="'+minLength+'">
                 <p>maxLength:</p>
                 <input class="inputWidth" type="text" name="maxLength"id="maxLength" disabled readonly value="'+maxLength+'">
+            </div>
+            <div class="passwordTextField">
+                <input type="checkbox" name="passwordTextField" value="passwordTextField" id="passwordTextField" '+isPasswordChecked+' disabled readonly>
+                <p>Es password?</p>
             </div>
             <div class="styleField"> 
                 <h4>Estilos de celda:</h4>

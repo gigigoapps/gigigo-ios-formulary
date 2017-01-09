@@ -49,13 +49,13 @@
             color: white;
             float: right;
             font-size: 49px;
-            height: 414px;
+            height: 448px;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonAdd p{
-                margin-top: 170px;
+                margin-top: 190px;
             }
             .buttonAdd:hover {
                 background-color: skyblue;
@@ -153,11 +153,27 @@
             .mandatoryTextField p{
                 margin-top: 14px;
             }
-        
+
+
+        .passwordTextField {
+            float: left;
+            margin-left: 142px;
+            margin-top: 0;
+            width: 100%;
+        }
+            .passwordTextField input{
+                float: left;
+                width: 36px;
+            }
+            .passwordTextField p{
+                margin-top: 14px;
+            }
+
+
         #listItemsCreated {
             margin-top: 10px;
         }
-        
+
         #lineSeparator {
             width: 100%;
             height: 2px;
@@ -527,10 +543,10 @@
     height: 205px;
 }
 .buttonRemoveText {
-    height: 390px;
+    height: 424px;
 }
     .buttonRemoveText p {
-        margin-top: 150px;
+        margin-top: 179px;
     }
 .minAgeContainer {
     height: 43px;
