@@ -8,7 +8,10 @@
               {
               "key": "z",
               "type": "index",
-              "label":"TITULAR"
+              "label":"TITULAR",
+              "style": {
+                "sizeTitle": 30
+              }
               },
               {
               "key": "b",
