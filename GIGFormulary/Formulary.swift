@@ -39,7 +39,17 @@ open class Formulary: PFormController {
         self.formController!.delegate = self
         
         return self.formController!.recoverView()
-    }    
+    }
+    
+    open func start(_ button: UIButton, listItems: [[String: AnyObject]]) -> UIView  {
+        self.formController = FormController(button: button)
+        self.formController!.loadFieldsFromJSONDictionary(listItems)
+        self.formController!.delegate = self
+        
+        return self.formController!.recoverView()
+    }
+    
+    // MARK: Populate
 
     open func populateData(_ values: [String:String]) {
         self.formController!.populateData(values as [String : AnyObject])
