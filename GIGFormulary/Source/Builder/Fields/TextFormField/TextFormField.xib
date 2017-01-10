@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="errorLabel" destination="TLX-oE-MRl" id="u7V-x0-ZPg"/>
                 <outlet property="heightErrorLabelConstraint" destination="Mtl-eS-9Y1" id="fp9-JL-YMa"/>
+                <outlet property="heightLabelConstraint" destination="fUF-Rf-BPy" id="g38-Ob-2VC"/>
                 <outlet property="mandotoryImage" destination="0J7-VO-BTk" id="Plm-CG-ePl"/>
                 <outlet property="textTextField" destination="ylY-uG-c7q" id="wWi-pI-vhF"/>
                 <outlet property="titleLabel" destination="aon-0X-cZ7" id="4lY-tD-MEo"/>
@@ -24,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aon-0X-cZ7" userLabel="titleLabel">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aon-0X-cZ7" userLabel="titleLabel">
                     <rect key="frame" x="16" y="2" width="288" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="fUF-Rf-BPy"/>

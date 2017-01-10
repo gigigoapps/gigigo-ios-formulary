@@ -54,6 +54,8 @@
 		7B7D73111D4B8296003FFEE8 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72F31D4B8296003FFEE8 /* Validator.swift */; };
 		7B7D73151D4B83BC003FFEE8 /* json_formulary.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D73131D4B831B003FFEE8 /* json_formulary.json */; };
 		7BA59F161DC09A7D000D66AA /* CustomValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA59F151DC09A7D000D66AA /* CustomValidator.swift */; };
+		7BA9AD3B1E24F092002FE4F6 /* IndexFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BA9AD3A1E24F092002FE4F6 /* IndexFormField.xib */; };
+		7BA9AD3D1E24F26B002FE4F6 /* IndexFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA9AD3C1E24F26B002FE4F6 /* IndexFormField.swift */; };
 		7BB82EF61D4B5DB800DC85F5 /* GIGFormulary.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BB82EF51D4B5DB800DC85F5 /* GIGFormulary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7BB82EFD1D4B5DB800DC85F5 /* GIGFormulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82EF21D4B5DB800DC85F5 /* GIGFormulary.framework */; };
 		7BB82F021D4B5DB800DC85F5 /* GIGFormularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB82F011D4B5DB800DC85F5 /* GIGFormularyTests.swift */; };
@@ -158,6 +160,8 @@
 		7B7D72F31D4B8296003FFEE8 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		7B7D73131D4B831B003FFEE8 /* json_formulary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json_formulary.json; sourceTree = "<group>"; };
 		7BA59F151DC09A7D000D66AA /* CustomValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomValidator.swift; sourceTree = "<group>"; };
+		7BA9AD3A1E24F092002FE4F6 /* IndexFormField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IndexFormField.xib; path = IndexFormField/IndexFormField.xib; sourceTree = "<group>"; };
+		7BA9AD3C1E24F26B002FE4F6 /* IndexFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndexFormField.swift; path = IndexFormField/IndexFormField.swift; sourceTree = "<group>"; };
 		7BB82EF21D4B5DB800DC85F5 /* GIGFormulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GIGFormulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BB82EF51D4B5DB800DC85F5 /* GIGFormulary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GIGFormulary.h; sourceTree = "<group>"; };
 		7BB82EF71D4B5DB800DC85F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -283,6 +287,7 @@
 		7B7D72D41D4B8296003FFEE8 /* Fields */ = {
 			isa = PBXGroup;
 			children = (
+				7BA9AD391E24F001002FE4F6 /* IndexFormField */,
 				7B7D72D51D4B8296003FFEE8 /* BooleanFormField */,
 				7B7D72D91D4B8296003FFEE8 /* PickerFormField */,
 				7B7D72DC1D4B8296003FFEE8 /* TextFormField */,
@@ -354,6 +359,15 @@
 				7B7D73131D4B831B003FFEE8 /* json_formulary.json */,
 			);
 			path = Json;
+			sourceTree = "<group>";
+		};
+		7BA9AD391E24F001002FE4F6 /* IndexFormField */ = {
+			isa = PBXGroup;
+			children = (
+				7BA9AD3A1E24F092002FE4F6 /* IndexFormField.xib */,
+				7BA9AD3C1E24F26B002FE4F6 /* IndexFormField.swift */,
+			);
+			name = IndexFormField;
 			sourceTree = "<group>";
 		};
 		7BB82EE81D4B5DB800DC85F5 = {
@@ -557,6 +571,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B7D72F91D4B8296003FFEE8 /* BooleanFormField.xib in Resources */,
+				7BA9AD3B1E24F092002FE4F6 /* IndexFormField.xib in Resources */,
 				7B7D72F61D4B8296003FFEE8 /* Assets.xcassets in Resources */,
 				7B7D72FC1D4B8296003FFEE8 /* PickerFormField.xib in Resources */,
 				7B7D72F71D4B8296003FFEE8 /* Localizable.strings in Resources */,
@@ -613,6 +628,7 @@
 				7B7D730B1D4B8296003FFEE8 /* NumericValidator.swift in Sources */,
 				7B7D73081D4B8296003FFEE8 /* DNINIEValidator.swift in Sources */,
 				7B7D730F1D4B8296003FFEE8 /* RegexValidator.swift in Sources */,
+				7BA9AD3D1E24F26B002FE4F6 /* IndexFormField.swift in Sources */,
 				7B7D73101D4B8296003FFEE8 /* StringValidator.swift in Sources */,
 				7B7D73111D4B8296003FFEE8 /* Validator.swift in Sources */,
 				7B7D72F41D4B8296003FFEE8 /* DatePickerComponent.swift in Sources */,

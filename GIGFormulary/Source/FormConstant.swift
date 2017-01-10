@@ -14,6 +14,7 @@ enum TypeField: String {
     case PICKER_FORM_FIELD = "picker"
     case DATEPICKER_FORM_FIELD = "datePicker"
     case BOOLEAN_FORM_FIELD = "boolean"
+    case INDEX_FORM_FIELD = "index"
 }
 
 enum TypeKeyBoard: String {

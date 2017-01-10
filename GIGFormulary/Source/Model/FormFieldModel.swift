@@ -45,16 +45,14 @@ class FormFieldModel: NSObject {
             print("❌❌❌ type Not Found")
             throw ThrowError.mandatoryElementNotFound
         }
-        guard let label = json["label"] as? String , label.characters.count > 0 else {
-            print("❌❌❌ label Not Found")
-            throw ThrowError.mandatoryElementNotFound
-        }
+
         guard let key = json["key"] as? String , key.characters.count > 0 else {
             print("❌❌❌ key Not Found")
             throw ThrowError.mandatoryElementNotFound
         }
     
         //-- Optional --
+        let label = json["label"] as? String
         let placeHolder = json["placeHolder"] as? String
         let mandatory = json["mandatory"] as? Bool
         let style = json["style"] as? [String: AnyObject]
@@ -73,10 +71,13 @@ class FormFieldModel: NSObject {
         //== INSERT DATA ==
         //-- Mandatory--
         self.type = type
-        self.label = NSLocalizedString(label, comment: "")
         self.key = key
         
         //-- Optional--
+        
+        if (label != nil) {
+            self.label = NSLocalizedString(label!, comment: "")
+        }
         if (textError != nil) {
             self.textError = NSLocalizedString(textError!, comment: "")
         }

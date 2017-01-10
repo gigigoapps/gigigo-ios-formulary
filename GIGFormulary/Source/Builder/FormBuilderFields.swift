@@ -33,7 +33,8 @@ class FormBuilderFields: NSObject {
         self.listTypeFields = [.TEXT_FORM_FIELD: TextFormField.self,
                                .PICKER_FORM_FIELD: PickerFormField.self,
                                .DATEPICKER_FORM_FIELD: PickerFormField.self,
-                               .BOOLEAN_FORM_FIELD: BooleanFormField.self]
+                               .BOOLEAN_FORM_FIELD: BooleanFormField.self,
+                               .INDEX_FORM_FIELD: IndexFormField.self]
         
         self.keyboardTypes  = [.KEYBOARD_TEXT: .default,
                               .KEYBOARD_EMAIL: .emailAddress,

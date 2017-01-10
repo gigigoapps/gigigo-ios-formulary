@@ -68,9 +68,13 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     // MARK: Private Method
 
     fileprivate func nextFieldTo(_ field: FormField) -> FormField?{
-        let nextField =  self.formFields.index(of: field)!+1
-        if (nextField < self.formFields.count) {
-            return self.formFields[nextField]
+        let nextFieldPos =  self.formFields.index(of: field)!+1
+        if (nextFieldPos < self.formFields.count) {
+            let nextField = self.formFields[nextFieldPos]
+            if nextField.formFieldM?.type == TypeField.INDEX_FORM_FIELD.rawValue {
+                return self.nextFieldTo(nextField)
+            }
+            return nextField
         }
         else {
             return nil
@@ -81,8 +85,11 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         var valid = true
         for field in self.formFields {
             valid = field.validate()
-            let value = field.fieldValue as? String            
-            self.formValues["\(field.formFieldM!.key!)"] =  (value != nil) ? value as AnyObject? : "" as AnyObject?
+            let value = field.fieldValue as? String
+    
+            if field.formFieldM?.type != TypeField.INDEX_FORM_FIELD.rawValue {
+                self.formValues["\(field.formFieldM!.key!)"] =  (value != nil) ? value as AnyObject? : "" as AnyObject?
+            }
         }
         return valid
     }

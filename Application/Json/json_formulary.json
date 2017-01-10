@@ -3,36 +3,19 @@
               {
               "key": "a",
               "type": "text",
-              "label": "a",
               "placeHolder": "asda"
+              },
+              {
+              "key": "z",
+              "type": "index",
+              "label":"TITULAR"
               },
               {
               "key": "b",
               "type": "text",
-              "label": "b",
               "mandatory": true,
               "placeHolder": "b",
               "isPassword": true
-              },
-              {
-              "key": "c",
-              "type": "text",
-              "label": "c",
-              "textError": "c",
-              "placeHolder": "c",
-              "minLength": 1
-              },
-              {
-              "key": "d",
-              "type": "text",
-              "label": "d",
-              "placeHolder": "d"
-              },
-              {
-              "key": "sfas",
-              "type": "text",
-              "label": "asfsa",
-              "placeHolder": "afsdsaf"
               }
               ] 
 }

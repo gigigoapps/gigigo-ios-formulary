@@ -45,6 +45,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
+    @IBOutlet var heightLabelConstraint: NSLayoutConstraint!
     
     
     // MARK: INIT
@@ -130,6 +131,9 @@ class TextFormField: FormField, UITextFieldDelegate {
         self.errorLabel.text = formFieldM.textError
         if (self.formFieldM?.value != nil) {
             self.textTextField.text = self.formFieldM?.value as? String
+        }
+        if self.formFieldM?.label == nil {
+            self.heightLabelConstraint.constant = 0
         }
     }
     
