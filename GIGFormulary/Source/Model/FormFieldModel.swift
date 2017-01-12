@@ -33,6 +33,7 @@ class FormFieldModel: NSObject {
     var minAge: Int?
     var mandatory = false
     var custom: String?
+    var isLink = false
     
        
     // MARK: Public Method
@@ -66,6 +67,7 @@ class FormFieldModel: NSObject {
         let value = json["value"]
         let custom = json["customValidator"] as? String
         let isPassword = json["isPassword"] as? Bool
+        let isLink = json["isLink"] as? Bool
         
         
         //== INSERT DATA ==
@@ -126,6 +128,9 @@ class FormFieldModel: NSObject {
         }
         if (isPassword != nil) {
             self.isPassword = isPassword!
+        }
+        if (isLink != nil) {
+            self.isLink = isLink!
         }
         
         //-- Validate --

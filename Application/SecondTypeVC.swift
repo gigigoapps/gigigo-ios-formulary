@@ -72,4 +72,8 @@ class SecondTypeVC: UIViewController, PFormulary  {
     func recoverFormModel(_ formValues: [String : AnyObject]) {
         
     }
+    
+    func userDidTapLink(_ key: String) {
+        
+    }
 }

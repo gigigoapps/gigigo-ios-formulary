@@ -10,6 +10,7 @@ import UIKit
 
 public protocol PFormulary {
     func recoverFormModel(_ formValues: [String: AnyObject])
+    func userDidTapLink(_ key: String)
 }
 
 open class Formulary: PFormController {
@@ -59,5 +60,9 @@ open class Formulary: PFormController {
 
     open func recoverFormModel(_ formValues: [String : AnyObject]) {
         self.delegate?.recoverFormModel(formValues)
+    }
+    
+    open func userDidTapLink(_ key: String) {
+        self.delegate?.userDidTapLink(key)
     }
 }

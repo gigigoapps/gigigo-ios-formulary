@@ -10,6 +10,7 @@ import UIKit
 
 protocol PFormController {
     func recoverFormModel(_ formValues: [String: AnyObject])
+    func userDidTapLink(_ key: String)
 }
 
 class FormController: NSObject, PFormField, PFormBuilderViews {
@@ -114,5 +115,9 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         if (nextField == nil) {
              let _ = self.validateFields()
         }
+    }
+    
+    func userDidTapLink(_ key: String) {
+        self.delegate?.userDidTapLink(key)
     }
 }

@@ -16,14 +16,14 @@ class ViewController: UIViewController, PFormulary {
         
         
         //-- Create form Type with JSON --
-       /*
+       
          let formulary = Formulary.shared
          formulary.start(self.view, jsonFile: "json_formulary.json")
          formulary.delegate = self
-*/
+
         
         //-- Create form Type with Array Dic --
-        
+        /*
         let dic1:[String: AnyObject] = ["key": "a1" as AnyObject,
                     "type": "text" as AnyObject,
                     "label": "validador sin" as AnyObject,
@@ -51,7 +51,7 @@ class ViewController: UIViewController, PFormulary {
         let formulary = Formulary.shared
         formulary.start(self.view, listItems: [dic1, dic2, dic4 ,dic3])
         formulary.delegate = self
-        
+        */
         
         
         //-- Case: Populate data --
@@ -62,6 +62,10 @@ class ViewController: UIViewController, PFormulary {
     // MARK: PFormController
     
     func recoverFormModel(_ formValues: [String : AnyObject]) {
+        
+    }
+    
+    func userDidTapLink(_ key: String) {
         
     }
 }

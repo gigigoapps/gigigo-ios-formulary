@@ -8,6 +8,11 @@
 
 import UIKit
 
+
+protocol PBooleanFormField {
+    func userDidTapLink(_ key: String)
+}
+
 class BooleanFormField: FormField {
 
     @IBOutlet var buttonAccept: UIButton!
@@ -102,6 +107,11 @@ class BooleanFormField: FormField {
         if (formFieldM.value != nil && (formFieldM.value as? Bool)!) {
             self.changeState()
         }
+        if (formFieldM.isLink) {
+            let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector(("labelAction:")))
+            self.titleLabel.addGestureRecognizer(tap)
+            self.titleLabel.textColor = UIColor.blue
+        }
     }
     
     fileprivate func loadMandatory(_ isMandatory: Bool) {
@@ -161,6 +171,12 @@ class BooleanFormField: FormField {
     
     @IBAction func actionButtonAccept(_ sender: AnyObject) {
         self.changeState()
+    }
+    
+    func labelAction(gr:UITapGestureRecognizer)
+    {
+        print((self.formFieldM?.key)!)
+        self.delegate?.userDidTapLink((self.formFieldM?.key)!)
     }
     
     // MARK: UIResponser (Overrride)

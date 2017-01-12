@@ -1,24 +1,13 @@
 {
     "fields":[
               {
-              "key": "a",
-              "type": "text",
-              "placeHolder": "asda"
-              },
-              {
-              "key": "z",
-              "type": "index",
-              "label":"TITULAR",
-              "style": {
-                "sizeTitle": 30
-              }
-              },
-              {
-              "key": "b",
-              "type": "text",
+              "key": "asda",
+              "type": "boolean",
+              "label": "asdadas",
               "mandatory": true,
-              "placeHolder": "b",
-              "isPassword": true
+              "textError": "error_generic_field",
+              "validator": "bool",
+              "isLink": true
               }
               ] 
 }
