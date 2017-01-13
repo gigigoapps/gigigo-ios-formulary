@@ -12,10 +12,14 @@
                   </div>         
              </div>
              <div class="containerTextFieldCenter">
-                 <div class="mandatoryTextField">
+                  <div class="mandatoryTextField">
                      <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">
-                         <p>Es obligatorio?</p>
-                  </div> 
+                     <p>Es obligatorio?</p>
+                  </div>
+                  <div class="isLinkTextField">
+                      <input type="checkbox" name="isLink" value="isLink" id="isLink">
+                      <p>Es link?</p>
+                  </div>
              </div>
              <div class="errorTextField">
                  <p class="textErrorP">Texto error:</p>
@@ -65,6 +69,10 @@
                     <input type="checkbox" name="mandatory" value="mandatory" id="mandatory" '+valueCheck+' disabled readonly>
                     <p>Es obligatorio?</p>
                 </div>
+                <div class="isLinkTextField">
+                    <input type="checkbox" name="isLink" value="isLink" id="isLink" '+isLinkValueCheck+' disabled readonly>
+                    <p>Es link?</p>
+               </div>
             </div>
             <div class="errorTextField">
                 <p class="textErrorP">Texto error:</p>

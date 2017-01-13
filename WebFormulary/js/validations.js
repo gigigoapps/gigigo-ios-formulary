@@ -174,6 +174,7 @@ function validateBooleanField() {
     var imageMandatory = $("#imageMandatory").val()
     var imageCheckBoxOn = $("#imageCheckBoxOn").val()
     var imageCheckBoxOff = $("#imageCheckBoxOff").val()
+    var isLink = $('#isLink').is(':checked');
 
     if (font == "custom") {
         font = $("#custonFont").val()
@@ -181,10 +182,12 @@ function validateBooleanField() {
     
     if (error.length == 0) {
         error = "error_generic_field"
-    }  
+    }
+    
+    console.log(imageMandatory);
 
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createBooleanField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff);
-        saveBooleanField(keyTextField,"boolean",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff)
+        createBooleanField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isLink);
+        saveBooleanField(keyTextField,"boolean",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isLink)
     }
 }

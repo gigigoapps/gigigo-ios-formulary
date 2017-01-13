@@ -155,6 +155,19 @@
             }
 
 
+        .isLinkTextField {
+            float: left;
+            margin-top: 8px;
+            width: 133px;
+        }
+            .isLinkTextField input{
+                float: left;
+                width: 36px;
+            }
+            .isLinkTextField p{
+                margin-top: 14px;
+            }
+
         .passwordTextField {
             float: left;
             margin-left: 142px;
