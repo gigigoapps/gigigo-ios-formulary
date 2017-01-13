@@ -175,7 +175,6 @@ class BooleanFormField: FormField {
     
     func labelAction(gr:UITapGestureRecognizer)
     {
-        print((self.formFieldM?.key)!)
         self.delegate?.userDidTapLink((self.formFieldM?.key)!)
     }
     

@@ -41,6 +41,9 @@ function addField() {
     else if (fieldSelected == "Boolean") {
         validateBooleanField();
     }
+    else if (fieldSelected == "Index") {
+        validateIndexField();
+    }
 }
 
 function resetTypeField() {
@@ -81,6 +84,9 @@ function createElementField(typeField) {
     else if (typeField == "Boolean") {
         htmlImage = getHtmlAllImage();
         html = '<div class="cellConstructor"id="createField"><div class="row"><div class="col-md-10"><div class="keyTextField"><p>key*:</p><input type="text"name="keyTextField"id="keyTextField"></div><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"></div></div><div class="containerTextFieldCenter"><div class="mandatoryTextField"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"><p>Es obligatorio?</p></div><div class="isLinkTextField"><input type="checkbox"name="isLink"value="isLink"id="isLink"><p>Es link?</p></div></div><div class="errorTextField"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"></div><div class="styleField"><h4>Estilos de celda:</h4><div class="sizeZone"><p>Tamaño titulo:</p><input id="sizeTitle"type="text"name="element"><p>Tamaño texto error:</p><input id="sizeError"type="text"name="element"></div>'+htmlFont+htmlImage+'<div class="colorZone">'+colorBasicZone+'</div></div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonAdd"onclick="addField()"><p>+</p></div></div></div>';
+    }
+    else if (typeField == "Index") {
+        html = '<div class="cellConstructor"id="createField"><div class="row"><div class="col-md-10"><div class="keyTextField"><p>key*:</p><input type="text"name="keyTextField"id="keyTextField"></div><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"></div></div><div class="styleField"><h4>Estilos de celda:</h4><div class="colorZone">'+colorBasicZone+'</div><div class="sizeZone"><p>Tamaño titulo:</p><input id="sizeTitle"type="text"name="element"></div>'+htmlFont+''+'</div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonAdd"onclick="addField()"><p>+</p></div></div></div>';
     }
 
     $("#containterElementField").append(html)

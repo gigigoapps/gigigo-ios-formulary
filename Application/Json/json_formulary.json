@@ -1,17 +1,18 @@
-
 {
     "fields":[
               {
               "key": "k1",
               "type": "boolean",
-              "label": "asdfadas",
+              "label": "soy un link",
               "mandatory": true,
-              "textError": "sfasfs",
+              "textError": "errrorrrrr",
               "validator": "bool",
-              "isLink": true,
-              "style": {
-                    "titleColor": "#7b89ff"
-              }
+              "isLink": true
+              },
+              {
+              "key": "k2",
+              "type": "index",
+              "label": "titular celda"
               }
               ] 
 }

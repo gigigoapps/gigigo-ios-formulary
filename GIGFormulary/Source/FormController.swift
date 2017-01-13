@@ -83,16 +83,19 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     }
     
     fileprivate func validateFields() -> Bool {
-        var valid = true
+        var isValid = true
         for field in self.formFields {
-            valid = field.validate()
-            let value = field.fieldValue as? String
-    
+            if (!field.validate()) {
+                isValid = false
+            }
+            
             if field.formFieldM?.type != TypeField.INDEX_FORM_FIELD.rawValue {
-                self.formValues["\(field.formFieldM!.key!)"] =  (value != nil) ? value as AnyObject? : "" as AnyObject?
+                    self.formValues["\(field.formFieldM!.key!)"] =  field.fieldValue as AnyObject
+            
+                //self.formValues["\(field.formFieldM!.key!)"] =  (field.formFieldM != nil) ? field.formFieldM as AnyObject : "" as AnyObject
             }
         }
-        return valid
+        return isValid
     }
  
     // MARK: PFormBuilderViews

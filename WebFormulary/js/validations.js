@@ -184,10 +184,29 @@ function validateBooleanField() {
         error = "error_generic_field"
     }
     
-    console.log(imageMandatory);
-
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
         createBooleanField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isLink);
         saveBooleanField(keyTextField,"boolean",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isLink)
+    }
+}
+
+//=== INDEX ===
+function validateIndexField() {
+    var keyTextField = $("#keyTextField").val()
+    var title = $("#titleTextField").val()
+    // Style
+    var cellColor = $("#cellColorHex").val()
+    var titleColor = $("#titleColorHex").val()
+    var sizeTitle = $("#sizeTitle").val()
+    var align = document.getElementById("selectTypeAlign").value;
+    var font = document.getElementById("selectTypeFont").value;
+    
+    if (font == "custom") {
+        font = $("#custonFont").val()
+    }
+    
+    if (controlError(title,keyTextField,font,sizeTitle,10)) {
+        createIndexField(keyTextField,title,cellColor,titleColor,sizeTitle,align,font);
+        saveIndexField(keyTextField,"index",title,cellColor,titleColor,sizeTitle,align,font)
     }
 }
