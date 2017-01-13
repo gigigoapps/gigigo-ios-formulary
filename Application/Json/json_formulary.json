@@ -1,13 +1,17 @@
+
 {
     "fields":[
               {
-              "key": "asda",
+              "key": "k1",
               "type": "boolean",
-              "label": "asdadas",
+              "label": "asdfadas",
               "mandatory": true,
-              "textError": "error_generic_field",
+              "textError": "sfasfs",
               "validator": "bool",
-              "isLink": true
+              "isLink": true,
+              "style": {
+                    "titleColor": "#7b89ff"
+              }
               }
               ] 
 }

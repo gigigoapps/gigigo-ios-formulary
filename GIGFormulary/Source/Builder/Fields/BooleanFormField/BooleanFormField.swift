@@ -108,9 +108,9 @@ class BooleanFormField: FormField {
             self.changeState()
         }
         if (formFieldM.isLink) {
-            let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector(("labelAction:")))
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.labelAction))
+            self.titleLabel.isUserInteractionEnabled = true
             self.titleLabel.addGestureRecognizer(tap)
-            self.titleLabel.textColor = UIColor.blue
         }
     }
     
