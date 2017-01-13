@@ -59,13 +59,6 @@ class FormFieldModelTests: XCTestCase {
             
             XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic))
         }
-        do {
-            let dic1:[String: AnyObject] = ["type":"aa" as AnyObject,
-                                           "label":true as AnyObject,
-                                           "key":"aa" as AnyObject]
-            
-            XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic1))
-        }
         do {            
             let key = ["asa":"asdas"] as [String : Any]
             let dic2:[String: AnyObject] = ["type":"aa" as AnyObject,
