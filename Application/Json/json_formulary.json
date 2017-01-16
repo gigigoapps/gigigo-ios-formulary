@@ -1,18 +1,29 @@
 {
     "fields":[
               {
-              "key": "k1",
-              "type": "boolean",
-              "label": "soy un link",
+              "key": "a1",
+              "type": "text",
+              "label": "sdfs",
               "mandatory": true,
-              "textError": "errrorrrrr",
-              "validator": "bool",
-              "isLink": true
+              "placeHolder": "sdfs",
+              "compare": true,
+              "itemCompare": ["a1","a3"]
               },
               {
-              "key": "k2",
-              "type": "index",
-              "label": "titular celda"
+              "key": "a2",
+              "type": "text",
+              "label": "sdfs",
+              "mandatory": true,
+              "placeHolder": "sdfs"
+              },
+              {
+              "key": "a3",
+              "type": "text",
+              "label": "sdfs",
+              "mandatory": true,
+              "placeHolder": "sdfs",
+              "compare": true,
+              "itemCompare": ["a1","a3"]
               }
               ] 
 }

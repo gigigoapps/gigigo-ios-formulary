@@ -65,6 +65,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     override func validate() -> Bool {
         let status = super.validate()
         if (!status) {
+            self.errorLabel.text = self.formFieldM?.textsError.textError
             self.showError()
         }
         else {
@@ -72,6 +73,11 @@ class TextFormField: FormField, UITextFieldDelegate {
         }
         
         return status
+    }
+    
+    override func validateCompare() {
+        self.errorLabel.text = self.formFieldM?.textsError.textErrorCompare
+        self.showError()
     }
     
     // MARK: Public Method
@@ -82,6 +88,11 @@ class TextFormField: FormField, UITextFieldDelegate {
         self.loadCustomStyleField(self.formFieldM!)
         self.loadKeyboard(self.formFieldM!)
         self.loadCustomField(self.formFieldM!)
+    }
+    
+    override func loadError(error: String) {
+        self.errorLabel.text = error
+        self.showError()
     }
     
     // MARK: GIGFormField (Override)
@@ -128,7 +139,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label
         self.textTextField.placeholder = formFieldM.placeHolder
-        self.errorLabel.text = formFieldM.textError
+        self.errorLabel.text = formFieldM.textsError.textError
         if (self.formFieldM?.value != nil) {
             self.textTextField.text = self.formFieldM?.value as? String
         }

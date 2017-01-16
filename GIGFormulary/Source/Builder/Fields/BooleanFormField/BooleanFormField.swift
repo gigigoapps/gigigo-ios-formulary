@@ -45,6 +45,7 @@ class BooleanFormField: FormField {
     override func validate() -> Bool {
         let status = super.validate()
         if (!status) {
+            self.errorLabel.text = self.formFieldM?.textsError.textError
             self.showError()
         }
         else {
@@ -60,6 +61,11 @@ class BooleanFormField: FormField {
         self.loadData(self.formFieldM!)
         self.loadMandatory(self.formFieldM!.mandatory)
         self.loadCustomStyleField(self.formFieldM!)
+    }
+        
+    override func loadError(error: String) {
+        self.errorLabel.text = error
+        self.showError()
     }
     
     // MARK: GIGFormField (Override)
@@ -103,7 +109,7 @@ class BooleanFormField: FormField {
     
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label
-        self.errorLabel.text = formFieldM.textError
+        self.errorLabel.text = formFieldM.textsError.textError
         if (formFieldM.value != nil && (formFieldM.value as? Bool)!) {
             self.changeState()
         }

@@ -72,4 +72,12 @@ open class FormField: UIView{
         }
         return self.validator!.validate(self.fieldValue)
     }
+    
+    func loadError(error: String) {
+        // TODO nothing
+    }
+    
+    func validateCompare() {
+        // TODO nothing
+    }
 }

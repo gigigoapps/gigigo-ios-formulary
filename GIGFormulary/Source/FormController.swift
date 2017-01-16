@@ -62,6 +62,17 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         }
     }
     
+    func loadError(_ values: [String: String]) {
+        for field in self.formFields {            
+            let _ = values.filter({ (key, value) -> Bool in
+                if (key == field.formFieldM?.key) {
+                    field.loadError(error: value)
+                }
+                return true
+            })
+        }
+    }
+    
     func recoverView() -> UIView {
         return self.formViews!.recoverViewContainer()
     }
@@ -85,17 +96,54 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     fileprivate func validateFields() -> Bool {
         var isValid = true
         for field in self.formFields {
+            guard let formFieldM = field.formFieldM else {
+                return false
+            }
+            
             if (!field.validate()) {
                 isValid = false
             }
+            else {
+                if formFieldM.compare {
+                    guard let itemsCompare = formFieldM.itemCompare else {
+                        return false
+                    }
+                    
+                    let listValues = self.searchValueItemToCompare(itemsCompare)
+  
+                    if (field.validator!.validateCompare(listValues)) {
+                        isValid = false
+                        field.validateCompare()
+                    }
+                }
+            }
             
-            if field.formFieldM?.type != TypeField.INDEX_FORM_FIELD.rawValue {
-                    self.formValues["\(field.formFieldM!.key!)"] =  field.fieldValue as AnyObject
-            
+            if formFieldM.type != TypeField.INDEX_FORM_FIELD.rawValue {
+                self.formValues["\(formFieldM.key!)"] =  field.fieldValue as AnyObject
                 //self.formValues["\(field.formFieldM!.key!)"] =  (field.formFieldM != nil) ? field.formFieldM as AnyObject : "" as AnyObject
             }
         }
         return isValid
+    }
+    
+    fileprivate func searchValueItemToCompare(_ itemsCompare: [String]) -> [String] {
+        let listValues = itemsCompare.map({ (key: String) -> String in
+            let itemFound: [FormField] = self.formFields.filter({ formFieldSearch -> Bool in
+                return formFieldSearch.formFieldM?.key == key
+            })
+            
+            if itemFound.count > 0 {
+                if itemFound[0].fieldValue != nil {
+                    return itemFound[0].fieldValue as! String
+                }
+                else {
+                    return ""
+                }
+            }
+            return ""
+        })
+        
+        return listValues
     }
  
     // MARK: PFormBuilderViews

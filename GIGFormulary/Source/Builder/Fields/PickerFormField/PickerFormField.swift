@@ -110,6 +110,11 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         self.loadCustomStyleField(self.formFieldM!)
         self.loadKeyboard(self.formFieldM!)
     }
+        
+    override func loadError(error: String) {
+        self.errorLabel.text = error
+        self.showError()
+    }
     
     override func validate() -> Bool {
         var status = true
@@ -122,6 +127,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         }
         
         if (!status) {
+            self.errorLabel.text = self.formFieldM?.textsError.textError
             self.showError()
         }
         else {
@@ -148,7 +154,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label
         self.textTextField.placeholder = formFieldM.placeHolder
-        self.errorLabel.text = formFieldM.textError
+        self.errorLabel.text = formFieldM.textsError.textError
     }
     
     fileprivate func loadMandatory(_ isMandatory: Bool) {

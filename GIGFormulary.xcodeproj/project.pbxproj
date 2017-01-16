@@ -53,6 +53,7 @@
 		7B7D73101D4B8296003FFEE8 /* StringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72F21D4B8296003FFEE8 /* StringValidator.swift */; };
 		7B7D73111D4B8296003FFEE8 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72F31D4B8296003FFEE8 /* Validator.swift */; };
 		7B7D73151D4B83BC003FFEE8 /* json_formulary.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D73131D4B831B003FFEE8 /* json_formulary.json */; };
+		7B8A03A91E2D115A00A77E7C /* TextsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8A03A81E2D115A00A77E7C /* TextsError.swift */; };
 		7BA59F161DC09A7D000D66AA /* CustomValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA59F151DC09A7D000D66AA /* CustomValidator.swift */; };
 		7BA9AD3B1E24F092002FE4F6 /* IndexFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BA9AD3A1E24F092002FE4F6 /* IndexFormField.xib */; };
 		7BA9AD3D1E24F26B002FE4F6 /* IndexFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA9AD3C1E24F26B002FE4F6 /* IndexFormField.swift */; };
@@ -159,6 +160,7 @@
 		7B7D72F21D4B8296003FFEE8 /* StringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringValidator.swift; sourceTree = "<group>"; };
 		7B7D72F31D4B8296003FFEE8 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		7B7D73131D4B831B003FFEE8 /* json_formulary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json_formulary.json; sourceTree = "<group>"; };
+		7B8A03A81E2D115A00A77E7C /* TextsError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextsError.swift; sourceTree = "<group>"; };
 		7BA59F151DC09A7D000D66AA /* CustomValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomValidator.swift; sourceTree = "<group>"; };
 		7BA9AD3A1E24F092002FE4F6 /* IndexFormField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IndexFormField.xib; path = IndexFormField/IndexFormField.xib; sourceTree = "<group>"; };
 		7BA9AD3C1E24F26B002FE4F6 /* IndexFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndexFormField.swift; path = IndexFormField/IndexFormField.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				7B7D72E41D4B8296003FFEE8 /* FormFieldModel.swift */,
 				7B7D72E51D4B8296003FFEE8 /* FormFieldOptionsModel.swift */,
 				7B7D72E61D4B8296003FFEE8 /* FormFieldStyleModel.swift */,
+				7B8A03A81E2D115A00A77E7C /* TextsError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -336,6 +339,24 @@
 		7B7D72E71D4B8296003FFEE8 /* Validators */ = {
 			isa = PBXGroup;
 			children = (
+				7B7D72F31D4B8296003FFEE8 /* Validator.swift */,
+				7B8A03A71E2CE1BD00A77E7C /* Types */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
+		7B7D73121D4B831B003FFEE8 /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				7B7D73131D4B831B003FFEE8 /* json_formulary.json */,
+			);
+			path = Json;
+			sourceTree = "<group>";
+		};
+		7B8A03A71E2CE1BD00A77E7C /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				7BA59F151DC09A7D000D66AA /* CustomValidator.swift */,
 				7B7D72E81D4B8296003FFEE8 /* AgeValidator.swift */,
 				7B7D72E91D4B8296003FFEE8 /* BoolValidator.swift */,
 				7B7D72EA1D4B8296003FFEE8 /* DNINIEValidator.swift */,
@@ -347,18 +368,8 @@
 				7B7D72F01D4B8296003FFEE8 /* PostalCodeValidator.swift */,
 				7B7D72F11D4B8296003FFEE8 /* RegexValidator.swift */,
 				7B7D72F21D4B8296003FFEE8 /* StringValidator.swift */,
-				7B7D72F31D4B8296003FFEE8 /* Validator.swift */,
-				7BA59F151DC09A7D000D66AA /* CustomValidator.swift */,
 			);
-			path = Validators;
-			sourceTree = "<group>";
-		};
-		7B7D73121D4B831B003FFEE8 /* Json */ = {
-			isa = PBXGroup;
-			children = (
-				7B7D73131D4B831B003FFEE8 /* json_formulary.json */,
-			);
-			path = Json;
+			name = Types;
 			sourceTree = "<group>";
 		};
 		7BA9AD391E24F001002FE4F6 /* IndexFormField */ = {
@@ -627,6 +638,7 @@
 				7B7D73031D4B8296003FFEE8 /* FormFieldModel.swift in Sources */,
 				7B7D730B1D4B8296003FFEE8 /* NumericValidator.swift in Sources */,
 				7B7D73081D4B8296003FFEE8 /* DNINIEValidator.swift in Sources */,
+				7B8A03A91E2D115A00A77E7C /* TextsError.swift in Sources */,
 				7B7D730F1D4B8296003FFEE8 /* RegexValidator.swift in Sources */,
 				7BA9AD3D1E24F26B002FE4F6 /* IndexFormField.swift in Sources */,
 				7B7D73101D4B8296003FFEE8 /* StringValidator.swift in Sources */,

@@ -18,7 +18,7 @@ class FormFieldModel: NSObject {
     
     //-- Optional --    
     var placeHolder: String?
-    var textError: String?
+   // var textError: String?
     var keyboard: String?
     var options: [FormFieldOptionsModel]?
     var style: FormFieldStyleModel?
@@ -27,6 +27,7 @@ class FormFieldModel: NSObject {
     var textAcceptButton: String?
     var value: AnyObject?
     var isPassword = false
+    var textsError = TextsError()
     //-- Validate --
     var minLengthValue: Int?
     var maxLengthValue: Int?
@@ -34,6 +35,8 @@ class FormFieldModel: NSObject {
     var mandatory = false
     var custom: String?
     var isLink = false
+    var compare = false
+    var itemCompare: [String]?
     
        
     // MARK: Public Method
@@ -58,6 +61,7 @@ class FormFieldModel: NSObject {
         let mandatory = json["mandatory"] as? Bool
         let style = json["style"] as? [String: AnyObject]
         let textError = json["textError"] as? String
+        let textErrorCompare = json["textErrorCompare"] as? String
         let validator = json["validator"] as? String
         let keyBoard = json["keyboard"] as? String
         let maxLength = json["maxLength"] as? Int
@@ -68,6 +72,8 @@ class FormFieldModel: NSObject {
         let custom = json["customValidator"] as? String
         let isPassword = json["isPassword"] as? Bool
         let isLink = json["isLink"] as? Bool
+        let compare = json["compare"] as? Bool
+        let itemCompare = json["itemCompare"] as? [String]
         
         
         //== INSERT DATA ==
@@ -81,10 +87,16 @@ class FormFieldModel: NSObject {
             self.label = NSLocalizedString(label!, comment: "")
         }
         if (textError != nil) {
-            self.textError = NSLocalizedString(textError!, comment: "")
+            self.textsError.textError = NSLocalizedString(textError!, comment: "")
         }
         else {
-            self.textError = NSLocalizedString("error_generic_field", tableName: nil, bundle: Bundle(for: type(of: self)), value: "", comment: "error_generic_field")
+            self.textsError.textError = NSLocalizedString("error_generic_field", tableName: nil, bundle: Bundle(for: type(of: self)), value: "", comment: "error_generic_field")
+        }
+        if (textErrorCompare != nil) {
+            self.textsError.textErrorCompare = NSLocalizedString(textErrorCompare!, comment: "")
+        }
+        else {
+            self.textsError.textErrorCompare = NSLocalizedString("error_generic_compare_field", tableName: nil, bundle: Bundle(for: type(of: self)), value: "", comment: "error_generic_compare_field")
         }
         if (placeHolder != nil) {
             self.placeHolder = NSLocalizedString(placeHolder!, comment: "")
@@ -148,6 +160,12 @@ class FormFieldModel: NSObject {
         }
         if (custom != nil) {
             self.custom = custom!
+        }
+        if (compare != nil) {
+            self.compare = compare!
+        }
+        if (itemCompare != nil) {
+            self.itemCompare = itemCompare!
         }
     }
 }

@@ -52,8 +52,14 @@ open class Formulary: PFormController {
     
     // MARK: Populate
 
-    open func populateData(_ values: [String:String]) {
+    open func populateData(_ values: [String: String]) {
         self.formController!.populateData(values as [String : AnyObject])
+    }
+    
+    // MARK: Insert error
+    
+    open func loadError(_ values: [String: String]) {
+        self.formController!.loadError(values)
     }
     
     // MARK: PFormulary

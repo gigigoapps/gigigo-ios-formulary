@@ -40,4 +40,16 @@ class Validator: NSObject {
         }
         return true
     }
+    
+    func validateCompare(_ value: [String]) -> Bool {
+        if value.count > 0 {
+            let first = value[0]
+            let compareElement = value.map({ (value: String) -> Bool in
+                return value == first
+            })
+            
+            return compareElement.contains(false)
+        }
+        return true
+    }
 }

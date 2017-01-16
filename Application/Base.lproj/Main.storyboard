@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kv7-1B-NAo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kv7-1B-NAo">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,6 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yZ-Ds-43j">
+                                <rect key="frame" x="117" y="100" width="141" height="30"/>
                                 <state key="normal" title="Formulary automatic"/>
                                 <connections>
                                     <segue destination="eQH-Tu-Udp" kind="show" identifier="clasic" id="4mp-7B-F7i">
@@ -27,6 +31,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjN-dy-fLZ">
+                                <rect key="frame" x="134.5" y="263" width="106" height="30"/>
                                 <state key="normal" title="Formulary View"/>
                                 <connections>
                                     <segue destination="lda-6m-esp" kind="show" identifier="second" id="43C-Na-gdP">
@@ -62,10 +67,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXD-iU-syk" userLabel="formContainterView">
+                                <rect key="frame" x="0.0" y="65" width="375" height="538"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vkW-vj-TXp" userLabel="supView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="En la cabecera puedes poner cualquier elemento ocupar cualquier tamaño" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRv-Nq-J99">
+                                                <rect key="frame" x="20" y="8" width="335" height="108"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -81,9 +89,11 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wP5-Rs-XBo" userLabel="formView">
+                                        <rect key="frame" x="0.0" y="124" width="375" height="298"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92W-SA-TX0">
+                                        <rect key="frame" x="20" y="430" width="335" height="101"/>
                                         <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="101" id="cNY-0k-sH0"/>
@@ -133,15 +143,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3V3-xO-uta">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="296"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="296" id="w4r-W3-cwE"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BKu-Ut-JPQ">
+                                <rect key="frame" x="151.5" y="341" width="72" height="30"/>
+                                <state key="normal" title="Load Error"/>
+                                <connections>
+                                    <action selector="loadError:" destination="lda-6m-esp" eventType="touchUpInside" id="5w0-aT-FfI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3V3-xO-uta" firstAttribute="top" secondItem="0SX-lv-B9G" secondAttribute="bottom" id="09V-1M-ahG"/>
+                            <constraint firstItem="BKu-Ut-JPQ" firstAttribute="top" secondItem="3V3-xO-uta" secondAttribute="bottom" constant="45" id="3tf-qT-GIm"/>
                             <constraint firstAttribute="trailing" secondItem="3V3-xO-uta" secondAttribute="trailing" id="Hyt-Zg-ky8"/>
+                            <constraint firstItem="BKu-Ut-JPQ" firstAttribute="centerX" secondItem="gw4-Ok-GlG" secondAttribute="centerX" id="fbW-U4-2mc"/>
                             <constraint firstItem="3V3-xO-uta" firstAttribute="leading" secondItem="gw4-Ok-GlG" secondAttribute="leading" id="v0k-Qj-lmM"/>
                         </constraints>
                     </view>
