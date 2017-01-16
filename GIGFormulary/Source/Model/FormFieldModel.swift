@@ -73,7 +73,7 @@ class FormFieldModel: NSObject {
         let isPassword = json["isPassword"] as? Bool
         let isLink = json["isLink"] as? Bool
         let compare = json["compare"] as? Bool
-        let itemCompare = json["itemCompare"] as? [String]
+        let itemCompare = json["itemsCompare"] as? [String]
         
         
         //== INSERT DATA ==

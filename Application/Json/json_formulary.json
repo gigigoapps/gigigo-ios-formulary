@@ -1,29 +1,27 @@
 {
     "fields":[
               {
-              "key": "a1",
+              "key": "a",
               "type": "text",
-              "label": "sdfs",
-              "mandatory": true,
-              "placeHolder": "sdfs",
+              "label": "a",
               "compare": true,
-              "itemCompare": ["a1","a3"]
+              "mandatory": true,
+              "itemsCompare": [
+                               "a"
+                               ],
+              "textErrorCompare": "sad asdsad as"
               },
               {
-              "key": "a2",
+              "key": "b",
               "type": "text",
-              "label": "sdfs",
-              "mandatory": true,
-              "placeHolder": "sdfs"
-              },
-              {
-              "key": "a3",
-              "type": "text",
-              "label": "sdfs",
-              "mandatory": true,
-              "placeHolder": "sdfs",
+              "label": "b",
               "compare": true,
-              "itemCompare": ["a1","a3"]
+              "mandatory": true,
+              "itemsCompare": [
+                               "a",
+                               "b"
+                               ],
+              "textErrorCompare": "texto de error de comparacion"
               }
               ] 
 }

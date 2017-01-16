@@ -3,7 +3,7 @@
 //               TEXT (YA CREADO)     //  
 //======================================
             
-function createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,customValidator, isPassword) {
+function createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,customValidator, isPassword, isCompare, compareKeysField, textErrorCompare) {
     var valueCheck = ""
     if (mandatory) {
         valueCheck = "checked"
@@ -11,6 +11,10 @@ function createField(keyTextField,title,placeHolder,error,mandatory,cellColor,ke
     var isPasswordChecked = ""
     if (isPassword) {
         isPasswordChecked = "checked"
+    }
+    var isCompareChecked = ""
+    if (isCompare) {
+        isCompareChecked = "checked"
     }
     
     //-- Recover Styles --
@@ -21,18 +25,23 @@ function createField(keyTextField,title,placeHolder,error,mandatory,cellColor,ke
     
     var styles =  htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
 
-    $htmlCustomValidator = ""
+    var htmlCustomValidator = ""
     if (validator == "customValidator") {
-        $htmlCustomValidator = '<input type="text"name="customValidatorTextField"id="customValidatorTextField"disabled value="'+customValidator+'">'
+        htmlCustomValidator = '<input type="text"name="customValidatorTextField"id="customValidatorTextField"disabled value="'+customValidator+'">'
+    }
+    var htmlTextErrorCompare = ""
+    if (isCompare) {
+        htmlTextErrorCompare = '<p>Text Error</p><input type="text"name="textErrorCompareFix"id="textErrorCompareFix"disabled value="'+textErrorCompare+'">'
     }
 
-    var html = '<div class="cellConstructor"id="fieldNumber'+indexField+'"><div class="row"><div class="col-md-10"><div class="keyTextField"><p>key*:</p><input type="text"name="keyTextField"id="keyTextField"disabled value="'+keyTextField+'"></div><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"disabled value="'+title+'"></div><div class="keyboardResult">Keyboard:'+keyboard+'</div></div><div class="containerTextFieldCenter"><div class="inputTextField"><p>PlaceHolder:</p><input type="text"name="palceHolderTextField"id="palceHolderTextField"disabled value="'+placeHolder+'"></div><div class="mandatoryTextField"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"'+valueCheck+' disabled readonly><p>Es obligatorio?</p></div><div class="validatorResult">Validator:'+validator+'</div></div><div class="errorTextField"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"disabled value="'+error+'"><p>minLength:</p><input class="inputWidth"type="text"name="minLength"id="minLength"disabled readonly value="'+minLength+'"><p>maxLength:</p><input class="inputWidth"type="text"name="maxLength"id="maxLength"disabled readonly value="'+maxLength+'"></div><div class="passwordTextField"><input type="checkbox"name="passwordTextField"value="passwordTextField"id="passwordTextField"'+isPasswordChecked+' disabled readonly><p>Es password?</p></div><div class="styleField"><h4>Estilos de celda:</h4>'+styles+'</div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonRemove buttonRemoveText"onclick="removeField('+indexField+')"><p>-</p></div></div></div>';
+
+    var html = '<div class="cellConstructor"id="fieldNumber'+indexField+'"><div class="row"><div class="col-md-10"><div class="keyTextField"><p>key*:</p><input type="text"name="keyTextField"id="keyTextField"disabled value="'+keyTextField+'"></div><div class="containerTextFieldTop"><div class="titleTextField"><p>Titulo*:</p><input type="text"name="titleTextField"id="titleTextField"disabled value="'+title+'"></div><div class="keyboardResult">Keyboard:'+keyboard+'</div></div><div class="containerTextFieldCenter"><div class="inputTextField"><p>PlaceHolder:</p><input type="text"name="palceHolderTextField"id="palceHolderTextField"disabled value="'+placeHolder+'"></div><div class="mandatoryTextField"><input type="checkbox"name="mandatory"value="mandatory"id="mandatory"'+valueCheck+'disabled readonly><p>Es obligatorio?</p></div><div class="validatorResult">Validator:'+validator+htmlCustomValidator+'</div></div><div class="errorTextField"><p class="textErrorP">Texto error:</p><input type="text"name="errorTextField"id="errorTextField"disabled value="'+error+'"><p>minLength:</p><input class="inputWidth"type="text"name="minLength"id="minLength"disabled readonly value="'+minLength+'"><p>maxLength:</p><input class="inputWidth"type="text"name="maxLength"id="maxLength"disabled readonly value="'+maxLength+'"></div><div class="compareTextField"><input type="checkbox"name="compare"value="compare"id="compare"'+isCompareChecked+'disabled readonly><p>Active compare?</p><p>Keys Compare:</p><input type="text"name="compareKeysField"id="compareKeysField"disabled value="'+compareKeysField+'">'+htmlTextErrorCompare+'</div><div class="passwordTextField"><input type="checkbox"name="passwordTextField"value="passwordTextField"id="passwordTextField"'+isPasswordChecked+'disabled readonly><p>Es password?</p></div><div class="styleField"><h4>Estilos de celda:</h4>'+styles+'</div><div class="spaceSeparate"></div></div><div class="col-md-2 buttonRemove buttonRemoveText"onclick="removeField('+indexField+')"><p>-</p></div></div></div>';
 
     $("#containerListItemsCreated").append(html);
     resetTypeField();
 }
 
-function saveField(keyTextField,type,title,placeHolder,textError,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,customValidator, isPassword) {
+function saveField(keyTextField,type,title,placeHolder,textError,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,customValidator, isPassword, isCompare, compareKeysField, textErrorCompare) {
     //-- Mandatory Fiedls --
     var itemSave = {
         "tag":indexField,
@@ -67,6 +76,12 @@ function saveField(keyTextField,type,title,placeHolder,textError,mandatory,cellC
         if (validator == "customValidator") {
             itemSave["customValidator"] = customValidator
         }
+    }
+    if (isCompare) {
+        itemSave["compare"] = isCompare
+        itemSave["itemsCompare"] = compareKeysField.split(","); 
+        console.log(textErrorCompare);
+        itemSave["textErrorCompare"] = textErrorCompare;
     }
     
     

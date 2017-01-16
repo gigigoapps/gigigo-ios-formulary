@@ -52,6 +52,17 @@
                  <p>maxLength:</p><input class="inputWidth" type="text" name="maxLength"id="maxLength">
               </div>
              
+             <div class="compareTextField">
+                 <input type="checkbox" name="compare" value="compare" id="compare">
+                 <p>Active compare?</p>
+                 <p>Keys Compare:</p>
+                 <input type="text" name="compareKeysField" id="compareKeysField">                 
+                 <div id="compareTextError">
+                     <p>Texto error:</p>
+                     <input id="compareTextErrorInput" type="text" name="element">
+                 </div>
+            </div>
+             
              <div class="passwordTextField">
                  <input type="checkbox" name="passwordTextField" value="passwordTextField" id="passwordTextField">
                  <p>Es password?</p>
@@ -106,7 +117,7 @@
                     <input type="checkbox" name="mandatory" value="mandatory" id="mandatory" '+valueCheck+' disabled readonly>
                     <p>Es obligatorio?</p>
                 </div>
-                <div class="validatorResult">Validator:'+validator+'</div>
+                <div class="validatorResult">Validator:'+validator+htmlCustomValidator+'</div>
                 
             </div>
             <div class="errorTextField">
@@ -117,6 +128,15 @@
                 <p>maxLength:</p>
                 <input class="inputWidth" type="text" name="maxLength"id="maxLength" disabled readonly value="'+maxLength+'">
             </div>
+            
+            <div class="compareTextField">
+                <input type="checkbox" name="compare" value="compare" id="compare" '+isCompareChecked+' disabled readonly>
+                <p>Active compare?</p>
+                <p>Keys Compare:</p>
+                <input type="text" name="compareKeysField" id="compareKeysField" disabled value="'+compareKeysField+'">
+                '+htmlTextErrorCompare+'
+            </div>
+            
             <div class="passwordTextField">
                 <input type="checkbox" name="passwordTextField" value="passwordTextField" id="passwordTextField" '+isPasswordChecked+' disabled readonly>
                 <p>Es password?</p>

@@ -8,6 +8,12 @@
                 margin-bottom: 20px;
                 background-color: white;
             }
+.col-md-1 {
+    width: 5.333%;
+}
+.col-md-10 {
+    width: 90.333%;
+}
         .row{
             min-height: 80px;
         }
@@ -49,13 +55,13 @@
             color: white;
             float: right;
             font-size: 49px;
-            height: 448px;
+            height: 500px;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonAdd p{
-                margin-top: 190px;
+                margin-top: 210px;
             }
             .buttonAdd:hover {
                 background-color: skyblue;
@@ -154,6 +160,40 @@
                 margin-top: 14px;
             }
 
+        .compareTextField {
+            float: left;
+            margin-top: 8px;
+            width: 100%;
+        }
+        #compare {
+            margin-left: 142px;
+        }
+        #compareKeysField {
+            width: 106px;
+            float: left;
+            margin-right: 10px;
+        }
+        #compareTextError {
+            display: none;
+        }
+        #compareTextErrorInput {
+            width: 166px;
+        }
+        #textErrorCompareFix {
+         margin-left: -88px;
+         width: 200px;
+        }
+            .compareTextField input{
+                float: left;
+                margin-left: -57px;
+                margin-top: 4px !important;
+                width: 36px;
+            }
+            .compareTextField p{
+                float: left;
+                margin-top: 14px;
+                width: 164px;
+            }
 
         .isLinkTextField {
             float: left;
@@ -556,10 +596,10 @@
     height: 205px;
 }
 .buttonRemoveText {
-    height: 424px;
+    height: 476px;
 }
     .buttonRemoveText p {
-        margin-top: 179px;
+        margin-top: 209px;
     }
 .minAgeContainer {
     height: 43px;

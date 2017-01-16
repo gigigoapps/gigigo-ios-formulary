@@ -46,14 +46,18 @@ function validateTextField() {
     var imageMandatory = $("#imageMandatory").val()
     var custonValidator = $("#custonValidator").val()
     var isPassword = $('#passwordTextField').is(':checked');
+    var isCompare = $('#compare').is(':checked');
+    var compareKeysField = $("#compareKeysField").val()
+    var textErrorCompare = $("#compareTextErrorInput").val()
+    
     
     if (font == "custom") {
         font = $("#custonFont").val()
     }
         
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword);
-        saveField(keyTextField,"text",title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword)
+        createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare);
+        saveField(keyTextField,"text",title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare)
     }
 }
 
@@ -117,6 +121,9 @@ function validatePickerField() {
     var align = document.getElementById("selectTypeAlign").value;
     var font = document.getElementById("selectTypeFont").value;    
     var imageMandatory = $("#imageMandatory").val()
+    var textErrorCompare = $("#compareTextErrorInput").val()
+
+    console.log(textErrorCompare);
 
     if (font == "custom") {
         font = $("#custonFont").val()
@@ -128,8 +135,8 @@ function validatePickerField() {
 
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
         if (allPickerIsComplete()) {
-            createPickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory);
-            savePickerField(keyTextField,"picker",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory);
+            createPickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,textErrorCompare);
+            savePickerField(keyTextField,"picker",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,textErrorCompare);
         }
         else {
             alert("Los campos de clave y valor de los picker deben estar todos rellenos");
