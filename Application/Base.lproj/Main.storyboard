@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--PpalVC-->
         <scene sceneID="uQQ-mk-JDZ">
             <objects>
-                <viewController id="r2T-kw-Knd" sceneMemberID="viewController">
+                <viewController id="r2T-kw-Knd" customClass="PpalVC" customModule="DemoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ic1-5p-SVu"/>
                         <viewControllerLayoutGuide type="bottom" id="q0y-6t-Rws"/>
@@ -39,9 +39,22 @@
                                     </segue>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4Z-Dq-VCe">
+                                <rect key="frame" x="131" y="344" width="113" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="14I-Kw-sdU"/>
+                                    <constraint firstAttribute="width" constant="113" id="nDW-9D-vXE"/>
+                                </constraints>
+                                <state key="normal" title="Navigation Form"/>
+                                <connections>
+                                    <action selector="navigateToThirdVC:" destination="r2T-kw-Knd" eventType="touchUpInside" id="alG-XD-kk0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Y4Z-Dq-VCe" firstAttribute="top" secondItem="bjN-dy-fLZ" secondAttribute="bottom" constant="51" id="FLh-3l-hF4"/>
+                            <constraint firstItem="Y4Z-Dq-VCe" firstAttribute="centerX" secondItem="ZSW-O9-HWo" secondAttribute="centerX" id="Ljt-4M-l1N"/>
                             <constraint firstItem="8yZ-Ds-43j" firstAttribute="top" secondItem="Ic1-5p-SVu" secondAttribute="bottom" constant="100" id="Yvl-bJ-hKx"/>
                             <constraint firstItem="8yZ-Ds-43j" firstAttribute="centerX" secondItem="ZSW-O9-HWo" secondAttribute="centerX" id="epT-ta-9GZ"/>
                             <constraint firstItem="bjN-dy-fLZ" firstAttribute="top" secondItem="8yZ-Ds-43j" secondAttribute="bottom" constant="133" id="fhV-Sc-Ogu"/>

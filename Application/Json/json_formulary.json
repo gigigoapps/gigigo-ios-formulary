@@ -22,6 +22,26 @@
                                "b"
                                ],
               "textErrorCompare": "texto de error de comparacion"
+              },
+              {
+              "key": "c",
+              "type": "text",
+              "label": "c"
+              },
+              {
+              "key": "d",
+              "type": "text",
+              "label": "d"
+              },
+              {
+              "key": "e",
+              "type": "text",
+              "label": "e"
+              },
+              {
+              "key": "f",
+              "type": "text",
+              "label": "f"
               }
               ] 
 }
