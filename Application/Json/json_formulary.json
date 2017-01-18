@@ -14,7 +14,6 @@
               {
               "key": "b",
               "type": "text",
-              "label": "b",
               "compare": true,
               "mandatory": true,
               "itemsCompare": [
