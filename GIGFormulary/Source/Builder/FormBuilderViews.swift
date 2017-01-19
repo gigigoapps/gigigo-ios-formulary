@@ -189,7 +189,8 @@ class FormBuilderViews: NSObject {
     }
     
     func keyboardWillHide(_ notification: Notification) {
-        self.scrollView.contentInset = UIEdgeInsets.init(top: auxPosition, left: 0, bottom: 0, right: 0);
+        let position = 64 - (UIScreen.main.bounds.height - self.viewContainerFormulary.bounds.height)
+        self.scrollView.contentInset = UIEdgeInsets.init(top: position, left: 0, bottom: 0, right: 0);
         self.scrollView.scrollIndicatorInsets = self.scrollView.contentInset;
     }
 }
