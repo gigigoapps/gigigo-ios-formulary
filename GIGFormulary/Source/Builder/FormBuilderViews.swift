@@ -78,6 +78,10 @@ class FormBuilderViews: NSObject {
         }
     }
     
+    func clearFormulary() {
+        self.notificationCenter.removeObserver(self)
+    }
+    
     //-- Second type formulary --
     
     func recoverViewContainer() -> UIView {
@@ -185,7 +189,7 @@ class FormBuilderViews: NSObject {
     }
     
     func keyboardWillHide(_ notification: Notification) {
-        self.scrollView.contentInset = UIEdgeInsets.zero;
+        self.scrollView.contentInset = UIEdgeInsets.init(top: auxPosition, left: 0, bottom: 0, right: 0);
         self.scrollView.scrollIndicatorInsets = self.scrollView.contentInset;
     }
 }

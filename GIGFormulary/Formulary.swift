@@ -62,6 +62,12 @@ open class Formulary: PFormController {
         self.formController!.loadError(values)
     }
     
+    // MARK: Clean
+    
+    open func clearFormulary() {
+        self.formController!.clearFormulary()
+    }
+    
     // MARK: PFormulary
 
     open func recoverFormModel(_ formValues: [String : AnyObject]) {

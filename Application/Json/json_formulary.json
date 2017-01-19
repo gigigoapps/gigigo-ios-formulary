@@ -41,6 +41,21 @@
               "key": "f",
               "type": "text",
               "label": "f"
+              },
+              {
+              "key": "g",
+              "type": "text",
+              "label": "g"
+              },
+              {
+              "key": "h",
+              "type": "text",
+              "label": "h"
+              },
+              {
+              "key": "i",
+              "type": "text",
+              "label": "i"
               }
               ] 
 }

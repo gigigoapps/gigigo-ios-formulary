@@ -10,6 +10,7 @@ import UIKit
 import GIGFormulary
 
 class ViewController: UIViewController, PFormulary {
+    let formulary = Formulary.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,9 +18,8 @@ class ViewController: UIViewController, PFormulary {
         
         //-- Create form Type with JSON --
        
-         let formulary = Formulary.shared
-         formulary.start(self.view, jsonFile: "json_formulary.json")
-         formulary.delegate = self
+         self.formulary.start(self.view, jsonFile: "json_formulary.json")
+         self.formulary.delegate = self
 
         
         //-- Create form Type with Array Dic --
@@ -57,6 +57,10 @@ class ViewController: UIViewController, PFormulary {
         //-- Case: Populate data --
         //let dic = ["a1":"eduardo"]
         //formulary.populateData(dic)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.formulary.clearFormulary()
     }
     
     // MARK: PFormController

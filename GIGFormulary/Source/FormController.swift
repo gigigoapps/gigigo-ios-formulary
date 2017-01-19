@@ -77,6 +77,10 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         return self.formViews!.recoverViewContainer()
     }
     
+    func clearFormulary() {
+        self.formViews?.clearFormulary()
+    }
+    
     // MARK: Private Method
 
     fileprivate func nextFieldTo(_ field: FormField) -> FormField?{
