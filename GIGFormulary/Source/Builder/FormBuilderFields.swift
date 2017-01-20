@@ -18,9 +18,14 @@ class FormBuilderFields: NSObject {
     var keyboardTypes = [TypeKeyBoard: UIKeyboardType]()
     var validatorsType = [TypeValidator: Validator.Type]()
 
+    //-- Var --
+    var bundle: Bundle
     
-    init(formController: FormController) {
+    //-- INIT --
+    
+    init(formController: FormController, bundle: Bundle) {
         self.formController = formController
+        self.bundle = bundle
         
         super.init()
         
@@ -55,7 +60,7 @@ class FormBuilderFields: NSObject {
     
     fileprivate func createField(_ fieldDic: [String:AnyObject]) -> FormField {
         do {
-            let formFieldM = FormFieldModel()
+            let formFieldM = FormFieldModel(bundle: self.bundle)
             try formFieldM.parseDictionary(fieldDic)
             
             let typeField = self.listTypeFields[TypeField(rawValue: formFieldM.type!)!]

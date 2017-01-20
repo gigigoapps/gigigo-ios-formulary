@@ -19,23 +19,33 @@ open class Formulary: PFormController {
     
     //-- Private Var --
     var formController: FormController?
+    var bundle: Bundle?
     
     // MARK: Start
     
     open func start(_ viewContainerFormulary: UIView, jsonFile: String) {
-        self.formController = FormController(viewContainerFormulary: viewContainerFormulary)
+        self.formController = FormController(
+            viewContainerFormulary: viewContainerFormulary,
+            bundle: self.bundle
+        )
         self.formController!.loadFieldsFromJSONFile(jsonFile)
         self.formController!.delegate = self
     }
     
     open func start(_ viewContainerFormulary: UIView, listItems: [[String: AnyObject]]) {
-        self.formController = FormController(viewContainerFormulary: viewContainerFormulary)
+        self.formController = FormController(
+            viewContainerFormulary: viewContainerFormulary,
+            bundle: self.bundle
+        )
         self.formController!.loadFieldsFromJSONDictionary(listItems)
         self.formController!.delegate = self
     }
     
     open func start(_ button: UIButton, jsonFile: String) -> UIView {
-        self.formController = FormController(button: button)
+        self.formController = FormController(
+            button: button,
+            bundle: self.bundle
+        )
         self.formController!.loadFieldsFromJSONFile(jsonFile)
         self.formController!.delegate = self
         
@@ -43,29 +53,41 @@ open class Formulary: PFormController {
     }
     
     open func start(_ button: UIButton, listItems: [[String: AnyObject]]) -> UIView  {
-        self.formController = FormController(button: button)
+        self.formController = FormController(
+            button: button,
+            bundle: self.bundle
+        )
         self.formController!.loadFieldsFromJSONDictionary(listItems)
         self.formController!.delegate = self
         
         return self.formController!.recoverView()
     }
     
-    // MARK: Populate
+    
+    // MARK: Public Method
+    
+    // Populate
 
     open func populateData(_ values: [String: String]) {
         self.formController!.populateData(values as [String : AnyObject])
     }
     
-    // MARK: Insert error
+    // Insert error
     
     open func loadError(_ values: [String: String]) {
         self.formController!.loadError(values)
     }
     
-    // MARK: Clean
+    //  Clean
     
     open func clearFormulary() {
         self.formController!.clearFormulary()
+    }
+    
+    // Bundle
+    
+    open func loadBundle(_ bundle: Bundle) {
+        self.bundle = bundle
     }
     
     // MARK: PFormulary

@@ -23,28 +23,40 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     // VAR
     var formFields = [FormField]()
     var formValues = [String: AnyObject]()
+    var bundle = Bundle(for: Formulary.self)
     
-    init(viewContainerFormulary: UIView) {
+    // INIT
+    
+    init(viewContainerFormulary: UIView, bundle: Bundle?) {
         super.init()
-        self.formViews = FormBuilderViews(viewContainerFormulary: viewContainerFormulary,
-                                                  formController: self)
+        self.formViews = FormBuilderViews(
+            viewContainerFormulary: viewContainerFormulary,
+            formController: self
+        )
+        
+        self.loadBundle(bundle)
     }
     
-    init(button: UIButton) {
+    init(button: UIButton, bundle: Bundle?) {
         super.init()
-        self.formViews = FormBuilderViews(button: button, formController: self)
+        self.formViews = FormBuilderViews(
+            button: button,
+            formController: self
+        )
+        
+        self.loadBundle(bundle)
     }
     
     // MARK: Public Method
     
     func loadFieldsFromJSONFile(_ jsonFile: String) {
-        let builder = FormBuilderFields(formController: self)
+        let builder = FormBuilderFields(formController: self, bundle: self.bundle)
         self.formFields = builder.fieldsFromJSONFile(jsonFile)        
         self.formViews!.updateFormularyContent(self.formFields)
     }
     
     func loadFieldsFromJSONDictionary(_ listItems: [[String: AnyObject]]) {
-        let builder = FormBuilderFields(formController: self)
+        let builder = FormBuilderFields(formController: self, bundle: self.bundle)
         self.formFields = builder.fieldsFromDictionary(listItems)
         self.formViews!.updateFormularyContent(self.formFields)
     }
@@ -83,6 +95,12 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     
     // MARK: Private Method
 
+    fileprivate func loadBundle(_ bundle: Bundle?) {
+        if let bundleForm = bundle {
+            self.bundle = bundleForm
+        }
+    }
+    
     fileprivate func nextFieldTo(_ field: FormField) -> FormField?{
         let nextFieldPos =  self.formFields.index(of: field)!+1
         if (nextFieldPos < self.formFields.count) {

@@ -47,12 +47,12 @@
               "placeHolder": "place",
               "textError": "asda",
               "style": {
-              "mandatoryIcon": "manda",
-              "checkBox": {
-              "checkBoxOn": "on",
-              "checkBoxOff": "off"
-              }
-              }
+                    "mandatoryIcon": "manda",
+                    "checkBox": {
+                        "checkBoxOn": "on",
+                        "checkBoxOff": "off"
+                    }
+                  }
               },
               {
               "key": "d",

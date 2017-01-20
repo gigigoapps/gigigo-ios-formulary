@@ -16,6 +16,9 @@ enum TypeStyleCell: String {
 
 class FormFieldStyleModel: NSObject {
     
+    var bundle: Bundle
+    
+    //-- Styles --
     var mandatoryIcon: UIImage?
     var backgroundColorField: UIColor?
     var titleColor: UIColor?
@@ -29,6 +32,11 @@ class FormFieldStyleModel: NSObject {
     var checkBoxOn: UIImage?
     var checkBoxOff: UIImage?
     var styleCell: TypeStyleCell?
+    
+    init(bundle: Bundle) {
+        self.bundle = bundle
+        super.init()
+    }
     
     func parseDictionary(_ json: [String:AnyObject]) {
         //== PREPARE DATA ==
@@ -52,7 +60,6 @@ class FormFieldStyleModel: NSObject {
         }
         if (backgroundColorField != nil) {
             self.backgroundColorField = UIColor(fromHexString: backgroundColorField!)
-    
         }
         if (titleColor != nil) {
             self.titleColor = UIColor(fromHexString: titleColor!)
@@ -110,17 +117,15 @@ class FormFieldStyleModel: NSObject {
                 default: self.align = NSTextAlignment.center
             }
         }
-        if (mandatoryIcon != nil) {
-            self.mandatoryIcon = UIImage(named: mandatoryIcon!)
+        if let mandatoryImage = mandatoryIcon {
+            self.mandatoryIcon = UIImage(named: mandatoryImage, in: self.bundle, compatibleWith: nil)
         }
-        if (checkBox != nil) {
-            let checkBoxOn = checkBox!["checkBoxOn"]
-            let checkBoxOff = checkBox!["checkBoxOff"]
-            if (checkBoxOn != nil) {
-                self.checkBoxOn = UIImage(named: checkBoxOn!)
+        if let check = checkBox {
+            if let checkOn = check["checkBoxOn"]  {
+                self.checkBoxOn = UIImage(named: checkOn, in: self.bundle, compatibleWith: nil)
             }
-            if (checkBoxOff != nil) {
-                self.checkBoxOff = UIImage(named: checkBoxOff!)
+            if let checkOff = check["checkBoxOff"] {
+                self.checkBoxOff = UIImage(named: checkOff, in: self.bundle, compatibleWith: nil)
             }
         }
     }

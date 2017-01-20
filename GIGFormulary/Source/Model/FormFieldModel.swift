@@ -11,6 +11,8 @@ import GIGLibrary
 
 class FormFieldModel: NSObject {
     
+    var bundle: Bundle
+    
     //-- Mandatory --
     var key: String?
     var type: String?
@@ -38,7 +40,11 @@ class FormFieldModel: NSObject {
     var compare = false
     var itemCompare: [String]?
     
-       
+    init(bundle: Bundle) {
+        self.bundle = bundle
+        super.init()
+    }
+    
     // MARK: Public Method
     
     func parseDictionary(_ json: [String:AnyObject]) throws {
@@ -119,9 +125,9 @@ class FormFieldModel: NSObject {
                 throw ThrowError.mandatoryElementNotFound
             }
         }
-        if (style != nil) {
-            self.style = FormFieldStyleModel()
-            self.style?.parseDictionary(style!)
+        if let styleM = style {
+            self.style = FormFieldStyleModel(bundle: self.bundle)
+            self.style?.parseDictionary(styleM)
         }
         if (validator != nil) {
             self.validator = validator
@@ -129,8 +135,8 @@ class FormFieldModel: NSObject {
         if (keyBoard != nil) {
             self.keyBoard = keyBoard
         }
-        if (textAcceptButton != nil) {
-            self.textAcceptButton = NSLocalizedString(textAcceptButton!, comment: "")
+        if let textAccept = textAcceptButton {
+            self.textAcceptButton = NSLocalizedString(textAccept, tableName: nil, bundle: self.bundle, value: "", comment: "")
         }
         else {
             self.textAcceptButton = NSLocalizedString("gig_form_accept_button_picker", tableName: nil, bundle: Bundle(for: type(of: self)), value: "", comment: "gig_form_accept_button_picker")
