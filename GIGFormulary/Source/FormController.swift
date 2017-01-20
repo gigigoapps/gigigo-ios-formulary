@@ -123,9 +123,13 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
             }
             
             if formFieldM.type != TypeField.INDEX_FORM_FIELD.rawValue {
-                let value = field.fieldValue?.trimmingCharacters(in: .whitespaces)
-                self.formValues["\(formFieldM.key!)"] =  value as AnyObject
-                //self.formValues["\(field.formFieldM!.key!)"] =  (field.formFieldM != nil) ? field.formFieldM as AnyObject : "" as AnyObject
+                if let valueString = field.fieldValue as? String {
+                    let value = valueString.trimmingCharacters(in: .whitespaces)
+                    self.formValues["\(formFieldM.key!)"] = value as AnyObject?
+                }
+                else {
+                    self.formValues["\(formFieldM.key!)"] = (field.fieldValue != nil) ? field.fieldValue as AnyObject : "" as AnyObject
+                }
             }
         }
         return isValid

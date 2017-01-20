@@ -9,6 +9,11 @@
 import UIKit
 import GIGLibrary
 
+enum TypeStyleCell: String {
+    case defaultStyle = "default"
+    case lineStyle = "line"
+}
+
 class FormFieldStyleModel: NSObject {
     
     var mandatoryIcon: UIImage?
@@ -23,6 +28,7 @@ class FormFieldStyleModel: NSObject {
     var align: NSTextAlignment?
     var checkBoxOn: UIImage?
     var checkBoxOff: UIImage?
+    var styleCell: TypeStyleCell?
     
     func parseDictionary(_ json: [String:AnyObject]) {
         //== PREPARE DATA ==
@@ -38,8 +44,12 @@ class FormFieldStyleModel: NSObject {
         let align = json["align"] as? String
         let font = json["font"] as? String
         let checkBox = json["checkBox"] as? [String:String]
+        let styleCustom = json["styleCell"] as? String
 
         //== INSERT DATA ==
+        if (styleCustom != nil) {
+            self.styleCell = TypeStyleCell(rawValue: styleCustom!)
+        }
         if (backgroundColorField != nil) {
             self.backgroundColorField = UIColor(fromHexString: backgroundColorField!)
     

@@ -16,7 +16,6 @@ protocol PBooleanFormField {
 class BooleanFormField: FormField {
 
     @IBOutlet var buttonAccept: UIButton!
-    
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var mandotoryImage: UIImageView!
     @IBOutlet var errorLabel: UILabel!

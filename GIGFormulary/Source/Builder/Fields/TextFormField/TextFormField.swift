@@ -57,7 +57,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     // MARK: VALIDATE
@@ -185,7 +185,28 @@ class TextFormField: FormField, UITextFieldDelegate {
             if (styleField!.align != nil) {
                 self.titleLabel.textAlignment = styleField!.align!
             }
+            if let styleCell = styleField?.styleCell  {
+                switch styleCell {
+                case .defaultStyle:
+                    // TODO nothing
+                    break
+                case .lineStyle:
+                    self.customizeCell()
+                }
+            }
         }
+    }
+    
+    fileprivate func customizeCell() {
+        self.textTextField.borderStyle = UITextBorderStyle.none
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = UIColor.lightGray.cgColor
+        border.frame = CGRect(x: 0, y: self.textTextField.frame.size.height - width, width:  UIScreen.main.bounds.width, height: self.textTextField.frame.size.height)
+        
+        border.borderWidth = width
+        self.textTextField.layer.addSublayer(border)
+        self.textTextField.layer.masksToBounds = true
     }
     
     // MARK: UITextFieldDelegate

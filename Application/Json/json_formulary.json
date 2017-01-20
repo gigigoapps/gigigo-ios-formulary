@@ -5,57 +5,159 @@
               "type": "text",
               "label": "a",
               "compare": true,
+              "placeHolder": "place",
               "mandatory": true,
               "itemsCompare": [
                                "a"
                                ],
-              "textErrorCompare": "sad asdsad as"
+              "textErrorCompare": "sad asdsad as",
+                    "style": {
+                        "styleCell": "line",
+                        "mandatoryIcon": "mandatory"
+                        }
               },
               {
               "key": "b",
               "type": "text",
               "compare": true,
+              "placeHolder": "place",
               "mandatory": true,
               "itemsCompare": [
                                "a",
                                "b"
                                ],
-              "textErrorCompare": "texto de error de comparacion"
+              "textErrorCompare": "texto de error de comparacion",
+              "style": {
+                    "styleCell": "line"
+              }
               },
               {
               "key": "c",
               "type": "text",
-              "label": "c"
+              "placeHolder": "place",
+              "label": "c",
+              "style": {
+              "styleCell": "line"
+              }
+              },
+              {
+              "key": "asd",
+              "type": "boolean",
+              "label": "adas",
+              "placeHolder": "place",
+              "textError": "asda",
+              "style": {
+              "mandatoryIcon": "manda",
+              "checkBox": {
+              "checkBoxOn": "on",
+              "checkBoxOff": "off"
+              }
+              }
               },
               {
               "key": "d",
               "type": "text",
-              "label": "d"
+              "placeHolder": "place",
+              "label": "d",
+              "style": {
+              "styleCell": "default"
+              }
               },
               {
               "key": "e",
               "type": "text",
+              "placeHolder": "place",
               "label": "e"
               },
               {
               "key": "f",
               "type": "text",
-              "label": "f"
+              "placeHolder": "place",
+              "label": "f",
+              "style": {
+              "styleCell": "line"
+              }
               },
               {
               "key": "g",
               "type": "text",
-              "label": "g"
+              "placeHolder": "place",
+              "label": "g",
+              "style": {
+              "styleCell": "line"
+              }
               },
               {
               "key": "h",
               "type": "text",
-              "label": "h"
+              "placeHolder": "place",
+              "label": "h",
+              "style": {
+              "styleCell": "line"
+              }
               },
               {
               "key": "i",
               "type": "text",
-              "label": "i"
+              "placeHolder": "place",
+              "label": "TEXTO",
+              "style": {
+              "styleCell": "line"
+              }
+              },
+              {
+              "key": "asdas",
+              "type": "picker",
+              "label": "PIUCKER NORMAL",
+              "listOptions": [
+                              {
+                              "key": "KeyNoSelected",
+                              "value": "adas"
+                              },
+                              {
+                              "key": "a1",
+                              "value": "dsads"
+                              },
+                              {
+                              "key": "a2",
+                              "value": "fsdfds"
+                              }
+                              ],
+              "textError": "asda",
+              "style": {
+              "styleCell": "line"
+              }
+              },
+              {
+              "key": "asd",
+              "type": "boolean",
+              "label": "BOLEANO (LINK)",
+              "mandatory": true,
+              "textError": "error_generic_field",
+              "validator": "bool",
+              "isLink": true,
+              "style": {
+              "styleCell": "line"
+              }
+              },
+              {
+              "key": "safa",
+              "type": "datePicker",
+              "label": "DATE PICKER",
+              "mandatory": true,
+              "textError": "asfsa",
+              "style": {
+              "styleCell": "line"
+              }
+              },
+              {
+              "key": "asas",
+              "type": "text",
+              "placeHolder": "place",
+              "label": "TEXT",
+              "style": {
+              "styleCell": "line"
+              }
               }
               ] 
 }

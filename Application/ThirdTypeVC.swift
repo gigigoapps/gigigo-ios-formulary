@@ -36,11 +36,11 @@ class ThirdTypeVC: UIViewController, Instantiable, PFormulary  {
     // MARK: PFormController
     
     func recoverFormModel(_ formValues: [String : AnyObject]) {
-        
+        print(formValues)
     }
     
     func userDidTapLink(_ key: String) {
-        
+        print(key)
     }
     
     
