@@ -16,15 +16,86 @@ class SecondTypeVC: UIViewController, PFormulary  {
     @IBOutlet var scrollView: UIScrollView!
     
     let formulary = Formulary.shared
+    
+    func prepareEmailField() -> [AnyObject] {
+        let emailField: [AnyObject] = [
+                [
+                    "key": ("email" as AnyObject),
+                    "type": ("text" as AnyObject),
+                    "label": ("text" as AnyObject),
+                    "mandatory": (true as AnyObject),
+                    "textError": ("Incorrect format" as AnyObject),
+                    "placeHolder": ("place" as AnyObject),
+                    "minLength": (3 as AnyObject),
+                    "maxLength": (20 as AnyObject),
+                    "keyboard": ("FormKeyboardTypeEmail" as AnyObject),
+                    "validator": ("email" as AnyObject)
+                ] as AnyObject,
+                [
+                    "key": ("otro" as AnyObject),
+                    "type": ("text" as AnyObject),
+                    "label": ("otro" as AnyObject),
+                    "mandatory": (true as AnyObject),
+                    "textError": ("Incorrect format" as AnyObject),
+                    "placeHolder": ("place" as AnyObject),
+                    "minLength": (3 as AnyObject),
+                    "maxLength": (20 as AnyObject),
+                    "keyboard": ("FormKeyboardTypeEmail" as AnyObject),
+                    "validator": ("email" as AnyObject)
+                ] as AnyObject
+        ]
+        
+        return emailField
+    }
+    
+    func prepareField() -> [AnyObject] {
+        let emailField: [AnyObject] = [
+            [
+                "key": ("textoKey" as AnyObject),
+                "type": ("text" as AnyObject),
+                "label": ("texto" as AnyObject),
+                "mandatory": (true as AnyObject)
+            ] as AnyObject,
+            [
+                "key": ("pickerKey" as AnyObject),
+                "type": ("picker" as AnyObject),
+                "label": ("picker" as AnyObject),
+                "listOptions": [
+                    ["key": "KeyNoSelected",
+                     "value": "aaaaa"],
+                    ["key": "a1",
+                     "value": "a1111"],
+                    ["key": "a2",
+                     "value": "a2222"]
+                ]
+                ] as AnyObject,
+            [
+                "key": ("datePickerKey" as AnyObject),
+                "type": ("datePicker" as AnyObject),
+                "label": ("datePicker" as AnyObject),
+                "mandatory": (true as AnyObject)
+                ] as AnyObject,
+            [
+                "key": ("booleanoKey" as AnyObject),
+                "type": ("boolean" as AnyObject),
+                "label": ("booleano" as AnyObject),
+                "validator": ("bool" as AnyObject),
+                "mandatory": (true as AnyObject)
+                ] as AnyObject
+        ]
+        
+        return emailField
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //-- Create form Type with JSON --
         
-        let formulary = Formulary.shared
-        let viewContainterForm = formulary.start(self.button, jsonFile: "json_formulary.json")
-        formulary.delegate = self
+       // let formulary = Formulary.shared
+       // let viewContainterForm = formulary.start(self.button, jsonFile: "json_formulary.json")
+       // formulary.delegate = self
  
         
         //-- Create form Type with Array Dic --
@@ -58,6 +129,18 @@ class SecondTypeVC: UIViewController, PFormulary  {
         self.formulary.delegate = self
  */
         
+        let fields = self.prepareField() as! [[String: AnyObject]]
+        let viewContainterForm = self.formulary.start(self.button, listItems: fields)
+        self.formulary.delegate = self
+        self.formulary.populateData(
+            [
+                "textoKey": "rellenar" as AnyObject,
+                "pickerKey": "a2" as AnyObject,
+                "booleanoKey": true as AnyObject,
+                "datePickerKey": "12/01/1983" as AnyObject
+            ]
+        )
+        
         //-- Insert in view --
         self.scrollView.addSubview(viewContainterForm)
         
@@ -67,7 +150,6 @@ class SecondTypeVC: UIViewController, PFormulary  {
         gig_constrain_width(viewContainterForm, UIScreen.main.bounds.size.width);
         gig_layout_top(viewContainterForm, 0);
         gig_layout_bottom(viewContainterForm, 0)
-
     }
     
     // MARK: PFormController

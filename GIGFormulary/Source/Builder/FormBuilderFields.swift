@@ -63,7 +63,11 @@ class FormBuilderFields: NSObject {
             let formFieldM = FormFieldModel(bundle: self.bundle)
             try formFieldM.parseDictionary(fieldDic)
             
-            let typeField = self.listTypeFields[TypeField(rawValue: formFieldM.type!)!]
+            guard let typeFieldFound = TypeField(rawValue: formFieldM.type!) else {
+                print("❌❌❌ typeFieldFound not found")
+                return FormField()
+            }
+            let typeField = self.listTypeFields[typeFieldFound]
             let field = typeField!.init()
             field.formFieldM = formFieldM
             field.delegate = self.formController

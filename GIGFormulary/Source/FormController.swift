@@ -66,7 +66,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
             var _ = self.formFields.map { formField -> FormField in
                 if (formField.formFieldM?.key == key) {
                     formField.fieldValue = value
-                    self.formValues[key] = value as? String as AnyObject?
+                    self.formValues[key] = value as AnyObject?
                 }
                 return formField
             }

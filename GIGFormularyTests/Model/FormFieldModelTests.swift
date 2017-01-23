@@ -26,21 +26,21 @@ class FormFieldModelTests: XCTestCase {
     // MARK: Mandatory generic  -  FormFieldModel
 
     func test_parseJson_FormFieldModel_with_json_not_valid(){
-        let formFieldModelResult = FormFieldModel()
+        let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             XCTAssertThrowsError(try formFieldModelResult.parseDictionary(["":("" as AnyObject?)!]))
         }
     }
     
     func test_parseJson_FormFieldModel_with_json_not_valid_And_No_All_Mandatory_Element(){
-        let formFieldModelResult = FormFieldModel()
+        let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             XCTAssertThrowsError(try formFieldModelResult.parseDictionary(["template":("" as AnyObject?)!]))
         }
     }
     
     func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_empty(){
-        let formFieldModelResult = FormFieldModel()
+        let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             let dic:[String: AnyObject] = ["type":("" as AnyObject?)!,
                        "label":"" as AnyObject,
@@ -51,7 +51,7 @@ class FormFieldModelTests: XCTestCase {
     }
     
     func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_with_incorrect_type(){
-        let formFieldModelResult = FormFieldModel()
+        let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             let dic:[String: AnyObject] = ["type":0 as AnyObject,
                                            "label":"aa" as AnyObject,
@@ -70,7 +70,7 @@ class FormFieldModelTests: XCTestCase {
     }
 
     func test_parseJson_FormFieldModel_with_json_Valid_And_All_Mandatory_Element(){
-        let formFieldModelResult = FormFieldModel()
+        let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             let dic:[String: AnyObject] = ["type":"tipo" as AnyObject,
                                            "label":"titulo" as AnyObject,
@@ -83,7 +83,7 @@ class FormFieldModelTests: XCTestCase {
     // MARK: Styles
     
     func test_parseJson_FormFieldModel_with_json_valid_And_All_Mandatory_Element_with_styles_empty(){
-        let formFieldModelResult = FormFieldModel()
+        let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             let styles = [AnyObject]()
             
@@ -97,7 +97,7 @@ class FormFieldModelTests: XCTestCase {
     }
     
     func test_parseJson_FormFieldModel_with_json_valid_And_All_Mandatory_Element_with_styles(){
-        let formFieldModelResult = FormFieldModel()
+        let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             let styles = ["backgroundColorField":"#ff374b",
                           "sizeTitle":12] as [String : Any]
@@ -115,7 +115,7 @@ class FormFieldModelTests: XCTestCase {
     // MARK: Options
     
     func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_options_empty(){
-        let formFieldModelResult = FormFieldModel()
+        let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             let listOptions = [[]]
             
@@ -129,7 +129,7 @@ class FormFieldModelTests: XCTestCase {
     }
     
     func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_options_incorrect_type(){
-        let formFieldModelResult = FormFieldModel()
+        let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             let listOptions = ["aa"]
             
@@ -143,7 +143,7 @@ class FormFieldModelTests: XCTestCase {
     }
     
     func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_options_element_empty(){
-        let formFieldModelResult = FormFieldModel()
+        let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             let listOptions = [["key":""]]
             
@@ -189,7 +189,7 @@ class FormFieldModelTests: XCTestCase {
     }
     
     func test_parseJson_FormFieldModel_with_json_valid_And_All_Mandatory_Element_options(){
-        let formFieldModelResult = FormFieldModel()
+        let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             let listOptions = [["key":"KeyNoSelected","value":"elige un elemento"],
                                ["key":"clave1","value":"titulo primer elemento"]]

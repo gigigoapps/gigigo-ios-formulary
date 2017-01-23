@@ -75,6 +75,7 @@ class BooleanFormField: FormField {
         }
         set {
             self.buttonAccept.isSelected = newValue as! Bool
+            self.chooseImage()
         }
     }
     
@@ -170,6 +171,15 @@ class BooleanFormField: FormField {
             self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
         }
         self.buttonAccept.isSelected = !self.buttonAccept.isSelected
+    }
+    
+    fileprivate func chooseImage() {
+        if (self.buttonAccept.isSelected) {
+            self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
+        }
+        else {
+            self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
+        }
     }
     
     // MARK: Actions

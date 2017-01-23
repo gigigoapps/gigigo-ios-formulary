@@ -68,7 +68,7 @@ open class Formulary: PFormController {
     
     // Populate
 
-    open func populateData(_ values: [String: String]) {
+    open func populateData(_ values: [String: AnyObject]) {
         self.formController!.populateData(values as [String : AnyObject])
     }
     
