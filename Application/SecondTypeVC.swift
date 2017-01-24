@@ -51,23 +51,10 @@ class SecondTypeVC: UIViewController, PFormulary  {
     func prepareField() -> [AnyObject] {
         let emailField: [AnyObject] = [
             [
-                "key": ("textoKey" as AnyObject),
+                "key": ("textoKey2" as AnyObject),
                 "type": ("text" as AnyObject),
-                "label": ("texto" as AnyObject),
+                "label": ("texto2" as AnyObject),
                 "mandatory": (true as AnyObject)
-            ] as AnyObject,
-            [
-                "key": ("pickerKey" as AnyObject),
-                "type": ("picker" as AnyObject),
-                "label": ("picker" as AnyObject),
-                "listOptions": [
-                    ["key": "KeyNoSelected",
-                     "value": "aaaaa"],
-                    ["key": "a1",
-                     "value": "a1111"],
-                    ["key": "a2",
-                     "value": "a2222"]
-                ]
                 ] as AnyObject,
             [
                 "key": ("datePickerKey" as AnyObject),
@@ -75,6 +62,26 @@ class SecondTypeVC: UIViewController, PFormulary  {
                 "label": ("datePicker" as AnyObject),
                 "mandatory": (true as AnyObject)
                 ] as AnyObject,
+            [
+                "key": ("pickerKey" as AnyObject),
+                "type": ("picker" as AnyObject),
+                "label": ("picker" as AnyObject),
+                "mandatory": true as AnyObject,
+                "listOptions": [
+                    ["key": "KeyNoSelected",
+                     "value": "Select One"],
+                    ["key": "GB",
+                     "value": "United Kingdom"],
+                    ["key": " ",
+                     "value": "Other"]
+                ]
+            ] as AnyObject,
+          [
+            "key": ("textoKey" as AnyObject),
+            "type": ("text" as AnyObject),
+            "label": ("texto" as AnyObject),
+            "mandatory": (true as AnyObject)
+            ] as AnyObject,
             [
                 "key": ("booleanoKey" as AnyObject),
                 "type": ("boolean" as AnyObject),
@@ -134,10 +141,11 @@ class SecondTypeVC: UIViewController, PFormulary  {
         self.formulary.delegate = self
         self.formulary.populateData(
             [
+                "textoKey2": "rellenar2" as AnyObject,
                 "textoKey": "rellenar" as AnyObject,
-                "pickerKey": "a2" as AnyObject,
-                "booleanoKey": true as AnyObject,
-                "datePickerKey": "12/01/1983" as AnyObject
+                "pickerKey": "GB" as AnyObject,
+             //   "booleanoKey": true as AnyObject,
+               "datePickerKey": "12/01/1983" as AnyObject
             ]
         )
         

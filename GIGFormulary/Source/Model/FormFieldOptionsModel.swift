@@ -39,11 +39,11 @@ class FormFieldOptionsModel: NSObject {
         //== PREPARE DATA ==
         //-- Mandatory --
         guard let key = json["key"] as? String , key.characters.count > 0 else {
-            print("❌❌❌ key value Not Found")
+            print("❌❌❌ FormFieldOptionsModel:: key value Not Found")
             throw ThrowError.mandatoryElementNotFound
         }
         guard let value = json["value"] as? String , value.characters.count > 0 else {
-            print("❌❌❌ value Options Not Found")
+            print("❌❌❌ FormFieldOptionsModel:: value Options Not Found")
             throw ThrowError.mandatoryElementNotFound
         }
         

@@ -56,13 +56,13 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
                      return element.idOption == newValue as? String
                 })
                 
+                var pos = 0
                 if let option = optionFound {
-                    let pos = self.formFieldM?.options?.index(of: option[0])
-                    self.pickerOptions?.selectedIndex = pos
+                    if  option.count > 0 {
+                       pos = self.formFieldM!.options!.index(of: option[0])!
+                    }
                 }
-                else {
-                    self.pickerOptions?.selectedIndex = 0
-                }
+                self.pickerOptions?.selectedIndex = pos
             }
             else {
                 let dateFormatter = DateFormatter()
