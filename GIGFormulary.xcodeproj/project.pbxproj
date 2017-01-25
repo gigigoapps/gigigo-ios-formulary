@@ -10,6 +10,8 @@
 		7B6191D21DBF92EE00E3BC87 /* GIGLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B6191D51DBF935300E3BC87 /* GIGFormulary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82EF21D4B5DB800DC85F5 /* GIGFormulary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B6191D81DBF98FA00E3BC87 /* SecondTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6191D61DBF988C00E3BC87 /* SecondTypeVC.swift */; };
+		7B676FF91E3892CE007ED7DD /* FRHyperLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B676FF71E3892CE007ED7DD /* FRHyperLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7B676FFA1E3892CE007ED7DD /* FRHyperLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B676FF81E3892CE007ED7DD /* FRHyperLabel.m */; };
 		7B7D72761D4B7BDE003FFEE8 /* AgeValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D726A1D4B7BDE003FFEE8 /* AgeValidatorTests.swift */; };
 		7B7D72771D4B7BDE003FFEE8 /* BoolValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D726B1D4B7BDE003FFEE8 /* BoolValidatorTests.swift */; };
 		7B7D72781D4B7BDE003FFEE8 /* DNINIEValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D726C1D4B7BDE003FFEE8 /* DNINIEValidatorTests.swift */; };
@@ -120,6 +122,8 @@
 
 /* Begin PBXFileReference section */
 		7B6191D61DBF988C00E3BC87 /* SecondTypeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondTypeVC.swift; sourceTree = "<group>"; };
+		7B676FF71E3892CE007ED7DD /* FRHyperLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRHyperLabel.h; sourceTree = "<group>"; };
+		7B676FF81E3892CE007ED7DD /* FRHyperLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRHyperLabel.m; sourceTree = "<group>"; };
 		7B7D726A1D4B7BDE003FFEE8 /* AgeValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgeValidatorTests.swift; sourceTree = "<group>"; };
 		7B7D726B1D4B7BDE003FFEE8 /* BoolValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolValidatorTests.swift; sourceTree = "<group>"; };
 		7B7D726C1D4B7BDE003FFEE8 /* DNINIEValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNINIEValidatorTests.swift; sourceTree = "<group>"; };
@@ -217,6 +221,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B676FF01E37C97F007ED7DD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7B676FF61E3892CE007ED7DD /* FRHyperLabel */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		7B676FF61E3892CE007ED7DD /* FRHyperLabel */ = {
+			isa = PBXGroup;
+			children = (
+				7B676FF71E3892CE007ED7DD /* FRHyperLabel.h */,
+				7B676FF81E3892CE007ED7DD /* FRHyperLabel.m */,
+			);
+			name = FRHyperLabel;
+			path = Utils/FRHyperLabel;
+			sourceTree = "<group>";
+		};
+		7B676FFC1E3897EB007ED7DD /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				7BB82EF51D4B5DB800DC85F5 /* GIGFormulary.h */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		7B7D72691D4B7BDE003FFEE8 /* Validator */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +269,7 @@
 		7B7D72CA1D4B8296003FFEE8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7B676FF01E37C97F007ED7DD /* Utils */,
 				7B7D72CB1D4B8296003FFEE8 /* Components */,
 			);
 			path = Common;
@@ -426,8 +457,8 @@
 				7B7D72CA1D4B8296003FFEE8 /* Common */,
 				7B7D72CF1D4B8296003FFEE8 /* Resources */,
 				7B7D72D21D4B8296003FFEE8 /* Source */,
+				7B676FFC1E3897EB007ED7DD /* SupportingFiles */,
 				7BB82EF71D4B5DB800DC85F5 /* Info.plist */,
-				7BB82EF51D4B5DB800DC85F5 /* GIGFormulary.h */,
 			);
 			path = GIGFormulary;
 			sourceTree = "<group>";
@@ -483,6 +514,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B676FF91E3892CE007ED7DD /* FRHyperLabel.h in Headers */,
 				7BB82EF61D4B5DB800DC85F5 /* GIGFormulary.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -635,6 +667,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B7D73091D4B8296003FFEE8 /* LengthValidator.swift in Sources */,
+				7B676FFA1E3892CE007ED7DD /* FRHyperLabel.m in Sources */,
 				7BC7EBC91D4F6F860022D1C5 /* Formulary.swift in Sources */,
 				7B7D730D1D4B8296003FFEE8 /* PhoneValidator.swift in Sources */,
 				7B7D730E1D4B8296003FFEE8 /* PostalCodeValidator.swift in Sources */,

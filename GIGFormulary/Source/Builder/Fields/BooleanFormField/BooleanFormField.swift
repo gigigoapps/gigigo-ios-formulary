@@ -16,7 +16,7 @@ protocol PBooleanFormField {
 class BooleanFormField: FormField {
 
     @IBOutlet var buttonAccept: UIButton!
-    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var titleLabel: FRHyperLabel!
     @IBOutlet var mandotoryImage: UIImageView!
     @IBOutlet var errorLabel: UILabel!
     
@@ -113,10 +113,25 @@ class BooleanFormField: FormField {
         if (formFieldM.value != nil && (formFieldM.value as? Bool)!) {
             self.changeState()
         }
-        if (formFieldM.isLink) {
-            let tap = UITapGestureRecognizer(target: self, action: #selector(self.labelAction))
-            self.titleLabel.isUserInteractionEnabled = true
-            self.titleLabel.addGestureRecognizer(tap)
+        
+        if (self.existLink(formFieldM.label!)) {
+            let getLinks = self.getListLinks(formFieldM.label!)
+            
+            let attributes = [NSForegroundColorAttributeName: UIColor.black,
+                              NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+            self.titleLabel.attributedText = NSAttributedString(string: getLinks.1, attributes: attributes)
+            
+            //Step 2: Define a selection handler block
+            let handler = {
+                (hyperLabel: FRHyperLabel?, substring: String?) -> Void in
+                if let key = substring {
+                    self.delegate?.userDidTapLink(key)
+                }                
+            }
+            
+            //Step 3: Add link substrings
+            self.titleLabel.setLinksForSubstrings(getLinks.0, withLinkHandler: handler)
+            self.titleLabel.font = UIFont.systemFont(ofSize: 16)
         }
     }
     
@@ -181,6 +196,48 @@ class BooleanFormField: FormField {
             self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
         }
     }
+    
+    // MARK: Parse
+    
+    fileprivate func existLink(_ text : String) -> Bool {
+        // TODOE EDU otra opcion // return text.characters.index(of: "{") != nil
+        if text.characters.index(of: "{") != nil {
+            return true
+        }
+        return false
+    }
+    
+    fileprivate func getListLinks(_ text : String) -> ([String], String){
+        let newStringKey = text.replacingOccurrences(of: "{* ", with: "{* #", options: .literal, range: nil)
+        let firstPart = newStringKey.components(separatedBy: "{* ")
+        let localizedStringPieces = self.separeteString(listPart: firstPart)
+        
+        var listLink = [String]()
+        var allWords = ""
+        for word in localizedStringPieces {
+            if (word.hasPrefix("#"))
+            {
+                let link = word.replacingOccurrences(of: "#", with: "", options: .literal, range: nil)
+                listLink.append(link)
+                allWords += link
+            }
+            else {
+                allWords += word
+            }
+        }
+        
+        return (listLink, allWords)
+    }
+    
+    fileprivate func separeteString(listPart: [String]) -> [String] {
+        var auxList = [String]()
+        for text in listPart {
+            let findPart = text.components(separatedBy: " *}")
+            auxList = auxList + findPart
+        }
+        return auxList
+    }
+    
     
     // MARK: Actions
     

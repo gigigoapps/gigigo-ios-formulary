@@ -17,37 +17,6 @@ class SecondTypeVC: UIViewController, PFormulary  {
     
     let formulary = Formulary.shared
     
-    func prepareEmailField() -> [AnyObject] {
-        let emailField: [AnyObject] = [
-                [
-                    "key": ("email" as AnyObject),
-                    "type": ("text" as AnyObject),
-                    "label": ("text" as AnyObject),
-                    "mandatory": (true as AnyObject),
-                    "textError": ("Incorrect format" as AnyObject),
-                    "placeHolder": ("place" as AnyObject),
-                    "minLength": (3 as AnyObject),
-                    "maxLength": (20 as AnyObject),
-                    "keyboard": ("FormKeyboardTypeEmail" as AnyObject),
-                    "validator": ("email" as AnyObject)
-                ] as AnyObject,
-                [
-                    "key": ("otro" as AnyObject),
-                    "type": ("text" as AnyObject),
-                    "label": ("otro" as AnyObject),
-                    "mandatory": (true as AnyObject),
-                    "textError": ("Incorrect format" as AnyObject),
-                    "placeHolder": ("place" as AnyObject),
-                    "minLength": (3 as AnyObject),
-                    "maxLength": (20 as AnyObject),
-                    "keyboard": ("FormKeyboardTypeEmail" as AnyObject),
-                    "validator": ("email" as AnyObject)
-                ] as AnyObject
-        ]
-        
-        return emailField
-    }
-    
     func prepareField() -> [AnyObject] {
         let emailField: [AnyObject] = [
             [
@@ -77,17 +46,24 @@ class SecondTypeVC: UIViewController, PFormulary  {
                 ]
             ] as AnyObject,
           [
-            "key": ("textoKey" as AnyObject),
-            "type": ("text" as AnyObject),
-            "label": ("texto" as AnyObject),
-            "mandatory": (true as AnyObject)
+                "key": ("textoKey" as AnyObject),
+                "type": ("text" as AnyObject),
+                "label": ("texto" as AnyObject),
+                "mandatory": (true as AnyObject)
             ] as AnyObject,
             [
                 "key": ("booleanoKey" as AnyObject),
                 "type": ("boolean" as AnyObject),
-                "label": ("booleano" as AnyObject),
+                "label": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein." as AnyObject),
                 "validator": ("bool" as AnyObject),
-                "mandatory": (true as AnyObject)
+                "mandatory": true as AnyObject
+                ] as AnyObject,
+            [
+                "key": ("booleanoKey2" as AnyObject),
+                "type": ("boolean" as AnyObject),
+                "label": ("Bolean sin link" as AnyObject),
+                "validator": ("bool" as AnyObject),
+                "mandatory": true as AnyObject
                 ] as AnyObject
         ]
         
@@ -106,36 +82,6 @@ class SecondTypeVC: UIViewController, PFormulary  {
  
         
         //-- Create form Type with Array Dic --
-        /*
-        let dic1:[String: AnyObject] = ["key": "a1" as AnyObject,
-                                        "type": "text" as AnyObject,
-                                        "label": "validador sin" as AnyObject,
-                                        "mandatory": true as AnyObject]
-        
-        let dic2:[String: AnyObject]  = ["key": "a11" as AnyObject,
-                                         "type": "text" as AnyObject,
-                                         "label": "validador email" as AnyObject,
-                                         "validator": "email" as AnyObject,
-                                         "mandatory": true as AnyObject]
-        
-        let dic3:[String: AnyObject]  = ["key": "a2" as AnyObject,
-                                         "type": "text" as AnyObject,
-                                         "label": "validador custom" as AnyObject,
-                                         "validator": "customValidator" as AnyObject,
-                                         "customValidator": "^([0-9])+$" as AnyObject,
-                                         "mandatory": true as AnyObject]
-        
-        let style:[String: AnyObject] = ["sizeTitle": 30 as CGFloat as AnyObject] as [String : AnyObject]
-        let dic4:[String: AnyObject] = ["key" : "key" as AnyObject,
-                                        "label": "label" as AnyObject,
-                                        "type" : "index" as AnyObject,
-                                        "style": style as AnyObject]
-        
-        
-        let viewContainterForm = self.formulary.start(self.button, listItems: [dic1, dic2, dic4 ,dic3])
-        self.formulary.delegate = self
- */
-        
         let fields = self.prepareField() as! [[String: AnyObject]]
         let viewContainterForm = self.formulary.start(self.button, listItems: fields)
         self.formulary.delegate = self
@@ -144,8 +90,8 @@ class SecondTypeVC: UIViewController, PFormulary  {
                 "textoKey2": "rellenar2" as AnyObject,
                 "textoKey": "rellenar" as AnyObject,
                 "pickerKey": "GB" as AnyObject,
-             //   "booleanoKey": true as AnyObject,
-               "datePickerKey": "12/01/1983" as AnyObject
+                "booleanoKey": true as AnyObject,
+                "datePickerKey": "12/01/1983" as AnyObject
             ]
         )
         
@@ -167,7 +113,7 @@ class SecondTypeVC: UIViewController, PFormulary  {
     }
     
     func userDidTapLink(_ key: String) {
-        
+        print("RECOVER LINK: \(key)")
     }
     
     // MARK: Actions
