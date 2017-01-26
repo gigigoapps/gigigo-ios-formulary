@@ -75,7 +75,13 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     }
     
     func loadError(_ values: [String: String]) {
-        for field in self.formFields {            
+        var search = true
+        for field in self.formFields {
+            //-- Go to position if first found --
+            self.moveToPositionError(search, field)
+            search = false
+            
+            //-- Print error --
             let _ = values.filter({ (key, value) -> Bool in
                 if (key == field.formFieldM?.key) {
                     field.loadError(error: value)
