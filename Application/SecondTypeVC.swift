@@ -59,6 +59,11 @@ class SecondTypeVC: UIViewController, PFormulary  {
                 "mandatory": true as AnyObject
                 ] as AnyObject,
             [
+                "key": ("indexKEY" as AnyObject),
+                "type": ("index" as AnyObject),
+                "label": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein." as AnyObject)
+                ] as AnyObject,
+            [
                 "key": ("booleanoKey2" as AnyObject),
                 "type": ("boolean" as AnyObject),
                 "label": ("Bolean sin link" as AnyObject),

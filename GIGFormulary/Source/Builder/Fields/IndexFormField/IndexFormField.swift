@@ -8,9 +8,13 @@
 
 import UIKit
 
+protocol PIndexFormField {
+    func userDidTapLink(_ key: String)
+}
+
 class IndexFormField: FormField {
 
-    @IBOutlet var indexLabel: UILabel!
+    @IBOutlet var indexLabel: FRHyperLabel!
     
     
     // MARK: INIT
@@ -34,6 +38,14 @@ class IndexFormField: FormField {
     }
     
     
+    // MARK: Actions
+    
+    func labelAction(gr:UITapGestureRecognizer)
+    {
+        self.delegate?.userDidTapLink((self.formFieldM?.key)!)
+    }
+    
+    
     // MARK: Private Method
     
     fileprivate func initializeView() {
@@ -45,6 +57,26 @@ class IndexFormField: FormField {
     
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.indexLabel.text = formFieldM.label
+        
+        if (self.existLink(formFieldM.label!)) {
+            let getLinks = self.getListLinks(formFieldM.label!)
+            
+            let attributes = [NSForegroundColorAttributeName: UIColor.black,
+                              NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+            self.indexLabel.attributedText = NSAttributedString(string: getLinks.1, attributes: attributes)
+            
+            //Step 2: Define a selection handler block
+            let handler = {
+                (hyperLabel: FRHyperLabel?, substring: String?) -> Void in
+                if let key = substring {
+                    self.delegate?.userDidTapLink(key)
+                }
+            }
+            
+            //Step 3: Add link substrings
+            self.indexLabel.setLinksForSubstrings(getLinks.0, withLinkHandler: handler)
+            self.indexLabel.font = UIFont.systemFont(ofSize: 16)
+        }
     }
     
     fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel) {
@@ -65,5 +97,47 @@ class IndexFormField: FormField {
                 self.indexLabel.textAlignment = styleField!.align!
             }
         }
+    }
+    
+    
+    // MARK: Parse
+    
+    fileprivate func existLink(_ text : String) -> Bool {
+        // TODOE EDU otra opcion // return text.characters.index(of: "{") != nil
+        if text.characters.index(of: "{") != nil {
+            return true
+        }
+        return false
+    }
+    
+    fileprivate func getListLinks(_ text : String) -> ([String], String){
+        let newStringKey = text.replacingOccurrences(of: "{* ", with: "{* #", options: .literal, range: nil)
+        let firstPart = newStringKey.components(separatedBy: "{* ")
+        let localizedStringPieces = self.separeteString(listPart: firstPart)
+        
+        var listLink = [String]()
+        var allWords = ""
+        for word in localizedStringPieces {
+            if (word.hasPrefix("#"))
+            {
+                let link = word.replacingOccurrences(of: "#", with: "", options: .literal, range: nil)
+                listLink.append(link)
+                allWords += link
+            }
+            else {
+                allWords += word
+            }
+        }
+        
+        return (listLink, allWords)
+    }
+    
+    fileprivate func separeteString(listPart: [String]) -> [String] {
+        var auxList = [String]()
+        for text in listPart {
+            let findPart = text.components(separatedBy: " *}")
+            auxList = auxList + findPart
+        }
+        return auxList
     }
 }

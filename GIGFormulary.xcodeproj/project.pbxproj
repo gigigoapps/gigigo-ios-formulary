@@ -412,8 +412,8 @@
 		7B9D68B61E2E6D540061D666 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				7B6191D61DBF988C00E3BC87 /* SecondTypeVC.swift */,
 				7BB82F141D4B5E2200DC85F5 /* ViewController.swift */,
+				7B6191D61DBF988C00E3BC87 /* SecondTypeVC.swift */,
 				7B9D68B01E2E694B0061D666 /* ThirdTypeVC.swift */,
 				7B9D68B71E2E6D6E0061D666 /* External.storyboard */,
 			);

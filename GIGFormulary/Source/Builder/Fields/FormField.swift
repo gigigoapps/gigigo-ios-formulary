@@ -10,7 +10,7 @@ import UIKit
 import GIGLibrary
 
 
-protocol PFormField: PTextFormField, PBooleanFormField {
+protocol PFormField: PTextFormField, PBooleanFormField, PIndexFormField {
 }
 
 open class FormField: UIView{
