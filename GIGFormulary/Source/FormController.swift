@@ -123,6 +123,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
             }
             
             if (!field.validate()) {
+                self.moveToPositionError(isValid, field)
                 isValid = false
             }
             else {
@@ -151,6 +152,12 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
             }
         }
         return isValid
+    }
+    
+    fileprivate func moveToPositionError(_ isValid: Bool, _ field: FormField) {
+        if (isValid) {
+            self.formViews?.scrollRectToVisible(field)
+        }
     }
     
     fileprivate func searchValueItemToCompare(_ itemsCompare: [String]) -> [String] {
