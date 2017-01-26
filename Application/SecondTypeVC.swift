@@ -123,8 +123,8 @@ class SecondTypeVC: UIViewController, PFormulary  {
     
     // MARK: Actions
     @IBAction func loadError(_ sender: Any) {
-        let dicError:[String: AnyObject] = ["a1" : "error 1" as AnyObject,
-                                            "a2": "error 2" as AnyObject]
+        let dicError:[String: AnyObject] = ["pickerKey" : "error 1" as AnyObject,
+                                            "key": "error 2" as AnyObject]
         self.formulary.loadError(dicError as! [String : String])
     }
 }

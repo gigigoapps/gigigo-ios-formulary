@@ -62,6 +62,14 @@ class ViewController: UIViewController, PFormulary {
     override func viewWillDisappear(_ animated: Bool) {
         self.formulary.clearFormulary()
     }
+
+    // MARK: Action
+    
+    @IBAction func loadError(_ sender: Any) {
+        let dicError:[String: AnyObject] = ["b" : "error 1" as AnyObject,
+                                            "f": "error 2" as AnyObject]
+        self.formulary.loadError(dicError as! [String : String])
+    }
     
     // MARK: PFormController
     

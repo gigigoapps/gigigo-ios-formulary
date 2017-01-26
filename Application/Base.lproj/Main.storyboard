@@ -137,7 +137,18 @@
                             <constraint firstAttribute="trailing" secondItem="HXD-iU-syk" secondAttribute="trailing" id="m1X-WQ-Gg4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="szR-eh-Srl"/>
+                    <navigationItem key="navigationItem" id="szR-eh-Srl">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="KSY-5y-bA2">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gWW-2s-SRo">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="LoadError"/>
+                                <connections>
+                                    <action selector="loadError:" destination="eQH-Tu-Udp" eventType="touchUpInside" id="Uv8-q9-DRP"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X4u-y6-TRg" sceneMemberID="firstResponder"/>
             </objects>
