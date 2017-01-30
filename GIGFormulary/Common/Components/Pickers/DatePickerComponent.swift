@@ -28,7 +28,7 @@ class DatePickerComponent: UIDatePicker {
         set {
             if let value = newValue {
                 self.datePicker.date = value
-                self.onDoneTap()
+                self.textField?.text = self.dateFormatter.string(from: value)
             }
         }
     }

@@ -12,12 +12,13 @@ import GIGFormulary
 
 class ThirdTypeVC: UIViewController, Instantiable, PFormulary  {
     
+    let formulary = Formulary.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let formulary = Formulary.shared
-        formulary.start(self.view, jsonFile: "json_formulary.json")
-        formulary.delegate = self
+        self.formulary.start(self.view, jsonFile: "json_formulary.json")
+        self.formulary.delegate = self
 
     }
     
@@ -48,5 +49,26 @@ class ThirdTypeVC: UIViewController, Instantiable, PFormulary  {
     
     @IBAction func closeModalAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func populateAction(_ sender: Any) {
+        self.formulary.populateData(
+            [
+                "a": "rellenar2" as AnyObject,
+                "b": "rellenar" as AnyObject,
+                "c": "GB" as AnyObject,
+                "asd": true as AnyObject,
+                "d": "rellenar" as AnyObject,
+                "e": "rellenar" as AnyObject,
+                "f": "rellenar" as AnyObject,
+                "g": "rellenar" as AnyObject,
+                "h": "rellenar" as AnyObject,
+                "i": "rellenar" as AnyObject,
+                "j": "a1" as AnyObject,
+                "k": true as AnyObject,
+                "l": "12/01/1983" as AnyObject,
+                "m": "rellenar" as AnyObject
+            ]
+        )
     }
 }

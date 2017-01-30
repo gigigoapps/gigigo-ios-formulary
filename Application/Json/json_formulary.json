@@ -106,7 +106,29 @@
               }
               },
               {
-              "key": "asdas",
+              "key": "k",
+              "type": "boolean",
+              "label": "BOLEANO (LINK)",
+              "mandatory": true,
+              "textError": "error_generic_field",
+              "validator": "bool",
+              "isLink": true,
+              "style": {
+              "styleCell": "line"
+              }
+              },
+              {
+              "key": "l",
+              "type": "datePicker",
+              "label": "DATE PICKER",
+              "mandatory": true,
+              "textError": "asfsa",
+              "style": {
+              "styleCell": "line"
+              }
+              },
+              {
+              "key": "j",
               "type": "picker",
               "label": "PIUCKER NORMAL",
               "listOptions": [
@@ -129,29 +151,7 @@
               }
               },
               {
-              "key": "asd",
-              "type": "boolean",
-              "label": "BOLEANO (LINK)",
-              "mandatory": true,
-              "textError": "error_generic_field",
-              "validator": "bool",
-              "isLink": true,
-              "style": {
-              "styleCell": "line"
-              }
-              },
-              {
-              "key": "safa",
-              "type": "datePicker",
-              "label": "DATE PICKER",
-              "mandatory": true,
-              "textError": "asfsa",
-              "style": {
-              "styleCell": "line"
-              }
-              },
-              {
-              "key": "asas",
+              "key": "m",
               "type": "text",
               "placeHolder": "place",
               "label": "TEXT",

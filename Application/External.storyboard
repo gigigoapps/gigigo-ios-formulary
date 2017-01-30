@@ -85,6 +85,11 @@
                                 <action selector="closeModalAction:" destination="WiB-Mp-aI9" id="sxU-ze-534"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="populate" id="5OY-Ew-N1a">
+                            <connections>
+                                <action selector="populateAction:" destination="WiB-Mp-aI9" id="PyW-9C-Wnd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H12-i3-QSe" userLabel="First Responder" sceneMemberID="firstResponder"/>

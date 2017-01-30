@@ -31,7 +31,10 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
         
         set {
             self.picker.selectRow(newValue ?? 0, inComponent: 0, animated: false)
-            self.onDoneTap()
+            if !self.items.isEmpty {
+                let selectedRow = self.picker.selectedRow(inComponent: 0)
+                self.textField?.text = self.items[selectedRow].textOption
+            }
         }
     }
     
