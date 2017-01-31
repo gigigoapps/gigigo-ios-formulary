@@ -30,6 +30,7 @@ class FormFieldModel: NSObject {
     var value: AnyObject?
     var isPassword = false
     var textsError = TextsError()
+    var isEditing = true
     //-- Validate --
     var minLengthValue: Int?
     var maxLengthValue: Int?
@@ -79,8 +80,11 @@ class FormFieldModel: NSObject {
         let isPassword = json["isPassword"] as? Bool
         let isLink = json["isLink"] as? Bool
         let compare = json["compare"] as? Bool
-        let itemCompare = json["itemsCompare"] as? [String]
+        let itemCompare = json["itemsCompare"] as? [String]        
         
+        if let isEditing = json["isEditing"] as? Bool {
+            self.isEditing = isEditing
+        }
         
         //== INSERT DATA ==
         //-- Mandatory--

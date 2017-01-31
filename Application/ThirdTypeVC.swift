@@ -66,6 +66,7 @@ class ThirdTypeVC: UIViewController, Instantiable, PFormulary  {
                 "i": "rellenar" as AnyObject,
                 "j": "a1" as AnyObject,
                 "k": true as AnyObject,
+                "boolK": true as AnyObject,
                 "l": "12/01/1983" as AnyObject,
                 "m": "rellenar" as AnyObject
             ]

@@ -146,6 +146,7 @@ class TextFormField: FormField, UITextFieldDelegate {
         if self.formFieldM?.label == nil {
             self.heightLabelConstraint.constant = 0
         }
+        self.textTextField.isEnabled = formFieldM.isEditing
     }
     
     fileprivate func loadMandatory(_ isMandatory: Bool) {

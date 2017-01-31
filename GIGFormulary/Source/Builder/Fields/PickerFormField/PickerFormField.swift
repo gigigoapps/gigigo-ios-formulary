@@ -165,6 +165,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         self.titleLabel.text = formFieldM.label
         self.textTextField.placeholder = formFieldM.placeHolder
         self.errorLabel.text = formFieldM.textsError.textError
+        self.textTextField.isEnabled = formFieldM.isEditing
     }
     
     fileprivate func loadMandatory(_ isMandatory: Bool) {

@@ -7,6 +7,7 @@
               "compare": true,
               "placeHolder": "place",
               "mandatory": true,
+              "isEditing": false,
               "itemsCompare": [
                                "a"
                                ],
@@ -15,77 +16,6 @@
                         "styleCell": "line",
                         "mandatoryIcon": "mandatory"
                         }
-              },
-              {
-              "key": "b",
-              "type": "text",
-              "compare": true,
-              "placeHolder": "place",
-              "mandatory": true,
-              "itemsCompare": [
-                               "a",
-                               "b"
-                               ],
-              "textErrorCompare": "texto de error de comparacion",
-              "style": {
-                    "styleCell": "line"
-              }
-              },
-              {
-              "key": "c",
-              "type": "text",
-              "placeHolder": "place",
-              "label": "c",
-              "style": {
-              "styleCell": "line"
-              }
-              },
-              {
-              "key": "asd",
-              "type": "boolean",
-              "label": "adas",
-              "placeHolder": "place",
-              "textError": "asda",
-              "style": {
-                    "mandatoryIcon": "manda",
-                    "checkBox": {
-                        "checkBoxOn": "on",
-                        "checkBoxOff": "off"
-                    }
-                  }
-              },
-              {
-              "key": "d",
-              "type": "text",
-              "placeHolder": "place",
-              "label": "d",
-              "style": {
-              "styleCell": "default"
-              }
-              },
-              {
-              "key": "e",
-              "type": "text",
-              "placeHolder": "place",
-              "label": "e"
-              },
-              {
-              "key": "f",
-              "type": "text",
-              "placeHolder": "place",
-              "label": "f",
-              "style": {
-              "styleCell": "line"
-              }
-              },
-              {
-              "key": "g",
-              "type": "text",
-              "placeHolder": "place",
-              "label": "g",
-              "style": {
-              "styleCell": "line"
-              }
               },
               {
               "key": "h",
@@ -109,7 +39,9 @@
               "key": "k",
               "type": "boolean",
               "label": "BOLEANO (LINK)",
+              "isEditing": true,
               "mandatory": true,
+              "value": true,
               "textError": "error_generic_field",
               "validator": "bool",
               "isLink": true,
@@ -118,10 +50,29 @@
               }
               },
               {
+              "key": "boolK",
+              "type": "boolean",
+              "label": "adas",
+              "isEditing": false,
+              "mandatory": true,
+              "value": true,
+              "placeHolder": "place",
+              "textError": "asda",
+              "style": {
+              "mandatoryIcon": "manda",
+              "checkBox": {
+              "checkBoxOn": "on",
+              "checkBoxOff": "off"
+              }
+              }
+              },
+              {
               "key": "l",
               "type": "datePicker",
               "label": "DATE PICKER",
+              "isEditing": true,
               "mandatory": true,
+              "value": "13/02/1983",
               "textError": "asfsa",
               "style": {
               "styleCell": "line"
@@ -130,6 +81,8 @@
               {
               "key": "j",
               "type": "picker",
+              "isEditing": false,
+              "value": "a1",
               "label": "PIUCKER NORMAL",
               "listOptions": [
                               {
@@ -152,7 +105,9 @@
               },
               {
               "key": "m",
+              "value": "rellenado",
               "type": "text",
+              "isEditing": false,
               "placeHolder": "place",
               "label": "TEXT",
               "style": {

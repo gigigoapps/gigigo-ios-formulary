@@ -133,6 +133,8 @@ class BooleanFormField: FormField {
             self.titleLabel.setLinksForSubstrings(getLinks.0, withLinkHandler: handler)
             self.titleLabel.font = UIFont.systemFont(ofSize: 16)
         }
+        
+        self.buttonAccept.isEnabled = formFieldM.isEditing
     }
     
     fileprivate func loadMandatory(_ isMandatory: Bool) {
@@ -183,6 +185,7 @@ class BooleanFormField: FormField {
             self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
         }
         else {
+            self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState())
             self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
         }
         self.buttonAccept.isSelected = !self.buttonAccept.isSelected
@@ -200,7 +203,7 @@ class BooleanFormField: FormField {
     // MARK: Parse
     
     fileprivate func existLink(_ text : String) -> Bool {
-        // TODOE EDU otra opcion // return text.characters.index(of: "{") != nil
+        // TODO EDU otra opcion // return text.characters.index(of: "{") != nil
         if text.characters.index(of: "{") != nil {
             return true
         }
