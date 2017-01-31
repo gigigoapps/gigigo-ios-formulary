@@ -17,6 +17,7 @@ class ThirdTypeVC: UIViewController, Instantiable, PFormulary  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.formulary.loadBundle(Bundle.main)
         self.formulary.start(self.view, jsonFile: "json_formulary.json")
         self.formulary.delegate = self
 

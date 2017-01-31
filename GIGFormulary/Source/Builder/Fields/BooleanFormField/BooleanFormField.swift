@@ -57,9 +57,9 @@ class BooleanFormField: FormField {
     // MARK: Public Method
     
     override func insertData() {
+        self.loadCustomStyleField(self.formFieldM!)
         self.loadData(self.formFieldM!)
         self.loadMandatory(self.formFieldM!.mandatory)
-        self.loadCustomStyleField(self.formFieldM!)
     }
         
     override func loadError(error: String) {
@@ -172,6 +172,7 @@ class BooleanFormField: FormField {
             }
             if (styleField!.checkBoxOn != nil) {
                 self.checkBoxOn = styleField!.checkBoxOn!
+                self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
             }
             if (styleField!.checkBoxOff != nil) {
                 self.checkBoxOff = styleField!.checkBoxOff!
