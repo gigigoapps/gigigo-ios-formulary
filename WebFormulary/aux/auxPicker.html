@@ -27,10 +27,18 @@
                 </div> 
            </div>  
            
-           <div class="acceptButtonTextField">
-               <p>Titulo aceptar picker:</p>
-               <input type="text" name="acceptButtonTextField" id="acceptButtonTextField">                                       
-            </div>  
+           <div class="containerAcceptEditing">
+               <div class="acceptButtonTextField">
+                   <p>Titulo aceptar picker:</p>
+                   <input type="text" name="acceptButtonTextField" id="acceptButtonTextField">
+               </div>
+           
+               <div class="isEditingTextField">
+                   <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField">
+                   <p>Es editable?</p>
+               </div>
+           </div>
+           
            <div id="valuesOptionsSelector"> 
               <div id="containerPickerFieldAdd">
                  <p id="addFieldPickerText">Añadir campos del picker:</p> 
@@ -56,7 +64,7 @@
                   <input id="sizeError" type="text" name="element">
                </div>
                
-                 '+htmlFont+'
+                 '+htmlFont+''+htmlImage+'
 
                 <div class="colorZone pickerColorZone">
                     '+colorBasicZone+'
@@ -99,7 +107,11 @@
                                     <div class="mandatoryTextField optionModel">
                                           <input type="checkbox" name="mandatory" value="mandatory" id="mandatory" '+valueCheck+' disabled readonly>
                                          <p>Es obligatorio?</p>
-                                    </div> 
+                                    </div>                                    
+                                    <div class="isEditingTextField">
+                                        <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField" '+isEditingCheck+' disabled readonly>
+                                        <p>Es editable?</p>
+                                    </div>
                                </div>   
 
                                <div id="valuesOptionsSelector">     

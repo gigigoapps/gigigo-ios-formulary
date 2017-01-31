@@ -29,7 +29,12 @@
                <p>Titulo aceptar picker:</p>
                <input type="text" name="acceptButtonTextField" id="acceptButtonTextField">                                       
             </div>  
-
+           
+           
+           <div class="isEditingTextField">
+               <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField">
+               <p>Es editable?</p>
+           </div>
 
            <div class="minAgeContainer">
                <p>Edad minima:</p>
@@ -46,7 +51,7 @@
                   <input id="sizeError" type="text" name="element">
                </div>
 
-                 '+htmlFont+'
+                 '+htmlFont+''+htmlImage+'
 
                 <div class="colorZone pickerColorZone">
                    <p>Color de la celda:</p>
@@ -93,9 +98,15 @@
                 <div class="mandatoryTextField optionModel">
                     <input type="checkbox" name="mandatory" value="mandatory" id="mandatory"'+valueCheck+' disabled readonly>
                     <p>Es obligatorio?</p>
-                </div>
+                        </div>
+                <div class="isEditingTextField">
+                    <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField" '+isEditingCheck+' disabled readonly>
+                        <p>Es editable?</p>
+                        </div>
             </div>
-            <div class="minAgeContainer">
+            
+            
+            <div class="minAgeContainer versionCreatedMinAge">
                 <p>Edad minima:</p>
                 <input type="text"name="minAgeContainer"id="minAgeContainer"value="'+minAgeContainer+'"disabled readonly>
             </div>

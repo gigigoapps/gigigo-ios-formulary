@@ -40,7 +40,10 @@
             width: 300px;
         }
         
-        
+.containerAcceptEditing {
+    width: 100%;
+    height: 46px;
+}
         .cellConstructor {
             border-color: black;
             border-radius: 10px;
@@ -55,7 +58,7 @@
             color: white;
             float: right;
             font-size: 49px;
-            height: 500px;
+            height: 514px;
             margin-right: 13px;
             text-align: center;
             width: 80px;
@@ -195,24 +198,29 @@
                 width: 164px;
             }
 
-        .isLinkTextField {
+        .isEditingTextField {
             float: left;
-            margin-top: 8px;
+            margin-top: 1px;
             width: 133px;
         }
-            .isLinkTextField input{
+            .isEditingTextField input{
                 float: left;
                 width: 36px;
             }
-            .isLinkTextField p{
+            .isEditingTextField p{
                 margin-top: 14px;
             }
 
+    .containerPassEdit {
+        height: 50px;
+        width: 100%;
+        margin-top: 50px;
+    }
         .passwordTextField {
             float: left;
             margin-left: 142px;
             margin-top: 0;
-            width: 100%;
+            width: 193px;
         }
             .passwordTextField input{
                 float: left;
@@ -304,8 +312,13 @@
             margin-left: 144px;
             width: 100%;
         }
-        
-        
+.versionCreatedMinAge {
+    margin-top: 0px !important;
+}
+.containerTextFieldCenter .isEditingTextField{
+    margin-top: 8px !important;
+}
+
         pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
         .string { color: green; }
         .number { color: darkorange; }
@@ -573,7 +586,8 @@
 }
 .acceptButtonTextField {
     height: 43px;
-    width: 100%;
+    width: 448px;
+    float:left;
 }
     .acceptButtonTextField input{
         float: left;
@@ -604,6 +618,7 @@
 .minAgeContainer {
     height: 43px;
     width: 100%;
+    margin-top: 45px;
 }
     .minAgeContainer input{
         float: left;

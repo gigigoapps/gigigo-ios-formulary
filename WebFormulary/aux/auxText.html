@@ -62,11 +62,17 @@
                      <input id="compareTextErrorInput" type="text" name="element">
                  </div>
             </div>
-             
-             <div class="passwordTextField">
-                 <input type="checkbox" name="passwordTextField" value="passwordTextField" id="passwordTextField">
-                 <p>Es password?</p>
-              </div>
+             <div class="containerPassEdit">
+                 <div class="passwordTextField">
+                     <input type="checkbox" name="passwordTextField" value="passwordTextField" id="passwordTextField">
+                     <p>Es password?</p>
+                 </div>
+                 
+                 <div class="isEditingTextField">
+                     <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField">
+                     <p>Es editable?</p>
+                  </div>
+             </div>
              
               <div class="styleField">
                    <h4>Estilos de celda:</h4>
@@ -137,10 +143,21 @@
                 '+htmlTextErrorCompare+'
             </div>
             
-            <div class="passwordTextField">
-                <input type="checkbox" name="passwordTextField" value="passwordTextField" id="passwordTextField" '+isPasswordChecked+' disabled readonly>
-                <p>Es password?</p>
+            
+            <div class="containerPassEdit">
+                <div class="passwordTextField">
+                    <input type="checkbox" name="passwordTextField" value="passwordTextField" id="passwordTextField" '+isPasswordChecked+' disabled readonly>
+                        <p>Es password?</p>
+                        </div>
+                
+                <div class="isEditingTextField">
+                    <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField" '+isEditingChecked+' disabled readonly>
+                        <p>Es editable?</p>
+                        </div>
             </div>
+            
+            
+            
             <div class="styleField"> 
                 <h4>Estilos de celda:</h4>
                 '+styles+' 

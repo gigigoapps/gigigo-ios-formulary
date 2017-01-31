@@ -49,6 +49,7 @@ function validateTextField() {
     var isCompare = $('#compare').is(':checked');
     var compareKeysField = $("#compareKeysField").val()
     var textErrorCompare = $("#compareTextErrorInput").val()
+    var isEditing = $('#isEditingTextField').is(':checked');
     
     
     if (font == "custom") {
@@ -56,8 +57,8 @@ function validateTextField() {
     }
         
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare);
-        saveField(keyTextField,"text",title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare)
+        createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare,isEditing);
+        saveField(keyTextField,"text",title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare,isEditing)
     }
 }
 
@@ -84,6 +85,7 @@ function validateDatePickerField() {
     var align = document.getElementById("selectTypeAlign").value;
     var font = document.getElementById("selectTypeFont").value;
     var imageMandatory = $("#imageMandatory").val()
+    var isEditing = $('#isEditingTextField').is(':checked');
 
     if (font == "custom") {
         font = $("#custonFont").val()
@@ -94,8 +96,8 @@ function validateDatePickerField() {
     }
 
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createDatePickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer,align,font,imageMandatory);
-        saveDatePickerField(keyTextField,"datePicker",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer,align,font,imageMandatory);
+        createDatePickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer,align,font,imageMandatory,isEditing);
+        saveDatePickerField(keyTextField,"datePicker",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer,align,font,imageMandatory,isEditing);
     }
 }
 
@@ -121,9 +123,9 @@ function validatePickerField() {
     var align = document.getElementById("selectTypeAlign").value;
     var font = document.getElementById("selectTypeFont").value;    
     var imageMandatory = $("#imageMandatory").val()
-    var textErrorCompare = $("#compareTextErrorInput").val()
+    var isEditing = $('#isEditingTextField').is(':checked');
 
-    console.log(textErrorCompare);
+    console.log(imageMandatory);
 
     if (font == "custom") {
         font = $("#custonFont").val()
@@ -135,8 +137,8 @@ function validatePickerField() {
 
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
         if (allPickerIsComplete()) {
-            createPickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,textErrorCompare);
-            savePickerField(keyTextField,"picker",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,textErrorCompare);
+            createPickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing);
+            savePickerField(keyTextField,"picker",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory, isEditing);
         }
         else {
             alert("Los campos de clave y valor de los picker deben estar todos rellenos");
@@ -181,7 +183,7 @@ function validateBooleanField() {
     var imageMandatory = $("#imageMandatory").val()
     var imageCheckBoxOn = $("#imageCheckBoxOn").val()
     var imageCheckBoxOff = $("#imageCheckBoxOff").val()
-    var isLink = $('#isLink').is(':checked');
+    var isEditing = $('#isEditingTextField').is(':checked');
 
     if (font == "custom") {
         font = $("#custonFont").val()
@@ -192,8 +194,8 @@ function validateBooleanField() {
     }
     
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createBooleanField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isLink);
-        saveBooleanField(keyTextField,"boolean",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isLink)
+        createBooleanField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isEditing);
+        saveBooleanField(keyTextField,"boolean",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isEditing)
     }
 }
 
