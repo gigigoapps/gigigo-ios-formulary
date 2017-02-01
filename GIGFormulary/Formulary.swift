@@ -69,19 +69,28 @@ open class Formulary: PFormController {
     // Populate
 
     open func populateData(_ values: [String: AnyObject]) {
-        self.formController!.populateData(values as [String : AnyObject])
+        guard let form = self.formController else {
+            return
+        }
+        form.populateData(values as [String : AnyObject])
     }
     
     // Insert error
     
     open func loadError(_ values: [String: String]) {
-        self.formController!.loadError(values)
+        guard let form = self.formController else {
+            return
+        }
+        form.loadError(values)
     }
     
     //  Clean
     
     open func clearFormulary() {
-        self.formController!.clearFormulary()
+        guard let form = self.formController else {
+            return
+        }
+        form.clearFormulary()
     }
     
     // Bundle
