@@ -13,6 +13,10 @@ public protocol PFormulary {
     func userDidTapLink(_ key: String)
 }
 
+public extension PFormulary {
+    func userDidTapLink(_ key: String) {}
+}
+
 open class Formulary: PFormController {
     open static let shared = Formulary()
     open var delegate: PFormulary?
