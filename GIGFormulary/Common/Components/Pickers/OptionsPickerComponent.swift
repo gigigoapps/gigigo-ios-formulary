@@ -52,18 +52,19 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
     }
     
     func populateData(_ value: AnyObject?) {
-        if (value != nil) {
-            let key = value as! String
-            
-            var index = 0
-            for item in self.items {
-                if (item.idOption == key) {
-                    break
-                }
-                index += 1
-            }
-            self.selectedIndex = index
+        guard let key = value as? String else {
+            print("❌❌❌ Key of populateData to OptionsPickerComponent its nil")
+            return
         }
+        
+        var index = 0
+        for item in self.items {
+            if (item.idOption == key) {
+                break
+            }
+            index += 1
+        }
+        self.selectedIndex = index
     }
     
     // MARK: DataSource
