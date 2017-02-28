@@ -38,7 +38,7 @@ class DatePickerComponent: UIDatePicker {
     fileprivate let datePicker = UIDatePicker()
     fileprivate var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/mm/yyyy"
+        formatter.dateFormat = "dd/MM/yyyy"
         formatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
         return formatter
     }

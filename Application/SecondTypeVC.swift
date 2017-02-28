@@ -59,6 +59,18 @@ class SecondTypeVC: UIViewController, PFormulary  {
                 "mandatory": true as AnyObject
                 ] as AnyObject,
             [
+                "key": ("textoKey99" as AnyObject),
+                "type": ("text" as AnyObject),
+                "label": ("text99" as AnyObject),
+                "mandatory": (true as AnyObject)
+                ] as AnyObject,
+            [
+                "key": ("textoKey88" as AnyObject),
+                "type": ("text" as AnyObject),
+                "label": ("text88" as AnyObject),
+                "mandatory": (true as AnyObject)
+                ] as AnyObject,
+            [
                 "key": ("indexKEY" as AnyObject),
                 "type": ("index" as AnyObject),
                 "label": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein." as AnyObject)
@@ -119,6 +131,10 @@ class SecondTypeVC: UIViewController, PFormulary  {
     
     func userDidTapLink(_ key: String) {
         print("RECOVER LINK: \(key)")
+    }
+    
+    func fieldFocus(frame: CGRect) {
+        print("frame: \(frame)")
     }
     
     // MARK: Actions

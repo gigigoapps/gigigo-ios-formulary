@@ -76,8 +76,8 @@ class ViewController: UIViewController, PFormulary {
     func recoverFormModel(_ formValues: [String : AnyObject]) {
         
     }
-    
+    /*  // OPTIONAL
     func userDidTapLink(_ key: String) {
         
-    }
+    }*/
 }
