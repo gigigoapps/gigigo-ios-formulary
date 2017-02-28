@@ -52,10 +52,12 @@ class DatePickerComponent: UIDatePicker {
     }
     
     func populateData(_ value: AnyObject?) {
-        if (value != nil) {
-            let dateValue = value as! String
-            self.dateSelected = self.dateFormatter.date(from: dateValue)            
+        
+        guard let dateValue = value as? String else {
+            print("❌❌❌ populateData not found string")
+            return
         }
+        self.dateSelected = self.dateFormatter.date(from: dateValue)
     }
     
     // MARK - Private Helpers
