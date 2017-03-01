@@ -1,1 +1,2 @@
-git "https://bitbucket.org/gigigo/gigigo-giglibrary-ios" "develop"
+# GIGLibrary
+github "gigigoapps/gigigo-ios-lib" ~> 2.2
