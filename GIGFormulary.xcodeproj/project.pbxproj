@@ -191,6 +191,7 @@
 		7BC7EB841D4F47580022D1C5 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		7BC7EB881D4F53240022D1C5 /* FormFieldModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormFieldModelTests.swift; path = Model/FormFieldModelTests.swift; sourceTree = "<group>"; };
 		7BC7EBC81D4F6F860022D1C5 /* Formulary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formulary.swift; sourceTree = "<group>"; };
+		A92DC8C71E66E50C00B511DE /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -494,6 +495,7 @@
 		7BB82F8B1D4B65DC00DC85F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A92DC8C71E66E50C00B511DE /* Cartfile */,
 				7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */,
 			);
 			name = Frameworks;
@@ -866,7 +868,7 @@
 		7BB82F071D4B5DB800DC85F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = SU5BA5HAQK;
@@ -891,7 +893,7 @@
 		7BB82F081D4B5DB800DC85F5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = SU5BA5HAQK;
