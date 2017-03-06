@@ -64,7 +64,6 @@ class DatePickerComponent: UIDatePicker {
     
     fileprivate func setupDatePicker() {
         self.datePicker.datePickerMode = UIDatePickerMode.date
-        self.datePicker.maximumDate = Date()
         self.datePicker.locale = Locale(identifier: "es_ES")
         self.datePicker.addTarget(
             self,
