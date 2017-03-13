@@ -15,8 +15,10 @@ class BoolValidator: Validator {
             return false
         }
         
-        if (value is Bool) {
-            return value as! Bool
+        if self.mandatory {
+            if (value is Bool) {
+                return value as! Bool
+            }
         }
         
         return true

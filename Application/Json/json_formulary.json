@@ -1,53 +1,22 @@
 {
     "fields":[
-              
               {
-              "label": "Birthdate *",
-              "minAge": 14,
-              "type": "datePicker",
-              "textError": "Birthdate is required.",
-              "validator": "None",
-              "schemaId": "birthday",
-              "keyboard": "FormKeyboardTypeText",
+              "mandatory": false,
               "style": {
-              "mandatoryIcon": "mandatory_JR",
-              "styleCell": "line"
+              "checkBox": {
+              "checkBoxOff": "checkBoxOff_JR",
+              "checkBoxOn": "checkBoxOn_JR"
               },
-              "action": {
-              "days": 1,
-              "name": "janrainTooYoung",
-              "value": true
+              "mandatoryIcon": "mandatory_JR ",
+              "styleCell": "line "
               },
-              "show": "dateselect",
-              "key": "birthdate",
-              "mandatory": 1
-              },
-              {
-              "listOptions": [{
-                              "key": "KeyNoSelected",
-                              "value": "--"
-                              }, {
-                              "key": "Not Specified",
-                              "value": "Not specified"
-                              }, {
-                              "key": "male",
-                              "value": "Male"
-                              }, {
-                              "key": "female",
-                              "value": "Female"
-                              }],
-              "label": "Gender",
-              "style": {
-              "mandatoryIcon": "mandatory_JR",
-              "styleCell": "line"
-              },
-              "validator": "None",
-              "schemaId": "gender",
-              "keyboard": "FormKeyboardTypeText",
-              "textError": "Gender is required",
-              "type": "picker",
-              "key": "gender",
-              "mandatory": 1
+              "validator": "bool",
+              "schemaId": "communicationOpts",
+              "textError": "This field not could be empty",
+              "show": "checkbox",
+              "type": "boolean",
+              "key": "globalOpt",
+              "label": "I want to receive Coca-Cola communications"
               }
         ]
 }
