@@ -1,128 +1,53 @@
 {
     "fields":[
+              
               {
-              "key": "a",
-              "type": "text",
-              "label": "a",
-              "compare": true,
-              "placeHolder": "place",
-              "mandatory": true,
-              "isEditing": false,
-              "itemsCompare": [
-                               "a"
-                               ],
-              "textErrorCompare": "sad asdsad as",
-                    "style": {
-                        "styleCell": "line",
-                        "mandatoryIcon": "mandatory"
-                        }
-              },
-              {
-              "key": "h",
-              "type": "text",
-              "placeHolder": "place",
-              "label": "h",
-              "style": {
-              "styleCell": "line",
-              "mandatoryIcon": "mandatory"
-              }
-              },
-              {
-              "key": "i",
-              "type": "text",
-              "placeHolder": "place",
-              "label": "TEXTO",
-              "style": {
-              "styleCell": "line",
-              "mandatoryIcon": "mandatory"
-              }
-              },
-              {
-              "key": "k",
-              "type": "boolean",
-              "label": "BOLEANO (LINK)",
-              "isEditing": true,
-              "mandatory": true,
-              "value": true,
-              "textError": "error_generic_field",
-              "validator": "bool",
-              "isLink": true,
-              "style": {
-              "styleCell": "line",
-              "mandatoryIcon": "mandatory",
-              "checkBox": {
-              "checkBoxOn": "on",
-              "checkBoxOff": "off"
-              }
-              }
-              },
-              {
-              "key": "boolK",
-              "type": "boolean",
-              "label": "adas",
-              "isEditing": false,
-              "mandatory": true,
-              "value": false,
-              "placeHolder": "place",
-              "textError": "asda",
-              "style": {
-              "mandatoryIcon": "mandatory",
-              "checkBox": {
-              "checkBoxOn": "on",
-              "checkBoxOff": "off"
-              }
-              }
-              },
-              {
-              "key": "l",
+              "label": "Birthdate *",
+              "minAge": 14,
               "type": "datePicker",
-              "label": "DATE PICKER",
-              "isEditing": true,
-              "mandatory": true,
-              "value": "13/02/1983",
-              "textError": "asfsa",
+              "textError": "Birthdate is required.",
+              "validator": "None",
+              "schemaId": "birthday",
+              "keyboard": "FormKeyboardTypeText",
               "style": {
-              "styleCell": "line",
-              "mandatoryIcon": "mandatory"
-              }
+              "mandatoryIcon": "mandatory_JR",
+              "styleCell": "line"
+              },
+              "action": {
+              "days": 1,
+              "name": "janrainTooYoung",
+              "value": true
+              },
+              "show": "dateselect",
+              "key": "birthdate",
+              "mandatory": 1
               },
               {
-              "key": "j",
-              "type": "picker",
-              "isEditing": false,
-              "value": "a1",
-              "label": "PIUCKER NORMAL",
-              "listOptions": [
-                              {
+              "listOptions": [{
                               "key": "KeyNoSelected",
-                              "value": "adas"
-                              },
-                              {
-                              "key": "a1",
-                              "value": "dsads"
-                              },
-                              {
-                              "key": "a2",
-                              "value": "fsdfds"
-                              }
-                              ],
-              "textError": "asda",
+                              "value": "--"
+                              }, {
+                              "key": "Not Specified",
+                              "value": "Not specified"
+                              }, {
+                              "key": "male",
+                              "value": "Male"
+                              }, {
+                              "key": "female",
+                              "value": "Female"
+                              }],
+              "label": "Gender",
               "style": {
-              "styleCell": "line",
-              "mandatoryIcon": "mandatory"
-              }
+              "mandatoryIcon": "mandatory_JR",
+              "styleCell": "line"
               },
-              {
-              "key": "m",
-              "value": "rellenado",
-              "type": "text",
-              "isEditing": false,
-              "placeHolder": "place",
-              "label": "TEXT",
-              "style": {
-              "styleCell": "line",
-              "mandatoryIcon": "mandatory"
+              "validator": "None",
+              "schemaId": "gender",
+              "keyboard": "FormKeyboardTypeText",
+              "textError": "Gender is required",
+              "type": "picker",
+              "key": "gender",
+              "mandatory": 1
               }
-              }
-              ] 
+        ]
 }

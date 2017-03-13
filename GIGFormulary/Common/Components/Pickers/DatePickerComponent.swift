@@ -54,7 +54,6 @@ class DatePickerComponent: UIDatePicker {
     func populateData(_ value: AnyObject?) {
         
         guard let dateValue = value as? String else {
-            print("❌❌❌ DATEPICKER: DatePickerComponent -> populateData not found string")
             return
         }
         self.dateSelected = self.dateFormatter.date(from: dateValue)

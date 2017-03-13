@@ -53,7 +53,6 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
     
     func populateData(_ value: AnyObject?) {
         guard let key = value as? String else {
-            print("❌❌❌ PICKER: OptionsPickerComponent -> Key of populateData is nil")
             return
         }
         
