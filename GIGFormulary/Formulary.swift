@@ -29,6 +29,10 @@ open class Formulary: PFormController {
     
     // MARK: Start
     
+    public init() {
+        
+    }
+    
     open func start(_ viewContainerFormulary: UIView, jsonFile: String) {
         self.formController = FormController(
             viewContainerFormulary: viewContainerFormulary,

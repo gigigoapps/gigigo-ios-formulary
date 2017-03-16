@@ -10,7 +10,7 @@ import UIKit
 import GIGFormulary
 
 class ViewController: UIViewController, PFormulary {
-    let formulary = Formulary.shared
+    let formulary = Formulary()
     
     override func viewDidLoad() {
         super.viewDidLoad()
