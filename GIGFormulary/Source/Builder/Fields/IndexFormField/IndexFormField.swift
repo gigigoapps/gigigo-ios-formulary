@@ -41,7 +41,7 @@ class IndexFormField: FormField {
     // MARK: Actions
     
     func labelAction(grTap: UITapGestureRecognizer) {
-        self.delegate?.userDidTapLink((self.formFieldM?.key)!)
+        self.formFieldOutput?.userDidTapLink((self.formFieldM?.key)!)
     }
     
     
@@ -68,7 +68,7 @@ class IndexFormField: FormField {
             let handler = {
                 (hyperLabel: FRHyperLabel?, substring: String?) -> Void in
                 if let key = substring {
-                    self.delegate?.userDidTapLink(key)
+                    self.formFieldOutput?.userDidTapLink(key)
                 }
             }
             

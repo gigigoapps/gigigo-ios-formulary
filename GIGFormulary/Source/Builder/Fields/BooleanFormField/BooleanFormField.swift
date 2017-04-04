@@ -128,7 +128,7 @@ class BooleanFormField: FormField {
             let handler = {
                 (hyperLabel: FRHyperLabel?, substring: String?) -> Void in
                 if let key = substring {
-                    self.delegate?.userDidTapLink(key)
+                    self.formFieldOutput?.userDidTapLink(key)
                 }                
             }
             
@@ -248,7 +248,7 @@ class BooleanFormField: FormField {
     }
     
     func labelAction(grTap: UITapGestureRecognizer) {
-        self.delegate?.userDidTapLink((self.formFieldM?.key)!)
+        self.formFieldOutput?.userDidTapLink((self.formFieldM?.key)!)
     }
     
     // MARK: UIResponser (Overrride)

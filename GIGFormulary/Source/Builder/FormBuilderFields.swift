@@ -71,7 +71,7 @@ class FormBuilderFields: NSObject {
             let typeField = self.listTypeFields[typeFieldFound]
             let field = typeField!.init()
             field.formFieldM = formFieldM
-            field.delegate = self.formController
+            field.formFieldOutput = self.formController
             field.validator = self.validatorToField(formFieldM)
             field.keyBoard = self.keyboardToField(formFieldM)
             field.insertData()

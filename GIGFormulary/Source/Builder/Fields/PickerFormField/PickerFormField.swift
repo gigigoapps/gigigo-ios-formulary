@@ -147,13 +147,13 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     // MARK: POptionsPickerComponent
     
     func formFieldDidFinish() {
-        self.delegate?.formFieldDidFinish(self)
+        self.formFieldOutput?.formFieldDidFinish(self)
     }
     
     // MARK: PDatePickerComponent
     
     func formFieldDidFinishDate() {
-        self.delegate?.formFieldDidFinish(self)
+        self.formFieldOutput?.formFieldDidFinish(self)
     }
     
     // MARK: Load data field

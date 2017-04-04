@@ -17,7 +17,7 @@ protocol PFormController {
 
 class FormController: NSObject, PFormField, PFormBuilderViews {
     // Public Var
-    var delegate: PFormController?
+    var formControllerOutput: PFormController?
     
     // CLASS
     var formViews: FormBuilderViews?
@@ -188,14 +188,14 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     
     func sendButtonAction() {
         if self.validateFields() {
-            self.delegate?.recoverFormModel(self.formValues)
+            self.formControllerOutput?.recoverFormModel(self.formValues)
         }
     }
     
     // MARK: PTextFormField
     func scrollRectToVisible(_ field: FormField) {
         self.formViews?.scrollRectToVisible(field)
-        self.delegate?.fieldFocus(field.frame)
+        self.formControllerOutput?.fieldFocus(field.frame)
     }
     
     func formFieldDidFinish(_ field: FormField) {
@@ -208,6 +208,6 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     }
     
     func userDidTapLink(_ key: String) {
-        self.delegate?.userDidTapLink(key)
+        self.formControllerOutput?.userDidTapLink(key)
     }
 }

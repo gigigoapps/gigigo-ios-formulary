@@ -19,7 +19,7 @@ open class FormField: UIView {
     
     //-- LOCAL VAR --
     var viewContainer: UIView!
-    var delegate: PFormField?
+    var formFieldOutput: PFormField?
     var validator: Validator?
     var keyBoard: UIKeyboardType?
     var formFieldM: FormFieldModel?

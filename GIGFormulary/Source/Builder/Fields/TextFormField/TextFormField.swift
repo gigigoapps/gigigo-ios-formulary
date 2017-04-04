@@ -211,11 +211,11 @@ class TextFormField: FormField, UITextFieldDelegate {
     // MARK: UITextFieldDelegate
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.delegate!.scrollRectToVisible(self)
+        self.formFieldOutput!.scrollRectToVisible(self)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.delegate?.formFieldDidFinish(self)
+        self.formFieldOutput?.formFieldDidFinish(self)
         return false
     }
     

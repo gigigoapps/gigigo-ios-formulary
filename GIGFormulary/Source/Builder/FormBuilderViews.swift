@@ -24,7 +24,7 @@ class FormBuilderViews: NSObject {
     let notificationCenter = NotificationCenter.default
     
     //-- Var --
-    var delegate: PFormBuilderViews?
+    var formBuilderViewsOutput: PFormBuilderViews?
     
     // MARK: Init
     
@@ -37,7 +37,7 @@ class FormBuilderViews: NSObject {
         self.initializeConstraints()
         self.events()
         self.notifications()
-        self.delegate = formController
+        self.formBuilderViewsOutput = formController
     }
     
     init (button: UIButton, formController: FormController) {
@@ -48,7 +48,7 @@ class FormBuilderViews: NSObject {
         
         self.events()
         self.notifications()
-        self.delegate = formController
+        self.formBuilderViewsOutput = formController
     }
     
     // MARK : Public Method
@@ -88,7 +88,7 @@ class FormBuilderViews: NSObject {
     
     func buttonAction() {
         self.viewContainerFormulary.endEditing(true)
-        self.delegate?.sendButtonAction()
+        self.formBuilderViewsOutput?.sendButtonAction()
     }
     
     // MARK : Private Method

@@ -59,9 +59,8 @@ class AgeValidator: Validator {
         let dateComponentNow: DateComponents = (calendar as NSCalendar).components(unitFlags, from: Date())
         let dateComponentBirth: DateComponents = (calendar as NSCalendar).components(unitFlags, from: birthday)
         
-        if ((dateComponentNow.month < dateComponentBirth.month) ||
-            ((dateComponentNow.month == dateComponentBirth.month) && (dateComponentNow.day < dateComponentBirth.day))
-            ) {
+        if (dateComponentNow.month < dateComponentBirth.month) ||
+            (dateComponentNow.month == dateComponentBirth.month) && (dateComponentNow.day < dateComponentBirth.day) {
             return dateComponentNow.year! - dateComponentBirth.year! - 1
         } else {
             return dateComponentNow.year! - dateComponentBirth.year!
