@@ -28,16 +28,16 @@ class MailValidatorTests: XCTestCase {
     // MARK: TESTS
     
     func test_validate_invalid_mails() {
-        XCTAssertFalse(self.validator.validate("324324" as AnyObject?))
-        XCTAssertFalse(self.validator.validate("asdas" as AnyObject?))
-        XCTAssertFalse(self.validator.validate("asdas@asd" as AnyObject?))
-        XCTAssertFalse(self.validator.validate("asd.com" as AnyObject?))
-        XCTAssertFalse(self.validator.validate("@asd.com" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("324324"))
+        XCTAssertFalse(self.validator.validate("asdas"))
+        XCTAssertFalse(self.validator.validate("asdas@asd"))
+        XCTAssertFalse(self.validator.validate("asd.com"))
+        XCTAssertFalse(self.validator.validate("@asd.com"))
     }
     
     func test_validate_valid_mails() {
-        XCTAssertTrue(self.validator.validate("edu@mail.com" as AnyObject?))
-        XCTAssertTrue(self.validator.validate("edu.lala@mail.com" as AnyObject?))
-        XCTAssertTrue(self.validator.validate("edu.lala@a.aa" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("edu@mail.com"))
+        XCTAssertTrue(self.validator.validate("edu.lala@mail.com"))
+        XCTAssertTrue(self.validator.validate("edu.lala@a.aa"))
     }
 }

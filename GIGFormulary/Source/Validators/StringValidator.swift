@@ -11,7 +11,7 @@ import GIGLibrary
 
 class StringValidator: Validator {
     
-    override func validate(_ value: AnyObject?) -> Bool {
+    override func validate(_ value: Any?) -> Bool {
         if value == nil && self.mandatory {
             return false
         } else if value != nil {

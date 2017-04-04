@@ -81,20 +81,20 @@ class RegexValidatorTests: XCTestCase {
         self.validator.mandatory = true
         
         XCTAssertFalse(self.validator.validate(nil))
-        XCTAssertFalse(self.validator.validate("" as AnyObject?))
+        XCTAssertFalse(self.validator.validate(""))
     }
     
     func test_validate_optional() {
         self.validator.mandatory = false
         
         XCTAssertTrue(self.validator.validate(nil))
-        XCTAssertTrue(self.validator.validate("" as AnyObject?))
+        XCTAssertTrue(self.validator.validate(""))
     }
     
     func test_validate_regexp() {
         self.validator = RegexValidator(regexPattern: ".{3}", mandatory: true)
-        XCTAssertFalse(self.validator.validate("a" as AnyObject?))
-        XCTAssertTrue(self.validator.validate("aaa" as AnyObject?))
-        XCTAssertTrue(self.validator.validate("aaaa" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("a"))
+        XCTAssertTrue(self.validator.validate("aaa"))
+        XCTAssertTrue(self.validator.validate("aaaa"))
     }
 }

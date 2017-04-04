@@ -59,7 +59,7 @@ class FormBuilderFields: NSObject {
                                .VALIDATOR_CUSTOM: CustomValidator.self]
     }
     
-    fileprivate func createField(_ fieldDic: [String:AnyObject]) -> FormField {
+    fileprivate func createField(_ fieldDic: [AnyHashable: Any]) -> FormField {
         do {
             let formFieldM = FormFieldModel(bundle: self.bundle)
             try formFieldM.parseDictionary(fieldDic)
@@ -117,7 +117,7 @@ class FormBuilderFields: NSObject {
         var listFormField = [FormField]()
         let jsonRecover = Bundle.main.loadJSONFile(file, rootNode: "fields")
         if jsonRecover != nil {
-            guard let listFormDic = jsonRecover as? [[String: AnyObject]] else { LogWarn("Parse error [[String: AnyObject]]"); return [] }
+            guard let listFormDic = jsonRecover as? [[AnyHashable: Any]] else { LogWarn("Parse error [[AnyHashable: Any]]"); return [] }
             for fieldDic in listFormDic {
                 listFormField.append(self.createField(fieldDic))
             }
@@ -128,7 +128,7 @@ class FormBuilderFields: NSObject {
         return listFormField
     }
     
-    func fieldsFromDictionary(_ listItems: [[String: AnyObject]]) -> [FormField] {
+    func fieldsFromDictionary(_ listItems: [[AnyHashable: Any]]) -> [FormField] {
         var listFormField = [FormField]()
         for fieldDic in listItems {
             listFormField.append(self.createField(fieldDic))

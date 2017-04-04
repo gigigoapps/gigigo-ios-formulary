@@ -28,17 +28,17 @@ class PhoneValidatorTests: XCTestCase {
     // MARK: TESTS
     
     func test_valid_phones() {
-        XCTAssertTrue(self.validator.validate("900123123" as AnyObject?))
-        XCTAssertTrue(self.validator.validate("+1900123123" as AnyObject?))
-        XCTAssertTrue(self.validator.validate("+12900123123" as AnyObject?))
-        XCTAssertTrue(self.validator.validate("+123900123123" as AnyObject?))
+        XCTAssertTrue(self.validator.validate("900123123"))
+        XCTAssertTrue(self.validator.validate("+1900123123"))
+        XCTAssertTrue(self.validator.validate("+12900123123"))
+        XCTAssertTrue(self.validator.validate("+123900123123"))
     }
     
     func test_invalid_phones() {
-        XCTAssertFalse(self.validator.validate("1" as AnyObject?))
-        XCTAssertFalse(self.validator.validate("+413y9743" as AnyObject?))
-        XCTAssertFalse(self.validator.validate("+1239876543210" as AnyObject?))
-        XCTAssertFalse(self.validator.validate("98765432" as AnyObject?))
-        XCTAssertFalse(self.validator.validate("9876543210" as AnyObject?))
+        XCTAssertFalse(self.validator.validate("1"))
+        XCTAssertFalse(self.validator.validate("+413y9743"))
+        XCTAssertFalse(self.validator.validate("+1239876543210"))
+        XCTAssertFalse(self.validator.validate("98765432"))
+        XCTAssertFalse(self.validator.validate("9876543210"))
     }
 }

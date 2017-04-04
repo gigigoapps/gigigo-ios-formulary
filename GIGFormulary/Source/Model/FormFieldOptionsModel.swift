@@ -14,7 +14,7 @@ class FormFieldOptionsModel: NSObject {
     
     // MARK: Public methods
     
-    class func parseListOptionsJson(_ json: [[String: AnyObject]]) throws ->[FormFieldOptionsModel] {
+    class func parseListOptionsJson(_ json: [[AnyHashable: Any]]) throws ->[FormFieldOptionsModel] {
         do {
             return try (json.map(parseOptionsJson))              
         } catch (let throwError) {
@@ -22,7 +22,7 @@ class FormFieldOptionsModel: NSObject {
         }
     }
     
-    class func parseOptionsJson(_ json: [String: AnyObject]) throws -> FormFieldOptionsModel {
+    class func parseOptionsJson(_ json: [AnyHashable: Any]) throws -> FormFieldOptionsModel {
         let activity = FormFieldOptionsModel()
         
         do {
@@ -32,7 +32,7 @@ class FormFieldOptionsModel: NSObject {
         }
     }
     
-    class func parseOption(_ json: [String: AnyObject], activity: FormFieldOptionsModel) throws ->  FormFieldOptionsModel {
+    class func parseOption(_ json: [AnyHashable: Any], activity: FormFieldOptionsModel) throws ->  FormFieldOptionsModel {
         
         //== PREPARE DATA ==
         //-- Mandatory --

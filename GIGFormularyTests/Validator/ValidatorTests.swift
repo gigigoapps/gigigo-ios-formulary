@@ -35,13 +35,13 @@ class ValidatorTests: XCTestCase {
         self.validator.mandatory = true
         
         XCTAssertFalse(self.validator.validate(nil))
-        XCTAssertTrue(self.validator.validate("" as AnyObject?))
+        XCTAssertTrue(self.validator.validate(""))
     }
     
     func test_validate_optional() {
         self.validator.mandatory = false
         
         XCTAssertTrue(self.validator.validate(nil))
-        XCTAssertTrue(self.validator.validate("" as AnyObject?))
+        XCTAssertTrue(self.validator.validate(""))
     }
 }

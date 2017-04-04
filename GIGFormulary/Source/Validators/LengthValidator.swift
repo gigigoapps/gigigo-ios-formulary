@@ -45,7 +45,7 @@ class LengthValidator: StringValidator {
     }
     
     func controlCharacters(_ value: String) -> Bool {
-        if !super.validate(value as AnyObject?) {
+        if !super.validate(value) {
             return false
         }
         
@@ -58,7 +58,7 @@ class LengthValidator: StringValidator {
     
     // MARK: - OVERRIDE (Validator)
     
-    override func validate(_ value: AnyObject?) -> Bool {
+    override func validate(_ value: Any?) -> Bool {
         if !super.validate(value) {
             return false
         }

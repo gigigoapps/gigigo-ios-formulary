@@ -29,23 +29,23 @@ class NumericValidatorTests: XCTestCase {
     
     func test_validation_mandatory() {
         XCTAssertFalse(self.validator.validate(nil))
-        XCTAssertFalse(self.validator.validate("" as AnyObject?))
+        XCTAssertFalse(self.validator.validate(""))
         let dic = [String: String]()
-        XCTAssertFalse(self.validator.validate(dic as AnyObject?))
+        XCTAssertFalse(self.validator.validate(dic))
     }
     
     func test_validation_optional() {
         self.validator.mandatory = false
         XCTAssertTrue(self.validator.validate(nil))
-        XCTAssertTrue(self.validator.validate("" as AnyObject?))
+        XCTAssertTrue(self.validator.validate(""))
         let dic = [String: String]()
-        XCTAssertFalse(self.validator.validate(dic as AnyObject?))
+        XCTAssertFalse(self.validator.validate(dic))
     }
     
     func test_numeric_validation() {
-        XCTAssertTrue(self.validator.validate("1" as AnyObject?))
-        XCTAssertTrue(self.validator.validate("123456789" as AnyObject?))
-        XCTAssertFalse(self.validator.validate("ab" as AnyObject?))
-        XCTAssertFalse(self.validator.validate("123456789 " as AnyObject?))
+        XCTAssertTrue(self.validator.validate("1"))
+        XCTAssertTrue(self.validator.validate("123456789"))
+        XCTAssertFalse(self.validator.validate("ab"))
+        XCTAssertFalse(self.validator.validate("123456789 "))
     }
 }

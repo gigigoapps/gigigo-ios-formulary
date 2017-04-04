@@ -10,7 +10,7 @@ import UIKit
 
 class DNINIEValidator: StringValidator {
     
-    override func validate(_ value: AnyObject?) -> Bool {
+    override func validate(_ value: Any?) -> Bool {
         if !super.validate(value) {
             return false
         }

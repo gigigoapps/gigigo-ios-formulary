@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol PFormulary {
-    func recoverFormModel(_ formValues: [String: AnyObject])
+    func recoverFormModel(_ formValues: [AnyHashable: Any])
     func userDidTapLink(_ key: String)
     func fieldFocus(frame: CGRect)
 }
@@ -42,7 +42,7 @@ open class Formulary: PFormController {
         self.formController!.formControllerOutput = self
     }
     
-    open func start(_ viewContainerFormulary: UIView, listItems: [[String: AnyObject]]) {
+    open func start(_ viewContainerFormulary: UIView, listItems: [[AnyHashable: Any]]) {
         self.formController = FormController(
             viewContainerFormulary: viewContainerFormulary,
             bundle: self.bundle
@@ -62,7 +62,7 @@ open class Formulary: PFormController {
         return self.formController!.recoverView()
     }
     
-    open func start(_ button: UIButton, listItems: [[String: AnyObject]]) -> UIView {
+    open func start(_ button: UIButton, listItems: [[AnyHashable: Any]]) -> UIView {
         self.formController = FormController(
             button: button,
             bundle: self.bundle
@@ -78,16 +78,16 @@ open class Formulary: PFormController {
     
     // Populate
 
-    open func populateData(_ values: [String: AnyObject]) {
+    open func populateData(_ values: [AnyHashable: Any]) {
         guard let form = self.formController else {
             return
         }
-        form.populateData(values as [String : AnyObject])
+        form.populateData(values)
     }
     
     // Insert error
     
-    open func loadError(_ values: [String: String]) {
+    open func loadError(_ values: [AnyHashable: Any]) {
         guard let form = self.formController else {
             return
         }
@@ -111,7 +111,7 @@ open class Formulary: PFormController {
     
     // MARK: PFormulary
 
-    open func recoverFormModel(_ formValues: [String : AnyObject]) {
+    open func recoverFormModel(_ formValues: [AnyHashable : Any]) {
         self.formularyOutput?.recoverFormModel(formValues)
     }
     

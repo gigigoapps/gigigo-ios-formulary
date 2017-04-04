@@ -30,7 +30,7 @@ fileprivate func >= <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class AgeValidator: Validator {
     
-    override func validate(_ value: AnyObject?) -> Bool {
+    override func validate(_ value: Any?) -> Bool {
         if !super.validate(value) {
             return false
         }

@@ -89,16 +89,17 @@ class TextFormField: FormField, UITextFieldDelegate {
         self.loadCustomField(self.formFieldM!)
     }
     
-    override func loadError(error: String) {
-        self.errorLabel.text = error
+    override func loadError(error: Any) {
+        guard let text = error as? String else { return }
+        self.errorLabel.text = text
         self.showError()
     }
     
     // MARK: GIGFormField (Override)
     
-    override internal var fieldValue: AnyObject? {
+    override internal var fieldValue: Any? {
         get {            
-            return self.textTextField.text?.characters.count > 0 ? self.textTextField.text as AnyObject? : nil
+            return self.textTextField.text?.characters.count > 0 ? self.textTextField.text : nil
         }
         set {
             self.textTextField.text = "\(newValue!)"

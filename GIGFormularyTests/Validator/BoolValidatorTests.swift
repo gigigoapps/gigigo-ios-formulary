@@ -28,10 +28,10 @@ class BoolValidatorTests: XCTestCase {
     // MARK: TESTS
     
     func test_validate_booleans() {
-        XCTAssertTrue(self.validator.validate(true as AnyObject?))
+        XCTAssertTrue(self.validator.validate(true))
         self.validator.mandatory = false
-        XCTAssertTrue(self.validator.validate(false as AnyObject?))
+        XCTAssertTrue(self.validator.validate(false))
         self.validator.mandatory = true
-        XCTAssertFalse(self.validator.validate(false as AnyObject?))
+        XCTAssertFalse(self.validator.validate(false))
     }
 }

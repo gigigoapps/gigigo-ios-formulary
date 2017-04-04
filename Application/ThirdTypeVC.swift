@@ -19,7 +19,7 @@ class ThirdTypeVC: UIViewController, Instantiable, PFormulary {
         
         self.formulary.loadBundle(Bundle.main)
         self.formulary.start(self.view, jsonFile: "json_formulary.json")
-        self.formulary.delegate = self
+        self.formulary.formularyOutput = self
 
     }
     
@@ -37,7 +37,7 @@ class ThirdTypeVC: UIViewController, Instantiable, PFormulary {
     
     // MARK: PFormController
     
-    func recoverFormModel(_ formValues: [String : AnyObject]) {
+    func recoverFormModel(_ formValues: [AnyHashable : Any]) {
         print(formValues)
     }
     
@@ -55,21 +55,21 @@ class ThirdTypeVC: UIViewController, Instantiable, PFormulary {
     @IBAction func populateAction(_ sender: Any) {
         self.formulary.populateData(
             [
-                "a": "rellenar2" as AnyObject,
-                "b": "rellenar" as AnyObject,
-                "c": "GB" as AnyObject,
-                "asd": true as AnyObject,
-                "d": "rellenar" as AnyObject,
-                "e": "rellenar" as AnyObject,
-                "f": "rellenar" as AnyObject,
-                "g": "rellenar" as AnyObject,
-                "h": "rellenar" as AnyObject,
-                "i": "rellenar" as AnyObject,
-                "j": "a1" as AnyObject,
-                "k": true as AnyObject,
-                "boolK": true as AnyObject,
-                "l": "12/01/1983" as AnyObject,
-                "m": "rellenar" as AnyObject
+                "a": "rellenar2",
+                "b": "rellenar",
+                "c": "GB",
+                "asd": true,
+                "d": "rellenar",
+                "e": "rellenar",
+                "f": "rellenar",
+                "g": "rellenar",
+                "h": "rellenar",
+                "i": "rellenar",
+                "j": "a1",
+                "k": true,
+                "boolK": true,
+                "l": "12/01/1983",
+                "m": "rellenar"
             ]
         )
     }

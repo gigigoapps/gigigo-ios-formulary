@@ -51,7 +51,7 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
         self.setupDoneToolbar()
     }
     
-    func populateData(_ value: AnyObject?) {
+    func populateData(_ value: Any?) {
         guard let key = value as? String else {
             return
         }

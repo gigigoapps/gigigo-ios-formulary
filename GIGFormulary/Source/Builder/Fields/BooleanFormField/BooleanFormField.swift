@@ -61,16 +61,17 @@ class BooleanFormField: FormField {
         self.loadMandatory(self.formFieldM!.mandatory)
     }
         
-    override func loadError(error: String) {
-        self.errorLabel.text = error
+    override func loadError(error: Any) {
+        guard let text = error as? String else { return }
+        self.errorLabel.text = text
         self.showError()
     }
     
     // MARK: GIGFormField (Override)
     
-    override internal var fieldValue: AnyObject? {
+    override internal var fieldValue: Any? {
         get {
-            return self.buttonAccept.isSelected as AnyObject?
+            return self.buttonAccept.isSelected as Any?
         }
         set {
             guard let boolValue = newValue as? Bool else {

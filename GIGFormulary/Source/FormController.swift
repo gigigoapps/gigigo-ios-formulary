@@ -10,7 +10,7 @@ import UIKit
 import GIGLibrary
 
 protocol PFormController {
-    func recoverFormModel(_ formValues: [String: AnyObject])
+    func recoverFormModel(_ formValues: [AnyHashable: Any])
     func userDidTapLink(_ key: String)
     func fieldFocus(_ frame: CGRect)
 }
@@ -24,7 +24,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     
     // VAR
     var formFields = [FormField]()
-    var formValues = [String: AnyObject]()
+    var formValues = [AnyHashable: Any]()
     var bundle = Bundle(for: Formulary.self)
     
     // INIT
@@ -57,18 +57,18 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         self.formViews!.updateFormularyContent(self.formFields)
     }
     
-    func loadFieldsFromJSONDictionary(_ listItems: [[String: AnyObject]]) {
+    func loadFieldsFromJSONDictionary(_ listItems: [[AnyHashable: Any]]) {
         let builder = FormBuilderFields(formController: self, bundle: self.bundle)
         self.formFields = builder.fieldsFromDictionary(listItems)
         self.formViews!.updateFormularyContent(self.formFields)
     }
     
-    func populateData(_ values: [String:AnyObject]) {
-        var _ = values.map {key, value -> [String: AnyObject] in
+    func populateData(_ values: [AnyHashable: Any]) {
+        var _ = values.map {key, value -> [AnyHashable: Any] in
             var _ = self.formFields.map { formField -> FormField in
                 if formField.formFieldM?.key == key {
                     formField.fieldValue = value
-                    self.formValues[key] = value as AnyObject?
+                    self.formValues[key] = value
                 }
                 return formField
             }
@@ -76,7 +76,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         }
     }
     
-    func loadError(_ values: [String: String]) {
+    func loadError(_ values: [AnyHashable: Any]) {
         var search = true
         for field in self.formFields {
             let _ = values.filter({ (key, value) -> Bool in
@@ -149,9 +149,9 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
             if formFieldM.type != TypeField.INDEX_FORM_FIELD.rawValue {
                 if let valueString = field.fieldValue as? String {
                     let value = valueString.trimmingCharacters(in: .whitespaces)
-                    self.formValues["\(formFieldM.key!)"] = value as AnyObject?
+                    self.formValues["\(formFieldM.key!)"] = value as Any?
                 } else {
-                    self.formValues["\(formFieldM.key!)"] = (field.fieldValue != nil) ? field.fieldValue as AnyObject : "" as AnyObject
+                    self.formValues["\(formFieldM.key!)"] = (field.fieldValue != nil) ? field.fieldValue as Any : "" as Any
                 }
             }
         }

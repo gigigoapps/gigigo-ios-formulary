@@ -51,7 +51,7 @@ class DatePickerComponent: UIDatePicker {
         self.setupDoneToolbar()
     }
     
-    func populateData(_ value: AnyObject?) {
+    func populateData(_ value: Any?) {
         
         guard let dateValue = value as? String else {
             return

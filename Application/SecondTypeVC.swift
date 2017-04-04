@@ -17,25 +17,25 @@ class SecondTypeVC: UIViewController, PFormulary {
     
     let formulary = Formulary.shared
     
-    func prepareField() -> [AnyObject] {
-        let emailField: [AnyObject] = [
+    func prepareField() -> [Any] {
+        let emailField: [Any] = [
             [
-                "key": ("textoKey2" as AnyObject),
-                "type": ("text" as AnyObject),
-                "label": ("texto2" as AnyObject),
-                "mandatory": (true as AnyObject)
-                ] as AnyObject,
+                "key": "textoKey2",
+                "type": "text",
+                "label": "texto2",
+                "mandatory": true
+                ],
             [
-                "key": ("datePickerKey" as AnyObject),
-                "type": ("datePicker" as AnyObject),
-                "label": ("datePicker" as AnyObject),
-                "mandatory": (true as AnyObject)
-                ] as AnyObject,
+                "key": "datePickerKey",
+                "type": "datePicker",
+                "label": "datePicker",
+                "mandatory": true
+                ],
             [
-                "key": ("pickerKey" as AnyObject),
-                "type": ("picker" as AnyObject),
-                "label": ("picker" as AnyObject),
-                "mandatory": true as AnyObject,
+                "key": ("pickerKey"),
+                "type": ("picker"),
+                "label": ("picker"),
+                "mandatory": true,
                 "listOptions": [
                     ["key": "KeyNoSelected",
                      "value": "Select One"],
@@ -44,44 +44,44 @@ class SecondTypeVC: UIViewController, PFormulary {
                     ["key": " ",
                      "value": "Other"]
                 ]
-            ] as AnyObject,
+            ],
           [
-                "key": ("textoKey" as AnyObject),
-                "type": ("text" as AnyObject),
-                "label": ("texto" as AnyObject),
-                "mandatory": (true as AnyObject)
-            ] as AnyObject,
+                "key": ("textoKey"),
+                "type": ("text"),
+                "label": ("texto"),
+                "mandatory": (true)
+            ],
             [
-                "key": ("booleanoKey" as AnyObject),
-                "type": ("boolean" as AnyObject),
-                "label": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein." as AnyObject),
-                "validator": ("bool" as AnyObject),
-                "mandatory": true as AnyObject
-                ] as AnyObject,
+                "key": ("booleanoKey"),
+                "type": ("boolean"),
+                "label": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein."),
+                "validator": ("bool"),
+                "mandatory": true
+                ],
             [
-                "key": ("textoKey99" as AnyObject),
-                "type": ("text" as AnyObject),
-                "label": ("text99" as AnyObject),
-                "mandatory": (true as AnyObject)
-                ] as AnyObject,
+                "key": ("textoKey99"),
+                "type": ("text"),
+                "label": ("text99"),
+                "mandatory": (true)
+                ],
             [
-                "key": ("textoKey88" as AnyObject),
-                "type": ("text" as AnyObject),
-                "label": ("text88" as AnyObject),
-                "mandatory": (true as AnyObject)
-                ] as AnyObject,
+                "key": ("textoKey88"),
+                "type": ("text"),
+                "label": ("text88"),
+                "mandatory": (true)
+                ],
             [
-                "key": ("indexKEY" as AnyObject),
-                "type": ("index" as AnyObject),
-                "label": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein." as AnyObject)
-                ] as AnyObject,
+                "key": ("indexKEY"),
+                "type": ("index"),
+                "label": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein.")
+                ],
             [
-                "key": ("booleanoKey2" as AnyObject),
-                "type": ("boolean" as AnyObject),
-                "label": ("Bolean sin link" as AnyObject),
-                "validator": ("bool" as AnyObject),
-                "mandatory": true as AnyObject
-                ] as AnyObject
+                "key": ("booleanoKey2"),
+                "type": ("boolean"),
+                "label": ("Bolean sin link"),
+                "validator": ("bool"),
+                "mandatory": true
+                ]
         ]
         
         return emailField
@@ -101,14 +101,14 @@ class SecondTypeVC: UIViewController, PFormulary {
         //-- Create form Type with Array Dic --
         guard let fields = self.prepareField() as? [[String: AnyObject]] else { return }
         let viewContainterForm = self.formulary.start(self.button, listItems: fields)
-        self.formulary.delegate = self
+        self.formulary.formularyOutput = self
         self.formulary.populateData(
             [
-                "textoKey2": "rellenar2" as AnyObject,
-                "textoKey": "rellenar" as AnyObject,
-                "pickerKey": "GB" as AnyObject,
-                "booleanoKey": true as AnyObject,
-                "datePickerKey": "12/01/1983" as AnyObject
+                "textoKey2": "rellenar2",
+                "textoKey": "rellenar",
+                "pickerKey": "GB",
+                "booleanoKey": true,
+                "datePickerKey": "12/01/1983"
             ]
         )
         
@@ -125,7 +125,7 @@ class SecondTypeVC: UIViewController, PFormulary {
     
     // MARK: PFormController
     
-    func recoverFormModel(_ formValues: [String : AnyObject]) {
+    func recoverFormModel(_ formValues: [AnyHashable : Any]) {
         
     }
     
@@ -140,9 +140,9 @@ class SecondTypeVC: UIViewController, PFormulary {
     // MARK: Actions
     @IBAction func loadError(_ sender: Any) {
         let dicError = [
-            "pickerKey": "error 1" as AnyObject,
-            "key": "error 2" as AnyObject
-            ] as [String: String]
+            "pickerKey": "error 1",
+            "key": "error 2"
+            ]
         self.formulary.loadError(dicError)
     }
 }

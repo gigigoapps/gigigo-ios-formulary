@@ -15,7 +15,7 @@ protocol PFormField: PTextFormField, PBooleanFormField, PIndexFormField {
 
 open class FormField: UIView {
     
-    open var fieldValue: AnyObject?
+    open var fieldValue: Any?
     
     //-- LOCAL VAR --
     var viewContainer: UIView!
@@ -76,7 +76,7 @@ open class FormField: UIView {
         return self.validator!.validate(self.fieldValue)
     }
     
-    func loadError(error: String) {
+    func loadError(error: Any) {
         // TODO nothing
     }
     

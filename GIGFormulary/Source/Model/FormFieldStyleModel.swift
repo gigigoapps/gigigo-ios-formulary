@@ -38,7 +38,7 @@ class FormFieldStyleModel: NSObject {
         super.init()
     }
     
-    func parseDictionary(_ json: [String:AnyObject]) {
+    func parseDictionary(_ json: [AnyHashable: Any]) {
         //== PREPARE DATA ==
         let sizeTitle = json["sizeTitle"] as? CGFloat
         let sizeError = json["sizeError"] as? CGFloat        

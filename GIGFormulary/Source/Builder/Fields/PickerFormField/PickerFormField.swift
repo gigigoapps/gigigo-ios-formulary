@@ -37,17 +37,17 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     
     // MARK: GIGFormField (Override)
     
-    override internal var fieldValue: AnyObject? {
+    override internal var fieldValue: Any? {
         get {
             if self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue {
-                return (self.formFieldM!.options![self.pickerOptions!.selectedIndex!]).idOption as AnyObject?
+                return (self.formFieldM!.options![self.pickerOptions!.selectedIndex!]).idOption
             } else {
                 if self.pickerDate!.dateSelected != nil {
                     let formatter = DateFormatter()
                     formatter.setLocalizedDateFormatFromTemplate("dd/MM/yyyy")
-                    return formatter.string(from: self.pickerDate!.dateSelected! as Date) as AnyObject?
+                    return formatter.string(from: self.pickerDate!.dateSelected! as Date)
                 }
-                return "" as AnyObject?
+                return ""
             }
         }
         set {
@@ -120,8 +120,9 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         self.loadKeyboard(self.formFieldM!)
     }
         
-    override func loadError(error: String) {
-        self.errorLabel.text = error
+    override func loadError(error: Any) {
+        guard let text = error as? String else { return }
+        self.errorLabel.text = text
         self.showError()
     }
     
@@ -129,9 +130,9 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         var status = true
         if self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue {
             self.validator = OptionValidator(mandatory: self.formFieldM!.mandatory)
-            status = self.validator!.validate(self.pickerOptions?.selectedIndex as AnyObject?)
+            status = self.validator!.validate(self.pickerOptions?.selectedIndex)
         } else {
-            status = self.validator!.validate(self.pickerDate?.dateSelected as AnyObject?)
+            status = self.validator!.validate(self.pickerDate?.dateSelected)
         }
         
         if !status {

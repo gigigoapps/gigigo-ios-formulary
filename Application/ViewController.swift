@@ -19,34 +19,34 @@ class ViewController: UIViewController, PFormulary {
         //-- Create form Type with JSON --
        
          self.formulary.start(self.view, jsonFile: "json_formulary.json")
-         self.formulary.delegate = self
+         self.formulary.formularyOutput = self
 
         
         //-- Create form Type with Array Dic --
         /*
-        let dic1:[String: AnyObject] = ["key": "a1" as AnyObject,
-                    "type": "text" as AnyObject,
-                    "label": "validador sin" as AnyObject,
-                    "mandatory": true as AnyObject]
+        let dic1:[String: AnyObject] = ["key": "a1",
+                    "type": "text",
+                    "label": "validador sin",
+                    "mandatory": true]
         
-        let dic2:[String: AnyObject]  = ["key": "a2" as AnyObject,
-                    "type": "text" as AnyObject,
-                    "label": "validador email" as AnyObject,
-                    "validator": "email" as AnyObject,
-                    "mandatory": true as AnyObject]
+        let dic2:[String: AnyObject]  = ["key": "a2",
+                    "type": "text",
+                    "label": "validador email",
+                    "validator": "email",
+                    "mandatory": true]
         
-        let dic3:[String: AnyObject]  = ["key": "a3" as AnyObject,
-                    "type": "text" as AnyObject,
-                    "label": "validador custom" as AnyObject,
-                    "validator": "customValidator" as AnyObject,
-                    "customValidator": "^([0-9])+$" as AnyObject,
-                    "mandatory": true as AnyObject]
+        let dic3:[String: AnyObject]  = ["key": "a3",
+                    "type": "text",
+                    "label": "validador custom",
+                    "validator": "customValidator",
+                    "customValidator": "^([0-9])+$",
+                    "mandatory": true]
         
-        let style:[String: AnyObject] = ["sizeTitle": 30 as CGFloat as AnyObject] as [String : AnyObject]
-        let dic4:[String: AnyObject] = ["key" : "key" as AnyObject,
-                   "label": "label" as AnyObject,
-                   "type" : "index" as AnyObject,
-                   "style": style as AnyObject]
+        let style:[String: AnyObject] = ["sizeTitle": 30 as CGFloat] as [String : AnyObject]
+        let dic4:[String: AnyObject] = ["key" : "key",
+                   "label": "label",
+                   "type" : "index",
+                   "style": style]
  
         let formulary = Formulary.shared
         formulary.start(self.view, listItems: [dic1, dic2, dic4 ,dic3])
@@ -75,7 +75,7 @@ class ViewController: UIViewController, PFormulary {
     
     // MARK: PFormController
     
-    func recoverFormModel(_ formValues: [String : AnyObject]) {
+    func recoverFormModel(_ formValues: [AnyHashable : Any]) {
         
     }
     /*  // OPTIONAL

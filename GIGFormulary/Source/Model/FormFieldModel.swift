@@ -27,7 +27,7 @@ class FormFieldModel: NSObject {
     var validator: String?
     var keyBoard: String?
     var textAcceptButton: String?
-    var value: AnyObject?
+    var value: Any?
     var isPassword = false
     var textsError = TextsError()
     var isEditing = true
@@ -48,7 +48,7 @@ class FormFieldModel: NSObject {
     
     // MARK: Public Method
     
-    func parseDictionary(_ json: [String:AnyObject]) throws {
+    func parseDictionary(_ json: [AnyHashable: Any]) throws {
         //== PREPARE DATA ==
         
         //-- Mandatory --
@@ -88,7 +88,7 @@ class FormFieldModel: NSObject {
         }
 
         if json["listOptions"] != nil {
-            guard let listOptions = json["listOptions"] as? [[String: AnyObject]] else {
+            guard let listOptions = json["listOptions"] as? [[AnyHashable: Any]] else {
                 print("❌❌❌ listOptions incorrect type")
                 throw ThrowError.mandatoryElementIncorrectType
             }
@@ -103,7 +103,7 @@ class FormFieldModel: NSObject {
                 throw ThrowError.mandatoryElementNotFound
             }
         }
-        if let styleM = json["style"] as? [String: AnyObject] {
+        if let styleM = json["style"] as? [AnyHashable: Any] {
             self.style = FormFieldStyleModel(bundle: self.bundle)
             self.style?.parseDictionary(styleM)
         }
