@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GIGLibrary
 
 class FormBuilderFields: NSObject {
     
@@ -75,14 +76,13 @@ class FormBuilderFields: NSObject {
             field.keyBoard = self.keyboardToField(formFieldM)
             field.insertData()
             return field
-        }
-        catch {
+        } catch {
             let field = FormField()
             return field
         }
     }
     
-    fileprivate func validatorToField(_ formFieldM: FormFieldModel) -> Validator?{        
+    fileprivate func validatorToField(_ formFieldM: FormFieldModel) -> Validator? {
         guard
             let validate = formFieldM.validator,
             let typeValidate = TypeValidator(rawValue: validate)
@@ -94,8 +94,7 @@ class FormBuilderFields: NSObject {
         let validator: Validator
         if let custom = formFieldM.custom {
             validator = typeValidator!.init(mandatory: formFieldM.mandatory, custom: custom)
-        }
-        else {
+        } else {
             validator = typeValidator!.init(mandatory: formFieldM.mandatory)
         }
         validator.minLength = formFieldM.minLengthValue
@@ -104,11 +103,10 @@ class FormBuilderFields: NSObject {
         return validator
     }
     
-    fileprivate func keyboardToField(_ formFieldM: FormFieldModel) -> UIKeyboardType?{
-        if (formFieldM.keyBoard != nil) {
+    fileprivate func keyboardToField(_ formFieldM: FormFieldModel) -> UIKeyboardType? {
+        if formFieldM.keyBoard != nil {
             return self.keyboardTypes[TypeKeyBoard(rawValue: formFieldM.keyBoard!)!]
-        }
-        else {
+        } else {
             return UIKeyboardType.default
         }
     }
@@ -118,13 +116,12 @@ class FormBuilderFields: NSObject {
     func fieldsFromJSONFile(_ file: String) -> [FormField] {
         var listFormField = [FormField]()
         let jsonRecover = Bundle.main.loadJSONFile(file, rootNode: "fields")
-        if (jsonRecover != nil) {
-            let listFormDic = jsonRecover as! [[String: AnyObject]]
+        if jsonRecover != nil {
+            guard let listFormDic = jsonRecover as? [[String: AnyObject]] else { LogWarn("Parse error [[String: AnyObject]]"); return [] }
             for fieldDic in listFormDic {
                 listFormField.append(self.createField(fieldDic))
             }
-        }
-        else {
+        } else {
             print("❌❌❌ json fields Not Found")
         }
         

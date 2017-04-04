@@ -67,8 +67,7 @@ class TextFormField: FormField, UITextFieldDelegate {
         if (!status) {
             self.errorLabel.text = self.formFieldM?.textsError.textError
             self.showError()
-        }
-        else {
+        } else {
             self.hideError()
         }
         
@@ -140,7 +139,7 @@ class TextFormField: FormField, UITextFieldDelegate {
         self.titleLabel.text = formFieldM.label
         self.textTextField.placeholder = formFieldM.placeHolder
         self.errorLabel.text = formFieldM.textsError.textError
-        if (self.formFieldM?.value != nil) {
+        if self.formFieldM?.value != nil {
             self.textTextField.text = self.formFieldM?.value as? String
         }
         if self.formFieldM?.label == nil {
@@ -150,10 +149,9 @@ class TextFormField: FormField, UITextFieldDelegate {
     }
     
     fileprivate func loadMandatory(_ isMandatory: Bool) {
-        if (isMandatory) {
+        if isMandatory {
             self.widthMandatoryImageConstraint.constant = 30
-        }
-        else {
+        } else {
             self.widthMandatoryImageConstraint.constant = 0
         }
     }
@@ -164,29 +162,29 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel) {
         let styleField = formFieldM.style
-        if (styleField != nil) {
-            if (styleField!.mandatoryIcon != nil) {
+        if styleField != nil {
+            if styleField!.mandatoryIcon != nil {
                 self.mandotoryImage.image = styleField?.mandatoryIcon
             }
-            if (styleField!.backgroundColorField != nil) {
+            if styleField!.backgroundColorField != nil {
                 self.viewContainer.backgroundColor = styleField!.backgroundColorField!
             }
-            if (styleField!.titleColor != nil) {
+            if styleField!.titleColor != nil {
                 self.titleLabel.textColor = styleField!.titleColor!
             }
-            if (styleField!.errorColor != nil) {
+            if styleField!.errorColor != nil {
                 self.errorLabel.textColor = styleField!.errorColor!
             }
-            if (styleField!.fontTitle != nil) {
+            if styleField!.fontTitle != nil {
                 self.titleLabel.font = styleField?.fontTitle
             }
-            if (styleField!.fontError != nil) {
+            if styleField!.fontError != nil {
                 self.errorLabel.font = styleField?.fontError
             }
-            if (styleField!.align != nil) {
+            if styleField!.align != nil {
                 self.titleLabel.textAlignment = styleField!.align!
             }
-            if let styleCell = styleField?.styleCell  {
+            if let styleCell = styleField?.styleCell {
                 switch styleCell {
                 case .defaultStyle:
                     // TODO nothing

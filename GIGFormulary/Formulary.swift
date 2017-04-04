@@ -62,7 +62,7 @@ open class Formulary: PFormController {
         return self.formController!.recoverView()
     }
     
-    open func start(_ button: UIButton, listItems: [[String: AnyObject]]) -> UIView  {
+    open func start(_ button: UIButton, listItems: [[String: AnyObject]]) -> UIView {
         self.formController = FormController(
             button: button,
             bundle: self.bundle

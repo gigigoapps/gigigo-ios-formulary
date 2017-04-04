@@ -58,7 +58,7 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
         
         var index = 0
         for item in self.items {
-            if (item.idOption == key) {
+            if item.idOption == key {
                 break
             }
             index += 1

@@ -63,17 +63,14 @@ class FormBuilderViews: NSObject {
     }
     
     func changeFocusField(_ field: FormField?) {
-        if (field != nil)
-        {
+        if (field != nil) {
             if (field?.canBecomeFirstResponder == true) {
                 field?.becomeFirstResponder()
             }
             else {
                 self.viewContainerFormulary.endEditing(true)
             }
-        }
-        else
-        {
+        } else {
             self.viewContainerFormulary.endEditing(true)
         }
     }
@@ -100,15 +97,14 @@ class FormBuilderViews: NSObject {
     fileprivate func prepareFormulary() {
         if (self.viewContainerFormulary.subviews.count > 0) {
             self.viewFormulary = self.viewContainerFormulary.subviews[0]
-            if (self.viewFormulary.subviews.count > 1) {
+            if self.viewFormulary.subviews.count > 1 {
                 self.viewContainerField = self.viewFormulary.subviews[1]
-                self.buttonSend = self.viewFormulary.subviews[2] as! UIButton
-            }
-            else {
+                guard let button = self.viewFormulary.subviews[2] as? UIButton else { return LogWarn("Button missing") }
+                self.buttonSend = button
+            } else {
                 print("❌❌❌ ViewFormFields or Button send Not Found. Create this in StoryBoard")
             }
-        }
-        else {
+        } else {
             print("❌❌❌ viewContainerFormulary Not Found")
         }
         
@@ -137,14 +133,14 @@ class FormBuilderViews: NSObject {
     
         //-- Constraint --
         gig_autoresize(self.viewFormulary, false)
-        gig_layout_fit_horizontal(self.viewFormulary);
-        gig_layout_top(self.viewFormulary, 0);
+        gig_layout_fit_horizontal(self.viewFormulary)
+        gig_layout_top(self.viewFormulary, 0)
         gig_layout_bottom(self.viewFormulary, 0)
-        gig_constrain_width(self.viewFormulary, UIScreen.main.bounds.size.width);
+        gig_constrain_width(self.viewFormulary, UIScreen.main.bounds.size.width)
     
         gig_autoresize(self.scrollView, false)
-        gig_layout_fit_horizontal(self.scrollView);
-        gig_layout_top(self.scrollView, 0);
+        gig_layout_fit_horizontal(self.scrollView)
+        gig_layout_top(self.scrollView, 0)
         gig_layout_bottom(self.scrollView, 0)
     }
     
@@ -156,15 +152,12 @@ class FormBuilderViews: NSObject {
             self.viewContainerField.addSubview(field)
             
             gig_autoresize(field, false)
-            gig_layout_fit_horizontal(field);
+            gig_layout_fit_horizontal(field)
             
-            if (!firstTime)
-            {
-                gig_layout_below(field, lastView, 3);
-            }
-            else
-            {
-                gig_layout_top(field, 0);
+            if !firstTime {
+                gig_layout_below(field, lastView, 3)
+            } else {
+                gig_layout_top(field, 0)
             }
             
             lastView = field
@@ -172,25 +165,26 @@ class FormBuilderViews: NSObject {
         }
         
         if (self.viewContainerField.subviews.count > 0) {
-            gig_layout_bottom(lastView, 0);
+            gig_layout_bottom(lastView, 0)
         }
     }
     
-    // MARK:  NOTIFICATIONS
+    
+    // MARK :  NOTIFICATIONS
     
     func keyboardWillShow(_ notification: Notification) {
-        let dict:NSDictionary = (notification as NSNotification).userInfo! as NSDictionary
-        let s:NSValue = dict.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
-        let keyboardFrame :CGRect = s.cgRectValue
+        let dict: NSDictionary = (notification as NSNotification).userInfo! as NSDictionary
+        guard let s: NSValue = dict.value(forKey: UIKeyboardFrameEndUserInfoKey) as? NSValue else { return LogWarn("keyboardWillShow NSValue parse error")}
+        let keyboardFrame: CGRect = s.cgRectValue
         UIView.animate(withDuration: 0.25, animations: {
-            self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.size.height, 0);
-            self.scrollView.scrollIndicatorInsets = self.scrollView.contentInset;
+            self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.size.height, 0)
+            self.scrollView.scrollIndicatorInsets = self.scrollView.contentInset
         }) 
     }
     
     func keyboardWillHide(_ notification: Notification) {
         let position = 64 - (UIScreen.main.bounds.height - self.viewContainerFormulary.bounds.height)
-        self.scrollView.contentInset = UIEdgeInsets.init(top: position, left: 0, bottom: 0, right: 0);
-        self.scrollView.scrollIndicatorInsets = self.scrollView.contentInset;
+        self.scrollView.contentInset = UIEdgeInsets.init(top: position, left: 0, bottom: 0, right: 0)
+        self.scrollView.scrollIndicatorInsets = self.scrollView.contentInset
     }
 }

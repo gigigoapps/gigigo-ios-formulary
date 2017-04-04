@@ -7,27 +7,24 @@
 //
 
 import UIKit
+import GIGLibrary
 
 class StringValidator: Validator {
     
     override func validate(_ value: AnyObject?) -> Bool{
-        if (value == nil && self.mandatory)
-        {
-            return false;
-        }
-        else if (value != nil)
-        {
-            if (value is String) {
-                let stringValue = value as! String
-                if ((stringValue.characters.count == 0) && self.mandatory) {
-                    return false;
+        if value == nil && self.mandatory {
+            return false
+        } else if value != nil {
+            if value is String {
+                guard let stringValue = value as? String else { LogWarn("Parse value String Error, return false"); return false }
+                if (stringValue.characters.count == 0) && self.mandatory {
+                    return false
                 }
-            }
-            else {
-                return false;
+            } else {
+                return false
             }
         }
         
-        return true;        
+        return true
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GIGLibrary
 
 protocol PFormController {
     func recoverFormModel(_ formValues: [String: AnyObject])
@@ -65,7 +66,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     func populateData(_ values: [String:AnyObject]) {
         var _ = values.map {key, value -> [String: AnyObject] in
             var _ = self.formFields.map { formField -> FormField in
-                if (formField.formFieldM?.key == key) {
+                if formField.formFieldM?.key == key {
                     formField.fieldValue = value
                     self.formValues[key] = value as AnyObject?
                 }
@@ -79,7 +80,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         var search = true
         for field in self.formFields {
             let _ = values.filter({ (key, value) -> Bool in
-                if (key == field.formFieldM?.key) {
+                if key == field.formFieldM?.key {
                     field.loadError(error: value)
                     
                     //-- Go to position if first found --
@@ -107,16 +108,15 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         }
     }
     
-    fileprivate func nextFieldTo(_ field: FormField) -> FormField?{
+    fileprivate func nextFieldTo(_ field: FormField) -> FormField? {
         let nextFieldPos =  self.formFields.index(of: field)!+1
-        if (nextFieldPos < self.formFields.count) {
+        if nextFieldPos < self.formFields.count {
             let nextField = self.formFields[nextFieldPos]
             if nextField.formFieldM?.type == TypeField.INDEX_FORM_FIELD.rawValue {
                 return self.nextFieldTo(nextField)
             }
             return nextField
-        }
-        else {
+        } else {
             return nil
         }
     }
@@ -128,11 +128,10 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
                 return false
             }
             
-            if (!field.validate()) {
+            if !field.validate() {
                 self.moveToPositionError(isValid, field)
                 isValid = false
-            }
-            else {
+            } else {
                 if formFieldM.compare {
                     guard let itemsCompare = formFieldM.itemCompare else {
                         return false
@@ -140,7 +139,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
                     
                     let listValues = self.searchValueItemToCompare(itemsCompare)
   
-                    if (field.validator!.validateCompare(listValues)) {
+                    if field.validator!.validateCompare(listValues) {
                         isValid = false
                         field.validateCompare()
                     }
@@ -151,8 +150,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
                 if let valueString = field.fieldValue as? String {
                     let value = valueString.trimmingCharacters(in: .whitespaces)
                     self.formValues["\(formFieldM.key!)"] = value as AnyObject?
-                }
-                else {
+                } else {
                     self.formValues["\(formFieldM.key!)"] = (field.fieldValue != nil) ? field.fieldValue as AnyObject : "" as AnyObject
                 }
             }
@@ -161,7 +159,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     }
     
     fileprivate func moveToPositionError(_ isValid: Bool, _ field: FormField) {
-        if (isValid) {
+        if isValid {
             self.formViews?.scrollRectToVisible(field)
         }
     }
@@ -174,9 +172,9 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
             
             if itemFound.count > 0 {
                 if itemFound[0].fieldValue != nil {
-                    return itemFound[0].fieldValue as! String
-                }
-                else {
+                    guard let fieldString = itemFound[0].fieldValue as? String else { LogWarn("Parse value to String error"); return "" }
+                    return fieldString
+                } else {
                     return ""
                 }
             }
@@ -189,7 +187,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     // MARK: PFormBuilderViews
     
     func sendButtonAction() {
-        if (self.validateFields()) {
+        if self.validateFields() {
             self.delegate?.recoverFormModel(self.formValues)
         }
     }
@@ -204,7 +202,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         let nextField = self.nextFieldTo(field)
         self.formViews?.changeFocusField(nextField)
         
-        if (nextField == nil) {
+        if nextField == nil {
              let _ = self.validateFields()
         }
     }

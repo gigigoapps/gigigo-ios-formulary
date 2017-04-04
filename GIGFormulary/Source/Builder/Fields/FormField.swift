@@ -13,7 +13,7 @@ import GIGLibrary
 protocol PFormField: PTextFormField, PBooleanFormField, PIndexFormField {
 }
 
-open class FormField: UIView{
+open class FormField: UIView {
     
     open var fieldValue: AnyObject?
     
@@ -42,8 +42,8 @@ open class FormField: UIView{
         addSubview(self.viewContainer)
         
         gig_autoresize(self.viewContainer, false)
-        gig_layout_fit_horizontal(self.viewContainer);
-        gig_layout_top(self.viewContainer, 0);
+        gig_layout_fit_horizontal(self.viewContainer)
+        gig_layout_top(self.viewContainer, 0)
         gig_layout_bottom(self.viewContainer, 0)
     }
     
@@ -51,7 +51,10 @@ open class FormField: UIView{
         let bundle = Bundle(for: classField)
         let classString = NSStringFromClass(classField)
         let nib = UINib(nibName: classString.components(separatedBy: ".").last!, bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
+        guard let view = nib.instantiate(withOwner: self, options: nil)[0] as? UIView else {
+            LogWarn("Not found a type View")
+            return UIView()
+        }
         return view
     }
     
@@ -67,7 +70,7 @@ open class FormField: UIView{
     }
     
     func validate() -> Bool {
-        if (self.validator == nil) {
+        if self.validator == nil {
             return true
         }
         return self.validator!.validate(self.fieldValue)

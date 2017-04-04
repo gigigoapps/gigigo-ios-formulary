@@ -52,39 +52,16 @@ class FormFieldModel: NSObject {
         //== PREPARE DATA ==
         
         //-- Mandatory --
-        guard let type = json["type"] as? String , type.characters.count > 0 else {
+        guard let type = json["type"] as? String, type.characters.count > 0 else {
             print("❌❌❌ type Not Found")
             throw ThrowError.mandatoryElementNotFound
         }
 
-        guard let key = json["key"] as? String , key.characters.count > 0 else {
+        guard let key = json["key"] as? String, key.characters.count > 0 else {
             print("❌❌❌ key Not Found")
             throw ThrowError.mandatoryElementNotFound
         }
     
-        //-- Optional --
-        let label = json["label"] as? String
-        let placeHolder = json["placeHolder"] as? String
-        let mandatory = json["mandatory"] as? Bool
-        let style = json["style"] as? [String: AnyObject]
-        let textError = json["textError"] as? String
-        let textErrorCompare = json["textErrorCompare"] as? String
-        let validator = json["validator"] as? String
-        let keyBoard = json["keyboard"] as? String
-        let maxLength = json["maxLength"] as? Int
-        let minLength = json["minLength"] as? Int
-        let minAge = json["minAge"] as? Int
-        let textAcceptButton = json["textAcceptButton"] as? String
-        let value = json["value"]
-        let custom = json["customValidator"] as? String
-        let isPassword = json["isPassword"] as? Bool
-        let isLink = json["isLink"] as? Bool
-        let compare = json["compare"] as? Bool
-        let itemCompare = json["itemsCompare"] as? [String]        
-        
-        if let isEditing = json["isEditing"] as? Bool {
-            self.isEditing = isEditing
-        }
         
         //== INSERT DATA ==
         //-- Mandatory--
@@ -93,26 +70,24 @@ class FormFieldModel: NSObject {
         
         //-- Optional--
         
-        if (label != nil) {
-            self.label = NSLocalizedString(label!, comment: "")
+        if let label = json["label"] as? String {
+            self.label = NSLocalizedString(label, comment: "")
         }
-        if (textError != nil) {
-            self.textsError.textError = NSLocalizedString(textError!, comment: "")
-        }
-        else {
+        if let textError = json["textError"] as? String {
+            self.textsError.textError = NSLocalizedString(textError, comment: "")
+        } else {
             self.textsError.textError = NSLocalizedString("error_generic_field", tableName: nil, bundle: Bundle(for: type(of: self)), value: "", comment: "error_generic_field")
         }
-        if (textErrorCompare != nil) {
-            self.textsError.textErrorCompare = NSLocalizedString(textErrorCompare!, comment: "")
-        }
-        else {
+        if let textErrorCompare = json["textErrorCompare"] as? String {
+            self.textsError.textErrorCompare = NSLocalizedString(textErrorCompare, comment: "")
+        } else {
             self.textsError.textErrorCompare = NSLocalizedString("error_generic_compare_field", tableName: nil, bundle: Bundle(for: type(of: self)), value: "", comment: "error_generic_compare_field")
         }
-        if (placeHolder != nil) {
-            self.placeHolder = NSLocalizedString(placeHolder!, comment: "")
+        if let placeHolder = json["placeHolder"] as? String {
+            self.placeHolder = NSLocalizedString(placeHolder, comment: "")
         }
 
-        if (json["listOptions"] != nil) {
+        if json["listOptions"] != nil {
             guard let listOptions = json["listOptions"] as? [[String: AnyObject]] else {
                 print("❌❌❌ listOptions incorrect type")
                 throw ThrowError.mandatoryElementIncorrectType
@@ -123,59 +98,60 @@ class FormFieldModel: NSObject {
             }
             do {
                 self.options = try FormFieldOptionsModel.parseListOptionsJson(listOptions)
-            }
-            catch {
+            } catch {
                 print("❌❌❌ options Not Found")
                 throw ThrowError.mandatoryElementNotFound
             }
         }
-        if let styleM = style {
+        if let styleM = json["style"] as? [String: AnyObject] {
             self.style = FormFieldStyleModel(bundle: self.bundle)
             self.style?.parseDictionary(styleM)
         }
-        if (validator != nil) {
+        if let validator = json["validator"] as? String {
             self.validator = validator
         }
-        if (keyBoard != nil) {
+        if let keyBoard = json["keyboard"] as? String {
             self.keyBoard = keyBoard
         }
-        if let textAccept = textAcceptButton {
+        if let textAccept  = json["textAcceptButton"] as? String {
             self.textAcceptButton = NSLocalizedString(textAccept, tableName: nil, bundle: self.bundle, value: "", comment: "")
-        }
-        else {
+        } else {
             self.textAcceptButton = NSLocalizedString("gig_form_accept_button_picker", tableName: nil, bundle: Bundle(for: type(of: self)), value: "", comment: "gig_form_accept_button_picker")
         }
-        if (value != nil) {
+        if let value = json["value"] {
             self.value = value
         }
-        if (isPassword != nil) {
-            self.isPassword = isPassword!
+        if let isPassword = json["isPassword"] as? Bool {
+            self.isPassword = isPassword
         }
-        if (isLink != nil) {
-            self.isLink = isLink!
+        if let isLink = json["isLink"] as? Bool {
+            self.isLink = isLink
+        }
+        if let isEditing = json["isEditing"] as? Bool {
+            self.isEditing = isEditing
         }
         
         //-- Validate --
-        if (maxLength != nil) {
+        if let maxLength = json["maxLength"] as? Int {
             self.maxLengthValue = maxLength
         }
-        if (minLength != nil) {
+        if let minLength = json["minLength"] as? Int {
             self.minLengthValue = minLength
         }
-        if (minAge != nil) {
+        if let minAge = json["minAge"] as? Int {
             self.minAge = minAge
         }
-        if (mandatory != nil) {
-            self.mandatory = mandatory!
+        if let mandatory = json["mandatory"] as? Bool {
+            self.mandatory = mandatory
         }
-        if (custom != nil) {
-            self.custom = custom!
+        if let custom = json["customValidator"] as? String {
+            self.custom = custom
         }
-        if (compare != nil) {
-            self.compare = compare!
+        if let compare = json["compare"] as? Bool {
+            self.compare = compare
         }
-        if (itemCompare != nil) {
-            self.itemCompare = itemCompare!
+        if let itemCompare = json["itemsCompare"] as? [String] {
+            self.itemCompare = itemCompare
         }
     }
 }

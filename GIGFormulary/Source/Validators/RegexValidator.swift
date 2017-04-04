@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GIGLibrary
 
 class RegexValidator: StringValidator {
     
@@ -19,7 +20,7 @@ class RegexValidator: StringValidator {
     }
     
     init(regexPattern: String?, mandatory: Bool) {
-        if (regexPattern != nil) {
+        if regexPattern != nil {
             self.regex = NSRegularExpression(pattern: regexPattern!)
         }        
         
@@ -36,20 +37,19 @@ class RegexValidator: StringValidator {
     
     // MARK: Public Method
 
-    override func validate(_ value: AnyObject?) -> Bool{
-        if (!super.validate(value))  {
+    override func validate(_ value: AnyObject?) -> Bool {
+        if !super.validate(value) {
             return false
         }
         
-        if (value != nil) {
-            let stringValue = value as! String
+        if value != nil {
+            guard let stringValue = value as? String else { LogWarn("Parse value String Error, return false"); return false }
             
-            if (stringValue.characters.count == 0 && !self.mandatory) {
+            if stringValue.characters.count == 0 && !self.mandatory {
                 return true
             }
             return (self.regex?.matchesString(stringValue))!
-        }
-        else
+        } else
         {
             return true
         }

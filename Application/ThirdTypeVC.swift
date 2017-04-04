@@ -10,7 +10,7 @@ import UIKit
 import GIGLibrary
 import GIGFormulary
 
-class ThirdTypeVC: UIViewController, Instantiable, PFormulary  {
+class ThirdTypeVC: UIViewController, Instantiable, PFormulary {
     
     let formulary = Formulary.shared
     

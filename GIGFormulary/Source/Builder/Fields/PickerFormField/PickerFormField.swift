@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GIGLibrary
 
 class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent {
     
@@ -38,11 +39,10 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     
     override internal var fieldValue: AnyObject? {
         get {
-            if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
+            if self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue {
                 return (self.formFieldM!.options![self.pickerOptions!.selectedIndex!]).idOption as AnyObject?
-            }
-            else {
-                if (self.pickerDate!.dateSelected != nil) {
+            } else {
+                if self.pickerDate!.dateSelected != nil {
                     let formatter = DateFormatter()
                     formatter.setLocalizedDateFormatFromTemplate("dd/MM/yyyy")
                     return formatter.string(from: self.pickerDate!.dateSelected! as Date) as AnyObject?
@@ -51,7 +51,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
             }
         }
         set {
-            if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
+            if self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue {
                 let optionFound = self.formFieldM!.options?.filter({ element -> Bool in
                      return element.idOption == newValue as? String
                 })
@@ -63,11 +63,11 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
                     }
                 }
                 self.pickerOptions?.selectedIndex = pos
-            }
-            else {
+            } else {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "dd/MM/yyyy"
-                self.pickerDate?.dateSelected = dateFormatter.date(from: newValue! as! String)
+                guard let valueString = newValue! as? String else { return LogWarn("Value isnt String") }
+                self.pickerDate?.dateSelected = dateFormatter.date(from: valueString)
             }
         }
     }
@@ -98,7 +98,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     // MARK: Overrride Method
     
     override func insertData() {
-        if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
+        if self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue {
             self.pickerOptions = OptionsPickerComponent()
             self.pickerOptions?.styles = self.formFieldM?.style
             self.pickerOptions?.textAcceptButton = self.formFieldM?.textAcceptButton
@@ -106,8 +106,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
             self.pickerOptions!.items = self.formFieldM!.options!
             self.pickerOptions?.populateData(self.formFieldM!.value)
             self.pickerOptions?.delegateOption = self
-        }
-        else {
+        } else {
             self.pickerDate = DatePickerComponent()
             self.pickerDate?.styles = self.formFieldM?.style
             self.pickerDate?.textAcceptButton = self.formFieldM?.textAcceptButton
@@ -128,19 +127,17 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     
     override func validate() -> Bool {
         var status = true
-        if (self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue) {
+        if self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue {
             self.validator = OptionValidator(mandatory: self.formFieldM!.mandatory)
             status = self.validator!.validate(self.pickerOptions?.selectedIndex as AnyObject?)
-        }
-        else {
+        } else {
             status = self.validator!.validate(self.pickerDate?.dateSelected as AnyObject?)
         }
         
-        if (!status) {
+        if !status {
             self.errorLabel.text = self.formFieldM?.textsError.textError
             self.showError()
-        }
-        else {
+        } else {
             self.hideError()
         }
         
@@ -169,10 +166,9 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     }
     
     fileprivate func loadMandatory(_ isMandatory: Bool) {
-        if (isMandatory) {
+        if isMandatory {
             self.widthMandatoryImageConstraint.constant = 30
-        }
-        else {
+        } else {
             self.widthMandatoryImageConstraint.constant = 0
         }
     }
@@ -183,29 +179,29 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     
     fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel) {
         let styleField = formFieldM.style
-        if (styleField != nil) {
-            if (styleField!.mandatoryIcon != nil) {
+        if styleField != nil {
+            if styleField!.mandatoryIcon != nil {
                 self.mandotoryImage.image = styleField?.mandatoryIcon
             }
-            if (styleField!.backgroundColorField != nil) {
+            if styleField!.backgroundColorField != nil {
                 self.viewContainer.backgroundColor = styleField!.backgroundColorField!
             }
-            if (styleField!.titleColor != nil) {
+            if styleField!.titleColor != nil {
                 self.titleLabel.textColor = styleField!.titleColor!
             }
-            if (styleField!.errorColor != nil) {
+            if styleField!.errorColor != nil {
                 self.errorLabel.textColor = styleField!.errorColor!
             }
-            if (styleField!.fontTitle != nil) {
+            if styleField!.fontTitle != nil {
                 self.titleLabel.font = styleField?.fontTitle
             }
-            if (styleField!.fontError != nil) {
+            if styleField!.fontError != nil {
                 self.errorLabel.font = styleField?.fontError
             }
-            if (styleField!.align != nil) {
+            if styleField!.align != nil {
                 self.titleLabel.textAlignment = styleField!.align!
             }
-            if let styleCell = styleField?.styleCell  {
+            if let styleCell = styleField?.styleCell {
                 switch styleCell {
                 case .defaultStyle:
                     // TODO nothing
@@ -230,7 +226,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     }
         
     // MARK: UIResponser (Overrride)
-    override var canBecomeFirstResponder : Bool {
+    override var canBecomeFirstResponder: Bool {
         return self.textTextField.canBecomeFirstResponder
     }
     
