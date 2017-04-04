@@ -63,11 +63,10 @@ class FormBuilderViews: NSObject {
     }
     
     func changeFocusField(_ field: FormField?) {
-        if (field != nil) {
-            if (field?.canBecomeFirstResponder == true) {
+        if field != nil {
+            if field?.canBecomeFirstResponder == true {
                 field?.becomeFirstResponder()
-            }
-            else {
+            } else {
                 self.viewContainerFormulary.endEditing(true)
             }
         } else {
@@ -95,7 +94,7 @@ class FormBuilderViews: NSObject {
     // MARK : Private Method
     
     fileprivate func prepareFormulary() {
-        if (self.viewContainerFormulary.subviews.count > 0) {
+        if self.viewContainerFormulary.subviews.count > 0 {
             self.viewFormulary = self.viewContainerFormulary.subviews[0]
             if self.viewFormulary.subviews.count > 1 {
                 self.viewContainerField = self.viewFormulary.subviews[1]
@@ -164,7 +163,7 @@ class FormBuilderViews: NSObject {
             firstTime = false
         }
         
-        if (self.viewContainerField.subviews.count > 0) {
+        if self.viewContainerField.subviews.count > 0 {
             gig_layout_bottom(lastView, 0)
         }
     }

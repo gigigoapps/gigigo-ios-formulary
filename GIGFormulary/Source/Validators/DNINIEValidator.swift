@@ -11,7 +11,7 @@ import UIKit
 class DNINIEValidator: StringValidator {
     
     override func validate(_ value: AnyObject?) -> Bool {
-        if !super.validate(value)  {
+        if !super.validate(value) {
             return false
         }
         let stringValue = value as? String

@@ -32,10 +32,10 @@ class Validator: NSObject {
         super.init()
     }
     
-    // MARK:Public Method    
+    // MARK : Public Method    
     
-    func validate(_ value: AnyObject?) -> Bool{
-        if (value == nil && self.mandatory) {
+    func validate(_ value: AnyObject?) -> Bool {
+        if value == nil && self.mandatory {
             return false
         }
         return true

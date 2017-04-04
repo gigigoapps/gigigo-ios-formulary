@@ -18,8 +18,7 @@ class CustomValidator: RegexValidator {
         do {
             let regex = try NSRegularExpression(pattern: custom, options: NSRegularExpression.Options.caseInsensitive)
             super.init(regex: regex, mandatory: mandatory)
-        }
-        catch  {
+        } catch {
             super.init(regexPattern: custom, mandatory: mandatory)
         }
     }

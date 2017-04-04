@@ -15,7 +15,7 @@ class MailValidator: RegexValidator {
         do {
             let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
             super.init(regex: regex, mandatory: mandatory)
-        } catch  {
+        } catch {
             super.init(regexPattern: pattern, mandatory: mandatory)
         }
     }    

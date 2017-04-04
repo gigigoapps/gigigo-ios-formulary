@@ -40,7 +40,7 @@ class IndexFormField: FormField {
     
     // MARK: Actions
     
-    func labelAction(gr: UITapGestureRecognizer) {
+    func labelAction(grTap: UITapGestureRecognizer) {
         self.delegate?.userDidTapLink((self.formFieldM?.key)!)
     }
     
@@ -57,7 +57,7 @@ class IndexFormField: FormField {
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.indexLabel.text = formFieldM.label
         
-        if (self.existLink(formFieldM.label!)) {
+        if self.existLink(formFieldM.label!) {
             let getLinks = self.getListLinks(formFieldM.label!)
             
             let attributes = [NSForegroundColorAttributeName: UIColor.black,
@@ -99,7 +99,7 @@ class IndexFormField: FormField {
     
     // MARK: Parse
     
-    fileprivate func existLink(_ text : String) -> Bool {
+    fileprivate func existLink(_ text: String) -> Bool {
         // TODOE EDU otra opcion // return text.characters.index(of: "{") != nil
         if text.characters.index(of: "{") != nil {
             return true
@@ -107,7 +107,7 @@ class IndexFormField: FormField {
         return false
     }
     
-    fileprivate func getListLinks(_ text : String) -> ([String], String) {
+    fileprivate func getListLinks(_ text: String) -> ([String], String) {
         let newStringKey = text.replacingOccurrences(of: "{* ", with: "{* #", options: .literal, range: nil)
         let firstPart = newStringKey.components(separatedBy: "{* ")
         let localizedStringPieces = self.separeteString(listPart: firstPart)
@@ -115,7 +115,7 @@ class IndexFormField: FormField {
         var listLink = [String]()
         var allWords = ""
         for word in localizedStringPieces {
-            if (word.hasPrefix("#")) {
+            if word.hasPrefix("#") {
                 let link = word.replacingOccurrences(of: "#", with: "", options: .literal, range: nil)
                 listLink.append(link)
                 allWords += link

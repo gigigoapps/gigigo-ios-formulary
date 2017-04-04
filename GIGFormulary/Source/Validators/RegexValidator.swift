@@ -49,8 +49,7 @@ class RegexValidator: StringValidator {
                 return true
             }
             return (self.regex?.matchesString(stringValue))!
-        } else
-        {
+        } else {
             return true
         }
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 import GIGLibrary
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l < r
@@ -19,7 +19,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+fileprivate func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l > r
@@ -64,7 +64,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     override func validate() -> Bool {
         let status = super.validate()
-        if (!status) {
+        if !status {
             self.errorLabel.text = self.formFieldM?.textsError.textError
             self.showError()
         } else {
@@ -227,7 +227,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     }
     
     // MARK: UIResponser (Overrride)
-    override var canBecomeFirstResponder : Bool {
+    override var canBecomeFirstResponder: Bool {
         return self.textTextField.canBecomeFirstResponder
     }
     

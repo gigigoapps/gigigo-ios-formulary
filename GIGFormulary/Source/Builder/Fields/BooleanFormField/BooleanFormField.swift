@@ -203,7 +203,7 @@ class BooleanFormField: FormField {
     
     // MARK: Parse
     
-    fileprivate func existLink(_ text : String) -> Bool {
+    fileprivate func existLink(_ text: String) -> Bool {
         // TODO EDU otra opcion // return text.characters.index(of: "{") != nil
         if text.characters.index(of: "{") != nil {
             return true
@@ -211,7 +211,7 @@ class BooleanFormField: FormField {
         return false
     }
     
-    fileprivate func getListLinks(_ text : String) -> ([String], String) {
+    fileprivate func getListLinks(_ text: String) -> ([String], String) {
         let newStringKey = text.replacingOccurrences(of: "{* ", with: "{* #", options: .literal, range: nil)
         let firstPart = newStringKey.components(separatedBy: "{* ")
         let localizedStringPieces = self.separeteString(listPart: firstPart)
@@ -247,7 +247,7 @@ class BooleanFormField: FormField {
         self.changeState()
     }
     
-    func labelAction(gr: UITapGestureRecognizer) {
+    func labelAction(grTap: UITapGestureRecognizer) {
         self.delegate?.userDidTapLink((self.formFieldM?.key)!)
     }
     
