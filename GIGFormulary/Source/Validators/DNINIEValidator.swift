@@ -10,30 +10,30 @@ import UIKit
 
 class DNINIEValidator: StringValidator {
     
-    override func validate(_ value: AnyObject?) -> Bool{
-        if (!super.validate(value))  {
+    override func validate(_ value: AnyObject?) -> Bool {
+        if !super.validate(value) {
             return false
         }
         let stringValue = value as? String
         
-        if (stringValue?.characters.count == 0 && !self.mandatory) {
+        if stringValue?.characters.count == 0 && !self.mandatory {
             return true
         }
         
-        if (stringValue != nil) {
+        if stringValue != nil {
             return self.isValidNieNif(stringValue!)
         }
         
         return true
     }
     
-    func isValidNieNif(_ value: String) -> Bool{
+    func isValidNieNif(_ value: String) -> Bool {
         var num: String
         var letter: String
         var letterDni: String
         let valueUpper = value.uppercased()
         
-        if (self.validateCharsForDNI(valueUpper) || self.validateCharsForNIE(valueUpper)) {
+        if self.validateCharsForDNI(valueUpper) || self.validateCharsForNIE(valueUpper) {
             let myRange = valueUpper.characters.index(valueUpper.startIndex, offsetBy: 0)..<valueUpper.characters.index(valueUpper.startIndex, offsetBy: valueUpper.characters.count - 1)
             num = valueUpper.substring(with: myRange)
             num = num.replacingOccurrences(of: "X", with: "0")
@@ -51,32 +51,32 @@ class DNINIEValidator: StringValidator {
                 let rangeDNI = letterDni.characters.index(letterDni.startIndex, offsetBy: numberInt)..<letterDni.characters.index(letterDni.startIndex, offsetBy: numberInt + 1)
                 letterDni = letterDni.substring(with: rangeDNI)
                 
-                if (letterDni == letter) {
+                if letterDni == letter {
                     return true
-                }
-                else {
+                } else {
                     return false
                 }
             } else {
                 return false
             }
-        }
-        else {
+        } else {
             return false
         }
     }
     
-    func validateCharsForDNI(_ value: String) -> Bool{
+    func validateCharsForDNI(_ value: String) -> Bool {
         return self.validateRegex(value, regex: "[0-9]{8}[A-Za-z]")
     }
     
-    func validateCharsForNIE(_ value : String) -> Bool {
-        return self.validateRegex(value,regex: "^[KkLlMmXxYyZz]{1}[0-9]{7}[a-zA-Z]{1}$")
+    func validateCharsForNIE(_ value: String) -> Bool {
+        return self.validateRegex(value, regex: "^[KkLlMmXxYyZz]{1}[0-9]{7}[a-zA-Z]{1}$")
     }
     
     func validateRegex (_ value: String, regex: String) -> Bool {
-        let regex = try! NSRegularExpression(pattern: regex,
-                                             options: [.caseInsensitive])
+        guard let regex = try? NSRegularExpression(pattern: regex,
+                                                   options: [.caseInsensitive]) else { return false}
+        
+        
         return (regex.matchesString(value))
     }
 }

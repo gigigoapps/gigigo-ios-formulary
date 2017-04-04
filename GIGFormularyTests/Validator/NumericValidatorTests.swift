@@ -31,7 +31,7 @@ class NumericValidatorTests: XCTestCase {
         XCTAssertFalse(self.validator.validate(nil))
         XCTAssertFalse(self.validator.validate("" as AnyObject?))
         let dic = [String: String]()
-        XCTAssertFalse(self.validator.validate(dic as AnyObject?));
+        XCTAssertFalse(self.validator.validate(dic as AnyObject?))
     }
     
     func test_validation_optional() {
@@ -39,7 +39,7 @@ class NumericValidatorTests: XCTestCase {
         XCTAssertTrue(self.validator.validate(nil))
         XCTAssertTrue(self.validator.validate("" as AnyObject?))
         let dic = [String: String]()
-        XCTAssertFalse(self.validator.validate(dic as AnyObject?));
+        XCTAssertFalse(self.validator.validate(dic as AnyObject?))
     }
     
     func test_numeric_validation() {

@@ -25,56 +25,56 @@ class FormFieldModelTests: XCTestCase {
     
     // MARK: Mandatory generic  -  FormFieldModel
 
-    func test_parseJson_FormFieldModel_with_json_not_valid(){
+    func test_parseJson_FormFieldModel_with_json_not_valid() {
         let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
-            XCTAssertThrowsError(try formFieldModelResult.parseDictionary(["":("" as AnyObject?)!]))
+            XCTAssertThrowsError(try formFieldModelResult.parseDictionary(["": ("" as AnyObject?)!]))
         }
     }
     
-    func test_parseJson_FormFieldModel_with_json_not_valid_And_No_All_Mandatory_Element(){
+    func test_parseJson_FormFieldModel_with_json_not_valid_And_No_All_Mandatory_Element() {
         let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
-            XCTAssertThrowsError(try formFieldModelResult.parseDictionary(["template":("" as AnyObject?)!]))
+            XCTAssertThrowsError(try formFieldModelResult.parseDictionary(["template": ("" as AnyObject?)!]))
         }
     }
     
-    func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_empty(){
+    func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_empty() {
         let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
-            let dic:[String: AnyObject] = ["type":("" as AnyObject?)!,
-                       "label":"" as AnyObject,
-                       "key":"" as AnyObject]
+            let dic: [String: AnyObject] = ["type": ("" as AnyObject?)!,
+                       "label": "" as AnyObject,
+                       "key": "" as AnyObject]
             
             XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic))
         }
     }
     
-    func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_with_incorrect_type(){
+    func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_with_incorrect_type() {
         let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
-            let dic:[String: AnyObject] = ["type":0 as AnyObject,
-                                           "label":"aa" as AnyObject,
-                                           "key":"aa" as AnyObject]
+            let dic: [String: AnyObject] = ["type": 0 as AnyObject,
+                                           "label": "aa" as AnyObject,
+                                           "key": "aa" as AnyObject]
             
             XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic))
         }
         do {            
-            let key = ["asa":"asdas"] as [String : Any]
-            let dic2:[String: AnyObject] = ["type":"aa" as AnyObject,
-                                           "label":"aa" as AnyObject,
+            let key = ["asa": "asdas"] as [String : Any]
+            let dic2: [String: AnyObject] = ["type": "aa" as AnyObject,
+                                           "label": "aa" as AnyObject,
                                            "key": key as AnyObject]
             
             XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic2))
         }
     }
 
-    func test_parseJson_FormFieldModel_with_json_Valid_And_All_Mandatory_Element(){
+    func test_parseJson_FormFieldModel_with_json_Valid_And_All_Mandatory_Element() {
         let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
-            let dic:[String: AnyObject] = ["type":"tipo" as AnyObject,
-                                           "label":"titulo" as AnyObject,
-                                           "key":"clave" as AnyObject]
+            let dic: [String: AnyObject] = ["type": "tipo" as AnyObject,
+                                           "label": "titulo" as AnyObject,
+                                           "key": "clave" as AnyObject]
             
             XCTAssertNotNil(try formFieldModelResult.parseDictionary(dic))
         }
@@ -82,30 +82,30 @@ class FormFieldModelTests: XCTestCase {
     
     // MARK: Styles
     
-    func test_parseJson_FormFieldModel_with_json_valid_And_All_Mandatory_Element_with_styles_empty(){
+    func test_parseJson_FormFieldModel_with_json_valid_And_All_Mandatory_Element_with_styles_empty() {
         let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             let styles = [AnyObject]()
             
-            let dic:[String: AnyObject] = ["type":"tipo" as AnyObject,
-                                           "label":"titulo" as AnyObject,
-                                           "key":"clave" as AnyObject,
-                                           "style":styles as AnyObject]
+            let dic: [String: AnyObject] = ["type": "tipo" as AnyObject,
+                                           "label": "titulo" as AnyObject,
+                                           "key": "clave" as AnyObject,
+                                           "style": styles as AnyObject]
             
             XCTAssertNotNil(try formFieldModelResult.parseDictionary(dic))
         }
     }
     
-    func test_parseJson_FormFieldModel_with_json_valid_And_All_Mandatory_Element_with_styles(){
+    func test_parseJson_FormFieldModel_with_json_valid_And_All_Mandatory_Element_with_styles() {
         let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
-            let styles = ["backgroundColorField":"#ff374b",
-                          "sizeTitle":12] as [String : Any]
+            let styles = ["backgroundColorField": "#ff374b",
+                          "sizeTitle": 12] as [String : Any]
             
-            let dic:[String: AnyObject] = ["type":"tipo" as AnyObject,
-                                           "label":"titulo" as AnyObject,
-                                           "key":"clave" as AnyObject,
-                                           "style":styles as AnyObject]
+            let dic: [String: AnyObject] = ["type": "tipo" as AnyObject,
+                                           "label": "titulo" as AnyObject,
+                                           "key": "clave" as AnyObject,
+                                           "style": styles as AnyObject]
             
             XCTAssertNotNil(try formFieldModelResult.parseDictionary(dic))
             XCTAssertTrue(formFieldModelResult.style?.backgroundColorField == UIColor(fromHexString: "#ff374b"))
@@ -114,90 +114,98 @@ class FormFieldModelTests: XCTestCase {
     
     // MARK: Options
     
-    func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_options_empty(){
+    func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_options_empty() {
         let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             let listOptions = [[]]
             
-            let dic:[String: AnyObject] = ["type":"tipo" as AnyObject,
-                                           "label":"titulo" as AnyObject,
-                                           "key":"clave" as AnyObject,
-                                           "listOptions":listOptions as AnyObject]
+            let dic: [String: AnyObject] = ["type": "tipo" as AnyObject,
+                                           "label": "titulo" as AnyObject,
+                                           "key": "clave" as AnyObject,
+                                           "listOptions": listOptions as AnyObject]
             
             XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic))
         }
     }
     
-    func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_options_incorrect_type(){
+    func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_options_incorrect_type() {
         let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             let listOptions = ["aa"]
             
-            let dic:[String: AnyObject] = ["type":"tipo" as AnyObject,
-                                           "label":"titulo" as AnyObject,
-                                           "key":"clave" as AnyObject,
-                                           "listOptions":listOptions as AnyObject]
+            let dic: [String: AnyObject] = ["type": "tipo" as AnyObject,
+                                           "label": "titulo" as AnyObject,
+                                           "key": "clave" as AnyObject,
+                                           "listOptions": listOptions as AnyObject]
             
             XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic))
         }
     }
     
-    func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_options_element_empty(){
+    func test_parseJson_FormFieldModel_with_json_not_valid_And_All_Mandatory_Element_options_element_empty() {
         let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
-            let listOptions = [["key":""]]
+            let listOptions = [["key": ""]]
             
-            let dic:[String: AnyObject] = ["type":"tipo" as AnyObject,
-                                           "label":"titulo" as AnyObject,
-                                           "key":"clave" as AnyObject,
-                                           "listOptions":listOptions as AnyObject]
-            
-            XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic))
-        }
-        do {
-            let listOptions = ["value":""]
-            
-            let dic:[String: AnyObject] = ["type":"tipo" as AnyObject,
-                                           "label":"titulo" as AnyObject,
-                                           "key":"clave" as AnyObject,
-                                           "listOptions":listOptions as AnyObject]
+            let dic: [String: AnyObject] = ["type": "tipo" as AnyObject,
+                                           "label": "titulo" as AnyObject,
+                                           "key": "clave" as AnyObject,
+                                           "listOptions": listOptions as AnyObject]
             
             XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic))
         }
         do {
-            let listOptions = ["key":"",
-                               "value":""]
+            let listOptions = ["value": ""]
             
-            let dic1:[String: AnyObject] = ["type":"tipo" as AnyObject,
-                                            "label":"titulo" as AnyObject,
-                                            "key":"clave" as AnyObject,
-                                            "listOptions":listOptions as AnyObject]
+            let dic: [String: AnyObject] = ["type": "tipo" as AnyObject,
+                                           "label": "titulo" as AnyObject,
+                                           "key": "clave" as AnyObject,
+                                           "listOptions": listOptions as AnyObject]
+            
+            XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic))
+        }
+        do {
+            let listOptions = ["key": "",
+                               "value": ""]
+            
+            let dic1: [String: AnyObject] = ["type": "tipo" as AnyObject,
+                                            "label": "titulo" as AnyObject,
+                                            "key": "clave" as AnyObject,
+                                            "listOptions": listOptions as AnyObject]
             
             XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic1))
         }
         do {
-            let listOptions = [["key":"KeyNoSelected","value":""],
-                               ["key":"clave1","value":"titulo primer elemento"]]
+            let listOptions = [
+                [
+                    "key": "KeyNoSelected",
+                    "value": ""
+                ],
+                [
+                    "key": "clave1",
+                    "value": "titulo primer elemento"
+                ]
+            ]
             
-            let dic1:[String: AnyObject] = ["type":"tipo" as AnyObject,
-                                            "label":"titulo" as AnyObject,
-                                            "key":"clave" as AnyObject,
-                                            "listOptions":listOptions as AnyObject]
+            let dic1: [String: AnyObject] = ["type": "tipo" as AnyObject,
+                                            "label": "titulo" as AnyObject,
+                                            "key": "clave" as AnyObject,
+                                            "listOptions": listOptions as AnyObject]
             
             XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic1))
         }
     }
     
-    func test_parseJson_FormFieldModel_with_json_valid_And_All_Mandatory_Element_options(){
+    func test_parseJson_FormFieldModel_with_json_valid_And_All_Mandatory_Element_options() {
         let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
-            let listOptions = [["key":"KeyNoSelected","value":"elige un elemento"],
-                               ["key":"clave1","value":"titulo primer elemento"]]
+            let listOptions = [["key": "KeyNoSelected", "value": "elige un elemento"],
+                               ["key": "clave1", "value": "titulo primer elemento"]]
             
-            let dic:[String: AnyObject] = ["type":"tipo" as AnyObject,
-                                           "label":"titulo" as AnyObject,
-                                           "key":"clave" as AnyObject,
-                                           "listOptions":listOptions as AnyObject]
+            let dic: [String: AnyObject] = ["type": "tipo" as AnyObject,
+                                           "label": "titulo" as AnyObject,
+                                           "key": "clave" as AnyObject,
+                                           "listOptions": listOptions as AnyObject]
             
             XCTAssertNotNil(try formFieldModelResult.parseDictionary(dic))
         }

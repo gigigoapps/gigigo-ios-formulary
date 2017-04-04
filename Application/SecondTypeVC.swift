@@ -10,7 +10,7 @@ import UIKit
 import GIGFormulary
 import GIGLibrary
 
-class SecondTypeVC: UIViewController, PFormulary  {
+class SecondTypeVC: UIViewController, PFormulary {
     
     @IBOutlet var button: UIButton!
     @IBOutlet var scrollView: UIScrollView!
@@ -99,7 +99,7 @@ class SecondTypeVC: UIViewController, PFormulary  {
  
         
         //-- Create form Type with Array Dic --
-        let fields = self.prepareField() as! [[String: AnyObject]]
+        guard let fields = self.prepareField() as? [[String: AnyObject]] else { return }
         let viewContainterForm = self.formulary.start(self.button, listItems: fields)
         self.formulary.delegate = self
         self.formulary.populateData(
@@ -117,9 +117,9 @@ class SecondTypeVC: UIViewController, PFormulary  {
         
         //-- Autolayout --
         gig_autoresize(viewContainterForm, false)
-        gig_layout_fit_horizontal(viewContainterForm);
-        gig_constrain_width(viewContainterForm, UIScreen.main.bounds.size.width);
-        gig_layout_top(viewContainterForm, 0);
+        gig_layout_fit_horizontal(viewContainterForm)
+        gig_constrain_width(viewContainterForm, UIScreen.main.bounds.size.width)
+        gig_layout_top(viewContainterForm, 0)
         gig_layout_bottom(viewContainterForm, 0)
     }
     
@@ -139,8 +139,10 @@ class SecondTypeVC: UIViewController, PFormulary  {
     
     // MARK: Actions
     @IBAction func loadError(_ sender: Any) {
-        let dicError:[String: AnyObject] = ["pickerKey" : "error 1" as AnyObject,
-                                            "key": "error 2" as AnyObject]
-        self.formulary.loadError(dicError as! [String : String])
+        let dicError = [
+            "pickerKey": "error 1" as AnyObject,
+            "key": "error 2" as AnyObject
+            ] as [String: String]
+        self.formulary.loadError(dicError)
     }
 }

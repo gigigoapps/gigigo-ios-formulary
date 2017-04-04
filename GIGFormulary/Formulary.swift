@@ -21,7 +21,7 @@ public extension PFormulary {
 
 open class Formulary: PFormController {
     open static let shared = Formulary()
-    open var delegate: PFormulary?
+    open var formularyOutput: PFormulary?
     
     //-- Private Var --
     var formController: FormController?
@@ -39,7 +39,7 @@ open class Formulary: PFormController {
             bundle: self.bundle
         )
         self.formController!.loadFieldsFromJSONFile(jsonFile)
-        self.formController!.delegate = self
+        self.formController!.formControllerOutput = self
     }
     
     open func start(_ viewContainerFormulary: UIView, listItems: [[String: AnyObject]]) {
@@ -48,7 +48,7 @@ open class Formulary: PFormController {
             bundle: self.bundle
         )
         self.formController!.loadFieldsFromJSONDictionary(listItems)
-        self.formController!.delegate = self
+        self.formController!.formControllerOutput = self
     }
     
     open func start(_ button: UIButton, jsonFile: String) -> UIView {
@@ -57,18 +57,18 @@ open class Formulary: PFormController {
             bundle: self.bundle
         )
         self.formController!.loadFieldsFromJSONFile(jsonFile)
-        self.formController!.delegate = self
+        self.formController!.formControllerOutput = self
         
         return self.formController!.recoverView()
     }
     
-    open func start(_ button: UIButton, listItems: [[String: AnyObject]]) -> UIView  {
+    open func start(_ button: UIButton, listItems: [[String: AnyObject]]) -> UIView {
         self.formController = FormController(
             button: button,
             bundle: self.bundle
         )
         self.formController!.loadFieldsFromJSONDictionary(listItems)
-        self.formController!.delegate = self
+        self.formController!.formControllerOutput = self
         
         return self.formController!.recoverView()
     }
@@ -112,14 +112,14 @@ open class Formulary: PFormController {
     // MARK: PFormulary
 
     open func recoverFormModel(_ formValues: [String : AnyObject]) {
-        self.delegate?.recoverFormModel(formValues)
+        self.formularyOutput?.recoverFormModel(formValues)
     }
     
     open func userDidTapLink(_ key: String) {
-        self.delegate?.userDidTapLink(key)
+        self.formularyOutput?.userDidTapLink(key)
     }
     
     open func fieldFocus(_ frame: CGRect) {
-        self.delegate?.fieldFocus(frame: frame)
+        self.formularyOutput?.fieldFocus(frame: frame)
     }
 }

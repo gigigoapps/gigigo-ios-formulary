@@ -72,8 +72,7 @@ class RegexValidatorTests: XCTestCase {
             
             XCTAssertTrue(self.validator.mandatory)
             XCTAssertTrue(self.validator.regex?.pattern == regexp.pattern)
-        }
-        catch {
+        } catch {
             
         }
     }

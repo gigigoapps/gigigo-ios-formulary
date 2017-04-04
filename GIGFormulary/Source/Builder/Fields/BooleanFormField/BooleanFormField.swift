@@ -43,11 +43,10 @@ class BooleanFormField: FormField {
     
     override func validate() -> Bool {
         let status = super.validate()
-        if (!status) {
+        if !status {
             self.errorLabel.text = self.formFieldM?.textsError.textError
             self.showError()
-        }
-        else {
+        } else {
             self.hideError()
         }
         
@@ -74,7 +73,11 @@ class BooleanFormField: FormField {
             return self.buttonAccept.isSelected as AnyObject?
         }
         set {
-            self.buttonAccept.isSelected = newValue as! Bool
+            guard let boolValue = newValue as? Bool else {
+                self.chooseImage()
+                return
+            }
+            self.buttonAccept.isSelected = boolValue
             self.chooseImage()
         }
     }
@@ -110,11 +113,11 @@ class BooleanFormField: FormField {
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label
         self.errorLabel.text = formFieldM.textsError.textError
-        if (formFieldM.value != nil && (formFieldM.value as? Bool)!) {
+        if formFieldM.value != nil && (formFieldM.value as? Bool)! {
             self.changeState()
         }
         
-        if (self.existLink(formFieldM.label!)) {
+        if self.existLink(formFieldM.label!) {
             let getLinks = self.getListLinks(formFieldM.label!)
             
             let attributes = [NSForegroundColorAttributeName: UIColor.black,
@@ -125,7 +128,7 @@ class BooleanFormField: FormField {
             let handler = {
                 (hyperLabel: FRHyperLabel?, substring: String?) -> Void in
                 if let key = substring {
-                    self.delegate?.userDidTapLink(key)
+                    self.formFieldOutput?.userDidTapLink(key)
                 }                
             }
             
@@ -138,43 +141,42 @@ class BooleanFormField: FormField {
     }
     
     fileprivate func loadMandatory(_ isMandatory: Bool) {
-        if (isMandatory) {
+        if isMandatory {
             self.widthMandatoryImageConstraint.constant = 30
-        }
-        else {
+        } else {
             self.widthMandatoryImageConstraint.constant = 0
         }
     }
     
     fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel) {
         let styleField = formFieldM.style
-        if (styleField != nil) {
-            if (styleField!.mandatoryIcon != nil) {
+        if styleField != nil {
+            if styleField!.mandatoryIcon != nil {
                 self.mandotoryImage.image = styleField?.mandatoryIcon
             }
-            if (styleField!.backgroundColorField != nil) {
+            if styleField!.backgroundColorField != nil {
                 self.viewContainer.backgroundColor = styleField!.backgroundColorField!
             }
-            if (styleField!.titleColor != nil) {
+            if styleField!.titleColor != nil {
                 self.titleLabel.textColor = styleField!.titleColor!
             }
-            if (styleField!.errorColor != nil) {
+            if styleField!.errorColor != nil {
                 self.errorLabel.textColor = styleField!.errorColor!
             }
-            if (styleField!.fontTitle != nil) {
+            if styleField!.fontTitle != nil {
                 self.titleLabel.font = styleField?.fontTitle
             }
-            if (styleField!.fontError != nil) {
+            if styleField!.fontError != nil {
                 self.errorLabel.font = styleField?.fontError
             }
-            if (styleField!.align != nil) {
+            if styleField!.align != nil {
                 self.titleLabel.textAlignment = styleField!.align!
             }
-            if (styleField!.checkBoxOn != nil) {
+            if styleField!.checkBoxOn != nil {
                 self.checkBoxOn = styleField!.checkBoxOn!
                 self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
             }
-            if (styleField!.checkBoxOff != nil) {
+            if styleField!.checkBoxOff != nil {
                 self.checkBoxOff = styleField!.checkBoxOff!
                 self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
             }
@@ -182,10 +184,9 @@ class BooleanFormField: FormField {
     }
     
     fileprivate func changeState() {
-        if (self.buttonAccept.isSelected) {
+        if self.buttonAccept.isSelected {
             self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
-        }
-        else {
+        } else {
             self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState())
             self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
         }
@@ -193,17 +194,16 @@ class BooleanFormField: FormField {
     }
     
     fileprivate func chooseImage() {
-        if (self.buttonAccept.isSelected) {
+        if self.buttonAccept.isSelected {
             self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
-        }
-        else {
+        } else {
             self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
         }
     }
     
     // MARK: Parse
     
-    fileprivate func existLink(_ text : String) -> Bool {
+    fileprivate func existLink(_ text: String) -> Bool {
         // TODO EDU otra opcion // return text.characters.index(of: "{") != nil
         if text.characters.index(of: "{") != nil {
             return true
@@ -211,7 +211,7 @@ class BooleanFormField: FormField {
         return false
     }
     
-    fileprivate func getListLinks(_ text : String) -> ([String], String){
+    fileprivate func getListLinks(_ text: String) -> ([String], String) {
         let newStringKey = text.replacingOccurrences(of: "{* ", with: "{* #", options: .literal, range: nil)
         let firstPart = newStringKey.components(separatedBy: "{* ")
         let localizedStringPieces = self.separeteString(listPart: firstPart)
@@ -219,13 +219,11 @@ class BooleanFormField: FormField {
         var listLink = [String]()
         var allWords = ""
         for word in localizedStringPieces {
-            if (word.hasPrefix("#"))
-            {
+            if word.hasPrefix("#") {
                 let link = word.replacingOccurrences(of: "#", with: "", options: .literal, range: nil)
                 listLink.append(link)
                 allWords += link
-            }
-            else {
+            } else {
                 allWords += word
             }
         }
@@ -237,7 +235,7 @@ class BooleanFormField: FormField {
         var auxList = [String]()
         for text in listPart {
             let findPart = text.components(separatedBy: " *}")
-            auxList = auxList + findPart
+            auxList += findPart
         }
         return auxList
     }
@@ -249,13 +247,12 @@ class BooleanFormField: FormField {
         self.changeState()
     }
     
-    func labelAction(gr:UITapGestureRecognizer)
-    {
-        self.delegate?.userDidTapLink((self.formFieldM?.key)!)
+    func labelAction(grTap: UITapGestureRecognizer) {
+        self.formFieldOutput?.userDidTapLink((self.formFieldM?.key)!)
     }
     
     // MARK: UIResponser (Overrride)
-    override var canBecomeFirstResponder : Bool {
+    override var canBecomeFirstResponder: Bool {
         return false
     }
 }

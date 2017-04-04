@@ -7,7 +7,7 @@
 //
 
 import UIKit
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l < r
@@ -18,7 +18,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+fileprivate func >= <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l >= r
@@ -30,17 +30,17 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class AgeValidator: Validator {
     
-    override func validate(_ value: AnyObject?) -> Bool{
-        if (!super.validate(value))  {
+    override func validate(_ value: AnyObject?) -> Bool {
+        if !super.validate(value) {
             return false
         }
         let date = value as? Date
         
-        if (date == nil && !self.mandatory) {
+        if date == nil && !self.mandatory {
             return true
         }
         
-        if (date != nil) {
+        if date != nil {
             return self.isValidAge(date!)
         }
         
@@ -49,23 +49,20 @@ class AgeValidator: Validator {
     
     // MARK: Private Method
     
-    fileprivate func isValidAge(_ birthday: Date) -> Bool{
+    fileprivate func isValidAge(_ birthday: Date) -> Bool {
         return calculateAge(birthday) >= self.minAge ? true : false
     }
     
     fileprivate func calculateAge (_ birthday: Date) -> NSInteger {        
-        let calendar : Calendar = Calendar.current
-        let unitFlags : NSCalendar.Unit = [NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day]
-        let dateComponentNow : DateComponents = (calendar as NSCalendar).components(unitFlags, from: Date())
-        let dateComponentBirth : DateComponents = (calendar as NSCalendar).components(unitFlags, from: birthday)
+        let calendar: Calendar = Calendar.current
+        let unitFlags: NSCalendar.Unit = [NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day]
+        let dateComponentNow: DateComponents = (calendar as NSCalendar).components(unitFlags, from: Date())
+        let dateComponentBirth: DateComponents = (calendar as NSCalendar).components(unitFlags, from: birthday)
         
-        if ( (dateComponentNow.month < dateComponentBirth.month) ||
-            ((dateComponentNow.month == dateComponentBirth.month) && (dateComponentNow.day < dateComponentBirth.day))
-            )
-        {
+        if (dateComponentNow.month < dateComponentBirth.month) ||
+            (dateComponentNow.month == dateComponentBirth.month) && (dateComponentNow.day < dateComponentBirth.day) {
             return dateComponentNow.year! - dateComponentBirth.year! - 1
-        }
-        else {
+        } else {
             return dateComponentNow.year! - dateComponentBirth.year!
         }
     }

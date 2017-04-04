@@ -14,22 +14,20 @@ class FormFieldOptionsModel: NSObject {
     
     // MARK: Public methods
     
-    class func parseListOptionsJson(_ json:[[String: AnyObject]]) throws ->[FormFieldOptionsModel] {
+    class func parseListOptionsJson(_ json: [[String: AnyObject]]) throws ->[FormFieldOptionsModel] {
         do {
             return try (json.map(parseOptionsJson))              
-        }
-        catch (let throwError){
+        } catch (let throwError) {
             throw throwError
         }
     }
     
-    class func parseOptionsJson(_ json: [String: AnyObject]) throws -> FormFieldOptionsModel{
+    class func parseOptionsJson(_ json: [String: AnyObject]) throws -> FormFieldOptionsModel {
         let activity = FormFieldOptionsModel()
         
         do {
             return try self.parseOption(json, activity: activity)
-        }
-        catch (let throwError){
+        } catch (let throwError) {
             throw throwError
         }
     }
@@ -38,11 +36,11 @@ class FormFieldOptionsModel: NSObject {
         
         //== PREPARE DATA ==
         //-- Mandatory --
-        guard let key = json["key"] as? String , key.characters.count > 0 else {
+        guard let key = json["key"] as? String, key.characters.count > 0 else {
             print("❌❌❌ FormFieldOptionsModel:: key value Not Found")
             throw ThrowError.mandatoryElementNotFound
         }
-        guard let value = json["value"] as? String , value.characters.count > 0 else {
+        guard let value = json["value"] as? String, value.characters.count > 0 else {
             print("❌❌❌ FormFieldOptionsModel:: value Options Not Found")
             throw ThrowError.mandatoryElementNotFound
         }

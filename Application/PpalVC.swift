@@ -30,7 +30,6 @@ class PpalVC: UIViewController {
             LogWarn("ThirdTypeVC not found")
             return nil
         }
-        
 
         let loginFormNavigation = UINavigationController(rootViewController: formVC)
         loginFormNavigation.navigationBar.appareanceJanrain()
@@ -38,14 +37,12 @@ class PpalVC: UIViewController {
     }
 }
 
-
 extension UINavigationBar {
     func appareanceJanrain() {
         self.barTintColor = UIColor.red
         self.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
 }
-
 
 extension UIApplication {
     class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {

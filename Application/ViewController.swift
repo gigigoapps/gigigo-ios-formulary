@@ -66,9 +66,11 @@ class ViewController: UIViewController, PFormulary {
     // MARK: Action
     
     @IBAction func loadError(_ sender: Any) {
-        let dicError:[String: AnyObject] = ["b" : "error 1" as AnyObject,
-                                            "f": "error 2" as AnyObject]
-        self.formulary.loadError(dicError as! [String : String])
+        let dicError = [
+            "b": "error 1",
+            "f": "error 2"
+        ] as [String : String]
+        self.formulary.loadError(dicError)
     }
     
     // MARK: PFormController

@@ -7,17 +7,19 @@
 //
 
 import UIKit
+import GIGLibrary
 
 class BoolValidator: Validator {
     
-    override func validate(_ value: AnyObject?) -> Bool{
-        if (!super.validate(value)) {
+    override func validate(_ value: AnyObject?) -> Bool {
+        if !super.validate(value) {
             return false
         }
         
         if self.mandatory {
-            if (value is Bool) {
-                return value as! Bool
+            if value is Bool {
+                guard let valueBool = value as? Bool else {LogWarn("Parse value Bool Error, return false"); return false }
+                return valueBool
             }
         }
         
