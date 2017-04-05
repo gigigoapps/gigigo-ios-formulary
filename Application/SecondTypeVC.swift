@@ -59,6 +59,18 @@ class SecondTypeVC: UIViewController, PFormulary  {
                 "mandatory": true as AnyObject
                 ] as AnyObject,
             [
+                "key": ("indexKEY" as AnyObject),
+                "type": ("index" as AnyObject),
+                "label": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein." as AnyObject)
+                ] as AnyObject,
+            [
+                "key": ("booleanoKey2" as AnyObject),
+                "type": ("boolean" as AnyObject),
+                "label": ("Bolean sin link" as AnyObject),
+                "validator": ("bool" as AnyObject),
+                "mandatory": true as AnyObject
+                ] as AnyObject,
+            [
                 "key": ("textoKey99" as AnyObject),
                 "type": ("text" as AnyObject),
                 "label": ("text99" as AnyObject),
@@ -70,18 +82,6 @@ class SecondTypeVC: UIViewController, PFormulary  {
                 "label": ("text88" as AnyObject),
                 "mandatory": (true as AnyObject)
                 ] as AnyObject,
-            [
-                "key": ("indexKEY" as AnyObject),
-                "type": ("index" as AnyObject),
-                "label": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein." as AnyObject)
-                ] as AnyObject,
-            [
-                "key": ("booleanoKey2" as AnyObject),
-                "type": ("boolean" as AnyObject),
-                "label": ("Bolean sin link" as AnyObject),
-                "validator": ("bool" as AnyObject),
-                "mandatory": true as AnyObject
-                ] as AnyObject
         ]
         
         return emailField
@@ -126,15 +126,15 @@ class SecondTypeVC: UIViewController, PFormulary  {
     // MARK: PFormController
     
     func recoverFormModel(_ formValues: [String : AnyObject]) {
-        
+        print("RECOVER MODE: \(formValues)")
     }
     
     func userDidTapLink(_ key: String) {
         print("RECOVER LINK: \(key)")
     }
     
-    func fieldFocus(frame: CGRect) {
-        print("frame: \(frame)")
+    func fieldFocus(frame: CGRect, key: String?) {
+        print("frame: \(frame) and key: \(String(describing: key!))")
     }
     
     // MARK: Actions

@@ -11,7 +11,7 @@ import UIKit
 protocol PFormController {
     func recoverFormModel(_ formValues: [String: AnyObject])
     func userDidTapLink(_ key: String)
-    func fieldFocus(_ frame: CGRect)
+    func fieldFocus(frame: CGRect, key: String?)
 }
 
 class FormController: NSObject, PFormField, PFormBuilderViews {
@@ -197,7 +197,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     // MARK: PTextFormField
     func scrollRectToVisible(_ field: FormField) {
         self.formViews?.scrollRectToVisible(field)
-        self.delegate?.fieldFocus(field.frame)
+        self.delegate?.fieldFocus(frame: field.frame, key: field.formFieldM?.key)
     }
     
     func formFieldDidFinish(_ field: FormField) {
@@ -205,7 +205,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         self.formViews?.changeFocusField(nextField)
         
         if (nextField == nil) {
-             let _ = self.validateFields()
+            self.sendButtonAction()
         }
     }
     

@@ -11,12 +11,12 @@ import UIKit
 public protocol PFormulary {
     func recoverFormModel(_ formValues: [String: AnyObject])
     func userDidTapLink(_ key: String)
-    func fieldFocus(frame: CGRect)
+    func fieldFocus(frame: CGRect, key: String?)
 }
 
 public extension PFormulary {
     func userDidTapLink(_ key: String) {}
-    func fieldFocus(frame: CGRect) {}
+    func fieldFocus(frame: CGRect, key: String?) {}
 }
 
 open class Formulary: PFormController {
@@ -119,7 +119,7 @@ open class Formulary: PFormController {
         self.delegate?.userDidTapLink(key)
     }
     
-    open func fieldFocus(_ frame: CGRect) {
-        self.delegate?.fieldFocus(frame: frame)
+    open func fieldFocus(frame: CGRect, key: String?) {
+        self.delegate?.fieldFocus(frame: frame, key: key)
     }
 }
