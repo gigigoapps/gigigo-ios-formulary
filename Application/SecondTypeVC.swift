@@ -57,7 +57,19 @@ class SecondTypeVC: UIViewController, PFormulary {
                 "label": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein."),
                 "validator": ("bool"),
                 "mandatory": true
-                ],
+            ],
+            [
+                "key": ("indexKEY"),
+                "type": ("index"),
+                "label": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein.")
+            ],
+            [
+                "key": ("booleanoKey2"),
+                "type": ("boolean"),
+                "label": ("Bolean sin link"),
+                "validator": ("bool"),
+                "mandatory": true
+            ],
             [
                 "key": ("textoKey99"),
                 "type": ("text"),
@@ -69,18 +81,6 @@ class SecondTypeVC: UIViewController, PFormulary {
                 "type": ("text"),
                 "label": ("text88"),
                 "mandatory": (true)
-                ],
-            [
-                "key": ("indexKEY"),
-                "type": ("index"),
-                "label": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein.")
-                ],
-            [
-                "key": ("booleanoKey2"),
-                "type": ("boolean"),
-                "label": ("Bolean sin link"),
-                "validator": ("bool"),
-                "mandatory": true
                 ]
         ]
         
@@ -126,15 +126,16 @@ class SecondTypeVC: UIViewController, PFormulary {
     // MARK: PFormController
     
     func recoverFormModel(_ formValues: [AnyHashable : Any]) {
-        
+        print("FORMVALUES: \(formValues)")
+        self.view.endEditing(true)
     }
     
     func userDidTapLink(_ key: String) {
         print("RECOVER LINK: \(key)")
     }
     
-    func fieldFocus(frame: CGRect) {
-        print("frame: \(frame)")
+    func fieldFocus(frame: CGRect, key: String?) {
+        print("frame: \(frame) , and Key: \(String(describing: key!))")
     }
     
     // MARK: Actions

@@ -17,6 +17,18 @@
               "type": "boolean",
               "key": "globalOpt",
               "label": "I want to receive Coca-Cola communications"
+              },
+              {
+              "key": "a1",
+              "type": "text",
+              "label": "a1",
+              "placeHolder": "a1"
+              },
+              {
+              "key": "a2",
+              "type": "text",
+              "label": "a2",
+              "placeHolder": "a2"
               }
         ]
 }

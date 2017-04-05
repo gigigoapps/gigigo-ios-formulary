@@ -12,7 +12,7 @@ import GIGLibrary
 protocol PFormController {
     func recoverFormModel(_ formValues: [AnyHashable: Any])
     func userDidTapLink(_ key: String)
-    func fieldFocus(_ frame: CGRect)
+    func fieldFocus(frame: CGRect, key: String?)
 }
 
 class FormController: NSObject, PFormField, PFormBuilderViews {
@@ -195,7 +195,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     // MARK: PTextFormField
     func scrollRectToVisible(_ field: FormField) {
         self.formViews?.scrollRectToVisible(field)
-        self.formControllerOutput?.fieldFocus(field.frame)
+        self.formControllerOutput?.fieldFocus(frame: field.frame, key: field.formFieldM?.key)
     }
     
     func formFieldDidFinish(_ field: FormField) {
@@ -203,7 +203,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         self.formViews?.changeFocusField(nextField)
         
         if nextField == nil {
-             let _ = self.validateFields()
+            self.sendButtonAction()
         }
     }
     
