@@ -100,4 +100,26 @@ class LengthValidatorTests: XCTestCase {
         XCTAssertTrue(self.validator.validate("123"))
         XCTAssertFalse(self.validator.validate("1234"))
     }
+    
+    func test_lengthValidator_whenControlCharecter_returnSuccess() {
+        self.validator = LengthValidator(minLength: 2, maxLength: 6)
+        self.validator.mandatory = false
+        
+        XCTAssertTrue(self.validator.controlCharacters("casa"))
+    }
+    
+    func test_lengthValidator_whenControlCharecterIsMandatory_returnSuccess() {
+        self.validator = LengthValidator(minLength: 2, maxLength: 6)
+        self.validator.mandatory = true
+        
+        XCTAssertTrue(self.validator.controlCharacters("casa"))
+    }
+    
+    func test_lengthValidator_whenControlCharecterIsMandatory_returnError() {
+        self.validator = LengthValidator(minLength: 2, maxLength: 3)
+        self.validator.mandatory = true
+        
+        XCTAssertFalse(self.validator.controlCharacters("casa"))
+    }
+
 }

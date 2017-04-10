@@ -1,1 +1,2 @@
-github "gigigoapps/gigigo-ios-lib" "v2.3.0"
+github "Quick/Nimble" "v6.1.0"
+github "gigigoapps/gigigo-ios-lib" "v2.3.2"

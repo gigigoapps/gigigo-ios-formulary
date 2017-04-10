@@ -33,6 +33,33 @@ class FormBuilderFields: NSObject {
         self.initializeTypes()
     }
     
+    
+    // MARK: Public Method
+    
+    func fieldsFromJSONFile(_ file: String) -> [FormField] {
+        var listFormField = [FormField]()
+        let jsonRecover = Bundle.main.loadJSONFile(file, rootNode: "fields")
+        if jsonRecover != nil {
+            guard let listFormDic = jsonRecover as? [[AnyHashable: Any]] else { LogWarn("Parse error [[AnyHashable: Any]]"); return [] }
+            for fieldDic in listFormDic {
+                listFormField.append(self.createField(fieldDic))
+            }
+        } else {
+            print("❌❌❌ json fields Not Found")
+        }
+        
+        return listFormField
+    }
+    
+    func fieldsFromDictionary(_ listItems: [[AnyHashable: Any]]) -> [FormField] {
+        var listFormField = [FormField]()
+        for fieldDic in listItems {
+            listFormField.append(self.createField(fieldDic))
+        }
+        return listFormField
+    }
+    
+    
     // MARK: Private Method
     
     fileprivate func initializeTypes() {
@@ -109,30 +136,5 @@ class FormBuilderFields: NSObject {
         } else {
             return UIKeyboardType.default
         }
-    }
-    
-    // MARK: Public Method
-    
-    func fieldsFromJSONFile(_ file: String) -> [FormField] {
-        var listFormField = [FormField]()
-        let jsonRecover = Bundle.main.loadJSONFile(file, rootNode: "fields")
-        if jsonRecover != nil {
-            guard let listFormDic = jsonRecover as? [[AnyHashable: Any]] else { LogWarn("Parse error [[AnyHashable: Any]]"); return [] }
-            for fieldDic in listFormDic {
-                listFormField.append(self.createField(fieldDic))
-            }
-        } else {
-            print("❌❌❌ json fields Not Found")
-        }
-        
-        return listFormField
-    }
-    
-    func fieldsFromDictionary(_ listItems: [[AnyHashable: Any]]) -> [FormField] {
-        var listFormField = [FormField]()
-        for fieldDic in listItems {
-            listFormField.append(self.createField(fieldDic))
-        }
-        return listFormField
     }
 }

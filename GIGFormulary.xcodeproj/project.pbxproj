@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B1BC7161E9BC88A002F612B /* FormControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1BC7151E9BC88A002F612B /* FormControllerTests.swift */; };
+		7B1BC71C1E9BCBC2002F612B /* JSONMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1BC71B1E9BCBC2002F612B /* JSONMock.swift */; };
+		7B1BC71F1E9BCC66002F612B /* form1.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B1BC71E1E9BCC66002F612B /* form1.json */; };
+		7B1BC7211E9BD068002F612B /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1BC7201E9BD068002F612B /* Quick.framework */; };
+		7B1BC7251E9BD243002F612B /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7B1BC7201E9BD068002F612B /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7B1BC7271E9BD7CD002F612B /* populateForm1.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B1BC7261E9BD7CD002F612B /* populateForm1.json */; };
+		7B1BC7291E9BDC03002F612B /* errorForm1.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B1BC7281E9BDC03002F612B /* errorForm1.json */; };
+		7B1BC72D1E9BDEA0002F612B /* FormControllerOutputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1BC72C1E9BDEA0002F612B /* FormControllerOutputMock.swift */; };
 		7B6191D21DBF92EE00E3BC87 /* GIGLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B6191D51DBF935300E3BC87 /* GIGFormulary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82EF21D4B5DB800DC85F5 /* GIGFormulary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B6191D81DBF98FA00E3BC87 /* SecondTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6191D61DBF988C00E3BC87 /* SecondTypeVC.swift */; };
@@ -64,7 +72,6 @@
 		7BA9AD3D1E24F26B002FE4F6 /* IndexFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA9AD3C1E24F26B002FE4F6 /* IndexFormField.swift */; };
 		7BB82EF61D4B5DB800DC85F5 /* GIGFormulary.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BB82EF51D4B5DB800DC85F5 /* GIGFormulary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7BB82EFD1D4B5DB800DC85F5 /* GIGFormulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82EF21D4B5DB800DC85F5 /* GIGFormulary.framework */; };
-		7BB82F021D4B5DB800DC85F5 /* GIGFormularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB82F011D4B5DB800DC85F5 /* GIGFormularyTests.swift */; };
 		7BB82F131D4B5E2200DC85F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB82F121D4B5E2200DC85F5 /* AppDelegate.swift */; };
 		7BB82F151D4B5E2200DC85F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB82F141D4B5E2200DC85F5 /* ViewController.swift */; };
 		7BB82F181D4B5E2200DC85F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BB82F161D4B5E2200DC85F5 /* Main.storyboard */; };
@@ -114,6 +121,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				7B1BC7251E9BD243002F612B /* Quick.framework in CopyFiles */,
 				7BB82FAC1D4B753C00DC85F5 /* GIGLibrary.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +129,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7B1BC7151E9BC88A002F612B /* FormControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormControllerTests.swift; path = Components/FormControllerTests.swift; sourceTree = "<group>"; };
+		7B1BC7181E9BC930002F612B /* Cartfile.private */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
+		7B1BC71B1E9BCBC2002F612B /* JSONMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONMock.swift; path = Helpers/JSONMock.swift; sourceTree = "<group>"; };
+		7B1BC71E1E9BCC66002F612B /* form1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = form1.json; path = Json/form1.json; sourceTree = "<group>"; };
+		7B1BC7201E9BD068002F612B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		7B1BC7261E9BD7CD002F612B /* populateForm1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = populateForm1.json; path = Json/populateForm1.json; sourceTree = "<group>"; };
+		7B1BC7281E9BDC03002F612B /* errorForm1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = errorForm1.json; path = Json/errorForm1.json; sourceTree = "<group>"; };
+		7B1BC72C1E9BDEA0002F612B /* FormControllerOutputMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormControllerOutputMock.swift; path = "Mock/Delegate Output/FormControllerOutputMock.swift"; sourceTree = "<group>"; };
 		7B6191D61DBF988C00E3BC87 /* SecondTypeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondTypeVC.swift; sourceTree = "<group>"; };
 		7B676FF71E3892CE007ED7DD /* FRHyperLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRHyperLabel.h; sourceTree = "<group>"; };
 		7B676FF81E3892CE007ED7DD /* FRHyperLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRHyperLabel.m; sourceTree = "<group>"; };
@@ -178,7 +194,6 @@
 		7BB82EF51D4B5DB800DC85F5 /* GIGFormulary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GIGFormulary.h; sourceTree = "<group>"; };
 		7BB82EF71D4B5DB800DC85F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BB82EFC1D4B5DB800DC85F5 /* GIGFormularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GIGFormularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7BB82F011D4B5DB800DC85F5 /* GIGFormularyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIGFormularyTests.swift; sourceTree = "<group>"; };
 		7BB82F031D4B5DB800DC85F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BB82F101D4B5E2200DC85F5 /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BB82F121D4B5E2200DC85F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -209,6 +224,7 @@
 			files = (
 				7BB82F911D4B723D00DC85F5 /* GIGLibrary.framework in Frameworks */,
 				7BB82EFD1D4B5DB800DC85F5 /* GIGFormulary.framework in Frameworks */,
+				7B1BC7211E9BD068002F612B /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +238,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B1BC7171E9BC88E002F612B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7B1BC7151E9BC88A002F612B /* FormControllerTests.swift */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		7B1BC71A1E9BCBA7002F612B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7B1BC71B1E9BCBC2002F612B /* JSONMock.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		7B1BC71D1E9BCBD9002F612B /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				7B1BC71E1E9BCC66002F612B /* form1.json */,
+				7B1BC7261E9BD7CD002F612B /* populateForm1.json */,
+				7B1BC7281E9BDC03002F612B /* errorForm1.json */,
+			);
+			name = Json;
+			sourceTree = "<group>";
+		};
+		7B1BC7221E9BD07A002F612B /* System */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = System;
+			sourceTree = "<group>";
+		};
+		7B1BC7231E9BD081002F612B /* External */ = {
+			isa = PBXGroup;
+			children = (
+				7B1BC7201E9BD068002F612B /* Quick.framework */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		7B1BC7241E9BD086002F612B /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */,
+			);
+			name = Internal;
+			sourceTree = "<group>";
+		};
+		7B1BC72A1E9BDE69002F612B /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				7B1BC72B1E9BDE72002F612B /* Delegate Output */,
+				7B1BC71D1E9BCBD9002F612B /* Json */,
+			);
+			name = Mock;
+			sourceTree = "<group>";
+		};
+		7B1BC72B1E9BDE72002F612B /* Delegate Output */ = {
+			isa = PBXGroup;
+			children = (
+				7B1BC72C1E9BDEA0002F612B /* FormControllerOutputMock.swift */,
+			);
+			name = "Delegate Output";
+			sourceTree = "<group>";
+		};
 		7B676FF01E37C97F007ED7DD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,8 +549,10 @@
 		7BB82F001D4B5DB800DC85F5 /* GIGFormularyTests */ = {
 			isa = PBXGroup;
 			children = (
+				7B1BC72A1E9BDE69002F612B /* Mock */,
+				7B1BC71A1E9BCBA7002F612B /* Helpers */,
 				7BB82F031D4B5DB800DC85F5 /* Info.plist */,
-				7BB82F011D4B5DB800DC85F5 /* GIGFormularyTests.swift */,
+				7B1BC7171E9BC88E002F612B /* Components */,
 				7B7D72691D4B7BDE003FFEE8 /* Validator */,
 				7BC7EB871D4F52950022D1C5 /* Model */,
 			);
@@ -495,8 +579,11 @@
 		7BB82F8B1D4B65DC00DC85F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7B1BC7241E9BD086002F612B /* Internal */,
+				7B1BC7231E9BD081002F612B /* External */,
+				7B1BC7221E9BD07A002F612B /* System */,
 				A92DC8C71E66E50C00B511DE /* Cartfile */,
-				7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */,
+				7B1BC7181E9BC930002F612B /* Cartfile.private */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -646,6 +733,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B1BC71F1E9BCC66002F612B /* form1.json in Resources */,
+				7B1BC7271E9BD7CD002F612B /* populateForm1.json in Resources */,
+				7B1BC7291E9BDC03002F612B /* errorForm1.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,11 +820,13 @@
 				7B7D727F1D4B7BDE003FFEE8 /* RegexValidatorTests.swift in Sources */,
 				7B7D72801D4B7BDE003FFEE8 /* StringValidatorTests.swift in Sources */,
 				7B7D72781D4B7BDE003FFEE8 /* DNINIEValidatorTests.swift in Sources */,
+				7B1BC71C1E9BCBC2002F612B /* JSONMock.swift in Sources */,
+				7B1BC7161E9BC88A002F612B /* FormControllerTests.swift in Sources */,
 				7B7D72791D4B7BDE003FFEE8 /* LengthValidatorTests.swift in Sources */,
 				7B7D727B1D4B7BDE003FFEE8 /* NumericValidatorTests.swift in Sources */,
+				7B1BC72D1E9BDEA0002F612B /* FormControllerOutputMock.swift in Sources */,
 				7BC7EB891D4F53240022D1C5 /* FormFieldModelTests.swift in Sources */,
 				7B7D72761D4B7BDE003FFEE8 /* AgeValidatorTests.swift in Sources */,
-				7BB82F021D4B5DB800DC85F5 /* GIGFormularyTests.swift in Sources */,
 				7B7D727C1D4B7BDE003FFEE8 /* OptionValidatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

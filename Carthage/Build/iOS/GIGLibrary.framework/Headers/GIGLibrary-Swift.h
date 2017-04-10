@@ -221,6 +221,10 @@ SWIFT_CLASS("_TtC10GIGLibrary20ProgressDurationView")
 /// </ul>
 SWIFT_CLASS("_TtC10GIGLibrary19ProgressPageControl")
 @interface ProgressPageControl : UIView
+/// To set the current page
+/// since:
+/// 2.3
+@property (nonatomic) NSInteger currentPage;
 /// The number of pages of the page control
 /// since:
 /// 2.3

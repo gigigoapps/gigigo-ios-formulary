@@ -1,9 +1,9 @@
 {
   "xcodeVersion" : "Xcode 8.3\nBuild version 8E162",
-  "commitish" : "v2.3.0",
+  "commitish" : "v2.3.2",
   "iOS" : [
     {
-      "hash" : "872e0769648059a11d6a32e7bf3774fe9212ef072bfd1994a906eb7fbfd19ff1",
+      "hash" : "b5b111112b5b0d432d0ca1eb752c5b88cea9c6cedcf8c4284ee4edfede554ec9",
       "name" : "GIGLibrary"
     }
   ]

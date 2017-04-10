@@ -1,0 +1,112 @@
+//
+//  FormControllerTests.swift
+//  GIGFormulary
+//
+//  Created by  Eduardo Parada on 10/4/17.
+//  Copyright © 2017 gigigo. All rights reserved.
+//
+
+import XCTest
+import Nimble
+@testable import GIGFormulary
+
+class FormControllerTests: XCTestCase {
+    
+    
+    var formController: FormController!
+    var buttonMock: UIButton!
+    var bundleMock: Bundle!
+    
+    
+    override func setUp() {
+        super.setUp()
+
+        self.buttonMock = UIButton(
+            frame: CGRect(x: 0, y: 0, width: 100, height: 100)
+        )
+        self.bundleMock = Bundle(for: type(of: self))
+        
+        self.formController = FormController(
+            button: self.buttonMock,
+            bundle: self.bundleMock
+        )
+    }
+    
+    override func tearDown() {
+        self.formController = nil
+        self.buttonMock = nil
+        self.bundleMock = nil
+        
+        super.tearDown()
+    }
+    
+    func test_formController_whenLoadJsonDic_returnFields() {
+        // ARRANGE
+        guard let form = JSONMock().getJson(keyJson: "form1"),
+              let dicForm = form as? [AnyHashable: Any],
+              let listForm = dicForm["fields"] as? [[AnyHashable: Any]]
+            else { return }
+        
+        //ACT
+        self.formController.loadFieldsFromJSONDictionary(listForm)
+        
+        //ASSERT
+//        expect(self.formController.formFields.count).to(equal(12))
+        XCTAssertTrue(self.formController.formFields.count == 12)
+    }
+    
+    func test_formController_whenLoadJsonDicAndPopulate_returnFieldsPopulated() {
+        // ARRANGE
+        guard let form = JSONMock().getJson(keyJson: "form1"),
+            let dicForm = form as? [AnyHashable: Any],
+            let listForm = dicForm["fields"] as? [[AnyHashable: Any]],
+            let populate = JSONMock().getJson(keyJson: "populateForm1"),
+            let dicPopulate = populate as? [AnyHashable: Any]
+            else { return }
+        
+        //ACT
+        self.formController.loadFieldsFromJSONDictionary(listForm)
+        self.formController.populateData(dicPopulate)
+        
+        //ASSERT
+        let field = self.formController.formFields[1]
+        let value = field.fieldValue as? String
+        XCTAssertTrue(value == "value 2")
+    }
+    
+    func test_formController_whenLoadJsonDicAndLoadError_returnFieldsLoadTextdWithError() {
+        // ARRANGE
+        guard let form = JSONMock().getJson(keyJson: "form1"),
+            let dicForm = form as? [AnyHashable: Any],
+            let listForm = dicForm["fields"] as? [[AnyHashable: Any]],
+            let error = JSONMock().getJson(keyJson: "errorForm1"),
+            let dicerror = error as? [AnyHashable: Any]
+            else { return }
+        
+        //ACT
+        self.formController.loadFieldsFromJSONDictionary(listForm)
+        self.formController.loadError(dicerror)
+        
+        //ASSERT
+        let field = self.formController.formFields[1]
+        let textField = field as? TextFormField
+        XCTAssertTrue(textField?.errorLabel.text == "error 2")
+    }
+    
+    func test_formController_whenSendButton_returnValuesForms() {
+        // ARRANGE
+        guard let form = JSONMock().getJson(keyJson: "form1"),
+            let dicForm = form as? [AnyHashable: Any],
+            let listForm = dicForm["fields"] as? [[AnyHashable: Any]]
+            else { return }
+        
+        //ACT
+        self.formController.loadFieldsFromJSONDictionary(listForm)
+        self.formController.sendButtonAction()
+        
+        //ASSERT
+        let field = self.formController.formFields[1]
+        let textField = field as? TextFormField
+        XCTAssertTrue(textField?.errorLabel.text == "error 2")
+    }
+}
