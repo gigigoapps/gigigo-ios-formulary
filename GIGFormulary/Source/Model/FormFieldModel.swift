@@ -20,7 +20,6 @@ class FormFieldModel: NSObject {
     
     //-- Optional --    
     var placeHolder: String?
-   // var textError: String?
     var keyboard: String?
     var options: [FormFieldOptionsModel]?
     var style: FormFieldStyleModel?
@@ -31,6 +30,8 @@ class FormFieldModel: NSObject {
     var isPassword = false
     var textsError = TextsError()
     var isEditing = true
+    var isHidden = false
+
     //-- Validate --
     var minLengthValue: Int?
     var maxLengthValue: Int?
@@ -153,6 +154,9 @@ class FormFieldModel: NSObject {
         }
         if (isLink != nil) {
             self.isLink = isLink!
+        }
+        if let isHidden = json["isHidden"] as? Bool {
+            self.isHidden = isHidden
         }
         
         //-- Validate --

@@ -83,6 +83,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     // MARK: Public Method
     
     override func insertData() {
+        super.insertData()
         self.loadData(self.formFieldM!)
         self.loadMandatory(self.formFieldM!.mandatory)
         self.loadCustomStyleField(self.formFieldM!)

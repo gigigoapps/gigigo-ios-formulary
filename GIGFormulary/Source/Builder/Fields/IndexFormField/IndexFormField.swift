@@ -33,6 +33,7 @@ class IndexFormField: FormField {
     // MARK: Public Method
     
     override func insertData() {
+        super.insertData()
         self.loadData(self.formFieldM!)
         self.loadCustomStyleField(self.formFieldM!)
     }
