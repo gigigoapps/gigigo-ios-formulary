@@ -65,8 +65,14 @@ open class FormField: UIView {
         
     // MARK: Public Method
     
-    func insertData() {
-        // TODO nothing
+    func insertData() {        
+        guard let hidden = self.formFieldM?.isHidden else { return }
+        
+        if hidden {
+            self.viewContainer.isHidden = hidden
+            self.viewContainer.removeConstraints(self.viewContainer.constraints)
+            gig_constrain_height(self.viewContainer, 0)
+        }
     }
     
     func validate() -> Bool {

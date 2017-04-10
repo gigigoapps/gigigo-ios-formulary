@@ -1,15 +1,17 @@
 {
     "fields":[
               {
+              "isHidden": true,
               "mandatory": false,
               "style": {
-              "checkBox": {
-              "checkBoxOff": "checkBoxOff_JR",
-              "checkBoxOn": "checkBoxOn_JR"
-              },
-              "mandatoryIcon": "mandatory_JR ",
-              "styleCell": "line "
-              },
+                "checkBox": {
+                    "checkBoxOff": "checkBoxOff_JR",
+                    "checkBoxOn": "checkBoxOn_JR"
+                    },
+                "mandatoryIcon": "mandatory_JR ",
+                "styleCell": "line "
+                },
+              
               "validator": "bool",
               "schemaId": "communicationOpts",
               "textError": "This field not could be empty",
@@ -17,18 +19,76 @@
               "type": "boolean",
               "key": "globalOpt",
               "label": "I want to receive Coca-Cola communications"
+              
+              },
+              {
+              "key": "b",
+              "type": "text",
+              "label": "a2",
+              "placeHolder": "a2"
+              },
+              {
+              "key": "b23",
+              "type": "text",
+              "label": "a2",
+              "placeHolder": "a2"
+              },
+              {
+              "key": "b234",
+              "type": "text",
+              "label": "a2",
+              "placeHolder": "a2",
+              "mandatory": true
+              },
+              {
+              "key": "b1212",
+              "type": "text",
+              "label": "a2",
+              "placeHolder": "a2"
+              },
+              {
+              "key": "b121212",
+              "type": "text",
+              "label": "a2",
+              "placeHolder": "a2"
+              },
+              {
+              "key": "b11",
+              "type": "text",
+              "label": "a2",
+              "placeHolder": "a2"
+              },
+              {
+              "key": "b2",
+              "type": "text",
+              "label": "a2",
+              "placeHolder": "a2"
+              },
+              {
+              "key": "b3",
+              "type": "text",
+              "label": "a2",
+              "placeHolder": "a2"
+              },
+              {
+              "key": "a",
+              "type": "text",
+              "label": "a1",
+              "placeHolder": "a1",
+              "isHidden": true
+              },
+              {
+              "key": "b",
+              "type": "text",
+              "label": "a2",
+              "placeHolder": "a2"
               },
               {
               "key": "a1",
               "type": "text",
               "label": "a1",
-              "placeHolder": "a1"
-              },
-              {
-              "key": "a2",
-              "type": "text",
-              "label": "a2",
-              "placeHolder": "a2"
+              "placeHolder": "a1",
+              "isHidden": true
               }
         ]
 }

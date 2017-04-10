@@ -98,6 +98,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     // MARK: Overrride Method
     
     override func insertData() {
+        super.insertData()
         if self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue {
             self.pickerOptions = OptionsPickerComponent()
             self.pickerOptions?.styles = self.formFieldM?.style

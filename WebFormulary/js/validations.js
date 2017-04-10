@@ -1,3 +1,4 @@
+// http://www.danstools.com/javascript-minify/ 
 //======================================
 //            VALIDATION              //
 //======================================
@@ -50,6 +51,7 @@ function validateTextField() {
     var compareKeysField = $("#compareKeysField").val()
     var textErrorCompare = $("#compareTextErrorInput").val()
     var isEditing = $('#isEditingTextField').is(':checked');
+    var isHidden = $('#isEditingTextField').is(':checked');
     
     
     if (font == "custom") {
@@ -57,8 +59,8 @@ function validateTextField() {
     }
         
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare,isEditing);
-        saveField(keyTextField,"text",title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare,isEditing)
+        createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare,isEditing, isHidden);
+        saveField(keyTextField,"text",title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare,isEditing, isHidden)
     }
 }
 
@@ -86,6 +88,7 @@ function validateDatePickerField() {
     var font = document.getElementById("selectTypeFont").value;
     var imageMandatory = $("#imageMandatory").val()
     var isEditing = $('#isEditingTextField').is(':checked');
+    var isHidden = $('#isEditingTextField').is(':checked');
 
     if (font == "custom") {
         font = $("#custonFont").val()
@@ -96,8 +99,8 @@ function validateDatePickerField() {
     }
 
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createDatePickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer,align,font,imageMandatory,isEditing);
-        saveDatePickerField(keyTextField,"datePicker",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer,align,font,imageMandatory,isEditing);
+        createDatePickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer,align,font,imageMandatory,isEditing, isHidden);
+        saveDatePickerField(keyTextField,"datePicker",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer,align,font,imageMandatory,isEditing, isHidden);
     }
 }
 
@@ -124,6 +127,7 @@ function validatePickerField() {
     var font = document.getElementById("selectTypeFont").value;    
     var imageMandatory = $("#imageMandatory").val()
     var isEditing = $('#isEditingTextField').is(':checked');
+    var isHidden = $('#isEditingTextField').is(':checked');
 
     console.log(imageMandatory);
 
@@ -137,8 +141,8 @@ function validatePickerField() {
 
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
         if (allPickerIsComplete()) {
-            createPickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing);
-            savePickerField(keyTextField,"picker",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory, isEditing);
+            createPickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden);
+            savePickerField(keyTextField,"picker",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory, isEditing, isHidden);
         }
         else {
             alert("Los campos de clave y valor de los picker deben estar todos rellenos");
@@ -184,6 +188,7 @@ function validateBooleanField() {
     var imageCheckBoxOn = $("#imageCheckBoxOn").val()
     var imageCheckBoxOff = $("#imageCheckBoxOff").val()
     var isEditing = $('#isEditingTextField').is(':checked');
+    var isHidden = $('#isEditingTextField').is(':checked');
 
     if (font == "custom") {
         font = $("#custonFont").val()
@@ -194,8 +199,8 @@ function validateBooleanField() {
     }
     
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createBooleanField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isEditing);
-        saveBooleanField(keyTextField,"boolean",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isEditing)
+        createBooleanField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isEditing, isHidden);
+        saveBooleanField(keyTextField,"boolean",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isEditing, isHidden)
     }
 }
 
