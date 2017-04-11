@@ -176,6 +176,9 @@
             float: left;
             margin-right: 10px;
         }
+        #containerCompare {
+            display: none;
+        }
         #compareTextError {
             display: none;
         }

@@ -129,4 +129,59 @@ class FormControllerTests: XCTestCase {
         XCTAssert(self.formControllerOutPutMock.recoverFormModelSpy == false)
         XCTAssertNil(self.formControllerOutPutMock.formValuesOutput)
     }
+    
+    
+    func test_formController_whenRecoverView_returnViewContainer() {
+        // ARRANGE
+        guard let form = JSONMock().getJson(keyJson: "form1"),
+            let dicForm = form as? [AnyHashable: Any],
+            let listForm = dicForm["fields"] as? [[AnyHashable: Any]]
+            else { return }
+        
+        //ACT
+        self.formController.loadFieldsFromJSONDictionary(listForm)
+        let viewContainer = self.formController.recoverView()
+        
+        //ASSERT
+        XCTAssertTrue(viewContainer.subviews.count == 12)
+    }
+    
+    
+    
+    
+    func test_formController_whenCompareItems_returnSuccess() {
+        // ARRANGE
+        guard let form = JSONMock().getJson(keyJson: "fomr2Compare"),
+            let dicForm = form as? [AnyHashable: Any],
+            let listForm = dicForm["fields"] as? [[AnyHashable: Any]],
+            let populate = JSONMock().getJson(keyJson: "populateForm2"),
+            let dicPopulate = populate as? [AnyHashable: Any]
+            else { return }
+        
+        //ACT
+        self.formController.loadFieldsFromJSONDictionary(listForm)
+        self.formController.populateData(dicPopulate)
+        self.formController.sendButtonAction()
+        
+        //ASSERT
+        XCTAssertTrue(self.formControllerOutPutMock.recoverFormModelSpy)
+        XCTAssertTrue(self.formControllerOutPutMock.formValuesOutput?.count == 2)
+    }
+    
+    
+    func test_formController_whenCompareItems_returnNothing() {
+        // ARRANGE
+        guard let form = JSONMock().getJson(keyJson: "fomr2Compare"),
+            let dicForm = form as? [AnyHashable: Any],
+            let listForm = dicForm["fields"] as? [[AnyHashable: Any]]
+            else { return }
+        
+        //ACT
+        self.formController.loadFieldsFromJSONDictionary(listForm)
+        self.formController.sendButtonAction()
+        
+        //ASSERT
+        XCTAssertTrue(self.formControllerOutPutMock.recoverFormModelSpy)
+        XCTAssertTrue(self.formControllerOutPutMock.formValuesOutput?.count == 12)
+    }
 }

@@ -80,6 +80,8 @@
 		7BB82F8D1D4B671300DC85F5 /* GIGLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */; };
 		7BB82F911D4B723D00DC85F5 /* GIGLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */; };
 		7BB82FAC1D4B753C00DC85F5 /* GIGLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7BBF32071E9CDEBA00DE19BA /* fomr2Compare.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BBF32061E9CDEBA00DE19BA /* fomr2Compare.json */; };
+		7BBF32091E9CF17A00DE19BA /* populateForm2.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BBF32081E9CF17A00DE19BA /* populateForm2.json */; };
 		7BC7EB861D4F47D60022D1C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7BC7EB841D4F47580022D1C5 /* Localizable.strings */; };
 		7BC7EB891D4F53240022D1C5 /* FormFieldModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC7EB881D4F53240022D1C5 /* FormFieldModelTests.swift */; };
 		7BC7EBC91D4F6F860022D1C5 /* Formulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC7EBC81D4F6F860022D1C5 /* Formulary.swift */; };
@@ -203,6 +205,8 @@
 		7BB82F1C1D4B5E2200DC85F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BB82F1E1D4B5E2200DC85F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GIGLibrary.framework; path = Carthage/Build/iOS/GIGLibrary.framework; sourceTree = "<group>"; };
+		7BBF32061E9CDEBA00DE19BA /* fomr2Compare.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = fomr2Compare.json; path = Json/fomr2Compare.json; sourceTree = "<group>"; };
+		7BBF32081E9CF17A00DE19BA /* populateForm2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = populateForm2.json; path = Json/populateForm2.json; sourceTree = "<group>"; };
 		7BC7EB841D4F47580022D1C5 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		7BC7EB881D4F53240022D1C5 /* FormFieldModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormFieldModelTests.swift; path = Model/FormFieldModelTests.swift; sourceTree = "<group>"; };
 		7BC7EBC81D4F6F860022D1C5 /* Formulary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formulary.swift; sourceTree = "<group>"; };
@@ -260,6 +264,8 @@
 				7B1BC71E1E9BCC66002F612B /* form1.json */,
 				7B1BC7261E9BD7CD002F612B /* populateForm1.json */,
 				7B1BC7281E9BDC03002F612B /* errorForm1.json */,
+				7BBF32061E9CDEBA00DE19BA /* fomr2Compare.json */,
+				7BBF32081E9CF17A00DE19BA /* populateForm2.json */,
 			);
 			name = Json;
 			sourceTree = "<group>";
@@ -735,7 +741,9 @@
 			files = (
 				7B1BC71F1E9BCC66002F612B /* form1.json in Resources */,
 				7B1BC7271E9BD7CD002F612B /* populateForm1.json in Resources */,
+				7BBF32071E9CDEBA00DE19BA /* fomr2Compare.json in Resources */,
 				7B1BC7291E9BDC03002F612B /* errorForm1.json in Resources */,
+				7BBF32091E9CF17A00DE19BA /* populateForm2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
