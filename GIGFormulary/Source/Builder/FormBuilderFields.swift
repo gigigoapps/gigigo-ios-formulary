@@ -63,27 +63,27 @@ class FormBuilderFields: NSObject {
     // MARK: Private Method
     
     fileprivate func initializeTypes() {
-        self.listTypeFields = [.TEXT_FORM_FIELD: TextFormField.self,
-                               .PICKER_FORM_FIELD: PickerFormField.self,
-                               .DATEPICKER_FORM_FIELD: PickerFormField.self,
-                               .BOOLEAN_FORM_FIELD: BooleanFormField.self,
-                               .INDEX_FORM_FIELD: IndexFormField.self]
+        self.listTypeFields = [.textFormField: TextFormField.self,
+                               .pickerFormField: PickerFormField.self,
+                               .datePickerFormField: PickerFormField.self,
+                               .boolFormField: BooleanFormField.self,
+                               .indexFormField: IndexFormField.self]
         
-        self.keyboardTypes  = [.KEYBOARD_TEXT: .default,
-                              .KEYBOARD_EMAIL: .emailAddress,
-                              .KEYBOARD_NUMBER: .numbersAndPunctuation,
-                              .KEYBOARD_NUMBERPAD: .numberPad]
+        self.keyboardTypes  = [.keyboardText: .default,
+                              .keyboardEmail: .emailAddress,
+                              .keyboardNumber: .numbersAndPunctuation,
+                              .keyboardNumberPad: .numberPad]
 
-        self.validatorsType = [.VALIDATOR_TEXT: StringValidator.self,
-                               .VALIDATOR_EMAIL: MailValidator.self,
-                               .VALIDATOR_LENGTH: LengthValidator.self,
-                               .VALIDATOR_NUMERIC: NumericValidator.self,
-                               .VALIDATOR_POSTALCODE: PostalCodeValidator.self,
-                               .VALIDATOR_PHONE: PhoneValidator.self,
-                               .VALIDATOR_BOOL: BoolValidator.self,
-                               .VALIDATOR_DNINIE: DNINIEValidator.self,
-                               .VALIDATOR_AGE: AgeValidator.self,
-                               .VALIDATOR_CUSTOM: CustomValidator.self]
+        self.validatorsType = [.validatorText: StringValidator.self,
+                               .validatorEmail: MailValidator.self,
+                               .validatorLength: LengthValidator.self,
+                               .validatorNumeric: NumericValidator.self,
+                               .validatorPostalCode: PostalCodeValidator.self,
+                               .validatorPhone: PhoneValidator.self,
+                               .validatorBool: BoolValidator.self,
+                               .validatorDniNie: DNINIEValidator.self,
+                               .validatorAge: AgeValidator.self,
+                               .validatorCustom: CustomValidator.self]
     }
     
     fileprivate func createField(_ fieldDic: [AnyHashable: Any]) -> FormField {

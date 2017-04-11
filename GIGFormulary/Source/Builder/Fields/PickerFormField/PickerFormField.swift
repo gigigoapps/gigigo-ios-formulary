@@ -39,7 +39,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     
     override internal var fieldValue: Any? {
         get {
-            if self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue {
+            if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
                 return (self.formFieldM!.options![self.pickerOptions!.selectedIndex!]).idOption
             } else {
                 if self.pickerDate!.dateSelected != nil {
@@ -51,7 +51,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
             }
         }
         set {
-            if self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue {
+            if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
                 let optionFound = self.formFieldM!.options?.filter({ element -> Bool in
                      return element.idOption == newValue as? String
                 })
@@ -99,7 +99,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     
     override func insertData() {
         super.insertData()
-        if self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue {
+        if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
             self.pickerOptions = OptionsPickerComponent()
             self.pickerOptions?.styles = self.formFieldM?.style
             self.pickerOptions?.textAcceptButton = self.formFieldM?.textAcceptButton
@@ -129,7 +129,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     
     override func validate() -> Bool {
         var status = true
-        if self.formFieldM!.type == TypeField.PICKER_FORM_FIELD.rawValue {
+        if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
             self.validator = OptionValidator(mandatory: self.formFieldM!.mandatory)
             status = self.validator!.validate(self.pickerOptions?.selectedIndex)
         } else {

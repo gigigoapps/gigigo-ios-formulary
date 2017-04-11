@@ -79,7 +79,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     func loadError(_ values: [AnyHashable: Any]) {
         var search = true
         for field in self.formFields {
-            let _ = values.filter({ (key, value) -> Bool in
+            _ = values.filter({ (key, value) -> Bool in
                 if key == field.formFieldM?.key {
                     field.loadError(error: value)
                     
@@ -112,7 +112,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         let nextFieldPos =  self.formFields.index(of: field)!+1
         if nextFieldPos < self.formFields.count {
             let nextField = self.formFields[nextFieldPos]
-            if nextField.formFieldM?.type == TypeField.INDEX_FORM_FIELD.rawValue {
+            if nextField.formFieldM?.type == TypeField.indexFormField.rawValue {
                 return self.nextFieldTo(nextField)
             }
             return nextField
@@ -146,7 +146,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
                 }
             }
             
-            if formFieldM.type != TypeField.INDEX_FORM_FIELD.rawValue {
+            if formFieldM.type != TypeField.indexFormField.rawValue {
                 if let valueString = field.fieldValue as? String {
                     let value = valueString.trimmingCharacters(in: .whitespaces)
                     self.formValues["\(formFieldM.key!)"] = value as Any?
