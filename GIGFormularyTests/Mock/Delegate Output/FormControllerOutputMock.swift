@@ -17,9 +17,11 @@ class FormControllerOutputMock: PFormController {
     var fieldFocusSpy = false
     
     // OutPut
+    var formValuesOutput: [AnyHashable: Any]?
     
     func recoverFormModel(_ formValues: [AnyHashable: Any]) {
         self.recoverFormModelSpy = true
+        self.formValuesOutput = formValues
     }
     
     func userDidTapLink(_ key: String) {

@@ -16,7 +16,7 @@ class FormControllerTests: XCTestCase {
     var formController: FormController!
     var buttonMock: UIButton!
     var bundleMock: Bundle!
-    
+    var formControllerOutPutMock: FormControllerOutputMock!
     
     override func setUp() {
         super.setUp()
@@ -25,11 +25,13 @@ class FormControllerTests: XCTestCase {
             frame: CGRect(x: 0, y: 0, width: 100, height: 100)
         )
         self.bundleMock = Bundle(for: type(of: self))
+        self.formControllerOutPutMock = FormControllerOutputMock()
         
         self.formController = FormController(
             button: self.buttonMock,
             bundle: self.bundleMock
         )
+        self.formController.formControllerOutput = self.formControllerOutPutMock
     }
     
     override func tearDown() {
@@ -97,6 +99,25 @@ class FormControllerTests: XCTestCase {
         // ARRANGE
         guard let form = JSONMock().getJson(keyJson: "form1"),
             let dicForm = form as? [AnyHashable: Any],
+            let listForm = dicForm["fields"] as? [[AnyHashable: Any]],
+            let populate = JSONMock().getJson(keyJson: "populateForm1"),
+            let dicPopulate = populate as? [AnyHashable: Any]
+            else { return }
+        
+        //ACT
+        self.formController.loadFieldsFromJSONDictionary(listForm)
+        self.formController.populateData(dicPopulate)
+        self.formController.sendButtonAction()
+        
+        //ASSERT
+        XCTAssertTrue(self.formControllerOutPutMock.recoverFormModelSpy)
+        XCTAssertTrue(self.formControllerOutPutMock.formValuesOutput?.count == 12)
+    }
+    
+    func test_formController_whenSendButtonAndItemMandatoryIsNill_returnValuesForms() {
+        // ARRANGE
+        guard let form = JSONMock().getJson(keyJson: "form1"),
+            let dicForm = form as? [AnyHashable: Any],
             let listForm = dicForm["fields"] as? [[AnyHashable: Any]]
             else { return }
         
@@ -105,8 +126,7 @@ class FormControllerTests: XCTestCase {
         self.formController.sendButtonAction()
         
         //ASSERT
-        let field = self.formController.formFields[1]
-        let textField = field as? TextFormField
-        XCTAssertTrue(textField?.errorLabel.text == "error 2")
+        XCTAssert(self.formControllerOutPutMock.recoverFormModelSpy == false)
+        XCTAssertNil(self.formControllerOutPutMock.formValuesOutput)
     }
 }
