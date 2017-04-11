@@ -128,8 +128,7 @@ class FormControllerTests: XCTestCase {
         //ASSERT
         XCTAssert(self.formControllerOutPutMock.recoverFormModelSpy == false)
         XCTAssertNil(self.formControllerOutPutMock.formValuesOutput)
-    }
-    
+    }    
     
     func test_formController_whenRecoverView_returnViewContainer() {
         // ARRANGE
@@ -145,9 +144,6 @@ class FormControllerTests: XCTestCase {
         //ASSERT
         XCTAssertTrue(viewContainer.subviews.count == 12)
     }
-    
-    
-    
     
     func test_formController_whenCompareItems_returnSuccess() {
         // ARRANGE
@@ -168,8 +164,7 @@ class FormControllerTests: XCTestCase {
         XCTAssertTrue(self.formControllerOutPutMock.formValuesOutput?.count == 2)
     }
     
-    
-    func test_formController_whenCompareItems_returnNothing() {
+    func test_formController_whenCompareItems_returnInvalidForm() {
         // ARRANGE
         guard let form = JSONMock().getJson(keyJson: "fomr2Compare"),
             let dicForm = form as? [AnyHashable: Any],
@@ -181,7 +176,6 @@ class FormControllerTests: XCTestCase {
         self.formController.sendButtonAction()
         
         //ASSERT
-        XCTAssertTrue(self.formControllerOutPutMock.recoverFormModelSpy)
-        XCTAssertTrue(self.formControllerOutPutMock.formValuesOutput?.count == 12)
+        XCTAssertTrue(self.formControllerOutPutMock.invalidFormSpy)
     }
 }

@@ -82,6 +82,7 @@
 		7BB82FAC1D4B753C00DC85F5 /* GIGLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7BBF32071E9CDEBA00DE19BA /* fomr2Compare.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BBF32061E9CDEBA00DE19BA /* fomr2Compare.json */; };
 		7BBF32091E9CF17A00DE19BA /* populateForm2.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BBF32081E9CF17A00DE19BA /* populateForm2.json */; };
+		7BBF320B1E9CFB2B00DE19BA /* CustomValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBF320A1E9CFB2B00DE19BA /* CustomValidatorTests.swift */; };
 		7BC7EB861D4F47D60022D1C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7BC7EB841D4F47580022D1C5 /* Localizable.strings */; };
 		7BC7EB891D4F53240022D1C5 /* FormFieldModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC7EB881D4F53240022D1C5 /* FormFieldModelTests.swift */; };
 		7BC7EBC91D4F6F860022D1C5 /* Formulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC7EBC81D4F6F860022D1C5 /* Formulary.swift */; };
@@ -207,6 +208,7 @@
 		7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GIGLibrary.framework; path = Carthage/Build/iOS/GIGLibrary.framework; sourceTree = "<group>"; };
 		7BBF32061E9CDEBA00DE19BA /* fomr2Compare.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = fomr2Compare.json; path = Json/fomr2Compare.json; sourceTree = "<group>"; };
 		7BBF32081E9CF17A00DE19BA /* populateForm2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = populateForm2.json; path = Json/populateForm2.json; sourceTree = "<group>"; };
+		7BBF320A1E9CFB2B00DE19BA /* CustomValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomValidatorTests.swift; sourceTree = "<group>"; };
 		7BC7EB841D4F47580022D1C5 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		7BC7EB881D4F53240022D1C5 /* FormFieldModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormFieldModelTests.swift; path = Model/FormFieldModelTests.swift; sourceTree = "<group>"; };
 		7BC7EBC81D4F6F860022D1C5 /* Formulary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formulary.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				7B7D72731D4B7BDE003FFEE8 /* RegexValidatorTests.swift */,
 				7B7D72741D4B7BDE003FFEE8 /* StringValidatorTests.swift */,
 				7B7D72751D4B7BDE003FFEE8 /* ValidatorTests.swift */,
+				7BBF320A1E9CFB2B00DE19BA /* CustomValidatorTests.swift */,
 			);
 			path = Validator;
 			sourceTree = "<group>";
@@ -830,6 +833,7 @@
 				7B7D72781D4B7BDE003FFEE8 /* DNINIEValidatorTests.swift in Sources */,
 				7B1BC71C1E9BCBC2002F612B /* JSONMock.swift in Sources */,
 				7B1BC7161E9BC88A002F612B /* FormControllerTests.swift in Sources */,
+				7BBF320B1E9CFB2B00DE19BA /* CustomValidatorTests.swift in Sources */,
 				7B7D72791D4B7BDE003FFEE8 /* LengthValidatorTests.swift in Sources */,
 				7B7D727B1D4B7BDE003FFEE8 /* NumericValidatorTests.swift in Sources */,
 				7B1BC72D1E9BDEA0002F612B /* FormControllerOutputMock.swift in Sources */,

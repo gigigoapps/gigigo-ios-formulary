@@ -12,11 +12,13 @@ public protocol PFormulary {
     func recoverFormModel(_ formValues: [AnyHashable: Any])
     func userDidTapLink(_ key: String)
     func fieldFocus(frame: CGRect, key: String?)
+    func invalidForm()
 }
 
 public extension PFormulary {
     func userDidTapLink(_ key: String) {}
     func fieldFocus(frame: CGRect, key: String?) {}
+    func invalidForm() {}
 }
 
 open class Formulary: PFormController {
@@ -121,5 +123,9 @@ open class Formulary: PFormController {
     
     open func fieldFocus(frame: CGRect, key: String?) {
         self.formularyOutput?.fieldFocus(frame: frame, key: key)
+    }
+    
+    open func invalidForm() {
+        self.formularyOutput?.invalidForm()
     }
 }

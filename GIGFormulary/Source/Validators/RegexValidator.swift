@@ -48,7 +48,9 @@ class RegexValidator: StringValidator {
             if stringValue.characters.count == 0 && !self.mandatory {
                 return true
             }
-            return (self.regex?.matchesString(stringValue))!
+            
+            guard let regex = self.regex  else { LogWarn("Regex is nil"); return false }
+            return regex.matchesString(stringValue)
         } else {
             return true
         }

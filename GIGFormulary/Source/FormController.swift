@@ -13,6 +13,7 @@ protocol PFormController {
     func recoverFormModel(_ formValues: [AnyHashable: Any])
     func userDidTapLink(_ key: String)
     func fieldFocus(frame: CGRect, key: String?)
+    func invalidForm()
 }
 
 class FormController: NSObject, PFormField, PFormBuilderViews {
@@ -161,6 +162,8 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     fileprivate func moveToPositionError(_ isValid: Bool, _ field: FormField) {
         if isValid {
             self.formViews?.scrollRectToVisible(field)
+        } else {
+            self.formControllerOutput?.invalidForm()
         }
     }
     

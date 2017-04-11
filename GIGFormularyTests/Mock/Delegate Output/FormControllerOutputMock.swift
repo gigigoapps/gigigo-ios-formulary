@@ -15,6 +15,7 @@ class FormControllerOutputMock: PFormController {
     var recoverFormModelSpy = false
     var userDidTapLinkSpy = false
     var fieldFocusSpy = false
+    var invalidFormSpy = false
     
     // OutPut
     var formValuesOutput: [AnyHashable: Any]?
@@ -32,4 +33,7 @@ class FormControllerOutputMock: PFormController {
         self.fieldFocusSpy = true
     }
     
+    func invalidForm() {
+        self.invalidFormSpy = true
+    }
 }
