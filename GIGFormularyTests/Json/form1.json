@@ -1,6 +1,29 @@
 {
     "fields":[
               {
+              "key": "a",
+              "type": "text",
+              "label": "a",
+              "isEditing": true,
+              "isHidden": true,
+              "isPassword": true,
+              "compare": true,
+              "itemsCompare": [
+                               "a"
+                               ],
+              "textErrorCompare": "error",
+              "style": {
+              "backgroundColorField": "#5091ff",
+              "titleColor": "#72ff97",
+              "errorColor": "#ff303b",
+              "sizeTitle": 12,
+              "sizeError": 31,
+              "align": "alignLeft",
+              "font": "AmericanTypewriter",
+              "mandatoryIcon": "imagenMandatory"
+              }
+              },
+              {
               "isHidden": true,
               "mandatory": false,
               "style": {

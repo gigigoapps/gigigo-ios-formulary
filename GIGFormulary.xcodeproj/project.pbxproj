@@ -83,6 +83,8 @@
 		7BBF32071E9CDEBA00DE19BA /* fomr2Compare.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BBF32061E9CDEBA00DE19BA /* fomr2Compare.json */; };
 		7BBF32091E9CF17A00DE19BA /* populateForm2.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BBF32081E9CF17A00DE19BA /* populateForm2.json */; };
 		7BBF320B1E9CFB2B00DE19BA /* CustomValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBF320A1E9CFB2B00DE19BA /* CustomValidatorTests.swift */; };
+		7BC24EE01E9E7EB000B0A0E9 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BC24EDF1E9E7EB000B0A0E9 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7BC24EE11E9E7EEE00B0A0E9 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BC24EDF1E9E7EB000B0A0E9 /* Nimble.framework */; };
 		7BC7EB861D4F47D60022D1C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7BC7EB841D4F47580022D1C5 /* Localizable.strings */; };
 		7BC7EB891D4F53240022D1C5 /* FormFieldModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC7EB881D4F53240022D1C5 /* FormFieldModelTests.swift */; };
 		7BC7EBC91D4F6F860022D1C5 /* Formulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC7EBC81D4F6F860022D1C5 /* Formulary.swift */; };
@@ -124,6 +126,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				7BC24EE01E9E7EB000B0A0E9 /* Nimble.framework in CopyFiles */,
 				7B1BC7251E9BD243002F612B /* Quick.framework in CopyFiles */,
 				7BB82FAC1D4B753C00DC85F5 /* GIGLibrary.framework in CopyFiles */,
 			);
@@ -209,6 +212,7 @@
 		7BBF32061E9CDEBA00DE19BA /* fomr2Compare.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = fomr2Compare.json; path = Json/fomr2Compare.json; sourceTree = "<group>"; };
 		7BBF32081E9CF17A00DE19BA /* populateForm2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = populateForm2.json; path = Json/populateForm2.json; sourceTree = "<group>"; };
 		7BBF320A1E9CFB2B00DE19BA /* CustomValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomValidatorTests.swift; sourceTree = "<group>"; };
+		7BC24EDF1E9E7EB000B0A0E9 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		7BC7EB841D4F47580022D1C5 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		7BC7EB881D4F53240022D1C5 /* FormFieldModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormFieldModelTests.swift; path = Model/FormFieldModelTests.swift; sourceTree = "<group>"; };
 		7BC7EBC81D4F6F860022D1C5 /* Formulary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formulary.swift; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BC24EE11E9E7EEE00B0A0E9 /* Nimble.framework in Frameworks */,
 				7BB82F911D4B723D00DC85F5 /* GIGLibrary.framework in Frameworks */,
 				7BB82EFD1D4B5DB800DC85F5 /* GIGFormulary.framework in Frameworks */,
 				7B1BC7211E9BD068002F612B /* Quick.framework in Frameworks */,
@@ -282,6 +287,7 @@
 		7B1BC7231E9BD081002F612B /* External */ = {
 			isa = PBXGroup;
 			children = (
+				7BC24EDF1E9E7EB000B0A0E9 /* Nimble.framework */,
 				7B1BC7201E9BD068002F612B /* Quick.framework */,
 			);
 			name = External;

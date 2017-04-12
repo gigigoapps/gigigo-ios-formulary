@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Quick
 import Nimble
 @testable import GIGFormulary
 
@@ -53,8 +54,7 @@ class FormControllerTests: XCTestCase {
         self.formController.loadFieldsFromJSONDictionary(listForm)
         
         //ASSERT
-//        expect(self.formController.formFields.count).to(equal(12))
-        XCTAssertTrue(self.formController.formFields.count == 12)
+        expect(self.formController.formFields.count).to(equal(13))
     }
     
     func test_formController_whenLoadJsonDicAndPopulate_returnFieldsPopulated() {
@@ -71,9 +71,9 @@ class FormControllerTests: XCTestCase {
         self.formController.populateData(dicPopulate)
         
         //ASSERT
-        let field = self.formController.formFields[1]
+        let field = self.formController.formFields[2]
         let value = field.fieldValue as? String
-        XCTAssertTrue(value == "value 2")
+        expect(value).to(equal("value 2"))
     }
     
     func test_formController_whenLoadJsonDicAndLoadError_returnFieldsLoadTextdWithError() {
@@ -90,9 +90,9 @@ class FormControllerTests: XCTestCase {
         self.formController.loadError(dicerror)
         
         //ASSERT
-        let field = self.formController.formFields[1]
+        let field = self.formController.formFields[2]
         let textField = field as? TextFormField
-        XCTAssertTrue(textField?.errorLabel.text == "error 2")
+        expect(textField?.errorLabel.text).to(equal("error 2"))
     }
     
     func test_formController_whenSendButton_returnValuesForms() {
@@ -111,7 +111,7 @@ class FormControllerTests: XCTestCase {
         
         //ASSERT
         XCTAssertTrue(self.formControllerOutPutMock.recoverFormModelSpy)
-        XCTAssertTrue(self.formControllerOutPutMock.formValuesOutput?.count == 12)
+        expect(self.formControllerOutPutMock.formValuesOutput?.count).to(equal(13))
     }
     
     func test_formController_whenSendButtonAndItemMandatoryIsNill_returnValuesForms() {
@@ -142,7 +142,7 @@ class FormControllerTests: XCTestCase {
         let viewContainer = self.formController.recoverView()
         
         //ASSERT
-        XCTAssertTrue(viewContainer.subviews.count == 12)
+        expect(viewContainer.subviews.count).to(equal(13))
     }
     
     func test_formController_whenCompareItems_returnSuccess() {
