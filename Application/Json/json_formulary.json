@@ -1,22 +1,69 @@
 {
-    "fields":[
+    "fields":[    {
+              "key": "a",
+              "type": "text",
+              "label": "a",
+              "compare": true,
+              "value":"algo",
+              "itemsCompare": [
+                               ""
+                               ],
+              "textErrorCompare": ""
+              },
               {
-              "mandatory": false,
-              "style": {
-              "checkBox": {
-              "checkBoxOff": "checkBoxOff_JR",
-              "checkBoxOn": "checkBoxOn_JR"
+              "key": "s",
+              "type": "text",
+              "label": "s"
               },
-              "mandatoryIcon": "mandatory_JR ",
-              "styleCell": "line "
-              },
-              "validator": "bool",
+              {
+              "label": "I want to receive Coca - Cola communications",
               "schemaId": "communicationOpts",
-              "textError": "This field not could be empty",
-              "show": "checkbox",
-              "type": "boolean",
+              "value": 1,
+              "isEditing": 1,
               "key": "globalOpt",
-              "label": "I want to receive Coca-Cola communications"
+              "keyValue": "global.tccc.all_comm",
+              "textError": "This field not could be empty",
+              "validator": "bool",
+              "type": "boolean",
+              "style": {
+                "checkBox": {
+                    "checkBoxOff": "checkBoxOff_JR",
+                    "checkBoxOn": "checkBoxOn_JR"
+              },
+              "mandatoryIcon": "mandatory_JR",
+              "styleCell": "line"
+              },
+              "show": "checkbox",
+              "keyAttribute": "optId"
+              }, {
+              "label": "Location",
+              "value": "",
+              "key": "location",
+              "placeHolder": "location",
+              "textError": "This field not could be empty",
+              "isEditing": 1,
+              "type": "text",
+              "schemaId": "currentLocation",
+              "show": "text",
+              "style": {
+                "mandatoryIcon": "mandatory_JR",
+                "styleCell": "line"
+              }
+              }, {
+              "isEditing": 1,
+              "style": {
+              "mandatoryIcon": "mandatory_JR",
+              "styleCell": "line"
+              },
+              "value": 1,
+              "key": "globalOptState",
+              "keyValue": "global.tccc.all_comm",
+              "textError": "This field not could be empty",
+              "isHidden": 1,
+              "type": "boolean",
+              "keyAttribute": "optId",
+              "schemaId": "communicationOpts",
+              "show": "hidden"
               }
         ]
 }
