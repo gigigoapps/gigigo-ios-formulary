@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GIGLibrary
 
 
 protocol PBooleanFormField {
@@ -119,8 +120,12 @@ class BooleanFormField: FormField {
             self.changeState()
         }
         
-        if self.existLink(formFieldM.label!) {
-            let getLinks = self.getListLinks(formFieldM.label!)
+        self.buttonAccept.isEnabled = formFieldM.isEditing
+        
+        //-- Text parse view --
+        guard let label = formFieldM.label else { LogInfo("BooleanFormField label is nil"); return }
+        if self.existLink(label) {
+            let getLinks = self.getListLinks(label)
             
             let attributes = [NSForegroundColorAttributeName: UIColor.black,
                               NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
@@ -138,8 +143,6 @@ class BooleanFormField: FormField {
             self.titleLabel.setLinksForSubstrings(getLinks.0, withLinkHandler: handler)
             self.titleLabel.font = UIFont.systemFont(ofSize: 16)
         }
-        
-        self.buttonAccept.isEnabled = formFieldM.isEditing
     }
     
     fileprivate func loadMandatory(_ isMandatory: Bool) {
