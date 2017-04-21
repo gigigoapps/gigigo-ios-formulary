@@ -137,7 +137,11 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         }
         
         if !status {
-            self.errorLabel.text = self.formFieldM?.textsError.textError
+            if self.isErrorGeneric() {
+                self.errorLabel.text = self.formFieldM?.textsError.textError
+            } else {
+                self.errorLabel.text = self.formFieldM?.textsError.textErrorValidate
+            }
             self.showError()
         } else {
             self.hideError()

@@ -1,8 +1,8 @@
 {
     "fields":[
               {
-              "isHidden": true,
-              "mandatory": false,
+              "isHidden": false,
+              "mandatory": true,
               "style": {
                 "checkBox": {
                     "checkBoxOff": "checkBoxOff_JR",
@@ -15,6 +15,7 @@
               "validator": "bool",
               "schemaId": "communicationOpts",
               "textError": "This field not could be empty",
+              "textErrorValidate": "texto Error de validacion complex",
               "show": "checkbox",
               "type": "boolean",
               "key": "globalOpt",
@@ -28,60 +29,42 @@
               "placeHolder": "a2"
               },
               {
-              "key": "b23",
+              "key": "textErrorNormalGenerico",
               "type": "text",
-              "label": "a2",
-              "placeHolder": "a2"
-              },
-              {
-              "key": "b234",
-              "type": "text",
-              "label": "a2",
-              "placeHolder": "a2",
+              "label": "textErrorNormalGenerico",
+              "placeHolder": "textErrorNormalGenerico",
               "mandatory": true
               },
               {
-              "key": "b1212",
+              "key": "textErrorNormal",
               "type": "text",
-              "label": "a2",
-              "placeHolder": "a2"
+              "label": "textErrorNormal",
+              "placeHolder": "textErrorNormal",
+              "mandatory": true,
+              "textError": "texto Error"
               },
               {
-              "key": "b121212",
+              "key": "textErrorValidate",
+              "mandatory": true,
               "type": "text",
-              "label": "a2",
-              "placeHolder": "a2"
+              "label": "textErrorValidate",
+              "placeHolder": "textErrorValidate",
+              "textErrorValidate": "texto Error de validacion only",
+              "minLength": 12,
+              "maxLength": 42,
+              "validator": "lengthText"
               },
               {
-              "key": "b11",
+              "key": "textErrorValidateComplex",
+              "mandatory": true,
               "type": "text",
-              "label": "a2",
-              "placeHolder": "a2"
-              },
-              {
-              "key": "b2",
-              "type": "text",
-              "label": "a2",
-              "placeHolder": "a2"
-              },
-              {
-              "key": "b3",
-              "type": "text",
-              "label": "a2",
-              "placeHolder": "a2"
-              },
-              {
-              "key": "a",
-              "type": "text",
-              "label": "a1",
-              "placeHolder": "a1",
-              "isHidden": true
-              },
-              {
-              "key": "b",
-              "type": "text",
-              "label": "a2",
-              "placeHolder": "a2"
+              "label": "textErrorValidateComplex",
+              "placeHolder": "textErrorValidateComplex",
+              "textErrorValidate": "texto Error de validacion complex",
+              "textError": "texto Error",
+              "minLength": 12,
+              "maxLength": 42,
+              "validator": "lengthText"
               },
               {
               "key": "a1",

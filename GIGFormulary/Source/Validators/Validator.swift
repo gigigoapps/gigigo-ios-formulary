@@ -52,4 +52,8 @@ class Validator: NSObject {
         }
         return true
     }
+    
+    func isTextErrorGeneric(_ value: Any?) -> Bool {
+        return value == nil
+    }
 }

@@ -156,5 +156,10 @@ class FormFieldModel: NSObject {
         if let itemCompare = json["itemsCompare"] as? [String] {
             self.itemCompare = itemCompare
         }
+        if let textErrorValidate = json["textErrorValidate"] as? String {
+            self.textsError.textErrorValidate = textErrorValidate
+        } else {
+            self.textsError.textErrorValidate = self.textsError.textError
+        }
     }
 }

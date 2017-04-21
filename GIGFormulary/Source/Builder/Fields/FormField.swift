@@ -76,10 +76,13 @@ open class FormField: UIView {
     }
     
     func validate() -> Bool {
-        if self.validator == nil {
-            return true
-        }
-        return self.validator!.validate(self.fieldValue)
+        guard let validator = self.validator else { return true }
+        return validator.validate(self.fieldValue)
+    }
+    
+    func isErrorGeneric() -> Bool {
+        guard let validator = self.validator else { return true }
+        return validator.isTextErrorGeneric(self.fieldValue)
     }
     
     func loadError(error: Any) {
