@@ -27,43 +27,27 @@
                      <p>PlaceHolder:</p>
                      <input type="text" name="palceHolderTextField" id="palceHolderTextField">
                  </div>
-                 <div class="mandatoryTextField">
-                     <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">
-                     <p>Es obligatorio?</p>
-                 </div>
-                  
-                  <select id="selectTypeValidator">
-                      <option value="None">Tipo validador</option>
-                      <option value="text">Texto</option>
-                      <option value="email">Email</option>
-                      <option value="lengthText">Long texto</option>
-                      <option value="numeric">Numérico</option>
-                      <option value="postalCode">Código postal</option>
-                      <option value="phone">Teléfono</option>
-                      <option value="dniNie">DNI/NIE</option>
-                      <option value="customValidator">Custom</option>
-                  </select>  
-                  <input id="custonValidator" placeHolder="Regex Custom"> 
              </div>
              <div class="errorTextField">
                  <p class="textErrorP">Texto error:</p>
                  <input type="text" name="errorTextField"id="errorTextField">
-                 <p>minLength:</p><input class="inputWidth" type="text" name="minLength"id="minLength">
-                 <p>maxLength:</p><input class="inputWidth" type="text" name="maxLength"id="maxLength">
               </div>
              
+
              <div class="compareTextField">
                  <input type="checkbox" name="compare" value="compare" id="compare">
                  <p>Active compare?</p>
                  <div id="containerCompare">
                      <p>Keys Compare:</p>
-                     <input type="text" name="compareKeysField" id="compareKeysField">                 
+                     <input type="text" name="compareKeysField" id="compareKeysField" placeholder="key1,key2">                 
                      <div id="compareTextError">
                          <p>Texto error:</p>
                          <input id="compareTextErrorInput" type="text" name="element">
                      </div>
                  </div>
             </div>
+
+
              <div class="containerPassEdit">
                  <div class="passwordTextField">
                      <input type="checkbox" name="passwordTextField" value="passwordTextField" id="passwordTextField">
@@ -79,6 +63,39 @@
                      <input type="checkbox" name="isHiddenTextField" value="isHiddenTextField" id="isHiddenTextField">
                      <p>Es visible?</p>
                   </div>
+
+                 <div class="mandatoryTextField">
+                     <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">
+                     <p>Es obligatorio?</p>
+                 </div>
+             </div>
+
+             <div class="validatorContainer">
+                  <select id="selectTypeValidator">
+                      <option value="None">Tipo validador</option>
+                      <option value="text">Texto</option>
+                      <option value="email">Email</option>
+                      <option value="lengthText">Long texto</option>
+                      <option value="numeric">Numérico</option>
+                      <option value="postalCode">Código postal</option>
+                      <option value="phone">Teléfono</option>
+                      <option value="dniNie">DNI/NIE</option>
+                      <option value="customValidator">Custom</option>
+                  </select>  
+
+                  <input id="custonValidator" placeHolder="Regex Custom">    
+
+                  <div id="minMaxValidatorContainer">
+                     <p>minLength:</p>
+                     <input class="inputWidth" type="text" name="minLength"id="minLength">
+                     <p>maxLength:</p>
+                     <input class="inputWidth" type="text" name="maxLength"id="maxLength">
+                  </div>
+
+                  <div id="validatorTextError">
+                     <p>Texto error:</p>
+                     <input id="validatorTextErrorInput" type="text" name="element">
+                  </div> 
              </div>
              
               <div class="styleField">

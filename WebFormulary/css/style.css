@@ -58,13 +58,13 @@
             color: white;
             float: right;
             font-size: 49px;
-            height: 514px;
+            height: 570px;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonAdd p{
-                margin-top: 210px;
+                margin-top: 240px;
             }
             .buttonAdd:hover {
                 background-color: skyblue;
@@ -109,10 +109,8 @@
             }
         .inputTextField {
             float: left;
-            height: 46px;
             margin-bottom: 5px;
             margin-left: -120px;
-            margin-top: 9px;
             width: 498px;
         }
             .inputTextField p{
@@ -152,7 +150,6 @@
 
         .mandatoryTextField {
             float: left;
-            margin-top: 8px;
             width: 133px;
         }
             .mandatoryTextField input{
@@ -204,7 +201,7 @@
         .isHiddenTextField {
             float: left;
             margin-top: 1px;
-            width: 133px;
+            width: 193px;
         }
             .isHiddenTextField input{
                 float: left;
@@ -218,7 +215,7 @@
         .isEditingTextField {
             float: left;
             margin-top: 1px;
-            width: 133px;
+            width: 193px;
         }
             .isEditingTextField input{
                 float: left;
@@ -325,7 +322,7 @@
             }
         
         .containerTextFieldCenter{
-            height: 54px;
+            height: 43px;
             margin-left: 144px;
             width: 100%;
         }
@@ -450,17 +447,12 @@
         
         #selectTypeKeyboard {
             float: left;
-   			margin-left: 241px;
+   			margin-left: 10px;
     		margin-top: 0;
-    		width: 179px;
+    		width: 199px;
         }        
         
-#selectTypeValidator {
-    float: left;
-    margin-left: 0;
-    margin-top: 8px;
-    width: 179px;
-}
+
   
 .validatorResult{
     float: left;
@@ -737,10 +729,12 @@
 }
 
 #custonValidator {
+    float: left;
+    margin-left: 15px;
+    margin-top: 0;
     position: relative;
     top: 9px;
-    width: 100px;
-    margin-top: 0px;
+    width: 140px;
     display: none;
 }
 
@@ -749,7 +743,55 @@
     margin: 13px 0 0 17px;
 }
 
+.validatorContainer {
+    height: 56px;
+    margin-left: 145px;
+    width: 100%;
+}
 
+#validatorTextError{
+    float: left;
+    margin-left: 21px;
+    display: none;
+}
+    #validatorTextError p {
+        float: left;
+        padding-top: 18px;
+    }
+    #validatorTextError input{
+        float: left;
+        margin-left: 10px;
+        margin-top: 9px;
+        width: 200px;
+    }
 
+#selectTypeValidator {
+    float: left;
+    margin-left: 0;
+    margin-top: 8px;
+    width: 179px;
+}
+#minMaxValidatorContainer{
+    display: none;
+    float: left;
+}
+    #minMaxValidatorContainer p {
+        float: left;
+        margin-left: 10px;
+        margin-top: 20px;
+    }
+    #minMaxValidatorContainer input {
+        float: left;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+#palceHolderTextField{
+    height: 26px;
+    margin-left: 6px;
+    margin-top: 7;
+    width: 246px;
+    float: left;
+}
 
 
