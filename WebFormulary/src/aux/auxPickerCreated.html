@@ -1,29 +1,29 @@
 
-   <div class="cellConstructor pickerConstructor" id="fieldNumber'+indexField+'">
+   <div class="cellConstructor pickerConstructor" id="fieldNumber{{indexField}}">
            <div class="row">
                <div class="col-md-10">
                    <div class="containerTextFieldTop">
                        <div class="titleTextField">
                            <p>Titulo*:</p>
-                           <input type="text" name="titleTextField" id="titleTextField" value="'+title+'"  disabled readonly>                                       
+                           <input type="text" name="titleTextField" id="titleTextField" value="{{title}}"  disabled readonly>                                       
                         </div>                                 
                    </div>
                    <div id="containerErrorMandatoryPicker">
                         <div class="errorTextField errorTextFieldPicker">
                            <p class="textErrorP">Texto error:</p>
-                           <input type="text" name="errorTextField" id="errorTextField"  disabled readonly value="'+error+'">
+                           <input type="text" name="errorTextField" id="errorTextField"  disabled readonly value="{{error}}">
                         </div>
                         <div class="mandatoryTextField optionModel">
-                              <input type="checkbox" name="mandatory" value="mandatory" id="mandatory" '+valueCheck+' disabled readonly>
+                              <input type="checkbox" name="mandatory" value="mandatory" id="mandatory" {{isMandatory}} disabled readonly>
                              <p>Es obligatorio?</p>
                         </div>                                    
                         <div class="isEditingTextField">
-                            <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField" '+isEditingCheck+' disabled readonly>
+                            <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField" {{isEditingChecked}} disabled readonly>
                             <p>Es editable?</p>
                         </div>
 
                         <div class="isHiddenTextField">
-                            <input type="checkbox" name="isHiddenTextField" value="isHiddenTextField" id="isHiddenTextField" '+isHiddenChecked+' disabled readonly>
+                            <input type="checkbox" name="isHiddenTextField" value="isHiddenTextField" id="isHiddenTextField" {{isHiddenChecked}} disabled readonly>
                             <p>Es visible?</p>
                         </div>
                    </div>   
@@ -41,7 +41,7 @@
                   </div>
                     <div class="spaceSeparate"></div>
                </div>
-               <div class="col-md-2 buttonRemove buttonAddPicker" onclick="removeField('+indexField+')">
+               <div class="col-md-2 buttonRemove buttonAddPicker" onclick="removeField({{indexField}})">
                   <p>-</p>
                </div>
            </div>

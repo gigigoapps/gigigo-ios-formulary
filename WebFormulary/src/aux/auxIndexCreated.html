@@ -1,14 +1,14 @@
-<div class="cellConstructor" id="fieldNumber'+indexField+'">
+<div class="cellConstructor" id="fieldNumber{{indexField}}">
     <div class="row">
         <div class="col-md-10">
             <div class="keyTextField">
                 <p>key*:</p>
-                <input type="text" name="keyTextField" id="keyTextField" disabled value="'+keyTextField+'">
+                <input type="text" name="keyTextField" id="keyTextField" disabled value="{{keyTextField}}">
             </div>
             <div class="containerTextFieldTop">
                 <div class="titleTextField">
                     <p>Titulo*:</p>
-                    <input type="text" name="titleTextField" id="titleTextField" disabled value="'+title+'">
+                    <input type="text" name="titleTextField" id="titleTextField" disabled value="{{title}}">
                 </div>
             </div>
 
@@ -18,6 +18,6 @@
             </div>
             <div class="spaceSeparate"></div>
         </div>
-        <div class="col-md-2 buttonRemove buttonRemoveText" onclick="removeField('+indexField+')"><p>-</p></div>
+        <div class="col-md-2 buttonRemove buttonRemoveText" onclick="removeField({{indexField}})"><p>-</p></div>
     </div>
 </div> 

@@ -1,35 +1,35 @@
 
-<div class="cellConstructor" id="fieldNumber'+indexField+'">
+<div class="cellConstructor" id="fieldNumber{{indexField}}">
     <div class="row">
         <div class="col-md-10">
              <div class="keyTextField">
                 <p>key*:</p>
-                <input type="text" name="keyTextField" id="keyTextField" disabled value="'+keyTextField+'">
+                <input type="text" name="keyTextField" id="keyTextField" disabled value="{{keyTextField}}">
             </div>
             <div class="containerTextFieldTop">
                 <div class="titleTextField">
                     <p>Titulo*:</p>
-                    <input type="text" name="titleTextField" id="titleTextField" disabled value="'+title+'">
+                    <input type="text" name="titleTextField" id="titleTextField" disabled value="{{title}}">
                 </div>
             </div>
             <div class="containerTextFieldCenter">
                 <div class="mandatoryTextField">
-                    <input type="checkbox" name="mandatory" value="mandatory" id="mandatory" '+valueCheck+' disabled readonly >
+                    <input type="checkbox" name="mandatory" value="mandatory" id="mandatory" {{valueCheck}} disabled readonly >
                     <p>Es obligatorio?</p>
                 </div>
                 <div class="isEditingTextField">
-                    <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField" '+isEditingValueCheck+' disabled readonly >
+                    <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField" {{isEditingValueCheck}} disabled readonly >
                     <p>Es editable?</p>
                 </div>
 
                 <div class="isHiddenTextField">
-                    <input type="checkbox" name="isHiddenTextField" value="isHiddenTextField" id="isHiddenTextField" '+isHiddenChecked+' disabled readonly>
+                    <input type="checkbox" name="isHiddenTextField" value="isHiddenTextField" id="isHiddenTextField" {{isHiddenChecked}} disabled readonly>
                     <p>Es visible?</p>
                 </div>
             </div>
             <div class="errorTextField">
                 <p class="textErrorP">Texto error:</p>
-                <input type="text" name="errorTextField"id="errorTextField" disabled value="'+error+'">
+                <input type="text" name="errorTextField"id="errorTextField" disabled value="{{error}}">
             </div>
             <div class="styleField"> 
                 <h4>Estilos de celda:</h4>
@@ -37,6 +37,6 @@
             </div>
             <div class="spaceSeparate"></div>
         </div>
-        <div class="col-md-2 buttonRemove buttonRemoveText" onclick="removeField('+indexField+')"><p>-</p></div>
+        <div class="col-md-2 buttonRemove buttonRemoveText" onclick="removeField({{indexField}})"><p>-</p></div>
     </div>
 </div> 
