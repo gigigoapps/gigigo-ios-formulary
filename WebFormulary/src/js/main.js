@@ -1,3 +1,5 @@
+/* PASOS: Arrancar desde la ruta donde esta webpack.config.js y abrir consola y poner: npm start  */
+
 window.Clipboard = require("../external/clipboard.js-master/dist/clipboard.min.js")
 require("../font/listFonts.js")
 require("./fontPositionZone.js")

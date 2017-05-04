@@ -1,62 +1,8 @@
 {
     "fields":[
               {
-              "isHidden": false,
-              "mandatory": true,
-              "style": {
-                "checkBox": {
-                    "checkBoxOff": "checkBoxOff_JR",
-                    "checkBoxOn": "checkBoxOn_JR"
-                    },
-                "mandatoryIcon": "mandatory_JR ",
-                "styleCell": "line "
-                },
-              
-              "validator": "bool",
-              "schemaId": "communicationOpts",
-              "textError": "This field not could be empty",
-              "textErrorValidate": "texto Error de validacion complex",
-              "show": "checkbox",
-              "type": "boolean",
-              "key": "globalOpt",
-              "label": "I want to receive Coca-Cola communications"
-              
-              },
-              {
-              "key": "b",
-              "type": "text",
-              "label": "a2",
-              "placeHolder": "a2"
-              },
-              {
-              "key": "textErrorNormalGenerico",
-              "type": "text",
-              "label": "textErrorNormalGenerico",
-              "placeHolder": "textErrorNormalGenerico",
-              "mandatory": true
-              },
-              {
-              "key": "textErrorNormal",
-              "type": "text",
-              "label": "textErrorNormal",
-              "placeHolder": "textErrorNormal",
-              "mandatory": true,
-              "textError": "texto Error"
-              },
-              {
-              "key": "textErrorValidate",
-              "mandatory": true,
-              "type": "text",
-              "label": "textErrorValidate",
-              "placeHolder": "textErrorValidate",
-              "textErrorValidate": "texto Error de validacion only",
-              "minLength": 12,
-              "maxLength": 42,
-              "validator": "lengthText"
-              },
-              {
               "key": "textErrorValidateComplex",
-              "mandatory": true,
+              "mandatory": false,
               "type": "text",
               "label": "textErrorValidateComplex",
               "placeHolder": "textErrorValidateComplex",
@@ -65,13 +11,6 @@
               "minLength": 12,
               "maxLength": 42,
               "validator": "lengthText"
-              },
-              {
-              "key": "a1",
-              "type": "text",
-              "label": "a1",
-              "placeHolder": "a1",
-              "isHidden": true
               }
         ]
 }

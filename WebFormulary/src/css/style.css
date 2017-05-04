@@ -793,5 +793,25 @@
     width: 246px;
     float: left;
 }
+.validatorCreated {
+    height: 26px;
+}
+.resultCreated {
+    margin-top: 0px !important;
+}
+    .resultCreated input {
+        height: 26px;
+        margin-top: 0px !important;
+    }
 
+.customValidatorCreated {
+    width: 70px !important;
+}
 
+.textErrorCreated {
+    width: 70px !important;
+}
+
+.customValidatorCreated {
+    width: 70px !important;
+}

@@ -31,11 +31,14 @@ window.validateTextField = function validateTextField() {
     var title = $("#titleTextField").val()
     var placeHolder = $("#palceHolderTextField").val()
     var error = $("#errorTextField").val()
+    var custonValidator = $("#custonValidator").val()
     var mandatory = $('#mandatory').is(':checked');
     var keyboard = document.getElementById("selectTypeKeyboard").value;
     var validator = document.getElementById("selectTypeValidator").value;
     var minLength = $("#minLength").val()
     var maxLength = $("#maxLength").val()
+    var errorValidator = $("#validatorTextErrorInput").val()
+
     // Style
     var cellColor = $("#cellColorHex").val()
     var titleColor = $("#titleColorHex").val()
@@ -45,7 +48,6 @@ window.validateTextField = function validateTextField() {
     var align = document.getElementById("selectTypeAlign").value;
     var font = document.getElementById("selectTypeFont").value;
     var imageMandatory = $("#imageMandatory").val()
-    var custonValidator = $("#custonValidator").val()
     var isPassword = $('#passwordTextField').is(':checked');
     var isCompare = $('#compare').is(':checked');
     var compareKeysField = $("#compareKeysField").val()
@@ -59,8 +61,8 @@ window.validateTextField = function validateTextField() {
     }
         
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare,isEditing, isHidden);
-        saveField(keyTextField,"text",title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare,isEditing, isHidden)
+        createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare,isEditing, isHidden, errorValidator);
+        saveField(keyTextField,"text",title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare,isEditing, isHidden, errorValidator)
     }
 }
 

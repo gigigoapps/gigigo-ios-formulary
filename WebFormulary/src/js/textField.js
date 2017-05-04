@@ -3,7 +3,7 @@
 //               TEXT (YA CREADO)     //  
 //======================================
             
-window.createField = function createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,customValidator, isPassword, isCompare, compareKeysField, textErrorCompare,isEditing, isHidden) {
+window.createField = function createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,customValidator, isPassword, isCompare, compareKeysField, textErrorCompare,isEditing, isHidden, errorValidator) {
     var isMandatory = ""
     if (mandatory) {
         isMandatory = "checked"
@@ -24,7 +24,7 @@ window.createField = function createField(keyTextField,title,placeHolder,error,m
     if (isHidden) {
         isHiddenChecked = "checked"
     }
-    
+
     //-- Recover Styles --
     var htmlBackgroundColor = getStyleColor(cellColor,titleColor,errorColor);
     var htmlFontSize = getStyleSize (sizeTitle, sizeError);
@@ -33,17 +33,30 @@ window.createField = function createField(keyTextField,title,placeHolder,error,m
     
     var styles =  htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
 
-    var htmlCustomValidator = ""
+    var htmlCustomValidator = ""    
     if (validator == "customValidator") {
-        htmlCustomValidator = '<input type="text" name="customValidatorTextField" id="customValidatorTextField" disabled value="'+customValidator+'">'
+        htmlCustomValidator = '<input type="text" class="customValidatorCreated" name="customValidatorTextField" id="customValidatorTextField" disabled value="'+customValidator+'">'
     }
+
+    var htmlTextErrorValidator = ""
+    if (validator != "None") {
+        htmlTextErrorValidator = '<div class="errorTextField"><p class="textErrorP">Texto error:</p><input class="textErrorCreated" type="text" name="errorTextField" id="errorTextField" disabled value="{{errorValidator}}">';
+
+        if (validator == "lengthText") {
+            htmlTextErrorValidator += '<p>minLength:</p><input class="inputWidth" type="text" name="minLength"id="minLength" disabled readonly value="{{minLength}}"><p>maxLength:</p><input class="inputWidth" type="text" name="maxLength"id="maxLength" disabled readonly value="{{maxLength}}">';              
+        }
+
+        htmlTextErrorValidator += '</div>';
+    }
+
     var htmlTextErrorCompare = ""
     if (isCompare) {
-        htmlTextErrorCompare = '<p>Text Error</p><input type="text" name="textErrorCompareFix" id="textErrorCompareFix" disabled value="'+textErrorCompare+'">'
+        htmlTextErrorCompare = '<p>Keys Compare:</p> <input type="text" name="compareKeysField" id="compareKeysField" disabled value="{{compareKeysField}}"><p>Text Error</p><input type="text" name="textErrorCompareFix" id="textErrorCompareFix" class="customValidatorCreated" disabled value="'+textErrorCompare+'">'
     }
 
     var html = require('html-loader!../aux/auxTextCreated.html')
             .replace('{{htmlTextErrorCompare}}',htmlTextErrorCompare)
+            .replace('{{htmlTextErrorValidator}}',htmlTextErrorValidator)
             .replace('{{styles}}',styles)
             .replace('{{keyTextField}}',keyTextField)
             .replace('{{title}}',title)
@@ -60,13 +73,14 @@ window.createField = function createField(keyTextField,title,placeHolder,error,m
             .replace('{{isEditingChecked}}',isEditingChecked)
             .replace('{{isHiddenChecked}}',isHiddenChecked)
             .replace('{{validator}}',validator)
-
+            .replace('{{errorValidator}}',errorValidator)
+            .replace(/\{\{indexField\}\}/g,indexField)
 
     $("#containerListItemsCreated").append(html);
     resetTypeField();
 }
 
-window.saveField = function saveField(keyTextField,type,title,placeHolder,textError,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,customValidator, isPassword, isCompare, compareKeysField, textErrorCompare,isEditing, isHidden) {
+window.saveField = function saveField(keyTextField,type,title,placeHolder,textError,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,customValidator, isPassword, isCompare, compareKeysField, textErrorCompare,isEditing, isHidden, errorValidator) {
     //-- Mandatory Fiedls --
     var itemSave = {
         "tag":indexField,
@@ -107,6 +121,7 @@ window.saveField = function saveField(keyTextField,type,title,placeHolder,textEr
         if (validator == "customValidator") {
             itemSave["customValidator"] = customValidator
         }
+        itemSave["textErrorValidate"] = errorValidator        
     }
     if (isCompare) {
         itemSave["compare"] = isCompare
