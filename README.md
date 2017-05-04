@@ -54,25 +54,34 @@ Como usar GIGFormulary
 { 
  "fields":[
     {
-        "key": "clave",
+        "key": "clave1",
         "type": "text",
-        "label": "titulo ",
+        "label": "titulo",
         "mandatory": true,
+        "isEditing": true,
+        "isHidden": true,
         "textError": "texto error",
-        "placeHolder": "placeHolder",
-        "minLength": 5,
+        "placeHolder": "texto fondo",
+        "minLength": 2,
         "maxLength": 12,
         "keyboard": "FormKeyboardTypeText",
-        "validator": "email",
         "isPassword": true,
+        "validator": "lengthText",
+        "textErrorValidate": "Texto error validador",
+        "compare": true,
+        "itemsCompare": [
+            "clave1",
+            "clave2"
+        ],
+        "textErrorCompare": "Texto Error comparar",
         "style": {
-            "backgroundColorField": "#2698ff",
-            "titleColor": "#44ff3c",
-            "errorColor": "#ff4958",
-            "sizeTitle": 30,
-            "sizeError": 25,
+            "backgroundColorField": "#4874ff",
+            "titleColor": "#64ff66",
+            "errorColor": "#ffa17d",
+            "sizeTitle": 12,
+            "sizeError": 14,
             "align": "alignCenter",
-            "font": "AmericanTypewriter-CondensedLight",
+            "font": "AppleSDGothicNeo-Thin",
             "mandatoryIcon": "imagen"
         }
     }
@@ -103,6 +112,8 @@ Como usar GIGFormulary
             }
         ],
         "mandatory": true,
+        "isEditing": true,
+        "isHidden": true,
         "textError": "texto error",
         "textAcceptButton": "boton aceptar",
         "style": {
@@ -137,6 +148,8 @@ Como usar GIGFormulary
         "type": "datePicker",
         "label": "titulo",
         "mandatory": true,
+        "isEditing": true,
+        "isHidden": true,
         "textError": "texto error",
         "textAcceptButton": "titulo aceptar",
         "minAge": 18,
@@ -171,6 +184,8 @@ Como usar GIGFormulary
         "type": "boolean",
         "label": "titulo",
         "mandatory": true,
+        "isEditing": true,
+        "isHidden": true,
         "textError": "texto error",
         "validator": "bool",
         "style": {
@@ -291,8 +306,12 @@ class ViewController: UIViewController, PFormulary {
      
     // MARK: PFormController
      
-    func recoverFormModel(_ formValues: [String : AnyObject]) {
+    func recoverFormModel(_ formValues: [AnyHashable : Any]) {
          
+    } 
+    // OPTIONAL
+    func userDidTapLink(_ key: String) {
+        
     }
 }
 
@@ -312,33 +331,33 @@ class ViewController: UIViewController, PFormulary {
         super.viewDidLoad()
  
         //-- Create form Type with Array Dic --
-        let dic1:[String: AnyObject] = ["key": "a1" as AnyObject,
-                    "type": "text" as AnyObject,
-                    "label": "validador sin" as AnyObject,
-                    "mandatory": true as AnyObject]
-         
-        let dic2:[String: AnyObject]  = ["key": "a2" as AnyObject,
-                    "type": "text" as AnyObject,
-                    "label": "validador email" as AnyObject,
-                    "validator": "email" as AnyObject,
-                    "mandatory": true as AnyObject]
-         
-        let dic3:[String: AnyObject]  = ["key": "a3" as AnyObject,
-                    "type": "text" as AnyObject,
-                    "label": "validador custom" as AnyObject,
-                    "validator": "customValidator" as AnyObject,
-                    "customValidator": "^([0-9])+$" as AnyObject,
-                    "mandatory": true as AnyObject]
-         
-        let style:[String: AnyObject] = ["sizeTitle": 30 as CGFloat as AnyObject] as [String : AnyObject]
-        let dic4:[String: AnyObject] = ["key" : "key" as AnyObject,
-                   "label": "label" as AnyObject,
-                   "type" : "index" as AnyObject,
-                   "style": style as AnyObject]
-  
+        let dic1:[String: AnyObject] = ["key": "a1",
+                    "type": "text",
+                    "label": "validador sin",
+                    "mandatory": true]
+        
+        let dic2:[String: AnyObject]  = ["key": "a2",
+                    "type": "text",
+                    "label": "validador email",
+                    "validator": "email",
+                    "mandatory": true]
+        
+        let dic3:[String: AnyObject]  = ["key": "a3",
+                    "type": "text",
+                    "label": "validador custom",
+                    "validator": "customValidator",
+                    "customValidator": "^([0-9])+$",
+                    "mandatory": true]
+        
+        let style:[String: AnyObject] = ["sizeTitle": 30 as CGFloat]
+        let dic4:[String: AnyObject] = ["key" : "key",
+                   "label": "label",
+                   "type" : "index",
+                   "style": style]
+ 
         let formulary = Formulary.shared
         formulary.start(self.view, listItems: [dic1, dic2, dic4 ,dic3])
-        formulary.delegate = self       
+        formulary.delegate = self   
          
         //-- Case: Populate data --
         //let dic = ["a1":"eduardo"]
@@ -347,8 +366,13 @@ class ViewController: UIViewController, PFormulary {
      
     // MARK: PFormController
      
-    func recoverFormModel(_ formValues: [String : AnyObject]) {
+    func recoverFormModel(_ formValues: [AnyHashable : Any]) {
          
+    } 
+    
+    // OPTIONAL
+    func userDidTapLink(_ key: String) {
+        
     }
 }
 
@@ -380,16 +404,161 @@ class SecondTypeVC: UIViewController, PFormulary  {
          
         //-- Autolayout --
         gig_autoresize(viewContainterForm, false)
-        gig_layout_fit_horizontal(viewContainterForm);
-        gig_constrain_width(viewContainterForm, UIScreen.main.bounds.size.width);
-        gig_layout_top(viewContainterForm, 0);
+        gig_layout_fit_horizontal(viewContainterForm)
+        gig_constrain_width(viewContainterForm, UIScreen.main.bounds.size.width)
+        gig_layout_top(viewContainterForm, 0)
         gig_layout_bottom(viewContainterForm, 0)
     }
      
     // MARK: PFormController
      
-    func recoverFormModel(_ formValues: [String : AnyObject]) {
+    func recoverFormModel(_ formValues: [AnyHashable : Any]) {
          
     }
 }
+```
+
+## Métodos públicos ##
+
+Además de los contructores, el sdk dispone de varios metodos.
+
+**Rellenado de datos:**
+
+```
+#!swift
+let dic = ["key1":"eduardo"]
+self.formulary.populateData(dic)
+
+ó através del propio json, con la clave "value":
+
+{ 
+ "fields":[
+    {
+        "key": "clave1",
+        "type": "text",
+        "label": "tipoTexto",
+        "value": "Texto rellenado"
+    },
+    {
+        "key": "clave2",
+        "type": "picker",
+        "label": "tipoPicker",
+        "listOptions": [
+            {
+                "key": "KeyNoSelected",
+                "value": "valorA"
+            },
+            {
+                "key": "clave0",
+                "value": "valorB"
+            },
+            {
+                "key": "clave1",
+                "value": "valorC"
+            }
+        ],
+        "textError": "error_generic_field",
+        "value": "clave0"
+    },
+    {
+        "key": "clave3",
+        "type": "datePicker",
+        "label": "tipoDatePicker",
+        "textError": "error_generic_field",
+        "value": "20/01/2017"
+    },
+    {
+        "key": "clave4",
+        "type": "boolean",
+        "label": "tipoBoolean",
+        "textError": "error_generic_field",
+        "value": true        
+    }
+] 
+}
+
+```
+
+**Carga de errores de cada celda:**
+
+```
+#!swift
+let dic = ["key1":"Ha ocurrido un error en los datos"]
+self.formulary.loadError(dic)
+```
+
+**Borrar notificationCenter para las notificaciones del keyboard:**
+
+```
+#!swift
+self.formulary.clearFormulary()
+```
+
+**Cargar un bundle externo:**
+
+```
+#!swift
+self.formulary.loadBundle(Bundle.main)
+```
+
+## Métodos delegados ##
+
+Solamente el metodo de recuperar formulario es obligatorio, pero existen 3 métodos más.
+
+**Recuperar formulario:**
+
+```
+#!swift
+func recoverFormModel(_ formValues: [AnyHashable : Any]) {}
+```
+
+**Obtener la clave del link pulsado:**
+
+```
+#!swift
+func userDidTapLink(_ key: String) {}
+```
+
+**Obtener la posicion y clave del elemento pulsado:**
+
+```
+#!swift
+func fieldFocus(frame: CGRect, key: String?) {}
+```
+
+**Informa que ha fallado la validación del formulario:**
+
+```
+#!swift
+func invalidForm() {}
+```
+
+## Opciones especiales ##
+
+Los claves "label" de las celda tipo "Boolean" e "Index", tienen la propiedad de intruducir links en ellos. Para esto, el texto debe tener la siguiente estructura:
+
+```
+#!swift
+{
+    "fields":[
+              {
+              "key": "clave1",
+              "type": "boolean",
+              "label": "Esto es un {* link *}, pulsalo"
+              },
+              {
+              "key": "clave2",
+              "type": "index",
+              "label": "Esto es un {* link *}, pulsalo"
+              }
+        ]
+}
+
+```
+
+Para detectar que se ha pulsado, deberas escuchar el delegado:
+
+```
+#!swift
+func userDidTapLink(_ key: String) {}
 ```
