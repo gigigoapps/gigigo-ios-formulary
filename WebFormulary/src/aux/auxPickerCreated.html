@@ -3,17 +3,32 @@
            <div class="row">
                <div class="col-md-10">
                    <div class="containerTextFieldTop">
-                       <div class="titleTextField">
-                           <p>Titulo*:</p>
-                           <input type="text" name="titleTextField" id="titleTextField" value="{{title}}"  disabled readonly>                                       
-                        </div>                                 
+                        <div class="keyTextField">
+                            <p>key*:</p>
+                            <input type="text" name="keyTextField" id="keyTextField" value="{{keyTextField}}" disabled readonly>
+                       </div>
+                         <div class="titleTextField">
+                             <p>Titulo*:</p>
+                             <input type="text" name="titleTextField" id="titleTextField" value="{{title}}" disabled readonly>                                       
+                          </div>                                 
                    </div>
+
                    <div id="containerErrorMandatoryPicker">
                         <div class="errorTextField errorTextFieldPicker">
                            <p class="textErrorP">Texto error:</p>
-                           <input type="text" name="errorTextField" id="errorTextField"  disabled readonly value="{{error}}">
-                        </div>
-                        <div class="mandatoryTextField optionModel">
+                           <input type="text" name="errorTextField" id="errorTextField" disabled readonly value="{{error}}">
+                        </div>   
+                   </div>   
+
+                 <div class="containerAcceptEditing">
+                     <div class="acceptButtonTextField">
+                         <p>Titulo aceptar picker:</p>
+                         <input type="text" name="acceptButtonTextField" id="acceptButtonTextField" disabled readonly value="{{acceptButtonTextField}}" >
+                     </div>
+                 </div>
+
+                   <div class="containerOptionalPicker">    
+                     <div class="mandatoryTextField optionModel">
                               <input type="checkbox" name="mandatory" value="mandatory" id="mandatory" {{isMandatory}} disabled readonly>
                              <p>Es obligatorio?</p>
                         </div>                                    
@@ -26,7 +41,7 @@
                             <input type="checkbox" name="isHiddenTextField" value="isHiddenTextField" id="isHiddenTextField" {{isHiddenChecked}} disabled readonly>
                             <p>Es visible?</p>
                         </div>
-                   </div>   
+                   </div>
 
                    <div id="valuesOptionsSelector">     
                       <div id="pickerFieldsInsert">

@@ -16,8 +16,23 @@
                     <p class="textErrorP">Texto error:</p>
                     <input type="text" name="errorTextField" id="errorTextField" disabled readonly value="{{error}}">
                 </div>
-                <div class="mandatoryTextField optionModel">
-                    <input type="checkbox" name="mandatory" value="mandatory" id="mandatory"{{valueCheck}} disabled readonly>
+
+            </div>
+            
+           <div class="acceptButtonTextField">
+               <p>Titulo aceptar picker:</p>
+               <input type="text" name="acceptButtonTextField" id="acceptButtonTextField" value="{{acceptButtonTextField}}">                                       
+            </div>  
+            
+            <div class="minAgeContainer versionCreatedMinAge datePickerMinAge">
+                <p>Edad minima:</p>
+                <input type="text" name="minAgeContainer" id="minAgeContainer" value="{{minAgeContainer}}" disabled readonly>
+            </div>
+
+
+            <div id="containerOptionalDatePicker">
+                <div class="mandatoryTextField optionModel datePickerMandatory">
+                    <input type="checkbox" name="mandatory" value="mandatory" id="mandatory"{{isMandatory}} disabled readonly>
                     <p>Es obligatorio?</p>
                         </div>
                 <div class="isEditingTextField">
@@ -30,12 +45,8 @@
                     <p>Es visible?</p>
                 </div>
             </div>
-            
-            
-            <div class="minAgeContainer versionCreatedMinAge">
-                <p>Edad minima:</p>
-                <input type="text"name="minAgeContainer"id="minAgeContainer"value="{{minAgeContainer}}"disabled readonly>
-            </div>
+
+
             <div class="styleField">
                 <h4>Estilos de celda:</h4>
                 {{styles}}

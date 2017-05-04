@@ -34,6 +34,7 @@ window.createDatePickerField = function createDatePickerField(keyTextField,title
             .replace('{{title}}',title)
             .replace('{{error}}',error)
             .replace('{{isMandatory}}',isMandatory)
+            .replace('{{isEditingCheck}}',isEditingCheck)
             .replace('{{isHiddenChecked}}',isHiddenChecked)
             .replace('{{acceptButtonTextField}}',acceptButtonTextField)
             .replace('{{minAgeContainer}}',minAgeContainer)

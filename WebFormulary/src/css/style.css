@@ -491,6 +491,8 @@
 }
 #valuesOptionsSelector { 
     margin-left: 148px;
+    float: left;
+    width: 100%;
 }
 .errorTextFieldPicker {
     width: 380px;
@@ -498,14 +500,16 @@
 }
 #containerErrorMandatoryPicker{
     height: 47px;
+    float: left;
     width: 100%;
 }
 #addFieldPickerText{
     float: left;
 }
 #containerPickerFieldAdd{
-    width: 100$;
-    height: 30px;
+    width: 100%;
+    height: 37px;
+    margin-top: 8px;
 }
 #sumatoryPicker{
     border: 1px solid black;
@@ -584,10 +588,10 @@
     margin-left: 12px;
 }
 .buttonAddPicker {
-    height: 559px;
+    height: 581px;
 }
     .buttonAddPicker p {
-        margin-top: 247px;
+        margin-top: 257px;
     }
     
 .withOutStyle{
@@ -595,7 +599,7 @@
 }
 .acceptButtonTextField {
     height: 43px;
-    width: 448px;
+    width: 100%;
     float:left;
 }
     .acceptButtonTextField input{
@@ -627,7 +631,7 @@
 .minAgeContainer {
     height: 43px;
     width: 100%;
-    margin-top: 45px;
+    margin-top: 55px;
 }
     .minAgeContainer input{
         float: left;
@@ -814,4 +818,42 @@
 
 .customValidatorCreated {
     width: 70px !important;
+}
+
+#containerOptionalDatePicker {
+    height: 51px;
+    margin-left: 140px;
+    width: 100%;
+    float: left;
+}
+
+.datePickerMandatory {
+    width: 193px !important;
+}
+
+.datePickerMinAge {
+    float: left;
+}
+
+.containerOptionalPicker{
+    height: 51px;
+    margin-left: 140px;
+    width: 100%;
+    float: left;
+}
+    .containerOptionalPicker div{
+        width: 193px !important;
+    }
+
+    .optionalBooleanContainer div {
+        width: 193px !important;
+    }
+
+    .isEditingTextField {
+        margin-top: 0px !important;
+    }
+
+
+.optionalBooleanContainer .isEditingTextField{
+    margin-top: 0px !important;
 }

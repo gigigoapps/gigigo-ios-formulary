@@ -20,6 +20,7 @@ window.createPickerField = function createPickerField(keyTextField,title,error,m
     if (mandatory) {
         isMandatory = "checked"
     }
+    var isEditingCheck = ""
     if (isEditing) {
         isEditingCheck = "checked"
     }
@@ -56,6 +57,7 @@ window.createPickerField = function createPickerField(keyTextField,title,error,m
             .replace('{{isMandatory}}',isMandatory)
             .replace('{{isHiddenChecked}}',isHiddenChecked)
             .replace('{{htmlPickerItems}}',htmlPickerItems) 
+            .replace('{{isEditingChecked}}',isEditingCheck)
             .replace('{{acceptButtonTextField}}',acceptButtonTextField)
             .replace(/\{\{indexField\}\}/g,indexField)
 
