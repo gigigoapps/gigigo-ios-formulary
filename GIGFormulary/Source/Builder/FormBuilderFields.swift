@@ -45,7 +45,7 @@ class FormBuilderFields: NSObject {
                 listFormField.append(self.createField(fieldDic))
             }
         } else {
-            print("❌❌❌ json fields Not Found")
+            print("❌❌❌ json fields Not Found or Bad format")
         }
         
         return listFormField

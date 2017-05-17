@@ -19,59 +19,27 @@
               "show": "checkbox",
               "type": "boolean",
               "key": "globalOpt",
-              "label": "I want to receive Coca-Cola communications"
+              "label": "I want to receive {* terminos y condiciones *} Coca-Cola communications"
               
               },
               {
-              "key": "b",
-              "type": "text",
-              "label": "a2",
-              "placeHolder": "a2"
-              },
-              {
-              "key": "textErrorNormalGenerico",
-              "type": "text",
-              "label": "textErrorNormalGenerico",
-              "placeHolder": "textErrorNormalGenerico",
-              "mandatory": true
-              },
-              {
-              "key": "textErrorNormal",
-              "type": "text",
-              "label": "textErrorNormal",
-              "placeHolder": "textErrorNormal",
+              "isHidden": false,
               "mandatory": true,
-              "textError": "texto Error"
+              "type": "index",
+              "key": "globalOpt3",
+              "label": "I want to receive  Coca-Cola communications"
               },
               {
-              "key": "textErrorValidate",
+              "isHidden": false,
               "mandatory": true,
-              "type": "text",
-              "label": "textErrorValidate",
-              "placeHolder": "textErrorValidate",
-              "textErrorValidate": "texto Error de validacion only",
-              "minLength": 12,
-              "maxLength": 42,
-              "validator": "lengthText"
+              "type": "index",
+              "key": "globalOpt4",
+              "label": "I want to receive {* otr cosa *} Coca-Cola communications"
               },
               {
-              "key": "textErrorValidateComplex",
-              "mandatory": true,
+              "key": "r",
               "type": "text",
-              "label": "textErrorValidateComplex",
-              "placeHolder": "textErrorValidateComplex",
-              "textErrorValidate": "texto Error de validacion complex",
-              "textError": "texto Error",
-              "minLength": 12,
-              "maxLength": 42,
-              "validator": "lengthText"
-              },
-              {
-              "key": "a1",
-              "type": "text",
-              "label": "a1",
-              "placeHolder": "a1",
-              "isHidden": true
+              "label": "ere"
               }
         ]
 }
