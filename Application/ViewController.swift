@@ -78,8 +78,8 @@ class ViewController: UIViewController, PFormulary {
     func recoverFormModel(_ formValues: [AnyHashable : Any]) {        
         print("FORMVALUES: \(formValues)")
     }
-      // OPTIONAL
+     // OPTIONAL
     func userDidTapLink(_ key: String) {
-        print("key: \(key)")        
+        print("userDidTapLink: \(key)")
     }
 }

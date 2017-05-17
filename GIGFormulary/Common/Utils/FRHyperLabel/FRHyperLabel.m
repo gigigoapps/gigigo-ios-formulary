@@ -95,7 +95,11 @@ static UIColor *FRHyperLabelLinkColorHighlight;
 
 - (void)setLinkForSubstring:(NSString *)substring withAttribute:(NSDictionary *)attribute andLinkHandler:(void(^)(FRHyperLabel *label, NSString *substring))handler {
 	NSRange range = [self.attributedText.string rangeOfString:substring];
-	if (range.length) {
+    if (range.length) {
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+        [self addGestureRecognizer:tapGesture];
+        
 		[self setLinkForRange:range withAttributes:attribute andLinkHandler:^(FRHyperLabel *label, NSRange range){
 			handler(label, [label.attributedText.string substringWithRange:range]);
 		}];
@@ -114,6 +118,33 @@ static UIColor *FRHyperLabelLinkColorHighlight;
 
 #pragma mark - Event Handler
 
+- (void)imageTapped:(UITapGestureRecognizer *)sender
+{
+    
+    CGPoint touchPoint = [sender locationOfTouch:0 inView:self];
+    NSValue *rangeValue = [self attributedTextRangeForPoint:touchPoint];
+    
+    if (rangeValue) {
+        self.backupAttributedText = self.attributedText;
+        NSRange range = [rangeValue rangeValue];
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithAttributedString:self.attributedText];
+        [attributedString addAttributes:self.linkAttributeHighlight range:range];
+        
+        [UIView transitionWithView:self duration:highLightAnimationTime options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+            self.attributedText = attributedString;
+        } completion:^(BOOL finished) {
+            [UIView transitionWithView:self duration:highLightAnimationTime options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                self.attributedText = self.backupAttributedText;
+            } completion:nil];
+        }];
+    }
+    
+    if (rangeValue) {
+        void(^handler)(FRHyperLabel *label, NSRange selectedRange) = self.handlerDictionary[rangeValue];
+        handler(self, [rangeValue rangeValue]);
+    }
+}
+/*
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	self.backupAttributedText = self.attributedText;
 	for (UITouch *touch in touches) {
@@ -158,7 +189,7 @@ static UIColor *FRHyperLabelLinkColorHighlight;
 		}
 	}
 }
-
+*/
 #pragma mark - Substring Locator
 
 - (NSValue *)attributedTextRangeForPoint:(CGPoint)point {
