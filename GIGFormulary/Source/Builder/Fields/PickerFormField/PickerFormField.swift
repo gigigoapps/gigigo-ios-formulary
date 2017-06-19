@@ -200,6 +200,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
             }
             if styleField!.fontTitle != nil {
                 self.titleLabel.font = styleField?.fontTitle
+                self.textTextField.font = styleField?.fontTitle
             }
             if styleField!.fontError != nil {
                 self.errorLabel.font = styleField?.fontError

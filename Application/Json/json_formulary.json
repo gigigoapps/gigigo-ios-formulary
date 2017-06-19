@@ -1,10 +1,52 @@
 {
     "fields":[
               {
-              "key": "a",
+              "key": "asd",
               "type": "text",
-              "label": "aaa",
-              "mandatory": true,
+              "label": "aadsds",
+              "textError": "asda",
+              "placeHolder": "asda",
+              "style": {
+              "titleColor": "#5ccfbb",
+              "font": "Zapfino"
+              }
+              },
+              {
+              "key": "sdfs",
+              "type": "picker",
+              "style": {
+              "titleColor": "#5ccfbb",
+              "font": "Zapfino"
+              },
+              "label": "sdfs",
+              "listOptions": [
+                              {
+                              "key": "KeyNoSelected",
+                              "value": "sdfs"
+                              },
+                              {
+                              "key": "sdfs",
+                              "value": "sfdds"
+                              }
+                              ],
+              "textError": "sdfds"
+              },
+              {
+              "key": "werw",
+              "type": "datePicker",
+              "label": "rwr",
+              "textError": "werew",
+              "textAcceptButton": "rewrew",
+              "style": {
+              "titleColor": "#5ccfbb",
+              "font": "Zapfino"
+              }
+              },
+              {
+              "key": "werw",
+              "type": "boolean",
+              "label": "wrewrwe",
+              "textError": "werwrw",
               "style": {
               "titleColor": "#5ccfbb",
               "font": "Zapfino"
