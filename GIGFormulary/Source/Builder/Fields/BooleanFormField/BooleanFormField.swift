@@ -145,7 +145,11 @@ class BooleanFormField: FormField {
             
             //Step 3: Add link substrings
             self.titleLabel.setLinksForSubstrings(getLinks.0, withLinkHandler: handler)
-            self.titleLabel.font = UIFont.systemFont(ofSize: 16)
+            
+            //Step 4: Insert font
+            guard let styleField = formFieldM.style,
+                  let fontTitle = styleField.fontTitle else { return }
+            self.titleLabel.font = fontTitle
         }
     }
     
