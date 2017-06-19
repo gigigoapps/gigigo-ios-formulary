@@ -72,26 +72,22 @@ class FormFieldStyleModel: NSObject {
             self.containerAcceptColorPicker = UIColor.gray
         }
         if let font = json["font"] as? String {
-            if sizeTitle != nil {
-                self.fontTitle = UIFont (name: font, size: sizeTitle!)
+            if let sizeTitle = sizeTitle {
+                self.fontTitle = UIFont (name: font, size: sizeTitle)
+            } else {
+                self.fontTitle = UIFont (name: font, size: 17)
             }
-            if self.fontTitle == nil {  // control if font no found
-                print("🌀🌀🌀 Font in title no found")
-                self.fontTitle = UIFont.systemFont(ofSize: sizeTitle!)
-            }
-            if sizeError != nil {
-                self.fontError = UIFont (name: font, size: sizeError!)
-            }
-            if self.fontError == nil {  // control if font no found
-                print("🌀🌀🌀 Font in error no found")
-                self.fontError = UIFont.systemFont(ofSize: sizeError!)
+            if let sizeError = sizeError {
+                self.fontError = UIFont (name: font, size: sizeError)
+            } else {
+                self.fontError = UIFont (name: font, size: 15)
             }
         } else {
-            if sizeTitle != nil {
-                self.fontTitle = UIFont.systemFont(ofSize: sizeTitle!)
+            if let sizeTitle = sizeTitle {
+                self.fontTitle = UIFont.systemFont(ofSize: sizeTitle)
             }
-            if sizeError != nil {
-                self.fontError = UIFont.systemFont(ofSize: sizeError!)
+            if let sizeError = sizeError {
+                self.fontError = UIFont.systemFont(ofSize: sizeError)
             }
         }
         if let align = json["align"] as? String {

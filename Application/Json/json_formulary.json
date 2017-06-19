@@ -1,27 +1,14 @@
 {
     "fields":[
               {
-              "key": "textErrorValidateComplex",
-              "mandatory": false,
+              "key": "a",
               "type": "text",
-              "label": "Esto es un {* link *} en serio?",
-              "placeHolder": "textErrorValidateComplex",
-              "textErrorValidate": "texto Error de validacion complex",
-              "textError": "texto Error",
-              "minLength": 12,
-              "maxLength": 42,
-              "validator": "lengthText"
-              },
-              {
-              "key": "sds",
-              "type": "boolean",
-              "label": "Esto es un {* link *} en serio?",
-              "textError": "error_generic_field"
-              },
-              {
-              "key": "sds2",
-              "type": "index",
-              "label": "Esto es un {* link *} en serio?"
+              "label": "aaa",
+              "mandatory": true,
+              "style": {
+              "titleColor": "#5ccfbb",
+              "font": "Zapfino"
               }
-        ]
+              }
+              ] 
 }
