@@ -8,7 +8,6 @@
               "placeHolder": "asda",
               "style": {
               "titleColor": "#5ccfbb",
-              "font": "Zapfino"
               }
               },
               {
@@ -16,7 +15,6 @@
               "type": "picker",
               "style": {
               "titleColor": "#5ccfbb",
-              "font": "Zapfino"
               },
               "label": "sdfs",
               "listOptions": [
@@ -39,7 +37,6 @@
               "textAcceptButton": "rewrew",
               "style": {
               "titleColor": "#5ccfbb",
-              "font": "Zapfino"
               }
               },
               {
@@ -49,7 +46,15 @@
               "textError": "werwrw",
               "style": {
               "titleColor": "#5ccfbb",
-              "font": "Zapfino"
+              }
+              },
+              {
+              "key": "aa",
+              "type": "boolean",
+              "label": "asdasd",
+              "textError": "werwrw",
+              "style": {
+              "titleColor": "#5ccfbb",
               }
               }
               ] 

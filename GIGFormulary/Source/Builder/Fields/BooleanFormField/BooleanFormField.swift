@@ -131,9 +131,20 @@ class BooleanFormField: FormField {
         if self.existLink(label) {
             let getLinks = self.getListLinks(label)
             
-            let attributes = [NSForegroundColorAttributeName: UIColor.black,
+            let attributes = [NSForegroundColorAttributeName: UIColor.red,
                               NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
             self.titleLabel.attributedText = NSAttributedString(string: getLinks.1, attributes: attributes)
+            
+            
+            // TODO EDU, hay q tocar estos 3 colores y ver como ostias dejarlo
+            self.titleLabel.linkAttributeHighlight = [
+                NSForegroundColorAttributeName: UIColor.purple
+            ]
+            
+            self.titleLabel.linkAttributeDefault = [
+                NSForegroundColorAttributeName: UIColor.yellow
+            ]
+            
             
             //Step 2: Define a selection handler block
             let handler = {
@@ -147,9 +158,30 @@ class BooleanFormField: FormField {
             self.titleLabel.setLinksForSubstrings(getLinks.0, withLinkHandler: handler)
             
             //Step 4: Insert font
-            guard let styleField = formFieldM.style,
-                  let fontTitle = styleField.fontTitle else { return }
+        /*    guard let styleField = formFieldM.style else {
+                self.titleLabel.font = UIFont.systemFont(ofSize: 17)
+                self.titleLabel.linkAttributeDefault = [
+                        NSForegroundColorAttributeName: UIColor.green, // UIColor.black,
+                        NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle
+                    ]
+                return
+            }
+            
+            guard let fontTitle = styleField.fontTitle else {
+                self.titleLabel.font = UIFont.systemFont(ofSize: 17)
+                self.titleLabel.linkAttributeHighlight = [
+                    NSForegroundColorAttributeName: UIColor.purple,//styleField.titleColor,
+                    NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle
+                ]
+                return
+            }
+            
             self.titleLabel.font = fontTitle
+            self.titleLabel.linkAttributeHighlight = [
+                NSForegroundColorAttributeName: UIColor.purple,//styleField.titleColor,
+                NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle
+            ]*/
+
         }
     }
     
