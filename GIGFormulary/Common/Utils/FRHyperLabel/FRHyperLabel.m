@@ -144,52 +144,7 @@ static UIColor *FRHyperLabelLinkColorHighlight;
         handler(self, [rangeValue rangeValue]);
     }
 }
-/*
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	self.backupAttributedText = self.attributedText;
-	for (UITouch *touch in touches) {
-		CGPoint touchPoint = [touch locationInView:self];
-		NSValue *rangeValue = [self attributedTextRangeForPoint:touchPoint];
-		if (rangeValue) {
-			NSRange range = [rangeValue rangeValue];
-			NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithAttributedString:self.attributedText];
-			[attributedString addAttributes:self.linkAttributeHighlight range:range];
-			
-			[UIView transitionWithView:self duration:highLightAnimationTime options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-				self.attributedText = attributedString;
-			} completion:nil];
-		}
-	}
-}
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-	[UIView transitionWithView:self duration:highLightAnimationTime options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-		self.attributedText = self.backupAttributedText;
-    } completion:nil];
-    
-    for (UITouch *touch in touches) {
-        NSValue *rangeValue = [self attributedTextRangeForPoint:[touch locationInView:self]];
-        if (rangeValue) {
-            void(^handler)(FRHyperLabel *label, NSRange selectedRange) = self.handlerDictionary[rangeValue];
-            handler(self, [rangeValue rangeValue]);
-        }
-    }
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-	[UIView transitionWithView:self duration:highLightAnimationTime options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-		self.attributedText = self.backupAttributedText;
-	} completion:nil];
-	
-	for (UITouch *touch in touches) {
-		NSValue *rangeValue = [self attributedTextRangeForPoint:[touch locationInView:self]];
-		if (rangeValue) {
-			void(^handler)(FRHyperLabel *label, NSRange selectedRange) = self.handlerDictionary[rangeValue];
-			handler(self, [rangeValue rangeValue]);
-		}
-	}
-}
-*/
 #pragma mark - Substring Locator
 
 - (NSValue *)attributedTextRangeForPoint:(CGPoint)point {

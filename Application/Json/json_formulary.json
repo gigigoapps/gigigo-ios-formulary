@@ -36,7 +36,7 @@
               "textError": "werew",
               "textAcceptButton": "rewrew",
               "style": {
-              "titleColor": "#5ccfbb",
+              "titleColor": "#5ccfbb"
               }
               },
               {
@@ -45,7 +45,7 @@
               "label": "wrewrwe {* asdas *} asasd",
               "textError": "werwrw",
               "style": {
-              "titleColor": "#5ccfbb",
+              "titleColor": "#5ccfbb"
               }
               },
               {
@@ -54,7 +54,7 @@
               "label": "asdasd",
               "textError": "werwrw",
               "style": {
-              "titleColor": "#5ccfbb",
+              "titleColor": "#5ccfbb"
               }
               }
               ] 
