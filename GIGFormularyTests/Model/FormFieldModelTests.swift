@@ -175,25 +175,6 @@ class FormFieldModelTests: XCTestCase {
             
             XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic1))
         }
-        do {
-            let listOptions = [
-                [
-                    "key": "KeyNoSelected",
-                    "value": ""
-                ],
-                [
-                    "key": "clave1",
-                    "value": "titulo primer elemento"
-                ]
-            ]
-            
-            let dic1 = ["type": "tipo",
-                        "label": "titulo",
-                        "key": "clave",
-                        "listOptions": listOptions] as [AnyHashable: Any]
-            
-            XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic1))
-        }
     }
     
     func test_parseJson_FormFieldModel_with_json_valid_And_All_Mandatory_Element_options() {
