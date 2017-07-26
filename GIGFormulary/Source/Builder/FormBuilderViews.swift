@@ -104,7 +104,7 @@ class FormBuilderViews: NSObject {
                 LogWarn("ViewFormFields or Button send Not Found. Create this in StoryBoard")
             }
         } else {
-            LogWarn("viewContainerFormulary Not Found")
+            LogWarn("ViewContainerFormulary Not Found")
         }
         
         self.viewContainerFormulary.removeSubviews()
