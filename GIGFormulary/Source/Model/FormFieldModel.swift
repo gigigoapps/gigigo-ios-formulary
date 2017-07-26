@@ -53,12 +53,12 @@ class FormFieldModel: NSObject {
         
         //-- Mandatory --
         guard let type = json["type"] as? String, type.characters.count > 0 else {
-            print("❌❌❌ type Not Found")
+            LogWarn("type Not Found")
             throw ThrowError.mandatoryElementNotFound
         }
 
         guard let key = json["key"] as? String, key.characters.count > 0 else {
-            print("❌❌❌ key Not Found")
+            LogWarn("key Not Found")
             throw ThrowError.mandatoryElementNotFound
         }
     
@@ -89,17 +89,17 @@ class FormFieldModel: NSObject {
 
         if json["listOptions"] != nil {
             guard let listOptions = json["listOptions"] as? [[AnyHashable: Any]] else {
-                print("❌❌❌ listOptions incorrect type")
+                LogWarn(" listOptions incorrect type")
                 throw ThrowError.mandatoryElementIncorrectType
             }
             if listOptions.count == 0 {
-                print("❌❌❌ listOptions empty")
+                LogWarn("listOptions empty")
                 throw ThrowError.mandatoryElementEmpty
             }
             do {
                 self.options = try FormFieldOptionsModel.parseListOptionsJson(listOptions)
             } catch {
-                print("❌❌❌ options Not Found")
+                LogWarn("options Not Found")
                 throw ThrowError.mandatoryElementNotFound
             }
         }

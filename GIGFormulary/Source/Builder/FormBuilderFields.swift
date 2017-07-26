@@ -45,7 +45,7 @@ class FormBuilderFields: NSObject {
                 listFormField.append(self.createField(fieldDic))
             }
         } else {
-            print("❌❌❌ json fields Not Found or Bad format")
+            LogWarn("json fields Not Found or Bad format")
         }
         
         return listFormField
@@ -92,7 +92,7 @@ class FormBuilderFields: NSObject {
             try formFieldM.parseDictionary(fieldDic)
             
             guard let typeFieldFound = TypeField(rawValue: formFieldM.type!) else {
-                print("❌❌❌ typeFieldFound not found")
+                LogWarn("typeFieldFound not found")
                 return FormField()
             }
             let typeField = self.listTypeFields[typeFieldFound]

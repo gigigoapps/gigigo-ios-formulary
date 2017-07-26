@@ -190,7 +190,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
             
             if itemFound.count > 0 {
                 if itemFound[0].fieldValue != nil {
-                    guard let fieldString = itemFound[0].fieldValue as? String else { print("??"); LogWarn("Parse value to String error"); return "" }
+                    guard let fieldString = itemFound[0].fieldValue as? String else { LogWarn("Parse value to String error"); return "" }
                     return fieldString
                 } else {
                     return ""
