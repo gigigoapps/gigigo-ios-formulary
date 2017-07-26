@@ -148,11 +148,16 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
             }
             
             if formFieldM.type != TypeField.indexFormField.rawValue {
-                if let valueString = field.fieldValue as? String {
-                    let value = valueString.trimmingCharacters(in: .whitespaces)
-                    self.formValues["\(formFieldM.key!)"] = value as Any?
+                if let key = formFieldM.key {
+                    if let valueString = field.fieldValue as? String {
+                        let value = valueString.trimmingCharacters(in: .whitespaces)
+                        self.formValues["\(key)"] = value as Any?
+                    } else {
+                        self.formValues["\(key)"] = (field.fieldValue != nil) ? field.fieldValue as Any : "" as Any
+                    }
                 } else {
-                    self.formValues["\(formFieldM.key!)"] = (field.fieldValue != nil) ? field.fieldValue as Any : "" as Any
+                    LogWarn("validateFields -> formFieldM.key is Nil")
+                    return false
                 }
             }
         }
@@ -175,7 +180,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
             
             if itemFound.count > 0 {
                 if itemFound[0].fieldValue != nil {
-                    guard let fieldString = itemFound[0].fieldValue as? String else { print("??"); LogWarn("Parse value to String error"); return "" }
+                    guard let fieldString = itemFound[0].fieldValue as? String else { LogWarn("Parse value to String error"); return "" }
                     return fieldString
                 } else {
                     return ""

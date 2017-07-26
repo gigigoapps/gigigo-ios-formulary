@@ -101,10 +101,10 @@ class FormBuilderViews: NSObject {
                 guard let button = self.viewFormulary.subviews[2] as? UIButton else { return LogWarn("Button missing") }
                 self.buttonSend = button
             } else {
-                print("❌❌❌ ViewFormFields or Button send Not Found. Create this in StoryBoard")
+                LogWarn("ViewFormFields or Button send Not Found. Create this in StoryBoard")
             }
         } else {
-            print("❌❌❌ viewContainerFormulary Not Found")
+            LogWarn("ViewContainerFormulary Not Found")
         }
         
         self.viewContainerFormulary.removeSubviews()

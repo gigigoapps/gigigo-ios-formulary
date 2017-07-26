@@ -1,9 +1,9 @@
 {
-  "xcodeVersion" : "Xcode 8.3\nBuild version 8E162",
+  "xcodeVersion" : "Xcode 8.3.2\nBuild version 8E2002",
   "commitish" : "v1.1.0",
   "iOS" : [
     {
-      "hash" : "3ded901f12a5c205f816ce9469985619247abcecf76d31dfefeb4a70713b06e0",
+      "hash" : "c2f9303d765f6c2af92ac0375a84527f94150625a7ec6c0d16ba6f07f1a5998d",
       "name" : "Quick"
     }
   ]

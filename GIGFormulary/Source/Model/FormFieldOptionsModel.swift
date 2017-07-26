@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GIGLibrary
 
 class FormFieldOptionsModel: NSObject {
     var idOption: String?
@@ -37,12 +38,15 @@ class FormFieldOptionsModel: NSObject {
         //== PREPARE DATA ==
         //-- Mandatory --
         guard let key = json["key"] as? String, key.characters.count > 0 else {
-            print("❌❌❌ FormFieldOptionsModel:: key value Not Found")
+            LogWarn("FormFieldOptionsModel:: key value Not Found")
             throw ThrowError.mandatoryElementNotFound
         }
         guard let value = json["value"] as? String, value.characters.count > 0 else {
-            print("❌❌❌ FormFieldOptionsModel:: value Options Not Found")
             throw ThrowError.mandatoryElementNotFound
+        }
+        
+        if value.characters.count == 0 {
+            LogWarn("FormFieldOptionsModel:: value Options Not Found")
         }
         
         //== INSERT DATA ==
