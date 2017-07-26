@@ -3,11 +3,7 @@
   "commitish" : "v1.1.0",
   "iOS" : [
     {
-<<<<<<< HEAD
-      "hash" : "85d43d34eea0be5d625f55491b998bbaf485694e468d790fc4e14823c2834b4b",
-=======
-      "hash" : "c2f9303d765f6c2af92ac0375a84527f94150625a7ec6c0d16ba6f07f1a5998d",
->>>>>>> develop
+      "hash" : "7464db5e44108f65a6e20267ce6e63dbbe8f3ef871d268980c155c27a44c31e0",
       "name" : "Quick"
     }
   ]
