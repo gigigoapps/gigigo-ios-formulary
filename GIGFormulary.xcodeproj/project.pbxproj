@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		236B9A1D1F28A98A001FBB6F /* Formulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC7EBC81D4F6F860022D1C5 /* Formulary.swift */; };
 		7B1BC7161E9BC88A002F612B /* FormControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1BC7151E9BC88A002F612B /* FormControllerTests.swift */; };
 		7B1BC71C1E9BCBC2002F612B /* JSONMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1BC71B1E9BCBC2002F612B /* JSONMock.swift */; };
 		7B1BC71F1E9BCC66002F612B /* form1.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B1BC71E1E9BCC66002F612B /* form1.json */; };
@@ -857,7 +856,6 @@
 				7B9D68B51E2E6C970061D666 /* PpalVC.swift in Sources */,
 				7B6191D81DBF98FA00E3BC87 /* SecondTypeVC.swift in Sources */,
 				7BB82F151D4B5E2200DC85F5 /* ViewController.swift in Sources */,
-				236B9A1D1F28A98A001FBB6F /* Formulary.swift in Sources */,
 				7B9D68B21E2E69520061D666 /* ThirdTypeVC.swift in Sources */,
 				7BB82F131D4B5E2200DC85F5 /* AppDelegate.swift in Sources */,
 			);
