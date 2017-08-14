@@ -6,6 +6,7 @@
               "label": "aadsds",
               "textError": "asda",
               "placeHolder": "asda",
+              "mandatory": true,
               "style": {
               "titleColor": "#5ccfbb",
               }
@@ -35,6 +36,7 @@
               "label": "rwr",
               "textError": "werew",
               "textAcceptButton": "rewrew",
+              "mandatory": true,
               "style": {
               "titleColor": "#5ccfbb"
               }
@@ -56,6 +58,63 @@
               "style": {
               "titleColor": "#5ccfbb"
               }
+              },
+              {
+              "key": "key1",
+              "type": "text",
+              "label": "Titulo 1",
+              "textError": "asda",
+              "placeHolder": "titulo 1",
+              "mandatory": true
+              },
+              {
+              "key": "key2",
+              "type": "text",
+              "label": "Titulo 2",
+              "textError": "asda",
+              "placeHolder": "titulo 2",
+              "mandatory": true
+              },
+              {
+              "key": "key3",
+              "type": "text",
+              "label": "Titulo 3",
+              "textError": "asda",
+              "placeHolder": "titulo 3",
+              "mandatory": true
+              },
+              {
+              "key": "key4",
+              "type": "text",
+              "label": "Titulo 4",
+              "textError": "asda",
+              "placeHolder": "titulo 4",
+              "mandatory": true
+              },
+              {
+              "key": "key5",
+              "type": "text",
+              "label": "Titulo 5",
+              "textError": "asda",
+              "placeHolder": "titulo 5",
+              "mandatory": true
+              },
+              {
+              "key": "key6",
+              "type": "text",
+              "label": "Titulo 6",
+              "textError": "asda",
+              "placeHolder": "titulo 6",
+              "mandatory": true
+              },
+              {
+              "key": "key7",
+              "type": "text",
+              "label": "Titulo 7",
+              "textError": "asda",
+              "placeHolder": "titulo 7",
+              "mandatory": true,
+              "isHidden": true
               }
               ] 
 }

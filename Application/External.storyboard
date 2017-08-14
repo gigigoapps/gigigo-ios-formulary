@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WiB-Mp-aI9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WiB-Mp-aI9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,10 +25,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcF-ie-CPa" userLabel="supView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="En la cabecera puedes poner cualquier elemento ocupar cualquier tamaño" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Unm-Dk-vc5">
-                                                <rect key="frame" x="20" y="8" width="335" height="108"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="En la cabecera puedes poner cualquier elemento ocupar cualquier tamaño" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Unm-Dk-vc5">
+                                                <rect key="frame" x="20" y="8" width="335" height="14"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -38,13 +38,13 @@
                                         <constraints>
                                             <constraint firstItem="Unm-Dk-vc5" firstAttribute="top" secondItem="KcF-ie-CPa" secondAttribute="top" constant="8" id="4kW-La-TxC"/>
                                             <constraint firstItem="Unm-Dk-vc5" firstAttribute="leading" secondItem="KcF-ie-CPa" secondAttribute="leading" constant="20" id="aQF-x6-8yQ"/>
-                                            <constraint firstAttribute="height" constant="124" id="aaI-N7-XIB"/>
+                                            <constraint firstAttribute="height" constant="30" id="aaI-N7-XIB"/>
                                             <constraint firstAttribute="bottom" secondItem="Unm-Dk-vc5" secondAttribute="bottom" constant="8" id="jMG-HI-5Ma"/>
                                             <constraint firstAttribute="trailing" secondItem="Unm-Dk-vc5" secondAttribute="trailing" constant="20" id="rSx-47-ysK"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iP-IY-1sV" userLabel="formView">
-                                        <rect key="frame" x="0.0" y="124" width="375" height="427"/>
+                                        <rect key="frame" x="0.0" y="30" width="375" height="521"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BeP-E3-0mT">

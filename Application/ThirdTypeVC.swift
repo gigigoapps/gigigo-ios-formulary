@@ -69,7 +69,13 @@ class ThirdTypeVC: UIViewController, Instantiable, PFormulary {
                 "k": true,
                 "boolK": true,
                 "l": "12/01/1983",
-                "m": "rellenar"
+                "key1": "rellenar",
+                "key2": "rellenar",
+                "key3": "rellenar",
+                "key4": "rellenar",
+                "key5": "rellenar",
+                "key6": "rellenar",
+                "key7": "rellenar"
             ]
         )
     }

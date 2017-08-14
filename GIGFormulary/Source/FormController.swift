@@ -113,7 +113,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
         let nextFieldPos =  self.formFields.index(of: field)!+1
         if nextFieldPos < self.formFields.count {
             let nextField = self.formFields[nextFieldPos]
-            if nextField.formFieldM?.type == TypeField.indexFormField.rawValue {
+            if nextField.formFieldM?.type == TypeField.indexFormField.rawValue || (nextField.formFieldM?.isHidden)! {
                 return self.nextFieldTo(nextField)
             }
             return nextField
@@ -128,7 +128,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
             guard let formFieldM = field.formFieldM else {
                 return false
             }
-            
+
             if !field.validate() {
                 self.moveToPositionError(isValid, field)
                 isValid = false
@@ -160,7 +160,6 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
                     return false
                 }
             }
-            
             
             if formFieldM.type != TypeField.indexFormField.rawValue {
                 if let key = formFieldM.key {
