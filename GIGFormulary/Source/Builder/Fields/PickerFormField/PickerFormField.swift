@@ -43,9 +43,9 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
                 return (self.formFieldM!.options![self.pickerOptions!.selectedIndex!]).idOption
             } else {
                 if self.pickerDate!.dateSelected != nil {
-                    let formatter = DateFormatter()
-                    formatter.setLocalizedDateFormatFromTemplate("dd/MM/yyyy")
-                    return formatter.string(from: self.pickerDate!.dateSelected! as Date)
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd/MM/yyyy"
+                    return dateFormatter.string(from: self.pickerDate!.dateSelected!)
                 }
                 return ""
             }
