@@ -76,12 +76,12 @@ class FormFieldModel: NSObject {
         if let textError = json["textError"] as? String {
             self.textsError.textError = NSLocalizedString(textError, comment: "")
         } else {
-            self.textsError.textError = NSLocalizedString("error_generic_field", tableName: nil, bundle: Bundle(for: type(of: self)), value: "", comment: "error_generic_field")
+            self.textsError.textError = NSLocalizedString("error_generic_field", tableName: nil, bundle: Bundle(for: Swift.type(of: self)), value: "", comment: "error_generic_field")
         }
         if let textErrorCompare = json["textErrorCompare"] as? String {
             self.textsError.textErrorCompare = NSLocalizedString(textErrorCompare, comment: "")
         } else {
-            self.textsError.textErrorCompare = NSLocalizedString("error_generic_compare_field", tableName: nil, bundle: Bundle(for: type(of: self)), value: "", comment: "error_generic_compare_field")
+            self.textsError.textErrorCompare = NSLocalizedString("error_generic_compare_field", tableName: nil, bundle: Bundle(for: Swift.type(of: self)), value: "", comment: "error_generic_compare_field")
         }
         if let placeHolder = json["placeHolder"] as? String {
             self.placeHolder = NSLocalizedString(placeHolder, comment: "")
@@ -116,7 +116,7 @@ class FormFieldModel: NSObject {
         if let textAccept  = json["textAcceptButton"] as? String {
             self.textAcceptButton = NSLocalizedString(textAccept, tableName: nil, bundle: self.bundle, value: "", comment: "")
         } else {
-            self.textAcceptButton = NSLocalizedString("gig_form_accept_button_picker", tableName: nil, bundle: Bundle(for: type(of: self)), value: "", comment: "gig_form_accept_button_picker")
+            self.textAcceptButton = NSLocalizedString("gig_form_accept_button_picker", tableName: nil, bundle: Bundle(for: Swift.type(of: self)), value: "", comment: "gig_form_accept_button_picker")
         }
         if let value = json["value"] {
             self.value = value

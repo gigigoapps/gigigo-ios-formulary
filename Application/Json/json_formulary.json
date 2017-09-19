@@ -1,13 +1,15 @@
 {
     "fields":[
               {
-              "key": "k1",
-              "type": "datePicker",
-              "label": "edad",
-              "textError": "ghjg",
-              "textAcceptButton": "hgjgj",
-              "minAge": 14,
-              "validator": "age"
+              "key": "asas",
+              "type": "text",
+              "label": "asas",
+              "mandatory": true,
+              "textError": "ggggg",
+              "placeHolder": "saa",
+              "keyboard": "FormKeyboardTypeText",
+              "validator": "dniNie",
+              "textErrorValidate": "ghhggh"
               }
-              ] 
+              ]
 }

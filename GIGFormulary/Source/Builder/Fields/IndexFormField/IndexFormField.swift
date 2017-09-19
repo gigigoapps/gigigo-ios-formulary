@@ -60,8 +60,8 @@ class IndexFormField: FormField {
         if self.existLink(formFieldM.label!) {
             let getLinks = self.getListLinks(formFieldM.label!)
             
-            let attributes = [NSForegroundColorAttributeName: UIColor.black,
-                              NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+            let attributes = [NSAttributedStringKey.foregroundColor: UIColor.black,
+                              NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
             self.indexLabel.attributedText = NSAttributedString(string: getLinks.1, attributes: attributes)
             
             //Step 2: Define a selection handler block

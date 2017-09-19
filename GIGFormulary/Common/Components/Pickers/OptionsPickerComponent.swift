@@ -85,7 +85,7 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
         self.textField?.text = self.items[row].textOption
     }
     
-    // MARK - Private Helpers
+    // MARK: - Private Helpers
 
     fileprivate func setupPicker() {
         self.picker.dataSource = self

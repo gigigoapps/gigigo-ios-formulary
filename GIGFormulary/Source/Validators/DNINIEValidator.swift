@@ -35,13 +35,13 @@ class DNINIEValidator: StringValidator {
         
         if self.validateCharsForDNI(valueUpper) || self.validateCharsForNIE(valueUpper) {
             let myRange = valueUpper.characters.index(valueUpper.startIndex, offsetBy: 0)..<valueUpper.characters.index(valueUpper.startIndex, offsetBy: valueUpper.characters.count - 1)
-            num = valueUpper.substring(with: myRange)
+            num = String(valueUpper[myRange])
             num = num.replacingOccurrences(of: "X", with: "0")
             num = num.replacingOccurrences(of: "Y", with: "1")
             num = num.replacingOccurrences(of: "Z", with: "2")
             
             let rangeLetter = valueUpper.characters.index(valueUpper.startIndex, offsetBy: valueUpper.characters.count - 1)..<valueUpper.characters.index(valueUpper.startIndex, offsetBy: valueUpper.characters.count)
-            letter = valueUpper.substring(with: rangeLetter)
+            letter = String(valueUpper[rangeLetter])
                         
             let badCharacters = CharacterSet.decimalDigits.inverted
             if num.rangeOfCharacter(from: badCharacters) == nil {
@@ -49,7 +49,7 @@ class DNINIEValidator: StringValidator {
                 numberInt = numberInt % 23
                 letterDni = "TRWAGMYFPDXBNJZSQVHLCKE"
                 let rangeDNI = letterDni.characters.index(letterDni.startIndex, offsetBy: numberInt)..<letterDni.characters.index(letterDni.startIndex, offsetBy: numberInt + 1)
-                letterDni = letterDni.substring(with: rangeDNI)
+                letterDni = String(letterDni[rangeDNI])
                 
                 if letterDni == letter {
                     return true

@@ -6,6 +6,8 @@
 //  Copyright © 2016 gigigo. All rights reserved.
 //
 
+//swiftlint:disable discouraged_direct_init
+
 import XCTest
 @testable import GIGFormulary
 
@@ -192,3 +194,4 @@ class FormFieldModelTests: XCTestCase {
         }
     }
 }
+//swiftlint:enable discouraged_direct_init

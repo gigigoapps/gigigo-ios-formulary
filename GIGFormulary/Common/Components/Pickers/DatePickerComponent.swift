@@ -59,7 +59,7 @@ class DatePickerComponent: UIDatePicker {
         self.dateSelected = self.dateFormatter.date(from: dateValue)
     }
     
-    // MARK - Private Helpers
+    // MARK: - Private Helpers
     
     fileprivate func setupDatePicker() {
         self.datePicker.datePickerMode = UIDatePickerMode.date

@@ -135,25 +135,25 @@ class BooleanFormField: FormField {
             if let styleField = formFieldM.style,
                 let titleColor =  styleField.titleColor {
     
-                let attributes = [NSForegroundColorAttributeName: titleColor,
-                                  NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+                let attributes = [NSAttributedStringKey.foregroundColor: titleColor,
+                                  NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
                 self.titleLabel.attributedText = NSAttributedString(string: getLinks.1, attributes: attributes)
                 
                 self.titleLabel.linkAttributeHighlight = [
-                    NSForegroundColorAttributeName: UIColor.blue,
-                    NSUnderlineStyleAttributeName: 1
+                    NSAttributedStringKey.foregroundColor: UIColor.blue,
+                    NSAttributedStringKey.underlineStyle: 1
                 ]
                 
                 self.titleLabel.linkAttributeDefault = [
-                    NSForegroundColorAttributeName: titleColor,
-                    NSUnderlineStyleAttributeName: 1
+                    NSAttributedStringKey.foregroundColor: titleColor,
+                    NSAttributedStringKey.underlineStyle: 1
                 ]
                 
                 self.titleLabel.font = styleField.fontTitle
             } else {
                 self.titleLabel.font = UIFont.systemFont(ofSize: 17)
-                let attributes = [NSForegroundColorAttributeName: UIColor.black,
-                                  NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+                let attributes = [NSAttributedStringKey.foregroundColor: UIColor.black,
+                                  NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
                 self.titleLabel.attributedText = NSAttributedString(string: getLinks.1, attributes: attributes)
             }
             

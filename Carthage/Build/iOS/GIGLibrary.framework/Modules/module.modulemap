@@ -7,4 +7,5 @@ framework module GIGLibrary {
 
 module GIGLibrary.Swift {
     header "GIGLibrary-Swift.h"
+    requires objc
 }

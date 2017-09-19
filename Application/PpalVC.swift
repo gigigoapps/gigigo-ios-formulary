@@ -40,7 +40,7 @@ class PpalVC: UIViewController {
 extension UINavigationBar {
     func appareanceJanrain() {
         self.barTintColor = UIColor.red
-        self.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
 }
 
