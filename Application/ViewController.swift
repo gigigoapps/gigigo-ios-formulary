@@ -67,7 +67,7 @@ class ViewController: UIViewController, PFormulary {
     
     @IBAction func loadError(_ sender: Any) {
         let dicError = [
-            "b": "error 1",
+            "a1": "Ten adres e-mail jest juz w uzyciu. Zamaturgi a adres email chaquete y atunes",
             "f": "error 2"
         ] as [String : String]
         self.formulary.loadError(dicError)

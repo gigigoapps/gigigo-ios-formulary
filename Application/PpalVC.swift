@@ -26,7 +26,7 @@ class PpalVC: UIViewController {
     // MARK: Private Method
     
     func showLoginForm() -> UIViewController? {
-        guard let formVC = try? Instantiator<ThirdTypeVC>().viewController() else {
+        guard let formVC = try? ThirdTypeVC.instantiateFromStoryboard() else {
             LogWarn("ThirdTypeVC not found")
             return nil
         }

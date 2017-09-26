@@ -26,14 +26,9 @@ class ThirdTypeVC: UIViewController, Instantiable, PFormulary {
     
     // MARK: - Instantiable
     
-    public static func storyboard() -> String {
-        return "External"
-    }
-    
-    public static func identifier() -> String? {
-        return "ThirdTypeVCID"
-    }
-    
+    static var storyboard = "External"
+    static var identifier = "ThirdTypeVCID"
+        
     
     // MARK: PFormController
     
