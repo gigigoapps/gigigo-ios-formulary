@@ -1,18 +1,9 @@
 {
+  "commitish" : "v3.0.5",
   "iOS" : [
     {
-      "hash" : "1ca8b27a578ac6737dde4dea9514e35ddad95fdc1d3fc7ebff1b33f06869d9df",
-      "name" : "GIGLibrary"
+      "name" : "GIGLibrary",
+      "hash" : "21251c0ec74605a2a6606efbbd5036465e9ec1dbbe446060b9585878edc4c2c9"
     }
-  ],
-  "commitish" : "v3.0",
-  "watchOS" : [
-
-  ],
-  "tvOS" : [
-
-  ],
-  "Mac" : [
-
   ]
 }

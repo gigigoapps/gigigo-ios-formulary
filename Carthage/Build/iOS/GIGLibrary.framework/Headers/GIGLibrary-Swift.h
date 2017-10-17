@@ -208,6 +208,9 @@ SWIFT_CLASS("_TtC10GIGLibrary5Alert")
 @end
 
 
+@class AVCaptureMetadataOutput;
+@class AVMetadataObject;
+@class AVCaptureConnection;
 @class NSBundle;
 @class NSCoder;
 
@@ -215,6 +218,7 @@ SWIFT_CLASS("_TtC10GIGLibrary12GIGScannerVC")
 @interface GIGScannerVC : UIViewController <AVCaptureMetadataOutputObjectsDelegate>
 - (void)viewDidLoad;
 - (void)didReceiveMemoryWarning;
+- (void)captureOutput:(AVCaptureMetadataOutput * _Nonnull)output didOutputMetadataObjects:(NSArray<AVMetadataObject *> * _Nonnull)metadataObjects fromConnection:(AVCaptureConnection * _Nonnull)connection;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end
