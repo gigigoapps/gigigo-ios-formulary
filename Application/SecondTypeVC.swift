@@ -125,7 +125,7 @@ class SecondTypeVC: UIViewController, PFormulary {
     
     // MARK: PFormController
     
-    func recoverFormModel(_ formValues: [AnyHashable : Any]) {
+    func recoverFormModel(_ formValues: [AnyHashable: Any]) {
         print("FORMVALUES: \(formValues)")
         self.view.endEditing(true)
     }

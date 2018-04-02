@@ -16,7 +16,7 @@ class DNINIEValidator: StringValidator {
         }
         let stringValue = value as? String
         
-        if stringValue?.characters.count == 0 && !self.mandatory {
+        if stringValue?.count == 0 && !self.mandatory {
             return true
         }
         
@@ -34,13 +34,13 @@ class DNINIEValidator: StringValidator {
         let valueUpper = value.uppercased()
         
         if self.validateCharsForDNI(valueUpper) || self.validateCharsForNIE(valueUpper) {
-            let myRange = valueUpper.characters.index(valueUpper.startIndex, offsetBy: 0)..<valueUpper.characters.index(valueUpper.startIndex, offsetBy: valueUpper.characters.count - 1)
+            let myRange = valueUpper.index(valueUpper.startIndex, offsetBy: 0)..<valueUpper.index(valueUpper.startIndex, offsetBy: valueUpper.count - 1)
             num = String(valueUpper[myRange])
             num = num.replacingOccurrences(of: "X", with: "0")
             num = num.replacingOccurrences(of: "Y", with: "1")
             num = num.replacingOccurrences(of: "Z", with: "2")
             
-            let rangeLetter = valueUpper.characters.index(valueUpper.startIndex, offsetBy: valueUpper.characters.count - 1)..<valueUpper.characters.index(valueUpper.startIndex, offsetBy: valueUpper.characters.count)
+            let rangeLetter = valueUpper.index(valueUpper.startIndex, offsetBy: valueUpper.count - 1)..<valueUpper.index(valueUpper.startIndex, offsetBy: valueUpper.count)
             letter = String(valueUpper[rangeLetter])
                         
             let badCharacters = CharacterSet.decimalDigits.inverted
@@ -48,7 +48,7 @@ class DNINIEValidator: StringValidator {
                 var numberInt: Int = Int(num)!
                 numberInt = numberInt % 23
                 letterDni = "TRWAGMYFPDXBNJZSQVHLCKE"
-                let rangeDNI = letterDni.characters.index(letterDni.startIndex, offsetBy: numberInt)..<letterDni.characters.index(letterDni.startIndex, offsetBy: numberInt + 1)
+                let rangeDNI = letterDni.index(letterDni.startIndex, offsetBy: numberInt)..<letterDni.index(letterDni.startIndex, offsetBy: numberInt + 1)
                 letterDni = String(letterDni[rangeDNI])
                 
                 if letterDni == letter {

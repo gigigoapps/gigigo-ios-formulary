@@ -50,7 +50,7 @@ class LengthValidator: StringValidator {
         }
         
         if self.maxLength != nil {
-            return !(value.characters.count > self.maxLength)
+            return !(value.count > self.maxLength)
         }
         
         return true
@@ -66,16 +66,16 @@ class LengthValidator: StringValidator {
         let stringValue = value as? String
         
         if stringValue != nil {
-            if !self.mandatory && stringValue?.characters.count == 0 {
+            if !self.mandatory && stringValue?.count == 0 {
                 return true
             }
             
             if self.maxLength != nil && self.minLength != nil {
-                return (!(stringValue!.characters.count > self.maxLength) && !(stringValue!.characters.count < self.minLength))
+                return (!(stringValue!.count > self.maxLength) && !(stringValue!.count < self.minLength))
             } else if self.maxLength != nil {
-                return !(stringValue!.characters.count > self.maxLength)
+                return !(stringValue!.count > self.maxLength)
             } else if self.minLength != nil {
-                return !(stringValue!.characters.count < self.minLength)
+                return !(stringValue!.count < self.minLength)
             }
         }
         return true

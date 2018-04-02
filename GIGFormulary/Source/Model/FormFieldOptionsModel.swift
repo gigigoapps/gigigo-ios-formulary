@@ -37,7 +37,7 @@ class FormFieldOptionsModel: NSObject {
         
         //== PREPARE DATA ==
         //-- Mandatory --
-        guard let key = json["key"] as? String, key.characters.count > 0 else {
+        guard let key = json["key"] as? String, key.count > 0 else {
             LogWarn(" FormFieldOptionsModel:: key value Not Found")
             throw ThrowError.mandatoryElementNotFound
         }
@@ -47,7 +47,7 @@ class FormFieldOptionsModel: NSObject {
             throw ThrowError.mandatoryElementNotFound
         }
         
-        if value.characters.count == 0 {
+        if value.count == 0 {
             LogWarn("FormFieldOptionsModel:: value Options is empty")
         }
         

@@ -45,7 +45,7 @@ class RegexValidator: StringValidator {
         if value != nil {
             guard let stringValue = value as? String else { LogWarn("Parse value String Error, return false"); return false }
             
-            if stringValue.characters.count == 0 && !self.mandatory {
+            if stringValue.count == 0 && !self.mandatory {
                 return true
             }
             

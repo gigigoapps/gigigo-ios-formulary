@@ -2,8 +2,8 @@
   "commitish" : "v1.1.0",
   "iOS" : [
     {
-      "hash" : "07929d742d63e20cfd72b98420870ed199bd79d5ac06d7e0726c2beca7e65687",
-      "name" : "Quick"
+      "name" : "Quick",
+      "hash" : "8ef2952bfe6e9fc1cfefac48eee19b219eea4fcf752d1a0eb8c4d900fa5a9875"
     }
   ]
 }

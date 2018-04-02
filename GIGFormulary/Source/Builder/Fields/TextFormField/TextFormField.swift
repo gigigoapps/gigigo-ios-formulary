@@ -104,7 +104,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     override internal var fieldValue: Any? {
         get {            
-            return self.textTextField.text?.characters.count > 0 ? self.textTextField.text : nil
+            return self.textTextField.text?.count > 0 ? self.textTextField.text : nil
         }
         set {
             self.textTextField.text = "\(newValue!)"
@@ -208,7 +208,7 @@ class TextFormField: FormField, UITextFieldDelegate {
         let border = CALayer()
         let width = CGFloat(1.0)
         border.borderColor = UIColor.lightGray.cgColor
-        border.frame = CGRect(x: 0, y: self.textTextField.frame.size.height - width, width:  UIScreen.main.bounds.width, height: self.textTextField.frame.size.height)
+        border.frame = CGRect(x: 0, y: self.textTextField.frame.size.height - width, width: UIScreen.main.bounds.width, height: self.textTextField.frame.size.height)
         
         border.borderWidth = width
         self.textTextField.layer.addSublayer(border)

@@ -235,7 +235,7 @@ class BooleanFormField: FormField {
     
     fileprivate func existLink(_ text: String) -> Bool {
         // TODO EDU otra opcion // return text.characters.index(of: "{") != nil
-        if text.characters.index(of: "{") != nil {
+        if text.index(of: "{") != nil {
             return true
         }
         return false

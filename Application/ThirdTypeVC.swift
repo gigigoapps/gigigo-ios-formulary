@@ -32,7 +32,7 @@ class ThirdTypeVC: UIViewController, Instantiable, PFormulary {
     
     // MARK: PFormController
     
-    func recoverFormModel(_ formValues: [AnyHashable : Any]) {
+    func recoverFormModel(_ formValues: [AnyHashable: Any]) {
         print(formValues)
     }
     

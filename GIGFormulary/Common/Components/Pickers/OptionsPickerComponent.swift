@@ -100,7 +100,7 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
         toolBar.isTranslucent = true
         toolBar.backgroundColor = self.styles?.containerAcceptColorPicker
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title:self.textAcceptButton, style: UIBarButtonItemStyle.done, target: self, action: #selector(onDoneTap))
+        let doneButton = UIBarButtonItem(title: self.textAcceptButton, style: UIBarButtonItemStyle.done, target: self, action: #selector(onDoneTap))
         doneButton.tintColor = self.styles?.acceptColorPicker
 
         toolBar.setItems([space, doneButton], animated: false)

@@ -225,7 +225,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         let border = CALayer()
         let width = CGFloat(1.0)
         border.borderColor = UIColor.lightGray.cgColor
-        border.frame = CGRect(x: 0, y: self.textTextField.frame.size.height - width, width:  UIScreen.main.bounds.width, height: self.textTextField.frame.size.height)
+        border.frame = CGRect(x: 0, y: self.textTextField.frame.size.height - width, width: UIScreen.main.bounds.width, height: self.textTextField.frame.size.height)
         
         border.borderWidth = width
         self.textTextField.layer.addSublayer(border)

@@ -52,12 +52,12 @@ class FormFieldModel: NSObject {
         //== PREPARE DATA ==
         
         //-- Mandatory --
-        guard let type = json["type"] as? String, type.characters.count > 0 else {
+        guard let type = json["type"] as? String, type.count > 0 else {
             LogWarn("type Not Found")
             throw ThrowError.mandatoryElementNotFound
         }
 
-        guard let key = json["key"] as? String, key.characters.count > 0 else {
+        guard let key = json["key"] as? String, key.count > 0 else {
             LogWarn("key Not Found")
             throw ThrowError.mandatoryElementNotFound
         }

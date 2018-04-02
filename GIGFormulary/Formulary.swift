@@ -113,7 +113,7 @@ open class Formulary: PFormController {
     
     // MARK: PFormulary
 
-    open func recoverFormModel(_ formValues: [AnyHashable : Any]) {
+    open func recoverFormModel(_ formValues: [AnyHashable: Any]) {
         self.formularyOutput?.recoverFormModel(formValues)
     }
     

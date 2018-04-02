@@ -62,7 +62,7 @@ class FormFieldModelTests: XCTestCase {
             XCTAssertThrowsError(try formFieldModelResult.parseDictionary(dic))
         }
         do {
-            let key = ["asa": "asdas"] as [String : Any]
+            let key = ["asa": "asdas"] as [String: Any]
             let dic2 = ["type": "aa",
                         "label": "aa",
                         "key": key] as [AnyHashable: Any]
@@ -102,7 +102,7 @@ class FormFieldModelTests: XCTestCase {
         let formFieldModelResult = FormFieldModel(bundle: Bundle())
         do {
             let styles = ["backgroundColorField": "#ff374b",
-                          "sizeTitle": 12] as [String : Any]
+                          "sizeTitle": 12] as [String: Any]
             
             let dic = ["type": "tipo",
                        "label": "titulo",

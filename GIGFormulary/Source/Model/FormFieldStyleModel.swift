@@ -92,16 +92,20 @@ class FormFieldStyleModel: NSObject {
         }
         if let align = json["align"] as? String {
             switch align {
-                case "alignCenter": self.align = NSTextAlignment.center
-                case "alignRight": self.align = NSTextAlignment.right
-                case "alignLeft": self.align = NSTextAlignment.left
-                default: self.align = NSTextAlignment.center
+            case "alignCenter":
+                self.align = NSTextAlignment.center
+            case "alignRight":
+                self.align = NSTextAlignment.right
+            case "alignLeft":
+                self.align = NSTextAlignment.left
+            default:
+                self.align = NSTextAlignment.center
             }
         }
         if let mandatoryImage = json["mandatoryIcon"] as? String {
             self.mandatoryIcon = UIImage(named: mandatoryImage, in: self.bundle, compatibleWith: nil)
         }
-        if let checkBox = json["checkBox"] as? [String:String] {
+        if let checkBox = json["checkBox"] as? [String: String] {
             if let checkOn = checkBox["checkBoxOn"] {
                 self.checkBoxOn = UIImage(named: checkOn, in: self.bundle, compatibleWith: nil)
             }

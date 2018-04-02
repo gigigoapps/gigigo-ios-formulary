@@ -69,13 +69,13 @@ class ViewController: UIViewController, PFormulary {
         let dicError = [
             "a1": "Ten adres e-mail jest juz w uzyciu. Zamaturgi a adres email chaquete y atunes",
             "f": "error 2"
-        ] as [String : String]
+        ] as [String: String]
         self.formulary.loadError(dicError)
     }
     
     // MARK: PFormController
     
-    func recoverFormModel(_ formValues: [AnyHashable : Any]) {        
+    func recoverFormModel(_ formValues: [AnyHashable: Any]) {        
         print("FORMVALUES: \(formValues)")
     }
      // OPTIONAL
