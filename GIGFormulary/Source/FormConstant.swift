@@ -17,7 +17,7 @@ enum TypeField: String {
 }
 
 enum SubTypeField: String {
-    case expandable = "expandable"
+    case expandable
 }
 
 enum TypeKeyBoard: String {

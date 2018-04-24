@@ -56,7 +56,7 @@ class SecondTypeVC: UIViewController, PFormulary {
                 "type": ("boolean"),
                 "subtype": ("expandable"),
                 "label": ("Ich akzeptiere die"),
-                "expandable": [
+                "expandableInfo": [
                     "collapseText": "COLLAPSE",
                     "expandText": "EXPAND"
                 ],

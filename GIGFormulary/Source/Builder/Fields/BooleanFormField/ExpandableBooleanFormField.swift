@@ -165,8 +165,9 @@ class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
         self.errorLabel.textColor = styleField?.errorColor
         self.expandableTextView?.hyperlinkTextView.font = styleField?.fontTitle
         self.errorLabel.font = styleField?.fontError
-        self.expandCollapseButton.titleLabel?.font = styleField?.fontTitle
-        self.expandCollapseButton.setTitleColor(styleField?.titleColor, for: .normal)
+        self.expandCollapseButton.titleLabel?.textAlignment = .left
+        self.expandCollapseButton.titleLabel?.font = styleField?.expandCollapseButtonFont
+        self.expandCollapseButton.setTitleColor(styleField?.expandCollapseButtonTextColor, for: .normal)
         if let alignment = styleField?.align {
             self.expandableTextView?.hyperlinkTextView.textAlignment = alignment
         }

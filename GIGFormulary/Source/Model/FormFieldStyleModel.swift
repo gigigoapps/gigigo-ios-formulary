@@ -26,6 +26,8 @@ class FormFieldStyleModel: NSObject {
     var acceptColorPicker: UIColor?
     var containerAcceptColorPicker: UIColor?
     var backgroundPickerColorPicker: UIColor?
+    var expandCollapseButtonTextColor: UIColor?
+    var expandCollapseButtonFont: UIFont?
     var fontTitle: UIFont?
     var fontError: UIFont?
     var align: NSTextAlignment?
@@ -101,6 +103,12 @@ class FormFieldStyleModel: NSObject {
             default:
                 self.align = NSTextAlignment.center
             }
+        }
+        if let expandCollapseButtonTextColor = json["expandCollapseButtonTextColor"] as? String {
+            self.expandCollapseButtonTextColor = UIColor(fromHexString: expandCollapseButtonTextColor)
+        }
+        if let expandCollapseButtonFont = json["expandCollapseButtonFont"] as? String {
+            self.expandCollapseButtonFont = UIFont(name: expandCollapseButtonFont, size: sizeTitle ?? 17)
         }
         if let mandatoryImage = json["mandatoryIcon"] as? String {
             self.mandatoryIcon = UIImage(named: mandatoryImage, in: self.bundle, compatibleWith: nil)
