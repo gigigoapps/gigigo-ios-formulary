@@ -54,7 +54,9 @@ class SecondTypeVC: UIViewController, PFormulary {
             [
                 "key": ("booleanoKey"),
                 "type": ("boolean"),
-                "label": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein."),
+                "subtype": ("expandable"),
+                "label": ("Ich akzeptiere die"),
+                "description": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein."),
                 "validator": ("bool"),
                 "mandatory": true
             ],

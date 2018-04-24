@@ -8,13 +8,16 @@
 
 import UIKit
 
-
 enum TypeField: String {
     case textFormField = "text"
     case pickerFormField = "picker"
     case datePickerFormField = "datePicker"
     case boolFormField = "boolean"
     case indexFormField = "index"
+}
+
+enum SubTypeField: String {
+    case expandable = "expandable"
 }
 
 enum TypeKeyBoard: String {

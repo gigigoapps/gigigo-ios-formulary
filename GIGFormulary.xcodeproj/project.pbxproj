@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020AEE55208DE07700E61BB5 /* ExpandableBooleanFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020AEE54208DE07700E61BB5 /* ExpandableBooleanFormField.swift */; };
+		020AEE57208DE08100E61BB5 /* ExpandableBooleanFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 020AEE56208DE08100E61BB5 /* ExpandableBooleanFormField.xib */; };
+		020AEE59208DF60300E61BB5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020AEE58208DF60300E61BB5 /* String+Extension.swift */; };
 		7B1BC7161E9BC88A002F612B /* FormControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1BC7151E9BC88A002F612B /* FormControllerTests.swift */; };
 		7B1BC71C1E9BCBC2002F612B /* JSONMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1BC71B1E9BCBC2002F612B /* JSONMock.swift */; };
 		7B1BC71F1E9BCC66002F612B /* form1.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B1BC71E1E9BCC66002F612B /* form1.json */; };
@@ -135,6 +138,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		020AEE54208DE07700E61BB5 /* ExpandableBooleanFormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableBooleanFormField.swift; sourceTree = "<group>"; };
+		020AEE56208DE08100E61BB5 /* ExpandableBooleanFormField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandableBooleanFormField.xib; sourceTree = "<group>"; };
+		020AEE58208DF60300E61BB5 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		7B1BC7151E9BC88A002F612B /* FormControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormControllerTests.swift; path = Components/FormControllerTests.swift; sourceTree = "<group>"; };
 		7B1BC7181E9BC930002F612B /* Cartfile.private */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
 		7B1BC71B1E9BCBC2002F612B /* JSONMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONMock.swift; path = Helpers/JSONMock.swift; sourceTree = "<group>"; };
@@ -322,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				7B676FF61E3892CE007ED7DD /* FRHyperLabel */,
+				020AEE58208DF60300E61BB5 /* String+Extension.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -438,6 +445,8 @@
 			children = (
 				7B7D72D71D4B8296003FFEE8 /* BooleanFormField.xib */,
 				7B7D72D61D4B8296003FFEE8 /* BooleanFormField.swift */,
+				020AEE56208DE08100E61BB5 /* ExpandableBooleanFormField.xib */,
+				020AEE54208DE07700E61BB5 /* ExpandableBooleanFormField.swift */,
 			);
 			path = BooleanFormField;
 			sourceTree = "<group>";
@@ -735,6 +744,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				020AEE57208DE08100E61BB5 /* ExpandableBooleanFormField.xib in Resources */,
 				7B7D72F91D4B8296003FFEE8 /* BooleanFormField.xib in Resources */,
 				7BA9AD3B1E24F092002FE4F6 /* IndexFormField.xib in Resources */,
 				7B7D72F61D4B8296003FFEE8 /* Assets.xcassets in Resources */,
@@ -806,7 +816,9 @@
 				7B7D73001D4B8296003FFEE8 /* FormBuilderViews.swift in Sources */,
 				7B7D73041D4B8296003FFEE8 /* FormFieldOptionsModel.swift in Sources */,
 				7B7D72FB1D4B8296003FFEE8 /* PickerFormField.swift in Sources */,
+				020AEE55208DE07700E61BB5 /* ExpandableBooleanFormField.swift in Sources */,
 				7B7D72F81D4B8296003FFEE8 /* BooleanFormField.swift in Sources */,
+				020AEE59208DF60300E61BB5 /* String+Extension.swift in Sources */,
 				7B7D730C1D4B8296003FFEE8 /* OptionValidator.swift in Sources */,
 				7B7D72FD1D4B8296003FFEE8 /* TextFormField.swift in Sources */,
 				7BA59F161DC09A7D000D66AA /* CustomValidator.swift in Sources */,

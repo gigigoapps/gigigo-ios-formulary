@@ -165,8 +165,8 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #if __has_feature(modules)
 @import ObjectiveC;
 @import UIKit;
-@import AVFoundation;
 @import CoreGraphics;
+@import AVFoundation;
 @import Foundation;
 @import CoreData;
 #endif
@@ -207,11 +207,22 @@ SWIFT_CLASS("_TtC10GIGLibrary5Alert")
 @end
 
 
+@class UIStackView;
+@class HyperlinkTextView;
+@class NSCoder;
+
+SWIFT_CLASS("_TtC10GIGLibrary18ExpandableTextView") SWIFT_AVAILABILITY(ios,introduced=9.0)
+@interface ExpandableTextView : UIView
+@property (nonatomic, weak) IBOutlet UIStackView * _Null_unspecified stackView;
+@property (nonatomic, weak) IBOutlet HyperlinkTextView * _Null_unspecified hyperlinkTextView;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
 @class AVCaptureMetadataOutput;
 @class AVMetadataObject;
 @class AVCaptureConnection;
 @class NSBundle;
-@class NSCoder;
 
 SWIFT_CLASS("_TtC10GIGLibrary12GIGScannerVC")
 @interface GIGScannerVC : UIViewController <AVCaptureMetadataOutputObjectsDelegate>
@@ -228,6 +239,15 @@ SWIFT_CLASS("_TtC10GIGLibrary24GIGScannerViewController")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 - (void)viewDidLoad;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
+@end
+
+@class NSTextContainer;
+
+SWIFT_CLASS("_TtC10GIGLibrary17HyperlinkTextView")
+@interface HyperlinkTextView : UITextView
+- (nonnull instancetype)initWithFrame:(CGRect)frame textContainer:(NSTextContainer * _Nullable)textContainer SWIFT_UNAVAILABLE;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (void)awakeFromNib;
 @end
 
 @protocol UICollectionViewDataSource;

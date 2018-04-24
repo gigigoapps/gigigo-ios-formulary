@@ -40,6 +40,8 @@ class FormFieldModel: NSObject {
     var isLink = false
     var compare = false
     var itemCompare: [String]?
+    var subtype: String?
+    var fieldDescription: String?
     
     init(bundle: Bundle) {
         self.bundle = bundle
@@ -86,7 +88,10 @@ class FormFieldModel: NSObject {
         if let placeHolder = json["placeHolder"] as? String {
             self.placeHolder = NSLocalizedString(placeHolder, comment: "")
         }
-
+        
+        self.subtype = json["subtype"] as? String
+        self.fieldDescription = json["description"] as? String
+ 
         if json["listOptions"] != nil {
             guard let listOptions = json["listOptions"] as? [[AnyHashable: Any]] else {
                 LogWarn(" listOptions incorrect type")

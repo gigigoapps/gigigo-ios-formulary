@@ -15,7 +15,6 @@ class FormBuilderFields: NSObject {
     var formController: FormController
         
     //-- Types --
-    var listTypeFields = [TypeField: FormField.Type]()
     var keyboardTypes = [TypeKeyBoard: UIKeyboardType]()
     var validatorsType = [TypeValidator: Validator.Type]()
 
@@ -63,12 +62,6 @@ class FormBuilderFields: NSObject {
     // MARK: Private Method
     
     fileprivate func initializeTypes() {
-        self.listTypeFields = [.textFormField: TextFormField.self,
-                               .pickerFormField: PickerFormField.self,
-                               .datePickerFormField: PickerFormField.self,
-                               .boolFormField: BooleanFormField.self,
-                               .indexFormField: IndexFormField.self]
-        
         self.keyboardTypes  = [.keyboardText: .default,
                               .keyboardEmail: .emailAddress,
                               .keyboardNumber: .numbersAndPunctuation,
@@ -90,13 +83,11 @@ class FormBuilderFields: NSObject {
         do {
             let formFieldM = FormFieldModel(bundle: self.bundle)
             try formFieldM.parseDictionary(fieldDic)
-            
-            guard let typeFieldFound = TypeField(rawValue: formFieldM.type!) else {
-                LogWarn("typeFieldFound not found")
+            guard let type = formFieldM.type else {
+                LogWarn("type for field not found")
                 return FormField()
             }
-            let typeField = self.listTypeFields[typeFieldFound]
-            let field = typeField!.init()
+            let field = self.fieldType(for: type, subtype: formFieldM.subtype)
             field.formFieldM = formFieldM
             field.formFieldOutput = self.formController
             field.validator = self.validatorToField(formFieldM)
@@ -135,6 +126,29 @@ class FormBuilderFields: NSObject {
             return self.keyboardTypes[TypeKeyBoard(rawValue: formFieldM.keyBoard!)!]
         } else {
             return UIKeyboardType.default
+        }
+    }
+    
+    fileprivate func fieldType(for type: String, subtype: String? = nil) -> FormField {
+        guard let type = TypeField(rawValue: type) else { return FormField() }
+        let subtype = SubTypeField(rawValue: subtype ?? "")
+        switch (type, subtype) {
+        case (.textFormField, _):
+            return TextFormField()
+        case (.boolFormField, nil):
+            return BooleanFormField()
+        case (.boolFormField, .expandable?):
+            if #available(iOS 9.0, *) {
+                return ExpandableBooleanFormField()
+            } else {
+                return BooleanFormField()
+            }
+        case (.pickerFormField, _):
+            return PickerFormField()
+        case (.datePickerFormField, _):
+            return PickerFormField()
+        case (.indexFormField, _):
+            return IndexFormField()
         }
     }
 }
