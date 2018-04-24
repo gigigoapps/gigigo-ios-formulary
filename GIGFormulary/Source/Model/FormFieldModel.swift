@@ -42,6 +42,7 @@ class FormFieldModel: NSObject {
     var itemCompare: [String]?
     var subtype: String?
     var fieldDescription: String?
+    var expandableInfo: ExpandableInfo?
     
     init(bundle: Bundle) {
         self.bundle = bundle
@@ -91,6 +92,10 @@ class FormFieldModel: NSObject {
         
         self.subtype = json["subtype"] as? String
         self.fieldDescription = json["description"] as? String
+        
+        if let expandable = json["expandable"] as? [AnyHashable: String], let expandText = expandable["expandText"], let collapseText = expandable["collapseText"] {
+            self.expandableInfo = ExpandableInfo(collapseText: collapseText, expandText: expandText)
+        }
  
         if json["listOptions"] != nil {
             guard let listOptions = json["listOptions"] as? [[AnyHashable: Any]] else {

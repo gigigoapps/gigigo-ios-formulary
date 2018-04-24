@@ -9,6 +9,11 @@
 import Foundation
 import GIGLibrary
 
+struct ExpandableInfo {
+    let collapseText: String
+    let expandText: String
+}
+
 @available(iOS 9, *)
 class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
     
@@ -20,6 +25,7 @@ class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
     @IBOutlet weak var textContainerView: UIView!
     @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
+    @IBOutlet weak var expandCollapseButton: UIButton!
     
     // MARK: - Private attributes
     
@@ -129,6 +135,7 @@ class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
                 fieldDescription = fieldDescription?.replacingOccurrences(of: $0.value, with: "<a href=\"\(valueWithoutKeys)\">\(valueWithoutKeys)</a>")
             }
         }
+        self.expandCollapseButton.setTitle(self.formFieldM?.expandableInfo?.expandText, for: .normal)
         self.expandableTextView = ExpandableTextView.instantiate(
             shortText: formFieldM.label ?? "",
             longText: fieldDescription ?? "",
@@ -158,6 +165,8 @@ class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
         self.errorLabel.textColor = styleField?.errorColor
         self.expandableTextView?.hyperlinkTextView.font = styleField?.fontTitle
         self.errorLabel.font = styleField?.fontError
+        self.expandCollapseButton.titleLabel?.font = styleField?.fontTitle
+        self.expandCollapseButton.setTitleColor(styleField?.titleColor, for: .normal)
         if let alignment = styleField?.align {
             self.expandableTextView?.hyperlinkTextView.textAlignment = alignment
         }
@@ -195,11 +204,17 @@ class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
         self.changeState()
     }
     
+    @IBAction func expandCollapseButtonTapped(_ sender: UIButton) {
+        self.textViewTapped()
+    }
+    
     @objc func textViewTapped() {
         guard let expandableTextView = self.expandableTextView else { return }
         if expandableTextView.isCollapsed {
+            self.expandCollapseButton.setTitle(self.formFieldM?.expandableInfo?.collapseText, for: .normal)
             expandableTextView.expand()
         } else {
+            self.expandCollapseButton.setTitle(self.formFieldM?.expandableInfo?.expandText, for: .normal)
             expandableTextView.collapse()
         }
     }
