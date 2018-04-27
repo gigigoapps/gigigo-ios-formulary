@@ -10,7 +10,7 @@ import UIKit
 import GIGLibrary
 
 protocol PickerFormFieldOutPut {
-    func launchRule(idField: String, behaivour: TypeBehavior)
+    func launchRule(idField: [String], behaivour: TypeBehavior)
 }
 
 class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent {
@@ -179,7 +179,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         self.formFieldOutput?.formFieldDidFinish(self)
     }
     
-    func rulesDidLaunched(idField: String, behaivour: TypeBehavior) {
+    func rulesDidLaunched(idField: [String], behaivour: TypeBehavior) {
         self.formFieldOutput!.launchRule(idField: idField, behaivour: behaivour)
     }
     
@@ -262,6 +262,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     override func becomeFirstResponder() -> Bool {
         return self.textTextField.becomeFirstResponder()
     }
+    
     override func resignFirstResponder() -> Bool {
         return self.textTextField.resignFirstResponder()
     }

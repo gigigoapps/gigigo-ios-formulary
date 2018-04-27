@@ -67,6 +67,7 @@ window.createElementField = function createElementField(typeField) {
     var html = '';
     var htmlFont = getFontPositionZone()
     var htmlImage = getHtmlImageMandatory();
+    var rules = getRules();
 
     if (typeField == "Text") {
         html = require('html-loader!../aux/auxText.html')

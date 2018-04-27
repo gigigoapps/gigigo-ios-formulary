@@ -10,7 +10,7 @@ import UIKit
 
 protocol PDatePickerComponent {
     func formFieldDidFinishDate()
-    func rulesDidLaunched(idField: String, behaivour: TypeBehavior)
+    func rulesDidLaunched(idField: [String], behaivour: TypeBehavior)
 }
 
 class DatePickerComponent: UIDatePicker {
@@ -50,8 +50,7 @@ class DatePickerComponent: UIDatePicker {
             let ageSelected = AgeValidator().calculateAge(self.datePicker.date)
             let age = Int(rule.value) ?? 0
             
-            switch rule.compare {  // TODO EDU esto no vale :'(
-                
+            switch rule.compare {
             case .equal where ageSelected == age:
                 self.delegateDate?.rulesDidLaunched(idField: rule.fieldReciver, behaivour: rule.behavior)
             case .different where ageSelected != age:

@@ -236,13 +236,15 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
 
     // MARK: PickerFormFieldOutPut
     
-    func launchRule(idField: String, behaivour: TypeBehavior) {
+    func launchRule(idField: [String], behaivour: TypeBehavior) {
         let fields = self.formFields.filter { formField -> Bool in
-            return formField.formFieldM?.key == idField
+            let fieldFound = idField.filter({ idF -> Bool in
+                return  formField.formFieldM?.key == idF
+            })
+            return fieldFound.count > 0
         }
         
-        if fields.count > 0 {
-            let field = fields[0] as FormField
+        for field in fields {
             field.launchRule(behaivour: behaivour)
         }
     }

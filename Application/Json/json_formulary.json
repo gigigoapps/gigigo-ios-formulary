@@ -8,7 +8,13 @@
               {
               "key": "keyHiddenText",
               "type": "text",
-              "label": "titulo hiddden text titulo hiddden text titulo hid titulo hiddden text titulo hiddden text titulo hidtitulo hiddden text titulo hiddden text titulo hidtitulo hiddden text titulo hiddden text titulo hidtitulo hiddden text titulo hiddden text titulo hidtitulo hiddden text titulo hiddden text titulo hidtitulo hiddden text titulo hiddden text titulo hidtitulo hiddden text titulo hiddden text titulo hid",
+              "label": "titulo hiddden text",
+              "isHidden": true
+              },
+              {
+              "key": "keyHiddenText2",
+              "type": "text",
+              "label": " hiddden text titulo2",
               "isHidden": true
               },
               {
@@ -17,7 +23,7 @@
               "label": "tituloDatePicker t",
               "textError": "error_generic_field",
               "rules": {
-                    "fieldReciver": "keyHiddenText",
+                    "fieldReciver": ["keyHiddenText", "keyHiddenText2"],
                     "compare": ">",
                     "value": "16",
                     "behavior": "show",

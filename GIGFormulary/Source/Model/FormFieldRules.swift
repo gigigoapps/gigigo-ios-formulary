@@ -25,7 +25,7 @@ enum TypeBehavior: String {
 }
 
 struct FormFieldRules {
-    var fieldReciver: String
+    var fieldReciver: [String]
     var compare: TypeCompare
     var value: String
     var behavior: TypeBehavior
@@ -36,7 +36,7 @@ struct FormFieldRules {
     static func parseDictionary(_ json: [AnyHashable: Any]) -> FormFieldRules {
         
         return FormFieldRules(
-            fieldReciver: json["fieldReciver"] as? String ?? "",
+            fieldReciver: json["fieldReciver"] as? [String] ?? [""],
             compare: TypeCompare(rawValue: json["compare"] as? String ?? "") ?? TypeCompare.unknow,
             value: json["value"] as? String ?? "",
             behavior: TypeBehavior(rawValue: json["behavior"] as? String ?? "none") ?? TypeBehavior.none,
