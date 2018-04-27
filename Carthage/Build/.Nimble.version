@@ -1,9 +1,24 @@
 {
-  "commitish" : "v7.0.1",
+  "Mac" : [
+    {
+      "name" : "Nimble",
+      "hash" : "c928c0537e203a59907cf8e8c491401441b42393b5d77e25a2a474246c89aea0"
+    }
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+    {
+      "name" : "Nimble",
+      "hash" : "71963cdc0cf31b4987d52c1c2ba1133a192bb19b4a41fe6265229b41a436e542"
+    }
+  ],
+  "commitish" : "v7.1.1",
   "iOS" : [
     {
       "name" : "Nimble",
-      "hash" : "372bf86513ac63d8e6c95325207fe3e61f0c0e97d2ccd911b123c4903ed3a4ee"
+      "hash" : "cb251564da0e0075905a83036cc0b1866ef85020ba8bd2138a5164fff8aaedc0"
     }
   ]
 }

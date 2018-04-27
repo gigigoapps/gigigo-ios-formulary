@@ -10,7 +10,7 @@ import UIKit
 import GIGLibrary
 
 
-protocol PFormField: PTextFormField, PBooleanFormField, PIndexFormField {
+protocol PFormField: PTextFormField, PBooleanFormField, PIndexFormField, PickerFormFieldOutPut {
 }
 
 open class FormField: UIView {
@@ -24,6 +24,7 @@ open class FormField: UIView {
     var keyBoard: UIKeyboardType?
     var formFieldM: FormFieldModel?
     var viewPpal: UIView?
+    var heightConstraint: NSLayoutConstraint?
     
     //-- Init Xib --
     override init(frame: CGRect) {
@@ -41,10 +42,7 @@ open class FormField: UIView {
         
         addSubview(self.viewContainer)
         
-        gig_autoresize(self.viewContainer, false)
-        gig_layout_fit_horizontal(self.viewContainer)
-        gig_layout_top(self.viewContainer, 0)
-        gig_layout_bottom(self.viewContainer, 0)
+        self.loadConstraints()
     }
     
     func loadViewFromNib(_ classField: AnyClass) -> UIView {
@@ -62,17 +60,45 @@ open class FormField: UIView {
         super.awakeFromNib()
         self.xibSetup(classField)
     }
+    
+    // MARK: Private Method
+    
+    private func loadConstraints() {
+        gig_autoresize(self.viewContainer, false)
+        gig_layout_fit_horizontal(self.viewContainer)
+        gig_layout_top(self.viewContainer, 0)
+        gig_layout_bottom(self.viewContainer, 0)
+    }
         
     // MARK: Public Method
     
     func insertData() {        
         guard let hidden = self.formFieldM?.isHidden else { return }
-        
+
         if hidden {
             self.viewContainer.isHidden = hidden
-            self.viewContainer.removeConstraints(self.viewContainer.constraints)
-            gig_constrain_height(self.viewContainer, 0)
+            self.heightConstraint = gig_constrain_height(self.viewContainer, 0)
         }
+    }
+    
+    func launchRule(behaivour: TypeBehavior) {
+        switch behaivour {
+        case .disable:
+            break
+        case .enable:
+            break
+        case .hide:
+            self.viewContainer.isHidden = true
+            self.heightConstraint = gig_constrain_height(self.viewContainer, 0)
+        case .show:
+            self.viewContainer.isHidden = false
+            self.viewContainer.removeConstraint(self.heightConstraint!)
+            UIView.animate(withDuration: 0.5) {
+                self.viewContainer.layoutIfNeeded()
+            }
+        case .none:
+            break
+        }        
     }
     
     func validate() -> Bool {

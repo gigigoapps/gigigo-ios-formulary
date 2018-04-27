@@ -17,6 +17,7 @@ protocol PFormController {
 }
 
 class FormController: NSObject, PFormField, PFormBuilderViews {
+    
     // Public Var
     var formControllerOutput: PFormController?
     
@@ -231,5 +232,18 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     
     func userDidTapLink(_ key: String) {
         self.formControllerOutput?.userDidTapLink(key)
+    }
+
+    // MARK: PickerFormFieldOutPut
+    
+    func launchRule(idField: String, behaivour: TypeBehavior) {
+        let fields = self.formFields.filter { formField -> Bool in
+            return formField.formFieldM?.key == idField
+        }
+        
+        if fields.count > 0 {
+            let field = fields[0] as FormField
+            field.launchRule(behaivour: behaivour)
+        }
     }
 }

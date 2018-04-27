@@ -18,7 +18,7 @@ class FormFieldOptionsModel: NSObject {
     class func parseListOptionsJson(_ json: [[AnyHashable: Any]]) throws ->[FormFieldOptionsModel] {
         do {
             return try (json.map(parseOptionsJson))              
-        } catch (let throwError) {
+        } catch let throwError {
             throw throwError
         }
     }
@@ -28,7 +28,7 @@ class FormFieldOptionsModel: NSObject {
         
         do {
             return try self.parseOption(json, activity: activity)
-        } catch (let throwError) {
+        } catch let throwError {
             throw throwError
         }
     }

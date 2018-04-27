@@ -10,6 +10,7 @@
 		020AEE55208DE07700E61BB5 /* ExpandableBooleanFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020AEE54208DE07700E61BB5 /* ExpandableBooleanFormField.swift */; };
 		020AEE57208DE08100E61BB5 /* ExpandableBooleanFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 020AEE56208DE08100E61BB5 /* ExpandableBooleanFormField.xib */; };
 		020AEE59208DF60300E61BB5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020AEE58208DF60300E61BB5 /* String+Extension.swift */; };
+		234ACB052091BB800096FCE7 /* FormFieldRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234ACB042091BB800096FCE7 /* FormFieldRules.swift */; };
 		7B1BC7161E9BC88A002F612B /* FormControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1BC7151E9BC88A002F612B /* FormControllerTests.swift */; };
 		7B1BC71C1E9BCBC2002F612B /* JSONMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1BC71B1E9BCBC2002F612B /* JSONMock.swift */; };
 		7B1BC71F1E9BCC66002F612B /* form1.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B1BC71E1E9BCC66002F612B /* form1.json */; };
@@ -141,6 +142,7 @@
 		020AEE54208DE07700E61BB5 /* ExpandableBooleanFormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableBooleanFormField.swift; sourceTree = "<group>"; };
 		020AEE56208DE08100E61BB5 /* ExpandableBooleanFormField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandableBooleanFormField.xib; sourceTree = "<group>"; };
 		020AEE58208DF60300E61BB5 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		234ACB042091BB800096FCE7 /* FormFieldRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFieldRules.swift; sourceTree = "<group>"; };
 		7B1BC7151E9BC88A002F612B /* FormControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormControllerTests.swift; path = Components/FormControllerTests.swift; sourceTree = "<group>"; };
 		7B1BC7181E9BC930002F612B /* Cartfile.private */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
 		7B1BC71B1E9BCBC2002F612B /* JSONMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONMock.swift; path = Helpers/JSONMock.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				7B7D72E41D4B8296003FFEE8 /* FormFieldModel.swift */,
 				7B7D72E51D4B8296003FFEE8 /* FormFieldOptionsModel.swift */,
 				7B7D72E61D4B8296003FFEE8 /* FormFieldStyleModel.swift */,
+				234ACB042091BB800096FCE7 /* FormFieldRules.swift */,
 				7B8A03A81E2D115A00A77E7C /* TextsError.swift */,
 			);
 			path = Model;
@@ -710,7 +713,7 @@
 					7BB82EFB1D4B5DB800DC85F5 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = SU5BA5HAQK;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0930;
 					};
 					7BB82F0F1D4B5E2200DC85F5 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -810,6 +813,7 @@
 				7B7D730A1D4B8296003FFEE8 /* MailValidator.swift in Sources */,
 				7B7D73061D4B8296003FFEE8 /* AgeValidator.swift in Sources */,
 				7B7D73051D4B8296003FFEE8 /* FormFieldStyleModel.swift in Sources */,
+				234ACB052091BB800096FCE7 /* FormFieldRules.swift in Sources */,
 				7B7D73071D4B8296003FFEE8 /* BoolValidator.swift in Sources */,
 				7B7D72FF1D4B8296003FFEE8 /* FormBuilderFields.swift in Sources */,
 				7B7D72F51D4B8296003FFEE8 /* OptionsPickerComponent.swift in Sources */,
@@ -1084,7 +1088,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormularyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1100,7 +1105,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gigigo.GIGFormularyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

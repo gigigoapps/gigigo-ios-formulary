@@ -86,12 +86,12 @@ class TextFormField: FormField, UITextFieldDelegate {
     // MARK: Public Method
     
     override func insertData() {
-        super.insertData()
         self.loadData(self.formFieldM!)
         self.loadMandatory(self.formFieldM!.mandatory)
         self.loadCustomStyleField(self.formFieldM!)
         self.loadKeyboard(self.formFieldM!)
         self.loadCustomField(self.formFieldM!)
+        super.insertData()
     }
     
     override func loadError(error: Any) {
@@ -108,6 +108,18 @@ class TextFormField: FormField, UITextFieldDelegate {
         }
         set {
             self.textTextField.text = "\(newValue!)"
+        }
+    }
+    
+    override func launchRule(behaivour: TypeBehavior) {        
+        super.launchRule(behaivour: behaivour)
+        switch behaivour {
+        case .disable:
+            self.textTextField.isEnabled = false
+        case .enable:
+            self.textTextField.isEnabled = true
+        case .hide, .show, .none:
+            break
         }
     }
     
@@ -241,6 +253,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     override func becomeFirstResponder() -> Bool {
         return self.textTextField.becomeFirstResponder()
     }
+    
     override func resignFirstResponder() -> Bool {
         return self.textTextField.resignFirstResponder()
     }

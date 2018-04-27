@@ -89,6 +89,18 @@ class BooleanFormField: FormField {
         }
     }
     
+    override func launchRule(behaivour: TypeBehavior) {
+        super.launchRule(behaivour: behaivour)
+        switch behaivour {
+        case .disable:
+            self.buttonAccept.isEnabled = false
+        case .enable:
+            self.buttonAccept.isEnabled = true
+        case .hide, .show, .none:
+            break
+        }
+    }
+    
     // MARK: Private Method
     
     fileprivate func showError() {

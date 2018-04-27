@@ -47,13 +47,11 @@ class AgeValidator: Validator {
         return true
     }
     
-    // MARK: Private Method
-    
-    fileprivate func isValidAge(_ birthday: Date) -> Bool {
+    func isValidAge(_ birthday: Date) -> Bool {
         return calculateAge(birthday) >= self.minAge ? true : false
     }
     
-    fileprivate func calculateAge (_ birthday: Date) -> NSInteger {        
+    func calculateAge (_ birthday: Date) -> NSInteger {        
         let calendar: Calendar = Calendar.current
         let unitFlags: NSCalendar.Unit = [NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day]
         let dateComponentNow: DateComponents = (calendar as NSCalendar).components(unitFlags, from: Date())

@@ -9,8 +9,12 @@
 import UIKit
 import GIGLibrary
 
+protocol PickerFormFieldOutPut {
+    func launchRule(idField: String, behaivour: TypeBehavior)
+}
+
 class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent {
-    
+
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var textTextField: UITextField!
     @IBOutlet var mandotoryImage: UIImageView!
@@ -72,6 +76,18 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         }
     }
     
+    override func launchRule(behaivour: TypeBehavior) {
+        super.launchRule(behaivour: behaivour)
+        switch behaivour {
+        case .disable:
+            self.textTextField.isEnabled = false
+        case .enable:
+            self.textTextField.isEnabled = true
+        case .hide, .show, .none:
+            break
+        }
+    }
+    
     // MARK: Private Method
     
     fileprivate func initializeView() {
@@ -113,6 +129,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
             self.pickerDate?.textAcceptButton = self.formFieldM?.textAcceptButton
             self.pickerDate!.initTextField(self.textTextField)
             self.pickerDate?.populateData(self.formFieldM?.value)
+            self.pickerDate?.configureRules(self.formFieldM?.rules)
             self.pickerDate?.delegateDate = self
         }
         self.loadData(self.formFieldM!)
@@ -161,6 +178,11 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     func formFieldDidFinishDate() {
         self.formFieldOutput?.formFieldDidFinish(self)
     }
+    
+    func rulesDidLaunched(idField: String, behaivour: TypeBehavior) {
+        self.formFieldOutput!.launchRule(idField: idField, behaivour: behaivour)
+    }
+    
     
     // MARK: Load data field
     

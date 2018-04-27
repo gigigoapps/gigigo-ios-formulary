@@ -10,6 +10,7 @@ import UIKit
 
 protocol PDatePickerComponent {
     func formFieldDidFinishDate()
+    func rulesDidLaunched(idField: String, behaivour: TypeBehavior)
 }
 
 class DatePickerComponent: UIDatePicker {
@@ -19,6 +20,7 @@ class DatePickerComponent: UIDatePicker {
     var textField: UITextField?
     var styles: FormFieldStyleModel?
     var textAcceptButton: String?
+    var rules: FormFieldRules?
     
     var dateSelected: Date? {
         get {
@@ -35,12 +37,33 @@ class DatePickerComponent: UIDatePicker {
     
     // MARK: Private properties
    
-    fileprivate let datePicker = UIDatePicker()
-    fileprivate var dateFormatter: DateFormatter {
+    private let datePicker = UIDatePicker()
+    private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         formatter.timeZone = TimeZone(identifier: "UTC")
         return formatter
+    }
+    
+    private func triggerRule() {
+        if let rule = self.rules {
+            let ageSelected = AgeValidator().calculateAge(self.datePicker.date)
+            let age = Int(rule.value) ?? 0
+            
+            switch rule.compare {  // TODO EDU esto no vale :'(
+                
+            case .equal where ageSelected == age:
+                self.delegateDate?.rulesDidLaunched(idField: rule.fieldReciver, behaivour: rule.behavior)
+            case .different where ageSelected != age:
+                self.delegateDate?.rulesDidLaunched(idField: rule.fieldReciver, behaivour: rule.behavior)
+            case .lessThan where ageSelected < age:
+                self.delegateDate?.rulesDidLaunched(idField: rule.fieldReciver, behaivour: rule.behavior)
+            case .mayorThan where ageSelected > age:
+                self.delegateDate?.rulesDidLaunched(idField: rule.fieldReciver, behaivour: rule.behavior)
+            default:
+                self.delegateDate?.rulesDidLaunched(idField: rule.fieldReciver, behaivour: rule.behaviorElse)
+            }
+        }
     }
     
     // MARK: Public Method
@@ -51,8 +74,11 @@ class DatePickerComponent: UIDatePicker {
         self.setupDoneToolbar()
     }
     
+    func configureRules(_ rules: FormFieldRules?) {
+        self.rules = rules
+    }
+    
     func populateData(_ value: Any?) {
-        
         guard let dateValue = value as? String else {
             return
         }
@@ -96,6 +122,7 @@ class DatePickerComponent: UIDatePicker {
     @objc fileprivate func onDoneTap() {
         self.onDatePickerValueChanged(self.datePicker)
         self.textField?.endEditing(true)
+        self.triggerRule()
         self.delegateDate?.formFieldDidFinishDate()
     }
 }

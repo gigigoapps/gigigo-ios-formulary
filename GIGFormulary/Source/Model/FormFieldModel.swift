@@ -31,6 +31,9 @@ class FormFieldModel: NSObject {
     var textsError = TextsError()
     var isEditing = true
     var isHidden = false
+    var expandableInfo: ExpandableInfo?
+    var rules: FormFieldRules?
+    
     //-- Validate --
     var minLengthValue: Int?
     var maxLengthValue: Int?
@@ -42,7 +45,6 @@ class FormFieldModel: NSObject {
     var itemCompare: [String]?
     var subtype: String?
     var fieldDescription: String?
-    var expandableInfo: ExpandableInfo?
     
     init(bundle: Bundle) {
         self.bundle = bundle
@@ -147,6 +149,18 @@ class FormFieldModel: NSObject {
         }
         if let isHidden = json["isHidden"] as? Bool {
             self.isHidden = isHidden
+        }
+        if json["rules"] != nil {
+            guard let rules = json["rules"] as? [AnyHashable: Any] else {
+                LogWarn(" rules incorrect type")
+                throw ThrowError.mandatoryElementIncorrectType
+            }
+            if rules.count == 0 {
+                LogWarn("rules empty")
+                throw ThrowError.mandatoryElementEmpty
+            }
+
+            self.rules = FormFieldRules.parseDictionary(rules)
         }
         
         //-- Validate --
