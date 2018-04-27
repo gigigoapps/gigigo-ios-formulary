@@ -106,6 +106,7 @@ window.createElementField = function createElementField(typeField) {
     launchEventColors();
     createEventFont();
     createEventTextCompare();
+    createEventRules();
     showContainerCustomValidate();
 }
 
@@ -116,6 +117,20 @@ window.createEventFont = function createEventFont() {
          }
          else {
             $("#custonFont").css("display","none");
+         }
+    });
+}
+
+window.createEventRules = function createEventRules() {
+  
+     $("#rules").change(function() {
+         if (this.checked == true) {
+            $("#containerRule").css("display","block");
+            //$("#compareTextError").css("display","block");
+         }
+         else {
+            $("#containerRule").css("display","none");
+           // $("#compareTextError").css("display","none");
          }
     });
 }

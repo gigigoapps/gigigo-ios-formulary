@@ -66,11 +66,11 @@ class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
     // MARK: Public Method
     
     override func insertData() {
-        super.insertData()
         guard let formField = self.formFieldM else { return }
         self.loadCustomStyleField(formField)
         self.loadData(formField)
         self.loadMandatory(formField.mandatory)
+        super.insertData()
     }
     
     override func loadError(error: Any) {

@@ -857,3 +857,66 @@
 .optionalBooleanContainer .isEditingTextField{
     margin-top: 0px !important;
 }
+
+
+/*/------- RULES ------- */
+
+
+.containerRule {
+    float: left;
+    margin-top: 8px;
+    width: 100%;
+}
+
+#containerRule {
+    /*display: none;*/
+}
+
+#rules {
+    float: left;
+width: 26px;
+margin-top: -9px;
+}
+#textActiteRule {
+    float: left;
+margin: 0px;
+}
+
+#fieldCompareRules {
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+#fieldCompareRules p{
+    float: left;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+#fieldCompareRules input{
+    float: left;
+    margin-top: 0px;
+}
+
+#compareRule, #valueRuleContainer, #behaviorRule ,#elseBehaviorRule {
+    width: 49%;
+    float: left;
+    margin-right: 5px;
+}
+
+#compareRule p, #valueRuleContainer p, #behaviorRule p, #elseBehaviorRule p {
+    width: 25%;
+    float: left;
+}
+
+
+#compareRule select, #valueRuleContainer select, #behaviorRule select, #elseBehaviorRule select {
+    float: left;
+    width: 60%;
+    margin-top: 0px;
+    margin-left: 10px;
+}
+
+#compareRule input, #valueRuleContainer input, #behaviorRule input, #elseBehaviorRule input {
+    width: 75%;
+    margin-top: 5px;
+}

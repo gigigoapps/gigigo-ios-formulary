@@ -24,6 +24,7 @@ window.createField = function createField(keyTextField,title,placeHolder,error,m
     if (isHidden) {
         isHiddenChecked = "checked"
     }
+    alert("ODIO ssssJS");
 
     //-- Recover Styles --
     var htmlBackgroundColor = getStyleColor(cellColor,titleColor,errorColor);
