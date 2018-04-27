@@ -92,7 +92,9 @@ open class FormField: UIView {
             self.heightConstraint = gig_constrain_height(self.viewContainer, 0)
         case .show:
             self.viewContainer.isHidden = false
-            self.viewContainer.removeConstraint(self.heightConstraint!)
+            if let heightConstraint = self.heightConstraint {
+                self.viewContainer.removeConstraint(heightConstraint)
+            }
             UIView.animate(withDuration: 0.5) {
                 self.viewContainer.layoutIfNeeded()
             }
