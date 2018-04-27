@@ -57,7 +57,7 @@
                     <rect key="frame" x="59" y="15" width="213" height="59"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdW-eN-2Ya">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdW-eN-2Ya">
                     <rect key="frame" x="59" y="82" width="213" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="BCU-Vv-csY"/>
