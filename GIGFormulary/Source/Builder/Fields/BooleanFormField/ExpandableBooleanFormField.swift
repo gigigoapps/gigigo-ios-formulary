@@ -165,7 +165,10 @@ class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
         self.errorLabel.textColor = styleField?.errorColor
         self.expandableTextView?.hyperlinkTextView.font = styleField?.fontTitle
         self.errorLabel.font = styleField?.fontError
+        self.expandCollapseButton.titleLabel?.lineBreakMode = .byWordWrapping
+        self.expandCollapseButton.titleLabel?.numberOfLines = 2
         self.expandCollapseButton.titleLabel?.textAlignment = .left
+        self.expandCollapseButton.sizeToFit()
         self.expandCollapseButton.titleLabel?.font = styleField?.expandCollapseButtonFont
         self.expandCollapseButton.setTitleColor(styleField?.expandCollapseButtonTextColor, for: .normal)
         if let alignment = styleField?.align {
@@ -179,6 +182,7 @@ class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
             self.checkBoxOff = checkBoxOff
             self.acceptButton.setBackgroundImage(self.checkBoxOff, for: UIControlState())
         }
+        self.layoutIfNeeded()
     }
     
     fileprivate func changeState() {

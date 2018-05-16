@@ -58,7 +58,7 @@ class SecondTypeVC: UIViewController, PFormulary {
                 "label": ("Ich akzeptiere die"),
                 "expandableInfo": [
                     "collapseText": "COLLAPSE",
-                    "expandText": "EXPAND"
+                    "expandText": "EXPAND ajsndabjsd hjbasj,dhashj d hashjasd hjasdjhdsah j hasdhjkgakgh adskgasdhjgasddkskahjs bajsd   "
                 ],
                 "description": ("Ich akzeptiere die {* legal_acceptance_URL_2 *} und willige – bis auf Widerruf- in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten gemäß der {* legal_acceptance_URL_1 *} ein."),
                 "validator": ("bool"),
