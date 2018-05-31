@@ -67,13 +67,14 @@ window.createElementField = function createElementField(typeField) {
     var html = '';
     var htmlFont = getFontPositionZone()
     var htmlImage = getHtmlImageMandatory();
-    var rules = getRules();
+    var htmlRules = getRules();
 
     if (typeField == "Text") {
         html = require('html-loader!../aux/auxText.html')
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
+            .replace('{{htmlRules}}',htmlRules)
     }
     else if (typeField == "Picker") {
         idPickerField = 1; // Reset Picker
@@ -81,12 +82,14 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
+            .replace('{{htmlRules}}',htmlRules)
     }
     else if (typeField == "DatePicker") {
         html = require('html-loader!../aux/auxDatePicker.html')
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
+            .replace('{{htmlRules}}',htmlRules)
     }
     else if (typeField == "Boolean") {
         htmlImage = getHtmlAllImage();
@@ -94,6 +97,7 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
+            .replace('{{htmlRules}}',htmlRules)
     }
     else if (typeField == "Index") {
         html = require('html-loader!../aux/auxIndex.html')
