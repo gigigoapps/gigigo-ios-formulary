@@ -20,7 +20,7 @@ open class FormField: UIView {
     //-- LOCAL VAR --
     var viewContainer: UIView!
     var formFieldOutput: PFormField?
-    var validator: Validator?
+    var validator: [Validator]?
     var keyBoard: UIKeyboardType?
     var formFieldM: FormFieldModel?
     var viewPpal: UIView?
@@ -72,6 +72,18 @@ open class FormField: UIView {
         
     // MARK: Public Method
     
+    func isMandatory() -> Bool {
+        let validatorMandatory = self.validator?.filter({ (validator) -> Bool in
+            return validator.type == TypeValidator.validatorMandatory.rawValue
+        })
+        
+        if let validator = validatorMandatory, validator.count > 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func insertData() {        
         guard let hidden = self.formFieldM?.isHidden else { return }
 
@@ -108,12 +120,34 @@ open class FormField: UIView {
     
     func validate() -> Bool {
         guard let validator = self.validator else { return true }
-        return validator.validate(self.fieldValue)
+        
+        var validateResult = true
+        for validateRule in validator {
+            if validateResult {
+                validateResult = validateRule.validate(self.fieldValue)
+            }
+        }
+        return validateResult
+    }
+    
+    func recoverTextError() -> String {
+        guard let validator = self.validator else { return "" }
+        
+        let validatorFail = validator.filter { (validator) -> Bool in
+            return validator.validate(self.fieldValue) == false
+        }
+        
+        let orderValidator = validatorFail.sorted { (validador1, _) -> Bool in
+            return validador1.isKind(of: MandatoryValidator.self)
+        }
+        
+        return orderValidator[0].textError ?? ""
     }
     
     func isErrorGeneric() -> Bool {
-        guard let validator = self.validator else { return true }
-        return validator.isTextErrorGeneric(self.fieldValue)
+        //guard let validator = self.validator else { return true }
+        //return validator.isTextErrorGeneric(self.fieldValue) // TODO EDU Esto va fuera
+        return false
     }
     
     func loadError(error: Any) {

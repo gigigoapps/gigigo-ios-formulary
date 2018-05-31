@@ -76,7 +76,8 @@ class FormBuilderFields: NSObject {
                                .validatorBool: BoolValidator.self,
                                .validatorDniNie: DNINIEValidator.self,
                                .validatorAge: AgeValidator.self,
-                               .validatorCustom: CustomValidator.self]
+                               .validatorCustom: CustomValidator.self,
+                               .validatorMandatory: MandatoryValidator.self]
     }
     
     fileprivate func createField(_ fieldDic: [AnyHashable: Any]) -> FormField {
@@ -100,25 +101,30 @@ class FormBuilderFields: NSObject {
         }
     }
     
-    fileprivate func validatorToField(_ formFieldM: FormFieldModel) -> Validator? {
-        guard
-            let validate = formFieldM.validator,
-            let typeValidate = TypeValidator(rawValue: validate)
-            else {
-                return Validator(mandatory: formFieldM.mandatory)
-        }
+    fileprivate func validatorToField(_ formFieldM: FormFieldModel) -> [Validator]? {
+        guard let validates = formFieldM.validator else { return nil }
         
-        let typeValidator = self.validatorsType[typeValidate]
-        let validator: Validator
-        if let custom = formFieldM.custom {
-            validator = typeValidator!.init(mandatory: formFieldM.mandatory, custom: custom)
-        } else {
-            validator = typeValidator!.init(mandatory: formFieldM.mandatory)
+        var validatorFound: [Validator] = []
+        
+        for validate in validates {
+            if let type = validate.type, let typeValidate = TypeValidator(rawValue: type) {
+                let typeValidator = self.validatorsType[typeValidate]
+                let validator: Validator
+                if let custom = formFieldM.custom {
+                    validator = typeValidator!.init(mandatory: formFieldM.mandatory, custom: custom)
+                } else {
+                    validator = typeValidator!.init(mandatory: formFieldM.mandatory)
+                }
+                validator.minLength = formFieldM.minLengthValue
+                validator.maxLength = formFieldM.maxLengthValue
+                validator.minAge = formFieldM.minAge
+                validator.textError = validate.textError
+                
+                validatorFound.append(validator)
+            }
         }
-        validator.minLength = formFieldM.minLengthValue
-        validator.maxLength = formFieldM.maxLengthValue
-        validator.minAge = formFieldM.minAge
-        return validator
+
+        return validatorFound
     }
     
     fileprivate func keyboardToField(_ formFieldM: FormFieldModel) -> UIKeyboardType? {

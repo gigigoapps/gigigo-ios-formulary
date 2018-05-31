@@ -23,7 +23,7 @@ class FormFieldModel: NSObject {
     var keyboard: String?
     var options: [FormFieldOptionsModel]?
     var style: FormFieldStyleModel?
-    var validator: String?
+    var validator: [FormFieldsValidator]?
     var keyBoard: String?
     var textAcceptButton: String?
     var value: Any?
@@ -52,6 +52,18 @@ class FormFieldModel: NSObject {
     }
     
     // MARK: Public Method
+    
+    func isMandatory() -> Bool {
+        let validatorMandatory = self.validator?.filter({ (validator) -> Bool in
+            return validator.type == TypeValidator.validatorMandatory.rawValue
+        })
+        
+        if let validator = validatorMandatory, validator.count > 0 {
+            return true
+        } else {
+            return false
+        }
+    }
     
     func parseDictionary(_ json: [AnyHashable: Any]) throws {
         //== PREPARE DATA ==
@@ -124,8 +136,13 @@ class FormFieldModel: NSObject {
             self.style = FormFieldStyleModel(bundle: self.bundle)
             self.style?.parseDictionary(styleM)
         }
-        if let validator = json["validator"] as? String {
-            self.validator = validator
+        if let validator = json["validator"] as? [[AnyHashable: Any]] {
+            do {
+                self.validator = try FormFieldsValidator.parseListValidatorJson(validator)
+            } catch {
+                LogWarn("validator Not Found")
+                throw ThrowError.mandatoryElementNotFound
+            }
         }
         if let keyBoard = json["keyboard"] as? String {
             self.keyBoard = keyBoard

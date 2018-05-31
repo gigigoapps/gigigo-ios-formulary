@@ -1,9 +1,22 @@
 {
     "fields":[
               {
-              "key": "keyText",
+              "key": "swefdsdfsadf",
               "type": "text",
-              "label": "titulo text "
+              "label": "validador con 2 casos - email y mandatory",
+              "placeHolder": "sdfs",
+              "keyboard": "FormKeyboardTypeEmail",
+              "validator": [
+                            {
+                                "type": "email",
+                                "textError": "texto error email"
+                            },
+                            {
+                                "type": "mandatory",
+                                "textError": "texto error mandatory"
+                            }
+                        ],
+              "textErrorValidate": "texto error validacion"
               },
               {
               "key": "keyHiddenText",

@@ -15,6 +15,8 @@ class Validator: NSObject {
     var maxLength: Int?
     var minAge: Int?
     var custom: String?
+    var type: String?
+    var textError: String?
     
     override init() {        
         self.mandatory = false
@@ -35,9 +37,9 @@ class Validator: NSObject {
     // MARK: Public Method    
     
     func validate(_ value: Any?) -> Bool {
-        if value == nil && self.mandatory {
+     /*   if value == nil && self.mandatory {
             return false
-        }
+        }*/
         return true
     }
     

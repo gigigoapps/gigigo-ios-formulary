@@ -44,12 +44,8 @@ class RegexValidator: StringValidator {
         
         if value != nil {
             guard let stringValue = value as? String else { LogWarn("Parse value String Error, return false"); return false }
-            
-            if stringValue.count == 0 && !self.mandatory {
-                return true
-            }
-            
             guard let regex = self.regex  else { LogWarn("Regex is nil"); return false }
+            
             return regex.matchesString(stringValue)
         } else {
             return true

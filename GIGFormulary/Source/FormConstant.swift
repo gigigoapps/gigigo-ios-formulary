@@ -6,6 +6,8 @@
 //  Copyright © 2016 gigigo. All rights reserved.
 //
 
+// TODO EDU BORRAR: socialRegistration_emailAddress   -> https://d1lqe9temigv1p.cloudfront.net/widget_data/flows/xxzqjkrqn9dutxbrks8wktyy6f/native_app_it/HEAD/it-IT.json
+
 import UIKit
 
 enum TypeField: String {
@@ -38,6 +40,7 @@ enum TypeValidator: String {
     case validatorDniNie = "dniNie"
     case validatorAge = "age"
     case validatorCustom = "customValidator"
+    case validatorMandatory = "mandatory"
 }
 
 enum ThrowError: Error {

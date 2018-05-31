@@ -69,7 +69,7 @@ class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
         guard let formField = self.formFieldM else { return }
         self.loadCustomStyleField(formField)
         self.loadData(formField)
-        self.loadMandatory(formField.mandatory)
+        self.loadMandatory(formField.isMandatory())
         super.insertData()
     }
     

@@ -65,11 +65,14 @@ class TextFormField: FormField, UITextFieldDelegate {
     override func validate() -> Bool {
         let status = super.validate()
         if !status {
+            /*
             if self.isErrorGeneric() {
                 self.errorLabel.text = self.formFieldM?.textsError.textError
             } else {
                 self.errorLabel.text = self.formFieldM?.textsError.textErrorValidate
-            }
+            }*/
+            
+            self.errorLabel.text = self.recoverTextError()
             self.showError()
         } else {
             self.hideError()
@@ -87,7 +90,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     override func insertData() {
         self.loadData(self.formFieldM!)
-        self.loadMandatory(self.formFieldM!.mandatory)
+        self.loadMandatory(self.formFieldM!.isMandatory())
         self.loadCustomStyleField(self.formFieldM!)
         self.loadKeyboard(self.formFieldM!)
         self.loadCustomField(self.formFieldM!)

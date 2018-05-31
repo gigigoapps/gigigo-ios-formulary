@@ -133,7 +133,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
             self.pickerDate?.delegateDate = self
         }
         self.loadData(self.formFieldM!)
-        self.loadMandatory(self.formFieldM!.mandatory)
+        self.loadMandatory(self.formFieldM!.isMandatory())
         self.loadCustomStyleField(self.formFieldM!)
         self.loadKeyboard(self.formFieldM!)
     }
@@ -147,10 +147,12 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     override func validate() -> Bool {
         var status = true
         if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
-            self.validator = OptionValidator(mandatory: self.formFieldM!.mandatory)
-            status = self.validator!.validate(self.pickerOptions?.selectedIndex)
+            self.validator = [OptionValidator(mandatory: self.formFieldM!.isMandatory())]
+            status = self.validator![0].validate(self.pickerOptions?.selectedIndex)
         } else {
-            status = self.validator!.validate(self.pickerDate?.dateSelected)
+            if let validators = self.validator {
+                status = validators[0].validate(self.pickerDate?.dateSelected)
+            }            
         }
         
         if !status {

@@ -63,7 +63,7 @@ class BooleanFormField: FormField {
     override func insertData() {
         self.loadCustomStyleField(self.formFieldM!)
         self.loadData(self.formFieldM!)
-        self.loadMandatory(self.formFieldM!.mandatory)
+        self.loadMandatory(self.formFieldM!.isMandatory())
         super.insertData()
     }
         
