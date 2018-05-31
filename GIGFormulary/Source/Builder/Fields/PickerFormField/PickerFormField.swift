@@ -147,20 +147,16 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     override func validate() -> Bool {
         var status = true
         if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
-            self.validator = [OptionValidator(mandatory: self.formFieldM!.isMandatory())]
+            self.validator = [OptionValidator()]
             status = self.validator![0].validate(self.pickerOptions?.selectedIndex)
         } else {
-            if let validators = self.validator {
-                status = validators[0].validate(self.pickerDate?.dateSelected)
+            if let validator = self.getValidatorDate() {
+                status = validator.validate(self.pickerDate?.dateSelected)
             }            
         }
         
         if !status {
-            if self.isErrorGeneric() {
-                self.errorLabel.text = self.formFieldM?.textsError.textError
-            } else {
-                self.errorLabel.text = self.formFieldM?.textsError.textErrorValidate
-            }
+            self.errorLabel.text = self.recoverTextError()
             self.showError()
         } else {
             self.hideError()
@@ -191,7 +187,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label
         self.textTextField.placeholder = formFieldM.placeHolder
-        self.errorLabel.text = formFieldM.textsError.textError
+        self.errorLabel.text = self.recoverTextError()
         self.textTextField.isEnabled = formFieldM.isEditing
     }
     

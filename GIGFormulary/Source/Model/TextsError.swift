@@ -9,7 +9,5 @@
 import UIKit
 
 class TextsError {
-    var textError: String?
     var textErrorCompare: String?
-    var textErrorValidate: String?    
 }

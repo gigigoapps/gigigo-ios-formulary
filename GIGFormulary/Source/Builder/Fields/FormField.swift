@@ -72,16 +72,14 @@ open class FormField: UIView {
         
     // MARK: Public Method
     
-    func isMandatory() -> Bool {
-        let validatorMandatory = self.validator?.filter({ (validator) -> Bool in
-            return validator.type == TypeValidator.validatorMandatory.rawValue
+    func getValidatorDate() -> Validator? {
+        let validatorDate = self.validator?.filter({ (validator) -> Bool in
+            return validator.isKind(of: AgeValidator.self)
         })
-        
-        if let validator = validatorMandatory, validator.count > 0 {
-            return true
-        } else {
-            return false
+        guard let validator = validatorDate, validator.count > 0 else {
+            return nil
         }
+        return validator[0]
     }
     
     func insertData() {        
@@ -142,12 +140,6 @@ open class FormField: UIView {
         }
         
         return orderValidator[0].textError ?? ""
-    }
-    
-    func isErrorGeneric() -> Bool {
-        //guard let validator = self.validator else { return true }
-        //return validator.isTextErrorGeneric(self.fieldValue) // TODO EDU Esto va fuera
-        return false
     }
     
     func loadError(error: Any) {

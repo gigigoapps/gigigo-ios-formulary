@@ -16,10 +16,6 @@ class DNINIEValidator: StringValidator {
         }
         let stringValue = value as? String
         
-        if stringValue?.count == 0 && !self.mandatory {
-            return true
-        }
-        
         if stringValue != nil {
             return self.isValidNieNif(stringValue!)
         }

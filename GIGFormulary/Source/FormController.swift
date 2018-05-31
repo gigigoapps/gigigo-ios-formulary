@@ -140,14 +140,14 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
                     }
                     
                     // TODO EDU esto hay q repararlo en los casos de compare
-                    /*
+                    
                     let listValues = self.searchValueItemToCompare(itemsCompare)
   
                     if field.validator!.validateCompare(listValues) {
                         isValid = false
                         field.validateCompare()
                     }
-                    */
+                    
                 }
             }
             

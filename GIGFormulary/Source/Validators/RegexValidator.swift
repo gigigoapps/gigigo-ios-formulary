@@ -13,26 +13,26 @@ class RegexValidator: StringValidator {
     
     var regex: NSRegularExpression?
     
-    init(regex: NSRegularExpression, mandatory: Bool) {
+    init(regex: NSRegularExpression) {
         self.regex = regex
         
-        super.init(mandatory: mandatory)
+        super.init()
     }
     
-    init(regexPattern: String?, mandatory: Bool) {
+    init(regexPattern: String?) {
         if regexPattern != nil {
             self.regex = NSRegularExpression(pattern: regexPattern!)
         }        
         
-        super.init(mandatory: mandatory)
+        super.init()
     }
     
-    required init(mandatory: Bool, custom: String) {
-        super.init(mandatory: mandatory, custom: custom)
+    required init() {
+        super.init()
     }
-    
-    required init(mandatory: Bool) {
-        super.init(mandatory: mandatory)
+        
+    required init(custom: String) {
+        super.init()
     }
     
     // MARK: Public Method

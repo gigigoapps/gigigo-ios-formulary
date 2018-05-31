@@ -36,15 +36,11 @@ class AgeValidator: Validator {
         }
         let date = value as? Date
         
-        if date == nil && !self.mandatory {
-            return true
-        }
-        
         if date != nil {
             return self.isValidAge(date!)
+        } else {
+            return false
         }
-        
-        return true
     }
     
     func isValidAge(_ birthday: Date) -> Bool {

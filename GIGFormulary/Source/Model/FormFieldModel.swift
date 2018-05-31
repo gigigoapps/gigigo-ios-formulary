@@ -35,10 +35,6 @@ class FormFieldModel: NSObject {
     var rules: FormFieldRules?
     
     //-- Validate --
-    var minLengthValue: Int?
-    var maxLengthValue: Int?
-    var minAge: Int?
-    var mandatory = false
     var custom: String?
     var isLink = false
     var compare = false
@@ -65,6 +61,17 @@ class FormFieldModel: NSObject {
         }
     }
     
+    func recoverValidatorLength() -> FormFieldsValidator? {
+        let validatorLength = self.validator?.filter({ (validator) -> Bool in
+            return validator.type == TypeValidator.validatorLength.rawValue
+        })
+        
+        guard let validator = validatorLength, validator.count > 0 else {
+            return nil
+        }
+        return validator[0]
+    }
+    
     func parseDictionary(_ json: [AnyHashable: Any]) throws {
         //== PREPARE DATA ==
         
@@ -89,11 +96,6 @@ class FormFieldModel: NSObject {
         
         if let label = json["label"] as? String {
             self.label = NSLocalizedString(label, comment: "")
-        }
-        if let textError = json["textError"] as? String {
-            self.textsError.textError = NSLocalizedString(textError, comment: "")
-        } else {
-            self.textsError.textError = NSLocalizedString("error_generic_field", tableName: nil, bundle: Bundle(for: Swift.type(of: self)), value: "", comment: "error_generic_field")
         }
         if let textErrorCompare = json["textErrorCompare"] as? String {
             self.textsError.textErrorCompare = NSLocalizedString(textErrorCompare, comment: "")
@@ -181,18 +183,7 @@ class FormFieldModel: NSObject {
         }
         
         //-- Validate --
-        if let maxLength = json["maxLength"] as? Int {
-            self.maxLengthValue = maxLength
-        }
-        if let minLength = json["minLength"] as? Int {
-            self.minLengthValue = minLength
-        }
-        if let minAge = json["minAge"] as? Int {
-            self.minAge = minAge
-        }
-        if let mandatory = json["mandatory"] as? Bool {
-            self.mandatory = mandatory
-        }
+
         if let custom = json["customValidator"] as? String {
             self.custom = custom
         }
@@ -201,11 +192,6 @@ class FormFieldModel: NSObject {
         }
         if let itemCompare = json["itemsCompare"] as? [String] {
             self.itemCompare = itemCompare
-        }
-        if let textErrorValidate = json["textErrorValidate"] as? String {
-            self.textsError.textErrorValidate = textErrorValidate
-        } else {
-            self.textsError.textErrorValidate = self.textsError.textError
         }
     }
 }

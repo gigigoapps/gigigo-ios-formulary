@@ -65,13 +65,6 @@ class TextFormField: FormField, UITextFieldDelegate {
     override func validate() -> Bool {
         let status = super.validate()
         if !status {
-            /*
-            if self.isErrorGeneric() {
-                self.errorLabel.text = self.formFieldM?.textsError.textError
-            } else {
-                self.errorLabel.text = self.formFieldM?.textsError.textErrorValidate
-            }*/
-            
             self.errorLabel.text = self.recoverTextError()
             self.showError()
         } else {
@@ -82,7 +75,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     }
     
     override func validateCompare() {
-        self.errorLabel.text = self.formFieldM?.textsError.textErrorCompare
+        self.errorLabel.text = self.formFieldM?.textsError.textErrorCompare  // TODO EDU falta meter el texto
         self.showError()
     }
     
@@ -159,7 +152,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label
         self.textTextField.placeholder = formFieldM.placeHolder
-        self.errorLabel.text = formFieldM.textsError.textError
+        self.errorLabel.text = self.recoverTextError()
         if self.formFieldM?.value != nil {
             self.textTextField.text = self.formFieldM?.value as? String
         }
@@ -244,8 +237,16 @@ class TextFormField: FormField, UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {        
         let textFieldText: NSString = textField.text as NSString? ?? ""
         let finalString = textFieldText.replacingCharacters(in: range, with: string)    
-        let lengthValidator = LengthValidator(minLength: self.formFieldM!.minLengthValue, maxLength: self.formFieldM!.maxLengthValue)
-        return lengthValidator.controlCharacters(finalString)
+        let lengthValidator = LengthValidator(
+            minLength: self.formFieldM!.recoverValidatorLength()?.minLengthValue,
+            maxLength: self.formFieldM!.recoverValidatorLength()?.maxLengthValue
+        )
+        
+        if textFieldText.length == 1 && finalString.count == 0 {
+            return true
+        } else {
+            return lengthValidator.controlCharacters(finalString)
+        }  
     }
     
     // MARK: UIResponser (Overrride)

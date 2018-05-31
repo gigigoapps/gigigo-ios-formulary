@@ -9,10 +9,13 @@
 import Foundation
 import GIGLibrary
 
-class FormFieldsValidator: NSObject  {
+class FormFieldsValidator: NSObject {
     
     var type: String?
     var textError: String?
+    var minLengthValue: Int?
+    var maxLengthValue: Int?
+    var minAge: Int?
     
     // MARK: Public methods
     
@@ -37,21 +40,30 @@ class FormFieldsValidator: NSObject  {
     class func parseOption(_ json: [AnyHashable: Any], activity: FormFieldsValidator) throws ->  FormFieldsValidator {
         
         //== PREPARE DATA ==
-        //-- Mandatory --
+
         guard let type = json["type"] as? String else {
             LogWarn("type value on validator Not Found")
             throw ThrowError.mandatoryElementNotFound
         }
         
-        guard let textError = json["textError"] as? String else {
-            LogWarn("textError value on validator Not Found")
-            throw ThrowError.mandatoryElementNotFound
-        }
-        
         //== INSERT DATA ==
+        
         //-- Mandatory--
         activity.type = type
-        activity.textError = NSLocalizedString(textError, comment: "")
+        
+        //-- Optional --
+        if let textError = json["textError"] as? String {
+            activity.textError = NSLocalizedString(textError, comment: "")
+        }        
+        if let maxLength = json["maxLength"] as? Int {
+            activity.maxLengthValue = maxLength
+        }
+        if let minLength = json["minLength"] as? Int {
+            activity.minLengthValue = minLength
+        }
+        if let minAge = json["minAge"] as? Int {
+            activity.minAge = minAge
+        }
         
         return activity
     }

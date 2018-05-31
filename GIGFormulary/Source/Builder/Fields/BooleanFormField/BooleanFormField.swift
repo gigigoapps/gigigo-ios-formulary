@@ -45,11 +45,7 @@ class BooleanFormField: FormField {
     override func validate() -> Bool {
         let status = super.validate()
         if !status {
-            if self.isErrorGeneric() {
-                self.errorLabel.text = self.formFieldM?.textsError.textError
-            } else {
-                self.errorLabel.text = self.formFieldM?.textsError.textErrorValidate
-            }
+            self.errorLabel.text = self.recoverTextError()
             self.showError()
         } else {
             self.hideError()
@@ -130,8 +126,8 @@ class BooleanFormField: FormField {
     // MARK: Load data field
     
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
-        self.titleLabel.text = formFieldM.label
-        self.errorLabel.text = formFieldM.textsError.textError
+        self.titleLabel.text = formFieldM.label        
+        self.errorLabel.text = self.recoverTextError()
         if formFieldM.value != nil && (formFieldM.value as? Bool)! {
             self.changeState()
         }
@@ -246,11 +242,7 @@ class BooleanFormField: FormField {
     // MARK: Parse
     
     fileprivate func existLink(_ text: String) -> Bool {
-        // TODO EDU otra opcion // return text.characters.index(of: "{") != nil
-        if text.index(of: "{") != nil {
-            return true
-        }
-        return false
+        return text.index(of: "{") != nil
     }
     
     fileprivate func getListLinks(_ text: String) -> ([String], String) {

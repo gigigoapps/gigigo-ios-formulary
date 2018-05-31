@@ -10,17 +10,17 @@ import UIKit
 
 class MailValidator: RegexValidator {
     
-    required init(mandatory: Bool) {
+    required init() {
         let pattern = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$"
         do {
             let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
-            super.init(regex: regex, mandatory: mandatory)
+            super.init(regex: regex)
         } catch {
-            super.init(regexPattern: pattern, mandatory: mandatory)
+            super.init(regexPattern: pattern)
         }
-    }    
+    }
     
-    required init(mandatory: Bool, custom: String) {
-        super.init(mandatory: mandatory, custom: custom)
+    required init(custom: String) {
+        super.init()
     }
 }

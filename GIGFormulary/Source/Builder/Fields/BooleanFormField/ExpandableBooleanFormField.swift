@@ -50,11 +50,7 @@ class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
     override func validate() -> Bool {
         let status = super.validate()
         if !status {
-            if self.isErrorGeneric() {
-                self.errorLabel.text = self.formFieldM?.textsError.textError
-            } else {
-                self.errorLabel.text = self.formFieldM?.textsError.textErrorValidate
-            }
+            self.errorLabel.text = self.recoverTextError()
             self.showError()
         } else {
             self.hideError()
@@ -123,7 +119,7 @@ class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
     // MARK: Load data field
     
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
-        self.errorLabel.text = formFieldM.textsError.textError
+        self.errorLabel.text = self.recoverTextError()
         if formFieldM.value is Bool {
             self.changeState()
         }
