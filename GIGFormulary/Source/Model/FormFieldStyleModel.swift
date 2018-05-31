@@ -44,7 +44,8 @@ class FormFieldStyleModel: NSObject {
         //== PREPARE DATA ==
         let sizeTitle = json["sizeTitle"] as? CGFloat
         let sizeError = json["sizeError"] as? CGFloat        
-
+        let expandCollapseButtonSize = json["expandCollapseButtonFontSize"] as? CGFloat
+        
         //== INSERT DATA ==
         if let styleCustom = json["styleCell"] as? String {
             self.styleCell = TypeStyleCell(rawValue: styleCustom)
@@ -108,7 +109,9 @@ class FormFieldStyleModel: NSObject {
             self.expandCollapseButtonTextColor = UIColor(fromHexString: expandCollapseButtonTextColor)
         }
         if let expandCollapseButtonFont = json["expandCollapseButtonFont"] as? String {
-            self.expandCollapseButtonFont = UIFont(name: expandCollapseButtonFont, size: sizeTitle ?? 17)
+            self.expandCollapseButtonFont = UIFont(name: expandCollapseButtonFont, size: expandCollapseButtonSize ?? 17)
+        } else {
+            self.expandCollapseButtonFont = UIFont.systemFont(ofSize: expandCollapseButtonSize ?? 17)
         }
         if let mandatoryImage = json["mandatoryIcon"] as? String {
             self.mandatoryIcon = UIImage(named: mandatoryImage, in: self.bundle, compatibleWith: nil)
