@@ -129,25 +129,24 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
             guard let formFieldM = field.formFieldM else {
                 return false
             }
-
-            if !field.validate() {
-                self.moveToPositionError(isValid, field)
-                isValid = false
+            
+            if let validatorCompare = formFieldM.getValidator(validatorType: TypeValidator.validatorCompare) {
+                guard let itemsCompare = validatorCompare.itemCompare else {
+                    return false
+                }
+                let listValues = self.searchValueItemToCompare(itemsCompare)
+                
+                if let validator = field.getValidator(validatorType: CompareValidator.self), validator.validate(listValues) {
+                    self.moveToPositionError(isValid, field)
+                    isValid = false
+                    field.showCompareError(show: true)
+                } else {
+                    field.showCompareError(show: false)
+                }
             } else {
-                if formFieldM.compare {
-                    guard let itemsCompare = formFieldM.itemCompare else {
-                        return false
-                    }
-                    
-                    // TODO EDU esto hay q repararlo en los casos de compare
-                    
-                    let listValues = self.searchValueItemToCompare(itemsCompare)
-  
-                    if field.validator!.validateCompare(listValues) {
-                        isValid = false
-                        field.validateCompare()
-                    }
-                    
+                if !field.validate() {
+                    self.moveToPositionError(isValid, field)
+                    isValid = false
                 }
             }
             

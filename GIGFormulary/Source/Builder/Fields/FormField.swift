@@ -72,9 +72,9 @@ open class FormField: UIView {
         
     // MARK: Public Method
     
-    func getValidatorDate() -> Validator? {
+    func getValidator(validatorType: AnyObject.Type) -> Validator? {
         let validatorDate = self.validator?.filter({ (validator) -> Bool in
-            return validator.isKind(of: AgeValidator.self)
+            return validator.isKind(of: validatorType)
         })
         guard let validator = validatorDate, validator.count > 0 else {
             return nil
@@ -146,7 +146,7 @@ open class FormField: UIView {
         // TODO nothing
     }
     
-    func validateCompare() {
+    func showCompareError(show: Bool) {
         // TODO nothing
     }
 }

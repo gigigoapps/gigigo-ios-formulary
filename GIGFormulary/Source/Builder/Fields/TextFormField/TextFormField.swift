@@ -52,7 +52,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-         self.awakeFromNib(frame, classField: type(of: self))
+        self.awakeFromNib(frame, classField: type(of: self))
         self.initializeView()
     }
     
@@ -74,9 +74,13 @@ class TextFormField: FormField, UITextFieldDelegate {
         return status
     }
     
-    override func validateCompare() {
-        self.errorLabel.text = self.formFieldM?.textsError.textErrorCompare  // TODO EDU falta meter el texto
-        self.showError()
+    override func showCompareError(show: Bool) {
+        if show {
+            self.errorLabel.text = self.recoverTextError()
+            self.showError()
+        } else {
+            self.hideError()
+        }
     }
     
     // MARK: Public Method
@@ -238,8 +242,8 @@ class TextFormField: FormField, UITextFieldDelegate {
         let textFieldText: NSString = textField.text as NSString? ?? ""
         let finalString = textFieldText.replacingCharacters(in: range, with: string)    
         let lengthValidator = LengthValidator(
-            minLength: self.formFieldM!.recoverValidatorLength()?.minLengthValue,
-            maxLength: self.formFieldM!.recoverValidatorLength()?.maxLengthValue
+            minLength: self.formFieldM!.getValidator(validatorType: TypeValidator.validatorLength)?.minLengthValue,
+            maxLength: self.formFieldM!.getValidator(validatorType: TypeValidator.validatorLength)?.maxLengthValue
         )
         
         if textFieldText.length == 1 && finalString.count == 0 {

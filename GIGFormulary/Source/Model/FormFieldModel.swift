@@ -28,7 +28,6 @@ class FormFieldModel: NSObject {
     var textAcceptButton: String?
     var value: Any?
     var isPassword = false
-    var textsError = TextsError()
     var isEditing = true
     var isHidden = false
     var expandableInfo: ExpandableInfo?
@@ -37,8 +36,6 @@ class FormFieldModel: NSObject {
     //-- Validate --
     var custom: String?
     var isLink = false
-    var compare = false
-    var itemCompare: [String]?
     var subtype: String?
     var fieldDescription: String?
     
@@ -61,12 +58,11 @@ class FormFieldModel: NSObject {
         }
     }
     
-    func recoverValidatorLength() -> FormFieldsValidator? {
-        let validatorLength = self.validator?.filter({ (validator) -> Bool in
-            return validator.type == TypeValidator.validatorLength.rawValue
+    func getValidator(validatorType: TypeValidator) -> FormFieldsValidator? {
+        let validatorDate = self.validator?.filter({ (validator) -> Bool in
+            return validator.type == validatorType.rawValue
         })
-        
-        guard let validator = validatorLength, validator.count > 0 else {
+        guard let validator = validatorDate, validator.count > 0 else {
             return nil
         }
         return validator[0]
@@ -96,11 +92,6 @@ class FormFieldModel: NSObject {
         
         if let label = json["label"] as? String {
             self.label = NSLocalizedString(label, comment: "")
-        }
-        if let textErrorCompare = json["textErrorCompare"] as? String {
-            self.textsError.textErrorCompare = NSLocalizedString(textErrorCompare, comment: "")
-        } else {
-            self.textsError.textErrorCompare = NSLocalizedString("error_generic_compare_field", tableName: nil, bundle: Bundle(for: Swift.type(of: self)), value: "", comment: "error_generic_compare_field")
         }
         if let placeHolder = json["placeHolder"] as? String {
             self.placeHolder = NSLocalizedString(placeHolder, comment: "")
@@ -186,12 +177,6 @@ class FormFieldModel: NSObject {
 
         if let custom = json["customValidator"] as? String {
             self.custom = custom
-        }
-        if let compare = json["compare"] as? Bool {
-            self.compare = compare
-        }
-        if let itemCompare = json["itemsCompare"] as? [String] {
-            self.itemCompare = itemCompare
         }
     }
 }

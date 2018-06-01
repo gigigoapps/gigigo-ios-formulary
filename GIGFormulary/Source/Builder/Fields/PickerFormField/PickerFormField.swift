@@ -150,9 +150,9 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
             self.validator = [OptionValidator()]
             status = self.validator![0].validate(self.pickerOptions?.selectedIndex)
         } else {
-            if let validator = self.getValidatorDate() {
+            if let validator = self.getValidator(validatorType: AgeValidator.self) {
                 status = validator.validate(self.pickerDate?.dateSelected)
-            }            
+            }
         }
         
         if !status {

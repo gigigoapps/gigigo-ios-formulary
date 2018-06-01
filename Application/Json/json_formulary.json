@@ -1,5 +1,24 @@
 {
-    "fields":[
+    "fields":[    {
+              "key": "key1",
+              "type": "text",
+              "label": "titulo1 compare"
+              },
+              {
+              "key": "key2",
+              "type": "text",
+              "label": "titulo2 compare",
+              "validator": [
+                            {
+                            "type": "compare",
+                            "textError": "texto error compare",
+                            "itemsCompare": [
+                                             "key1",
+                                             "key2"
+                                             ]
+                            }
+                            ]
+              },
               {
               "key": "swefdsdfsadf",
               "type": "text",

@@ -41,6 +41,7 @@ enum TypeValidator: String {
     case validatorAge = "age"
     case validatorCustom = "customValidator"
     case validatorMandatory = "mandatory"
+    case validatorCompare = "compare"
 }
 
 enum ThrowError: Error {

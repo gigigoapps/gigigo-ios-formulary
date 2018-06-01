@@ -77,7 +77,8 @@ class FormBuilderFields: NSObject {
                                .validatorDniNie: DNINIEValidator.self,
                                .validatorAge: AgeValidator.self,
                                .validatorCustom: CustomValidator.self,
-                               .validatorMandatory: MandatoryValidator.self]
+                               .validatorMandatory: MandatoryValidator.self,
+                               .validatorCompare: CompareValidator.self]
     }
     
     fileprivate func createField(_ fieldDic: [AnyHashable: Any]) -> FormField {

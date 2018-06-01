@@ -10,6 +10,7 @@
 		020AEE55208DE07700E61BB5 /* ExpandableBooleanFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020AEE54208DE07700E61BB5 /* ExpandableBooleanFormField.swift */; };
 		020AEE57208DE08100E61BB5 /* ExpandableBooleanFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 020AEE56208DE08100E61BB5 /* ExpandableBooleanFormField.xib */; };
 		020AEE59208DF60300E61BB5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020AEE58208DF60300E61BB5 /* String+Extension.swift */; };
+		2332088D20C120A300E84547 /* CompareValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332088C20C120A300E84547 /* CompareValidator.swift */; };
 		234ACB052091BB800096FCE7 /* FormFieldRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234ACB042091BB800096FCE7 /* FormFieldRules.swift */; };
 		2375C63220BFFAA4002AE303 /* FormFieldsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375C63120BFFAA4002AE303 /* FormFieldsValidator.swift */; };
 		2375C63420C0006C002AE303 /* MandatoryValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375C63320C0006C002AE303 /* MandatoryValidator.swift */; };
@@ -69,7 +70,6 @@
 		7B7D73101D4B8296003FFEE8 /* StringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72F21D4B8296003FFEE8 /* StringValidator.swift */; };
 		7B7D73111D4B8296003FFEE8 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D72F31D4B8296003FFEE8 /* Validator.swift */; };
 		7B7D73151D4B83BC003FFEE8 /* json_formulary.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D73131D4B831B003FFEE8 /* json_formulary.json */; };
-		7B8A03A91E2D115A00A77E7C /* TextsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8A03A81E2D115A00A77E7C /* TextsError.swift */; };
 		7B9D68B21E2E69520061D666 /* ThirdTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9D68B01E2E694B0061D666 /* ThirdTypeVC.swift */; };
 		7B9D68B51E2E6C970061D666 /* PpalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9D68B31E2E69740061D666 /* PpalVC.swift */; };
 		7B9D68B91E2E6FB00061D666 /* External.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B9D68B71E2E6D6E0061D666 /* External.storyboard */; };
@@ -144,6 +144,7 @@
 		020AEE54208DE07700E61BB5 /* ExpandableBooleanFormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableBooleanFormField.swift; sourceTree = "<group>"; };
 		020AEE56208DE08100E61BB5 /* ExpandableBooleanFormField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandableBooleanFormField.xib; sourceTree = "<group>"; };
 		020AEE58208DF60300E61BB5 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		2332088C20C120A300E84547 /* CompareValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareValidator.swift; sourceTree = "<group>"; };
 		234ACB042091BB800096FCE7 /* FormFieldRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFieldRules.swift; sourceTree = "<group>"; };
 		2375C63120BFFAA4002AE303 /* FormFieldsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFieldsValidator.swift; sourceTree = "<group>"; };
 		2375C63320C0006C002AE303 /* MandatoryValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MandatoryValidator.swift; sourceTree = "<group>"; };
@@ -201,7 +202,6 @@
 		7B7D72F21D4B8296003FFEE8 /* StringValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringValidator.swift; sourceTree = "<group>"; };
 		7B7D72F31D4B8296003FFEE8 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		7B7D73131D4B831B003FFEE8 /* json_formulary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json_formulary.json; sourceTree = "<group>"; };
-		7B8A03A81E2D115A00A77E7C /* TextsError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextsError.swift; sourceTree = "<group>"; };
 		7B9D68B01E2E694B0061D666 /* ThirdTypeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdTypeVC.swift; sourceTree = "<group>"; };
 		7B9D68B31E2E69740061D666 /* PpalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PpalVC.swift; sourceTree = "<group>"; };
 		7B9D68B71E2E6D6E0061D666 /* External.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = External.storyboard; sourceTree = "<group>"; };
@@ -482,7 +482,6 @@
 				7B7D72E51D4B8296003FFEE8 /* FormFieldOptionsModel.swift */,
 				7B7D72E61D4B8296003FFEE8 /* FormFieldStyleModel.swift */,
 				234ACB042091BB800096FCE7 /* FormFieldRules.swift */,
-				7B8A03A81E2D115A00A77E7C /* TextsError.swift */,
 				2375C63120BFFAA4002AE303 /* FormFieldsValidator.swift */,
 			);
 			path = Model;
@@ -521,6 +520,7 @@
 				7B7D72F11D4B8296003FFEE8 /* RegexValidator.swift */,
 				7B7D72F21D4B8296003FFEE8 /* StringValidator.swift */,
 				2375C63320C0006C002AE303 /* MandatoryValidator.swift */,
+				2332088C20C120A300E84547 /* CompareValidator.swift */,
 			);
 			name = Types;
 			sourceTree = "<group>";
@@ -838,13 +838,13 @@
 				7B7D73031D4B8296003FFEE8 /* FormFieldModel.swift in Sources */,
 				7B7D730B1D4B8296003FFEE8 /* NumericValidator.swift in Sources */,
 				7B7D73081D4B8296003FFEE8 /* DNINIEValidator.swift in Sources */,
-				7B8A03A91E2D115A00A77E7C /* TextsError.swift in Sources */,
 				7B7D730F1D4B8296003FFEE8 /* RegexValidator.swift in Sources */,
 				7BA9AD3D1E24F26B002FE4F6 /* IndexFormField.swift in Sources */,
 				7B7D73101D4B8296003FFEE8 /* StringValidator.swift in Sources */,
 				7B7D73111D4B8296003FFEE8 /* Validator.swift in Sources */,
 				7B7D72F41D4B8296003FFEE8 /* DatePickerComponent.swift in Sources */,
 				7B7D73021D4B8296003FFEE8 /* FormController.swift in Sources */,
+				2332088D20C120A300E84547 /* CompareValidator.swift in Sources */,
 				2375C63220BFFAA4002AE303 /* FormFieldsValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
