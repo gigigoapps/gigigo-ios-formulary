@@ -68,6 +68,7 @@ window.createElementField = function createElementField(typeField) {
     var htmlFont = getFontPositionZone()
     var htmlImage = getHtmlImageMandatory();
     var htmlRules = getRules();
+    var htmlValidators = getValidatorsZone()
 
     if (typeField == "Text") {
         html = require('html-loader!../aux/auxText.html')
@@ -75,6 +76,7 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
+            .replace('{{htmlValidators}}',htmlValidators)
     }
     else if (typeField == "Picker") {
         idPickerField = 1; // Reset Picker
@@ -83,6 +85,7 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
+            .replace('{{htmlValidators}}',htmlValidators)
     }
     else if (typeField == "DatePicker") {
         html = require('html-loader!../aux/auxDatePicker.html')
@@ -90,6 +93,7 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
+            .replace('{{htmlValidators}}',htmlValidators)
     }
     else if (typeField == "Boolean") {
         htmlImage = getHtmlAllImage();
@@ -98,6 +102,7 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
+            .replace('{{htmlValidators}}',htmlValidators)
     }
     else if (typeField == "Index") {
         html = require('html-loader!../aux/auxIndex.html')
@@ -151,6 +156,8 @@ window.createEventTextCompare = function createEventTextCompare() {
          }
     });
 }
+
+
 
 window.showContainerCustomValidate = function showContainerCustomValidate() {
      $("#selectTypeValidator").change(function() {

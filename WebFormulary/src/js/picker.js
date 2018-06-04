@@ -35,6 +35,7 @@ window.createPickerField = function createPickerField(keyTextField,title,error,m
     var htmlColorPicker = getStyleColorPicker (aceptColor,containerAceptColor,backgroundPickerColor);
     var htmlAlingFont = getAlignFont(align,font)
     var htmlImages = recoverHtmlImageMandatory(imageMandatory)
+    var htmlValidators = getValidatorsZone()
 
     var styles = htmlFontSize + htmlColorBasic + htmlAlingFont + htmlImages + htmlColorPicker;
 
@@ -54,6 +55,7 @@ window.createPickerField = function createPickerField(keyTextField,title,error,m
             .replace('{{keyTextField}}',keyTextField)
             .replace('{{title}}',title)
             .replace('{{error}}',error)
+            .replace('{{htmlValidators}}',htmlValidators)
             .replace('{{isMandatory}}',isMandatory)
             .replace('{{isHiddenChecked}}',isHiddenChecked)
             .replace('{{htmlPickerItems}}',htmlPickerItems) 

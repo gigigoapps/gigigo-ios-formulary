@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 24);
+/******/ 	return __webpack_require__(__webpack_require__.s = 25);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -114,7 +114,7 @@ window.createBooleanField = function createBooleanField(keyTextField,title,error
 
     var styles =  htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
 
-    var html = __webpack_require__(15)
+    var html = __webpack_require__(16)
             .replace('{{styles}}',styles)
             .replace('{{keyTextField}}',keyTextField)
             .replace('{{title}}',title)
@@ -176,6 +176,95 @@ window.colorBasicZone = ' <p>Color de la celda:</p><input type="color" value="#f
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports) {
+
+//==============================================//
+//               CREATE VALIDATOR               //
+//==============================================//
+window.idValidatorField = 1
+window.addContainerValidators = function addContainerValidators() {
+
+	var html = '';
+	html+= '<div class="containerValidatorField" id="containerValidatorField'+idValidatorField+'">';
+	html+=  getListValidators(idValidatorField);
+	html+= '	<p class="textErrorVal">Texto error:</p>';
+	html+= '	<input id="inputValueValidatorField'+idValidatorField+'" type="text" name="element" placeholder="Texto de error">';
+	html+= '	<p class="buttonLess" onclick="removeContainerValidator('+idValidatorField+')">-</p>';
+    html+= '    <div id="extraFieldsValidator'+idValidatorField+'" class="extraFieldsValidator"></div>';
+	html+= '</div>';
+
+    $("#validatorContainerInsert").append(html);
+    idValidatorField++;
+}
+
+window.removeContainerValidator = function removeContainerValidator(idContainerPicker) {
+    $("#containerValidatorField"+idContainerPicker).slideUp(function(){
+           $("#containerValidatorField"+idContainerPicker).remove()
+    });
+}
+
+
+window.getValidatorsZone = function getValidatorsZone() {
+	var html = '';
+	html+= '<div id="valuesValidators">';
+	html+= '	<div id="containerValidatorFieldAdd">';
+	html+= '		<p id="addFieldPickerText">Añadir campos del validador:</p>';
+	html+= '		<div id="sumatoryPicker"><p onclick="addContainerValidators()">+</p></div>';
+	html+= '	</div>';
+	html+= '	<div id="validatorContainerInsert"></div>';
+	html+= '</div>';
+
+	return html;
+}
+
+window.getListValidators = function getListValidators(idContainerValidator){
+	var html = '';
+    html+= '              <select id="selectTypeValidator'+idContainerValidator+'" id="otro" class="selectTypeValidator" onchange="changeSelectionValidator('+idContainerValidator+')">';
+    html+= '                  <option value="None">Tipo validador</option>';
+    html+= '                  <option value="text">Texto</option>';
+    html+= '                  <option value="email">Email</option>';
+    html+= '                  <option value="lengthText">Long texto</option>';
+    html+= '                  <option value="numeric">Numérico</option>';
+    html+= '                  <option value="postalCode">Código postal</option>';
+    html+= '                  <option value="phone">Teléfono</option>';
+    html+= '                  <option value="dniNie">DNI/NIE</option>';
+    html+= '                  <option value="customValidator">Custom</option>';
+    html+= '              </select>';
+
+	return html;
+}
+
+window.changeSelectionValidator = function changeSelectionValidator(idClassValidator) {
+
+    var selectorFound = document.getElementById("selectTypeValidator"+idClassValidator);
+    var extraFound = document.getElementById("extraFieldsValidator"+idClassValidator);
+    var valueFound = selectorFound.value;
+
+    $("#extraFieldsValidator"+idClassValidator).html();
+    extraFound.style.display = "none"; 
+
+    if (valueFound == "customValidator") {
+        $("#extraFieldsValidator"+idClassValidator).html('<input id="custonValidator" placeHolder="Regex Custom">');
+        extraFound.style.display = "block";
+    }
+
+
+    if (valueFound == "lengthText") {
+        var html = '';
+        html+= '<div id="minMaxValidatorContainer">';
+        html+= '    <p>minLength:</p>';
+        html+= '    <input class="inputWidth" type="text" name="minLength"id="minLength">';
+        html+= '    <p>maxLength:</p>';
+        html+= '    <input class="inputWidth" type="text" name="maxLength"id="maxLength">';
+        html+= '</div>';
+        $("#extraFieldsValidator"+idClassValidator).html(html);
+        extraFound.style.display = "block";
+    }
+}
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -208,7 +297,7 @@ window.createDatePickerField = function createDatePickerField(keyTextField,title
 
     var styles = htmlFontSize + htmlColorBasic + htmlAlingFont + htmlImages + htmlColorPicker;
 
-    var html = __webpack_require__(17)
+    var html = __webpack_require__(18)
             .replace('{{styles}}',styles)
             .replace('{{keyTextField}}',keyTextField)
             .replace('{{title}}',title)
@@ -271,7 +360,7 @@ window.saveDatePickerField = function saveDatePickerField(keyTextField,type,titl
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 
@@ -329,7 +418,7 @@ window.launchEventColors = function launchEventColors() {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 
@@ -350,7 +439,7 @@ window.createListOptionsFont = function createListOptionsFont() {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 window.getHtmlImageMandatory = function getHtmlImageMandatory() {
@@ -386,7 +475,7 @@ window.recoverHtmlAllImage = function recoverHtmlAllImage(imageMandatory,imageCh
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -403,7 +492,7 @@ window.createIndexField = function createIndexField(keyTextField,title,cellColor
     
     var styles =  htmlFontSize + htmlBackgroundColor + htmlAlingFont;
         
-    var html = __webpack_require__(19)
+    var html = __webpack_require__(20)
             .replace('{{styles}}',styles)
             .replace('{{keyTextField}}',keyTextField)
             .replace('{{title}}',title)
@@ -438,7 +527,7 @@ window.saveIndexField = function saveIndexField(keyTextField,type,title,cellColo
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -511,39 +600,44 @@ window.createElementField = function createElementField(typeField) {
     var htmlFont = getFontPositionZone()
     var htmlImage = getHtmlImageMandatory();
     var htmlRules = getRules();
+    var htmlValidators = getValidatorsZone()
 
     if (typeField == "Text") {
-        html = __webpack_require__(22)
+        html = __webpack_require__(23)
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
+            .replace('{{htmlValidators}}',htmlValidators)
     }
     else if (typeField == "Picker") {
         idPickerField = 1; // Reset Picker
-        html = __webpack_require__(20)
+        html = __webpack_require__(21)
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
+            .replace('{{htmlValidators}}',htmlValidators)
     }
     else if (typeField == "DatePicker") {
-        html = __webpack_require__(16)
+        html = __webpack_require__(17)
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
+            .replace('{{htmlValidators}}',htmlValidators)
     }
     else if (typeField == "Boolean") {
         htmlImage = getHtmlAllImage();
-        html = __webpack_require__(14)
+        html = __webpack_require__(15)
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
+            .replace('{{htmlValidators}}',htmlValidators)
     }
     else if (typeField == "Index") {
-        html = __webpack_require__(18)
+        html = __webpack_require__(19)
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
     }
@@ -594,6 +688,8 @@ window.createEventTextCompare = function createEventTextCompare() {
          }
     });
 }
+
+
 
 window.showContainerCustomValidate = function showContainerCustomValidate() {
      $("#selectTypeValidator").change(function() {
@@ -828,7 +924,7 @@ window.getStylesJson = function getStylesJson(cellColor,titleColor,errorColor,si
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -868,6 +964,7 @@ window.createPickerField = function createPickerField(keyTextField,title,error,m
     var htmlColorPicker = getStyleColorPicker (aceptColor,containerAceptColor,backgroundPickerColor);
     var htmlAlingFont = getAlignFont(align,font)
     var htmlImages = recoverHtmlImageMandatory(imageMandatory)
+    var htmlValidators = getValidatorsZone()
 
     var styles = htmlFontSize + htmlColorBasic + htmlAlingFont + htmlImages + htmlColorPicker;
 
@@ -882,11 +979,12 @@ window.createPickerField = function createPickerField(keyTextField,title,error,m
         }
     }
 
-    var html = __webpack_require__(21)
+    var html = __webpack_require__(22)
             .replace('{{styles}}',styles)
             .replace('{{keyTextField}}',keyTextField)
             .replace('{{title}}',title)
             .replace('{{error}}',error)
+            .replace('{{htmlValidators}}',htmlValidators)
             .replace('{{isMandatory}}',isMandatory)
             .replace('{{isHiddenChecked}}',isHiddenChecked)
             .replace('{{htmlPickerItems}}',htmlPickerItems) 
@@ -953,7 +1051,7 @@ window.savePickerField = function savePickerField(keyTextField,type,title,textEr
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 
@@ -962,7 +1060,7 @@ window.getRules= function getRules() {
 }
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -1021,7 +1119,7 @@ window.createField = function createField(keyTextField,title,placeHolder,error,m
         htmlTextErrorCompare = '<p>Keys Compare:</p> <input type="text" name="compareKeysField" id="compareKeysField" disabled value="{{compareKeysField}}"><p>Text Error</p><input type="text" name="textErrorCompareFix" id="textErrorCompareFix" class="customValidatorCreated" disabled value="'+textErrorCompare+'">'
     }
 
-    var html = __webpack_require__(23)
+    var html = __webpack_require__(24)
             .replace('{{htmlTextErrorCompare}}',htmlTextErrorCompare)
             .replace('{{htmlTextErrorValidator}}',htmlTextErrorValidator)
             .replace('{{styles}}',styles)
@@ -1119,7 +1217,7 @@ window.saveField = function saveField(keyTextField,type,title,placeHolder,textEr
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 // http://www.danstools.com/javascript-minify/ 
@@ -1353,85 +1451,86 @@ window.validateIndexField = function validateIndexField() {
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = "  <div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>         \n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>         \n             </div>\n             <div class=\"containerTextFieldCenter optionalBooleanContainer\">\n                  <div class=\"mandatoryTextField\">\n                     <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\">\n                     <p>Es obligatorio?</p>\n                  </div>\n                  \n                  <div class=\"isEditingTextField\">\n                      <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                      <p>Es editable?</p>\n                  </div>\n                  \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n             </div>\n             <div class=\"errorTextField\">\n                 <p class=\"textErrorP\">Texto error:</p>\n                 <input type=\"text\" name=\"errorTextField\"id=\"errorTextField\">\n              </div>\n              <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                                 \n                 <div class=\"sizeZone\">\n                    <p>Tamaño titulo:</p>\n                    <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                    <p>Tamaño texto error:</p>\n                    <input id=\"sizeError\" type=\"text\" name=\"element\">\n                 </div>\n                 \n                 {{htmlFont}}\n                 {{htmlImage}}\n\n                  <div class=\"colorZone\">\n                    {{colorBasicZone}}\n                 </div>  \n              </div>\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>\n";
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = "\n<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" disabled value=\"{{title}}\">\n                </div>\n            </div>\n            <div class=\"containerTextFieldCenter optionalBooleanContainer\">\n                <div class=\"mandatoryTextField\">\n                    <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\" {{isMandatory}} disabled readonly >\n                    <p>Es obligatorio?</p>\n                </div>\n                <div class=\"isEditingTextField\">\n                    <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingValueCheck}} disabled readonly >\n                    <p>Es editable?</p>\n                </div>\n\n                <div class=\"isHiddenTextField\">\n                    <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                    <p>Es visible?</p>\n                </div>\n            </div>\n            <div class=\"errorTextField\">\n                <p class=\"textErrorP\">Texto error:</p>\n                <input type=\"text\" name=\"errorTextField\"id=\"errorTextField\" disabled value=\"{{error}}\">\n            </div>\n            <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                {{styles}} \n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonRemoveText\" onclick=\"removeField({{indexField}})\"><p>-</p></div>\n    </div>\n</div> \n";
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div id=\"containerErrorMandatoryPicker\">\n                <div class=\"errorTextField errorTextFieldPicker\">\n                   <p class=\"textErrorP\">Texto error:</p>\n                   <input type=\"text\" name=\"errorTextField\" id=\"errorTextField\">\n                </div>\n\n           </div>  \n           \n           <div class=\"acceptButtonTextField\">\n               <p>Titulo aceptar picker:</p>\n               <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">                                       \n            </div>  \n            \n           <div class=\"minAgeContainer\">\n               <p>Edad minima:</p>\n               <input type=\"text\" name=\"minAgeContainer\" id=\"minAgeContainer\">                                       \n            </div>  \n\n  \n\n            <div id=\"containerOptionalDatePicker\">\n                <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n                </div>\n                <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n                </div>\n                <div class=\"mandatoryTextField optionModel\">\n                      <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\">\n                     <p>Es obligatorio?</p>\n                </div>                 \n            </div>\n\n\n\n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n               <div class=\"sizeZone\">\n                  <p>Tamaño titulo:</p>\n                  <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                  <p>Tamaño texto error:</p>\n                  <input id=\"sizeError\" type=\"text\" name=\"element\">\n               </div>\n\n                 {{htmlFont}}\n                 {{htmlImage}}\n\n                <div class=\"colorZone pickerColorZone\">\n                   <p>Color de la celda:</p>\n                    {{colorBasicZone}}\n\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n\n               </div>\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n";
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" value=\"{{title}}\" disabled readonly>\n                </div>\n            </div>\n            <div id=\"containerErrorMandatoryPicker\">\n                <div class=\"errorTextField errorTextFieldPicker\">\n                    <p class=\"textErrorP\">Texto error:</p>\n                    <input type=\"text\" name=\"errorTextField\" id=\"errorTextField\" disabled readonly value=\"{{error}}\">\n                </div>\n\n            </div>\n            \n           <div class=\"acceptButtonTextField\">\n               <p>Titulo aceptar picker:</p>\n               <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\" value=\"{{acceptButtonTextField}}\">                                       \n            </div>  \n            \n            <div class=\"minAgeContainer versionCreatedMinAge datePickerMinAge\">\n                <p>Edad minima:</p>\n                <input type=\"text\" name=\"minAgeContainer\" id=\"minAgeContainer\" value=\"{{minAgeContainer}}\" disabled readonly>\n            </div>\n\n\n            <div id=\"containerOptionalDatePicker\">\n                <div class=\"mandatoryTextField optionModel datePickerMandatory\">\n                    <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\"{{isMandatory}} disabled readonly>\n                    <p>Es obligatorio?</p>\n                        </div>\n                <div class=\"isEditingTextField\">\n                    <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingCheck}} disabled readonly>\n                        <p>Es editable?</p>\n                        </div>\n                        \n                <div class=\"isHiddenTextField\">\n                    <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                    <p>Es visible?</p>\n                </div>\n            </div>\n\n\n            <div class=\"styleField\">\n                <h4>Estilos de celda:</h4>\n                {{styles}}\n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonAddPicker\"onclick=\"removeField({{indexField}})\">\n            <p>-</p>\n        </div>\n    </div>\n </div>\n";
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"cellConstructor\" id=\"createField\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n                    </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                        </div>\n            </div>\n            <div class=\"styleField\">\n                <h4>Estilos de celda:</h4>\n                <div class=\"colorZone\">\n                    {{colorBasicZone}}\n                </div>\n                <div class=\"sizeZone\">\n                    <p>Tamaño titulo:</p>\n                    <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                </div>\n                \n                {{htmlFont}}\n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n            <p>+</p>\n        </div>\n    </div>\n</div>\n\n\n\n";
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" disabled value=\"{{title}}\">\n                </div>\n            </div>\n\n            <div class=\"styleField\">\n                <h4>Estilos de celda:</h4>\n                {{styles}}\n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonRemoveText\" onclick=\"removeField({{indexField}})\"><p>-</p></div>\n    </div>\n</div> ";
 
 /***/ }),
-/* 20 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n           <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n           </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div id=\"containerErrorMandatoryPicker\">\n                <div class=\"errorTextField errorTextFieldPicker\">\n                   <p class=\"textErrorP\">Texto error:</p>\n                   <input type=\"text\" name=\"errorTextField\" id=\"errorTextField\">\n                </div>\n           </div>  \n           \n           <div class=\"containerAcceptEditing\">\n               <div class=\"acceptButtonTextField\">\n                   <p>Titulo aceptar picker:</p>\n                   <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">\n               </div>\n           </div>\n\n\n           <div class=\"containerOptionalPicker\">           \n                <div class=\"mandatoryTextField optionModel\">\n                    <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\">\n                    <p>Es obligatorio?</p>\n                </div> \n\n               <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n               </div>\n\n               <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n               </div>\n           </div>\n           \n\n           <div id=\"valuesOptionsSelector\"> \n              <div id=\"containerPickerFieldAdd\">\n                 <p id=\"addFieldPickerText\">Añadir campos del picker:</p> \n                 <div id=\"sumatoryPicker\">\n                      <p onclick=\"addContainerPicker()\">+</p>\n                </div>\n              </div>\n\n              <div id=\"pickerFieldsInsert\">\n                  <div class=\"containerPickerField\" id=\"containerPickerField'+idPickerField+'\">\n                      <input id=\"inputKeyPickerField0\" type=\"text\" name=\"element\" placeholder=\"Clave Picker\" value=\"KeyNoSelected\"  disabled readonly>\n                      <input id=\"inputValuePickerField0\" type=\"text\" name=\"element\" placeholder=\"Valor picker por defecto\">\n                  </div>\n              </div>\n            </div> \n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n               <div class=\"sizeZone\">\n                  <p>Tamaño titulo:</p>\n                  <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                  <p>Tamaño texto error:</p>\n                  <input id=\"sizeError\" type=\"text\" name=\"element\">\n               </div>\n               \n                 {{htmlFont}}\n                 {{htmlImage}}\n\n                <div class=\"colorZone pickerColorZone\">\n                    {{colorBasicZone}}\n\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n               </div>\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n\n                   \n";
-
-/***/ }),
 /* 21 */
 /***/ (function(module, exports) {
 
-module.exports = "\n   <div class=\"cellConstructor pickerConstructor\" id=\"fieldNumber{{indexField}}\">\n           <div class=\"row\">\n               <div class=\"col-md-10\">\n                   <div class=\"containerTextFieldTop\">\n                        <div class=\"keyTextField\">\n                            <p>key*:</p>\n                            <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" value=\"{{keyTextField}}\" disabled readonly>\n                       </div>\n                         <div class=\"titleTextField\">\n                             <p>Titulo*:</p>\n                             <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" value=\"{{title}}\" disabled readonly>                                       \n                          </div>                                 \n                   </div>\n\n                   <div id=\"containerErrorMandatoryPicker\">\n                        <div class=\"errorTextField errorTextFieldPicker\">\n                           <p class=\"textErrorP\">Texto error:</p>\n                           <input type=\"text\" name=\"errorTextField\" id=\"errorTextField\" disabled readonly value=\"{{error}}\">\n                        </div>   \n                   </div>   \n\n                 <div class=\"containerAcceptEditing\">\n                     <div class=\"acceptButtonTextField\">\n                         <p>Titulo aceptar picker:</p>\n                         <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\" disabled readonly value=\"{{acceptButtonTextField}}\" >\n                     </div>\n                 </div>\n\n                   <div class=\"containerOptionalPicker\">    \n                     <div class=\"mandatoryTextField optionModel\">\n                              <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\" {{isMandatory}} disabled readonly>\n                             <p>Es obligatorio?</p>\n                        </div>                                    \n                        <div class=\"isEditingTextField\">\n                            <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingChecked}} disabled readonly>\n                            <p>Es editable?</p>\n                        </div>\n\n                        <div class=\"isHiddenTextField\">\n                            <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                            <p>Es visible?</p>\n                        </div>\n                   </div>\n\n                   <div id=\"valuesOptionsSelector\">     \n                      <div id=\"pickerFieldsInsert\">\n                          <p>Valores creados:</p>\n                          {{htmlPickerItems}}\n                      </div>\n                    </div> \n\n                  <div class=\"styleField\"> \n                      <h4>Estilos de celda:</h4>\n                        {{styles}}\n                  </div>\n                    <div class=\"spaceSeparate\"></div>\n               </div>\n               <div class=\"col-md-2 buttonRemove buttonAddPicker\" onclick=\"removeField({{indexField}})\">\n                  <p>-</p>\n               </div>\n           </div>\n      </div>\n";
+module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n           <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n           </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div id=\"containerErrorMandatoryPicker\">\n                <div class=\"errorTextField errorTextFieldPicker\">\n                   <p class=\"textErrorP\">Texto error:</p>\n                   <input type=\"text\" name=\"errorTextField\" id=\"errorTextField\">\n                </div>\n           </div>  \n           \n           <div class=\"containerAcceptEditing\">\n               <div class=\"acceptButtonTextField\">\n                   <p>Titulo aceptar picker:</p>\n                   <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">\n               </div>\n           </div>\n\n\n          {{htmlValidators}}\n\n\n           <div class=\"containerOptionalPicker\">           \n              <!--  <div class=\"mandatoryTextField optionModel\">\n                    <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\">\n                    <p>Es obligatorio?</p>\n                </div> -->\n\n               <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n               </div>\n\n               <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n               </div>\n           </div>\n           \n\n           <div id=\"valuesOptionsSelector\"> \n              <div id=\"containerPickerFieldAdd\">\n                 <p id=\"addFieldPickerText\">Añadir campos del picker:</p> \n                 <div id=\"sumatoryPicker\">\n                      <p onclick=\"addContainerPicker()\">+</p>\n                </div>\n              </div>\n\n              <div id=\"pickerFieldsInsert\">\n                  <div class=\"containerPickerField\" id=\"containerPickerField'+idPickerField+'\">\n                      <input id=\"inputKeyPickerField0\" type=\"text\" name=\"element\" placeholder=\"Clave Picker\" value=\"KeyNoSelected\"  disabled readonly>\n                      <input id=\"inputValuePickerField0\" type=\"text\" name=\"element\" placeholder=\"Valor picker por defecto\">\n                  </div>\n              </div>\n            </div> \n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n               <div class=\"sizeZone\">\n                  <p>Tamaño titulo:</p>\n                  <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                  <p>Tamaño texto error:</p>\n                  <input id=\"sizeError\" type=\"text\" name=\"element\">\n               </div>\n               \n                 {{htmlFont}}\n                 {{htmlImage}}\n\n                <div class=\"colorZone pickerColorZone\">\n                    {{colorBasicZone}}\n\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n               </div>\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n\n                   \n";
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>       \n                  <select id=\"selectTypeKeyboard\">\n                      <option value=\"None\">Elegir tipo de teclado</option>\n                      <option value=\"FormKeyboardTypeText\">Texto</option>\n                      <option value=\"FormKeyboardTypeEmail\">Email</option>\n                      <option value=\"FormKeyboardTypeNumbers\">Nuerico</option>\n                      <option value=\"FormKeyboardTypeNumberPad\">NuericoPad</option>\n                  </select>                                   \n             </div>\n             <div class=\"containerTextFieldCenter\">\n                 <div class=\"inputTextField\">\n                     <p>PlaceHolder:</p>\n                     <input type=\"text\" name=\"palceHolderTextField\" id=\"palceHolderTextField\">\n                 </div>\n             </div>\n             <div class=\"errorTextField\">\n                 <p class=\"textErrorP\">Texto error:</p>\n                 <input type=\"text\" name=\"errorTextField\" id=\"errorTextField\">\n              </div>\n             \n\n             <div class=\"compareTextField\">\n                 <input type=\"checkbox\" name=\"compare\" value=\"compare\" id=\"compare\">\n                 <p>Active compare?</p>\n                 <div id=\"containerCompare\">\n                     <p>Keys Compare:</p>\n                     <input type=\"text\" name=\"compareKeysField\" id=\"compareKeysField\" placeholder=\"key1,key2\">                 \n                     <div id=\"compareTextError\">\n                         <p>Texto error:</p>\n                         <input id=\"compareTextErrorInput\" type=\"text\" name=\"element\">\n                     </div>\n                 </div>\n            </div>\n\n\n             <div class=\"containerPassEdit\">\n                 <div class=\"passwordTextField\">\n                     <input type=\"checkbox\" name=\"passwordTextField\" value=\"passwordTextField\" id=\"passwordTextField\">\n                     <p>Es password?</p>\n                 </div>\n                 \n                 <div class=\"isEditingTextField\">\n                     <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                     <p>Es editable?</p>\n                  </div>\n                 \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n\n                 <div class=\"mandatoryTextField\">\n                     <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\">\n                     <p>Es obligatorio?</p>\n                 </div>\n             </div>\n\n             <div class=\"validatorContainer\">\n                  <select id=\"selectTypeValidator\">\n                      <option value=\"None\">Tipo validador</option>\n                      <option value=\"text\">Texto</option>\n                      <option value=\"email\">Email</option>\n                      <option value=\"lengthText\">Long texto</option>\n                      <option value=\"numeric\">Numérico</option>\n                      <option value=\"postalCode\">Código postal</option>\n                      <option value=\"phone\">Teléfono</option>\n                      <option value=\"dniNie\">DNI/NIE</option>\n                      <option value=\"customValidator\">Custom</option>\n                  </select>  \n\n                  <input id=\"custonValidator\" placeHolder=\"Regex Custom\">    \n\n                  <div id=\"minMaxValidatorContainer\">\n                     <p>minLength:</p>\n                     <input class=\"inputWidth\" type=\"text\" name=\"minLength\"id=\"minLength\">\n                     <p>maxLength:</p>\n                     <input class=\"inputWidth\" type=\"text\" name=\"maxLength\"id=\"maxLength\">\n                  </div>\n\n                  <div id=\"validatorTextError\">\n                     <p>Texto error:</p>\n                     <input id=\"validatorTextErrorInput\" type=\"text\" name=\"element\">\n                  </div> \n             </div>\n\n              {{htmlRules}}\n             \n              <div class=\"styleField\">\n                   <h4>Estilos de celda:</h4>\n                        <div class=\"colorZone\">\n                        {{colorBasicZone}}\n                    </div>                                   \n                    <div class=\"sizeZone\">\n                        <p>Tamaño titulo:</p>\n                        <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                        <p>Tamaño texto error:</p>\n                        <input id=\"sizeError\" type=\"text\" name=\"element\">\n                    </div>\n\n                    {{htmlFont}}\n                    {{htmlImage}}\n              </div>\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>";
+module.exports = "\n   <div class=\"cellConstructor pickerConstructor\" id=\"fieldNumber{{indexField}}\">\n           <div class=\"row\">\n               <div class=\"col-md-10\">\n                   <div class=\"containerTextFieldTop\">\n                        <div class=\"keyTextField\">\n                            <p>key*:</p>\n                            <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" value=\"{{keyTextField}}\" disabled readonly>\n                       </div>\n                         <div class=\"titleTextField\">\n                             <p>Titulo*:</p>\n                             <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" value=\"{{title}}\" disabled readonly>                                       \n                          </div>                                 \n                   </div>\n\n                   <div id=\"containerErrorMandatoryPicker\">\n                        <div class=\"errorTextField errorTextFieldPicker\">\n                           <p class=\"textErrorP\">Texto error:</p>\n                           <input type=\"text\" name=\"errorTextField\" id=\"errorTextField\" disabled readonly value=\"{{error}}\">\n                        </div>   \n                   </div>   \n\n                 <div class=\"containerAcceptEditing\">\n                     <div class=\"acceptButtonTextField\">\n                         <p>Titulo aceptar picker:</p>\n                         <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\" disabled readonly value=\"{{acceptButtonTextField}}\" >\n                     </div>\n                 </div>\n\n                   <div class=\"containerOptionalPicker\">    \n                     <div class=\"mandatoryTextField optionModel\">\n                              <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\" {{isMandatory}} disabled readonly>\n                             <p>Es obligatorio?</p>\n                        </div>                                    \n                        <div class=\"isEditingTextField\">\n                            <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingChecked}} disabled readonly>\n                            <p>Es editable?</p>\n                        </div>\n\n                        <div class=\"isHiddenTextField\">\n                            <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                            <p>Es visible?</p>\n                        </div>\n                   </div>\n\n                   <div id=\"valuesOptionsSelector\">     \n                      <div id=\"pickerFieldsInsert\">\n                          <p>Valores creados:</p>\n                          {{htmlPickerItems}}\n                      </div>\n                    </div> \n\n                  <div class=\"styleField\"> \n                      <h4>Estilos de celda:</h4>\n                        {{styles}}\n                  </div>\n                    <div class=\"spaceSeparate\"></div>\n               </div>\n               <div class=\"col-md-2 buttonRemove buttonAddPicker\" onclick=\"removeField({{indexField}})\">\n                  <p>-</p>\n               </div>\n           </div>\n      </div>\n";
 
 /***/ }),
 /* 23 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" disabled value=\"{{title}}\">\n                </div>\n                <div class=\"keyboardResult\">Keyboard:{{keyboard}}</div>\n            </div>\n            <div class=\"containerTextFieldCenter\">\n                <div class=\"inputTextField\">\n                    <p>PlaceHolder:</p>\n                    <input type=\"text\" name=\"palceHolderTextField\" id=\"palceHolderTextField\" disabled value=\"{{placeHolder}}\">\n                </div>                   \n            </div>\n            <div class=\"errorTextField\">        \n                <p class=\"textErrorP\">Texto error:</p>\n                <input type=\"text\" name=\"errorTextField\"id=\"errorTextField\" disabled value=\"{{error}}\"> \n            </div>\n\n            \n            <div class=\"compareTextField\">\n                <input type=\"checkbox\" name=\"compare\" value=\"compare\" id=\"compare\" {{isCompareChecked}} disabled readonly>\n                <p>Active compare?</p>\n                {{htmlTextErrorCompare}}\n            </div>\n\n            \n            \n            <div class=\"containerPassEdit\">\n                <div class=\"passwordTextField\">\n                    <input type=\"checkbox\" name=\"passwordTextField\" value=\"passwordTextField\" id=\"passwordTextField\" {{isPasswordChecked}} disabled readonly>\n                    <p>Es password?</p>\n                </div>\n                \n                <div class=\"isEditingTextField\">\n                    <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingChecked}} disabled readonly>\n                    <p>Es editable?</p>\n                </div>\n                \n                <div class=\"isHiddenTextField\">\n                    <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                    <p>Es visible?</p>\n                </div>\n\n                <div class=\"mandatoryTextField\">\n                    <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\" {{isMandatory}} disabled readonly>\n                    <p>Es obligatorio?</p>\n                </div>\n            </div>\n            \n\n            <div class=\"validatorContainer validatorCreated\">\n                <div class=\"validatorResult resultCreated\">Validator:{{validator}} {{htmlCustomValidator}}</div>  \n\n                {{htmlTextErrorValidator}}\n            </div>\n           \n            \n            <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                {{styles}}\n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonRemoveText\" onclick=\"removeField({{indexField}})\"><p>-</p></div>\n    </div>\n</div> \n\n";
+module.exports = "<div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>       \n                  <select id=\"selectTypeKeyboard\">\n                      <option value=\"None\">Elegir tipo de teclado</option>\n                      <option value=\"FormKeyboardTypeText\">Texto</option>\n                      <option value=\"FormKeyboardTypeEmail\">Email</option>\n                      <option value=\"FormKeyboardTypeNumbers\">Nuerico</option>\n                      <option value=\"FormKeyboardTypeNumberPad\">NuericoPad</option>\n                  </select>                                   \n             </div>\n             <div class=\"containerTextFieldCenter\">\n                 <div class=\"inputTextField\">\n                     <p>PlaceHolder:</p>\n                     <input type=\"text\" name=\"palceHolderTextField\" id=\"palceHolderTextField\">\n                 </div>\n             </div>\n             <div class=\"errorTextField\">\n                 <p class=\"textErrorP\">Texto error:</p>\n                 <input type=\"text\" name=\"errorTextField\" id=\"errorTextField\">\n              </div>\n             \n\n             <div class=\"compareTextField\">\n                 <input type=\"checkbox\" name=\"compare\" value=\"compare\" id=\"compare\">\n                 <p>Active compare?</p>\n                 <div id=\"containerCompare\">\n                     <p>Keys Compare:</p>\n                     <input type=\"text\" name=\"compareKeysField\" id=\"compareKeysField\" placeholder=\"key1,key2\">                 \n                     <div id=\"compareTextError\">\n                         <p>Texto error:</p>\n                         <input id=\"compareTextErrorInput\" type=\"text\" name=\"element\">\n                     </div>\n                 </div>\n            </div>\n\n\n             <div class=\"containerPassEdit\">\n                 <div class=\"passwordTextField\">\n                     <input type=\"checkbox\" name=\"passwordTextField\" value=\"passwordTextField\" id=\"passwordTextField\">\n                     <p>Es password?</p>\n                 </div>\n                 \n                 <div class=\"isEditingTextField\">\n                     <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                     <p>Es editable?</p>\n                  </div>\n                 \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n\n                 <div class=\"mandatoryTextField\">\n                     <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\">\n                     <p>Es obligatorio?</p>\n                 </div>\n             </div>\n\n             <div class=\"validatorContainer\">\n                  <select id=\"selectTypeValidator\">\n                      <option value=\"None\">Tipo validador</option>\n                      <option value=\"text\">Texto</option>\n                      <option value=\"email\">Email</option>\n                      <option value=\"lengthText\">Long texto</option>\n                      <option value=\"numeric\">Numérico</option>\n                      <option value=\"postalCode\">Código postal</option>\n                      <option value=\"phone\">Teléfono</option>\n                      <option value=\"dniNie\">DNI/NIE</option>\n                      <option value=\"customValidator\">Custom</option>\n                  </select>  \n\n                  <input id=\"custonValidator\" placeHolder=\"Regex Custom\">    \n\n                  <div id=\"minMaxValidatorContainer\">\n                     <p>minLength:</p>\n                     <input class=\"inputWidth\" type=\"text\" name=\"minLength\"id=\"minLength\">\n                     <p>maxLength:</p>\n                     <input class=\"inputWidth\" type=\"text\" name=\"maxLength\"id=\"maxLength\">\n                  </div>\n\n                  <div id=\"validatorTextError\">\n                     <p>Texto error:</p>\n                     <input id=\"validatorTextErrorInput\" type=\"text\" name=\"element\">\n                  </div> \n             </div>\n\n              {{htmlRules}}\n             \n              <div class=\"styleField\">\n                   <h4>Estilos de celda:</h4>\n                        <div class=\"colorZone\">\n                        {{colorBasicZone}}\n                    </div>                                   \n                    <div class=\"sizeZone\">\n                        <p>Tamaño titulo:</p>\n                        <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                        <p>Tamaño texto error:</p>\n                        <input id=\"sizeError\" type=\"text\" name=\"element\">\n                    </div>\n\n                    {{htmlFont}}\n                    {{htmlImage}}\n              </div>\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>";
 
 /***/ }),
 /* 24 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" disabled value=\"{{title}}\">\n                </div>\n                <div class=\"keyboardResult\">Keyboard:{{keyboard}}</div>\n            </div>\n            <div class=\"containerTextFieldCenter\">\n                <div class=\"inputTextField\">\n                    <p>PlaceHolder:</p>\n                    <input type=\"text\" name=\"palceHolderTextField\" id=\"palceHolderTextField\" disabled value=\"{{placeHolder}}\">\n                </div>                   \n            </div>\n            <div class=\"errorTextField\">        \n                <p class=\"textErrorP\">Texto error:</p>\n                <input type=\"text\" name=\"errorTextField\"id=\"errorTextField\" disabled value=\"{{error}}\"> \n            </div>\n\n            \n            <div class=\"compareTextField\">\n                <input type=\"checkbox\" name=\"compare\" value=\"compare\" id=\"compare\" {{isCompareChecked}} disabled readonly>\n                <p>Active compare?</p>\n                {{htmlTextErrorCompare}}\n            </div>\n\n            \n            \n            <div class=\"containerPassEdit\">\n                <div class=\"passwordTextField\">\n                    <input type=\"checkbox\" name=\"passwordTextField\" value=\"passwordTextField\" id=\"passwordTextField\" {{isPasswordChecked}} disabled readonly>\n                    <p>Es password?</p>\n                </div>\n                \n                <div class=\"isEditingTextField\">\n                    <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingChecked}} disabled readonly>\n                    <p>Es editable?</p>\n                </div>\n                \n                <div class=\"isHiddenTextField\">\n                    <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                    <p>Es visible?</p>\n                </div>\n\n                <div class=\"mandatoryTextField\">\n                    <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\" {{isMandatory}} disabled readonly>\n                    <p>Es obligatorio?</p>\n                </div>\n            </div>\n            \n\n            <div class=\"validatorContainer validatorCreated\">\n                <div class=\"validatorResult resultCreated\">Validator:{{validator}} {{htmlCustomValidator}}</div>  \n\n                {{htmlTextErrorValidator}}\n            </div>\n           \n            \n            <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                {{styles}}\n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonRemoveText\" onclick=\"removeField({{indexField}})\"><p>-</p></div>\n    </div>\n</div> \n\n";
+
+/***/ }),
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* PASOS: Arrancar desde la ruta donde esta webpack.config.js y abrir consola y poner: npm start  */
 
 window.Clipboard = __webpack_require__(0)
 __webpack_require__(1)
-__webpack_require__(6)
-__webpack_require__(3)
 __webpack_require__(7)
-__webpack_require__(5)
+__webpack_require__(3)
+__webpack_require__(8)
+__webpack_require__(6)
+__webpack_require__(14)
 __webpack_require__(13)
+__webpack_require__(11)
+__webpack_require__(5)
+__webpack_require__(2)
 __webpack_require__(12)
+__webpack_require__(9)
 __webpack_require__(10)
 __webpack_require__(4)
-__webpack_require__(2)
-__webpack_require__(11)
-__webpack_require__(8)
-__webpack_require__(9)
 
 /***/ })
 /******/ ]);
