@@ -9,11 +9,7 @@
 import UIKit
 
 class PhoneValidator: RegexValidator {
-    required init() {
-        super.init(regexPattern: "^(\\+\\d{1,3})?\\d{9}$")
-    }
-    
-    required init(custom: String) {
-        super.init()
+    required init(mandatory: Bool) {
+        super.init(regexPattern: "^(\\+\\d{1,3})?\\d{9}$", mandatory: mandatory)
     }
 }

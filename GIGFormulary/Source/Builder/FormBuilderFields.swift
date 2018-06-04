@@ -107,14 +107,16 @@ class FormBuilderFields: NSObject {
         
         var validatorFound: [Validator] = []
         
+        var isMandatory = false
+        
         for validate in validates {
             if let type = validate.type, let typeValidate = TypeValidator(rawValue: type) {
                 let typeValidator = self.validatorsType[typeValidate]
                 let validator: Validator
                 if let custom = formFieldM.custom {
-                    validator = typeValidator!.init(custom: custom)
+                    validator = typeValidator!.init(mandatory: isMandatory, custom: custom)
                 } else {
-                    validator = typeValidator!.init()
+                    validator = typeValidator!.init(mandatory: isMandatory)
                 }
                 validator.minLength = validate.minLengthValue
                 validator.maxLength = validate.maxLengthValue

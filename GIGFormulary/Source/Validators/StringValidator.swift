@@ -12,15 +12,17 @@ import GIGLibrary
 class StringValidator: Validator {
     
     override func validate(_ value: Any?) -> Bool {
-        if value == nil {
+        if value == nil && self.mandatory {
             return false
-        } else if value is String {
-            guard let stringValue = value as? String else { LogWarn("Parse value String Error, return false"); return false }
-            if stringValue.count == 0 {
+        } else if value != nil {
+            if value is String {
+                guard let stringValue = value as? String else { LogWarn("Parse value String Error, return false"); return false }
+                if (stringValue.count == 0) && self.mandatory {
+                    return false
+                }
+            } else {
                 return false
             }
-        } else {
-            return false
         }
         
         return true

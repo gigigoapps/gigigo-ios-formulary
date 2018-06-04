@@ -30,8 +30,12 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class LengthValidator: StringValidator {
 
-    required init() {
-        super.init()
+    required init(mandatory: Bool) {
+        super.init(mandatory: mandatory)
+    }
+    
+    required init(mandatory: Bool, custom: String) {
+        super.init(mandatory: mandatory, custom: custom)
     }
     
     init (minLength: Int?, maxLength: Int?) {
@@ -40,9 +44,6 @@ class LengthValidator: StringValidator {
         self.maxLength = maxLength
     }
     
-    required init(custom: String) {
-        super.init()
-    }    
     
     func controlCharacters(_ value: String) -> Bool {
         if !super.validate(value) {
@@ -66,7 +67,7 @@ class LengthValidator: StringValidator {
         let stringValue = value as? String
         
         if stringValue != nil {
-            if stringValue?.count == 0 {
+            if !self.mandatory && stringValue?.count == 0 {
                 return true
             }
             

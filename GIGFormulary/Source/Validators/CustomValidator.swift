@@ -10,16 +10,16 @@ import UIKit
 
 class CustomValidator: RegexValidator {
     
-    required init() {
-        super.init()
+    required init(mandatory: Bool) {
+        super.init(mandatory: mandatory)
     }
     
-    required init( custom: String) {
+    required init(mandatory: Bool, custom: String) {
         do {
             let regex = try NSRegularExpression(pattern: custom, options: NSRegularExpression.Options.caseInsensitive)
-            super.init(regex: regex)
+            super.init(regex: regex, mandatory: mandatory)
         } catch {
-            super.init(regexPattern: custom)
+            super.init(regexPattern: custom, mandatory: mandatory)
         }
     }
 }

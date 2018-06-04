@@ -16,10 +16,12 @@ class BoolValidator: Validator {
             return false
         }
         
-        if value is Bool {
-            guard let valueBool = value as? Bool else {LogWarn("Parse value Bool Error, return false"); return false }
-            return valueBool
-        }        
+        if self.mandatory {
+            if value is Bool {
+                guard let valueBool = value as? Bool else {LogWarn("Parse value Bool Error, return false"); return false }
+                return valueBool
+            }
+        }
         
         return true
     }

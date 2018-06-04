@@ -10,6 +10,7 @@ import UIKit
 
 class Validator: NSObject {
     
+    var mandatory: Bool
     var minLength: Int?
     var maxLength: Int?
     var minAge: Int?
@@ -17,18 +18,28 @@ class Validator: NSObject {
     var type: String?
     var textError: String?
     
-    required override init() {
+    override init() {
+        self.mandatory = false
         super.init()
     }
     
-    required init (custom: String) {
+    required init(mandatory: Bool) {
+        self.mandatory = mandatory
+        super.init()
+    }
+    
+    init (mandatory: Bool, custom: String) {
         self.custom = custom
+        self.mandatory = mandatory
         super.init()
     }
     
     // MARK: Public Method    
     
     func validate(_ value: Any?) -> Bool {
+        if value == nil && self.mandatory {
+            return false
+        }
         return true
     }
 }

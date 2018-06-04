@@ -18,7 +18,12 @@ class OptionValidator: Validator {
         
         if value is Int {
             guard let valueInt = value as? Int else { LogWarn("Parse value Int Error, return false"); return false }
-            return valueInt == 0 ? false : true
+            
+            if valueInt == 0 && !self.mandatory {
+                return true
+            } else {
+                return valueInt == 0 ? false : true
+            }
         }
         
         return true

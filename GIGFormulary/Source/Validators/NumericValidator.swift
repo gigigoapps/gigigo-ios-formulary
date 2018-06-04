@@ -10,11 +10,11 @@ import UIKit
 
 class NumericValidator: RegexValidator {
     
-    required init() {
-        super.init(regexPattern: "^([0-9])+$")
+    required init(mandatory: Bool) {
+        super.init(regexPattern: "^([0-9])+$", mandatory: mandatory)
     }
     
-    required init(custom: String) {
-        super.init()
+    required init(mandatory: Bool, custom: String) {
+        super.init(mandatory: mandatory, custom: custom)
     }
 }

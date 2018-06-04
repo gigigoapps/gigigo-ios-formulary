@@ -10,11 +10,7 @@ import UIKit
 
 class PostalCodeValidator: RegexValidator {
     
-    required init() {
-        super.init(regexPattern: "^((0?[1-9]\\d{3})|([1-9]\\d{4}))$")
-    }
-    
-    required init(custom: String) {
-        super.init()
+    required init(mandatory: Bool) {
+        super.init(regexPattern: "^((0?[1-9]\\d{3})|([1-9]\\d{4}))$", mandatory: mandatory)
     }
 }
