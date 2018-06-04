@@ -135,11 +135,15 @@ open class FormField: UIView {
             return validator.validate(self.fieldValue) == false
         }
         
-        let orderValidator = validatorFail.sorted { (validador1, _) -> Bool in
+        let orderValidators = validatorFail.sorted { (validador1, _) -> Bool in
             return validador1.isKind(of: MandatoryValidator.self)
         }
         
-        return orderValidator[0].textError ?? ""
+        if orderValidators.count > 0 {
+            return orderValidators[0].textError ?? ""
+        } else {
+            return ""
+        }
     }
     
     func loadError(error: Any) {

@@ -28,7 +28,7 @@ class Validator: NSObject {
         super.init()
     }
     
-    init (mandatory: Bool, custom: String) {
+    required init (mandatory: Bool, custom: String) {
         self.custom = custom
         self.mandatory = mandatory
         super.init()

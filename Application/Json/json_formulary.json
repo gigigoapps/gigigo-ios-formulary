@@ -45,10 +45,6 @@
                             "type": "age",
                             "textError": "texto error age",
                             "minAge": 12
-                            },
-                            {
-                            "type": "mandatory",
-                            "textError": "texto error mandatory"
                             }
                             ]
               },

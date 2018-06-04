@@ -106,8 +106,7 @@ class FormBuilderFields: NSObject {
         guard let validates = formFieldM.validator else { return nil }
         
         var validatorFound: [Validator] = []
-        
-        var isMandatory = false
+        let isMandatory = formFieldM.isMandatory()
         
         for validate in validates {
             if let type = validate.type, let typeValidate = TypeValidator(rawValue: type) {
