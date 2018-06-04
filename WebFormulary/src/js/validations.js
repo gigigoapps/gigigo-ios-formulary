@@ -30,14 +30,8 @@ window.validateTextField = function validateTextField() {
     var keyTextField = $("#keyTextField").val()
     var title = $("#titleTextField").val()
     var placeHolder = $("#palceHolderTextField").val()
-    var error = $("#errorTextField").val()
-    var custonValidator = $("#custonValidator").val()
-    var mandatory = $('#mandatory').is(':checked');
     var keyboard = document.getElementById("selectTypeKeyboard").value;
-    var validator = document.getElementById("selectTypeValidator").value;
-    var minLength = $("#minLength").val()
-    var maxLength = $("#maxLength").val()
-    var errorValidator = $("#validatorTextErrorInput").val()
+    var validator = getRecoverValidations();
 
     // Style
     var cellColor = $("#cellColorHex").val()
@@ -49,20 +43,18 @@ window.validateTextField = function validateTextField() {
     var font = document.getElementById("selectTypeFont").value;
     var imageMandatory = $("#imageMandatory").val()
     var isPassword = $('#passwordTextField').is(':checked');
-    var isCompare = $('#compare').is(':checked');
-    var compareKeysField = $("#compareKeysField").val()
-    var textErrorCompare = $("#compareTextErrorInput").val()
     var isEditing = $('#isEditingTextField').is(':checked');
     var isHidden = $('#isEditingTextField').is(':checked');
-    
-    
+
+        
     if (font == "custom") {
         font = $("#custonFont").val()
     }
         
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare,isEditing, isHidden, errorValidator);
-        saveField(keyTextField,"text",title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare,isEditing, isHidden, errorValidator)
+        window.idValidatorField = 0;
+        createField(keyTextField,title,placeHolder,cellColor,keyboard,validator,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory, isPassword, isEditing, isHidden);
+        saveField(keyTextField,"text",title,placeHolder,cellColor,keyboard,validator,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory, isPassword, isEditing, isHidden)
     }
 }
 
@@ -226,3 +218,47 @@ window.validateIndexField = function validateIndexField() {
         saveIndexField(keyTextField,"index",title,cellColor,titleColor,sizeTitle,align,font)
     }
 }
+
+//======================================
+//        RECOVER    VALIDATION       //
+//======================================
+
+function getRecoverValidations() {
+
+    var listValidatorResult = [];
+
+    for (var i = 0; i <= window.idValidatorField; i++) {
+        if ($("#containerValidatorField"+i).length > 0) {
+
+            var select = document.getElementById("selectTypeValidator"+i);    
+            var validatorRes = new validatorResult;
+            validatorRes.type = select.value;
+            validatorRes.text = $("#inputValueValidatorField"+i).val()
+
+            if ($("#extraFieldsValidator"+i).length > 0) {
+                validatorRes.minLength = $("#minLength").val();
+                validatorRes.maxLength = $("#maxLength").val();
+                validatorRes.regex = $("#custonValidator").val();
+                validatorRes.compareKey1 = $("#compareKey1").val();
+                validatorRes.compareKey2 = $("#compareKey2").val();
+            }
+
+            listValidatorResult.push(validatorRes);
+        }
+    }
+
+    return listValidatorResult;
+}
+
+function validatorResult() {
+    var type = "";
+    var text = "";
+    var minLength = "";
+    var maxLength = "";
+    var regex = ""; 
+    var compareKey1 = "";
+    var compareKey2 = "";
+    var minAge = 0;
+}
+
+

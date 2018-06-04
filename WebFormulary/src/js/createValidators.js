@@ -41,6 +41,7 @@ window.getListValidators = function getListValidators(idContainerValidator){
 	var html = '';
     html+= '              <select id="selectTypeValidator'+idContainerValidator+'" id="otro" class="selectTypeValidator" onchange="changeSelectionValidator('+idContainerValidator+')">';
     html+= '                  <option value="None">Tipo validador</option>';
+    html+= '                  <option value="mandatory">Obligatorio</option>';
     html+= '                  <option value="text">Texto</option>';
     html+= '                  <option value="email">Email</option>';
     html+= '                  <option value="lengthText">Long texto</option>';
@@ -49,6 +50,7 @@ window.getListValidators = function getListValidators(idContainerValidator){
     html+= '                  <option value="phone">Teléfono</option>';
     html+= '                  <option value="dniNie">DNI/NIE</option>';
     html+= '                  <option value="customValidator">Custom</option>';
+    html+= '                  <option value="compare">Comparador campos</option>';
     html+= '              </select>';
 
 	return html;
@@ -68,7 +70,6 @@ window.changeSelectionValidator = function changeSelectionValidator(idClassValid
         extraFound.style.display = "block";
     }
 
-
     if (valueFound == "lengthText") {
         var html = '';
         html+= '<div id="minMaxValidatorContainer">';
@@ -80,4 +81,18 @@ window.changeSelectionValidator = function changeSelectionValidator(idClassValid
         $("#extraFieldsValidator"+idClassValidator).html(html);
         extraFound.style.display = "block";
     }
+
+    if (valueFound == "compare") {
+        var html = '';
+        html+= '<div id="compareCreateContainer">';
+        html+= '    <p>Clave actual:</p>';
+        html+= '    <input class="inputWidth" type="text" name="compareKey1" id="compareKey1">';
+        html+= '    <p>clave objetivo:</p>';
+        html+= '    <input class="inputWidth" type="text" name="compareKey2" id="compareKey2">';
+        html+= '</div>';
+        $("#extraFieldsValidator"+idClassValidator).html(html);
+        extraFound.style.display = "block";
+    }
+
+
 }

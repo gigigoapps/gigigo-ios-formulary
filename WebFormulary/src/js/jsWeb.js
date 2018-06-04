@@ -129,6 +129,7 @@ window.createEventFont = function createEventFont() {
          }
     });
 }
+// TODO EDU falta el compare
 
 window.createEventRules = function createEventRules() {
   

@@ -18,20 +18,7 @@
                     <input type="text" name="palceHolderTextField" id="palceHolderTextField" disabled value="{{placeHolder}}">
                 </div>                   
             </div>
-            <div class="errorTextField">        
-                <p class="textErrorP">Texto error:</p>
-                <input type="text" name="errorTextField"id="errorTextField" disabled value="{{error}}"> 
-            </div>
 
-            
-            <div class="compareTextField">
-                <input type="checkbox" name="compare" value="compare" id="compare" {{isCompareChecked}} disabled readonly>
-                <p>Active compare?</p>
-                {{htmlTextErrorCompare}}
-            </div>
-
-            
-            
             <div class="containerPassEdit">
                 <div class="passwordTextField">
                     <input type="checkbox" name="passwordTextField" value="passwordTextField" id="passwordTextField" {{isPasswordChecked}} disabled readonly>
@@ -48,19 +35,13 @@
                     <p>Es visible?</p>
                 </div>
 
-                <div class="mandatoryTextField">
-                    <input type="checkbox" name="mandatory" value="mandatory" id="mandatory" {{isMandatory}} disabled readonly>
-                    <p>Es obligatorio?</p>
-                </div>
             </div>
             
 
             <div class="validatorContainer validatorCreated">
-                <div class="validatorResult resultCreated">Validator:{{validator}} {{htmlCustomValidator}}</div>  
-
-                {{htmlTextErrorValidator}}
+                 {{htmlValidator}}
             </div>
-           
+        
             
             <div class="styleField"> 
                 <h4>Estilos de celda:</h4>

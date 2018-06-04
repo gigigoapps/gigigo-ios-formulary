@@ -11,12 +11,11 @@
                      <input type="text" name="titleTextField" id="titleTextField">
                   </div>         
              </div>
-             <div class="containerTextFieldCenter optionalBooleanContainer">
-                  <div class="mandatoryTextField">
-                     <input type="checkbox" name="mandatory" value="mandatory" id="mandatory">
-                     <p>Es obligatorio?</p>
-                  </div>
-                  
+
+
+            {{htmlValidators}}
+
+             <div class="containerTextFieldCenter optionalBooleanContainer">                  
                   <div class="isEditingTextField">
                       <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField">
                       <p>Es editable?</p>
@@ -27,10 +26,7 @@
                      <p>Es visible?</p>
                   </div>
              </div>
-             <div class="errorTextField">
-                 <p class="textErrorP">Texto error:</p>
-                 <input type="text" name="errorTextField"id="errorTextField">
-              </div>
+             
               <div class="styleField"> 
                 <h4>Estilos de celda:</h4>
                                  

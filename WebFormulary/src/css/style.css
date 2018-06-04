@@ -135,7 +135,9 @@
                 float: left;
                 margin-left: -5px;
                 margin-top: 3px;
-                width: 78px;
+                width: 98px;
+                text-align: right;
+                margin-right: 11px;
             }
             .errorTextField input{
                 float: left;
@@ -228,7 +230,7 @@
     .containerPassEdit {
         height: 50px;
         width: 100%;
-        margin-top: 50px;
+        float: left;
     }
         .passwordTextField {
             float: left;
@@ -325,6 +327,7 @@
             height: 43px;
             margin-left: 144px;
             width: 100%;
+            float: left;
         }
 .versionCreatedMinAge {
     margin-top: 0px !important;
@@ -471,7 +474,7 @@
 	background-color: silver;
 }   
 .styleField{
-
+    float: left;
 }
     .styleField h4 {
         margin-left: 29px;       
@@ -743,13 +746,13 @@
 
 #customValidatorTextField{
     width: 200px;
-    margin: 13px 0 0 17px;
 }
 
 .validatorContainer {
-    height: 56px;
+    /*height: 56px;*/
     margin-left: 145px;
     width: 100%;
+    float: left;
 }
 
 #validatorTextError{
@@ -796,7 +799,7 @@
     float: left;
 }
 .validatorCreated {
-    height: 26px;
+    /*height: 26px;*/
 }
 .resultCreated {
     margin-top: 0px !important;
@@ -811,7 +814,7 @@
 }
 
 .textErrorCreated {
-    width: 70px !important;
+    width: 83px !important;
 }
 
 .customValidatorCreated {
@@ -861,10 +864,10 @@
 
 .zoneRule {
     width: 100%;
-    height: 31px;
     margin-left: 22px;
     margin-bottom: 20px;
     margin-top: 13px;
+    float: left;
 }
 .containerRule {
     float: left;
@@ -944,8 +947,9 @@
     width: 100%;
 }
 .containerValidatorField{
-    height: 44px;
     margin-left: 44px;
+    width: 100%;
+    float: left;
 }
     .containerValidatorField input{
        float: left;
@@ -983,3 +987,22 @@
     margin-left: 50px;    
 }
 
+.typeValidator {
+    width: 100px !important;
+}
+
+#compareCreateContainer {
+    float: left;
+}
+
+ #compareCreateContainer p {
+    float: left;
+    margin-top: 10px;
+    margin-right: 10px;
+ }
+
+ #compareCreateContainer input {
+    float: left;
+    margin-top: 0;
+    margin-right: 14px;
+ }

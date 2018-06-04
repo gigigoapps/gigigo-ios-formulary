@@ -221,6 +221,7 @@ window.getListValidators = function getListValidators(idContainerValidator){
 	var html = '';
     html+= '              <select id="selectTypeValidator'+idContainerValidator+'" id="otro" class="selectTypeValidator" onchange="changeSelectionValidator('+idContainerValidator+')">';
     html+= '                  <option value="None">Tipo validador</option>';
+    html+= '                  <option value="mandatory">Obligatorio</option>';
     html+= '                  <option value="text">Texto</option>';
     html+= '                  <option value="email">Email</option>';
     html+= '                  <option value="lengthText">Long texto</option>';
@@ -229,6 +230,7 @@ window.getListValidators = function getListValidators(idContainerValidator){
     html+= '                  <option value="phone">Teléfono</option>';
     html+= '                  <option value="dniNie">DNI/NIE</option>';
     html+= '                  <option value="customValidator">Custom</option>';
+    html+= '                  <option value="compare">Comparador campos</option>';
     html+= '              </select>';
 
 	return html;
@@ -248,7 +250,6 @@ window.changeSelectionValidator = function changeSelectionValidator(idClassValid
         extraFound.style.display = "block";
     }
 
-
     if (valueFound == "lengthText") {
         var html = '';
         html+= '<div id="minMaxValidatorContainer">';
@@ -260,6 +261,20 @@ window.changeSelectionValidator = function changeSelectionValidator(idClassValid
         $("#extraFieldsValidator"+idClassValidator).html(html);
         extraFound.style.display = "block";
     }
+
+    if (valueFound == "compare") {
+        var html = '';
+        html+= '<div id="compareCreateContainer">';
+        html+= '    <p>Clave actual:</p>';
+        html+= '    <input class="inputWidth" type="text" name="compareKey1" id="compareKey1">';
+        html+= '    <p>clave objetivo:</p>';
+        html+= '    <input class="inputWidth" type="text" name="compareKey2" id="compareKey2">';
+        html+= '</div>';
+        $("#extraFieldsValidator"+idClassValidator).html(html);
+        extraFound.style.display = "block";
+    }
+
+
 }
 
 
@@ -661,6 +676,7 @@ window.createEventFont = function createEventFont() {
          }
     });
 }
+// TODO EDU falta el compare
 
 window.createEventRules = function createEventRules() {
   
@@ -1056,7 +1072,52 @@ window.savePickerField = function savePickerField(keyTextField,type,title,textEr
 
 
 window.getRules= function getRules() {  
-	return '<div class="zoneRule"><input type="checkbox"name="rules"value="rules"id="rules"><p id="textActiteRule">Active rule?</p><div id="containerRule"><div id="fieldCompareRules"><p>Keys Compare:</p><input type="text"name="fieldReciver"id="fieldReciver"placeholder="key1,key2"></div><div id="compareRule"><p>Comparate:</p><select class="selectTypeRuleCompare"><option value="none">Elegir tipo de comparacion</option><option value="<">Menor que</option><option value=">">Mayor que</option><option value="=">igual</option><option value="!=">distinto</option></select></div><div id="valueRuleContainer"><p>Valor a comparar:</p><input type="text"name="valueRule"id="valueRule"></div><div id="behaviorRule"><p>Comportamiento si cumple la regla:</p><select class="selectTypeRuleBehavior"><option value="">Elegir tipo de comportamiento</option><option value="show">Mostrar</option><option value="hide">Ocultar</option><option value="enable">Activo</option><option value="disable">Desactivo</option></select></div><div id="elseBehaviorRule"><p>Comportamiento si NO cumple la regla:</p><select class="selectTypeRuleElseBehavior"><option value="">Elegir tipo de comportamiento</option><option value="show">Mostrar</option><option value="hide">Ocultar</option><option value="enable">Activo</option><option value="disable">Desactivo</option></select></div></div></div>';
+	var html = '';
+	html += '<div class="zoneRule">';
+	html += '	<input type="checkbox"name="rules"value="rules"id="rules">';
+	html += '	<p id="textActiteRule">Active rule?</p>';
+	html += '	<div id="containerRule">';
+	html += '		<div id="fieldCompareRules">';
+	html += '			<p>Keys Compare:</p>';
+	html += '			<input type="text"name="fieldReciver"id="fieldReciver"placeholder="key actual, otra key">';
+	html += '		</div>';
+	html += '		<div id="compareRule">';
+	html += '			<p>Comparate:</p>';
+	html += '			<select class="selectTypeRuleCompare">';
+	html += '				<option value="none">Elegir tipo de comparacion</option>';
+	html += '				<option value="<">Menor que</option>';
+	html += '				<option value=">">Mayor que</option>';
+	html += '				<option value="=">igual</option>';
+	html += '				<option value="!=">distinto</option>';
+	html += '			</select>';
+	html += '		</div>';
+	html += '		<div id="valueRuleContainer">';
+	html += '			<p>Valor a comparar:</p>';
+	html += '			<input type="text"name="valueRule"id="valueRule">';
+	html += '		</div>';
+	html += '		<div id="behaviorRule">';
+	html += '			<p>Comportamiento si cumple la regla:</p>';
+	html += '			<select class="selectTypeRuleBehavior">';
+	html += '				<option value="">Elegir tipo de comportamiento</option>';
+	html += '				<option value="show">Mostrar</option>';
+	html += '				<option value="hide">Ocultar</option>';
+	html += '				<option value="enable">Activo</option>';
+	html += '				<option value="disable">Desactivo</option>';
+	html += '			</select>';
+	html += '		</div>';
+	html += '		<div id="elseBehaviorRule">';
+	html += '			<p>Comportamiento si NO cumple la regla:</p>';
+	html += '			<select class="selectTypeRuleElseBehavior">';
+	html += '				<option value="">Elegir tipo de comportamiento</option>';
+	html += '				<option value="show">Mostrar</option>';
+	html += '				<option value="hide">Ocultar</option>';
+	html += '				<option value="enable">Activo</option>';
+	html += '				<option value="disable">Desactivo</option>';
+	html += '			</select>';
+	html += '		</div>';
+	html += '	</div>';
+	html += '</div>';
+	return html;
 }
 
 /***/ }),
@@ -1068,18 +1129,12 @@ window.getRules= function getRules() {
 //               TEXT (YA CREADO)     //  
 //======================================
             
-window.createField = function createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,customValidator, isPassword, isCompare, compareKeysField, textErrorCompare,isEditing, isHidden, errorValidator) {
-    var isMandatory = ""
-    if (mandatory) {
-        isMandatory = "checked"
-    }
+
+window.createField = function createField(keyTextField,title,placeHolder,cellColor,keyboard,validator,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory, isPassword, isEditing, isHidden) {
+
     var isPasswordChecked = ""
     if (isPassword) {
         isPasswordChecked = "checked"
-    }
-    var isCompareChecked = ""
-    if (isCompare) {
-        isCompareChecked = "checked"
     }
     var isEditingChecked = ""
     if (isEditing) {
@@ -1094,58 +1149,73 @@ window.createField = function createField(keyTextField,title,placeHolder,error,m
     var htmlBackgroundColor = getStyleColor(cellColor,titleColor,errorColor);
     var htmlFontSize = getStyleSize (sizeTitle, sizeError);
     var htmlAlingFont = getAlignFont(align,font)
-    var htmlImages = recoverHtmlImageMandatory(imageMandatory)
-    
+    var htmlImages = recoverHtmlImageMandatory(imageMandatory)    
     var styles =  htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
 
-    var htmlCustomValidator = ""    
-    if (validator == "customValidator") {
-        htmlCustomValidator = '<input type="text" class="customValidatorCreated" name="customValidatorTextField" id="customValidatorTextField" disabled value="'+customValidator+'">'
-    }
 
-    var htmlTextErrorValidator = ""
-    if (validator != "None") {
-        htmlTextErrorValidator = '<div class="errorTextField"><p class="textErrorP">Texto error:</p><input class="textErrorCreated" type="text" name="errorTextField" id="errorTextField" disabled value="{{errorValidator}}">';
+    /* ----------------------- CREATE VALIDATOR HTML ----------------------- */
+    var html = "";
+        html += '<h4>Validadores:</h4>';
 
-        if (validator == "lengthText") {
-            htmlTextErrorValidator += '<p>minLength:</p><input class="inputWidth" type="text" name="minLength"id="minLength" disabled readonly value="{{minLength}}"><p>maxLength:</p><input class="inputWidth" type="text" name="maxLength"id="maxLength" disabled readonly value="{{maxLength}}">';              
+    for (var i = 0; i < validator.length; i++) {
+        var valElement = validator[i];
+
+        html += '<div class="containerValidator" id="containerValidator'+i+'">';  
+
+        if (valElement.type != "None") {
+
+            html += '<div class="errorTextField">';
+            html += '      <p class="textErrorP typeValidator">Tipo validador: </p>';
+            html += '      <input class="textErrorCreated" type="text" name="typeCompareInput" id="typeCompareInput" disabled value="'+valElement.type+'">';
+            html += '      <p class="textErrorP">Texto error:</p>';
+            html += '      <input class="textErrorCreated" type="text" name="errorTextField" id="errorTextField" disabled value="'+valElement.text+'">';
+
+            if (valElement.type == "lengthText") {
+                html += '<p>minLength:</p>';
+                html += '<input class="inputWidth" type="text" name="minLength"id="minLength" disabled readonly value="'+valElement.minLength+'">';
+                html += '<p>maxLength:</p>';
+                html += '<input class="inputWidth" type="text" name="maxLength"id="maxLength" disabled readonly value="'+valElement.maxLength+'">';
+                  
+            }
+
+            if (valElement.type == "customValidator") {
+                html += '<p>Custom regex:</p>';
+                html += '<input type="text" class="customValidatorCreated" name="customValidatorTextField" id="customValidatorTextField" disabled value="'+valElement.regex+'">'
+            }
+
+            if (valElement.type == "compare") {
+                html += '<p>Keys Compare:</p>';
+                html += '<input type="text" name="compareKeysField" id="compareKeysField" disabled value="'+valElement.compareKey1+','+valElement.compareKey2+'">';
+            }
+            if (valElement.type == "mandatory") {
+                html += '<p>Obligatorio:</p>';
+                html += '<input type="text" name="compareKeysField" id="compareKeysField" disabled value="true">';
+            }
+
+            html += '</div>';
         }
 
-        htmlTextErrorValidator += '</div>';
+        html += '</div>';
     }
 
-    var htmlTextErrorCompare = ""
-    if (isCompare) {
-        htmlTextErrorCompare = '<p>Keys Compare:</p> <input type="text" name="compareKeysField" id="compareKeysField" disabled value="{{compareKeysField}}"><p>Text Error</p><input type="text" name="textErrorCompareFix" id="textErrorCompareFix" class="customValidatorCreated" disabled value="'+textErrorCompare+'">'
-    }
 
     var html = __webpack_require__(24)
-            .replace('{{htmlTextErrorCompare}}',htmlTextErrorCompare)
-            .replace('{{htmlTextErrorValidator}}',htmlTextErrorValidator)
             .replace('{{styles}}',styles)
             .replace('{{keyTextField}}',keyTextField)
             .replace('{{title}}',title)
             .replace('{{placeHolder}}',placeHolder)
-            .replace('{{error}}',error)
-            .replace('{{isMandatory}}',isMandatory)
             .replace('{{keyboard}}',keyboard)
-            .replace('{{htmlCustomValidator}}',htmlCustomValidator)
-            .replace('{{minLength}}',minLength)
-            .replace('{{maxLength}}',maxLength)
+            .replace('{{htmlValidator}}',html)
             .replace('{{isPasswordChecked}}',isPasswordChecked)
-            .replace('{{isCompareChecked}}',isCompareChecked)
-            .replace('{{compareKeysField}}',compareKeysField)
             .replace('{{isEditingChecked}}',isEditingChecked)
             .replace('{{isHiddenChecked}}',isHiddenChecked)
-            .replace('{{validator}}',validator)
-            .replace('{{errorValidator}}',errorValidator)
             .replace(/\{\{indexField\}\}/g,indexField)
 
     $("#containerListItemsCreated").append(html);
     resetTypeField();
 }
 
-window.saveField = function saveField(keyTextField,type,title,placeHolder,textError,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,customValidator, isPassword, isCompare, compareKeysField, textErrorCompare,isEditing, isHidden, errorValidator) {
+window.saveField = function saveField(keyTextField,type,title,placeHolder,cellColor,keyboard,validator,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory, isPassword, isEditing, isHidden) {
     //-- Mandatory Fiedls --
     var itemSave = {
         "tag":indexField,
@@ -1154,47 +1224,48 @@ window.saveField = function saveField(keyTextField,type,title,placeHolder,textEr
         "label":title
     }
 
-    if (mandatory) {
-        itemSave["mandatory"] = mandatory
-    }
+
     if (isEditing) {
         itemSave["isEditing"] = isEditing
     }
     if (isHidden) {
         itemSave["isHidden"] = isHidden
     }
-    if (textError.length > 0) {
-        itemSave["textError"] = textError
-    }    
     if (placeHolder.length > 0) {
         itemSave["placeHolder"] = placeHolder
-    }                
-    if (minLength.length > 0) {
-        itemSave["minLength"] = parseInt(minLength)
-    }                
-    if (maxLength.length > 0) {
-        itemSave["maxLength"] = parseInt(maxLength)
-    }                
+    } 
     if (keyboard != "None") {
         itemSave["keyboard"] = keyboard
     }
     if (isPassword) {
         itemSave["isPassword"] = isPassword
     }
-    if (validator != "None") {
-        itemSave["validator"] = validator
-        if (validator == "customValidator") {
-            itemSave["customValidator"] = customValidator
+
+    var itemsValidators = []
+    for (var i = 0; i < validator.length; i++) {
+        var valElement = validator[i];
+
+        var itemValidate = {}
+        itemValidate["type"] = valElement.type;
+        itemValidate["textError"] = valElement.text;
+
+        if (valElement.type == "compare") {
+            itemValidate["itemsCompare"] = [valElement.compareKey1, valElement.compareKey2];
         }
-        itemSave["textErrorValidate"] = errorValidator        
+        if (valElement.type == "age") {
+            itemValidate["minAge"] = valElement.minAge;
+        }
+        if (valElement.type == "lengthText") {
+            itemValidate["minLength"] = valElement.minLength;
+            itemValidate["maxLength"] = valElement.maxLength;
+        }
+
+        itemsValidators.push(itemValidate);
     }
-    if (isCompare) {
-        itemSave["compare"] = isCompare
-        itemSave["itemsCompare"] = compareKeysField.split(","); 
-        console.log(textErrorCompare);
-        itemSave["textErrorCompare"] = textErrorCompare;
+
+    if (itemsValidators.length > 0) {
+        itemSave["validator"] = itemsValidators;
     }
-    
     
     //-- OPTIONAL FIELDS --
     var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,"","","",align,font,imageMandatory,"","");
@@ -1205,12 +1276,6 @@ window.saveField = function saveField(keyTextField,type,title,placeHolder,textEr
     
     listFieldsResult.push(itemSave)
     
-    /*
-    for (var i=0; i<listFieldsResult.length; i++) {
-        $.each(listFieldsResult[i], function(index, val) {
-            console.log("key:"+index+" - value:"+val);
-        });
-    }*/
     
     indexField++;
 }
@@ -1252,14 +1317,8 @@ window.validateTextField = function validateTextField() {
     var keyTextField = $("#keyTextField").val()
     var title = $("#titleTextField").val()
     var placeHolder = $("#palceHolderTextField").val()
-    var error = $("#errorTextField").val()
-    var custonValidator = $("#custonValidator").val()
-    var mandatory = $('#mandatory').is(':checked');
     var keyboard = document.getElementById("selectTypeKeyboard").value;
-    var validator = document.getElementById("selectTypeValidator").value;
-    var minLength = $("#minLength").val()
-    var maxLength = $("#maxLength").val()
-    var errorValidator = $("#validatorTextErrorInput").val()
+    var validator = getRecoverValidations();
 
     // Style
     var cellColor = $("#cellColorHex").val()
@@ -1271,20 +1330,18 @@ window.validateTextField = function validateTextField() {
     var font = document.getElementById("selectTypeFont").value;
     var imageMandatory = $("#imageMandatory").val()
     var isPassword = $('#passwordTextField').is(':checked');
-    var isCompare = $('#compare').is(':checked');
-    var compareKeysField = $("#compareKeysField").val()
-    var textErrorCompare = $("#compareTextErrorInput").val()
     var isEditing = $('#isEditingTextField').is(':checked');
     var isHidden = $('#isEditingTextField').is(':checked');
-    
-    
+
+        
     if (font == "custom") {
         font = $("#custonFont").val()
     }
         
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createField(keyTextField,title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare,isEditing, isHidden, errorValidator);
-        saveField(keyTextField,"text",title,placeHolder,error,mandatory,cellColor,keyboard,validator,minLength,maxLength,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,custonValidator, isPassword, isCompare, compareKeysField,textErrorCompare,isEditing, isHidden, errorValidator)
+        window.idValidatorField = 0;
+        createField(keyTextField,title,placeHolder,cellColor,keyboard,validator,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory, isPassword, isEditing, isHidden);
+        saveField(keyTextField,"text",title,placeHolder,cellColor,keyboard,validator,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory, isPassword, isEditing, isHidden)
     }
 }
 
@@ -1449,12 +1506,56 @@ window.validateIndexField = function validateIndexField() {
     }
 }
 
+//======================================
+//        RECOVER    VALIDATION       //
+//======================================
+
+function getRecoverValidations() {
+
+    var listValidatorResult = [];
+
+    for (var i = 0; i <= window.idValidatorField; i++) {
+        if ($("#containerValidatorField"+i).length > 0) {
+
+            var select = document.getElementById("selectTypeValidator"+i);    
+            var validatorRes = new validatorResult;
+            validatorRes.type = select.value;
+            validatorRes.text = $("#inputValueValidatorField"+i).val()
+
+            if ($("#extraFieldsValidator"+i).length > 0) {
+                validatorRes.minLength = $("#minLength").val();
+                validatorRes.maxLength = $("#maxLength").val();
+                validatorRes.regex = $("#custonValidator").val();
+                validatorRes.compareKey1 = $("#compareKey1").val();
+                validatorRes.compareKey2 = $("#compareKey2").val();
+            }
+
+            listValidatorResult.push(validatorRes);
+        }
+    }
+
+    return listValidatorResult;
+}
+
+function validatorResult() {
+    var type = "";
+    var text = "";
+    var minLength = "";
+    var maxLength = "";
+    var regex = ""; 
+    var compareKey1 = "";
+    var compareKey2 = "";
+    var minAge = 0;
+}
+
+
+
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = "  <div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>         \n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>         \n             </div>\n             <div class=\"containerTextFieldCenter optionalBooleanContainer\">\n                  <div class=\"mandatoryTextField\">\n                     <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\">\n                     <p>Es obligatorio?</p>\n                  </div>\n                  \n                  <div class=\"isEditingTextField\">\n                      <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                      <p>Es editable?</p>\n                  </div>\n                  \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n             </div>\n             <div class=\"errorTextField\">\n                 <p class=\"textErrorP\">Texto error:</p>\n                 <input type=\"text\" name=\"errorTextField\"id=\"errorTextField\">\n              </div>\n              <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                                 \n                 <div class=\"sizeZone\">\n                    <p>Tamaño titulo:</p>\n                    <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                    <p>Tamaño texto error:</p>\n                    <input id=\"sizeError\" type=\"text\" name=\"element\">\n                 </div>\n                 \n                 {{htmlFont}}\n                 {{htmlImage}}\n\n                  <div class=\"colorZone\">\n                    {{colorBasicZone}}\n                 </div>  \n              </div>\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>\n";
+module.exports = "  <div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>         \n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>         \n             </div>\n\n\n            {{htmlValidators}}\n\n             <div class=\"containerTextFieldCenter optionalBooleanContainer\">                  \n                  <div class=\"isEditingTextField\">\n                      <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                      <p>Es editable?</p>\n                  </div>\n                  \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n             </div>\n             \n              <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                                 \n                 <div class=\"sizeZone\">\n                    <p>Tamaño titulo:</p>\n                    <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                    <p>Tamaño texto error:</p>\n                    <input id=\"sizeError\" type=\"text\" name=\"element\">\n                 </div>\n                 \n                 {{htmlFont}}\n                 {{htmlImage}}\n\n                  <div class=\"colorZone\">\n                    {{colorBasicZone}}\n                 </div>  \n              </div>\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>\n";
 
 /***/ }),
 /* 16 */
@@ -1466,7 +1567,7 @@ module.exports = "\n<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}
 /* 17 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div id=\"containerErrorMandatoryPicker\">\n                <div class=\"errorTextField errorTextFieldPicker\">\n                   <p class=\"textErrorP\">Texto error:</p>\n                   <input type=\"text\" name=\"errorTextField\" id=\"errorTextField\">\n                </div>\n\n           </div>  \n           \n           <div class=\"acceptButtonTextField\">\n               <p>Titulo aceptar picker:</p>\n               <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">                                       \n            </div>  \n            \n           <div class=\"minAgeContainer\">\n               <p>Edad minima:</p>\n               <input type=\"text\" name=\"minAgeContainer\" id=\"minAgeContainer\">                                       \n            </div>  \n\n  \n\n            <div id=\"containerOptionalDatePicker\">\n                <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n                </div>\n                <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n                </div>\n                <div class=\"mandatoryTextField optionModel\">\n                      <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\">\n                     <p>Es obligatorio?</p>\n                </div>                 \n            </div>\n\n\n\n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n               <div class=\"sizeZone\">\n                  <p>Tamaño titulo:</p>\n                  <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                  <p>Tamaño texto error:</p>\n                  <input id=\"sizeError\" type=\"text\" name=\"element\">\n               </div>\n\n                 {{htmlFont}}\n                 {{htmlImage}}\n\n                <div class=\"colorZone pickerColorZone\">\n                   <p>Color de la celda:</p>\n                    {{colorBasicZone}}\n\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n\n               </div>\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n";
+module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div id=\"containerErrorMandatoryPicker\">\n                <div class=\"errorTextField errorTextFieldPicker\">\n                   <p class=\"textErrorP\">Texto error:</p>\n                   <input type=\"text\" name=\"errorTextField\" id=\"errorTextField\">\n                </div>\n\n           </div>  \n           \n           <div class=\"acceptButtonTextField\">\n               <p>Titulo aceptar picker:</p>\n               <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">                                       \n            </div>  \n            \n           <div class=\"minAgeContainer\">\n               <p>Edad minima:</p>\n               <input type=\"text\" name=\"minAgeContainer\" id=\"minAgeContainer\">                                       \n            </div>  \n\n  \n\n            <div id=\"containerOptionalDatePicker\">\n                <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n                </div>\n                <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n                </div>               \n            </div>\n\n            {{htmlValidators}}\n\n            {{htmlRules}}\n\n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n               <div class=\"sizeZone\">\n                  <p>Tamaño titulo:</p>\n                  <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                  <p>Tamaño texto error:</p>\n                  <input id=\"sizeError\" type=\"text\" name=\"element\">\n               </div>\n\n                 {{htmlFont}}\n                 {{htmlImage}}\n\n                <div class=\"colorZone pickerColorZone\">\n                   <p>Color de la celda:</p>\n                    {{colorBasicZone}}\n\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n\n               </div>\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n";
 
 /***/ }),
 /* 18 */
@@ -1490,7 +1591,7 @@ module.exports = "<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}}\
 /* 21 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n           <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n           </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div id=\"containerErrorMandatoryPicker\">\n                <div class=\"errorTextField errorTextFieldPicker\">\n                   <p class=\"textErrorP\">Texto error:</p>\n                   <input type=\"text\" name=\"errorTextField\" id=\"errorTextField\">\n                </div>\n           </div>  \n           \n           <div class=\"containerAcceptEditing\">\n               <div class=\"acceptButtonTextField\">\n                   <p>Titulo aceptar picker:</p>\n                   <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">\n               </div>\n           </div>\n\n\n          {{htmlValidators}}\n\n\n           <div class=\"containerOptionalPicker\">           \n              <!--  <div class=\"mandatoryTextField optionModel\">\n                    <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\">\n                    <p>Es obligatorio?</p>\n                </div> -->\n\n               <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n               </div>\n\n               <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n               </div>\n           </div>\n           \n\n           <div id=\"valuesOptionsSelector\"> \n              <div id=\"containerPickerFieldAdd\">\n                 <p id=\"addFieldPickerText\">Añadir campos del picker:</p> \n                 <div id=\"sumatoryPicker\">\n                      <p onclick=\"addContainerPicker()\">+</p>\n                </div>\n              </div>\n\n              <div id=\"pickerFieldsInsert\">\n                  <div class=\"containerPickerField\" id=\"containerPickerField'+idPickerField+'\">\n                      <input id=\"inputKeyPickerField0\" type=\"text\" name=\"element\" placeholder=\"Clave Picker\" value=\"KeyNoSelected\"  disabled readonly>\n                      <input id=\"inputValuePickerField0\" type=\"text\" name=\"element\" placeholder=\"Valor picker por defecto\">\n                  </div>\n              </div>\n            </div> \n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n               <div class=\"sizeZone\">\n                  <p>Tamaño titulo:</p>\n                  <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                  <p>Tamaño texto error:</p>\n                  <input id=\"sizeError\" type=\"text\" name=\"element\">\n               </div>\n               \n                 {{htmlFont}}\n                 {{htmlImage}}\n\n                <div class=\"colorZone pickerColorZone\">\n                    {{colorBasicZone}}\n\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n               </div>\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n\n                   \n";
+module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n           <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n           </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div id=\"containerErrorMandatoryPicker\">\n                <div class=\"errorTextField errorTextFieldPicker\">\n                   <p class=\"textErrorP\">Texto error:</p>\n                   <input type=\"text\" name=\"errorTextField\" id=\"errorTextField\">\n                </div>\n           </div>  \n           \n           <div class=\"containerAcceptEditing\">\n               <div class=\"acceptButtonTextField\">\n                   <p>Titulo aceptar picker:</p>\n                   <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">\n               </div>\n           </div>\n\n\n          {{htmlValidators}}\n\n\n           <div class=\"containerOptionalPicker\">    \n               <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n               </div>\n\n               <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n               </div>\n           </div>\n           \n\n           <div id=\"valuesOptionsSelector\"> \n              <div id=\"containerPickerFieldAdd\">\n                 <p id=\"addFieldPickerText\">Añadir campos del picker:</p> \n                 <div id=\"sumatoryPicker\">\n                      <p onclick=\"addContainerPicker()\">+</p>\n                </div>\n              </div>\n\n              <div id=\"pickerFieldsInsert\">\n                  <div class=\"containerPickerField\" id=\"containerPickerField'+idPickerField+'\">\n                      <input id=\"inputKeyPickerField0\" type=\"text\" name=\"element\" placeholder=\"Clave Picker\" value=\"KeyNoSelected\"  disabled readonly>\n                      <input id=\"inputValuePickerField0\" type=\"text\" name=\"element\" placeholder=\"Valor picker por defecto\">\n                  </div>\n              </div>\n            </div> \n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n               <div class=\"sizeZone\">\n                  <p>Tamaño titulo:</p>\n                  <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                  <p>Tamaño texto error:</p>\n                  <input id=\"sizeError\" type=\"text\" name=\"element\">\n               </div>\n               \n                 {{htmlFont}}\n                 {{htmlImage}}\n\n                <div class=\"colorZone pickerColorZone\">\n                    {{colorBasicZone}}\n\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n               </div>\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n\n                   \n";
 
 /***/ }),
 /* 22 */
@@ -1502,13 +1603,13 @@ module.exports = "\n   <div class=\"cellConstructor pickerConstructor\" id=\"fie
 /* 23 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>       \n                  <select id=\"selectTypeKeyboard\">\n                      <option value=\"None\">Elegir tipo de teclado</option>\n                      <option value=\"FormKeyboardTypeText\">Texto</option>\n                      <option value=\"FormKeyboardTypeEmail\">Email</option>\n                      <option value=\"FormKeyboardTypeNumbers\">Nuerico</option>\n                      <option value=\"FormKeyboardTypeNumberPad\">NuericoPad</option>\n                  </select>                                   \n             </div>\n             <div class=\"containerTextFieldCenter\">\n                 <div class=\"inputTextField\">\n                     <p>PlaceHolder:</p>\n                     <input type=\"text\" name=\"palceHolderTextField\" id=\"palceHolderTextField\">\n                 </div>\n             </div>\n             <div class=\"errorTextField\">\n                 <p class=\"textErrorP\">Texto error:</p>\n                 <input type=\"text\" name=\"errorTextField\" id=\"errorTextField\">\n              </div>\n             \n\n             <div class=\"compareTextField\">\n                 <input type=\"checkbox\" name=\"compare\" value=\"compare\" id=\"compare\">\n                 <p>Active compare?</p>\n                 <div id=\"containerCompare\">\n                     <p>Keys Compare:</p>\n                     <input type=\"text\" name=\"compareKeysField\" id=\"compareKeysField\" placeholder=\"key1,key2\">                 \n                     <div id=\"compareTextError\">\n                         <p>Texto error:</p>\n                         <input id=\"compareTextErrorInput\" type=\"text\" name=\"element\">\n                     </div>\n                 </div>\n            </div>\n\n\n             <div class=\"containerPassEdit\">\n                 <div class=\"passwordTextField\">\n                     <input type=\"checkbox\" name=\"passwordTextField\" value=\"passwordTextField\" id=\"passwordTextField\">\n                     <p>Es password?</p>\n                 </div>\n                 \n                 <div class=\"isEditingTextField\">\n                     <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                     <p>Es editable?</p>\n                  </div>\n                 \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n\n                 <div class=\"mandatoryTextField\">\n                     <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\">\n                     <p>Es obligatorio?</p>\n                 </div>\n             </div>\n\n             <div class=\"validatorContainer\">\n                  <select id=\"selectTypeValidator\">\n                      <option value=\"None\">Tipo validador</option>\n                      <option value=\"text\">Texto</option>\n                      <option value=\"email\">Email</option>\n                      <option value=\"lengthText\">Long texto</option>\n                      <option value=\"numeric\">Numérico</option>\n                      <option value=\"postalCode\">Código postal</option>\n                      <option value=\"phone\">Teléfono</option>\n                      <option value=\"dniNie\">DNI/NIE</option>\n                      <option value=\"customValidator\">Custom</option>\n                  </select>  \n\n                  <input id=\"custonValidator\" placeHolder=\"Regex Custom\">    \n\n                  <div id=\"minMaxValidatorContainer\">\n                     <p>minLength:</p>\n                     <input class=\"inputWidth\" type=\"text\" name=\"minLength\"id=\"minLength\">\n                     <p>maxLength:</p>\n                     <input class=\"inputWidth\" type=\"text\" name=\"maxLength\"id=\"maxLength\">\n                  </div>\n\n                  <div id=\"validatorTextError\">\n                     <p>Texto error:</p>\n                     <input id=\"validatorTextErrorInput\" type=\"text\" name=\"element\">\n                  </div> \n             </div>\n\n              {{htmlRules}}\n             \n              <div class=\"styleField\">\n                   <h4>Estilos de celda:</h4>\n                        <div class=\"colorZone\">\n                        {{colorBasicZone}}\n                    </div>                                   \n                    <div class=\"sizeZone\">\n                        <p>Tamaño titulo:</p>\n                        <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                        <p>Tamaño texto error:</p>\n                        <input id=\"sizeError\" type=\"text\" name=\"element\">\n                    </div>\n\n                    {{htmlFont}}\n                    {{htmlImage}}\n              </div>\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>";
+module.exports = "<div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>       \n                  <select id=\"selectTypeKeyboard\">\n                      <option value=\"None\">Elegir tipo de teclado</option>\n                      <option value=\"FormKeyboardTypeText\">Texto</option>\n                      <option value=\"FormKeyboardTypeEmail\">Email</option>\n                      <option value=\"FormKeyboardTypeNumbers\">Nuerico</option>\n                      <option value=\"FormKeyboardTypeNumberPad\">NuericoPad</option>\n                  </select>                                   \n             </div>\n             <div class=\"containerTextFieldCenter\">\n                 <div class=\"inputTextField\">\n                     <p>PlaceHolder:</p>\n                     <input type=\"text\" name=\"palceHolderTextField\" id=\"palceHolderTextField\">\n                 </div>\n             </div>\n             \n\n          {{htmlValidators}}\n\n\n             <div class=\"containerPassEdit\">\n                 <div class=\"passwordTextField\">\n                     <input type=\"checkbox\" name=\"passwordTextField\" value=\"passwordTextField\" id=\"passwordTextField\">\n                     <p>Es password?</p>\n                 </div>\n                 \n                 <div class=\"isEditingTextField\">\n                     <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                     <p>Es editable?</p>\n                  </div>\n                 \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n             </div>\n\n\n             \n              <div class=\"styleField\">\n                   <h4>Estilos de celda:</h4>\n                        <div class=\"colorZone\">\n                        {{colorBasicZone}}\n                    </div>                                   \n                    <div class=\"sizeZone\">\n                        <p>Tamaño titulo:</p>\n                        <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                        <p>Tamaño texto error:</p>\n                        <input id=\"sizeError\" type=\"text\" name=\"element\">\n                    </div>\n\n                    {{htmlFont}}\n                    {{htmlImage}}\n              </div>\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>";
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" disabled value=\"{{title}}\">\n                </div>\n                <div class=\"keyboardResult\">Keyboard:{{keyboard}}</div>\n            </div>\n            <div class=\"containerTextFieldCenter\">\n                <div class=\"inputTextField\">\n                    <p>PlaceHolder:</p>\n                    <input type=\"text\" name=\"palceHolderTextField\" id=\"palceHolderTextField\" disabled value=\"{{placeHolder}}\">\n                </div>                   \n            </div>\n            <div class=\"errorTextField\">        \n                <p class=\"textErrorP\">Texto error:</p>\n                <input type=\"text\" name=\"errorTextField\"id=\"errorTextField\" disabled value=\"{{error}}\"> \n            </div>\n\n            \n            <div class=\"compareTextField\">\n                <input type=\"checkbox\" name=\"compare\" value=\"compare\" id=\"compare\" {{isCompareChecked}} disabled readonly>\n                <p>Active compare?</p>\n                {{htmlTextErrorCompare}}\n            </div>\n\n            \n            \n            <div class=\"containerPassEdit\">\n                <div class=\"passwordTextField\">\n                    <input type=\"checkbox\" name=\"passwordTextField\" value=\"passwordTextField\" id=\"passwordTextField\" {{isPasswordChecked}} disabled readonly>\n                    <p>Es password?</p>\n                </div>\n                \n                <div class=\"isEditingTextField\">\n                    <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingChecked}} disabled readonly>\n                    <p>Es editable?</p>\n                </div>\n                \n                <div class=\"isHiddenTextField\">\n                    <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                    <p>Es visible?</p>\n                </div>\n\n                <div class=\"mandatoryTextField\">\n                    <input type=\"checkbox\" name=\"mandatory\" value=\"mandatory\" id=\"mandatory\" {{isMandatory}} disabled readonly>\n                    <p>Es obligatorio?</p>\n                </div>\n            </div>\n            \n\n            <div class=\"validatorContainer validatorCreated\">\n                <div class=\"validatorResult resultCreated\">Validator:{{validator}} {{htmlCustomValidator}}</div>  \n\n                {{htmlTextErrorValidator}}\n            </div>\n           \n            \n            <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                {{styles}}\n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonRemoveText\" onclick=\"removeField({{indexField}})\"><p>-</p></div>\n    </div>\n</div> \n\n";
+module.exports = "<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" disabled value=\"{{title}}\">\n                </div>\n                <div class=\"keyboardResult\">Keyboard:{{keyboard}}</div>\n            </div>\n            <div class=\"containerTextFieldCenter\">\n                <div class=\"inputTextField\">\n                    <p>PlaceHolder:</p>\n                    <input type=\"text\" name=\"palceHolderTextField\" id=\"palceHolderTextField\" disabled value=\"{{placeHolder}}\">\n                </div>                   \n            </div>\n\n            <div class=\"containerPassEdit\">\n                <div class=\"passwordTextField\">\n                    <input type=\"checkbox\" name=\"passwordTextField\" value=\"passwordTextField\" id=\"passwordTextField\" {{isPasswordChecked}} disabled readonly>\n                    <p>Es password?</p>\n                </div>\n                \n                <div class=\"isEditingTextField\">\n                    <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingChecked}} disabled readonly>\n                    <p>Es editable?</p>\n                </div>\n                \n                <div class=\"isHiddenTextField\">\n                    <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                    <p>Es visible?</p>\n                </div>\n\n            </div>\n            \n\n            <div class=\"validatorContainer validatorCreated\">\n                 {{htmlValidator}}\n            </div>\n        \n            \n            <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                {{styles}}\n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonRemoveText\" onclick=\"removeField({{indexField}})\"><p>-</p></div>\n    </div>\n</div> \n\n";
 
 /***/ }),
 /* 25 */
