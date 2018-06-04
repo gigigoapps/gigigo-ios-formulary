@@ -65,7 +65,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     override func validate() -> Bool {
         let status = super.validate()
         if !status {
-            self.errorLabel.text = self.recoverTextError()
+            self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
             self.showError()
         } else {
             self.hideError()
@@ -76,7 +76,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     override func showCompareError(show: Bool) {
         if show {
-            self.errorLabel.text = self.recoverTextError()
+            self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
             self.showError()
         } else {
             self.hideError()
@@ -156,7 +156,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label
         self.textTextField.placeholder = formFieldM.placeHolder
-        self.errorLabel.text = self.recoverTextError()
+        self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
         if self.formFieldM?.value != nil {
             self.textTextField.text = self.formFieldM?.value as? String
         }

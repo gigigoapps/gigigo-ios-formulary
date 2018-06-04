@@ -45,7 +45,7 @@ class BooleanFormField: FormField {
     override func validate() -> Bool {
         let status = super.validate()
         if !status {
-            self.errorLabel.text = self.recoverTextError()
+            self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
             self.showError()
         } else {
             self.hideError()
@@ -127,7 +127,7 @@ class BooleanFormField: FormField {
     
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label        
-        self.errorLabel.text = self.recoverTextError()
+        self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
         if formFieldM.value != nil && (formFieldM.value as? Bool)! {
             self.changeState()
         }

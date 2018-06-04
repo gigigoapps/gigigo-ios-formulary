@@ -128,11 +128,11 @@ open class FormField: UIView {
         return validateResult
     }
     
-    func recoverTextError() -> String {
+    func recoverTextError(value: Any?) -> String {
         guard let validator = self.validator else { return "" }
         
         let validatorFail = validator.filter { (validator) -> Bool in
-            return validator.validate(self.fieldValue) == false
+            return validator.validate(value) == false // TODO EDU aqui pilla esto "04/06/2017"
         }
         
         let orderValidators = validatorFail.sorted { (validador1, _) -> Bool in

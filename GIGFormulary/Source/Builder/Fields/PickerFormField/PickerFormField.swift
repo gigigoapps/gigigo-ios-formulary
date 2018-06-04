@@ -156,7 +156,12 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         }
         
         if !status {
-            self.errorLabel.text = self.recoverTextError()
+            if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
+                self.errorLabel.text = self.recoverTextError(value: self.pickerOptions?.selectedIndex)
+            } else {
+                self.errorLabel.text = self.recoverTextError(value: self.pickerDate?.dateSelected)
+            }
+            
             self.showError()
         } else {
             self.hideError()
@@ -187,7 +192,11 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
         self.titleLabel.text = formFieldM.label
         self.textTextField.placeholder = formFieldM.placeHolder
-        self.errorLabel.text = self.recoverTextError()
+        if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
+            self.errorLabel.text = self.recoverTextError(value: self.pickerOptions?.selectedIndex)
+        } else {
+            self.errorLabel.text = self.recoverTextError(value: self.pickerDate?.dateSelected)
+        }
         self.textTextField.isEnabled = formFieldM.isEditing
     }
     
