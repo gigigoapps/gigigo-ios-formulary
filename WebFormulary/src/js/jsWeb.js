@@ -136,11 +136,9 @@ window.createEventRules = function createEventRules() {
      $("#rules").change(function() {
          if (this.checked == true) {
             $("#containerRule").css("display","block");
-            //$("#compareTextError").css("display","block");
          }
          else {
             $("#containerRule").css("display","none");
-           // $("#compareTextError").css("display","none");
          }
     });
 }
@@ -157,8 +155,6 @@ window.createEventTextCompare = function createEventTextCompare() {
          }
     });
 }
-
-
 
 window.showContainerCustomValidate = function showContainerCustomValidate() {
      $("#selectTypeValidator").change(function() {

@@ -7,42 +7,47 @@
               "isEditing": true,
               "isHidden": true,
               "isPassword": true,
-              "compare": true,
-              "itemsCompare": [
-                               "a"
-                               ],
-              "textErrorCompare": "error",
               "style": {
-              "backgroundColorField": "#5091ff",
-              "titleColor": "#72ff97",
-              "errorColor": "#ff303b",
-              "sizeTitle": 12,
-              "sizeError": 31,
-              "align": "alignLeft",
-              "font": "AmericanTypewriter",
-              "mandatoryIcon": "imagenMandatory"
+                    "backgroundColorField": "#5091ff",
+                    "titleColor": "#72ff97",
+                    "errorColor": "#ff303b",
+                    "sizeTitle": 12,
+                    "sizeError": 31,
+                    "align": "alignLeft",
+                    "font": "AmericanTypewriter",
+                    "mandatoryIcon": "imagenMandatory"
+                },
+              "validator": [
+                            {
+                                "type": "compare",
+                                "textError": "error",
+                                "itemsCompare": ["a"]
+                            }
+                        ],
+              
               }
               },
               {
               "isHidden": true,
-              "mandatory": false,
               "style": {
-              "checkBox": {
-              "checkBoxOff": "checkBoxOff_JR",
-              "checkBoxOn": "checkBoxOn_JR"
-              },
+                    "checkBox": {
+                    "checkBoxOff": "checkBoxOff_JR",
+                    "checkBoxOn": "checkBoxOn_JR"
+                },
               "mandatoryIcon": "mandatory_JR ",
               "styleCell": "line "
               },
-              
-              "validator": "bool",
               "schemaId": "communicationOpts",
-              "textError": "This field not could be empty",
               "show": "checkbox",
               "type": "boolean",
               "key": "key1",
-              "label": "I want to receive Coca-Cola communications"
-              
+              "label": "I want to receive Coca-Cola communications",
+              "validator": [
+                            {
+                            "type": "bool",
+                            "textError": "Text error",
+                            }
+                            ]
               },
               {
               "key": "key2",
@@ -61,7 +66,12 @@
               "type": "text",
               "label": "a2",
               "placeHolder": "a2",
-              "mandatory": true
+              "validator": [
+                            {
+                            "type": "mandatory",
+                            "textError": "texto error mandatory"
+                            }
+                            ]
               },
               {
               "key": "key5",

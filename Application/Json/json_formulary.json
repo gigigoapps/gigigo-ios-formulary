@@ -5,6 +5,53 @@
               "label": "titulo1 compare"
               },
               {
+              "style": {
+                        "checkBox": {
+                                "checkBoxOff": "checkBoxOff_JR",
+                                "checkBoxOn": "checkBoxOn_JR"
+                            },
+                        "mandatoryIcon": "mandatory_JR ",
+                        "styleCell": "line "
+                },
+              "schemaId": "communicationOpts",
+              "show": "checkbox",
+              "type": "boolean",
+              "key": "key1ssssss",
+              "label": "I want to receive Coca-Cola communications",
+              
+              "validator": [
+                            {
+                                "type": "bool",
+                                "textError": "Text error",
+                            }
+                        ]
+              },
+              {
+              "style": {
+                    "checkBox": {
+                            "checkBoxOff": "checkBoxOff_JR",
+                            "checkBoxOn": "checkBoxOn_JR"
+                        },
+                    "mandatoryIcon": "mandatory_JR ",
+                    "styleCell": "line "
+              },
+              "schemaId": "communicationOpts",
+              "show": "checkbox",
+              "type": "boolean",
+              "key": "keyddddd2",
+              "label": "I want to receive Coca-Cola communications",              
+              "validator": [
+                            {
+                            "type": "bool",
+                            "textError": "Text error",
+                            },
+                            {
+                            "type": "mandatory",
+                            "textError": "texto error mandatory"
+                            }
+                            ]
+              },
+              {
               "key": "key2",
               "type": "text",
               "label": "titulo2 compare",
@@ -82,7 +129,6 @@
               "key": "keydatePicker",
               "type": "datePicker",
               "label": "tituloDatePicker t",
-              "textError": "error_generic_field",
               "rules": {
                     "fieldReciver": ["keyHiddenText", "keyHiddenText2"],
                     "compare": ">",

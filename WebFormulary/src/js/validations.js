@@ -62,12 +62,10 @@ window.validateTextField = function validateTextField() {
 window.validateDatePickerField = function validateDatePickerField() {
     var keyTextField = $("#keyTextField").val()
     var title = $("#titleTextField").val()
-    var error = $("#errorTextField").val()
-    var mandatory = $('#mandatory').is(':checked');
+    var validator = getRecoverValidations();
 
     // Optional
     var acceptButtonTextField = $("#acceptButtonTextField").val()
-    var minAgeContainer = $("#minAgeContainer").val()    
 
     // Style
     var cellColor = $("#cellColorHex").val()
@@ -83,18 +81,17 @@ window.validateDatePickerField = function validateDatePickerField() {
     var imageMandatory = $("#imageMandatory").val()
     var isEditing = $('#isEditingTextField').is(':checked');
     var isHidden = $('#isEditingTextField').is(':checked');
+    var isActiveRule = $('#rules').is(':checked');
+
+    var rules = getRecoverRules(isActiveRule);
 
     if (font == "custom") {
         font = $("#custonFont").val()
     }
-    
-    if (error.length == 0) {
-        error = "error_generic_field"
-    }
 
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createDatePickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer,align,font,imageMandatory,isEditing, isHidden);
-        saveDatePickerField(keyTextField,"datePicker",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer,align,font,imageMandatory,isEditing, isHidden);
+        createDatePickerField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator, isActiveRule, rules);
+        saveDatePickerField(keyTextField,"datePicker",title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator, isActiveRule, rules);
     }
 }
 
@@ -102,8 +99,7 @@ window.validateDatePickerField = function validateDatePickerField() {
 window.validatePickerField = function validatePickerField() {
     var keyTextField = $("#keyTextField").val()
     var title = $("#titleTextField").val()
-    var error = $("#errorTextField").val()
-    var mandatory = $('#mandatory').is(':checked');
+    var validator = getRecoverValidations();
 
     // Optional
     var acceptButtonTextField = $("#acceptButtonTextField").val()
@@ -123,20 +119,14 @@ window.validatePickerField = function validatePickerField() {
     var isEditing = $('#isEditingTextField').is(':checked');
     var isHidden = $('#isEditingTextField').is(':checked');
 
-    console.log(imageMandatory);
-
     if (font == "custom") {
         font = $("#custonFont").val()
-    }
-    
-    if (error.length == 0) {
-        error = "error_generic_field"
     }
 
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
         if (allPickerIsComplete()) {
-            createPickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden);
-            savePickerField(keyTextField,"picker",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory, isEditing, isHidden);
+            createPickerField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator);
+            savePickerField(keyTextField,"picker",title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory, isEditing, isHidden, validator);
         }
         else {
             alert("Los campos de clave y valor de los picker deben estar todos rellenos");
@@ -168,8 +158,8 @@ window.allPickerIsComplete = function allPickerIsComplete() {
 window.validateBooleanField = function validateBooleanField() {
     var keyTextField = $("#keyTextField").val()
     var title = $("#titleTextField").val()
-    var error = $("#errorTextField").val()
-    var mandatory = $('#mandatory').is(':checked');
+    var validator = getRecoverValidations();
+
     // Style
     var cellColor = $("#cellColorHex").val()
     var titleColor = $("#titleColorHex").val()
@@ -188,13 +178,9 @@ window.validateBooleanField = function validateBooleanField() {
         font = $("#custonFont").val()
     }
     
-    if (error.length == 0) {
-        error = "error_generic_field"
-    }
-    
     if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createBooleanField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isEditing, isHidden);
-        saveBooleanField(keyTextField,"boolean",title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isEditing, isHidden)
+        createBooleanField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isEditing, isHidden, validator);
+        saveBooleanField(keyTextField,"boolean",title,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isEditing, isHidden, validator)
     }
 }
 
@@ -220,6 +206,24 @@ window.validateIndexField = function validateIndexField() {
 }
 
 //======================================
+//         RECOVER    RULES           //
+//======================================
+
+
+function getRecoverRules(isActiveRule) {
+    if (isActiveRule) {
+        var rules = new rulesResult;
+        rules.fieldReciver1 = $("#fieldReciver1").val();
+        rules.fieldReciver2 = $("#fieldReciver2").val();
+        rules.typeCompare = document.getElementById("selectTypeRuleCompare").value;
+        rules.valueCompare = $("#valueRule").val();
+        rules.behaviorCompare = document.getElementById("selectTypeRuleBehavior").value;
+        rules.elseCompare = document.getElementById("selectTypeRuleElseBehavior").value; 
+        return rules;
+    }
+}
+
+//======================================
 //        RECOVER    VALIDATION       //
 //======================================
 
@@ -241,6 +245,7 @@ function getRecoverValidations() {
                 validatorRes.regex = $("#custonValidator").val();
                 validatorRes.compareKey1 = $("#compareKey1").val();
                 validatorRes.compareKey2 = $("#compareKey2").val();
+                validatorRes.minAge = $("#minAge").val();
             }
 
             listValidatorResult.push(validatorRes);
@@ -261,4 +266,11 @@ function validatorResult() {
     var minAge = 0;
 }
 
-
+function rulesResult() {
+    var fieldReciver1 = "";
+    var fieldReciver2 = "";
+    var typeCompare = "";
+    var valueCompare = "";
+    var behaviorCompare = "";
+    var elseCompare = "";
+}

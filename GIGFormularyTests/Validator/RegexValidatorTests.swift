@@ -85,7 +85,7 @@ class RegexValidatorTests: XCTestCase {
     }
     
     func test_validate_optional() {
-        self.validator.mandatory = false
+        self.validator = RegexValidator(regexPattern: ".{3}", mandatory: false)
         
         XCTAssertTrue(self.validator.validate(nil))
         XCTAssertTrue(self.validator.validate(""))

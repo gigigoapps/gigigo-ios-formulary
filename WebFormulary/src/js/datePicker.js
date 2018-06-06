@@ -5,11 +5,8 @@
 
 
 //-- DATE PICKER YA CREADO SOLO MOSTRAR --
-window.createDatePickerField = function createDatePickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer,align,font,imageMandatory,isEditing, isHidden) {
-    var isMandatory = ""
-    if (mandatory) {
-        isMandatory = "checked"
-    }
+window.createDatePickerField = function createDatePickerField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator, isActiveRule, rules) {
+
     var isEditingCheck = ""
     if (isEditing) {
         isEditingCheck = "checked"
@@ -19,12 +16,18 @@ window.createDatePickerField = function createDatePickerField(keyTextField,title
         isHiddenChecked = "checked"
     }
 
+    var htmlRules = '';
+    if (isActiveRule) {
+        htmlRules = generateHtmlRulesResult(rules)
+    }
+
     //-- Recover Styles --
     var htmlColorBasic = getStyleColor(cellColor,titleColor,errorColor);
     var htmlFontSize = getStyleSize (sizeTitle, sizeError);
     var htmlColorPicker = getStyleColorPicker (aceptColor,containerAceptColor,backgroundPickerColor);
     var htmlAlingFont = getAlignFont(align,font)
     var htmlImages = recoverHtmlImageMandatory(imageMandatory)
+    var htmlValidator = generateHtmlValidator(validator);
 
     var styles = htmlFontSize + htmlColorBasic + htmlAlingFont + htmlImages + htmlColorPicker;
 
@@ -32,12 +35,11 @@ window.createDatePickerField = function createDatePickerField(keyTextField,title
             .replace('{{styles}}',styles)
             .replace('{{keyTextField}}',keyTextField)
             .replace('{{title}}',title)
-            .replace('{{error}}',error)
-            .replace('{{isMandatory}}',isMandatory)
+            .replace('{{htmlValidator}}',htmlValidator)
             .replace('{{isEditingCheck}}',isEditingCheck)
             .replace('{{isHiddenChecked}}',isHiddenChecked)
             .replace('{{acceptButtonTextField}}',acceptButtonTextField)
-            .replace('{{minAgeContainer}}',minAgeContainer)
+            .replace('{{htmlRules}}',htmlRules)
             .replace(/\{\{indexField\}\}/g,indexField)
 
 
@@ -45,7 +47,7 @@ window.createDatePickerField = function createDatePickerField(keyTextField,title
     resetTypeField();
 }
 
-window.saveDatePickerField = function saveDatePickerField(keyTextField,type,title,textError,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,minAgeContainer,align,font,imageMandatory,isEditing, isHidden) {
+window.saveDatePickerField = function saveDatePickerField(keyTextField,type,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator, isActiveRule, rules) {
     
     //-- MANDATORY FIELDS --
 
@@ -58,25 +60,24 @@ window.saveDatePickerField = function saveDatePickerField(keyTextField,type,titl
     
     //-- OPTIONAL FIELDS --
 
-    if (mandatory) {
-        itemSave["mandatory"] = mandatory
-    }
     if (isEditing) {
         itemSave["isEditing"] = isEditing
     }
     if (isHidden) {
         itemSave["isHidden"] = isHidden
-    }
-    if (textError.length > 0) {
-        itemSave["textError"] = textError
-    }               
+    }              
     if (acceptButtonTextField.length > 0) {
         itemSave["textAcceptButton"] = acceptButtonTextField
     }                
-    if (minAgeContainer.length > 0) {
-        itemSave["minAge"] = parseInt(minAgeContainer) 
-        itemSave["validator"] = "age"
-    }  
+ 
+    var itemsValidators = generateDicValidator(validator);
+    if (itemsValidators.length > 0) {
+        itemSave["validator"] = itemsValidators;
+    }
+
+    if (isActiveRule) {
+        itemSave["rules"] = generateDicRules(rules)
+    }    
 
     var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,align,font,imageMandatory,"","");
     if (styles != null) {

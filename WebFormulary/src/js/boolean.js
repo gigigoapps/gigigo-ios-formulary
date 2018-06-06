@@ -2,11 +2,8 @@
 //        BOOLEAN   (YA CREADO)       //
 //======================================
             
-window.createBooleanField = function createBooleanField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff, isEditing, isHidden) {
-    var isMandatory = ""
-    if (mandatory) {
-        isMandatory = "checked"
-    }
+window.createBooleanField = function createBooleanField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff, isEditing, isHidden, validator) {
+
     var isEditingValueCheck = ""
     if (isEditing) {
         isEditingValueCheck = "checked"
@@ -21,6 +18,7 @@ window.createBooleanField = function createBooleanField(keyTextField,title,error
     var htmlFontSize = getStyleSize (sizeTitle, sizeError);
     var htmlAlingFont = getAlignFont(align,font)
     var htmlImages = recoverHtmlAllImage(imageMandatory,imageCheckBoxOn,imageCheckBoxOff)
+    var htmlValidator = generateHtmlValidator(validator);
 
     var styles =  htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
 
@@ -28,8 +26,7 @@ window.createBooleanField = function createBooleanField(keyTextField,title,error
             .replace('{{styles}}',styles)
             .replace('{{keyTextField}}',keyTextField)
             .replace('{{title}}',title)
-            .replace('{{error}}',error)
-            .replace('{{isMandatory}}',isMandatory)
+            .replace('{{htmlValidator}}',htmlValidator)
             .replace('{{isEditingValueCheck}}',isEditingValueCheck)
             .replace('{{isHiddenChecked}}',isHiddenChecked)
             .replace(/\{\{indexField\}\}/g,indexField)
@@ -39,7 +36,7 @@ window.createBooleanField = function createBooleanField(keyTextField,title,error
     resetTypeField();
 }
 
-window.saveBooleanField = function saveBooleanField(keyTextField,type,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff, isEditing, isHidden) {
+window.saveBooleanField = function saveBooleanField(keyTextField,type,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff, isEditing, isHidden, validator) {
     //-- Mandatory Fiedls --
     var itemSave = {
         "key":keyTextField,
@@ -48,20 +45,17 @@ window.saveBooleanField = function saveBooleanField(keyTextField,type,title,erro
         "label":title
     }
 
-    if (mandatory) {
-        itemSave["mandatory"] = mandatory
-    }   
-    if (error.length > 0) {
-        itemSave["textError"] = error
-    }               
-    if (mandatory) {
-        itemSave["validator"] = "bool"
-    }
     if (isEditing) {
         itemSave["isEditing"] = isEditing
     }
     if (isHidden) {
         itemSave["isHidden"] = isHidden
+    }
+
+    var itemsValidators = generateDicValidator(validator);
+
+    if (itemsValidators.length > 0) {
+        itemSave["validator"] = itemsValidators;
     }
     
     //-- OPTIONAL FIELDS --

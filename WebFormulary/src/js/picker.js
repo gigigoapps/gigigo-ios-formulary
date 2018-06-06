@@ -15,11 +15,8 @@ window.removeContainerPicker = function removeContainerPicker(idContainerPicker)
 }
 
 //-- PICKER YA CREADO SOLO MOSTRAR --
-window.createPickerField = function createPickerField(keyTextField,title,error,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden) {
-    var isMandatory = ""
-    if (mandatory) {
-        isMandatory = "checked"
-    }
+window.createPickerField = function createPickerField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator) {
+
     var isEditingCheck = ""
     if (isEditing) {
         isEditingCheck = "checked"
@@ -35,7 +32,7 @@ window.createPickerField = function createPickerField(keyTextField,title,error,m
     var htmlColorPicker = getStyleColorPicker (aceptColor,containerAceptColor,backgroundPickerColor);
     var htmlAlingFont = getAlignFont(align,font)
     var htmlImages = recoverHtmlImageMandatory(imageMandatory)
-    var htmlValidators = getValidatorsZone()
+    var htmlValidator = generateHtmlValidator(validator);
 
     var styles = htmlFontSize + htmlColorBasic + htmlAlingFont + htmlImages + htmlColorPicker;
 
@@ -46,7 +43,12 @@ window.createPickerField = function createPickerField(keyTextField,title,error,m
         var idValue = $("#inputValuePickerField"+i).val()
 
         if (idKey != undefined && idValue != undefined) {
-                htmlPickerItems = htmlPickerItems + '<div class="containerPickerField"><input type="text" name="element" value="'+idKey+'" disabled readonly><input type="text" name="element" value="'+idValue+'" disabled readonly></div>';
+            var html = '';
+            html += '<div class="containerPickerField">';
+            html += '   <input type="text" name="element" value="'+idKey+'" disabled readonly>';
+            html += '   <input type="text" name="element" value="'+idValue+'" disabled readonly>';
+            html += '</div>';
+            htmlPickerItems = htmlPickerItems + html;
         }
     }
 
@@ -54,9 +56,7 @@ window.createPickerField = function createPickerField(keyTextField,title,error,m
             .replace('{{styles}}',styles)
             .replace('{{keyTextField}}',keyTextField)
             .replace('{{title}}',title)
-            .replace('{{error}}',error)
-            .replace('{{htmlValidators}}',htmlValidators)
-            .replace('{{isMandatory}}',isMandatory)
+            .replace('{{htmlValidator}}',htmlValidator)
             .replace('{{isHiddenChecked}}',isHiddenChecked)
             .replace('{{htmlPickerItems}}',htmlPickerItems) 
             .replace('{{isEditingChecked}}',isEditingCheck)
@@ -67,7 +67,7 @@ window.createPickerField = function createPickerField(keyTextField,title,error,m
     resetTypeField();
 }
 
-window.savePickerField = function savePickerField(keyTextField,type,title,textError,mandatory,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden) {
+window.savePickerField = function savePickerField(keyTextField,type,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator) {
     
     //-- MANDATORY FIELDS --
     var listOptions = [];
@@ -93,21 +93,21 @@ window.savePickerField = function savePickerField(keyTextField,type,title,textEr
     
     //-- OPTIONAL FIELDS --
 
-    if (mandatory) {
-        itemSave["mandatory"] = mandatory
-    }
     if (isEditing) {
         itemSave["isEditing"] = isEditing
     }
     if (isHidden) {
         itemSave["isHidden"] = isHidden
-    }
-    if (textError.length > 0) {
-        itemSave["textError"] = textError
-    }               
+    }             
     if (acceptButtonTextField.length > 0) {
         itemSave["textAcceptButton"] = acceptButtonTextField
     } 
+    
+    var itemsValidators = generateDicValidator(validator);
+
+    if (itemsValidators.length > 0) {
+        itemSave["validator"] = itemsValidators;
+    }
 
     var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,align,font,imageMandatory,"","");
     if (styles != null) {

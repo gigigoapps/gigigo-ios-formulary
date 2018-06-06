@@ -13,10 +13,6 @@
                 </div>
             </div>
             <div class="containerTextFieldCenter optionalBooleanContainer">
-                <div class="mandatoryTextField">
-                    <input type="checkbox" name="mandatory" value="mandatory" id="mandatory" {{isMandatory}} disabled readonly >
-                    <p>Es obligatorio?</p>
-                </div>
                 <div class="isEditingTextField">
                     <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField" {{isEditingValueCheck}} disabled readonly >
                     <p>Es editable?</p>
@@ -27,10 +23,11 @@
                     <p>Es visible?</p>
                 </div>
             </div>
-            <div class="errorTextField">
-                <p class="textErrorP">Texto error:</p>
-                <input type="text" name="errorTextField"id="errorTextField" disabled value="{{error}}">
+
+            <div class="validatorContainer validatorCreated">
+                 {{htmlValidator}}
             </div>
+
             <div class="styleField"> 
                 <h4>Estilos de celda:</h4>
                 {{styles}} 

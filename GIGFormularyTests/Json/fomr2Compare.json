@@ -4,18 +4,31 @@
               "key": "k1",
               "type": "text",
               "label": "t1",
-              "mandatory": true
+              "validator": [
+                                               {
+                                               "type": "mandatory",
+                                               "textError": "texto error mandatory"
+                                               }
+                                               ]
               },
               {
               "key": "k2",
-              "mandatory": true,
               "type": "text",
               "label": "t2",
-              "compare": true,
-              "itemsCompare": [
-                               "k1", "k2"
-                               ],
-              "textErrorCompare": "texto error compare"
+              "validator": [
+                            {
+                            "type": "compare",
+                            "textError": "texto error compare",
+                            "itemsCompare": [
+                                             "key1",
+                                             "key2"
+                                             ]
+                            },
+                            {
+                            "type": "mandatory",
+                            "textError": "texto error mandatory"
+                            }
+                            ]
               }
               ] 
 }

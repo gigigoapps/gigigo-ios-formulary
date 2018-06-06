@@ -1006,3 +1006,29 @@
     margin-top: 0;
     margin-right: 14px;
  }
+
+ .zoneRuleResult {
+    margin-left: 144px;
+ }
+
+ .zoneRuleResult p, .zoneRuleResult input {
+    float: left;
+ }
+ .zoneRuleResult p {
+    margin-top: 7px;
+    margin-right: 10px;
+    margin-left: 30px;
+ }
+ .zoneRuleResult input {
+    margin-top: 0px;
+    width: 80px;
+    text-align: center;
+ }
+ #clearRule {
+    float: none;
+    width: 100%;
+    height: 50px;
+}  
+.specialSpaceRule {
+    margin-left: 10px !important;
+}

@@ -13,13 +13,6 @@
                           </div>                                 
                    </div>
 
-                   <div id="containerErrorMandatoryPicker">
-                        <div class="errorTextField errorTextFieldPicker">
-                           <p class="textErrorP">Texto error:</p>
-                           <input type="text" name="errorTextField" id="errorTextField" disabled readonly value="{{error}}">
-                        </div>   
-                   </div>   
-
                  <div class="containerAcceptEditing">
                      <div class="acceptButtonTextField">
                          <p>Titulo aceptar picker:</p>
@@ -27,11 +20,7 @@
                      </div>
                  </div>
 
-                   <div class="containerOptionalPicker">    
-                     <div class="mandatoryTextField optionModel">
-                              <input type="checkbox" name="mandatory" value="mandatory" id="mandatory" {{isMandatory}} disabled readonly>
-                             <p>Es obligatorio?</p>
-                        </div>                                    
+                   <div class="containerOptionalPicker">                                     
                         <div class="isEditingTextField">
                             <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField" {{isEditingChecked}} disabled readonly>
                             <p>Es editable?</p>
@@ -42,6 +31,10 @@
                             <p>Es visible?</p>
                         </div>
                    </div>
+
+                  <div class="validatorContainer validatorCreated">
+                       {{htmlValidator}}
+                  </div>
 
                    <div id="valuesOptionsSelector">     
                       <div id="pickerFieldsInsert">
