@@ -178,14 +178,17 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
                 }
             }
         }
+        
+        if !isValid {
+            self.formControllerOutput?.invalidForm()
+        }
+        
         return isValid
     }
     
     fileprivate func moveToPositionError(_ isValid: Bool, _ field: FormField) {
         if isValid {
             self.formViews?.scrollRectToVisible(field)
-        } else {
-            self.formControllerOutput?.invalidForm()
         }
     }
     
