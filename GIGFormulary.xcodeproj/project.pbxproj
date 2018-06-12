@@ -12,6 +12,7 @@
 		020AEE59208DF60300E61BB5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020AEE58208DF60300E61BB5 /* String+Extension.swift */; };
 		231B922C20CFB92D009487BC /* ExternalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 231B922B20CFB92D009487BC /* ExternalView.xib */; };
 		231B922E20CFB940009487BC /* CodeExternalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231B922D20CFB940009487BC /* CodeExternalView.swift */; };
+		231B927520CFCC3B009487BC /* TextFormField.swift in Headers */ = {isa = PBXBuildFile; fileRef = 7B7D72DD1D4B8296003FFEE8 /* TextFormField.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		2332088D20C120A300E84547 /* CompareValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332088C20C120A300E84547 /* CompareValidator.swift */; };
 		234ACB052091BB800096FCE7 /* FormFieldRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234ACB042091BB800096FCE7 /* FormFieldRules.swift */; };
 		2375C63220BFFAA4002AE303 /* FormFieldsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375C63120BFFAA4002AE303 /* FormFieldsValidator.swift */; };
@@ -651,6 +652,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B676FF91E3892CE007ED7DD /* FRHyperLabel.h in Headers */,
+				231B927520CFCC3B009487BC /* TextFormField.swift in Headers */,
 				7BB82EF61D4B5DB800DC85F5 /* GIGFormulary.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
