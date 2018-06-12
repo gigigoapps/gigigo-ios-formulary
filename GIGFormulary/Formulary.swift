@@ -40,8 +40,8 @@ open class Formulary: PFormController {
             viewContainerFormulary: viewContainerFormulary,
             bundle: self.bundle
         )
-        self.formController!.loadFieldsFromJSONFile(jsonFile)
-        self.formController!.formControllerOutput = self
+        self.formController?.loadFieldsFromJSONFile(jsonFile)
+        self.formController?.formControllerOutput = self
     }
     
     open func start(_ viewContainerFormulary: UIView, listItems: [[AnyHashable: Any]]) {
@@ -49,8 +49,8 @@ open class Formulary: PFormController {
             viewContainerFormulary: viewContainerFormulary,
             bundle: self.bundle
         )
-        self.formController!.loadFieldsFromJSONDictionary(listItems)
-        self.formController!.formControllerOutput = self
+        self.formController?.loadFieldsFromJSONDictionary(listItems)
+        self.formController?.formControllerOutput = self
     }
     
     open func start(_ button: UIButton, jsonFile: String) -> UIView {
@@ -58,8 +58,8 @@ open class Formulary: PFormController {
             button: button,
             bundle: self.bundle
         )
-        self.formController!.loadFieldsFromJSONFile(jsonFile)
-        self.formController!.formControllerOutput = self
+        self.formController?.loadFieldsFromJSONFile(jsonFile)
+        self.formController?.formControllerOutput = self
         
         return self.formController!.recoverView()
     }
@@ -69,8 +69,8 @@ open class Formulary: PFormController {
             button: button,
             bundle: self.bundle
         )
-        self.formController!.loadFieldsFromJSONDictionary(listItems)
-        self.formController!.formControllerOutput = self
+        self.formController?.loadFieldsFromJSONDictionary(listItems)
+        self.formController?.formControllerOutput = self
         
         return self.formController!.recoverView()
     }
@@ -103,6 +103,12 @@ open class Formulary: PFormController {
             return
         }
         form.clearFormulary()
+    }
+    
+    // External view cell
+    
+    open func loadExternalView(view: FormField) {
+        
     }
     
     // Bundle

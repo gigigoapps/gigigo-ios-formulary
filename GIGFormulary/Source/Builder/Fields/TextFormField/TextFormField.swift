@@ -36,9 +36,9 @@ protocol PTextFormField {
 }
 
 
-class TextFormField: FormField, UITextFieldDelegate {
+public class TextFormField: FormField, UITextFieldDelegate {
     
-    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet public var titleLabel: UILabel!
     @IBOutlet var textTextField: UITextField!
     @IBOutlet var mandotoryImage: UIImageView!
     @IBOutlet var errorLabel: UILabel!
@@ -56,7 +56,7 @@ class TextFormField: FormField, UITextFieldDelegate {
         self.initializeView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -102,7 +102,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     // MARK: GIGFormField (Override)
     
-    override internal var fieldValue: Any? {
+    override public var fieldValue: Any? {
         get {            
             return self.textTextField.text?.count > 0 ? self.textTextField.text : nil
         }
@@ -229,16 +229,16 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     // MARK: UITextFieldDelegate
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         self.formFieldOutput!.scrollRectToVisible(self)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.formFieldOutput?.formFieldDidFinish(self)
         return false
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {        
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let textFieldText: NSString = textField.text as NSString? ?? ""
         let finalString = textFieldText.replacingCharacters(in: range, with: string)    
         let lengthValidator = LengthValidator(
@@ -254,15 +254,15 @@ class TextFormField: FormField, UITextFieldDelegate {
     }
     
     // MARK: UIResponser (Overrride)
-    override var canBecomeFirstResponder: Bool {
+    public override var canBecomeFirstResponder: Bool {
         return self.textTextField.canBecomeFirstResponder
     }
     
-    override func becomeFirstResponder() -> Bool {
+    public override func becomeFirstResponder() -> Bool {
         return self.textTextField.becomeFirstResponder()
     }
     
-    override func resignFirstResponder() -> Bool {
+    public override func resignFirstResponder() -> Bool {
         return self.textTextField.resignFirstResponder()
     }
 }

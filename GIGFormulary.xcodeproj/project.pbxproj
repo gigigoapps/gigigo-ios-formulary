@@ -10,6 +10,8 @@
 		020AEE55208DE07700E61BB5 /* ExpandableBooleanFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020AEE54208DE07700E61BB5 /* ExpandableBooleanFormField.swift */; };
 		020AEE57208DE08100E61BB5 /* ExpandableBooleanFormField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 020AEE56208DE08100E61BB5 /* ExpandableBooleanFormField.xib */; };
 		020AEE59208DF60300E61BB5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020AEE58208DF60300E61BB5 /* String+Extension.swift */; };
+		231B922C20CFB92D009487BC /* ExternalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 231B922B20CFB92D009487BC /* ExternalView.xib */; };
+		231B922E20CFB940009487BC /* CodeExternalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231B922D20CFB940009487BC /* CodeExternalView.swift */; };
 		2332088D20C120A300E84547 /* CompareValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332088C20C120A300E84547 /* CompareValidator.swift */; };
 		234ACB052091BB800096FCE7 /* FormFieldRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234ACB042091BB800096FCE7 /* FormFieldRules.swift */; };
 		2375C63220BFFAA4002AE303 /* FormFieldsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375C63120BFFAA4002AE303 /* FormFieldsValidator.swift */; };
@@ -144,6 +146,8 @@
 		020AEE54208DE07700E61BB5 /* ExpandableBooleanFormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableBooleanFormField.swift; sourceTree = "<group>"; };
 		020AEE56208DE08100E61BB5 /* ExpandableBooleanFormField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandableBooleanFormField.xib; sourceTree = "<group>"; };
 		020AEE58208DF60300E61BB5 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		231B922B20CFB92D009487BC /* ExternalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExternalView.xib; sourceTree = "<group>"; };
+		231B922D20CFB940009487BC /* CodeExternalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeExternalView.swift; sourceTree = "<group>"; };
 		2332088C20C120A300E84547 /* CompareValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareValidator.swift; sourceTree = "<group>"; };
 		234ACB042091BB800096FCE7 /* FormFieldRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFieldRules.swift; sourceTree = "<group>"; };
 		2375C63120BFFAA4002AE303 /* FormFieldsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFieldsValidator.swift; sourceTree = "<group>"; };
@@ -261,6 +265,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		231B922A20CFB912009487BC /* ExternalView */ = {
+			isa = PBXGroup;
+			children = (
+				231B922B20CFB92D009487BC /* ExternalView.xib */,
+				231B922D20CFB940009487BC /* CodeExternalView.swift */,
+			);
+			path = ExternalView;
+			sourceTree = "<group>";
+		};
 		7B1BC7171E9BC88E002F612B /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -595,6 +608,7 @@
 		7BB82F111D4B5E2200DC85F5 /* DemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				231B922A20CFB912009487BC /* ExternalView */,
 				7B9D68B61E2E6D540061D666 /* ViewControllers */,
 				7B7D73121D4B831B003FFEE8 /* Json */,
 				7BB82F121D4B5E2200DC85F5 /* AppDelegate.swift */,
@@ -760,6 +774,7 @@
 				7B7D72FC1D4B8296003FFEE8 /* PickerFormField.xib in Resources */,
 				7B7D72F71D4B8296003FFEE8 /* Localizable.strings in Resources */,
 				7B7D72FE1D4B8296003FFEE8 /* TextFormField.xib in Resources */,
+				231B922C20CFB92D009487BC /* ExternalView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,6 +860,7 @@
 				7B7D72F41D4B8296003FFEE8 /* DatePickerComponent.swift in Sources */,
 				7B7D73021D4B8296003FFEE8 /* FormController.swift in Sources */,
 				2332088D20C120A300E84547 /* CompareValidator.swift in Sources */,
+				231B922E20CFB940009487BC /* CodeExternalView.swift in Sources */,
 				2375C63220BFFAA4002AE303 /* FormFieldsValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
