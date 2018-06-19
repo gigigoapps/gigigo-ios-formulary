@@ -39,16 +39,22 @@ protocol PTextFormField {
 public class TextFormField: FormField, UITextFieldDelegate {
     
     @IBOutlet public var titleLabel: UILabel!
-    @IBOutlet var textTextField: UITextField!
-    @IBOutlet var mandotoryImage: UIImageView!
-    @IBOutlet var errorLabel: UILabel!
+    @IBOutlet public var textTextField: UITextField!
+    @IBOutlet public var mandotoryImage: UIImageView!
+    @IBOutlet public var errorLabel: UILabel!
     
-    @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
-    @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
-    @IBOutlet var heightLabelConstraint: NSLayoutConstraint!
+    @IBOutlet public weak var heightErrorLabelConstraint: NSLayoutConstraint!
+    @IBOutlet public weak var widthMandatoryImageConstraint: NSLayoutConstraint!
+    @IBOutlet public var heightLabelConstraint: NSLayoutConstraint!
     
     
     // MARK: INIT
+    
+    override init(cell: FormFieldStyleModel?) {
+        super.init(cell: cell)
+        self.awakeFromNib(classField: type(of: self))
+        self.initializeView()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,7 +71,7 @@ public class TextFormField: FormField, UITextFieldDelegate {
     override func validate() -> Bool {
         let status = super.validate()
         if !status {
-            self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
+          //  self.errorLabel.text = self.recoverTextError(value: self.fieldValue)  // TODO EDU revisar esto esta movido a show Error
             self.showError()
         } else {
             self.hideError()
@@ -76,7 +82,7 @@ public class TextFormField: FormField, UITextFieldDelegate {
     
     override func showCompareError(show: Bool) {
         if show {
-            self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
+           // self.errorLabel.text = self.recoverTextError(value: self.fieldValue)  // TODO EDU revisar esto esta movido a show Error
             self.showError()
         } else {
             self.hideError()
@@ -126,6 +132,7 @@ public class TextFormField: FormField, UITextFieldDelegate {
     // MARK: Private Method    
     
     fileprivate func showError() {
+        self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
         UIView.animate(withDuration: 0.5, animations: {
             self.errorLabel.sizeToFit()
             self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
@@ -210,6 +217,10 @@ public class TextFormField: FormField, UITextFieldDelegate {
                     break
                 case .lineStyle:
                     self.customizeCell()
+                    
+                case .custom:
+                    // TODO EDU
+                    break
                 }
             }
         }

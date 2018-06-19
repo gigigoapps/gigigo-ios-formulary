@@ -28,6 +28,10 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     
     // MARK: INIT
     
+    override init(cell: FormFieldStyleModel?) {
+        super.init(cell: cell)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.awakeFromNib(frame, classField: type(of: self))
@@ -239,7 +243,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
             }
             if let styleCell = styleField?.styleCell {
                 switch styleCell {
-                case .defaultStyle:
+                case .defaultStyle, .custom:
                     // TODO nothing
                     break
                 case .lineStyle:

@@ -89,7 +89,7 @@ class FormBuilderFields: NSObject {
                 LogWarn("type for field not found")
                 return FormField()
             }
-            let field = self.fieldType(for: type, subtype: formFieldM.subtype)
+            let field = self.fieldType(for: type, subtype: formFieldM.subtype, cell: formFieldM.style)
             field.formFieldM = formFieldM
             field.formFieldOutput = self.formController
             field.validator = self.validatorToField(formFieldM)
@@ -137,26 +137,26 @@ class FormBuilderFields: NSObject {
         }
     }
     
-    fileprivate func fieldType(for type: String, subtype: String? = nil) -> FormField {
+    fileprivate func fieldType(for type: String, subtype: String? = nil, cell: FormFieldStyleModel? = nil) -> FormField {
         guard let type = TypeField(rawValue: type) else { return FormField() }
         let subtype = SubTypeField(rawValue: subtype ?? "")
         switch (type, subtype) {
         case (.textFormField, _):
-            return TextFormField()
+            return TextFormField(cell: cell)
         case (.boolFormField, nil):
-            return BooleanFormField()
+            return BooleanFormField(cell: cell)
         case (.boolFormField, .expandable?):
             if #available(iOS 9.0, *) {
-                return ExpandableBooleanFormField()
+                return ExpandableBooleanFormField(cell: cell)
             } else {
-                return BooleanFormField()
+                return BooleanFormField(cell: cell)
             }
         case (.pickerFormField, _):
-            return PickerFormField()
+            return PickerFormField(cell: cell)
         case (.datePickerFormField, _):
-            return PickerFormField()
+            return PickerFormField(cell: cell)
         case (.indexFormField, _):
-            return IndexFormField()
+            return IndexFormField(cell: cell)
         }
     }
 }

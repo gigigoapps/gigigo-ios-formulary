@@ -30,6 +30,10 @@ class BooleanFormField: FormField {
     
     // MARK: INIT
     
+    override init(cell: FormFieldStyleModel?) {
+        super.init(cell: cell)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.awakeFromNib(frame, classField: type(of: self))

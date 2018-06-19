@@ -17,7 +17,7 @@ class ViewController: UIViewController, PFormulary {
         
         
         //-- Create form Type with JSON --
-       
+         self.formulary.loadBundle(Bundle.main)
          self.formulary.start(self.view, jsonFile: "json_formulary.json")
          self.formulary.formularyOutput = self
 

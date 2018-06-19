@@ -12,6 +12,7 @@ import GIGLibrary
 enum TypeStyleCell: String {
     case defaultStyle = "default"
     case lineStyle = "line"
+    case custom = "custom"
 }
 
 class FormFieldStyleModel: NSObject {
@@ -34,6 +35,7 @@ class FormFieldStyleModel: NSObject {
     var checkBoxOn: UIImage?
     var checkBoxOff: UIImage?
     var styleCell: TypeStyleCell?
+    var nameXib: String?
     
     init(bundle: Bundle) {
         self.bundle = bundle
@@ -49,6 +51,10 @@ class FormFieldStyleModel: NSObject {
         //== INSERT DATA ==
         if let styleCustom = json["styleCell"] as? String {
             self.styleCell = TypeStyleCell(rawValue: styleCustom)
+            
+            if self.styleCell == TypeStyleCell.custom, let nameXib = json["nameXib"] as? String {
+                self.nameXib = nameXib
+            }
         }
         if let backgroundColorField = json["backgroundColorField"] as? String {
             self.backgroundColorField = UIColor(fromHexString: backgroundColorField)

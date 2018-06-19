@@ -104,13 +104,7 @@ open class Formulary: PFormController {
         }
         form.clearFormulary()
     }
-    
-    // External view cell
-    
-    open func loadExternalView(view: FormField) {
-        
-    }
-    
+     
     // Bundle
     
     open func loadBundle(_ bundle: Bundle) {
