@@ -16,7 +16,10 @@ class MandatoryValidator: StringValidator {
             if value is Bool {
                 guard let valueBool = value as? Bool else {LogWarn("Parse value Bool Error, return false"); return false }
                 return valueBool
-            } 
+            }
+            if value is Date && value != nil {
+                return true
+            }
             return false
         } else {
             return true
