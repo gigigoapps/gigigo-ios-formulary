@@ -31,24 +31,24 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     
     // INIT
     
-    init(viewContainerFormulary: UIView, bundle: Bundle?) {
+    init(viewContainerFormulary: UIView, bundle: Bundle) {
         super.init()
         self.formViews = FormBuilderViews(
             viewContainerFormulary: viewContainerFormulary,
             formController: self
         )
         
-        self.loadBundle(bundle)
+        self.bundle = bundle
     }
     
-    init(button: UIButton, bundle: Bundle?) {
+    init(button: UIButton, bundle: Bundle) {
         super.init()
         self.formViews = FormBuilderViews(
             button: button,
             formController: self
         )
         
-        self.loadBundle(bundle)
+        self.bundle = bundle
     }
     
     // MARK: Public Method
@@ -104,12 +104,6 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     
     // MARK: Private Method
 
-    fileprivate func loadBundle(_ bundle: Bundle?) {
-        if let bundleForm = bundle {
-            self.bundle = bundleForm
-        }
-    }
-    
     fileprivate func nextFieldTo(_ field: FormField) -> FormField? {
         let nextFieldPos =  self.formFields.index(of: field)!+1
         if nextFieldPos < self.formFields.count {

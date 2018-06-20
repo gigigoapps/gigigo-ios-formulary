@@ -64,6 +64,8 @@ class FormFieldsValidator: NSObject {
         }
         if let minAge = json["minAge"] as? Int {
             activity.minAge = minAge
+        } else  if let stringAge = json["minAge"] as? String, let minAge = Int(stringAge) {
+            activity.minAge = minAge
         }
         if let itemCompare = json["itemsCompare"] as? [String] {
             activity.itemCompare = itemCompare

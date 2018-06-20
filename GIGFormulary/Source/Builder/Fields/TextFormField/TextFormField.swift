@@ -71,7 +71,6 @@ public class TextFormField: FormField, UITextFieldDelegate {
     override func validate() -> Bool {
         let status = super.validate()
         if !status {
-          //  self.errorLabel.text = self.recoverTextError(value: self.fieldValue)  // TODO EDU revisar esto esta movido a show Error
             self.showError()
         } else {
             self.hideError()
@@ -82,7 +81,6 @@ public class TextFormField: FormField, UITextFieldDelegate {
     
     override func showCompareError(show: Bool) {
         if show {
-           // self.errorLabel.text = self.recoverTextError(value: self.fieldValue)  // TODO EDU revisar esto esta movido a show Error
             self.showError()
         } else {
             self.hideError()

@@ -27,7 +27,6 @@ open class Formulary: PFormController {
     
     //-- Private Var --
     var formController: FormController?
-    var bundle: Bundle?
     
     // MARK: Start
     
@@ -35,28 +34,28 @@ open class Formulary: PFormController {
         
     }
     
-    open func start(_ viewContainerFormulary: UIView, jsonFile: String) {
+    open func start(_ viewContainerFormulary: UIView, jsonFile: String, bundle: Bundle = Bundle(for: Formulary.self)) {
         self.formController = FormController(
             viewContainerFormulary: viewContainerFormulary,
-            bundle: self.bundle
+            bundle: bundle
         )
         self.formController?.loadFieldsFromJSONFile(jsonFile)
         self.formController?.formControllerOutput = self
     }
     
-    open func start(_ viewContainerFormulary: UIView, listItems: [[AnyHashable: Any]]) {
+    open func start(_ viewContainerFormulary: UIView, listItems: [[AnyHashable: Any]], bundle: Bundle = Bundle(for: Formulary.self)) {
         self.formController = FormController(
             viewContainerFormulary: viewContainerFormulary,
-            bundle: self.bundle
+            bundle: bundle
         )
         self.formController?.loadFieldsFromJSONDictionary(listItems)
         self.formController?.formControllerOutput = self
     }
     
-    open func start(_ button: UIButton, jsonFile: String) -> UIView {
+    open func start(_ button: UIButton, jsonFile: String, bundle: Bundle = Bundle(for: Formulary.self)) -> UIView {
         self.formController = FormController(
             button: button,
-            bundle: self.bundle
+            bundle: bundle
         )
         self.formController?.loadFieldsFromJSONFile(jsonFile)
         self.formController?.formControllerOutput = self
@@ -64,10 +63,10 @@ open class Formulary: PFormController {
         return self.formController!.recoverView()
     }
     
-    open func start(_ button: UIButton, listItems: [[AnyHashable: Any]]) -> UIView {
+    open func start(_ button: UIButton, listItems: [[AnyHashable: Any]], bundle: Bundle = Bundle(for: Formulary.self)) -> UIView {
         self.formController = FormController(
             button: button,
-            bundle: self.bundle
+            bundle: bundle
         )
         self.formController?.loadFieldsFromJSONDictionary(listItems)
         self.formController?.formControllerOutput = self
@@ -103,12 +102,6 @@ open class Formulary: PFormController {
             return
         }
         form.clearFormulary()
-    }
-     
-    // Bundle
-    
-    open func loadBundle(_ bundle: Bundle) {
-        self.bundle = bundle
     }
     
     // MARK: PFormulary

@@ -6,7 +6,47 @@
               "style": {
                             "styleCell": "custom",
                             "nameXib": "ExternalView"
-                       }
+              },
+              "validator": [
+                            {
+                            "type": "mandatory",
+                            "textError": "texto mandatory"
+                            }
+                            ]
+              
+              },
+              {
+                    "key": "keyBool",
+                    "type": "boolean",
+              "label": "titulo Bool",
+              "validator": [
+                            {
+                            "type": "mandatory",
+                            "textError": "texto mandatory"
+                            }
+                            ],
+              "style": {
+                    "styleCell": "line"
+                }
+              },
+              {
+              "key": "heyDate",
+              "type": "datePicker",
+              "label": "titulodate",
+              "validator": [
+                            {
+                            "type": "mandatory",
+                            "textError": "texto mandatory"
+                            },
+                            {
+                            "type": "age",
+                            "textError": "text edad minima",
+                            "minAge": "12"
+                            }
+                            ],
+              "style": {
+                    "styleCell": "line"
+                    }
               }
               ]
 }

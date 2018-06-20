@@ -155,7 +155,7 @@ open class FormField: UIView {
         guard let validator = self.validator else { return "" }
         
         let validatorFail = validator.filter { (validator) -> Bool in
-            return validator.validate(value) == false // TODO EDU aqui pilla esto "04/06/2017"
+            return validator.validate(value) == false
         }
         
         let orderValidators = validatorFail.sorted { (validador1, _) -> Bool in
