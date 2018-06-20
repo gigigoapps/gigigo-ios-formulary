@@ -12,7 +12,7 @@ import GIGLibrary
 protocol PickerFormFieldOutPut {
     func launchRule(idField: [String], behaivour: TypeBehavior)
 }
-
+// TODO EDU falta meter pruebas con los custom como se ven con el picker y datePicker
 class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent {
 
     @IBOutlet var titleLabel: UILabel!

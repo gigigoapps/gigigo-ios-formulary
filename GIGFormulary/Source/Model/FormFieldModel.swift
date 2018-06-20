@@ -174,7 +174,7 @@ class FormFieldModel: NSObject {
         }
         
         //-- Validate --
-
+// TODO EDU esto esta mal
         if let custom = json["customValidator"] as? String {
             self.custom = custom
         }
