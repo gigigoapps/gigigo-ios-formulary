@@ -32,10 +32,7 @@ class FormFieldModel: NSObject {
     var isHidden = false
     var expandableInfo: ExpandableInfo?
     var rules: FormFieldRules?
-    
-    
-    var custom: String?  // TODO EDU BORRAR
-    
+        
     //-- Links --
     var isLink = false
     var subtype: String?

@@ -72,7 +72,7 @@ class FormFieldsValidator: NSObject {
         if let itemCompare = json["itemsCompare"] as? [String] {
             activity.itemCompare = itemCompare
         }
-        if let custom = json["customValidator"] as? String {
+        if let custom = json["regex"] as? String {
             activity.custom = custom
         }
         

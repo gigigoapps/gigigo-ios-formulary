@@ -183,6 +183,11 @@ window.generateDicValidator = function generateDicValidator(validator) {
         if (valElement.type == "age") {
             itemValidate["minAge"] = valElement.minAge;
         }
+        if (valElement.type == "customValidator") {
+            itemValidate["regex"] = valElement.regex;
+        }
+
+
         if (valElement.type == "lengthText") {
             if (valElement.minLength.length > 0) {
                 itemValidate["minLength"] = valElement.minLength;
