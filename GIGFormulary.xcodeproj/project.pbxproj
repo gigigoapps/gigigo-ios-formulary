@@ -31,7 +31,7 @@
 		7B6191D21DBF92EE00E3BC87 /* GIGLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82F8C1D4B671300DC85F5 /* GIGLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B6191D51DBF935300E3BC87 /* GIGFormulary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB82EF21D4B5DB800DC85F5 /* GIGFormulary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B6191D81DBF98FA00E3BC87 /* SecondTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6191D61DBF988C00E3BC87 /* SecondTypeVC.swift */; };
-		7B676FF91E3892CE007ED7DD /* FRHyperLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B676FF71E3892CE007ED7DD /* FRHyperLabel.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7B676FF91E3892CE007ED7DD /* FRHyperLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B676FF71E3892CE007ED7DD /* FRHyperLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B676FFA1E3892CE007ED7DD /* FRHyperLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B676FF81E3892CE007ED7DD /* FRHyperLabel.m */; };
 		7B7D72761D4B7BDE003FFEE8 /* AgeValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D726A1D4B7BDE003FFEE8 /* AgeValidatorTests.swift */; };
 		7B7D72771D4B7BDE003FFEE8 /* BoolValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D726B1D4B7BDE003FFEE8 /* BoolValidatorTests.swift */; };
@@ -657,8 +657,8 @@
 				7BB82EF61D4B5DB800DC85F5 /* GIGFormulary.h in Headers */,
 				237350CE20DBC4A300477D97 /* IndexFormField.swift in Headers */,
 				237350CD20DBC4A000477D97 /* ExpandableBooleanFormField.swift in Headers */,
-				237350CB20DBC49700477D97 /* PickerFormField.swift in Headers */,
 				7B676FF91E3892CE007ED7DD /* FRHyperLabel.h in Headers */,
+				237350CB20DBC49700477D97 /* PickerFormField.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
