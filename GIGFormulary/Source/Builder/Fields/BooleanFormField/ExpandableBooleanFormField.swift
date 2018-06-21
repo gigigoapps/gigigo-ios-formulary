@@ -15,7 +15,7 @@ struct ExpandableInfo {
 }
 
 @available(iOS 9, *)
-class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
+public class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
     
     // MARK: - IBOutlets
     
@@ -47,7 +47,7 @@ class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
         self.initializeView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -83,7 +83,7 @@ class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
     
     // MARK: GIGFormField (Override)
     
-    override internal var fieldValue: Any? {
+    override public var fieldValue: Any? {
         get {
             return self.acceptButton.isSelected as Any?
         }
@@ -228,13 +228,13 @@ class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
     
     // MARK: - UIResponser (Overrride)
     
-    override var canBecomeFirstResponder: Bool {
+    override public var canBecomeFirstResponder: Bool {
         return false
     }
     
     // MARK: - HyperlinkTextViewDelegate
     
-    func didTapOnHyperlink(URL: URL) {
+    public func didTapOnHyperlink(URL: URL) {
         self.formFieldOutput?.userDidTapLink(URL.lastPathComponent)
     }
 }

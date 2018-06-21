@@ -15,7 +15,7 @@ protocol PickerFormFieldOutPut {
 // TODO EDU falta meter pruebas con los exposedView como se ven con el picker y datePicker
 // crear interfaz para las vistas expuestas
 
-class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent {
+public class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var textTextField: UITextField!
@@ -42,14 +42,14 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         self.initializeView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
     // MARK: GIGFormField (Override)
     
-    override internal var fieldValue: Any? {
+    override public var fieldValue: Any? {
         get {
             if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
                 return (self.formFieldM!.options![self.pickerOptions!.selectedIndex!]).idOption
@@ -272,15 +272,15 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     }
         
     // MARK: UIResponser (Overrride)
-    override var canBecomeFirstResponder: Bool {
+    override public var canBecomeFirstResponder: Bool {
         return self.textTextField.canBecomeFirstResponder
     }
     
-    override func becomeFirstResponder() -> Bool {
+    override public func becomeFirstResponder() -> Bool {
         return self.textTextField.becomeFirstResponder()
     }
     
-    override func resignFirstResponder() -> Bool {
+    override public func resignFirstResponder() -> Bool {
         return self.textTextField.resignFirstResponder()
     }
 }

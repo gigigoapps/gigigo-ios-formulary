@@ -14,7 +14,7 @@ protocol PBooleanFormField {
     func userDidTapLink(_ key: String)
 }
 
-class BooleanFormField: FormField {
+public class BooleanFormField: FormField {
 
     @IBOutlet var buttonAccept: UIButton!
     @IBOutlet var titleLabel: FRHyperLabel!
@@ -42,7 +42,7 @@ class BooleanFormField: FormField {
         self.initializeView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -77,7 +77,7 @@ class BooleanFormField: FormField {
     
     // MARK: GIGFormField (Override)
     
-    override internal var fieldValue: Any? {
+    override public var fieldValue: Any? {
         get {
             return self.buttonAccept.isSelected as Any?
         }
@@ -292,7 +292,7 @@ class BooleanFormField: FormField {
     }
     
     // MARK: UIResponser (Overrride)
-    override var canBecomeFirstResponder: Bool {
+    override public var canBecomeFirstResponder: Bool {
         return false
     }
 }
