@@ -12,7 +12,9 @@ import GIGLibrary
 protocol PickerFormFieldOutPut {
     func launchRule(idField: [String], behaivour: TypeBehavior)
 }
-// TODO EDU falta meter pruebas con los custom como se ven con el picker y datePicker
+// TODO EDU falta meter pruebas con los exposedView como se ven con el picker y datePicker
+// crear interfaz para las vistas expuestas
+
 class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent {
 
     @IBOutlet var titleLabel: UILabel!

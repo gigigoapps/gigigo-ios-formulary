@@ -1,92 +1,25 @@
 {
-    "fields":[    {
-              "key": "key1",
+    "fields":[
+              {
+              "key": "ee",
               "type": "text",
-              "label": "titulo1 key1 con regex",
-              "style": {
-                            "styleCell": "line",
-                            "nameXib": "ExternalView"
-              },
+              "label": "titulo regex",
               "validator": [
                             {
-                                "type": "mandatory",
-                                "textError": "texto mandatory"
-                            },
-                            {
-                            "type": "compare",
-                            "textError": "texto compare",
-                            "itemsCompare": ["key2","key1"]
-                            }
-                        ]
-              },
-              {
-                    "key": "key2",
-                    "type": "text",
-              "label": "titulo key2",
-              "validator": [
-                            ],
-              "style": {
-                    "styleCell": "line"
-                }
-              },
-              {
-              "key": "key1",
-              "type": "picker",
-              "label": "titulo1",
-              "listOptions": [
-                              {
-                              "key": "KeyNoSelected",
-                              "value": "algo"
-                              },
-                              {
-                              "key": "a1",
-                              "value": "algo1"
-                              },
-                              {
-                              "key": "a2",
-                              "value": "algo2"
-                              },
-                              {
-                              "key": "a3",
-                              "value": "algo3"
-                              }
-                              ],
-              "validator": [
-                            {
-                            "type": "mandatory",
-                            "textError": "texto mandatory"
+                            "type": "customValidator",
+                            "textError": "texto erro",
+                            "regex": "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$"
                             }
                             ]
               },
               {
-              "key": "key3",
-              "type": "datePicker",
-              "label": "titulo date",
+              "key": "www",
+              "type": "text",
+              "label": "wwww",
               "validator": [
                             {
-                            "type": "mandatory",
-                            "textError": "texto mandatory"
-                            },
-                            {
-                            "type": "age",
-                            "textError": "texto error minima",
-                            "minAge": "12"
-                            }
-                            ]
-              },
-              {
-              "key": "keyB",
-              "type": "boolean",
-              "label": "boleano sin mandatory"
-              },
-              {
-              "key": "keybool2",
-              "type": "boolean",
-              "label": "Boleano con mandatory",
-              "validator": [
-                            {
-                            "type": "mandatory",
-                            "textError": "texto error mandatory"
+                            "type": "email",
+                            "textError": "textyErrror email"
                             }
                             ]
               }
