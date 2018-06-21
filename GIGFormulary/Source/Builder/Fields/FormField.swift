@@ -25,8 +25,15 @@ open class FormField: UIView {
     var formFieldM: FormFieldModel?
     var viewPpal: UIView?
     var heightConstraint: NSLayoutConstraint?
+    var cellStyle: FormFieldStyleModel?
     
     //-- Init Xib --
+    
+    init(cell: FormFieldStyleModel?) {
+        super.init(frame: CGRect())
+        self.cellStyle = cell
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -46,14 +53,30 @@ open class FormField: UIView {
     }
     
     func loadViewFromNib(_ classField: AnyClass) -> UIView {
-        let bundle = Bundle(for: classField)
-        let classString = NSStringFromClass(classField)
-        let nib = UINib(nibName: classString.components(separatedBy: ".").last!, bundle: bundle)
+        var bundle = Bundle(for: classField)
+        var nameXib = ""
+        
+        if let externalXib = self.cellStyle?.nameXib, let externalBundle = self.cellStyle?.bundle {
+            bundle = externalBundle
+            nameXib = externalXib
+        } else {
+            let classString = NSStringFromClass(classField)
+            guard let xib = classString.components(separatedBy: ".").last else { LogWarn("Name xib not found"); return  UIView() }
+            nameXib = xib
+        }
+        
+        let nib = UINib(nibName: nameXib, bundle: bundle)
         guard let view = nib.instantiate(withOwner: self, options: nil)[0] as? UIView else {
             LogWarn("Not found a type View")
             return UIView()
         }
         return view
+    }
+    
+    
+    func awakeFromNib(classField: AnyClass) {
+        super.awakeFromNib()
+        self.xibSetup(classField)
     }
     
     func awakeFromNib(_ frame: CGRect, classField: AnyClass) {
@@ -116,13 +139,17 @@ open class FormField: UIView {
         }        
     }
     
-    func validate() -> Bool {
+    func validate(extraValues: Any?) -> Bool {
         guard let validator = self.validator else { return true }
         
         var validateResult = true
         for validateRule in validator {
             if validateResult {
-                validateResult = validateRule.validate(self.fieldValue)
+                if validateRule.isKind(of: CompareValidator.self) {
+                    validateResult = validateRule.validate(extraValues)
+                } else {
+                    validateResult = validateRule.validate(self.fieldValue)
+                }
             }
         }
         return validateResult
@@ -132,7 +159,7 @@ open class FormField: UIView {
         guard let validator = self.validator else { return "" }
         
         let validatorFail = validator.filter { (validator) -> Bool in
-            return validator.validate(value) == false // TODO EDU aqui pilla esto "04/06/2017"
+            return validator.validate(value) == false
         }
         
         let orderValidators = validatorFail.sorted { (validador1, _) -> Bool in
@@ -149,8 +176,8 @@ open class FormField: UIView {
     func loadError(error: Any) {
         // TODO nothing
     }
-    
+    /*
     func showCompareError(show: Bool) {
         // TODO nothing
-    }
+    }*/
 }

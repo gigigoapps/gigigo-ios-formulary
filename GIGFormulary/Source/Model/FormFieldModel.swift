@@ -33,8 +33,10 @@ class FormFieldModel: NSObject {
     var expandableInfo: ExpandableInfo?
     var rules: FormFieldRules?
     
-    //-- Validate --
-    var custom: String?
+    
+    var custom: String?  // TODO EDU BORRAR
+    
+    //-- Links --
     var isLink = false
     var subtype: String?
     var fieldDescription: String?
@@ -129,6 +131,9 @@ class FormFieldModel: NSObject {
             self.style = FormFieldStyleModel(bundle: self.bundle)
             self.style?.parseDictionary(styleM)
         }
+        
+        // Validator
+        
         if let validator = json["validator"] as? [[AnyHashable: Any]] {
             do {
                 self.validator = try FormFieldsValidator.parseListValidatorJson(validator)
@@ -137,6 +142,9 @@ class FormFieldModel: NSObject {
                 throw ThrowError.mandatoryElementNotFound
             }
         }
+        
+        // Other component
+        
         if let keyBoard = json["keyboard"] as? String {
             self.keyBoard = keyBoard
         }
@@ -171,12 +179,6 @@ class FormFieldModel: NSObject {
             }
 
             self.rules = FormFieldRules.parseDictionary(rules)
-        }
-        
-        //-- Validate --
-
-        if let custom = json["customValidator"] as? String {
-            self.custom = custom
         }
     }
 }

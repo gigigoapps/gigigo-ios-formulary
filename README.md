@@ -25,23 +25,32 @@ Como usar GIGFormulary
         let dic1 = ["key": "a1",
                     "type": "text",
                     "label": "Titulo de la celda 1",
-                    "mandatory": true]
+                    "validator": [
+                            {
+                           		"type": "mandatory",
+                            		"textError": "texto mandatory"
+                            }
+                        ]
+                    ]
         
         let dic2  = ["key": "a2",
                     "type": "text" as AnyObject,
                     "label": "Titulo de la celda 2",
                     "validator": "email",
-                    "mandatory": true]
-        
-        let dic3  = ["key": "a3",
-                    "type": "text",
-                    "label": "Titulo de la celda 3",
-                    "validator": "customValidator",
-                    "customValidator": "^([0-9])+$",
-                    "mandatory": true]
+                    "validator": [
+                            {
+                           		"type": "mandatory",
+                            		"textError": "texto mandatory"
+                            },
+					            {
+					                "type": "email",
+					                "textError": "Texto error email"
+					            }
+                        ]
+                    ]
         
         let formulary = Formulary.shared
-        formulary.start(self.view, listItems: [dic1, dic2, dic3])
+        formulary.start(self.view, listItems: [dic1, dic2])
 
 ```
  
@@ -60,19 +69,9 @@ Como usar GIGFormulary
         "mandatory": true,
         "isEditing": true,
         "isHidden": true,
-        "textError": "texto error",
         "placeHolder": "texto fondo",
-        "minLength": 2,
-        "maxLength": 12,
         "keyboard": "FormKeyboardTypeText",
         "isPassword": true,
-        "validator": "lengthText",
-        "textErrorValidate": "Texto error validador",
-        "compare": true,
-        "itemsCompare": [
-            "clave1",
-            "clave2"
-        ],
         "textErrorCompare": "Texto Error comparar",
         "style": {
             "backgroundColorField": "#4874ff",
@@ -83,7 +82,27 @@ Como usar GIGFormulary
             "align": "alignCenter",
             "font": "AppleSDGothicNeo-Thin",
             "mandatoryIcon": "imagen"
-        }
+        },
+        "validator": [
+            {
+                "type": "mandatory",
+                "textError": "Texto error obligatorio"
+            },
+            {
+                "type": "lengthText",
+                "textError": "Texto error long",
+                "minLength": "2",
+                "maxLength": "12"
+            },
+            {
+                "type": "compare",
+                "textError": "Texto error comparador",
+                "itemsCompare": [
+                    "key1",
+                    "key2"
+                ]
+            }
+        ]
     }
 ] 
 }
@@ -111,7 +130,6 @@ Como usar GIGFormulary
                 "value": "valor 0"
             }
         ],
-        "mandatory": true,
         "isEditing": true,
         "isHidden": true,
         "textError": "texto error",
@@ -128,7 +146,13 @@ Como usar GIGFormulary
             "align": "alignLeft",
             "font": "AvenirNext-Heavy",
             "mandatoryIcon": "imagen"
-        }
+        },
+        "validator": [
+            {
+                "type": "mandatory",
+                "textError": "Texto error obligatorio"
+            }
+        ]
     }
 ] 
 }
@@ -147,13 +171,9 @@ Como usar GIGFormulary
         "key": "clave",
         "type": "datePicker",
         "label": "titulo",
-        "mandatory": true,
         "isEditing": true,
         "isHidden": true,
-        "textError": "texto error",
         "textAcceptButton": "titulo aceptar",
-        "minAge": 18,
-        "validator": "age",
         "style": {
             "backgroundColorField": "#95ff8e",
             "titleColor": "#38deff",
@@ -166,7 +186,14 @@ Como usar GIGFormulary
             "align": "alignRight",
             "font": "AlNile-Bold",
             "mandatoryIcon": "imagen"
-        }
+        },
+        "validator": [
+            {
+                "type": "age",
+                "textError": "Texto error age",
+                "minAge": "18"
+            }
+        ]
     }
 ] 
 }
@@ -183,11 +210,8 @@ Como usar GIGFormulary
         "key": "clave",
         "type": "boolean",
         "label": "titulo",
-        "mandatory": true,
         "isEditing": true,
         "isHidden": true,
-        "textError": "texto error",
-        "validator": "bool",
         "style": {
             "backgroundColorField": "#94ff95",
             "titleColor": "#ff697c",
@@ -201,7 +225,13 @@ Como usar GIGFormulary
                 "checkBoxOn": "imagenCheck",
                 "checkBoxOff": "imagenCheckOff"
             }
-        }
+        },
+        "validator": [
+            {
+                "type": "bool",
+                "textError": "Text error bool"
+            }
+        ]
     }
 ] 
 }
@@ -229,6 +259,57 @@ Como usar GIGFormulary
 
 ```
 
+### Cargar estilo de celda ###
+Existen 3 tipos de estilos de vista.
+
+* Por defecto
+* De linea
+* Custom
+
+Para añadirse se hara de la siguiente forma:
+
+```
+#!Javascript
+{ 
+ "fields":[
+    	{
+        "key": "clave",
+        "type": "index",
+        "label": "titulo ",        
+        "style": {
+             "styleCell": "line",
+        }
+    	}
+	] 
+}
+
+```
+
+En el caso de las celdas de tupo custom, tendrá un segundo campo llamado nameXib:
+
+```
+#!Javascript
+ 
+"style": {
+     "styleCell": "custom",
+     "nameXib": String name Xib
+}
+
+```
+
+El nombre correspondera con el xib que tengais en la aplicación integradora.
+A la hora de enlazar debeis poner vuestro File's Owner con el tipo de la clase que quereis elegir:
+
+* TextFormField
+* PickerFormField
+* BooleanFormField
+* ExpandableBooleanFormField
+* IndexFormField 
+
+Una vez elegido la clase, debemo desde el storyboard con el "Assistant editor" enlazar con todos los IBOutlet.
+
+Por último, cuando se cargan xib externos, es obligatorio usar el constructor que inyecta el bundle y enviar el bundle de la aplicación integradora (Bundle.main).
+
 ### Tipos de campos ###
 Todas las posibles, Clave-Valor
 
@@ -247,9 +328,50 @@ Todas las posibles, Clave-Valor
 > - postalCode
 > * phone
 > + dniNie
+> + age
+> + compare
+> + mandatory
 > - customValidator
->> Si se añade este validador, tiene como este este clave valor:  "customValidator": "Regex a añadir"
 
+* validatos with extra fields:
+>> lengthText:  "minLength": String or "maxLength": String or both
+>> 
+>> compare: "itemsCompare": [
+                    String Key 1,
+                    String key 2
+                ]
+>>             
+>> customValidator: customValidator: String regex
+>> 
+>> age: "minAge": int or String (int format)
+
+* Ejemplo de validador estandar:
+>  "validator": [
+            {
+                "type": "mandatory",
+                "textError": "Texto error obligatorio"
+            }
+  ]
+  
+* Ejmplo de validador con extra fields:
+> "validator": [
+            {
+                "type": "lengthText",
+                "textError": "Texto error",
+                "minLength": "2",
+                "maxLength": "12"
+            },
+    ]    
+>   "validator": [         {
+                "type": "compare",
+                "textError": "Texto error",
+                "itemsCompare": [
+                    "key1",
+                    "key2"
+                ]
+            }
+        ]
+            
 
 ## Constructores ##
 
@@ -262,6 +384,10 @@ Existen 4 modelos de constructores segun lo que se necesite:
 open func start(_ viewContainerFormulary: UIView, jsonFile: String)
 open func start(_ viewContainerFormulary: UIView, listItems: [[String: AnyObject]])
 
+optional constructor:
+**Cargar un bundle externo:**
+open func start(_ viewContainerFormulary: UIView, jsonFile: String, bundle: Bundle)
+open func start(_ viewContainerFormulary: UIView, listItems: [[String: AnyObject]], bundle: Bundle)
 ```
 
 
@@ -272,6 +398,11 @@ open func start(_ viewContainerFormulary: UIView, listItems: [[String: AnyObject
 #!swift
 open func start(_ button: UIButton, jsonFile: String) -> UIView
 open func start(_ button: UIButton, listItems: [[String: AnyObject]]) -> UIView
+
+optional constructor:
+**Cargar un bundle externo:**
+open func start(_ button: UIButton, jsonFile: String, bundle: Bundle) -> UIView
+open func start(_ button: UIButton, listItems: [[String: AnyObject]], bundle: Bundle) -> UIView
 ```
 
 
@@ -297,6 +428,9 @@ class ViewController: UIViewController, PFormulary {
         //-- Create form Type with JSON --      
          let formulary = Formulary.shared
          formulary.start(self.view, jsonFile: "json_formulary.json")
+        //Optional:
+		 //**Cargar un bundle externo:**
+        //formulary.start(self.view, jsonFile: "json_formulary.json", bundle: Bundle.main)
          formulary.delegate = self
     
         //-- Case: Populate data --
@@ -457,21 +591,18 @@ self.formulary.populateData(dic)
                 "value": "valorC"
             }
         ],
-        "textError": "error_generic_field",
         "value": "clave0"
     },
     {
         "key": "clave3",
         "type": "datePicker",
         "label": "tipoDatePicker",
-        "textError": "error_generic_field",
         "value": "20/01/2017"
     },
     {
         "key": "clave4",
         "type": "boolean",
         "label": "tipoBoolean",
-        "textError": "error_generic_field",
         "value": true        
     }
 ] 
@@ -494,12 +625,6 @@ self.formulary.loadError(dic)
 self.formulary.clearFormulary()
 ```
 
-**Cargar un bundle externo:**
-
-```
-#!swift
-self.formulary.loadBundle(Bundle.main)
-```
 
 ## Métodos delegados ##
 

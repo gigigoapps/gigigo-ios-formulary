@@ -15,10 +15,8 @@ class ViewController: UIViewController, PFormulary {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         //-- Create form Type with JSON --
-       
-         self.formulary.start(self.view, jsonFile: "json_formulary.json")
+        self.formulary.start(self.view, jsonFile: "json_formulary.json", bundle: Bundle.main)
          self.formulary.formularyOutput = self
 
         

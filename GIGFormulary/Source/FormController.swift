@@ -31,24 +31,24 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     
     // INIT
     
-    init(viewContainerFormulary: UIView, bundle: Bundle?) {
+    init(viewContainerFormulary: UIView, bundle: Bundle) {
         super.init()
         self.formViews = FormBuilderViews(
             viewContainerFormulary: viewContainerFormulary,
             formController: self
         )
         
-        self.loadBundle(bundle)
+        self.bundle = bundle
     }
     
-    init(button: UIButton, bundle: Bundle?) {
+    init(button: UIButton, bundle: Bundle) {
         super.init()
         self.formViews = FormBuilderViews(
             button: button,
             formController: self
         )
         
-        self.loadBundle(bundle)
+        self.bundle = bundle
     }
     
     // MARK: Public Method
@@ -104,12 +104,6 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     
     // MARK: Private Method
 
-    fileprivate func loadBundle(_ bundle: Bundle?) {
-        if let bundleForm = bundle {
-            self.bundle = bundleForm
-        }
-    }
-    
     fileprivate func nextFieldTo(_ field: FormField) -> FormField? {
         let nextFieldPos =  self.formFields.index(of: field)!+1
         if nextFieldPos < self.formFields.count {
@@ -130,39 +124,22 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
                 return false
             }
             
+            // Prepare validation
+            
+            var extraFields: Any? = nil
             if let validatorCompare = formFieldM.getValidator(validatorType: TypeValidator.validatorCompare) {
                 guard let itemsCompare = validatorCompare.itemCompare else {
                     return false
                 }
-                let listValues = self.searchValueItemToCompare(itemsCompare)
-                
-                if let validator = field.getValidator(validatorType: CompareValidator.self), validator.validate(listValues) {
-                    self.moveToPositionError(isValid, field)
-                    isValid = false
-                    field.showCompareError(show: true)
-                } else {
-                    field.showCompareError(show: false)
-                }
-            } else {
-                if !field.validate() {
-                    self.moveToPositionError(isValid, field)
-                    isValid = false
-                }
+                extraFields = self.searchValueItemToCompare(itemsCompare)
             }
             
-            if formFieldM.type != TypeField.indexFormField.rawValue {
-                if let key = formFieldM.key {
-                    if let valueString = field.fieldValue as? String {
-                        let value = valueString.trimmingCharacters(in: .whitespaces)
-                        self.formValues["\(key)"] = value as Any?
-                    } else {
-                        self.formValues["\(key)"] = (field.fieldValue != nil) ? field.fieldValue as Any : "" as Any
-                    }
-                } else {
-                    LogWarn("validateFields -> formFieldM.key is Nil")
-                    return false
-                }
+            if !field.validate(extraValues: extraFields) {
+                self.moveToPositionError(isValid, field)
+                isValid = false
             }
+            
+            // Recover data
             
             if formFieldM.type != TypeField.indexFormField.rawValue {
                 if let key = formFieldM.key {

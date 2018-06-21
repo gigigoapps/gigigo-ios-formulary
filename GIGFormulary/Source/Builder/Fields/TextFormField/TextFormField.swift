@@ -36,19 +36,25 @@ protocol PTextFormField {
 }
 
 
-class TextFormField: FormField, UITextFieldDelegate {
+public class TextFormField: FormField, UITextFieldDelegate {
     
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var textTextField: UITextField!
-    @IBOutlet var mandotoryImage: UIImageView!
-    @IBOutlet var errorLabel: UILabel!
+    @IBOutlet public var titleLabel: UILabel!
+    @IBOutlet public var textTextField: UITextField!
+    @IBOutlet public var mandotoryImage: UIImageView!
+    @IBOutlet public var errorLabel: UILabel!
     
-    @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
-    @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
-    @IBOutlet var heightLabelConstraint: NSLayoutConstraint!
+    @IBOutlet public weak var heightErrorLabelConstraint: NSLayoutConstraint!
+    @IBOutlet public weak var widthMandatoryImageConstraint: NSLayoutConstraint!
+    @IBOutlet public var heightLabelConstraint: NSLayoutConstraint!
     
     
     // MARK: INIT
+    
+    override init(cell: FormFieldStyleModel?) {
+        super.init(cell: cell)
+        self.awakeFromNib(classField: type(of: self))
+        self.initializeView()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,31 +62,21 @@ class TextFormField: FormField, UITextFieldDelegate {
         self.initializeView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     // MARK: VALIDATE
     
-    override func validate() -> Bool {
-        let status = super.validate()
+    override func validate(extraValues: Any?) -> Bool {
+        let status = super.validate(extraValues: extraValues)
         if !status {
-            self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
             self.showError()
         } else {
             self.hideError()
         }
         
         return status
-    }
-    
-    override func showCompareError(show: Bool) {
-        if show {
-            self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
-            self.showError()
-        } else {
-            self.hideError()
-        }
     }
     
     // MARK: Public Method
@@ -102,7 +98,7 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     // MARK: GIGFormField (Override)
     
-    override internal var fieldValue: Any? {
+    override public var fieldValue: Any? {
         get {            
             return self.textTextField.text?.count > 0 ? self.textTextField.text : nil
         }
@@ -123,15 +119,16 @@ class TextFormField: FormField, UITextFieldDelegate {
         }
     }
     
-    // MARK: Private Method    
-    
-    fileprivate func showError() {
+    func showError() {
+        self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
         UIView.animate(withDuration: 0.5, animations: {
             self.errorLabel.sizeToFit()
             self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
             self.viewPpal?.layoutIfNeeded()
-        }) 
+        })
     }
+    
+    // MARK: Private Method
     
     fileprivate func hideError() {
         UIView.animate(withDuration: 0.5, animations: {
@@ -205,11 +202,11 @@ class TextFormField: FormField, UITextFieldDelegate {
             }
             if let styleCell = styleField?.styleCell {
                 switch styleCell {
-                case .defaultStyle:
+                case .defaultStyle, .custom:
                     // TODO nothing
                     break
                 case .lineStyle:
-                    self.customizeCell()
+                    self.customizeCell()                    
                 }
             }
         }
@@ -229,16 +226,16 @@ class TextFormField: FormField, UITextFieldDelegate {
     
     // MARK: UITextFieldDelegate
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         self.formFieldOutput!.scrollRectToVisible(self)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.formFieldOutput?.formFieldDidFinish(self)
         return false
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {        
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let textFieldText: NSString = textField.text as NSString? ?? ""
         let finalString = textFieldText.replacingCharacters(in: range, with: string)    
         let lengthValidator = LengthValidator(
@@ -254,15 +251,15 @@ class TextFormField: FormField, UITextFieldDelegate {
     }
     
     // MARK: UIResponser (Overrride)
-    override var canBecomeFirstResponder: Bool {
+    public override var canBecomeFirstResponder: Bool {
         return self.textTextField.canBecomeFirstResponder
     }
     
-    override func becomeFirstResponder() -> Bool {
+    public override func becomeFirstResponder() -> Bool {
         return self.textTextField.becomeFirstResponder()
     }
     
-    override func resignFirstResponder() -> Bool {
+    public override func resignFirstResponder() -> Bool {
         return self.textTextField.resignFirstResponder()
     }
 }

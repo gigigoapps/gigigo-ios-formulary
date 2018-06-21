@@ -19,6 +19,12 @@ class IndexFormField: FormField {
     
     // MARK: INIT
     
+    override init(cell: FormFieldStyleModel?) {
+        super.init(cell: cell)
+        self.awakeFromNib(classField: type(of: self))
+        self.initializeView()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.awakeFromNib(frame, classField: type(of: self))

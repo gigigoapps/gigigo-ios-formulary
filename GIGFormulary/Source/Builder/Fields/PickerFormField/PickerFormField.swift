@@ -12,7 +12,7 @@ import GIGLibrary
 protocol PickerFormFieldOutPut {
     func launchRule(idField: [String], behaivour: TypeBehavior)
 }
-
+// TODO EDU falta meter pruebas con los custom como se ven con el picker y datePicker
 class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent {
 
     @IBOutlet var titleLabel: UILabel!
@@ -27,6 +27,12 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
     var pickerDate: DatePickerComponent?
     
     // MARK: INIT
+    
+    override init(cell: FormFieldStyleModel?) {
+        super.init(cell: cell)
+        self.awakeFromNib(classField: type(of: self))
+        self.initializeView()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -144,11 +150,13 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         self.showError()
     }
     
-    override func validate() -> Bool {
+    override func validate(extraValues: Any?) -> Bool {
         var status = true
         if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
-            self.validator = [OptionValidator()]
-            status = self.validator![0].validate(self.pickerOptions?.selectedIndex)
+            guard let validator = self.validator, validator.count > 0  else {
+                return status
+            }
+            status = validator[0].validate(self.fieldValue)            
         } else {
             if let validator = self.getValidator(validatorType: AgeValidator.self) {
                 status = validator.validate(self.pickerDate?.dateSelected)
@@ -239,7 +247,7 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
             }
             if let styleCell = styleField?.styleCell {
                 switch styleCell {
-                case .defaultStyle:
+                case .defaultStyle, .custom:
                     // TODO nothing
                     break
                 case .lineStyle:
