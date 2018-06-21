@@ -139,13 +139,17 @@ open class FormField: UIView {
         }        
     }
     
-    func validate() -> Bool {
+    func validate(extraValues: Any?) -> Bool {
         guard let validator = self.validator else { return true }
         
         var validateResult = true
         for validateRule in validator {
             if validateResult {
-                validateResult = validateRule.validate(self.fieldValue)
+                if validateRule.isKind(of: CompareValidator.self) {
+                    validateResult = validateRule.validate(extraValues)
+                } else {
+                    validateResult = validateRule.validate(self.fieldValue)
+                }
             }
         }
         return validateResult
@@ -172,8 +176,8 @@ open class FormField: UIView {
     func loadError(error: Any) {
         // TODO nothing
     }
-    
+    /*
     func showCompareError(show: Bool) {
         // TODO nothing
-    }
+    }*/
 }

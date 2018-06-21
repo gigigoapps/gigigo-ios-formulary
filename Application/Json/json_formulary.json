@@ -2,37 +2,66 @@
     "fields":[    {
               "key": "key1",
               "type": "text",
-              "label": "titulo1 compare",
+              "label": "titulo1 key1 con regex",
               "style": {
-                            "styleCell": "custom",
+                            "styleCell": "line",
                             "nameXib": "ExternalView"
               },
               "validator": [
                             {
-                            "type": "mandatory",
-                            "textError": "texto mandatory"
+                                "type": "mandatory",
+                                "textError": "texto mandatory"
+                            },
+                            {
+                            "type": "compare",
+                            "textError": "texto compare",
+                            "itemsCompare": ["key2","key1"]
                             }
-                            ]
-              
+                        ]
               },
               {
-                    "key": "keyBool",
-                    "type": "boolean",
-              "label": "titulo Bool",
+                    "key": "key2",
+                    "type": "text",
+              "label": "titulo key2",
               "validator": [
-                            {
-                            "type": "mandatory",
-                            "textError": "texto mandatory"
-                            }
                             ],
               "style": {
                     "styleCell": "line"
                 }
               },
               {
-              "key": "heyDate",
+              "key": "key1",
+              "type": "picker",
+              "label": "titulo1",
+              "listOptions": [
+                              {
+                              "key": "KeyNoSelected",
+                              "value": "algo"
+                              },
+                              {
+                              "key": "a1",
+                              "value": "algo1"
+                              },
+                              {
+                              "key": "a2",
+                              "value": "algo2"
+                              },
+                              {
+                              "key": "a3",
+                              "value": "algo3"
+                              }
+                              ],
+              "validator": [
+                            {
+                            "type": "mandatory",
+                            "textError": "texto mandatory"
+                            }
+                            ]
+              },
+              {
+              "key": "key3",
               "type": "datePicker",
-              "label": "titulodate",
+              "label": "titulo date",
               "validator": [
                             {
                             "type": "mandatory",
@@ -40,13 +69,26 @@
                             },
                             {
                             "type": "age",
-                            "textError": "text edad minima",
+                            "textError": "texto error minima",
                             "minAge": "12"
                             }
-                            ],
-              "style": {
-                    "styleCell": "line"
-                    }
+                            ]
+              },
+              {
+              "key": "keyB",
+              "type": "boolean",
+              "label": "boleano sin mandatory"
+              },
+              {
+              "key": "keybool2",
+              "type": "boolean",
+              "label": "Boleano con mandatory",
+              "validator": [
+                            {
+                            "type": "mandatory",
+                            "textError": "texto error mandatory"
+                            }
+                            ]
               }
               ]
 }

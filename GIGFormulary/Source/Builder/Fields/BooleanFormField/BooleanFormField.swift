@@ -48,8 +48,8 @@ class BooleanFormField: FormField {
     
     // MARK: VALIDATE
     
-    override func validate() -> Bool {
-        let status = super.validate()
+    override func validate(extraValues: Any?) -> Bool {
+        let status = super.validate(extraValues: extraValues)
         if !status {
             self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
             self.showError()

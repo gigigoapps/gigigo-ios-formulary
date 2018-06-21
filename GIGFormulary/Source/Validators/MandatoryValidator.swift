@@ -22,6 +22,10 @@ class MandatoryValidator: StringValidator {
             }
             return false
         } else {
+            if let valueString = value as? String, valueString == "KeyNoSelected" {
+                return false
+            }
+            
             return true
         }
     }

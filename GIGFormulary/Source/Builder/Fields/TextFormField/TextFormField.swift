@@ -68,8 +68,8 @@ public class TextFormField: FormField, UITextFieldDelegate {
     
     // MARK: VALIDATE
     
-    override func validate() -> Bool {
-        let status = super.validate()
+    override func validate(extraValues: Any?) -> Bool {
+        let status = super.validate(extraValues: extraValues)
         if !status {
             self.showError()
         } else {
@@ -77,14 +77,6 @@ public class TextFormField: FormField, UITextFieldDelegate {
         }
         
         return status
-    }
-    
-    override func showCompareError(show: Bool) {
-        if show {
-            self.showError()
-        } else {
-            self.hideError()
-        }
     }
     
     // MARK: Public Method
@@ -127,16 +119,16 @@ public class TextFormField: FormField, UITextFieldDelegate {
         }
     }
     
-    // MARK: Private Method    
-    
-    fileprivate func showError() {
+    func showError() {
         self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
         UIView.animate(withDuration: 0.5, animations: {
             self.errorLabel.sizeToFit()
             self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
             self.viewPpal?.layoutIfNeeded()
-        }) 
+        })
     }
+    
+    // MARK: Private Method
     
     fileprivate func hideError() {
         UIView.animate(withDuration: 0.5, animations: {
@@ -210,15 +202,11 @@ public class TextFormField: FormField, UITextFieldDelegate {
             }
             if let styleCell = styleField?.styleCell {
                 switch styleCell {
-                case .defaultStyle:
+                case .defaultStyle, .custom:
                     // TODO nothing
                     break
                 case .lineStyle:
-                    self.customizeCell()
-                    
-                case .custom:
-                    // TODO EDU
-                    break
+                    self.customizeCell()                    
                 }
             }
         }

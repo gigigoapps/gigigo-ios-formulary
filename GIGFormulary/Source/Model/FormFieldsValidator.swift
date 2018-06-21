@@ -17,6 +17,7 @@ class FormFieldsValidator: NSObject {
     var maxLengthValue: Int?
     var minAge: Int?
     var itemCompare: [String]?
+    var custom: String?
     
     // MARK: Public methods
     
@@ -69,6 +70,9 @@ class FormFieldsValidator: NSObject {
         }
         if let itemCompare = json["itemsCompare"] as? [String] {
             activity.itemCompare = itemCompare
+        }
+        if let custom = json["customValidator"] as? String {
+            activity.custom = custom
         }
         
         return activity

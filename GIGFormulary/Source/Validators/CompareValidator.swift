@@ -22,7 +22,7 @@ class CompareValidator: StringValidator {
                 return value == first
             })
             
-            return compareElement.contains(false)
+            return !compareElement.contains(false)
         }
         return true
     }

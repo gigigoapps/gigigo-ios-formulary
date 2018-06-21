@@ -150,11 +150,13 @@ class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent 
         self.showError()
     }
     
-    override func validate() -> Bool {
+    override func validate(extraValues: Any?) -> Bool {
         var status = true
         if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
-            self.validator = [OptionValidator()]
-            status = self.validator![0].validate(self.pickerOptions?.selectedIndex)
+            guard let validator = self.validator, validator.count > 0  else {
+                return status
+            }
+            status = validator[0].validate(self.fieldValue)            
         } else {
             if let validator = self.getValidator(validatorType: AgeValidator.self) {
                 status = validator.validate(self.pickerDate?.dateSelected)

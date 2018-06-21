@@ -124,39 +124,22 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
                 return false
             }
             
+            // Prepare validation
+            
+            var extraFields: Any? = nil
             if let validatorCompare = formFieldM.getValidator(validatorType: TypeValidator.validatorCompare) {
                 guard let itemsCompare = validatorCompare.itemCompare else {
                     return false
                 }
-                let listValues = self.searchValueItemToCompare(itemsCompare)
-                
-                if let validator = field.getValidator(validatorType: CompareValidator.self), validator.validate(listValues) {
-                    self.moveToPositionError(isValid, field)
-                    isValid = false
-                    field.showCompareError(show: true)
-                } else {
-                    field.showCompareError(show: false)
-                }
-            } else {
-                if !field.validate() {
-                    self.moveToPositionError(isValid, field)
-                    isValid = false
-                }
+                extraFields = self.searchValueItemToCompare(itemsCompare)
             }
             
-            if formFieldM.type != TypeField.indexFormField.rawValue {
-                if let key = formFieldM.key {
-                    if let valueString = field.fieldValue as? String {
-                        let value = valueString.trimmingCharacters(in: .whitespaces)
-                        self.formValues["\(key)"] = value as Any?
-                    } else {
-                        self.formValues["\(key)"] = (field.fieldValue != nil) ? field.fieldValue as Any : "" as Any
-                    }
-                } else {
-                    LogWarn("validateFields -> formFieldM.key is Nil")
-                    return false
-                }
+            if !field.validate(extraValues: extraFields) {
+                self.moveToPositionError(isValid, field)
+                isValid = false
             }
+            
+            // Recover data
             
             if formFieldM.type != TypeField.indexFormField.rawValue {
                 if let key = formFieldM.key {

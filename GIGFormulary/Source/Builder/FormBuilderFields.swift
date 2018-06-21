@@ -113,7 +113,7 @@ class FormBuilderFields: NSObject {
                 let typeValidator = self.validatorsType[typeValidate]
                 let validator: Validator
                 if let custom = formFieldM.custom {
-                    validator = typeValidator!.init(mandatory: isMandatory, custom: custom)
+                    validator = typeValidator!.init(mandatory: isMandatory, custom: custom)  // TODO EDU hay q quytar este custom de aqui y del modelo
                 } else {
                     validator = typeValidator!.init(mandatory: isMandatory)
                 }
