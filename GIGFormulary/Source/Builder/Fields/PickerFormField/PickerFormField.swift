@@ -12,8 +12,13 @@ import GIGLibrary
 protocol PickerFormFieldOutPut {
     func launchRule(idField: [String], behaivour: TypeBehavior)
 }
-// TODO EDU falta meter pruebas con los exposedView como se ven con el picker y datePicker
-// crear interfaz para las vistas expuestas
+// TODO EDU
+// crear interfaz (protocol para no hacer publico todo) para las vistas expuestas
+// da problemas el boolean, siempre dice q es mandatory a false
+// El texto de error cuando se pulsa 2 veces se va a la izquierda
+// falla el expandable
+// en la web falta el exapandable
+// en la web falta añadir lo del custom view
 
 public class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent {
 

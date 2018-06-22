@@ -36,16 +36,7 @@ protocol PTextFormField {
 }
 
 
-public class TextFormField: FormField, UITextFieldDelegate {
-    
-    @IBOutlet public var titleLabel: UILabel!
-    @IBOutlet public var textTextField: UITextField!
-    @IBOutlet public var mandotoryImage: UIImageView!
-    @IBOutlet public var errorLabel: UILabel!
-    
-    @IBOutlet public weak var heightErrorLabelConstraint: NSLayoutConstraint!
-    @IBOutlet public weak var widthMandatoryImageConstraint: NSLayoutConstraint!
-    @IBOutlet public var heightLabelConstraint: NSLayoutConstraint!
+class TextFormField: TextCellInterface, UITextFieldDelegate {
     
     
     // MARK: INIT
