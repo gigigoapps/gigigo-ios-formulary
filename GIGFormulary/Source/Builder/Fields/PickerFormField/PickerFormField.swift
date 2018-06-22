@@ -160,20 +160,7 @@ class PickerFormField: PickerCellInterface, POptionsPickerComponent, PDatePicker
     }
     
     override func validate(extraValues: Any?) -> Bool {
-        var status = true
-        if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
-            guard let validator = self.validator, validator.count > 0  else {
-                return status
-            }
-            status = validator[0].validate(self.fieldValue)            
-        } else {
-            if let validatorMandatory = self.getValidator(validatorType: MandatoryValidator.self) {
-                status = validatorMandatory.validate(self.fieldValue)
-            }
-            if status, let validator = self.getValidator(validatorType: AgeValidator.self) {
-                status = validator.validate(self.pickerDate?.dateSelected)
-            }
-        }
+        let status = super.validate(extraValues: self.pickerDate?.dateSelected)
         
         if !status {
             if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
