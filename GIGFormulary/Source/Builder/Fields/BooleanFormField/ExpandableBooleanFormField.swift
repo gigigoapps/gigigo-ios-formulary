@@ -15,20 +15,8 @@ struct ExpandableInfo {
 }
 
 @available(iOS 9, *)
-public class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
-    
-    // MARK: - IBOutlets
-    
-    @IBOutlet var acceptButton: UIButton!
-    @IBOutlet var mandotoryImage: UIImageView!
-    @IBOutlet var errorLabel: UILabel!
-    @IBOutlet weak var textContainerView: UIView!
-    @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
-    @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
-    @IBOutlet weak var expandCollapseButton: UIButton!
-    
+class ExpandableBooleanFormField: ExpandableCellInterface, HyperlinkTextViewDelegate {
     // MARK: - Private attributes
-    
     private var checkBoxOn: UIImage?
     private var checkBoxOff: UIImage?
     private var expandableTextView: ExpandableTextView?
@@ -47,7 +35,7 @@ public class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
         self.initializeView()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -83,7 +71,7 @@ public class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
     
     // MARK: GIGFormField (Override)
     
-    override public var fieldValue: Any? {
+    override var fieldValue: Any? {
         get {
             return self.acceptButton.isSelected as Any?
         }
@@ -228,13 +216,13 @@ public class ExpandableBooleanFormField: FormField, HyperlinkTextViewDelegate {
     
     // MARK: - UIResponser (Overrride)
     
-    override public var canBecomeFirstResponder: Bool {
+    override var canBecomeFirstResponder: Bool {
         return false
     }
     
     // MARK: - HyperlinkTextViewDelegate
     
-    public func didTapOnHyperlink(URL: URL) {
+    func didTapOnHyperlink(URL: URL) {
         self.formFieldOutput?.userDidTapLink(URL.lastPathComponent)
     }
 }

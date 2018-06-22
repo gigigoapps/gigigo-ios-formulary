@@ -12,10 +12,7 @@ protocol PIndexFormField {
     func userDidTapLink(_ key: String)
 }
 
-public class IndexFormField: FormField {
-
-    @IBOutlet var indexLabel: FRHyperLabel!
-    
+class IndexFormField: IndexCellInterface {
     
     // MARK: INIT
     
@@ -31,7 +28,7 @@ public class IndexFormField: FormField {
         self.initializeView()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

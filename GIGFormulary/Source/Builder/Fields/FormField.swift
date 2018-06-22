@@ -176,8 +176,4 @@ open class FormField: UIView {
     func loadError(error: Any) {
         // TODO nothing
     }
-    /*
-    func showCompareError(show: Bool) {
-        // TODO nothing
-    }*/
 }

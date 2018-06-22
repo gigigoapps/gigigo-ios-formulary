@@ -14,16 +14,7 @@ protocol PBooleanFormField {
     func userDidTapLink(_ key: String)
 }
 
-public class BooleanFormField: FormField {
-
-    @IBOutlet var buttonAccept: UIButton!
-    @IBOutlet var titleLabel: FRHyperLabel!
-    @IBOutlet var mandotoryImage: UIImageView!
-    @IBOutlet var errorLabel: UILabel!
-    
-    @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
-    @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
-    
+class BooleanFormField: BoolCellInterace {    
     //-- Local var --
     var checkBoxOn: UIImage?
     var checkBoxOff: UIImage?
@@ -42,7 +33,7 @@ public class BooleanFormField: FormField {
         self.initializeView()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -77,7 +68,7 @@ public class BooleanFormField: FormField {
     
     // MARK: GIGFormField (Override)
     
-    override public var fieldValue: Any? {
+    override var fieldValue: Any? {
         get {
             return self.buttonAccept.isSelected as Any?
         }
@@ -292,7 +283,7 @@ public class BooleanFormField: FormField {
     }
     
     // MARK: UIResponser (Overrride)
-    override public var canBecomeFirstResponder: Bool {
+    override var canBecomeFirstResponder: Bool {
         return false
     }
 }

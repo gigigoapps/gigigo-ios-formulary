@@ -20,15 +20,7 @@ protocol PickerFormFieldOutPut {
 // en la web falta el exapandable
 // en la web falta añadir lo del custom view
 
-public class PickerFormField: FormField, POptionsPickerComponent, PDatePickerComponent {
-
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var textTextField: UITextField!
-    @IBOutlet var mandotoryImage: UIImageView!
-    @IBOutlet var errorLabel: UILabel!
-    
-    @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
-    @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
+class PickerFormField: PickerCellInterface, POptionsPickerComponent, PDatePickerComponent {
     
     var pickerOptions: OptionsPickerComponent?
     var pickerDate: DatePickerComponent?
@@ -47,14 +39,14 @@ public class PickerFormField: FormField, POptionsPickerComponent, PDatePickerCom
         self.initializeView()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
     // MARK: GIGFormField (Override)
     
-    override public var fieldValue: Any? {
+    override var fieldValue: Any? {
         get {
             if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
                 return (self.formFieldM!.options![self.pickerOptions!.selectedIndex!]).idOption
@@ -277,15 +269,15 @@ public class PickerFormField: FormField, POptionsPickerComponent, PDatePickerCom
     }
         
     // MARK: UIResponser (Overrride)
-    override public var canBecomeFirstResponder: Bool {
+    override var canBecomeFirstResponder: Bool {
         return self.textTextField.canBecomeFirstResponder
     }
     
-    override public func becomeFirstResponder() -> Bool {
+    override func becomeFirstResponder() -> Bool {
         return self.textTextField.becomeFirstResponder()
     }
     
-    override public func resignFirstResponder() -> Bool {
+    override func resignFirstResponder() -> Bool {
         return self.textTextField.resignFirstResponder()
     }
 }

@@ -14,6 +14,10 @@
 		234ACB052091BB800096FCE7 /* FormFieldRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234ACB042091BB800096FCE7 /* FormFieldRules.swift */; };
 		236B1CDA20DCCF3F004146B1 /* TextCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236B1CD920DCCF3F004146B1 /* TextCellInterface.swift */; };
 		236B1CDB20DCD0B3004146B1 /* TextCellInterface.swift in Headers */ = {isa = PBXBuildFile; fileRef = 236B1CD920DCCF3F004146B1 /* TextCellInterface.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		236B1CDD20DCD8C6004146B1 /* BoolCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236B1CDC20DCD8C6004146B1 /* BoolCellInterface.swift */; };
+		236B1CE120DCD8E9004146B1 /* ExpandibleCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236B1CE020DCD8E9004146B1 /* ExpandibleCellInterface.swift */; };
+		236B1CE320DCD901004146B1 /* PickerCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236B1CE220DCD901004146B1 /* PickerCellInterface.swift */; };
+		236B1CE520DCD90C004146B1 /* IndexCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236B1CE420DCD90C004146B1 /* IndexCellInterface.swift */; };
 		237350CB20DBC49700477D97 /* PickerFormField.swift in Headers */ = {isa = PBXBuildFile; fileRef = 7B7D72DA1D4B8296003FFEE8 /* PickerFormField.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		237350CC20DBC49A00477D97 /* BooleanFormField.swift in Headers */ = {isa = PBXBuildFile; fileRef = 7B7D72D61D4B8296003FFEE8 /* BooleanFormField.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		237350CD20DBC4A000477D97 /* ExpandableBooleanFormField.swift in Headers */ = {isa = PBXBuildFile; fileRef = 020AEE54208DE07700E61BB5 /* ExpandableBooleanFormField.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -154,6 +158,10 @@
 		2332088C20C120A300E84547 /* CompareValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareValidator.swift; sourceTree = "<group>"; };
 		234ACB042091BB800096FCE7 /* FormFieldRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFieldRules.swift; sourceTree = "<group>"; };
 		236B1CD920DCCF3F004146B1 /* TextCellInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCellInterface.swift; sourceTree = "<group>"; };
+		236B1CDC20DCD8C6004146B1 /* BoolCellInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolCellInterface.swift; sourceTree = "<group>"; };
+		236B1CE020DCD8E9004146B1 /* ExpandibleCellInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandibleCellInterface.swift; sourceTree = "<group>"; };
+		236B1CE220DCD901004146B1 /* PickerCellInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCellInterface.swift; sourceTree = "<group>"; };
+		236B1CE420DCD90C004146B1 /* IndexCellInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexCellInterface.swift; sourceTree = "<group>"; };
 		2375C63120BFFAA4002AE303 /* FormFieldsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFieldsValidator.swift; sourceTree = "<group>"; };
 		2375C63320C0006C002AE303 /* MandatoryValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MandatoryValidator.swift; sourceTree = "<group>"; };
 		23BC0A7420D9136500659514 /* ExternalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExternalView.xib; sourceTree = "<group>"; };
@@ -282,6 +290,10 @@
 			isa = PBXGroup;
 			children = (
 				236B1CD920DCCF3F004146B1 /* TextCellInterface.swift */,
+				236B1CDC20DCD8C6004146B1 /* BoolCellInterface.swift */,
+				236B1CE020DCD8E9004146B1 /* ExpandibleCellInterface.swift */,
+				236B1CE220DCD901004146B1 /* PickerCellInterface.swift */,
+				236B1CE420DCD90C004146B1 /* IndexCellInterface.swift */,
 			);
 			path = ExposedViews;
 			sourceTree = "<group>";
@@ -848,15 +860,18 @@
 				7B676FFA1E3892CE007ED7DD /* FRHyperLabel.m in Sources */,
 				7BC7EBC91D4F6F860022D1C5 /* Formulary.swift in Sources */,
 				7B7D730D1D4B8296003FFEE8 /* PhoneValidator.swift in Sources */,
+				236B1CE520DCD90C004146B1 /* IndexCellInterface.swift in Sources */,
 				7B7D730E1D4B8296003FFEE8 /* PostalCodeValidator.swift in Sources */,
 				7B7D730A1D4B8296003FFEE8 /* MailValidator.swift in Sources */,
 				7B7D73061D4B8296003FFEE8 /* AgeValidator.swift in Sources */,
+				236B1CE320DCD901004146B1 /* PickerCellInterface.swift in Sources */,
 				7B7D73051D4B8296003FFEE8 /* FormFieldStyleModel.swift in Sources */,
 				234ACB052091BB800096FCE7 /* FormFieldRules.swift in Sources */,
 				7B7D73071D4B8296003FFEE8 /* BoolValidator.swift in Sources */,
 				7B7D72FF1D4B8296003FFEE8 /* FormBuilderFields.swift in Sources */,
 				7B7D72F51D4B8296003FFEE8 /* OptionsPickerComponent.swift in Sources */,
 				7B7D73001D4B8296003FFEE8 /* FormBuilderViews.swift in Sources */,
+				236B1CE120DCD8E9004146B1 /* ExpandibleCellInterface.swift in Sources */,
 				7B7D73041D4B8296003FFEE8 /* FormFieldOptionsModel.swift in Sources */,
 				7B7D72FB1D4B8296003FFEE8 /* PickerFormField.swift in Sources */,
 				020AEE55208DE07700E61BB5 /* ExpandableBooleanFormField.swift in Sources */,
@@ -870,6 +885,7 @@
 				7B7D73011D4B8296003FFEE8 /* FormConstant.swift in Sources */,
 				7B7D72FA1D4B8296003FFEE8 /* FormField.swift in Sources */,
 				7B7D73031D4B8296003FFEE8 /* FormFieldModel.swift in Sources */,
+				236B1CDD20DCD8C6004146B1 /* BoolCellInterface.swift in Sources */,
 				7B7D730B1D4B8296003FFEE8 /* NumericValidator.swift in Sources */,
 				7B7D73081D4B8296003FFEE8 /* DNINIEValidator.swift in Sources */,
 				7B7D730F1D4B8296003FFEE8 /* RegexValidator.swift in Sources */,

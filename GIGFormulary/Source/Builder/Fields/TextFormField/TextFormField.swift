@@ -8,26 +8,6 @@
 
 import UIKit
 import GIGLibrary
-private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
 
 
 protocol PTextFormField {
@@ -35,9 +15,7 @@ protocol PTextFormField {
     func formFieldDidFinish(_ field: FormField)
 }
 
-
 class TextFormField: TextCellInterface, UITextFieldDelegate {
-    
     
     // MARK: INIT
     
@@ -53,7 +31,7 @@ class TextFormField: TextCellInterface, UITextFieldDelegate {
         self.initializeView()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -89,7 +67,7 @@ class TextFormField: TextCellInterface, UITextFieldDelegate {
     
     // MARK: GIGFormField (Override)
     
-    override public var fieldValue: Any? {
+    override var fieldValue: Any? {
         get {            
             return self.textTextField.text?.count > 0 ? self.textTextField.text : nil
         }
@@ -217,16 +195,16 @@ class TextFormField: TextCellInterface, UITextFieldDelegate {
     
     // MARK: UITextFieldDelegate
     
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         self.formFieldOutput!.scrollRectToVisible(self)
     }
     
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.formFieldOutput?.formFieldDidFinish(self)
         return false
     }
     
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let textFieldText: NSString = textField.text as NSString? ?? ""
         let finalString = textFieldText.replacingCharacters(in: range, with: string)    
         let lengthValidator = LengthValidator(
@@ -242,15 +220,37 @@ class TextFormField: TextCellInterface, UITextFieldDelegate {
     }
     
     // MARK: UIResponser (Overrride)
-    public override var canBecomeFirstResponder: Bool {
+    override var canBecomeFirstResponder: Bool {
         return self.textTextField.canBecomeFirstResponder
     }
     
-    public override func becomeFirstResponder() -> Bool {
+    override func becomeFirstResponder() -> Bool {
         return self.textTextField.becomeFirstResponder()
     }
     
-    public override func resignFirstResponder() -> Bool {
+    override func resignFirstResponder() -> Bool {
         return self.textTextField.resignFirstResponder()
+    }
+}
+
+// Comparations
+
+private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l < r
+    case (nil, _?):
+        return true
+    default:
+        return false
+    }
+}
+
+private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l > r
+    default:
+        return rhs < lhs
     }
 }

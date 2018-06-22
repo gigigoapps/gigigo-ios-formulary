@@ -1,5 +1,5 @@
 //
-//  TextCell.swift
+//  BoolCellInterface.swift
 //  GIGFormulary
 //
 //  Created by Eduardo Parada on 22/6/18.
@@ -8,14 +8,13 @@
 
 import Foundation
 
-class TextCellInterface: FormField {
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var textTextField: UITextField!
+public class BoolCellInterace: FormField {    
+    @IBOutlet var buttonAccept: UIButton!
+    @IBOutlet var titleLabel: FRHyperLabel!
     @IBOutlet var mandotoryImage: UIImageView!
     @IBOutlet var errorLabel: UILabel!
     
     //-- Constraints --
     @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
-    @IBOutlet var heightLabelConstraint: NSLayoutConstraint!
 }

@@ -1,5 +1,5 @@
 //
-//  TextCell.swift
+//  PickerCellInterface.swift
 //  GIGFormulary
 //
 //  Created by Eduardo Parada on 22/6/18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TextCellInterface: FormField {
+class PickerCellInterface: FormField {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var textTextField: UITextField!
     @IBOutlet var mandotoryImage: UIImageView!
@@ -17,5 +17,4 @@ class TextCellInterface: FormField {
     //-- Constraints --
     @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
-    @IBOutlet var heightLabelConstraint: NSLayoutConstraint!
 }
