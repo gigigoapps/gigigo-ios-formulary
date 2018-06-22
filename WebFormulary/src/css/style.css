@@ -54,17 +54,16 @@
         }
         .buttonAdd {
             background-color: blue;
-            border-radius: 0px 10px 10px 0px;
+            border-radius: 0px 10px 0px 10px;
             color: white;
             float: right;
             font-size: 49px;
-            height: 570px;
+            height: auto;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonAdd p{
-                margin-top: 240px;
             }
             .buttonAdd:hover {
                 background-color: skyblue;
@@ -72,17 +71,17 @@
             }
         .buttonRemove {
             background-color: red;
-            border-radius: 0px 10px 10px 0px;
+            border-radius: 0px 10px 0px 10px;
             color: white;
             float: right;
             font-size: 49px;
-            height: 230px;
+            height: auto;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonRemove p{
-                margin-top: 70px;
+                
             }
             .buttonRemove:hover {
                 background-color: gray;
@@ -560,8 +559,8 @@
 
 .sizeZone {
     float: left;
-    height: 51px;
-    margin-left: 51px;
+    height: 49px;
+    margin-left: 28px;
     width: 100%;
 }
     .sizeZone p {
@@ -590,12 +589,7 @@
 .colorOKPicker {
     margin-left: 12px;
 }
-.buttonAddPicker {
-    height: 581px;
-}
-    .buttonAddPicker p {
-        margin-top: 257px;
-    }
+
     
 .withOutStyle{
     width: 100%;
@@ -625,12 +619,7 @@
 .stylePicker{
     height: 205px;
 }
-.buttonRemoveText {
-    height: 476px;
-}
-    .buttonRemoveText p {
-        margin-top: 209px;
-    }
+
 .minAgeContainer {
     height: 43px;
     width: 100%;
@@ -682,7 +671,7 @@
 .fontPositionZone {
     float: left;
     height: 50px;
-    margin-left: 72px;
+    margin-left: 28px;
     width: 100%;
 }
     .fontPositionZone p{
@@ -716,7 +705,7 @@
 .imagesZone {
     float: left;
     height: 51px;
-    margin-left: 21px;
+    margin-left: 28px;
     width: 100%;
 }
     .imagesZone p {
@@ -1032,3 +1021,33 @@
 .specialSpaceRule {
     margin-left: 10px !important;
 }
+
+.clasicCell, .customCell {
+    display: none;
+}
+
+#selectTypeCell{
+    margin-left: 24px;
+}
+
+.customCell {
+    margin-left: 28px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+    .customCell p {
+        margin-bottom: 0px;
+        float: left;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+
+    .customCell input {
+        height: 38px;
+        margin-top: 0px;
+        width: 300px;
+    }
+
+
+

@@ -68,7 +68,9 @@ window.createElementField = function createElementField(typeField) {
     var htmlFont = getFontPositionZone()
     var htmlImage = getHtmlImageMandatory();
     var htmlRules = getRules();
-    var htmlValidators = getValidatorsZone()
+    var htmlValidators = getValidatorsZone();
+    var htmlSelectorCell = getSelectorCell();
+    var htmlCustomCell = getHtmlCustomCell();
 
     if (typeField == "Text") {
         html = require('html-loader!../aux/auxText.html')
@@ -77,6 +79,8 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
             .replace('{{htmlValidators}}',htmlValidators)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
     else if (typeField == "Picker") {
         idPickerField = 1; // Reset Picker

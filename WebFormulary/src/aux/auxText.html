@@ -49,19 +49,30 @@
 
              
               <div class="styleField">
-                   <h4>Estilos de celda:</h4>
-                        <div class="colorZone">
-                        {{colorBasicZone}}
-                    </div>                                   
-                    <div class="sizeZone">
-                        <p>Tamaño titulo:</p>
-                        <input id="sizeTitle" type="text" name="element">
-                        <p>Tamaño texto error:</p>
-                        <input id="sizeError" type="text" name="element">
-                    </div>
+                  <h4>Estilos de celda:</h4>
+                  {{htmlSelectorCell}}
 
-                    {{htmlFont}}
-                    {{htmlImage}}
+                  <div class="containerTypeCell"> 
+                      <div class="clasicCell">
+                          <div class="colorZone">
+                              {{colorBasicZone}}
+                          </div>                                   
+                          <div class="sizeZone">
+                              <p>Tamaño titulo:</p>
+                              <input id="sizeTitle" type="text" name="element">
+                              <p>Tamaño texto error:</p>
+                              <input id="sizeError" type="text" name="element">
+                          </div>
+
+                          {{htmlFont}}
+                      </div>
+                      <div class="customCell">
+                          {{htmlCustomCell}}
+                      </div>
+                  </div>
+
+                  {{htmlImage}}
+
               </div>
               <div class="spaceSeparate"></div>
          </div>

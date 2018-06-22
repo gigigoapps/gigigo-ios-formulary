@@ -58,6 +58,7 @@ window.getListValidators = function getListValidators(idContainerValidator){
 	return html;
 }
 
+
 window.changeSelectionValidator = function changeSelectionValidator(idClassValidator) {
 
     var selectorFound = document.getElementById("selectTypeValidator"+idClassValidator);

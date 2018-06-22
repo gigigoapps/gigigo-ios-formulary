@@ -13,7 +13,6 @@ protocol PickerFormFieldOutPut {
     func launchRule(idField: [String], behaivour: TypeBehavior)
 }
 // TODO EDU
-// El texto de error cuando se pulsa 2 veces se va a la izquierda
 // falla el expandable el texto
 // en la web falta el exapandable (claves:
 /*
@@ -26,7 +25,7 @@ protocol PickerFormFieldOutPut {
 
 // en la web falta añadir lo del custom view
 // probar las imagenes de los mandatory y de los checkbox desde app externa
-// no se pinta el icono de mandatory en el expandable
+// meter en el web constructor que cuando pulsas a generate te navege hasta el principio del json
 
 class PickerFormField: PickerCellInterface, POptionsPickerComponent, PDatePickerComponent {
     
