@@ -103,7 +103,6 @@ class IndexFormField: IndexCellInterface {
     // MARK: Parse
     
     fileprivate func existLink(_ text: String) -> Bool {
-        // TODOE EDU otra opcion // return text.characters.index(of: "{") != nil
         if text.index(of: "{") != nil {
             return true
         }

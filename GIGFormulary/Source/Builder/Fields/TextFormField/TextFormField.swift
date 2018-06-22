@@ -40,6 +40,7 @@ class TextFormField: TextCellInterface, UITextFieldDelegate {
     override func validate(extraValues: Any?) -> Bool {
         let status = super.validate(extraValues: extraValues)
         if !status {
+            self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
             self.showError()
         } else {
             self.hideError()
@@ -89,12 +90,13 @@ class TextFormField: TextCellInterface, UITextFieldDelegate {
     }
     
     func showError() {
-        self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
-        UIView.animate(withDuration: 0.5, animations: {
-            self.errorLabel.sizeToFit()
-            self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
-            self.viewPpal?.layoutIfNeeded()
-        })
+        if self.heightErrorLabelConstraint.constant == 0 {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.errorLabel.sizeToFit()
+                self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
+                self.viewPpal?.layoutIfNeeded()
+            })
+        }
     }
     
     // MARK: Private Method

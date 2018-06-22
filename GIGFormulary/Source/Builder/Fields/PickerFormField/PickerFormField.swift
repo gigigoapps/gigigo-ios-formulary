@@ -13,12 +13,20 @@ protocol PickerFormFieldOutPut {
     func launchRule(idField: [String], behaivour: TypeBehavior)
 }
 // TODO EDU
-// crear interfaz (protocol para no hacer publico todo) para las vistas expuestas
-// da problemas el boolean, siempre dice q es mandatory a false
 // El texto de error cuando se pulsa 2 veces se va a la izquierda
-// falla el expandable
-// en la web falta el exapandable
+// falla el expandable el texto
+// en la web falta el exapandable (claves:
+/*
+ expandableInfo": {
+ "expandText": "EXPUESTA Pequeño texto",
+ "collapseText": "EXPUESTA En la imagen publicada por la NASA se puede apreciar una duna de color turquesa que asombra por su contraste con el entorno. Los científicos de la agencia espacial estadounidense explicaron el origen del extraño color que adoptó el médano del planeta rojo."
+ },
+ "subtype": "expandable",
+ */
+
 // en la web falta añadir lo del custom view
+// probar las imagenes de los mandatory y de los checkbox desde app externa
+// no se pinta el icono de mandatory en el expandable
 
 class PickerFormField: PickerCellInterface, POptionsPickerComponent, PDatePickerComponent {
     
@@ -102,11 +110,13 @@ class PickerFormField: PickerCellInterface, POptionsPickerComponent, PDatePicker
     }
     
     fileprivate func showError() {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.errorLabel.sizeToFit()
-            self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
-            self.viewPpal?.layoutIfNeeded()
-        }) 
+        if self.heightErrorLabelConstraint.constant == 0 {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.errorLabel.sizeToFit()
+                self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
+                self.viewPpal?.layoutIfNeeded()
+            })
+        }
     }
     
     fileprivate func hideError() {
@@ -157,7 +167,10 @@ class PickerFormField: PickerCellInterface, POptionsPickerComponent, PDatePicker
             }
             status = validator[0].validate(self.fieldValue)            
         } else {
-            if let validator = self.getValidator(validatorType: AgeValidator.self) {
+            if let validatorMandatory = self.getValidator(validatorType: MandatoryValidator.self) {
+                status = validatorMandatory.validate(self.fieldValue)
+            }
+            if status, let validator = self.getValidator(validatorType: AgeValidator.self) {
                 status = validator.validate(self.pickerDate?.dateSelected)
             }
         }

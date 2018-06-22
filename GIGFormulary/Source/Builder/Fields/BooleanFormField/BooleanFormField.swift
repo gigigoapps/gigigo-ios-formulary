@@ -16,8 +16,9 @@ protocol PBooleanFormField {
 
 class BooleanFormField: BoolCellInterace {    
     //-- Local var --
-    var checkBoxOn: UIImage?
-    var checkBoxOff: UIImage?
+    private var checkBoxOn: UIImage?
+    private var checkBoxOff: UIImage?
+    private var auxWidthConstraint: CGFloat = 0
     
     // MARK: INIT
     
@@ -54,9 +55,11 @@ class BooleanFormField: BoolCellInterace {
     // MARK: Public Method
     
     override func insertData() {
-        self.loadCustomStyleField(self.formFieldM!)
-        self.loadData(self.formFieldM!)
-        self.loadMandatory(self.formFieldM!.isMandatory())
+        self.auxWidthConstraint = self.widthMandatoryImageConstraint.constant
+        guard let formFieldM = self.formFieldM else { return LogWarn("Model is nil") }
+        self.loadCustomStyleField(formFieldM)
+        self.loadData(formFieldM)
+        self.loadMandatory(formFieldM.isMandatory())
         super.insertData()
     }
         
@@ -97,11 +100,13 @@ class BooleanFormField: BoolCellInterace {
     // MARK: Private Method
     
     fileprivate func showError() {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.errorLabel.sizeToFit()
-            self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
-            self.viewPpal?.layoutIfNeeded()
-        }) 
+        if self.heightErrorLabelConstraint.constant == 0 {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.errorLabel.sizeToFit()
+                self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
+                self.viewPpal?.layoutIfNeeded()
+            })
+        }
     }
     
     fileprivate func hideError() {
@@ -118,6 +123,9 @@ class BooleanFormField: BoolCellInterace {
         self.checkBoxOn = UIImage(named: "chackBoxOn", in: Bundle(for: type(of: self)), compatibleWith: nil)
         self.checkBoxOff = UIImage(named: "checkBox", in: Bundle(for: type(of: self)), compatibleWith: nil)
         self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
+        
+        self.buttonAccept.addTarget(self, action: #selector(actionButtonAccept), for: .touchUpInside)
+        self.buttonAccept.tintColor = UIColor.clear
     }
     
     // MARK: Load data field
@@ -177,7 +185,7 @@ class BooleanFormField: BoolCellInterace {
     
     fileprivate func loadMandatory(_ isMandatory: Bool) {
         if isMandatory {
-            self.widthMandatoryImageConstraint.constant = 30
+            self.widthMandatoryImageConstraint.constant = self.auxWidthConstraint
         } else {
             self.widthMandatoryImageConstraint.constant = 0
         }
@@ -222,7 +230,6 @@ class BooleanFormField: BoolCellInterace {
         if self.buttonAccept.isSelected {
             self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
         } else {
-            self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState())
             self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
         }
         self.buttonAccept.isSelected = !self.buttonAccept.isSelected
@@ -274,7 +281,7 @@ class BooleanFormField: BoolCellInterace {
     
     // MARK: Actions
     
-    @IBAction func actionButtonAccept(_ sender: AnyObject) {
+    @objc func actionButtonAccept() {
         self.changeState()
     }
     

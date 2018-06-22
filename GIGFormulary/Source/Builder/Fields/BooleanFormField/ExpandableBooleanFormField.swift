@@ -20,6 +20,7 @@ class ExpandableBooleanFormField: ExpandableCellInterface, HyperlinkTextViewDele
     private var checkBoxOn: UIImage?
     private var checkBoxOff: UIImage?
     private var expandableTextView: ExpandableTextView?
+    private var auxWidthConstraint: CGFloat = 0
     
     // MARK: INIT
     
@@ -56,7 +57,8 @@ class ExpandableBooleanFormField: ExpandableCellInterface, HyperlinkTextViewDele
     // MARK: Public Method
     
     override func insertData() {
-        guard let formField = self.formFieldM else { return }
+        self.auxWidthConstraint = self.widthMandatoryImageConstraint.constant
+        guard let formField = self.formFieldM else { return LogWarn("Model is nil") }
         self.loadCustomStyleField(formField)
         self.loadData(formField)
         self.loadMandatory(formField.isMandatory())
@@ -88,11 +90,13 @@ class ExpandableBooleanFormField: ExpandableCellInterface, HyperlinkTextViewDele
     // MARK: Private Method
     
     fileprivate func showError() {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.errorLabel.sizeToFit()
-            self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
-            self.viewPpal?.layoutIfNeeded()
-        })
+        if self.heightErrorLabelConstraint.constant == 0 {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.errorLabel.sizeToFit()
+                self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
+                self.viewPpal?.layoutIfNeeded()
+            })
+        }
     }
     
     fileprivate func hideError() {
@@ -108,6 +112,10 @@ class ExpandableBooleanFormField: ExpandableCellInterface, HyperlinkTextViewDele
         self.checkBoxOff = UIImage(named: "checkBox", in: Bundle(for: type(of: self)), compatibleWith: nil)
         self.mandotoryImage.image = UIImage(named: "mandatoryIcon", in: Bundle(for: type(of: self)), compatibleWith: nil)
         self.acceptButton.setBackgroundImage(self.checkBoxOff, for: UIControlState())
+        
+        self.acceptButton.addTarget(self, action: #selector(actionButtonAccept), for: .touchUpInside)
+        self.acceptButton.tintColor = UIColor.clear
+        self.expandCollapseButton.addTarget(self, action: #selector(expandCollapseButtonTapped), for: .touchUpInside)
     }
     
     // MARK: Load data field
@@ -141,7 +149,7 @@ class ExpandableBooleanFormField: ExpandableCellInterface, HyperlinkTextViewDele
     
     fileprivate func loadMandatory(_ isMandatory: Bool) {
         if isMandatory {
-            self.widthMandatoryImageConstraint.constant = 30
+            self.widthMandatoryImageConstraint.constant = self.auxWidthConstraint
         } else {
             self.widthMandatoryImageConstraint.constant = 0
         }
@@ -149,7 +157,9 @@ class ExpandableBooleanFormField: ExpandableCellInterface, HyperlinkTextViewDele
     
     fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel) {
         let styleField = formFieldM.style
-        self.mandotoryImage.image = styleField?.mandatoryIcon
+        if styleField?.mandatoryIcon != nil {
+            self.mandotoryImage.image = styleField?.mandatoryIcon
+        }
         self.viewContainer.backgroundColor = styleField?.backgroundColorField
         self.expandableTextView?.hyperlinkTextView.textColor = styleField?.titleColor
         self.errorLabel.textColor = styleField?.errorColor
@@ -195,11 +205,11 @@ class ExpandableBooleanFormField: ExpandableCellInterface, HyperlinkTextViewDele
     
     // MARK: - Actions
     
-    @IBAction func acceptButtonTapped(_ sender: AnyObject) {
+    @objc func actionButtonAccept() {
         self.changeState()
     }
     
-    @IBAction func expandCollapseButtonTapped(_ sender: UIButton) {
+    @objc func expandCollapseButtonTapped() {
         self.textViewTapped()
     }
     
