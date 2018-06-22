@@ -13,15 +13,15 @@
 		2332088D20C120A300E84547 /* CompareValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332088C20C120A300E84547 /* CompareValidator.swift */; };
 		234ACB052091BB800096FCE7 /* FormFieldRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234ACB042091BB800096FCE7 /* FormFieldRules.swift */; };
 		236B1CDA20DCCF3F004146B1 /* TextCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236B1CD920DCCF3F004146B1 /* TextCellInterface.swift */; };
-		236B1CDB20DCD0B3004146B1 /* TextCellInterface.swift in Headers */ = {isa = PBXBuildFile; fileRef = 236B1CD920DCCF3F004146B1 /* TextCellInterface.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		236B1CDD20DCD8C6004146B1 /* BoolCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236B1CDC20DCD8C6004146B1 /* BoolCellInterface.swift */; };
 		236B1CE120DCD8E9004146B1 /* ExpandibleCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236B1CE020DCD8E9004146B1 /* ExpandibleCellInterface.swift */; };
 		236B1CE320DCD901004146B1 /* PickerCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236B1CE220DCD901004146B1 /* PickerCellInterface.swift */; };
 		236B1CE520DCD90C004146B1 /* IndexCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236B1CE420DCD90C004146B1 /* IndexCellInterface.swift */; };
-		237350CB20DBC49700477D97 /* PickerFormField.swift in Headers */ = {isa = PBXBuildFile; fileRef = 7B7D72DA1D4B8296003FFEE8 /* PickerFormField.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		237350CC20DBC49A00477D97 /* BooleanFormField.swift in Headers */ = {isa = PBXBuildFile; fileRef = 7B7D72D61D4B8296003FFEE8 /* BooleanFormField.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		237350CD20DBC4A000477D97 /* ExpandableBooleanFormField.swift in Headers */ = {isa = PBXBuildFile; fileRef = 020AEE54208DE07700E61BB5 /* ExpandableBooleanFormField.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		237350CE20DBC4A300477D97 /* IndexFormField.swift in Headers */ = {isa = PBXBuildFile; fileRef = 7BA9AD3C1E24F26B002FE4F6 /* IndexFormField.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		236B1CEA20DCE8B0004146B1 /* TextCellInterface.swift in Headers */ = {isa = PBXBuildFile; fileRef = 236B1CD920DCCF3F004146B1 /* TextCellInterface.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		236B1CEB20DCE8B0004146B1 /* BoolCellInterface.swift in Headers */ = {isa = PBXBuildFile; fileRef = 236B1CDC20DCD8C6004146B1 /* BoolCellInterface.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		236B1CEC20DCE8B0004146B1 /* ExpandibleCellInterface.swift in Headers */ = {isa = PBXBuildFile; fileRef = 236B1CE020DCD8E9004146B1 /* ExpandibleCellInterface.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		236B1CED20DCE8B0004146B1 /* PickerCellInterface.swift in Headers */ = {isa = PBXBuildFile; fileRef = 236B1CE220DCD901004146B1 /* PickerCellInterface.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		236B1CEE20DCE8B0004146B1 /* IndexCellInterface.swift in Headers */ = {isa = PBXBuildFile; fileRef = 236B1CE420DCD90C004146B1 /* IndexCellInterface.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		2375C63220BFFAA4002AE303 /* FormFieldsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375C63120BFFAA4002AE303 /* FormFieldsValidator.swift */; };
 		2375C63420C0006C002AE303 /* MandatoryValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375C63320C0006C002AE303 /* MandatoryValidator.swift */; };
 		23BC0A7620D91A9900659514 /* ExternalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23BC0A7420D9136500659514 /* ExternalView.xib */; };
@@ -675,13 +675,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				237350CC20DBC49A00477D97 /* BooleanFormField.swift in Headers */,
-				236B1CDB20DCD0B3004146B1 /* TextCellInterface.swift in Headers */,
+				236B1CEA20DCE8B0004146B1 /* TextCellInterface.swift in Headers */,
+				236B1CEB20DCE8B0004146B1 /* BoolCellInterface.swift in Headers */,
+				236B1CEC20DCE8B0004146B1 /* ExpandibleCellInterface.swift in Headers */,
+				236B1CED20DCE8B0004146B1 /* PickerCellInterface.swift in Headers */,
+				236B1CEE20DCE8B0004146B1 /* IndexCellInterface.swift in Headers */,
 				7BB82EF61D4B5DB800DC85F5 /* GIGFormulary.h in Headers */,
-				237350CE20DBC4A300477D97 /* IndexFormField.swift in Headers */,
-				237350CD20DBC4A000477D97 /* ExpandableBooleanFormField.swift in Headers */,
 				7B676FF91E3892CE007ED7DD /* FRHyperLabel.h in Headers */,
-				237350CB20DBC49700477D97 /* PickerFormField.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
