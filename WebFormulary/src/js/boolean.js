@@ -2,7 +2,7 @@
 //        BOOLEAN   (YA CREADO)       //
 //======================================
             
-window.createBooleanField = function createBooleanField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff, isEditing, isHidden, validator) {
+window.createBooleanField = function createBooleanField(keyTextField,title, isEditing, isHidden, validator, styleM) {
 
     var isEditingValueCheck = ""
     if (isEditing) {
@@ -14,13 +14,24 @@ window.createBooleanField = function createBooleanField(keyTextField,title,cellC
     }
 
     //-- Recover Styles --
-    var htmlBackgroundColor = getStyleColor(cellColor,titleColor,errorColor);
-    var htmlFontSize = getStyleSize (sizeTitle, sizeError);
-    var htmlAlingFont = getAlignFont(align,font)
-    var htmlImages = recoverHtmlAllImage(imageMandatory,imageCheckBoxOn,imageCheckBoxOff)
+    var htmlTypeCell = getTypeCell(styleM);
+    var htmlBackgroundColor = getStyleColor(styleM);
+    var htmlFontSize = getStyleSize (styleM);
+    var htmlAlingFont = getAlignFont(styleM)
+    var htmlImages = recoverHtmlAllImage(styleM)
     var htmlValidator = generateHtmlValidator(validator);
+    var htmlCustom = getStyleCustom(styleM);
 
-    var styles =  htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
+    var styles;
+    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
+    } else if (styleM.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom + htmlImages;
+    } else if (htmlImages.length > 0) {
+        styles = htmlImages;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
 
     var html = require('html-loader!../aux/auxBooleanCreated.html')
             .replace('{{styles}}',styles)
@@ -36,7 +47,7 @@ window.createBooleanField = function createBooleanField(keyTextField,title,cellC
     resetTypeField();
 }
 
-window.saveBooleanField = function saveBooleanField(keyTextField,type,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff, isEditing, isHidden, validator) {
+window.saveBooleanField = function saveBooleanField(keyTextField,type,title, isEditing, isHidden, validator, styleM) {
     //-- Mandatory Fiedls --
     var itemSave = {
         "key":keyTextField,
@@ -59,7 +70,7 @@ window.saveBooleanField = function saveBooleanField(keyTextField,type,title,cell
     }
     
     //-- OPTIONAL FIELDS --
-    var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,"","","",align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff);
+    var styles = getStylesJson(styleM);
 
     if (styles != null) {
         itemSave["style"] = styles

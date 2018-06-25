@@ -19,7 +19,7 @@ window.validateTextField = function validateTextField() {
     var isHidden = $('#isEditingTextField').is(':checked');
        
 
-    if (controlError(title, keyTextField, styles)) {
+    if (controlError(title, keyTextField, styles, "text")) {
         window.idValidatorField = 0;
         createField(keyTextField,title,placeHolder,keyboard,validator,isPassword, isEditing, isHidden, styles);
         saveField(keyTextField,"text",title,placeHolder,keyboard,validator,isPassword, isEditing, isHidden, styles);
@@ -40,7 +40,7 @@ window.validateDatePickerField = function validateDatePickerField() {
     var isActiveRule = $('#rules').is(':checked');
 
 
-    if (controlError(title,keyTextField,styles)) {
+    if (controlError(title,keyTextField,styles, "datePicker")) {
         createDatePickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styles);
         saveDatePickerField(keyTextField,"datePicker",title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styles);
     }
@@ -58,7 +58,7 @@ window.validatePickerField = function validatePickerField() {
     var isHidden = $('#isEditingTextField').is(':checked');
 
 
-    if (controlError(title,keyTextField, styles)) {
+    if (controlError(title,keyTextField, styles, "picker")) {
         if (allPickerIsComplete()) {
             createPickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, styles);
             savePickerField(keyTextField,"picker",title,acceptButtonTextField, isEditing, isHidden, validator, styles);
@@ -82,7 +82,7 @@ window.validateBooleanField = function validateBooleanField() {
     var isHidden = $('#isEditingTextField').is(':checked');
 
 
-    if (controlError(title,keyTextField,styles)) {
+    if (controlError(title,keyTextField,styles, "boolean")) {
         createBooleanField(keyTextField,title,isEditing, isHidden, validator, styles);
         saveBooleanField(keyTextField,"boolean",title,isEditing, isHidden, validator, styles)
     }
@@ -96,9 +96,9 @@ window.validateIndexField = function validateIndexField() {
     var styles = getRecoverStyles();
     
 
-    if (controlError(title,keyTextField,styles)) {
-        createIndexField(keyTextField,title)
-        saveIndexField(keyTextField,"index",title)
+    if (controlError(title,keyTextField,styles, "index")) {
+        createIndexField(keyTextField,title, styles)
+        saveIndexField(keyTextField,"index",title, styles)
     }
 }
 
@@ -127,15 +127,19 @@ window.allPickerIsComplete = function allPickerIsComplete() {
     return isComplete
 }
 
-window.controlError = function controlError(title, keyTextField, style) {
+window.controlError = function controlError(title, keyTextField, style, type) {
     if (title.length > 0 &&  keyTextField.length > 0) {
         if (style.font != null) {
             if (style.sizeTitle != null && style.sizeError != null) {
                 return true;
             }
             else {
-                alert("Si define un tipo de fuente debe elegir el tamaño de fuente para el titulo y el error");
-                return false;
+                if (style.sizeError == null && type == "index") {
+                     return true;
+                } else {
+                    alert("Si define un tipo de fuente debe elegir el tamaño de fuente para el titulo y el error");
+                    return false;
+                }
             }
         } 
         else {
@@ -210,7 +214,7 @@ function getRecoverStyles() {
 
     styles.typeCell = selector;
     styles.imageMandatory = $("#imageMandatory").val()
-    styles.imageMandatory = $("#imageMandatory").val()
+    styles.imageCheckBoxOff = $("#imageCheckBoxOff").val()
     styles.imageCheckBoxOn = $("#imageCheckBoxOn").val()
     styles.aceptColor = $("#aceptColorHex").val()
     styles.containerAceptColor = $("#containerAceptColorHex").val()

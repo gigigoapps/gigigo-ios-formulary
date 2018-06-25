@@ -13,35 +13,26 @@
             </div>
             <div class="styleField">
                 <h4>Estilos de celda:</h4>
+                  {{htmlSelectorCell}}
 
 
-                      <div class="containerTypeCell"> 
-                          <div class="clasicCell">
-
-                          </div>
-                          <div class="customCell">
-
-                          </div>
+                  <div class="containerTypeCell"> 
+                      <div class="clasicCell">
+                            <div class="colorZone">
+                                {{colorBasicZone}}
+                            </div>
+                            <div class="sizeZone">
+                                <p>Tamaño titulo:</p>
+                                <input id="sizeTitle" type="text" name="element">
+                            </div>
+                            
+                            {{htmlFont}}
                       </div>
-
-
-
-
-
-
-
-
-
+                      <div class="customCell">
+                      {{htmlCustomCell}}
+                      </div>
+                  </div>
                 
-                <div class="colorZone">
-                    {{colorBasicZone}}
-                </div>
-                <div class="sizeZone">
-                    <p>Tamaño titulo:</p>
-                    <input id="sizeTitle" type="text" name="element">
-                </div>
-                
-                {{htmlFont}}
             </div>
             <div class="spaceSeparate"></div>
         </div>

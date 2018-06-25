@@ -374,7 +374,6 @@
             margin-top: 0px;
         }
         .colorZone {
-            float: left;
             height: 38px;
             margin-left: 31px;
             padding-top: 7px;
@@ -581,7 +580,7 @@
     width: 100%;
 }
 .pickerConstructor{
-    min-height: 410px;
+    
 }
 .pickerColorZone {
     height: 119px;
@@ -703,7 +702,6 @@
     }
 
 .imagesZone {
-    float: left;
     height: 51px;
     margin-left: 28px;
     width: 100%;

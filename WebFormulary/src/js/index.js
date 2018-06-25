@@ -3,14 +3,25 @@
 //               TEXT (YA CREADO)     //
 //======================================
 
-window.createIndexField = function createIndexField(keyTextField,title,cellColor,titleColor,sizeTitle,align,font) {
+window.createIndexField = function createIndexField(keyTextField, title, styleM) {
     
     //-- Recover Styles --
-    var htmlBackgroundColor = getStyleColor(cellColor,titleColor,"");
-    var htmlFontSize = getStyleSize (sizeTitle, "");
-    var htmlAlingFont = getAlignFont(align,font)
+    var htmlTypeCell = getTypeCell(styleM);
+    var htmlBackgroundColor = getStyleColor(styleM);
+    var htmlFontSize = getStyleSize (styleM);
+    var htmlAlingFont = getAlignFont(styleM)
+    var htmlCustom = getStyleCustom(styleM);
     
-    var styles =  htmlFontSize + htmlBackgroundColor + htmlAlingFont;
+
+    var styles = '';
+    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont
+    } else if (styleM.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
+
         
     var html = require('html-loader!../aux/auxIndexCreated.html')
             .replace('{{styles}}',styles)
@@ -23,7 +34,7 @@ window.createIndexField = function createIndexField(keyTextField,title,cellColor
     resetTypeField();
 }
 
-window.saveIndexField = function saveIndexField(keyTextField,type,title,cellColor,titleColor,sizeTitle,align,font) {
+window.saveIndexField = function saveIndexField(keyTextField, type, title, styleM) {
     //-- Mandatory Fiedls --
     var itemSave = {
         "tag":indexField,
@@ -34,7 +45,7 @@ window.saveIndexField = function saveIndexField(keyTextField,type,title,cellColo
     
     
     //-- OPTIONAL FIELDS --
-    var styles = getStylesJson(cellColor,titleColor,"",sizeTitle,"","","","",align,font,"","","");
+    var styles = getStylesJson(styleM);
     
     if (styles != null) {
         itemSave["style"] = styles

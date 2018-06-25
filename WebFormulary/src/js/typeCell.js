@@ -60,18 +60,24 @@ window.getStyleColor = function getStyleColor(style) {
 	var html = '';
     if (style.cellColor != "" || style.titleColor != "" || style.errorColor != "") {
 		html += '<div class="colorZone">';
-		html += '	<p>Color de la celda:</p>';
-		html += '	<div id="cellColor" class="cellColor" style="background-color:'+style.cellColor+'">';
-		html += '		<p id="colorId">'+style.cellColor+'</p>';
-		html += '	</div>';
-		html += '	<p class="colorTittleP">Color titulo:</p>';
-		html += '	<div id="titleColor" class="cellColor" style="background-color:'+style.titleColor+'">';
-		html += '		<p id="colorId">'+style.titleColor+'</p>';
-		html += '	</div>';
-		html += '	<p class="colorTittleP">Color error:</p>';
-		html += '	<div id="errorColor" class="cellColor" style="background-color:'+style.errorColor+'">';
-		html += '		<p id="colorId">'+style.errorColor+'</p>';
-		html += '	</div>';
+        if (style.cellColor != "") {
+            html += '   <p>Color de la celda:</p>';
+    		html += '	<div id="cellColor" class="cellColor" style="background-color:'+style.cellColor+'">';
+    		html += '		<p id="colorId">'+style.cellColor+'</p>';
+    		html += '	</div>';
+        }
+        if (style.titleColor != "") {
+    		html += '	<p class="colorTittleP">Color titulo:</p>';
+    		html += '	<div id="titleColor" class="cellColor" style="background-color:'+style.titleColor+'">';
+    		html += '		<p id="colorId">'+style.titleColor+'</p>';
+    		html += '	</div>';
+        }
+        if (style.errorColor != "") {
+    		html += '	<p class="colorTittleP">Color error:</p>';
+    		html += '	<div id="errorColor" class="cellColor" style="background-color:'+style.errorColor+'">';
+    		html += '		<p id="colorId">'+style.errorColor+'</p>';
+    		html += '	</div>';
+        }
 		html += '</div>';
     }
 
@@ -103,12 +109,17 @@ window.getStyleColorPicker = function getStyleColorPicker(style) {
 
 window.getStyleSize = function getStyleSize (style) {
 	var html = '';
-    if (style.sizeTitle != "" || style.sizeError != "") {
+
+    if (style.sizeTitle != "" || (style.sizeError != null && style.sizeError != "")) {
     	html += '<div class="sizeZone">';
-    	html += '	<p>Tamaño titulo:</p>';
-    	html += '	<input id="sizeTitle"type="text"name="element" disabled readonly value="'+style.sizeTitle+'">';
-    	html += '	<p>Tamaño texto error:</p>';
-    	html += '	<input id="sizeError"type="text"name="element" disabled readonly value="'+style.sizeError+'">';
+        if (style.sizeTitle != null && style.sizeTitle != "") {
+            html += '   <p>Tamaño titulo:</p>';
+            html += '   <input id="sizeTitle"type="text"name="element" disabled readonly value="'+style.sizeTitle+'">';
+        }
+        if (style.sizeError != null && style.sizeError != "") {
+            html += '   <p>Tamaño texto error:</p>';
+            html += '   <input id="sizeError"type="text"name="element" disabled readonly value="'+style.sizeError+'">';
+        }
         html += '</div>';
     }
 
@@ -119,10 +130,14 @@ window.getAlignFont = function getAlignFont(style) {
 	var html = '';
     if (style.align != "" || style.font != "") {
         html = '<div class="sizeZone alignZone">';
-    	html += '	<p>Alineación:</p>';
-    	html += '	<input id="alignTitle" type="text"name="element" disabled readonly value="'+style.align+'">';
-    	html += '	<p>Fuente:</p>';
-    	html += '	<input id="fontField"type="text"name="element" disabled readonly value="'+style.font+'">';
+        if (style.align != "") {
+        	html += '	<p>Alineación:</p>';
+        	html += '	<input id="alignTitle" type="text"name="element" disabled readonly value="'+style.align+'">';
+        }
+        if (style.font != "") {
+        	html += '	<p>Fuente:</p>';
+        	html += '	<input id="fontField"type="text"name="element" disabled readonly value="'+style.font+'">';
+        }
     	html += '</div>';
     }
 
@@ -134,51 +149,51 @@ window.getStylesJson = function getStylesJson(styleModel) {
     var haveStyle = false;
     
     //-- STYLES --
-    if (styleModel.cellColor != null) {
+    if (styleModel.cellColor != null && styleModel.cellColor.length > 0) {
         style["backgroundColorField"] = styleModel.cellColor
         haveStyle = true;
     }
-    if (styleModel.titleColor != null) {
+    if (styleModel.titleColor != null && styleModel.titleColor.length > 0) {
         style["titleColor"] = styleModel.titleColor
         haveStyle = true;
     }
-    if (styleModel.errorColor != null) {
+    if (styleModel.errorColor != null && styleModel.errorColor.length > 0) {
         style["errorColor"] = styleModel.errorColor
         haveStyle = true;
     }
-    if (styleModel.sizeTitle != null) {
+    if (styleModel.sizeTitle != null && styleModel.sizeTitle.length > 0) {
         style["sizeTitle"] = parseInt(styleModel.sizeTitle)
         haveStyle = true;
     }
-    if (styleModel.sizeError != null) {
+    if (styleModel.sizeError != null && styleModel.sizeError.length > 0) {
         style["sizeError"] = parseInt(styleModel.sizeError)
         haveStyle = true;
     }
-    if (styleModel.aceptColor != null) {
+    if (styleModel.aceptColor != null && styleModel.aceptColor.length > 0) {
         style["acceptColorPicker"] = styleModel.aceptColor
         haveStyle = true;
     }
-    if (styleModel.containerAceptColor != null) {
+    if (styleModel.containerAceptColor != null && styleModel.containerAceptColor.length > 0) {
         style["containerAcceptColorPicker"] = styleModel.containerAceptColor
         haveStyle = true;
     }
-    if (styleModel.backgroundPickerColor != null) {
+    if (styleModel.backgroundPickerColor != null && styleModel.backgroundPickerColor.length > 0) {
         style["backgroundPickerColorPicker"] = styleModel.backgroundPickerColor
         haveStyle = true;
     }
-    if (styleModel.align != null) {
+    if (styleModel.align != null && styleModel.align.length > 0) {
         style["align"] = styleModel.align
         haveStyle = true;
     }
-    if (styleModel.font != null) {
+    if (styleModel.font != null && styleModel.font.length > 0) {
         style["font"] = styleModel.font
         haveStyle = true;
     }
-    if (styleModel.imageMandatory.length > 0) {
+    if (styleModel.imageMandatory != null && styleModel.imageMandatory.length > 0) {
         style["mandatoryIcon"] = styleModel.imageMandatory
         haveStyle = true;
     }
-    if (styleModel.imageCheckBoxOn != null && styleModel.imageCheckBoxOff != null) {
+    if (styleModel.imageCheckBoxOn != null && styleModel.imageCheckBoxOff != null && styleModel.imageCheckBoxOn.length > 0 && styleModel.imageCheckBoxOff.length > 0) {
         var checkBox = {}
         checkBox["checkBoxOn"] = styleModel.imageCheckBoxOn
         checkBox["checkBoxOff"] = styleModel.imageCheckBoxOff

@@ -15,7 +15,7 @@ window.removeContainerPicker = function removeContainerPicker(idContainerPicker)
 }
 
 //-- PICKER YA CREADO SOLO MOSTRAR --
-window.createPickerField = function createPickerField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator) {
+window.createPickerField = function createPickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, styleM) {
 
     var isEditingCheck = ""
     if (isEditing) {
@@ -27,14 +27,26 @@ window.createPickerField = function createPickerField(keyTextField,title,cellCol
     }
 
     //-- Recover Styles --
-    var htmlColorBasic = getStyleColor(cellColor,titleColor,errorColor);
-    var htmlFontSize = getStyleSize (sizeTitle, sizeError);
-    var htmlColorPicker = getStyleColorPicker (aceptColor,containerAceptColor,backgroundPickerColor);
-    var htmlAlingFont = getAlignFont(align,font)
-    var htmlImages = recoverHtmlImageMandatory(imageMandatory)
+    var htmlTypeCell = getTypeCell(styleM);
+    var htmlColorBasic = getStyleColor(styleM);
+    var htmlFontSize = getStyleSize (styleM);
+    var htmlColorPicker = getStyleColorPicker (styleM);
+    var htmlAlingFont = getAlignFont(styleM)
+    var htmlImages = recoverHtmlImageMandatory(styleM)
     var htmlValidator = generateHtmlValidator(validator);
+    var htmlCustom = getStyleCustom(styleM);
 
-    var styles = htmlFontSize + htmlColorBasic + htmlAlingFont + htmlImages + htmlColorPicker;
+
+    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages + htmlColorPicker;
+    } else if (styleM.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom + htmlImages + htmlColorPicker;
+    } else if (htmlImages.length > 0 || htmlColorPicker.length > 0) {
+        styles = htmlImages + htmlColorPicker;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
+
 
     //-- Create options fields --
     var htmlPickerItems = '';
@@ -67,7 +79,7 @@ window.createPickerField = function createPickerField(keyTextField,title,cellCol
     resetTypeField();
 }
 
-window.savePickerField = function savePickerField(keyTextField,type,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator) {
+window.savePickerField = function savePickerField(keyTextField,type,title,acceptButtonTextField,isEditing, isHidden, validator, styleM) {
     
     //-- MANDATORY FIELDS --
     var listOptions = [];
@@ -109,7 +121,7 @@ window.savePickerField = function savePickerField(keyTextField,type,title,cellCo
         itemSave["validator"] = itemsValidators;
     }
 
-    var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,align,font,imageMandatory,"","");
+    var styles = getStylesJson(styleM);
     if (styles != null) {
         itemSave["style"] = styles
     }    

@@ -92,7 +92,7 @@ window.listFonts = 'AcademyEngravedLetPlain,AlNile-Bold,AlNile,AmericanTypewrite
 //        BOOLEAN   (YA CREADO)       //
 //======================================
             
-window.createBooleanField = function createBooleanField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff, isEditing, isHidden, validator) {
+window.createBooleanField = function createBooleanField(keyTextField,title, isEditing, isHidden, validator, styleM) {
 
     var isEditingValueCheck = ""
     if (isEditing) {
@@ -104,13 +104,24 @@ window.createBooleanField = function createBooleanField(keyTextField,title,cellC
     }
 
     //-- Recover Styles --
-    var htmlBackgroundColor = getStyleColor(cellColor,titleColor,errorColor);
-    var htmlFontSize = getStyleSize (sizeTitle, sizeError);
-    var htmlAlingFont = getAlignFont(align,font)
-    var htmlImages = recoverHtmlAllImage(imageMandatory,imageCheckBoxOn,imageCheckBoxOff)
+    var htmlTypeCell = getTypeCell(styleM);
+    var htmlBackgroundColor = getStyleColor(styleM);
+    var htmlFontSize = getStyleSize (styleM);
+    var htmlAlingFont = getAlignFont(styleM)
+    var htmlImages = recoverHtmlAllImage(styleM)
     var htmlValidator = generateHtmlValidator(validator);
+    var htmlCustom = getStyleCustom(styleM);
 
-    var styles =  htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
+    var styles;
+    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
+    } else if (styleM.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom + htmlImages;
+    } else if (htmlImages.length > 0) {
+        styles = htmlImages;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
 
     var html = __webpack_require__(17)
             .replace('{{styles}}',styles)
@@ -126,7 +137,7 @@ window.createBooleanField = function createBooleanField(keyTextField,title,cellC
     resetTypeField();
 }
 
-window.saveBooleanField = function saveBooleanField(keyTextField,type,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff, isEditing, isHidden, validator) {
+window.saveBooleanField = function saveBooleanField(keyTextField,type,title, isEditing, isHidden, validator, styleM) {
     //-- Mandatory Fiedls --
     var itemSave = {
         "key":keyTextField,
@@ -149,7 +160,7 @@ window.saveBooleanField = function saveBooleanField(keyTextField,type,title,cell
     }
     
     //-- OPTIONAL FIELDS --
-    var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,"","","",align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff);
+    var styles = getStylesJson(styleM);
 
     if (styles != null) {
         itemSave["style"] = styles
@@ -390,7 +401,7 @@ window.generateDicValidator = function generateDicValidator(validator) {
 
 
 //-- DATE PICKER YA CREADO SOLO MOSTRAR --
-window.createDatePickerField = function createDatePickerField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator, isActiveRule, rules) {
+window.createDatePickerField = function createDatePickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styleM) {
 
     var isEditingCheck = ""
     if (isEditing) {
@@ -407,14 +418,27 @@ window.createDatePickerField = function createDatePickerField(keyTextField,title
     }
 
     //-- Recover Styles --
-    var htmlColorBasic = getStyleColor(cellColor,titleColor,errorColor);
-    var htmlFontSize = getStyleSize (sizeTitle, sizeError);
-    var htmlColorPicker = getStyleColorPicker (aceptColor,containerAceptColor,backgroundPickerColor);
-    var htmlAlingFont = getAlignFont(align,font)
-    var htmlImages = recoverHtmlImageMandatory(imageMandatory)
+    var htmlTypeCell = getTypeCell(styleM);
+    var htmlColorBasic = getStyleColor(styleM);
+    var htmlFontSize = getStyleSize (styleM);
+    var htmlColorPicker = getStyleColorPicker (styleM);
+    var htmlAlingFont = getAlignFont(styleM)
+    var htmlImages = recoverHtmlImageMandatory(styleM)
     var htmlValidator = generateHtmlValidator(validator);
+    var htmlCustom = getStyleCustom(styleM);
 
-    var styles = htmlFontSize + htmlColorBasic + htmlAlingFont + htmlImages + htmlColorPicker;
+
+    var styles = '';
+    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages + htmlColorPicker;
+    } else if (styleM.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom + htmlImages + htmlColorPicker;
+    } else if (htmlImages.length > 0 || htmlColorPicker.length > 0) {
+        styles = htmlImages + htmlColorPicker;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
+
 
     var html = __webpack_require__(19)
             .replace('{{styles}}',styles)
@@ -432,7 +456,7 @@ window.createDatePickerField = function createDatePickerField(keyTextField,title
     resetTypeField();
 }
 
-window.saveDatePickerField = function saveDatePickerField(keyTextField,type,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator, isActiveRule, rules) {
+window.saveDatePickerField = function saveDatePickerField(keyTextField,type,title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styleM) {
     
     //-- MANDATORY FIELDS --
 
@@ -464,7 +488,7 @@ window.saveDatePickerField = function saveDatePickerField(keyTextField,type,titl
         itemSave["rules"] = generateDicRules(rules)
     }    
 
-    var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,align,font,imageMandatory,"","");
+    var styles = getStylesJson(styleM);
     if (styles != null) {
         itemSave["style"] = styles
     }    
@@ -577,14 +601,21 @@ window.recoverHtmlImageMandatory = function recoverHtmlImageMandatory(style) {
 	return htmlImage
 }
 
-window.recoverHtmlAllImage = function recoverHtmlAllImage(imageMandatory,imageCheckBoxOn,imageCheckBoxOff) {
+window.recoverHtmlAllImage = function recoverHtmlAllImage(style) {
 
-    var htmlImage =  '<div class="imagesZone withOutStyle2"><p>Sin estilo de imagenes</p></div>';
-    if (imageMandatory != "" || imageCheckBoxOn != "" || imageCheckBoxOff != "") {
-		htmlImage = '<div class="imagesZone"><p>Imagen obligatorio:</p><input id="imageMandatory"type="text"name="element" disabled readonly value="'+imageMandatory+'"><p>Imagen checkBox On:</p><input id="imageCheckBoxOn"type="text"name="element" disabled readonly value="'+imageCheckBoxOn+'"><p>Imagen checkBox Off:</p><input id="imageCheckBoxOff"type="text"name="element" disabled readonly value="'+imageCheckBoxOff+'"></div>';
+    var html = '';
+    if (style.imageMandatory != "" || style.imageCheckBoxOn != "" || style.imageCheckBoxOff != "") {
+		html += '<div class="imagesZone">';
+		html += '	<p>Imagen obligatorio:</p>';
+		html += '	<input id="imageMandatory"type="text"name="element" disabled readonly value="'+style.imageMandatory+'">';
+		html += '	<p>Imagen checkBox On:</p>';
+		html += '	<input id="imageCheckBoxOn"type="text"name="element" disabled readonly value="'+style.imageCheckBoxOn+'">';
+		html += '	<p>Imagen checkBox Off:</p>';
+		html += '	<input id="imageCheckBoxOff"type="text"name="element" disabled readonly value="'+style.imageCheckBoxOff+'">';
+		html += '</div>';
 	}
 
-	return htmlImage
+	return html
 }
 
 
@@ -600,14 +631,25 @@ window.recoverHtmlAllImage = function recoverHtmlAllImage(imageMandatory,imageCh
 //               TEXT (YA CREADO)     //
 //======================================
 
-window.createIndexField = function createIndexField(keyTextField,title,cellColor,titleColor,sizeTitle,align,font) {
+window.createIndexField = function createIndexField(keyTextField, title, styleM) {
     
     //-- Recover Styles --
-    var htmlBackgroundColor = getStyleColor(cellColor,titleColor,"");
-    var htmlFontSize = getStyleSize (sizeTitle, "");
-    var htmlAlingFont = getAlignFont(align,font)
+    var htmlTypeCell = getTypeCell(styleM);
+    var htmlBackgroundColor = getStyleColor(styleM);
+    var htmlFontSize = getStyleSize (styleM);
+    var htmlAlingFont = getAlignFont(styleM)
+    var htmlCustom = getStyleCustom(styleM);
     
-    var styles =  htmlFontSize + htmlBackgroundColor + htmlAlingFont;
+
+    var styles = '';
+    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont
+    } else if (styleM.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
+
         
     var html = __webpack_require__(21)
             .replace('{{styles}}',styles)
@@ -620,7 +662,7 @@ window.createIndexField = function createIndexField(keyTextField,title,cellColor
     resetTypeField();
 }
 
-window.saveIndexField = function saveIndexField(keyTextField,type,title,cellColor,titleColor,sizeTitle,align,font) {
+window.saveIndexField = function saveIndexField(keyTextField, type, title, styleM) {
     //-- Mandatory Fiedls --
     var itemSave = {
         "tag":indexField,
@@ -631,7 +673,7 @@ window.saveIndexField = function saveIndexField(keyTextField,type,title,cellColo
     
     
     //-- OPTIONAL FIELDS --
-    var styles = getStylesJson(cellColor,titleColor,"",sizeTitle,"","","","",align,font,"","","");
+    var styles = getStylesJson(styleM);
     
     if (styles != null) {
         itemSave["style"] = styles
@@ -739,6 +781,8 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
             .replace('{{htmlValidators}}',htmlValidators)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
     else if (typeField == "DatePicker") {
         html = __webpack_require__(18)
@@ -747,6 +791,8 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
             .replace('{{htmlValidators}}',htmlValidators)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
     else if (typeField == "Boolean") {
         htmlImage = getHtmlAllImage();
@@ -756,11 +802,15 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
             .replace('{{htmlValidators}}',htmlValidators)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
     else if (typeField == "Index") {
         html = __webpack_require__(20)
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
 
     $("#containterElementField").append(html)
@@ -958,7 +1008,7 @@ window.removeContainerPicker = function removeContainerPicker(idContainerPicker)
 }
 
 //-- PICKER YA CREADO SOLO MOSTRAR --
-window.createPickerField = function createPickerField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator) {
+window.createPickerField = function createPickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, styleM) {
 
     var isEditingCheck = ""
     if (isEditing) {
@@ -970,14 +1020,26 @@ window.createPickerField = function createPickerField(keyTextField,title,cellCol
     }
 
     //-- Recover Styles --
-    var htmlColorBasic = getStyleColor(cellColor,titleColor,errorColor);
-    var htmlFontSize = getStyleSize (sizeTitle, sizeError);
-    var htmlColorPicker = getStyleColorPicker (aceptColor,containerAceptColor,backgroundPickerColor);
-    var htmlAlingFont = getAlignFont(align,font)
-    var htmlImages = recoverHtmlImageMandatory(imageMandatory)
+    var htmlTypeCell = getTypeCell(styleM);
+    var htmlColorBasic = getStyleColor(styleM);
+    var htmlFontSize = getStyleSize (styleM);
+    var htmlColorPicker = getStyleColorPicker (styleM);
+    var htmlAlingFont = getAlignFont(styleM)
+    var htmlImages = recoverHtmlImageMandatory(styleM)
     var htmlValidator = generateHtmlValidator(validator);
+    var htmlCustom = getStyleCustom(styleM);
 
-    var styles = htmlFontSize + htmlColorBasic + htmlAlingFont + htmlImages + htmlColorPicker;
+
+    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages + htmlColorPicker;
+    } else if (styleM.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom + htmlImages + htmlColorPicker;
+    } else if (htmlImages.length > 0 || htmlColorPicker.length > 0) {
+        styles = htmlImages + htmlColorPicker;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
+
 
     //-- Create options fields --
     var htmlPickerItems = '';
@@ -1010,7 +1072,7 @@ window.createPickerField = function createPickerField(keyTextField,title,cellCol
     resetTypeField();
 }
 
-window.savePickerField = function savePickerField(keyTextField,type,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator) {
+window.savePickerField = function savePickerField(keyTextField,type,title,acceptButtonTextField,isEditing, isHidden, validator, styleM) {
     
     //-- MANDATORY FIELDS --
     var listOptions = [];
@@ -1052,7 +1114,7 @@ window.savePickerField = function savePickerField(keyTextField,type,title,cellCo
         itemSave["validator"] = itemsValidators;
     }
 
-    var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,align,font,imageMandatory,"","");
+    var styles = getStylesJson(styleM);
     if (styles != null) {
         itemSave["style"] = styles
     }    
@@ -1330,18 +1392,24 @@ window.getStyleColor = function getStyleColor(style) {
 	var html = '';
     if (style.cellColor != "" || style.titleColor != "" || style.errorColor != "") {
 		html += '<div class="colorZone">';
-		html += '	<p>Color de la celda:</p>';
-		html += '	<div id="cellColor" class="cellColor" style="background-color:'+style.cellColor+'">';
-		html += '		<p id="colorId">'+style.cellColor+'</p>';
-		html += '	</div>';
-		html += '	<p class="colorTittleP">Color titulo:</p>';
-		html += '	<div id="titleColor" class="cellColor" style="background-color:'+style.titleColor+'">';
-		html += '		<p id="colorId">'+style.titleColor+'</p>';
-		html += '	</div>';
-		html += '	<p class="colorTittleP">Color error:</p>';
-		html += '	<div id="errorColor" class="cellColor" style="background-color:'+style.errorColor+'">';
-		html += '		<p id="colorId">'+style.errorColor+'</p>';
-		html += '	</div>';
+        if (style.cellColor != "") {
+            html += '   <p>Color de la celda:</p>';
+    		html += '	<div id="cellColor" class="cellColor" style="background-color:'+style.cellColor+'">';
+    		html += '		<p id="colorId">'+style.cellColor+'</p>';
+    		html += '	</div>';
+        }
+        if (style.titleColor != "") {
+    		html += '	<p class="colorTittleP">Color titulo:</p>';
+    		html += '	<div id="titleColor" class="cellColor" style="background-color:'+style.titleColor+'">';
+    		html += '		<p id="colorId">'+style.titleColor+'</p>';
+    		html += '	</div>';
+        }
+        if (style.errorColor != "") {
+    		html += '	<p class="colorTittleP">Color error:</p>';
+    		html += '	<div id="errorColor" class="cellColor" style="background-color:'+style.errorColor+'">';
+    		html += '		<p id="colorId">'+style.errorColor+'</p>';
+    		html += '	</div>';
+        }
 		html += '</div>';
     }
 
@@ -1373,12 +1441,17 @@ window.getStyleColorPicker = function getStyleColorPicker(style) {
 
 window.getStyleSize = function getStyleSize (style) {
 	var html = '';
-    if (style.sizeTitle != "" || style.sizeError != "") {
+
+    if (style.sizeTitle != "" || (style.sizeError != null && style.sizeError != "")) {
     	html += '<div class="sizeZone">';
-    	html += '	<p>Tamaño titulo:</p>';
-    	html += '	<input id="sizeTitle"type="text"name="element" disabled readonly value="'+style.sizeTitle+'">';
-    	html += '	<p>Tamaño texto error:</p>';
-    	html += '	<input id="sizeError"type="text"name="element" disabled readonly value="'+style.sizeError+'">';
+        if (style.sizeTitle != null && style.sizeTitle != "") {
+            html += '   <p>Tamaño titulo:</p>';
+            html += '   <input id="sizeTitle"type="text"name="element" disabled readonly value="'+style.sizeTitle+'">';
+        }
+        if (style.sizeError != null && style.sizeError != "") {
+            html += '   <p>Tamaño texto error:</p>';
+            html += '   <input id="sizeError"type="text"name="element" disabled readonly value="'+style.sizeError+'">';
+        }
         html += '</div>';
     }
 
@@ -1389,10 +1462,14 @@ window.getAlignFont = function getAlignFont(style) {
 	var html = '';
     if (style.align != "" || style.font != "") {
         html = '<div class="sizeZone alignZone">';
-    	html += '	<p>Alineación:</p>';
-    	html += '	<input id="alignTitle" type="text"name="element" disabled readonly value="'+style.align+'">';
-    	html += '	<p>Fuente:</p>';
-    	html += '	<input id="fontField"type="text"name="element" disabled readonly value="'+style.font+'">';
+        if (style.align != "") {
+        	html += '	<p>Alineación:</p>';
+        	html += '	<input id="alignTitle" type="text"name="element" disabled readonly value="'+style.align+'">';
+        }
+        if (style.font != "") {
+        	html += '	<p>Fuente:</p>';
+        	html += '	<input id="fontField"type="text"name="element" disabled readonly value="'+style.font+'">';
+        }
     	html += '</div>';
     }
 
@@ -1404,51 +1481,51 @@ window.getStylesJson = function getStylesJson(styleModel) {
     var haveStyle = false;
     
     //-- STYLES --
-    if (styleModel.cellColor != null) {
+    if (styleModel.cellColor != null && styleModel.cellColor.length > 0) {
         style["backgroundColorField"] = styleModel.cellColor
         haveStyle = true;
     }
-    if (styleModel.titleColor != null) {
+    if (styleModel.titleColor != null && styleModel.titleColor.length > 0) {
         style["titleColor"] = styleModel.titleColor
         haveStyle = true;
     }
-    if (styleModel.errorColor != null) {
+    if (styleModel.errorColor != null && styleModel.errorColor.length > 0) {
         style["errorColor"] = styleModel.errorColor
         haveStyle = true;
     }
-    if (styleModel.sizeTitle != null) {
+    if (styleModel.sizeTitle != null && styleModel.sizeTitle.length > 0) {
         style["sizeTitle"] = parseInt(styleModel.sizeTitle)
         haveStyle = true;
     }
-    if (styleModel.sizeError != null) {
+    if (styleModel.sizeError != null && styleModel.sizeError.length > 0) {
         style["sizeError"] = parseInt(styleModel.sizeError)
         haveStyle = true;
     }
-    if (styleModel.aceptColor != null) {
+    if (styleModel.aceptColor != null && styleModel.aceptColor.length > 0) {
         style["acceptColorPicker"] = styleModel.aceptColor
         haveStyle = true;
     }
-    if (styleModel.containerAceptColor != null) {
+    if (styleModel.containerAceptColor != null && styleModel.containerAceptColor.length > 0) {
         style["containerAcceptColorPicker"] = styleModel.containerAceptColor
         haveStyle = true;
     }
-    if (styleModel.backgroundPickerColor != null) {
+    if (styleModel.backgroundPickerColor != null && styleModel.backgroundPickerColor.length > 0) {
         style["backgroundPickerColorPicker"] = styleModel.backgroundPickerColor
         haveStyle = true;
     }
-    if (styleModel.align != null) {
+    if (styleModel.align != null && styleModel.align.length > 0) {
         style["align"] = styleModel.align
         haveStyle = true;
     }
-    if (styleModel.font != null) {
+    if (styleModel.font != null && styleModel.font.length > 0) {
         style["font"] = styleModel.font
         haveStyle = true;
     }
-    if (styleModel.imageMandatory.length > 0) {
+    if (styleModel.imageMandatory != null && styleModel.imageMandatory.length > 0) {
         style["mandatoryIcon"] = styleModel.imageMandatory
         haveStyle = true;
     }
-    if (styleModel.imageCheckBoxOn != null && styleModel.imageCheckBoxOff != null) {
+    if (styleModel.imageCheckBoxOn != null && styleModel.imageCheckBoxOff != null && styleModel.imageCheckBoxOn.length > 0 && styleModel.imageCheckBoxOff.length > 0) {
         var checkBox = {}
         checkBox["checkBoxOn"] = styleModel.imageCheckBoxOn
         checkBox["checkBoxOff"] = styleModel.imageCheckBoxOff
@@ -1502,7 +1579,7 @@ window.validateTextField = function validateTextField() {
     var isHidden = $('#isEditingTextField').is(':checked');
        
 
-    if (controlError(title, keyTextField, styles)) {
+    if (controlError(title, keyTextField, styles, "text")) {
         window.idValidatorField = 0;
         createField(keyTextField,title,placeHolder,keyboard,validator,isPassword, isEditing, isHidden, styles);
         saveField(keyTextField,"text",title,placeHolder,keyboard,validator,isPassword, isEditing, isHidden, styles);
@@ -1523,7 +1600,7 @@ window.validateDatePickerField = function validateDatePickerField() {
     var isActiveRule = $('#rules').is(':checked');
 
 
-    if (controlError(title,keyTextField,styles)) {
+    if (controlError(title,keyTextField,styles, "datePicker")) {
         createDatePickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styles);
         saveDatePickerField(keyTextField,"datePicker",title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styles);
     }
@@ -1541,7 +1618,7 @@ window.validatePickerField = function validatePickerField() {
     var isHidden = $('#isEditingTextField').is(':checked');
 
 
-    if (controlError(title,keyTextField, styles)) {
+    if (controlError(title,keyTextField, styles, "picker")) {
         if (allPickerIsComplete()) {
             createPickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, styles);
             savePickerField(keyTextField,"picker",title,acceptButtonTextField, isEditing, isHidden, validator, styles);
@@ -1565,7 +1642,7 @@ window.validateBooleanField = function validateBooleanField() {
     var isHidden = $('#isEditingTextField').is(':checked');
 
 
-    if (controlError(title,keyTextField,styles)) {
+    if (controlError(title,keyTextField,styles, "boolean")) {
         createBooleanField(keyTextField,title,isEditing, isHidden, validator, styles);
         saveBooleanField(keyTextField,"boolean",title,isEditing, isHidden, validator, styles)
     }
@@ -1579,9 +1656,9 @@ window.validateIndexField = function validateIndexField() {
     var styles = getRecoverStyles();
     
 
-    if (controlError(title,keyTextField,styles)) {
-        createIndexField(keyTextField,title)
-        saveIndexField(keyTextField,"index",title)
+    if (controlError(title,keyTextField,styles, "index")) {
+        createIndexField(keyTextField,title, styles)
+        saveIndexField(keyTextField,"index",title, styles)
     }
 }
 
@@ -1610,15 +1687,19 @@ window.allPickerIsComplete = function allPickerIsComplete() {
     return isComplete
 }
 
-window.controlError = function controlError(title, keyTextField, style) {
+window.controlError = function controlError(title, keyTextField, style, type) {
     if (title.length > 0 &&  keyTextField.length > 0) {
         if (style.font != null) {
             if (style.sizeTitle != null && style.sizeError != null) {
                 return true;
             }
             else {
-                alert("Si define un tipo de fuente debe elegir el tamaño de fuente para el titulo y el error");
-                return false;
+                if (style.sizeError == null && type == "index") {
+                     return true;
+                } else {
+                    alert("Si define un tipo de fuente debe elegir el tamaño de fuente para el titulo y el error");
+                    return false;
+                }
             }
         } 
         else {
@@ -1693,7 +1774,7 @@ function getRecoverStyles() {
 
     styles.typeCell = selector;
     styles.imageMandatory = $("#imageMandatory").val()
-    styles.imageMandatory = $("#imageMandatory").val()
+    styles.imageCheckBoxOff = $("#imageCheckBoxOff").val()
     styles.imageCheckBoxOn = $("#imageCheckBoxOn").val()
     styles.aceptColor = $("#aceptColorHex").val()
     styles.containerAceptColor = $("#containerAceptColorHex").val()
@@ -1768,7 +1849,7 @@ function styleResult() {
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = "  <div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>         \n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>         \n             </div>\n\n\n            {{htmlValidators}}\n\n             <div class=\"containerTextFieldCenter optionalBooleanContainer\">                  \n                  <div class=\"isEditingTextField\">\n                      <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                      <p>Es editable?</p>\n                  </div>\n                  \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n             </div>\n             \n              <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n\n\n\n\n                    <div class=\"containerTypeCell\"> \n                        <div class=\"clasicCell\">\n\n                        </div>\n                        <div class=\"customCell\">\n\n                        </div>\n                    </div>\n\n\n\n\n\n                \n                                 \n                 <div class=\"sizeZone\">\n                    <p>Tamaño titulo:</p>\n                    <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                    <p>Tamaño texto error:</p>\n                    <input id=\"sizeError\" type=\"text\" name=\"element\">\n                 </div>\n                 \n                 {{htmlFont}}\n                 {{htmlImage}}\n\n                  <div class=\"colorZone\">\n                    {{colorBasicZone}}\n                 </div>  \n              </div>\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>\n";
+module.exports = "  <div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>         \n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>         \n             </div>\n\n\n            {{htmlValidators}}\n\n             <div class=\"containerTextFieldCenter optionalBooleanContainer\">                  \n                  <div class=\"isEditingTextField\">\n                      <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                      <p>Es editable?</p>\n                  </div>\n                  \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n             </div>\n             \n              <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n                    <div class=\"containerTypeCell\"> \n                        <div class=\"clasicCell\">      \n                            <div class=\"colorZone\">\n                              {{colorBasicZone}}\n                           </div>                             \n                           <div class=\"sizeZone\">\n                              <p>Tamaño titulo:</p>\n                              <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                              <p>Tamaño texto error:</p>\n                              <input id=\"sizeError\" type=\"text\" name=\"element\">\n                           </div>\n                           \n                           {{htmlFont}}\n                        </div>\n                        <div class=\"customCell\">\n                          {{htmlCustomCell}}\n                        </div>\n                    </div>\n                \n                 {{htmlImage}}\n\n              </div>\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>\n";
 
 /***/ }),
 /* 17 */
@@ -1780,7 +1861,7 @@ module.exports = "\n<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}
 /* 18 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div class=\"acceptButtonTextField\">\n               <p>Titulo aceptar picker:</p>\n               <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">\n             </div>  \n\n            <div id=\"containerOptionalDatePicker\">\n                <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n                </div>\n                <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n                </div>               \n            </div>\n\n            {{htmlValidators}}\n\n            {{htmlRules}}\n\n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n\n\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">\n\n                      </div>\n                      <div class=\"customCell\">\n\n                      </div>\n                  </div>\n\n\n\n\n\n              \n               <div class=\"sizeZone\">\n                  <p>Tamaño titulo:</p>\n                  <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                  <p>Tamaño texto error:</p>\n                  <input id=\"sizeError\" type=\"text\" name=\"element\">\n               </div>\n\n                 {{htmlFont}}\n                 {{htmlImage}}\n\n                <div class=\"colorZone pickerColorZone\">\n                   <p>Color de la celda:</p>\n                    {{colorBasicZone}}\n\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n\n               </div>\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n";
+module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div class=\"acceptButtonTextField\">\n               <p>Titulo aceptar picker:</p>\n               <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">\n             </div>  \n\n            <div id=\"containerOptionalDatePicker\">\n                <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n                </div>\n                <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n                </div>               \n            </div>\n\n            {{htmlValidators}}\n\n            {{htmlRules}}\n\n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">\n\n                           <div class=\"colorZone\">\n                              {{colorBasicZone}}\n                           </div>       \n                        \n                           <div class=\"sizeZone\">\n                              <p>Tamaño titulo:</p>\n                              <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                              <p>Tamaño texto error:</p>\n                              <input id=\"sizeError\" type=\"text\" name=\"element\">\n                           </div>\n\n                           {{htmlFont}}\n                      </div>\n                      <div class=\"customCell\">\n                          {{htmlCustomCell}}\n                      </div>\n                  </div>\n\n\n                 {{htmlImage}}\n\n                <div class=\"colorZone pickerColorZone\">\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n\n               </div>\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n";
 
 /***/ }),
 /* 19 */
@@ -1792,7 +1873,7 @@ module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"fieldNum
 /* 20 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor\" id=\"createField\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n                    </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                        </div>\n            </div>\n            <div class=\"styleField\">\n                <h4>Estilos de celda:</h4>\n\n\n                      <div class=\"containerTypeCell\"> \n                          <div class=\"clasicCell\">\n\n                          </div>\n                          <div class=\"customCell\">\n\n                          </div>\n                      </div>\n\n\n\n\n\n\n\n\n\n                \n                <div class=\"colorZone\">\n                    {{colorBasicZone}}\n                </div>\n                <div class=\"sizeZone\">\n                    <p>Tamaño titulo:</p>\n                    <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                </div>\n                \n                {{htmlFont}}\n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n            <p>+</p>\n        </div>\n    </div>\n</div>\n\n\n\n";
+module.exports = "<div class=\"cellConstructor\" id=\"createField\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n                    </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                        </div>\n            </div>\n            <div class=\"styleField\">\n                <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">\n                            <div class=\"colorZone\">\n                                {{colorBasicZone}}\n                            </div>\n                            <div class=\"sizeZone\">\n                                <p>Tamaño titulo:</p>\n                                <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                            </div>\n                            \n                            {{htmlFont}}\n                      </div>\n                      <div class=\"customCell\">\n                      {{htmlCustomCell}}\n                      </div>\n                  </div>\n                \n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n            <p>+</p>\n        </div>\n    </div>\n</div>\n\n\n\n";
 
 /***/ }),
 /* 21 */
@@ -1804,7 +1885,7 @@ module.exports = "<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}}\
 /* 22 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n           <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n           </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div class=\"containerAcceptEditing\">\n               <div class=\"acceptButtonTextField\">\n                   <p>Titulo aceptar picker:</p>\n                   <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">\n               </div>\n           </div>\n\n\n          {{htmlValidators}}\n\n\n           <div class=\"containerOptionalPicker\">    \n               <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n               </div>\n\n               <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n               </div>\n           </div>\n           \n\n           <div id=\"valuesOptionsSelector\"> \n              <div id=\"containerPickerFieldAdd\">\n                 <p id=\"addFieldPickerText\">Añadir campos del picker:</p> \n                 <div id=\"sumatoryPicker\">\n                      <p onclick=\"addContainerPicker()\">+</p>\n                </div>\n              </div>\n\n              <div id=\"pickerFieldsInsert\">\n                  <div class=\"containerPickerField\" id=\"containerPickerField'+idPickerField+'\">\n                      <input id=\"inputKeyPickerField0\" type=\"text\" name=\"element\" placeholder=\"Clave Picker\" value=\"KeyNoSelected\"  disabled readonly>\n                      <input id=\"inputValuePickerField0\" type=\"text\" name=\"element\" placeholder=\"Valor picker por defecto\">\n                  </div>\n              </div>\n            </div> \n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n\n\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">\n\n                      </div>\n                      <div class=\"customCell\">\n\n                      </div>\n                  </div>\n\n\n\n\n\n\n\n\n              \n               <div class=\"sizeZone\">\n                  <p>Tamaño titulo:</p>\n                  <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                  <p>Tamaño texto error:</p>\n                  <input id=\"sizeError\" type=\"text\" name=\"element\">\n               </div>\n               \n                 {{htmlFont}}\n                 {{htmlImage}}\n\n                <div class=\"colorZone pickerColorZone\">\n                    {{colorBasicZone}}\n\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n               </div>\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n\n                   \n";
+module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n           <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n           </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div class=\"containerAcceptEditing\">\n               <div class=\"acceptButtonTextField\">\n                   <p>Titulo aceptar picker:</p>\n                   <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">\n               </div>\n           </div>\n\n\n          {{htmlValidators}}\n\n\n           <div class=\"containerOptionalPicker\">    \n               <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n               </div>\n\n               <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n               </div>\n           </div>\n           \n\n           <div id=\"valuesOptionsSelector\"> \n              <div id=\"containerPickerFieldAdd\">\n                 <p id=\"addFieldPickerText\">Añadir campos del picker:</p> \n                 <div id=\"sumatoryPicker\">\n                      <p onclick=\"addContainerPicker()\">+</p>\n                </div>\n              </div>\n\n              <div id=\"pickerFieldsInsert\">\n                  <div class=\"containerPickerField\" id=\"containerPickerField'+idPickerField+'\">\n                      <input id=\"inputKeyPickerField0\" type=\"text\" name=\"element\" placeholder=\"Clave Picker\" value=\"KeyNoSelected\"  disabled readonly>\n                      <input id=\"inputValuePickerField0\" type=\"text\" name=\"element\" placeholder=\"Valor picker por defecto\">\n                  </div>\n              </div>\n            </div> \n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">   \n                         <div class=\"colorZone\">\n                            {{colorBasicZone}}\n                         </div>                       \n                         <div class=\"sizeZone\">\n                            <p>Tamaño titulo:</p>\n                            <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                            <p>Tamaño texto error:</p>\n                            <input id=\"sizeError\" type=\"text\" name=\"element\">\n                         </div>\n                       \n                         {{htmlFont}}\n                      </div>\n                      <div class=\"customCell\">\n                          {{htmlCustomCell}}\n                      </div>\n                  </div>\n\n\n\n                 {{htmlImage}}\n\n\n                <div class=\"colorZone pickerColorZone\">\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n               </div>\n\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n\n                   \n";
 
 /***/ }),
 /* 23 */
@@ -1816,7 +1897,7 @@ module.exports = "\n   <div class=\"cellConstructor pickerConstructor\" id=\"fie
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>       \n                  <select id=\"selectTypeKeyboard\">\n                      <option value=\"None\">Elegir tipo de teclado</option>\n                      <option value=\"FormKeyboardTypeText\">Texto</option>\n                      <option value=\"FormKeyboardTypeEmail\">Email</option>\n                      <option value=\"FormKeyboardTypeNumbers\">Nuerico</option>\n                      <option value=\"FormKeyboardTypeNumberPad\">NuericoPad</option>\n                  </select>                                   \n             </div>\n             <div class=\"containerTextFieldCenter\">\n                 <div class=\"inputTextField\">\n                     <p>PlaceHolder:</p>\n                     <input type=\"text\" name=\"palceHolderTextField\" id=\"palceHolderTextField\">\n                 </div>\n             </div>\n             \n\n          {{htmlValidators}}\n\n\n             <div class=\"containerPassEdit\">\n                 <div class=\"passwordTextField\">\n                     <input type=\"checkbox\" name=\"passwordTextField\" value=\"passwordTextField\" id=\"passwordTextField\">\n                     <p>Es password?</p>\n                 </div>\n                 \n                 <div class=\"isEditingTextField\">\n                     <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                     <p>Es editable?</p>\n                  </div>\n                 \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n             </div>\n\n\n             \n              <div class=\"styleField\">\n                  <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">\n                          <div class=\"colorZone\">\n                              {{colorBasicZone}}\n                          </div>                                   \n                          <div class=\"sizeZone\">\n                              <p>Tamaño titulo:</p>\n                              <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                              <p>Tamaño texto error:</p>\n                              <input id=\"sizeError\" type=\"text\" name=\"element\">\n                          </div>\n\n                          {{htmlFont}}\n                      </div>\n                      <div class=\"customCell\">\n                          {{htmlCustomCell}}\n                      </div>\n                  </div>\n\n                  {{htmlImage}}\n\n              </div>\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>";
+module.exports = "<div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>       \n                  <select id=\"selectTypeKeyboard\">\n                      <option value=\"None\">Elegir tipo de teclado</option>\n                      <option value=\"FormKeyboardTypeText\">Texto</option>\n                      <option value=\"FormKeyboardTypeEmail\">Email</option>\n                      <option value=\"FormKeyboardTypeNumbers\">Nuerico</option>\n                      <option value=\"FormKeyboardTypeNumberPad\">NuericoPad</option>\n                  </select>                                   \n             </div>\n             <div class=\"containerTextFieldCenter\">\n                 <div class=\"inputTextField\">\n                     <p>PlaceHolder:</p>\n                     <input type=\"text\" name=\"palceHolderTextField\" id=\"palceHolderTextField\">\n                 </div>\n             </div>\n             \n\n          {{htmlValidators}}\n\n\n             <div class=\"containerPassEdit\">\n                 <div class=\"passwordTextField\">\n                     <input type=\"checkbox\" name=\"passwordTextField\" value=\"passwordTextField\" id=\"passwordTextField\">\n                     <p>Es password?</p>\n                 </div>\n                 \n                 <div class=\"isEditingTextField\">\n                     <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                     <p>Es editable?</p>\n                  </div>\n                 \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n             </div>\n\n\n             \n              <div class=\"styleField\">\n                  <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">\n                          <div class=\"colorZone\">\n                              {{colorBasicZone}}\n                          </div>                                   \n                          <div class=\"sizeZone\">\n                              <p>Tamaño titulo:</p>\n                              <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                              <p>Tamaño texto error:</p>\n                              <input id=\"sizeError\" type=\"text\" name=\"element\">\n                          </div>\n\n                          {{htmlFont}}\n                      </div>\n                      <div class=\"customCell\">\n                          {{htmlCustomCell}}\n                      </div>\n                  </div>\n\n                  {{htmlImage}}\n              </div>\n\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>";
 
 /***/ }),
 /* 25 */

@@ -90,6 +90,8 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
             .replace('{{htmlValidators}}',htmlValidators)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
     else if (typeField == "DatePicker") {
         html = require('html-loader!../aux/auxDatePicker.html')
@@ -98,6 +100,8 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
             .replace('{{htmlValidators}}',htmlValidators)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
     else if (typeField == "Boolean") {
         htmlImage = getHtmlAllImage();
@@ -107,11 +111,15 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
             .replace('{{htmlValidators}}',htmlValidators)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
     else if (typeField == "Index") {
         html = require('html-loader!../aux/auxIndex.html')
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
 
     $("#containterElementField").append(html)
