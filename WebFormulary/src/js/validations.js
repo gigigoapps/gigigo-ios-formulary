@@ -1,28 +1,8 @@
-// http://www.danstools.com/javascript-minify/ 
+
+
 //======================================
 //            VALIDATION              //
 //======================================
-
-window.controlError = function controlError(title,keyTextField,font,sizeTitle,sizeError) {
-    if (title.length > 0 &&  keyTextField.length > 0) {
-        if (font.length > 0) {
-            if (sizeTitle.length > 0 && sizeError.length > 0) {
-                return true;
-            }
-            else {
-                alert("Si define un tipo de fuente debe elegir el tamaño de fuente para el titulo y el error");
-                return false;
-            }
-        } 
-        else {
-            return true;
-        }
-    }
-    else {
-        alert("Los campos con asterisco son obligatorios");
-        return false;
-    }
-}
 
 
 //=== TEXTFIELD ===
@@ -32,29 +12,17 @@ window.validateTextField = function validateTextField() {
     var placeHolder = $("#palceHolderTextField").val()
     var keyboard = document.getElementById("selectTypeKeyboard").value;
     var validator = getRecoverValidations();
+    var styles = getRecoverStyles();
 
-    // Style
-    var cellColor = $("#cellColorHex").val()
-    var titleColor = $("#titleColorHex").val()
-    var errorColor = $("#errorColorHex").val()
-    var sizeTitle = $("#sizeTitle").val()
-    var sizeError = $("#sizeError").val()
-    var align = document.getElementById("selectTypeAlign").value;
-    var font = document.getElementById("selectTypeFont").value;
-    var imageMandatory = $("#imageMandatory").val()
     var isPassword = $('#passwordTextField').is(':checked');
     var isEditing = $('#isEditingTextField').is(':checked');
     var isHidden = $('#isEditingTextField').is(':checked');
+       
 
-        
-    if (font == "custom") {
-        font = $("#custonFont").val()
-    }
-        
-    if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
+    if (controlError(title, keyTextField, styles)) {
         window.idValidatorField = 0;
-        createField(keyTextField,title,placeHolder,cellColor,keyboard,validator,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory, isPassword, isEditing, isHidden);
-        saveField(keyTextField,"text",title,placeHolder,cellColor,keyboard,validator,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory, isPassword, isEditing, isHidden)
+        createField(keyTextField,title,placeHolder,keyboard,validator,isPassword, isEditing, isHidden, styles);
+        saveField(keyTextField,"text",title,placeHolder,keyboard,validator,isPassword, isEditing, isHidden, styles);
     }
 }
 
@@ -63,35 +31,18 @@ window.validateDatePickerField = function validateDatePickerField() {
     var keyTextField = $("#keyTextField").val()
     var title = $("#titleTextField").val()
     var validator = getRecoverValidations();
+    var styles = getRecoverStyles();
+    var rules = getRecoverRules(isActiveRule);
 
-    // Optional
     var acceptButtonTextField = $("#acceptButtonTextField").val()
-
-    // Style
-    var cellColor = $("#cellColorHex").val()
-    var titleColor = $("#titleColorHex").val()
-    var errorColor = $("#errorColorHex").val()
-    var sizeTitle = $("#sizeTitle").val()
-    var sizeError = $("#sizeError").val()
-    var aceptColor = $("#aceptColorHex").val()
-    var containerAceptColor = $("#containerAceptColorHex").val()
-    var backgroundPickerColor = $("#backgroundPickerColorHex").val()
-    var align = document.getElementById("selectTypeAlign").value;
-    var font = document.getElementById("selectTypeFont").value;
-    var imageMandatory = $("#imageMandatory").val()
     var isEditing = $('#isEditingTextField').is(':checked');
     var isHidden = $('#isEditingTextField').is(':checked');
     var isActiveRule = $('#rules').is(':checked');
 
-    var rules = getRecoverRules(isActiveRule);
 
-    if (font == "custom") {
-        font = $("#custonFont").val()
-    }
-
-    if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createDatePickerField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator, isActiveRule, rules);
-        saveDatePickerField(keyTextField,"datePicker",title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator, isActiveRule, rules);
+    if (controlError(title,keyTextField,styles)) {
+        createDatePickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styles);
+        saveDatePickerField(keyTextField,"datePicker",title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styles);
     }
 }
 
@@ -100,39 +51,61 @@ window.validatePickerField = function validatePickerField() {
     var keyTextField = $("#keyTextField").val()
     var title = $("#titleTextField").val()
     var validator = getRecoverValidations();
+    var styles = getRecoverStyles();
 
-    // Optional
     var acceptButtonTextField = $("#acceptButtonTextField").val()
-
-    // Style
-    var cellColor = $("#cellColorHex").val()
-    var titleColor = $("#titleColorHex").val()
-    var errorColor = $("#errorColorHex").val()
-    var sizeTitle = $("#sizeTitle").val()
-    var sizeError = $("#sizeError").val()
-    var aceptColor = $("#aceptColorHex").val()
-    var containerAceptColor = $("#containerAceptColorHex").val()
-    var backgroundPickerColor = $("#backgroundPickerColorHex").val()
-    var align = document.getElementById("selectTypeAlign").value;
-    var font = document.getElementById("selectTypeFont").value;    
-    var imageMandatory = $("#imageMandatory").val()
     var isEditing = $('#isEditingTextField').is(':checked');
     var isHidden = $('#isEditingTextField').is(':checked');
 
-    if (font == "custom") {
-        font = $("#custonFont").val()
-    }
 
-    if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
+    if (controlError(title,keyTextField, styles)) {
         if (allPickerIsComplete()) {
-            createPickerField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator);
-            savePickerField(keyTextField,"picker",title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory, isEditing, isHidden, validator);
+            createPickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, styles);
+            savePickerField(keyTextField,"picker",title,acceptButtonTextField, isEditing, isHidden, validator, styles);
         }
         else {
             alert("Los campos de clave y valor de los picker deben estar todos rellenos");
         }
     }
 }
+
+
+//=== BOOLEAN ===
+window.validateBooleanField = function validateBooleanField() {
+    var keyTextField = $("#keyTextField").val()
+    var title = $("#titleTextField").val()
+    var validator = getRecoverValidations();
+    var styles = getRecoverStyles();
+
+
+    var isEditing = $('#isEditingTextField').is(':checked');
+    var isHidden = $('#isEditingTextField').is(':checked');
+
+
+    if (controlError(title,keyTextField,styles)) {
+        createBooleanField(keyTextField,title,isEditing, isHidden, validator, styles);
+        saveBooleanField(keyTextField,"boolean",title,isEditing, isHidden, validator, styles)
+    }
+}
+
+
+//=== INDEX ===
+window.validateIndexField = function validateIndexField() {
+    var keyTextField = $("#keyTextField").val()
+    var title = $("#titleTextField").val()
+    var styles = getRecoverStyles();
+    
+
+    if (controlError(title,keyTextField,styles)) {
+        createIndexField(keyTextField,title)
+        saveIndexField(keyTextField,"index",title)
+    }
+}
+
+
+//======================================
+//              PRIVATE               //
+//======================================
 
 window.allPickerIsComplete = function allPickerIsComplete() {
     var isComplete = true
@@ -154,54 +127,24 @@ window.allPickerIsComplete = function allPickerIsComplete() {
     return isComplete
 }
 
-//=== BOOLEAN ===
-window.validateBooleanField = function validateBooleanField() {
-    var keyTextField = $("#keyTextField").val()
-    var title = $("#titleTextField").val()
-    var validator = getRecoverValidations();
-
-    // Style
-    var cellColor = $("#cellColorHex").val()
-    var titleColor = $("#titleColorHex").val()
-    var errorColor = $("#errorColorHex").val()
-    var sizeTitle = $("#sizeTitle").val()
-    var sizeError = $("#sizeError").val()
-    var align = document.getElementById("selectTypeAlign").value;
-    var font = document.getElementById("selectTypeFont").value;
-    var imageMandatory = $("#imageMandatory").val()
-    var imageCheckBoxOn = $("#imageCheckBoxOn").val()
-    var imageCheckBoxOff = $("#imageCheckBoxOff").val()
-    var isEditing = $('#isEditingTextField').is(':checked');
-    var isHidden = $('#isEditingTextField').is(':checked');
-
-    if (font == "custom") {
-        font = $("#custonFont").val()
+window.controlError = function controlError(title, keyTextField, style) {
+    if (title.length > 0 &&  keyTextField.length > 0) {
+        if (style.font != null) {
+            if (style.sizeTitle != null && style.sizeError != null) {
+                return true;
+            }
+            else {
+                alert("Si define un tipo de fuente debe elegir el tamaño de fuente para el titulo y el error");
+                return false;
+            }
+        } 
+        else {
+            return true;
+        }
     }
-    
-    if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createBooleanField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isEditing, isHidden, validator);
-        saveBooleanField(keyTextField,"boolean",title,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isEditing, isHidden, validator)
-    }
-}
-
-//=== INDEX ===
-window.validateIndexField = function validateIndexField() {
-    var keyTextField = $("#keyTextField").val()
-    var title = $("#titleTextField").val()
-    // Style
-    var cellColor = $("#cellColorHex").val()
-    var titleColor = $("#titleColorHex").val()
-    var sizeTitle = $("#sizeTitle").val()
-    var align = document.getElementById("selectTypeAlign").value;
-    var font = document.getElementById("selectTypeFont").value;
-    
-    if (font == "custom") {
-        font = $("#custonFont").val()
-    }
-    
-    if (controlError(title,keyTextField,font,sizeTitle,10)) {
-        createIndexField(keyTextField,title,cellColor,titleColor,sizeTitle,align,font);
-        saveIndexField(keyTextField,"index",title,cellColor,titleColor,sizeTitle,align,font)
+    else {
+        alert("Los campos con asterisco son obligatorios");
+        return false;
     }
 }
 
@@ -255,6 +198,50 @@ function getRecoverValidations() {
     return listValidatorResult;
 }
 
+
+//======================================
+//         RECOVER    STYLES          //
+//======================================
+
+
+function getRecoverStyles() {
+    var styles = new styleResult();
+    var selector = document.getElementById("selectTypeCell").value;
+
+    styles.typeCell = selector;
+    styles.imageMandatory = $("#imageMandatory").val()
+    styles.imageMandatory = $("#imageMandatory").val()
+    styles.imageCheckBoxOn = $("#imageCheckBoxOn").val()
+    styles.aceptColor = $("#aceptColorHex").val()
+    styles.containerAceptColor = $("#containerAceptColorHex").val()
+    styles.backgroundPickerColor = $("#backgroundPickerColorHex").val()
+
+
+    if (selector == "default" || selector == "line") {
+        styles.cellColor = $("#cellColorHex").val()
+        styles.titleColor = $("#titleColorHex").val()
+        styles.errorColor = $("#errorColorHex").val()
+        styles.sizeTitle = $("#sizeTitle").val()
+        styles.sizeError = $("#sizeError").val()
+        styles.align = document.getElementById("selectTypeAlign").value;
+        styles.font = document.getElementById("selectTypeFont").value;
+
+        if (styles.font == "custom") {
+            styles.font = $("#custonFont").val()
+        }
+    } else if (selector == "custom") {
+        styles.nameXib = $("#nameXib").val();
+    } 
+
+    return styles;
+}
+
+
+//======================================
+//              MODELS                //
+//======================================
+
+
 function validatorResult() {
     var type = "";
     var text = "";
@@ -273,4 +260,22 @@ function rulesResult() {
     var valueCompare = "";
     var behaviorCompare = "";
     var elseCompare = "";
+}
+
+function styleResult() {
+    var cellColor = "";
+    var titleColor = "";
+    var errorColor = "";
+    var sizeTitle = "";
+    var sizeError = "";
+    var align = "";
+    var font = "";
+    var typeCell = "";
+    var nameXib = "";
+    var imageMandatory = "";
+    var imageCheckBoxOn = ""
+    var imageCheckBoxOff = ""
+    var aceptColor = "";
+    var containerAceptColor = "";
+    var backgroundPickerColor = "";
 }

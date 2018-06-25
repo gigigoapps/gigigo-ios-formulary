@@ -1049,5 +1049,14 @@
         width: 300px;
     }
 
+.styleDefault {
+    margin-left: 48px;
+}
 
+.cellContainer {
+    margin-left: 48px;
+}
 
+.typeCell {
+    margin-left: 48px;
+}

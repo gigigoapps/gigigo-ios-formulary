@@ -4,7 +4,7 @@
 //======================================
             
 
-window.createField = function createField(keyTextField,title,placeHolder,cellColor,keyboard,validator,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory, isPassword, isEditing, isHidden) {
+window.createField = function createField(keyTextField,title,placeHolder,keyboard,validator, isPassword, isEditing, isHidden, style) {
 
     var isPasswordChecked = ""
     if (isPassword) {
@@ -19,13 +19,26 @@ window.createField = function createField(keyTextField,title,placeHolder,cellCol
         isHiddenChecked = "checked"
     }
 
-    //-- Recover Styles --
-    var htmlBackgroundColor = getStyleColor(cellColor,titleColor,errorColor);
-    var htmlFontSize = getStyleSize (sizeTitle, sizeError);
-    var htmlAlingFont = getAlignFont(align,font)
-    var htmlImages = recoverHtmlImageMandatory(imageMandatory)    
-    var styles =  htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
+    //-- Recover HTML --
+    var htmlTypeCell = getTypeCell(style);
+    var htmlBackgroundColor = getStyleColor(style);
+    var htmlFontSize = getStyleSize (style);
+    var htmlAlingFont = getAlignFont(style)
+    var htmlImages = recoverHtmlImageMandatory(style)    
+    var htmlCustom = getStyleCustom(style);
     var htmlValidator = generateHtmlValidator(validator);
+    
+
+    var styles;
+    if (style.typeCell == "default" || style.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
+    } else if (style.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom + htmlImages;
+    } else if (htmlImages.length > 0) {
+        styles = htmlImages;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
 
 
     var html = require('html-loader!../aux/auxTextCreated.html')
@@ -44,7 +57,7 @@ window.createField = function createField(keyTextField,title,placeHolder,cellCol
     resetTypeField();
 }
 
-window.saveField = function saveField(keyTextField,type,title,placeHolder,cellColor,keyboard,validator,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory, isPassword, isEditing, isHidden) {
+window.saveField = function saveField(keyTextField,type,title,placeHolder,keyboard,validator, isPassword, isEditing, isHidden, style) {
     //-- Mandatory Fiedls --
     var itemSave = {
         "tag":indexField,
@@ -75,9 +88,9 @@ window.saveField = function saveField(keyTextField,type,title,placeHolder,cellCo
     if (itemsValidators.length > 0) {
         itemSave["validator"] = itemsValidators;
     }
-    
+
     //-- OPTIONAL FIELDS --
-    var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,"","","",align,font,imageMandatory,"","");
+    var styles = getStylesJson(style);
 
     if (styles != null) {
         itemSave["style"] = styles

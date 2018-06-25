@@ -567,11 +567,11 @@ window.getHtmlAllImage = function getHtmlAllImage() {
 	return '<div class="imagesZone"><p>Imagen obligatorio:</p><input id="imageMandatory"type="text"name="element"><p>Imagen checkBox On:</p><input id="imageCheckBoxOn"type="text"name="element"><p>Imagen checkBox Off:</p><input id="imageCheckBoxOff"type="text"name="element"></div>';
 }
 
-window.recoverHtmlImageMandatory = function recoverHtmlImageMandatory(imageMandatory) {
+window.recoverHtmlImageMandatory = function recoverHtmlImageMandatory(style) {
 
-    var htmlImage =  '<div class="imagesZone withOutStyle2"><p>Sin estilo de imagenes</p></div>';
-    if (imageMandatory != "") {
-		htmlImage = '<div class="imagesZone"><p>Imagen obligatorio:</p><input id="imageMandatory"type="text"name="element" disabled readonly value="'+imageMandatory+'"></div>';
+    var htmlImage = '';
+    if (style.imageMandatory != "") {
+		htmlImage = '<div class="imagesZone"><p>Imagen obligatorio:</p><input id="imageMandatory"type="text"name="element" disabled readonly value="'+style.imageMandatory+'"></div>';
 	}
 
 	return htmlImage
@@ -935,110 +935,6 @@ clipboard.on('error', function(e) {
 
 
 
-//======================================
-//               GENERIC              //
-//======================================
-
-window.getStyleColor = function getStyleColor(cellColor,titleColor,errorColor) {
-    var html = '<div class="colorZone withOutStyle"><p>Sin estilo de color</p><div id="cellColor"></div></div>';
-    if (cellColor != "" || titleColor != "" || errorColor != "") {
-        html = '<div class="colorZone"><p>Color de la celda:</p><div id="cellColor" class="cellColor" style="background-color:'+cellColor+'"><p id="colorId">'+cellColor+'</p></div><p class="colorTittleP">Color titulo:</p><div id="titleColor" class="cellColor" style="background-color:'+titleColor+'"><p id="colorId">'+titleColor+'</p></div><p class="colorTittleP">Color error:</p><div id="errorColor" class="cellColor" style="background-color:'+errorColor+'"><p id="colorId">'+errorColor+'</p></div></div>';
-    }
-
-    return html;
-}
-
-window.getStyleColorPicker = function getStyleColorPicker(aceptColor,containerAceptColor,backgroundPickerColor) {
-    var html = '<div class="colorZone withOutStyle"><p>Sin estilo de color del picker</p><div id="cellColor"></div></div>';
-    if (aceptColor != "" ||containerAceptColor != "" || backgroundPickerColor != "") {
-        html = '<div class="colorZone"><p class="nextColor">Estilos picker selector</p><p class="colorOKPicker">Color texto OK:</p><div id="aceptColor"class="cellColor" style="background-color:'+aceptColor+'"><p id="colorId">'+aceptColor+'</p></div><p class="colorTittleP">Color contenedor OK:</p><div id="containerAceptColor"class="cellColor"  style="background-color:'+containerAceptColor+'"><p id="colorId">'+containerAceptColor+'</p></div><p class="colorTittleP">Color fondo:</p><div id="backgroundPickerColor" class="cellColor"  style="background-color:'+backgroundPickerColor+'"><p id="colorId">'+backgroundPickerColor+'</p></div></div>';
-    }
-
-    return html;
-}
-
-window.getStyleSize = function getStyleSize (sizeTitle, sizeError) {
-    var htmlFontSize =  '<div class="colorZone withOutStyle"><p>Sin estilo de fuente de tamaño</p></div>';
-    if (sizeTitle != "" || sizeError != "") {
-        htmlFontSize = '<div class="sizeZone"><p>Tamaño titulo:</p><input id="sizeTitle"type="text"name="element" disabled readonly value="'+sizeTitle+'"><p>Tamaño texto error:</p><input id="sizeError"type="text"name="element" disabled readonly value="'+sizeError+'"></div>';
-    }
-
-    return htmlFontSize;
-}
-
-window.getAlignFont = function getAlignFont(align,font) {
-    var htmlAlignFont =  '<div class="colorZone withOutStyle"><p>Sin estilo de alineación o tipo de fuente</p></div>';
-    if (align != "" || font != "") {
-        htmlAlignFont = '<div class="sizeZone alignZone"><p>Alineación:</p><input id="alignTitle" type="text"name="element" disabled readonly value="'+align+'"><p>Fuente:</p><input id="fontField"type="text"name="element" disabled readonly value="'+font+'"></div>';
-    }
-
-    return htmlAlignFont;
-}
-
-window.getStylesJson = function getStylesJson(cellColor,titleColor,errorColor,sizeTitle, sizeError,aceptColor,containerAceptColor,backgroundPickerColor,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff) {
-    var style = {}
-    var haveStyle = false;
-    
-    //-- STYLES --
-    if (cellColor.length > 0) {
-        style["backgroundColorField"] = cellColor
-        haveStyle = true;
-    }
-    if (titleColor.length > 0) {
-        style["titleColor"] = titleColor
-        haveStyle = true;
-    }
-    if (errorColor.length > 0) {
-        style["errorColor"] = errorColor
-        haveStyle = true;
-    }
-    if (sizeTitle.length > 0) {
-        style["sizeTitle"] = parseInt(sizeTitle)
-        haveStyle = true;
-    }
-    if (sizeError.length > 0) {
-        style["sizeError"] = parseInt(sizeError)
-        haveStyle = true;
-    }
-    if (aceptColor.length > 0) {
-        style["acceptColorPicker"] = aceptColor
-        haveStyle = true;
-    }
-    if (containerAceptColor.length > 0) {
-        style["containerAcceptColorPicker"] = containerAceptColor
-        haveStyle = true;
-    }
-    if (backgroundPickerColor.length > 0) {
-        style["backgroundPickerColorPicker"] = backgroundPickerColor
-        haveStyle = true;
-    }
-    if (align.length > 0) {
-        style["align"] = align
-        haveStyle = true;
-    }
-    if (font.length > 0) {
-        style["font"] = font
-        haveStyle = true;
-    }
-    if (imageMandatory.length > 0) {
-        style["mandatoryIcon"] = imageMandatory
-        haveStyle = true;
-    }
-    if (imageCheckBoxOn.length > 0 && imageCheckBoxOff.length > 0) {
-        var checkBox = {}
-        checkBox["checkBoxOn"] = imageCheckBoxOn
-        checkBox["checkBoxOff"] = imageCheckBoxOff
-        style["checkBox"] = checkBox
-        haveStyle = true;
-    }
-    if (haveStyle) {
-        return style;
-    }
-    else {
-        return null;
-    }
-}
-
 
 
 /***/ }),
@@ -1269,7 +1165,7 @@ window.generateDicRules = function generateDicRules(rules) {
 //======================================
             
 
-window.createField = function createField(keyTextField,title,placeHolder,cellColor,keyboard,validator,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory, isPassword, isEditing, isHidden) {
+window.createField = function createField(keyTextField,title,placeHolder,keyboard,validator, isPassword, isEditing, isHidden, style) {
 
     var isPasswordChecked = ""
     if (isPassword) {
@@ -1284,13 +1180,26 @@ window.createField = function createField(keyTextField,title,placeHolder,cellCol
         isHiddenChecked = "checked"
     }
 
-    //-- Recover Styles --
-    var htmlBackgroundColor = getStyleColor(cellColor,titleColor,errorColor);
-    var htmlFontSize = getStyleSize (sizeTitle, sizeError);
-    var htmlAlingFont = getAlignFont(align,font)
-    var htmlImages = recoverHtmlImageMandatory(imageMandatory)    
-    var styles =  htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
+    //-- Recover HTML --
+    var htmlTypeCell = getTypeCell(style);
+    var htmlBackgroundColor = getStyleColor(style);
+    var htmlFontSize = getStyleSize (style);
+    var htmlAlingFont = getAlignFont(style)
+    var htmlImages = recoverHtmlImageMandatory(style)    
+    var htmlCustom = getStyleCustom(style);
     var htmlValidator = generateHtmlValidator(validator);
+    
+
+    var styles;
+    if (style.typeCell == "default" || style.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
+    } else if (style.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom + htmlImages;
+    } else if (htmlImages.length > 0) {
+        styles = htmlImages;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
 
 
     var html = __webpack_require__(25)
@@ -1309,7 +1218,7 @@ window.createField = function createField(keyTextField,title,placeHolder,cellCol
     resetTypeField();
 }
 
-window.saveField = function saveField(keyTextField,type,title,placeHolder,cellColor,keyboard,validator,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory, isPassword, isEditing, isHidden) {
+window.saveField = function saveField(keyTextField,type,title,placeHolder,keyboard,validator, isPassword, isEditing, isHidden, style) {
     //-- Mandatory Fiedls --
     var itemSave = {
         "tag":indexField,
@@ -1340,9 +1249,9 @@ window.saveField = function saveField(keyTextField,type,title,placeHolder,cellCo
     if (itemsValidators.length > 0) {
         itemSave["validator"] = itemsValidators;
     }
-    
+
     //-- OPTIONAL FIELDS --
-    var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,"","","",align,font,imageMandatory,"","");
+    var styles = getStylesJson(style);
 
     if (styles != null) {
         itemSave["style"] = styles
@@ -1382,7 +1291,6 @@ window.getHtmlCustomCell = function getHtmlCustomCell() {
 }
 
 
-
 // Actions
 
 window.changeSelectioCell = function changeSelectioCell() {
@@ -1398,38 +1306,186 @@ window.changeSelectioCell = function changeSelectioCell() {
     	$(".clasicCell").fadeOut();
     	$(".customCell").fadeOut();
     }
-
 }
+
+
+//======================================
+//               STYLES CELL           //
+//======================================
+
+window.getTypeCell = function getTypeCell(style) {
+	return '<p class="typeCell"><b>Tipo de celda:</b> '+style.typeCell+'</p>';
+}
+
+window.getStyleCustom = function getStyleCustom(style) {
+	var html = '';
+	html += '<div class="cellContainer">';
+	html += '	<p><b>Nombre de la vista:</b> '+style.nameXib+'</p>';
+	html += '</div>';
+
+	return html;
+}
+
+window.getStyleColor = function getStyleColor(style) {
+	var html = '';
+    if (style.cellColor != "" || style.titleColor != "" || style.errorColor != "") {
+		html += '<div class="colorZone">';
+		html += '	<p>Color de la celda:</p>';
+		html += '	<div id="cellColor" class="cellColor" style="background-color:'+style.cellColor+'">';
+		html += '		<p id="colorId">'+style.cellColor+'</p>';
+		html += '	</div>';
+		html += '	<p class="colorTittleP">Color titulo:</p>';
+		html += '	<div id="titleColor" class="cellColor" style="background-color:'+style.titleColor+'">';
+		html += '		<p id="colorId">'+style.titleColor+'</p>';
+		html += '	</div>';
+		html += '	<p class="colorTittleP">Color error:</p>';
+		html += '	<div id="errorColor" class="cellColor" style="background-color:'+style.errorColor+'">';
+		html += '		<p id="colorId">'+style.errorColor+'</p>';
+		html += '	</div>';
+		html += '</div>';
+    }
+
+    return html;
+}
+
+window.getStyleColorPicker = function getStyleColorPicker(style) {
+	var html = '';
+    if (style.aceptColor != "" || style.containerAceptColor != "" || style.backgroundPickerColor != "") {
+    	html += '<div class="colorZone">';
+    	html += '	<p class="nextColor">Estilos picker selector</p>';
+    	html += '	<p class="colorOKPicker">Color texto OK:</p>';
+    	html += '	<div id="aceptColor"class="cellColor" style="background-color:'+style.aceptColor+'">';
+    	html += '		<p id="colorId">'+style.aceptColor+'</p>';
+    	html += '	</div>';
+    	html += '	<p class="colorTittleP">Color contenedor OK:</p>';
+    	html += '	<div id="containerAceptColor"class="cellColor"  style="background-color:'+style.containerAceptColor+'">';
+    	html += '		<p id="colorId">'+style.containerAceptColor+'</p>';
+    	html += '	</div>';
+    	html += '	<p class="colorTittleP">Color fondo:</p>';
+    	html += '	<div id="backgroundPickerColor" class="cellColor"  style="background-color:'+style.backgroundPickerColor+'">';
+    	html += '		<p id="colorId">'+style.backgroundPickerColor+'</p>';
+    	html += '	</div>';
+		html += '</div>';
+    }
+
+    return html;
+}
+
+window.getStyleSize = function getStyleSize (style) {
+	var html = '';
+    if (style.sizeTitle != "" || style.sizeError != "") {
+    	html += '<div class="sizeZone">';
+    	html += '	<p>Tamaño titulo:</p>';
+    	html += '	<input id="sizeTitle"type="text"name="element" disabled readonly value="'+style.sizeTitle+'">';
+    	html += '	<p>Tamaño texto error:</p>';
+    	html += '	<input id="sizeError"type="text"name="element" disabled readonly value="'+style.sizeError+'">';
+        html += '</div>';
+    }
+
+    return html;
+}
+
+window.getAlignFont = function getAlignFont(style) {
+	var html = '';
+    if (style.align != "" || style.font != "") {
+        html = '<div class="sizeZone alignZone">';
+    	html += '	<p>Alineación:</p>';
+    	html += '	<input id="alignTitle" type="text"name="element" disabled readonly value="'+style.align+'">';
+    	html += '	<p>Fuente:</p>';
+    	html += '	<input id="fontField"type="text"name="element" disabled readonly value="'+style.font+'">';
+    	html += '</div>';
+    }
+
+    return html;
+}
+
+window.getStylesJson = function getStylesJson(styleModel) {
+    var style = {}
+    var haveStyle = false;
+    
+    //-- STYLES --
+    if (styleModel.cellColor != null) {
+        style["backgroundColorField"] = styleModel.cellColor
+        haveStyle = true;
+    }
+    if (styleModel.titleColor != null) {
+        style["titleColor"] = styleModel.titleColor
+        haveStyle = true;
+    }
+    if (styleModel.errorColor != null) {
+        style["errorColor"] = styleModel.errorColor
+        haveStyle = true;
+    }
+    if (styleModel.sizeTitle != null) {
+        style["sizeTitle"] = parseInt(styleModel.sizeTitle)
+        haveStyle = true;
+    }
+    if (styleModel.sizeError != null) {
+        style["sizeError"] = parseInt(styleModel.sizeError)
+        haveStyle = true;
+    }
+    if (styleModel.aceptColor != null) {
+        style["acceptColorPicker"] = styleModel.aceptColor
+        haveStyle = true;
+    }
+    if (styleModel.containerAceptColor != null) {
+        style["containerAcceptColorPicker"] = styleModel.containerAceptColor
+        haveStyle = true;
+    }
+    if (styleModel.backgroundPickerColor != null) {
+        style["backgroundPickerColorPicker"] = styleModel.backgroundPickerColor
+        haveStyle = true;
+    }
+    if (styleModel.align != null) {
+        style["align"] = styleModel.align
+        haveStyle = true;
+    }
+    if (styleModel.font != null) {
+        style["font"] = styleModel.font
+        haveStyle = true;
+    }
+    if (styleModel.imageMandatory.length > 0) {
+        style["mandatoryIcon"] = styleModel.imageMandatory
+        haveStyle = true;
+    }
+    if (styleModel.imageCheckBoxOn != null && styleModel.imageCheckBoxOff != null) {
+        var checkBox = {}
+        checkBox["checkBoxOn"] = styleModel.imageCheckBoxOn
+        checkBox["checkBoxOff"] = styleModel.imageCheckBoxOff
+        style["checkBox"] = checkBox
+        haveStyle = true;
+    }
+
+    if (styleModel.typeCell != null) {
+    	if (styleModel.typeCell == "line" || styleModel.typeCell == "custom") {    		
+    		style["styleCell"] = styleModel.typeCell
+
+    		if (styleModel.typeCell == "custom") {
+    			style["nameXib"] = styleModel.nameXib
+    		}
+
+    		haveStyle = true;
+    	}
+    } 
+
+    if (haveStyle) {
+        return style;
+    }
+    else {
+        return null;
+    }
+}
+
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports) {
 
-// http://www.danstools.com/javascript-minify/ 
+
+
 //======================================
 //            VALIDATION              //
 //======================================
-
-window.controlError = function controlError(title,keyTextField,font,sizeTitle,sizeError) {
-    if (title.length > 0 &&  keyTextField.length > 0) {
-        if (font.length > 0) {
-            if (sizeTitle.length > 0 && sizeError.length > 0) {
-                return true;
-            }
-            else {
-                alert("Si define un tipo de fuente debe elegir el tamaño de fuente para el titulo y el error");
-                return false;
-            }
-        } 
-        else {
-            return true;
-        }
-    }
-    else {
-        alert("Los campos con asterisco son obligatorios");
-        return false;
-    }
-}
 
 
 //=== TEXTFIELD ===
@@ -1439,29 +1495,17 @@ window.validateTextField = function validateTextField() {
     var placeHolder = $("#palceHolderTextField").val()
     var keyboard = document.getElementById("selectTypeKeyboard").value;
     var validator = getRecoverValidations();
+    var styles = getRecoverStyles();
 
-    // Style
-    var cellColor = $("#cellColorHex").val()
-    var titleColor = $("#titleColorHex").val()
-    var errorColor = $("#errorColorHex").val()
-    var sizeTitle = $("#sizeTitle").val()
-    var sizeError = $("#sizeError").val()
-    var align = document.getElementById("selectTypeAlign").value;
-    var font = document.getElementById("selectTypeFont").value;
-    var imageMandatory = $("#imageMandatory").val()
     var isPassword = $('#passwordTextField').is(':checked');
     var isEditing = $('#isEditingTextField').is(':checked');
     var isHidden = $('#isEditingTextField').is(':checked');
+       
 
-        
-    if (font == "custom") {
-        font = $("#custonFont").val()
-    }
-        
-    if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
+    if (controlError(title, keyTextField, styles)) {
         window.idValidatorField = 0;
-        createField(keyTextField,title,placeHolder,cellColor,keyboard,validator,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory, isPassword, isEditing, isHidden);
-        saveField(keyTextField,"text",title,placeHolder,cellColor,keyboard,validator,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory, isPassword, isEditing, isHidden)
+        createField(keyTextField,title,placeHolder,keyboard,validator,isPassword, isEditing, isHidden, styles);
+        saveField(keyTextField,"text",title,placeHolder,keyboard,validator,isPassword, isEditing, isHidden, styles);
     }
 }
 
@@ -1470,35 +1514,18 @@ window.validateDatePickerField = function validateDatePickerField() {
     var keyTextField = $("#keyTextField").val()
     var title = $("#titleTextField").val()
     var validator = getRecoverValidations();
+    var styles = getRecoverStyles();
+    var rules = getRecoverRules(isActiveRule);
 
-    // Optional
     var acceptButtonTextField = $("#acceptButtonTextField").val()
-
-    // Style
-    var cellColor = $("#cellColorHex").val()
-    var titleColor = $("#titleColorHex").val()
-    var errorColor = $("#errorColorHex").val()
-    var sizeTitle = $("#sizeTitle").val()
-    var sizeError = $("#sizeError").val()
-    var aceptColor = $("#aceptColorHex").val()
-    var containerAceptColor = $("#containerAceptColorHex").val()
-    var backgroundPickerColor = $("#backgroundPickerColorHex").val()
-    var align = document.getElementById("selectTypeAlign").value;
-    var font = document.getElementById("selectTypeFont").value;
-    var imageMandatory = $("#imageMandatory").val()
     var isEditing = $('#isEditingTextField').is(':checked');
     var isHidden = $('#isEditingTextField').is(':checked');
     var isActiveRule = $('#rules').is(':checked');
 
-    var rules = getRecoverRules(isActiveRule);
 
-    if (font == "custom") {
-        font = $("#custonFont").val()
-    }
-
-    if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createDatePickerField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator, isActiveRule, rules);
-        saveDatePickerField(keyTextField,"datePicker",title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator, isActiveRule, rules);
+    if (controlError(title,keyTextField,styles)) {
+        createDatePickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styles);
+        saveDatePickerField(keyTextField,"datePicker",title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styles);
     }
 }
 
@@ -1507,39 +1534,61 @@ window.validatePickerField = function validatePickerField() {
     var keyTextField = $("#keyTextField").val()
     var title = $("#titleTextField").val()
     var validator = getRecoverValidations();
+    var styles = getRecoverStyles();
 
-    // Optional
     var acceptButtonTextField = $("#acceptButtonTextField").val()
-
-    // Style
-    var cellColor = $("#cellColorHex").val()
-    var titleColor = $("#titleColorHex").val()
-    var errorColor = $("#errorColorHex").val()
-    var sizeTitle = $("#sizeTitle").val()
-    var sizeError = $("#sizeError").val()
-    var aceptColor = $("#aceptColorHex").val()
-    var containerAceptColor = $("#containerAceptColorHex").val()
-    var backgroundPickerColor = $("#backgroundPickerColorHex").val()
-    var align = document.getElementById("selectTypeAlign").value;
-    var font = document.getElementById("selectTypeFont").value;    
-    var imageMandatory = $("#imageMandatory").val()
     var isEditing = $('#isEditingTextField').is(':checked');
     var isHidden = $('#isEditingTextField').is(':checked');
 
-    if (font == "custom") {
-        font = $("#custonFont").val()
-    }
 
-    if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
+    if (controlError(title,keyTextField, styles)) {
         if (allPickerIsComplete()) {
-            createPickerField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator);
-            savePickerField(keyTextField,"picker",title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory, isEditing, isHidden, validator);
+            createPickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, styles);
+            savePickerField(keyTextField,"picker",title,acceptButtonTextField, isEditing, isHidden, validator, styles);
         }
         else {
             alert("Los campos de clave y valor de los picker deben estar todos rellenos");
         }
     }
 }
+
+
+//=== BOOLEAN ===
+window.validateBooleanField = function validateBooleanField() {
+    var keyTextField = $("#keyTextField").val()
+    var title = $("#titleTextField").val()
+    var validator = getRecoverValidations();
+    var styles = getRecoverStyles();
+
+
+    var isEditing = $('#isEditingTextField').is(':checked');
+    var isHidden = $('#isEditingTextField').is(':checked');
+
+
+    if (controlError(title,keyTextField,styles)) {
+        createBooleanField(keyTextField,title,isEditing, isHidden, validator, styles);
+        saveBooleanField(keyTextField,"boolean",title,isEditing, isHidden, validator, styles)
+    }
+}
+
+
+//=== INDEX ===
+window.validateIndexField = function validateIndexField() {
+    var keyTextField = $("#keyTextField").val()
+    var title = $("#titleTextField").val()
+    var styles = getRecoverStyles();
+    
+
+    if (controlError(title,keyTextField,styles)) {
+        createIndexField(keyTextField,title)
+        saveIndexField(keyTextField,"index",title)
+    }
+}
+
+
+//======================================
+//              PRIVATE               //
+//======================================
 
 window.allPickerIsComplete = function allPickerIsComplete() {
     var isComplete = true
@@ -1561,54 +1610,24 @@ window.allPickerIsComplete = function allPickerIsComplete() {
     return isComplete
 }
 
-//=== BOOLEAN ===
-window.validateBooleanField = function validateBooleanField() {
-    var keyTextField = $("#keyTextField").val()
-    var title = $("#titleTextField").val()
-    var validator = getRecoverValidations();
-
-    // Style
-    var cellColor = $("#cellColorHex").val()
-    var titleColor = $("#titleColorHex").val()
-    var errorColor = $("#errorColorHex").val()
-    var sizeTitle = $("#sizeTitle").val()
-    var sizeError = $("#sizeError").val()
-    var align = document.getElementById("selectTypeAlign").value;
-    var font = document.getElementById("selectTypeFont").value;
-    var imageMandatory = $("#imageMandatory").val()
-    var imageCheckBoxOn = $("#imageCheckBoxOn").val()
-    var imageCheckBoxOff = $("#imageCheckBoxOff").val()
-    var isEditing = $('#isEditingTextField').is(':checked');
-    var isHidden = $('#isEditingTextField').is(':checked');
-
-    if (font == "custom") {
-        font = $("#custonFont").val()
+window.controlError = function controlError(title, keyTextField, style) {
+    if (title.length > 0 &&  keyTextField.length > 0) {
+        if (style.font != null) {
+            if (style.sizeTitle != null && style.sizeError != null) {
+                return true;
+            }
+            else {
+                alert("Si define un tipo de fuente debe elegir el tamaño de fuente para el titulo y el error");
+                return false;
+            }
+        } 
+        else {
+            return true;
+        }
     }
-    
-    if (controlError(title,keyTextField,font,sizeTitle,sizeError)) {
-        createBooleanField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isEditing, isHidden, validator);
-        saveBooleanField(keyTextField,"boolean",title,cellColor,titleColor,errorColor,sizeTitle,sizeError,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff,isEditing, isHidden, validator)
-    }
-}
-
-//=== INDEX ===
-window.validateIndexField = function validateIndexField() {
-    var keyTextField = $("#keyTextField").val()
-    var title = $("#titleTextField").val()
-    // Style
-    var cellColor = $("#cellColorHex").val()
-    var titleColor = $("#titleColorHex").val()
-    var sizeTitle = $("#sizeTitle").val()
-    var align = document.getElementById("selectTypeAlign").value;
-    var font = document.getElementById("selectTypeFont").value;
-    
-    if (font == "custom") {
-        font = $("#custonFont").val()
-    }
-    
-    if (controlError(title,keyTextField,font,sizeTitle,10)) {
-        createIndexField(keyTextField,title,cellColor,titleColor,sizeTitle,align,font);
-        saveIndexField(keyTextField,"index",title,cellColor,titleColor,sizeTitle,align,font)
+    else {
+        alert("Los campos con asterisco son obligatorios");
+        return false;
     }
 }
 
@@ -1662,6 +1681,50 @@ function getRecoverValidations() {
     return listValidatorResult;
 }
 
+
+//======================================
+//         RECOVER    STYLES          //
+//======================================
+
+
+function getRecoverStyles() {
+    var styles = new styleResult();
+    var selector = document.getElementById("selectTypeCell").value;
+
+    styles.typeCell = selector;
+    styles.imageMandatory = $("#imageMandatory").val()
+    styles.imageMandatory = $("#imageMandatory").val()
+    styles.imageCheckBoxOn = $("#imageCheckBoxOn").val()
+    styles.aceptColor = $("#aceptColorHex").val()
+    styles.containerAceptColor = $("#containerAceptColorHex").val()
+    styles.backgroundPickerColor = $("#backgroundPickerColorHex").val()
+
+
+    if (selector == "default" || selector == "line") {
+        styles.cellColor = $("#cellColorHex").val()
+        styles.titleColor = $("#titleColorHex").val()
+        styles.errorColor = $("#errorColorHex").val()
+        styles.sizeTitle = $("#sizeTitle").val()
+        styles.sizeError = $("#sizeError").val()
+        styles.align = document.getElementById("selectTypeAlign").value;
+        styles.font = document.getElementById("selectTypeFont").value;
+
+        if (styles.font == "custom") {
+            styles.font = $("#custonFont").val()
+        }
+    } else if (selector == "custom") {
+        styles.nameXib = $("#nameXib").val();
+    } 
+
+    return styles;
+}
+
+
+//======================================
+//              MODELS                //
+//======================================
+
+
 function validatorResult() {
     var type = "";
     var text = "";
@@ -1680,6 +1743,24 @@ function rulesResult() {
     var valueCompare = "";
     var behaviorCompare = "";
     var elseCompare = "";
+}
+
+function styleResult() {
+    var cellColor = "";
+    var titleColor = "";
+    var errorColor = "";
+    var sizeTitle = "";
+    var sizeError = "";
+    var align = "";
+    var font = "";
+    var typeCell = "";
+    var nameXib = "";
+    var imageMandatory = "";
+    var imageCheckBoxOn = ""
+    var imageCheckBoxOff = ""
+    var aceptColor = "";
+    var containerAceptColor = "";
+    var backgroundPickerColor = "";
 }
 
 
