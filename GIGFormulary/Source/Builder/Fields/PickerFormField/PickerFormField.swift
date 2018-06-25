@@ -23,9 +23,7 @@ protocol PickerFormFieldOutPut {
  "subtype": "expandable",
  */
 
-// en la web falta añadir lo del custom view
 // probar las imagenes de los mandatory y de los checkbox desde app externa
-// meter en el web constructor que cuando pulsas a generate te navege hasta el principio del json
 
 class PickerFormField: PickerCellInterface, POptionsPickerComponent, PDatePickerComponent {
     

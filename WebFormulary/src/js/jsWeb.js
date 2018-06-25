@@ -264,7 +264,11 @@ $("#buttonGenerateJson").click(function() {
     var copyListField = copyList(listFieldsResult);
     var recoverJSON = JSON.stringify(copyListField, undefined, 4);
     recoverJSON = '{ \n "fields":'+recoverJSON+' \n}';
-   $("#containerJsonItemsCreated").append("<button class='btn butonCopyPaste' data-clipboard-action='copy' data-clipboard-target='#bar'>Copiar</button><textarea id='bar'>"+recoverJSON+"</textarea><pre>"+syntaxHighlight(recoverJSON)+"</pre>")
+    $("#containerJsonItemsCreated").append("<button class='btn butonCopyPaste' data-clipboard-action='copy' data-clipboard-target='#bar'>Copiar</button><textarea id='bar'>"+recoverJSON+"</textarea><pre>"+syntaxHighlight(recoverJSON)+"</pre>")
+
+    $('html, body').animate({
+       scrollTop: $("#containerJsonItemsCreated").offset().top
+    }, 1000)
 });
  
 var idColor = ""           
