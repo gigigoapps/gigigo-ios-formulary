@@ -53,13 +53,13 @@ class PickerFormField: PickerCellInterface, POptionsPickerComponent, PDatePicker
     
     override var fieldValue: Any? {
         get {
-            if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
+            if self.formFieldM?.type == TypeField.pickerFormField.rawValue {
                 return (self.formFieldM!.options![self.pickerOptions!.selectedIndex!]).idOption
             } else {
-                if self.pickerDate!.dateSelected != nil {
+                if let dateSelected = self.pickerDate?.dateSelected {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "dd/MM/yyyy"
-                    return dateFormatter.string(from: self.pickerDate!.dateSelected!)
+                    return dateFormatter.string(from: dateSelected)
                 }
                 return ""
             }
@@ -128,26 +128,28 @@ class PickerFormField: PickerCellInterface, POptionsPickerComponent, PDatePicker
     override func insertData() {
         super.insertData()
         if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
-            self.pickerOptions = OptionsPickerComponent()
-            self.pickerOptions?.styles = self.formFieldM?.style
-            self.pickerOptions?.textAcceptButton = self.formFieldM?.textAcceptButton
-            self.pickerOptions!.initTextField(self.textTextField)
-            self.pickerOptions!.items = self.formFieldM!.options!
-            self.pickerOptions?.populateData(self.formFieldM!.value)
-            self.pickerOptions?.delegateOption = self
+            let pickerOptions = OptionsPickerComponent()
+            pickerOptions.styles = self.formFieldM?.style
+            pickerOptions.textAcceptButton = self.formFieldM?.textAcceptButton
+            pickerOptions.initTextField(self.textTextField)
+            pickerOptions.items = self.formFieldM!.options!
+            pickerOptions.populateData(self.formFieldM!.value)
+            pickerOptions.delegateOption = self
+            self.pickerOptions = pickerOptions
         } else {
-            self.pickerDate = DatePickerComponent()
-            self.pickerDate?.styles = self.formFieldM?.style
-            self.pickerDate?.textAcceptButton = self.formFieldM?.textAcceptButton
-            self.pickerDate!.initTextField(self.textTextField)
-            self.pickerDate?.populateData(self.formFieldM?.value)
-            self.pickerDate?.configureRules(self.formFieldM?.rules)
-            self.pickerDate?.delegateDate = self
+            let pickerDate = DatePickerComponent()
+            pickerDate.styles = self.formFieldM?.style
+            pickerDate.textAcceptButton = self.formFieldM?.textAcceptButton
+            pickerDate.initTextField(self.textTextField)
+            pickerDate.populateData(self.formFieldM?.value)
+            pickerDate.configureRules(self.formFieldM?.rules)
+            pickerDate.delegateDate = self
+            self.pickerDate = pickerDate
         }
-        self.loadData(self.formFieldM!)
-        self.loadMandatory(self.formFieldM!.isMandatory())
-        self.loadCustomStyleField(self.formFieldM!)
-        self.loadKeyboard(self.formFieldM!)
+        self.loadData(self.formFieldM)
+        self.loadMandatory(self.formFieldM?.isMandatory())
+        self.loadCustomStyleField(self.formFieldM)
+        self.loadKeyboard()
     }
         
     override func loadError(error: Any) {
@@ -193,7 +195,8 @@ class PickerFormField: PickerCellInterface, POptionsPickerComponent, PDatePicker
     
     // MARK: Load data field
     
-    fileprivate func loadData(_ formFieldM: FormFieldModel) {
+    fileprivate func loadData(_ formFieldM: FormFieldModel?) {
+        guard let formFieldM = formFieldM else { return LogWarn("Field model is nil") }
         self.titleLabel.text = formFieldM.label
         self.textTextField.placeholder = formFieldM.placeHolder
         if self.formFieldM!.type == TypeField.pickerFormField.rawValue {
@@ -204,7 +207,10 @@ class PickerFormField: PickerCellInterface, POptionsPickerComponent, PDatePicker
         self.textTextField.isEnabled = formFieldM.isEditing
     }
     
-    fileprivate func loadMandatory(_ isMandatory: Bool) {
+    fileprivate func loadMandatory(_ isMandatory: Bool?) {
+        guard let isMandatory = isMandatory else {
+            return
+        }
         if isMandatory {
             self.widthMandatoryImageConstraint.constant = 30
         } else {
@@ -212,43 +218,43 @@ class PickerFormField: PickerCellInterface, POptionsPickerComponent, PDatePicker
         }
     }
     
-    fileprivate func loadKeyboard(_ formFieldM: FormFieldModel) {
-        self.textTextField.keyboardType = self.keyBoard!
+    fileprivate func loadKeyboard() {
+        guard let keyBoard = self.keyBoard else { return LogInfo("keyBoard is nil") }
+        self.textTextField.keyboardType = keyBoard
     }
     
-    fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel) {
-        let styleField = formFieldM.style
-        if styleField != nil {
-            if styleField!.mandatoryIcon != nil {
-                self.mandotoryImage.image = styleField?.mandatoryIcon
-            }
-            if styleField!.backgroundColorField != nil {
-                self.viewContainer.backgroundColor = styleField!.backgroundColorField!
-            }
-            if styleField!.titleColor != nil {
-                self.titleLabel.textColor = styleField!.titleColor!
-            }
-            if styleField!.errorColor != nil {
-                self.errorLabel.textColor = styleField!.errorColor!
-            }
-            if styleField!.fontTitle != nil {
-                self.titleLabel.font = styleField?.fontTitle
-                self.textTextField.font = styleField?.fontTitle
-            }
-            if styleField!.fontError != nil {
-                self.errorLabel.font = styleField?.fontError
-            }
-            if styleField!.align != nil {
-                self.titleLabel.textAlignment = styleField!.align!
-            }
-            if let styleCell = styleField?.styleCell {
-                switch styleCell {
-                case .defaultStyle, .custom:
-                    // TODO nothing
-                    break
-                case .lineStyle:
-                    self.customizeCell()
-                }
+    fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel?) {
+        guard let styleField = formFieldM?.style else { return LogInfo("Style is nil") }
+
+        if let mandatoryIcon = styleField.mandatoryIcon {
+            self.mandotoryImage.image = mandatoryIcon
+        }
+        if let backgroundColorField = styleField.backgroundColorField {
+            self.viewContainer.backgroundColor = backgroundColorField
+        }
+        if let titleColor = styleField.titleColor {
+            self.titleLabel.textColor = titleColor
+        }
+        if let errorColor = styleField.errorColor {
+            self.errorLabel.textColor = errorColor
+        }
+        if let fontTitle = styleField.fontTitle {
+            self.titleLabel.font = fontTitle
+            self.textTextField.font = fontTitle
+        }
+        if let fontError = styleField.fontError {
+            self.errorLabel.font = fontError
+        }
+        if let align = styleField.align {
+            self.titleLabel.textAlignment = align
+        }
+        if let styleCell = styleField.styleCell {
+            switch styleCell {
+            case .defaultStyle, .custom:
+                // TODO nothing
+                break
+            case .lineStyle:
+                self.customizeCell()
             }
         }
     }

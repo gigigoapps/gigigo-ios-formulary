@@ -192,37 +192,36 @@ class BooleanFormField: BoolCellInterace {
     }
     
     fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel) {
-        let styleField = formFieldM.style
-        if styleField != nil {
-            if styleField!.mandatoryIcon != nil {
-                self.mandotoryImage.image = styleField?.mandatoryIcon
-            }
-            if styleField!.backgroundColorField != nil {
-                self.viewContainer.backgroundColor = styleField!.backgroundColorField!
-            }
-            if styleField!.titleColor != nil {
-                self.titleLabel.textColor = styleField!.titleColor!
-            }
-            if styleField!.errorColor != nil {
-                self.errorLabel.textColor = styleField!.errorColor!
-            }
-            if styleField!.fontTitle != nil {
-                self.titleLabel.font = styleField?.fontTitle
-            }
-            if styleField!.fontError != nil {
-                self.errorLabel.font = styleField?.fontError
-            }
-            if styleField!.align != nil {
-                self.titleLabel.textAlignment = styleField!.align!
-            }
-            if styleField!.checkBoxOn != nil {
-                self.checkBoxOn = styleField!.checkBoxOn!
-                self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
-            }
-            if styleField!.checkBoxOff != nil {
-                self.checkBoxOff = styleField!.checkBoxOff!
-                self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
-            }
+        guard let styleField = formFieldM.style else { return LogInfo("Styles is nil") }
+        
+        if let mandatoryIcon = styleField.mandatoryIcon {
+            self.mandotoryImage.image = mandatoryIcon
+        }
+        if let backgroundColorField = styleField.backgroundColorField {
+            self.viewContainer.backgroundColor = backgroundColorField
+        }
+        if let titleColor = styleField.titleColor {
+            self.titleLabel.textColor = titleColor
+        }
+        if let errorColor = styleField.errorColor {
+            self.errorLabel.textColor = errorColor
+        }
+        if let fontTitle = styleField.fontTitle {
+            self.titleLabel.font = fontTitle
+        }
+        if let fontError = styleField.fontError {
+            self.errorLabel.font = fontError
+        }
+        if let align = styleField.align {
+            self.titleLabel.textAlignment = align
+        }
+        if let checkBoxOn = styleField.checkBoxOn {
+            self.checkBoxOn = checkBoxOn
+            self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
+        }
+        if let checkBoxOff = styleField.checkBoxOff {
+            self.checkBoxOff = checkBoxOff
+            self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
         }
     }
     

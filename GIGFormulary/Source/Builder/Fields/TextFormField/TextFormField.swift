@@ -52,11 +52,11 @@ class TextFormField: TextCellInterface, UITextFieldDelegate {
     // MARK: Public Method
     
     override func insertData() {
-        self.loadData(self.formFieldM!)
-        self.loadMandatory(self.formFieldM!.isMandatory())
-        self.loadCustomStyleField(self.formFieldM!)
-        self.loadKeyboard(self.formFieldM!)
-        self.loadCustomField(self.formFieldM!)
+        self.loadData(self.formFieldM)
+        self.loadMandatory(self.formFieldM?.isMandatory())
+        self.loadCustomStyleField(self.formFieldM)
+        self.loadKeyboard()
+        self.loadCustomField(self.formFieldM)
         super.insertData()
     }
     
@@ -117,13 +117,14 @@ class TextFormField: TextCellInterface, UITextFieldDelegate {
     
     // MARK: Load data field
     
-    fileprivate func loadCustomField(_ formFieldM: FormFieldModel) {
-        self.textTextField.isSecureTextEntry = formFieldM.isPassword
+    fileprivate func loadCustomField(_ formFieldM: FormFieldModel?) {
+        guard let isPassword = formFieldM?.isPassword else { return }
+        self.textTextField.isSecureTextEntry = isPassword
     }
     
-    fileprivate func loadData(_ formFieldM: FormFieldModel) {
-        self.titleLabel.text = formFieldM.label
-        self.textTextField.placeholder = formFieldM.placeHolder
+    fileprivate func loadData(_ formFieldM: FormFieldModel?) {
+        self.titleLabel.text = formFieldM?.label
+        self.textTextField.placeholder = formFieldM?.placeHolder
         self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
         if self.formFieldM?.value != nil {
             self.textTextField.text = self.formFieldM?.value as? String
@@ -131,10 +132,13 @@ class TextFormField: TextCellInterface, UITextFieldDelegate {
         if self.formFieldM?.label == nil {
             self.heightLabelConstraint.constant = 0
         }
-        self.textTextField.isEnabled = formFieldM.isEditing
+        
+        guard let isEditing = formFieldM?.isEditing else { return }
+        self.textTextField.isEnabled = isEditing
     }
     
-    fileprivate func loadMandatory(_ isMandatory: Bool) {
+    fileprivate func loadMandatory(_ isMandatory: Bool?) {
+        guard let isMandatory = isMandatory else { return LogInfo("Mandatory is nil") }
         if isMandatory {
             self.widthMandatoryImageConstraint.constant = 30
         } else {
@@ -142,43 +146,43 @@ class TextFormField: TextCellInterface, UITextFieldDelegate {
         }
     }
     
-    fileprivate func loadKeyboard(_ formFieldM: FormFieldModel) {
-        self.textTextField.keyboardType = self.keyBoard!
+    fileprivate func loadKeyboard() {
+        guard let keyBoard = keyBoard else { return }
+        self.textTextField.keyboardType = keyBoard
     }
     
-    fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel) {
-        let styleField = formFieldM.style
-        if styleField != nil {
-            if styleField!.mandatoryIcon != nil {
-                self.mandotoryImage.image = styleField?.mandatoryIcon
-            }
-            if styleField!.backgroundColorField != nil {
-                self.viewContainer.backgroundColor = styleField!.backgroundColorField!
-            }
-            if styleField!.titleColor != nil {
-                self.titleLabel.textColor = styleField!.titleColor!
-            }
-            if styleField!.errorColor != nil {
-                self.errorLabel.textColor = styleField!.errorColor!
-            }
-            if styleField!.fontTitle != nil {
-                self.titleLabel.font = styleField?.fontTitle
-                self.textTextField.font = styleField?.fontTitle
-            }
-            if styleField!.fontError != nil {
-                self.errorLabel.font = styleField?.fontError
-            }
-            if styleField!.align != nil {
-                self.titleLabel.textAlignment = styleField!.align!
-            }
-            if let styleCell = styleField?.styleCell {
-                switch styleCell {
-                case .defaultStyle, .custom:
-                    // TODO nothing
-                    break
-                case .lineStyle:
-                    self.customizeCell()                    
-                }
+    fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel?) {
+        guard let styleField = formFieldM?.style else { return LogInfo("Field Model is nil") }
+   
+        if let mandatoryIcon = styleField.mandatoryIcon {
+            self.mandotoryImage.image = mandatoryIcon
+        }
+        if let backgroundColorField = styleField.backgroundColorField {
+            self.viewContainer.backgroundColor = backgroundColorField
+        }
+        if let titleColor = styleField.titleColor {
+            self.titleLabel.textColor = titleColor
+        }
+        if let errorColor = styleField.errorColor {
+            self.errorLabel.textColor = errorColor
+        }
+        if let fontTitle = styleField.fontTitle {
+            self.titleLabel.font = fontTitle
+            self.textTextField.font = fontTitle
+        }
+        if let fontError = styleField.fontError {
+            self.errorLabel.font = fontError
+        }
+        if let align = styleField.align {
+            self.titleLabel.textAlignment = align
+        }
+        if let styleCell = styleField.styleCell {
+            switch styleCell {
+            case .defaultStyle, .custom:
+                // TODO nothing
+                break
+            case .lineStyle:
+                self.customizeCell()
             }
         }
     }
@@ -198,7 +202,8 @@ class TextFormField: TextCellInterface, UITextFieldDelegate {
     // MARK: UITextFieldDelegate
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.formFieldOutput!.scrollRectToVisible(self)
+        guard let formFieldOutput = self.formFieldOutput else { return }
+        formFieldOutput.scrollRectToVisible(self)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

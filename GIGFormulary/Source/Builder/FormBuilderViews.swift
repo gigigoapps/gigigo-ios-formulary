@@ -172,7 +172,7 @@ class FormBuilderViews: NSObject {
     // MARK: NOTIFICATIONS
     
     @objc func keyboardWillShow(_ notification: Notification) {
-        let dict: NSDictionary = (notification as NSNotification).userInfo! as NSDictionary
+        guard let dict: NSDictionary = (notification as NSNotification).userInfo as NSDictionary? else { return }
         guard let s: NSValue = dict.value(forKey: UIKeyboardFrameEndUserInfoKey) as? NSValue else { return LogWarn("keyboardWillShow NSValue parse error")}
         let keyboardFrame: CGRect = s.cgRectValue
         UIView.animate(withDuration: 0.25, animations: {

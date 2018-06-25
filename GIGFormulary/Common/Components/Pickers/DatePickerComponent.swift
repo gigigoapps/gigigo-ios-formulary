@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GIGLibrary
 
 protocol PDatePickerComponent {
     func formFieldDidFinishDate()
@@ -24,7 +25,8 @@ class DatePickerComponent: UIDatePicker {
     
     var dateSelected: Date? {
         get {
-            return !(self.textField!.text?.isEmpty ?? true) ? self.datePicker.date : nil
+            guard let textField = self.textField else { return nil }
+            return !(textField.text?.isEmpty ?? true) ? self.datePicker.date : nil
         }
         
         set {
@@ -93,7 +95,9 @@ class DatePickerComponent: UIDatePicker {
             action: #selector(onDatePickerValueChanged),
             for: UIControlEvents.valueChanged
         )
-        self.textField!.inputView = self.datePicker
+        
+        guard let textField = self.textField else { return LogWarn("Text Field is nil") }
+        textField.inputView = self.datePicker
     }
     
     fileprivate func setupDoneToolbar() {
@@ -111,7 +115,8 @@ class DatePickerComponent: UIDatePicker {
         toolBar.backgroundColor = self.styles?.containerAcceptColorPicker
         self.datePicker.backgroundColor = self.styles?.backgroundPickerColorPicker
         
-        self.textField!.inputAccessoryView = toolBar
+        guard let textField = self.textField else { return LogWarn("Text Field is nil") }
+        textField.inputAccessoryView = toolBar
     }
     
     @objc fileprivate func onDatePickerValueChanged(_ value: UIDatePicker) {

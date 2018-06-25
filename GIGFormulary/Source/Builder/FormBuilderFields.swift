@@ -130,8 +130,8 @@ class FormBuilderFields: NSObject {
     }
     
     fileprivate func keyboardToField(_ formFieldM: FormFieldModel) -> UIKeyboardType? {
-        if formFieldM.keyBoard != nil {
-            return self.keyboardTypes[TypeKeyBoard(rawValue: formFieldM.keyBoard!)!]
+        if let keyBoard = formFieldM.keyBoard {
+            return self.keyboardTypes[TypeKeyBoard(rawValue: keyBoard)!]
         } else {
             return UIKeyboardType.default
         }
