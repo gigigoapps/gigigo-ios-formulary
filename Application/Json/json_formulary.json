@@ -44,11 +44,6 @@
               },
               "validator": [
                             {
-                            "type": "age",
-                            "textError": "texto age",
-                            "minAge": "12"
-                            },
-                            {
                             "type": "mandatory",
                             "textError": "texto mandatory"
                             }
@@ -74,10 +69,10 @@
               "type": "boolean",
               "label": "titulo bool2",
               "validator": [
-                            {
-                            "type": "mandatory",
-                            "textError": "texto errorrrr"
-                            }
+                                {
+                                    "type": "mandatory",
+                                    "textError": "texto errorrrr"
+                                }
                             ]
               
               },
@@ -86,43 +81,51 @@
               "type": "index",
               "label": "titulo index DIOS",
               "style": {
-              "styleCell": "custom",
-              "nameXib": "ExposeIndexView"
-              }
+                    "styleCell": "custom",
+                    "nameXib": "ExposeIndexView"
+                }
               },
               {
               "key": "keyExpandable1",
+              "label" : "EXPUESTA Yes, please personalise your marketing messages to me",
+              "description" : "EXPUESTA En la imagen publicada por la NASA se puede apreciar una duna de color turquesa que asombra por su contraste con el entorno. Los científicos de la agencia espacial estadounidense explicaron el origen del extraño color que adoptó el médano del planeta rojo.",
               "type": "boolean",
               "expandableInfo": {
-                    "expandText": "EXPUESTA Pequeño texto",
-                    "collapseText": "EXPUESTA En la imagen publicada por la NASA se puede apreciar una duna de color turquesa que asombra por su contraste con el entorno. Los científicos de la agencia espacial estadounidense explicaron el origen del extraño color que adoptó el médano del planeta rojo."
-              },
+                    "expandText": "EXPUESTA button Read more",
+                    "collapseText": "EXPUESTA button Read less"
+                },
               "subtype": "expandable",
               "validator": [
-                            {
-                            "type": "mandatory",
-                            "textError": "texto errorrrr"
-                            }
+                                {
+                                    "type": "mandatory",
+                                    "textError": "texto errorrrr"
+                                }
                             ],
               "style": {
-              "styleCell": "custom",
-              "nameXib": "ExposeExpandableBoobleView"
-              }
+                    "styleCell": "custom",
+                    "nameXib": "ExposeExpandableBoobleView"
+                }
               },
               {
               "key": "keyExpandable2",
               "type": "boolean",
+              "label" : "Yes, please personalise your marketing messages to me",
+              "description" : "En la imagen publicada por la NASA se puede apreciar una duna de color turquesa que asombra por su contraste con el entorno. Los científicos de la agencia espacial estadounidense explicaron el origen del extraño color que adoptó el médano del planeta rojo.",
               "expandableInfo": {
-                    "expandText": "Pequeño texto",
-                    "collapseText": "En la imagen publicada por la NASA se puede apreciar una duna de color turquesa que asombra por su contraste con el entorno. Los científicos de la agencia espacial estadounidense explicaron el origen del extraño color que adoptó el médano del planeta rojo."
-              },
+                    "expandText": "button Read more",
+                    "collapseText": "button Read less"
+                },
               "subtype": "expandable",
               "validator": [
-                            {
-                            "type": "mandatory",
-                            "textError": "texto errorrrr"
-                            }
+                                {
+                                    "type": "mandatory",
+                                    "textError": "texto errorrrr"
+                                }
                             ]
-              }
+              },
+              "style" : {
+                    "expandCollapseButtonTextColor" : "#000000",
+                    "expandCollapseButtonFontSize" : 12,
+                },
               ]
 }
