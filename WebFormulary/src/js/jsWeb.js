@@ -72,7 +72,7 @@ window.createElementField = function createElementField(typeField) {
     var htmlSelectorCell = getSelectorCell();
     var htmlCustomCell = getHtmlCustomCell();
 
-    if (typeField == "Text") {
+    if (typeField == "text") {
         html = require('html-loader!../aux/auxText.html')
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
@@ -82,7 +82,7 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlSelectorCell}}',htmlSelectorCell)
             .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
-    else if (typeField == "Picker") {
+    else if (typeField == "picker") {
         idPickerField = 1; // Reset Picker
         html = require('html-loader!../aux/auxPicker.html')
             .replace('{{colorBasicZone}}',colorBasicZone)
@@ -93,7 +93,7 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlSelectorCell}}',htmlSelectorCell)
             .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
-    else if (typeField == "DatePicker") {
+    else if (typeField == "datePicker") {
         html = require('html-loader!../aux/auxDatePicker.html')
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
@@ -103,7 +103,7 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlSelectorCell}}',htmlSelectorCell)
             .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
-    else if (typeField == "Boolean") {
+    else if (typeField == "boolean") {
         htmlImage = getHtmlAllImage();
         html = require('html-loader!../aux/auxBoolean.html')
             .replace('{{colorBasicZone}}',colorBasicZone)
@@ -114,13 +114,15 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlSelectorCell}}',htmlSelectorCell)
             .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
-    else if (typeField == "Index") {
+    else if (typeField == "index") {
         html = require('html-loader!../aux/auxIndex.html')
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlSelectorCell}}',htmlSelectorCell)
             .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
+
+    // TODO EDU falta el expandableboolean
 
     $("#containterElementField").append(html)
 
@@ -141,7 +143,20 @@ window.createEventFont = function createEventFont() {
          }
     });
 }
-// TODO EDU falta el compare
+
+
+window.createEventExpandable = function createEventExpandable() {
+  
+     $("#rules").change(function() {
+         if (this.checked == true) {
+            $("#containerRule").css("display","block");
+         }
+         else {
+            $("#containerRule").css("display","none");
+         }
+    });
+}
+
 
 window.createEventRules = function createEventRules() {
   

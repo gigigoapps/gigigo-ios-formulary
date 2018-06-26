@@ -1058,3 +1058,7 @@
 .typeCell {
     margin-left: 48px;
 }
+
+#isExpandableContainer {
+    display: none;
+}

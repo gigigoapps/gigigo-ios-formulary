@@ -1,67 +1,54 @@
 
 
 //======================================
-//            VALIDATION              //
+//            TEXTFIELD               //
 //======================================
 
-
-//=== TEXTFIELD ===
 window.validateTextField = function validateTextField() {
-    var keyTextField = $("#keyTextField").val()
-    var title = $("#titleTextField").val()
-    var placeHolder = $("#palceHolderTextField").val()
-    var keyboard = document.getElementById("selectTypeKeyboard").value;
+    var values = getRecoverField();
     var validator = getRecoverValidations();
     var styles = getRecoverStyles();
 
-    var isPassword = $('#passwordTextField').is(':checked');
-    var isEditing = $('#isEditingTextField').is(':checked');
-    var isHidden = $('#isEditingTextField').is(':checked');
-       
-
-    if (controlError(title, keyTextField, styles, "text")) {
+    if (controlError(values, styles)) {
         window.idValidatorField = 0;
-        createField(keyTextField,title,placeHolder,keyboard,validator,isPassword, isEditing, isHidden, styles);
-        saveField(keyTextField,"text",title,placeHolder,keyboard,validator,isPassword, isEditing, isHidden, styles);
+        createField(values, validator, styles);
+        saveField(values, validator, styles);
     }
 }
 
-//=== DATE PICKER ===
+
+//======================================
+//            DATE PICKER             //
+//======================================
+
+
 window.validateDatePickerField = function validateDatePickerField() {
-    var keyTextField = $("#keyTextField").val()
-    var title = $("#titleTextField").val()
+    var values = getRecoverField();
     var validator = getRecoverValidations();
     var styles = getRecoverStyles();
     var rules = getRecoverRules(isActiveRule);
 
-    var acceptButtonTextField = $("#acceptButtonTextField").val()
-    var isEditing = $('#isEditingTextField').is(':checked');
-    var isHidden = $('#isEditingTextField').is(':checked');
-    var isActiveRule = $('#rules').is(':checked');
-
-
-    if (controlError(title,keyTextField,styles, "datePicker")) {
-        createDatePickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styles);
-        saveDatePickerField(keyTextField,"datePicker",title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styles);
+    if (controlError(values, styles)) {
+        createDatePickerField(values, validator, rules, styles);
+        saveDatePickerField(values, validator, rules, styles);
     }
 }
 
-//=== PICKER ===
+
+//======================================
+//               PICKER               //
+//======================================
+
+
 window.validatePickerField = function validatePickerField() {
-    var keyTextField = $("#keyTextField").val()
-    var title = $("#titleTextField").val()
+    var values = getRecoverField();
     var validator = getRecoverValidations();
     var styles = getRecoverStyles();
 
-    var acceptButtonTextField = $("#acceptButtonTextField").val()
-    var isEditing = $('#isEditingTextField').is(':checked');
-    var isHidden = $('#isEditingTextField').is(':checked');
-
-
-    if (controlError(title,keyTextField, styles, "picker")) {
+    if (controlError(values, styles)) {
         if (allPickerIsComplete()) {
-            createPickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, styles);
-            savePickerField(keyTextField,"picker",title,acceptButtonTextField, isEditing, isHidden, validator, styles);
+            createPickerField(values, validator, styles);
+            savePickerField(values, validator, styles);
         }
         else {
             alert("Los campos de clave y valor de los picker deben estar todos rellenos");
@@ -70,37 +57,56 @@ window.validatePickerField = function validatePickerField() {
 }
 
 
-//=== BOOLEAN ===
+//======================================
+//              BOOLEAN               //
+//======================================
+
+
 window.validateBooleanField = function validateBooleanField() {
-    var keyTextField = $("#keyTextField").val()
-    var title = $("#titleTextField").val()
+    var values = getRecoverField();
     var validator = getRecoverValidations();
     var styles = getRecoverStyles();
 
-
-    var isEditing = $('#isEditingTextField').is(':checked');
-    var isHidden = $('#isEditingTextField').is(':checked');
-
-
-    if (controlError(title,keyTextField,styles, "boolean")) {
-        createBooleanField(keyTextField,title,isEditing, isHidden, validator, styles);
-        saveBooleanField(keyTextField,"boolean",title,isEditing, isHidden, validator, styles)
+    if (controlError(values, styles)) {
+        createBooleanField(values, validator, styles);
+        saveBooleanField(values, validator, styles)
     }
 }
 
 
-//=== INDEX ===
-window.validateIndexField = function validateIndexField() {
-    var keyTextField = $("#keyTextField").val()
-    var title = $("#titleTextField").val()
+//======================================
+//            EXPANDED BOOLEAN        //
+//======================================
+
+
+window.validateExpandedBooleanField = function validateExpandedBooleanField() {
+    var values = getRecoverField();
+    var validator = getRecoverValidations();
     var styles = getRecoverStyles();
-    
 
-    if (controlError(title,keyTextField,styles, "index")) {
-        createIndexField(keyTextField,title, styles)
-        saveIndexField(keyTextField,"index",title, styles)
+    if (controlError(values, styles)) {
+        createBooleanField(values, validator, styles);
+        saveBooleanField(values, validator, styles)
     }
 }
+
+
+//======================================
+//              INDEX                 //
+//======================================
+
+
+window.validateIndexField = function validateIndexField() {
+    var values = getRecoverField();
+    var styles = getRecoverStyles();    
+
+    if (controlError(values,styles)) {
+        createIndexField(values, styles)
+        saveIndexField(values, styles)
+    }
+}
+
+
 
 
 //======================================
@@ -127,8 +133,15 @@ window.allPickerIsComplete = function allPickerIsComplete() {
     return isComplete
 }
 
-window.controlError = function controlError(title, keyTextField, style, type) {
-    if (title.length > 0 &&  keyTextField.length > 0) {
+window.controlError = function controlError(values, style, type) {
+    if (values.label.length > 0 &&  values.key.length > 0) {
+        if (values.subtype.length > 0 && values.subtype == "expandable") {
+            if (values.description.length == 0 || values.expandText.length == 0 || values.collapseText.length == 0) {
+                alert("Es necesario rellenar todos los campos con asterisco, estos son obligatorios");
+                return false;
+            } 
+        } 
+
         if (style.font != null) {
             if (style.sizeTitle != null && style.sizeError != null) {
                 return true;
@@ -144,7 +157,7 @@ window.controlError = function controlError(title, keyTextField, style, type) {
         } 
         else {
             return true;
-        }
+        }        
     }
     else {
         alert("Los campos con asterisco son obligatorios");
@@ -152,134 +165,5 @@ window.controlError = function controlError(title, keyTextField, style, type) {
     }
 }
 
-//======================================
-//         RECOVER    RULES           //
-//======================================
 
 
-function getRecoverRules(isActiveRule) {
-    if (isActiveRule) {
-        var rules = new rulesResult;
-        rules.fieldReciver1 = $("#fieldReciver1").val();
-        rules.fieldReciver2 = $("#fieldReciver2").val();
-        rules.typeCompare = document.getElementById("selectTypeRuleCompare").value;
-        rules.valueCompare = $("#valueRule").val();
-        rules.behaviorCompare = document.getElementById("selectTypeRuleBehavior").value;
-        rules.elseCompare = document.getElementById("selectTypeRuleElseBehavior").value; 
-        return rules;
-    }
-}
-
-//======================================
-//        RECOVER    VALIDATION       //
-//======================================
-
-function getRecoverValidations() {
-
-    var listValidatorResult = [];
-
-    for (var i = 0; i <= window.idValidatorField; i++) {
-        if ($("#containerValidatorField"+i).length > 0) {
-
-            var select = document.getElementById("selectTypeValidator"+i);    
-            var validatorRes = new validatorResult;
-            validatorRes.type = select.value;
-            validatorRes.text = $("#inputValueValidatorField"+i).val()
-
-            if ($("#extraFieldsValidator"+i).length > 0) {
-                validatorRes.minLength = $("#minLength").val();
-                validatorRes.maxLength = $("#maxLength").val();
-                validatorRes.regex = $("#custonValidator").val();
-                validatorRes.compareKey1 = $("#compareKey1").val();
-                validatorRes.compareKey2 = $("#compareKey2").val();
-                validatorRes.minAge = $("#minAge").val();
-            }
-
-            listValidatorResult.push(validatorRes);
-        }
-    }
-
-    return listValidatorResult;
-}
-
-
-//======================================
-//         RECOVER    STYLES          //
-//======================================
-
-
-function getRecoverStyles() {
-    var styles = new styleResult();
-    var selector = document.getElementById("selectTypeCell").value;
-
-    styles.typeCell = selector;
-    styles.imageMandatory = $("#imageMandatory").val()
-    styles.imageCheckBoxOff = $("#imageCheckBoxOff").val()
-    styles.imageCheckBoxOn = $("#imageCheckBoxOn").val()
-    styles.aceptColor = $("#aceptColorHex").val()
-    styles.containerAceptColor = $("#containerAceptColorHex").val()
-    styles.backgroundPickerColor = $("#backgroundPickerColorHex").val()
-
-
-    if (selector == "default" || selector == "line") {
-        styles.cellColor = $("#cellColorHex").val()
-        styles.titleColor = $("#titleColorHex").val()
-        styles.errorColor = $("#errorColorHex").val()
-        styles.sizeTitle = $("#sizeTitle").val()
-        styles.sizeError = $("#sizeError").val()
-        styles.align = document.getElementById("selectTypeAlign").value;
-        styles.font = document.getElementById("selectTypeFont").value;
-
-        if (styles.font == "custom") {
-            styles.font = $("#custonFont").val()
-        }
-    } else if (selector == "custom") {
-        styles.nameXib = $("#nameXib").val();
-    } 
-
-    return styles;
-}
-
-
-//======================================
-//              MODELS                //
-//======================================
-
-
-function validatorResult() {
-    var type = "";
-    var text = "";
-    var minLength = "";
-    var maxLength = "";
-    var regex = ""; 
-    var compareKey1 = "";
-    var compareKey2 = "";
-    var minAge = 0;
-}
-
-function rulesResult() {
-    var fieldReciver1 = "";
-    var fieldReciver2 = "";
-    var typeCompare = "";
-    var valueCompare = "";
-    var behaviorCompare = "";
-    var elseCompare = "";
-}
-
-function styleResult() {
-    var cellColor = "";
-    var titleColor = "";
-    var errorColor = "";
-    var sizeTitle = "";
-    var sizeError = "";
-    var align = "";
-    var font = "";
-    var typeCell = "";
-    var nameXib = "";
-    var imageMandatory = "";
-    var imageCheckBoxOn = ""
-    var imageCheckBoxOff = ""
-    var aceptColor = "";
-    var containerAceptColor = "";
-    var backgroundPickerColor = "";
-}
