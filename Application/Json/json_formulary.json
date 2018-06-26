@@ -1,5 +1,9 @@
 {
-    "fields":[
+    "fields":[{
+              "key": "a1",
+              "type": "text",
+              "label": "titulo"
+              },
               {
               "key": "key2",
               "type": "picker",
