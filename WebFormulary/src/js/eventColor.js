@@ -6,6 +6,7 @@ window.errorColorEvent;
 window.aceptColorEvent;
 window.containerAceptColorEvent;
 window.backgroundPickerColorEvent;
+window.expandedColorEvent;
 
 window.launchEventColors = function launchEventColors() {
 	cellColorEvent = document.getElementById("cellColor");
@@ -14,6 +15,8 @@ window.launchEventColors = function launchEventColors() {
 	aceptColorEvent = document.getElementById("aceptColor");
 	containerAceptColorEvent = document.getElementById("containerAceptColor");
 	backgroundPickerColorEvent = document.getElementById("backgroundPickerColor");
+	backgroundPickerColorEvent = document.getElementById("backgroundPickerColor");
+	expandedColorEvent = document.getElementById("expandedColor");
 
 	if (cellColorEvent) {
 		cellColorEvent.addEventListener("input", function() {
@@ -50,4 +53,10 @@ window.launchEventColors = function launchEventColors() {
 		    $("#backgroundPickerColorHex").val(backgroundPickerColorEvent.value)
 		}, false);
 	}	
+
+	if (expandedColorEvent) {
+		expandedColorEvent.addEventListener("input", function() {
+		    $("#expandedColorHex").val(expandedColorEvent.value)
+		}, false);
+	}
 }

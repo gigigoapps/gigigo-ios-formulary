@@ -34,7 +34,7 @@ window.createField = function createField(values, validator, style) {
         styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
     } else if (style.typeCell == "custom") {
         styles =  htmlTypeCell + htmlCustom + htmlImages;
-    } else if (htmlImages.length > 0) {
+    } else if (htmlImages.length > 0) { 
         styles = htmlImages;
     } else {
         styles = '<p class="styleDefault">Estilos por defecto</p>';

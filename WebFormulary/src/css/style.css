@@ -705,6 +705,7 @@
     height: 51px;
     margin-left: 28px;
     width: 100%;
+    float: left;
 }
     .imagesZone p {
         float: left;
@@ -1096,4 +1097,35 @@
     margin-right: 10px;
 }
 
+#colorContainerExpandable {
+    margin-left: 20px;
+    height: 36px;
+}
 
+#colorContainerExpandable p {
+    float: left;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+
+#titleExpandable {
+    margin-left: 10px;
+}
+
+#expandableStyles {
+    margin-left: 17px;
+    margin-bottom: 10px;
+}
+
+#sizeContainerExpandable {
+    margin-left: 30px;
+}
+#sizeContainerExpandable p {
+    float: left;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+#sizeContainerExpandable input {
+    margin-top: 0px;width: 59px;
+    margin-right: 10px;
+}

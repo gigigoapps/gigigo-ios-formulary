@@ -71,11 +71,15 @@ window.saveBooleanField = function saveBooleanField(values, validator, styleM) {
     }
 
     var itemsValidators = generateDicValidator(validator);
-
     if (itemsValidators.length > 0) {
         itemSave["validator"] = itemsValidators;
     }
     
+    var itemsExpandable = generateDicExpandable(values);
+    if (itemsExpandable != null) { 
+        itemSave["expandableInfo"] = itemsExpandable;
+    }
+
     //-- OPTIONAL FIELDS --
     var styles = getStylesJson(styleM);
 

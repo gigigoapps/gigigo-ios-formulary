@@ -18,7 +18,7 @@
              <div class="containerTextFieldCenter optionalBooleanContainer">                  
                   <div class="isEditingTextField">
                       <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField">
-                      <p>Es editable?</p>
+                      <p>Bloquear Editar?</p>
                   </div>
                   
                  <div class="isHiddenTextField">
@@ -73,6 +73,18 @@
                 
                  {{htmlImage}}
 
+                 <div id="expandableStyles">
+                    <h4 id="titleExpandable">Estilos de vista expandida:</h4>
+                    <div id="colorContainerExpandable">
+                        <p class="colorTittleP">Text color:</p>
+                        <input type="color" value="#ffffff" id="expandedColor" class="cellColorCreate">
+                        <input id="expandedColorHex" class="inputColorHex" placeholder="#ffffff">
+                    </div>
+                    <div id="sizeContainerExpandable">
+                        <p>Tamaño texto expandido:</p>
+                        <input id="sizeExpandedButton" type="text" name="element">
+                    </div>
+                 </div>
               </div>
               <div class="spaceSeparate"></div>
          </div>

@@ -178,6 +178,16 @@ window.getStylesJson = function getStylesJson(styleModel) {
     var haveStyle = false;
     
     //-- STYLES --
+
+
+    if (styleModel.expandCollapseButtonTextColor != null && styleModel.expandCollapseButtonTextColor.length > 0) {
+        style["expandCollapseButtonTextColor"] = styleModel.expandCollapseButtonTextColor
+        haveStyle = true;
+    }
+    if (styleModel.expandCollapseButtonFontSize != null && styleModel.expandCollapseButtonFontSize.length > 0) {
+        style["expandCollapseButtonFontSize"] = styleModel.expandCollapseButtonFontSize
+        haveStyle = true;
+    }
     if (styleModel.cellColor != null && styleModel.cellColor.length > 0) {
         style["backgroundColorField"] = styleModel.cellColor
         haveStyle = true;
