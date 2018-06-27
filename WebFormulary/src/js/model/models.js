@@ -4,23 +4,24 @@
 //======================================
 
 
-function fieldResult() {
+window.fieldResult = function fieldResult() {
     var key = "";
     var type = "";
     var subtype = "";
     var isEditing = "";
-    var isEditing = ""; 
+    var isHidden = ""; 
     var label = ""; 
     var description = ""; 
-    var expandText = ""; 
-    var collapseText = ""; 
+    var textbuttonReadMore = ""; 
+    var textbuttonReadLess = ""; 
     var placeHolder = "";
     var keyboard = "";
     var acceptButtonTextField = "";
     var isActiveRule = "";
+    var isExpandable = "";
 }
 
-function validatorResult() {
+window.validatorResult = function validatorResult() {
     var type = "";
     var text = "";
     var minLength = "";
@@ -31,7 +32,7 @@ function validatorResult() {
     var minAge = 0;
 }
 
-function rulesResult() {
+window.rulesResult = function rulesResult() {
     var fieldReciver1 = "";
     var fieldReciver2 = "";
     var typeCompare = "";
@@ -40,7 +41,7 @@ function rulesResult() {
     var elseCompare = "";
 }
 
-function styleResult() {
+window.styleResult = function styleResult() {
     var cellColor = "";
     var titleColor = "";
     var errorColor = "";

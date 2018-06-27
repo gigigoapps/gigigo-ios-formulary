@@ -171,6 +171,11 @@ window.generateHtmlValidator = function generateHtmlValidator(validator) {
 
 window.generateDicValidator = function generateDicValidator(validator) {
     var itemsValidators = []
+
+    if (validator == null) {
+        return itemsValidators;
+    }
+
     for (var i = 0; i < validator.length; i++) {
         var valElement = validator[i];
 

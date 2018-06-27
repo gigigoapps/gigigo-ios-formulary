@@ -3,7 +3,7 @@
 //               TEXT (YA CREADO)     //
 //======================================
 
-window.createIndexField = function createIndexField(keyTextField, title, styleM) {
+window.createIndexField = function createIndexField(values, styleM) {
     
     //-- Recover Styles --
     var htmlTypeCell = getTypeCell(styleM);
@@ -23,7 +23,7 @@ window.createIndexField = function createIndexField(keyTextField, title, styleM)
     }
 
         
-    var html = require('html-loader!../aux/auxIndexCreated.html')
+    var html = require('html-loader!../../aux/auxIndexCreated.html')
             .replace('{{styles}}',styles)
             .replace('{{keyTextField}}',keyTextField)
             .replace('{{title}}',title)
@@ -34,7 +34,7 @@ window.createIndexField = function createIndexField(keyTextField, title, styleM)
     resetTypeField();
 }
 
-window.saveIndexField = function saveIndexField(keyTextField, type, title, styleM) {
+window.saveIndexField = function saveIndexField(values, styleM) {
     //-- Mandatory Fiedls --
     var itemSave = {
         "tag":indexField,

@@ -1060,5 +1060,40 @@
 }
 
 #isExpandableContainer {
-    display: none;
+    float: left;
 }
+#isExpandableContainer input {
+    float: left;
+    width: 36px;
+}
+#isExpandableContainer p {
+    margin-top: 14px;
+}
+.containerExpandableActive {
+    display: block !important;
+    display: block !important;
+    margin-top: 53px !important;
+    margin-left: 110px !important;
+}
+
+#containerExpandable {
+    display: none;
+    margin-left: 103px;
+    margin-top: 110px;
+}
+#containerExpandable p {
+    width: 123px;
+    margin: 0px;
+    float: left;
+    margin-top: 10px;
+    text-align: right;
+    margin-right: 10px;
+}
+#containerExpandable input {
+    float: left;
+    margin-top: 0px;
+    width: 17%;
+    margin-right: 10px;
+}
+
+

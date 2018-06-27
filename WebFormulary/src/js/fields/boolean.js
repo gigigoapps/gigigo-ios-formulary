@@ -2,15 +2,19 @@
 //        BOOLEAN   (YA CREADO)       //
 //======================================
             
-window.createBooleanField = function createBooleanField(keyTextField,title, isEditing, isHidden, validator, styleM) {
+window.createBooleanField = function createBooleanField(values, validator, styleM) {
 
     var isEditingValueCheck = ""
-    if (isEditing) {
+    if (values.isEditing) {
         isEditingValueCheck = "checked"
     }
     var isHiddenChecked = ""
-    if (isHidden) {
+    if (values.isHidden) {
         isHiddenChecked = "checked"
+    }
+    var isExpandedChecked = ""
+    if (values.isExpandable) {
+        isExpandedChecked = "checked"
     }
 
     //-- Recover Styles --
@@ -21,6 +25,7 @@ window.createBooleanField = function createBooleanField(keyTextField,title, isEd
     var htmlImages = recoverHtmlAllImage(styleM)
     var htmlValidator = generateHtmlValidator(validator);
     var htmlCustom = getStyleCustom(styleM);
+    var htmlExpandable = getExpandableResult(values);
 
     var styles;
     if (styleM.typeCell == "default" || styleM.typeCell == "line") {
@@ -33,34 +38,36 @@ window.createBooleanField = function createBooleanField(keyTextField,title, isEd
         styles = '<p class="styleDefault">Estilos por defecto</p>';
     }
 
-    var html = require('html-loader!../aux/auxBooleanCreated.html')
+    var html = require('html-loader!../../aux/auxBooleanCreated.html')
             .replace('{{styles}}',styles)
-            .replace('{{keyTextField}}',keyTextField)
-            .replace('{{title}}',title)
+            .replace('{{keyTextField}}',values.key)
+            .replace('{{title}}',values.label)
             .replace('{{htmlValidator}}',htmlValidator)
             .replace('{{isEditingValueCheck}}',isEditingValueCheck)
             .replace('{{isHiddenChecked}}',isHiddenChecked)
             .replace(/\{\{indexField\}\}/g,indexField)
+            .replace('{{isExpandableChecked}}',isExpandedChecked)
+            .replace('{{htmlExpandable}}',htmlExpandable)
 
 
     $("#containerListItemsCreated").append(html);
     resetTypeField();
 }
 
-window.saveBooleanField = function saveBooleanField(keyTextField,type,title, isEditing, isHidden, validator, styleM) {
+window.saveBooleanField = function saveBooleanField(values, validator, styleM) {
     //-- Mandatory Fiedls --
     var itemSave = {
-        "key":keyTextField,
+        "key":values.key,
         "tag":indexField,
-        "type":type,
-        "label":title
+        "type":values.type,
+        "label":values.label
     }
 
-    if (isEditing) {
-        itemSave["isEditing"] = isEditing
+    if (values.isEditing) {
+        itemSave["isEditing"] = values.isEditing
     }
-    if (isHidden) {
-        itemSave["isHidden"] = isHidden
+    if (values.isHidden) {
+        itemSave["isHidden"] = values.isHidden
     }
 
     var itemsValidators = generateDicValidator(validator);

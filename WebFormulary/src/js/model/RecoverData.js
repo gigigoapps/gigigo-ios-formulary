@@ -4,19 +4,28 @@
 //======================================
 
 
-function getRecoverField() {
+window.getRecoverField = function getRecoverField() {
     var fieldValue = new fieldResult();
-    fieldValue.type = document.getElementById("selectTypeField").value;;
+    fieldValue.type = document.getElementById("selectTypeField").value;
     fieldValue.key = $("#keyTextField").val()
     fieldValue.label = $("#titleTextField").val()
     fieldValue.placeHolder = $("#palceHolderTextField").val()
-    fieldValue.keyboard = document.getElementById("selectTypeKeyboard").value;
+    if (document.getElementById("selectTypeKeyboard") != null) {
+        fieldValue.keyboard = document.getElementById("selectTypeKeyboard").value;
+    }    
     fieldValue.isPassword = $('#passwordTextField').is(':checked');
     fieldValue.isEditing = $('#isEditingTextField').is(':checked');
     fieldValue.isHidden = $('#isHiddenTextField').is(':checked');
     fieldValue.acceptButtonTextField = $("#acceptButtonTextField").val()
     fieldValue.isActiveRule = $('#rules').is(':checked');
-    fieldValue.subtype = "";
+    fieldValue.isExpandable = $('#isExpandable').is(':checked');
+    if (fieldValue.isExpandable) {
+        fieldValue.subtype = "expandable";
+        fieldValue.description = $("#descripcionExpan").val()
+        fieldValue.textbuttonReadMore = $("#expandText").val()
+        fieldValue.textbuttonReadLess = $("#collapseText").val()
+    }
+    
 
     return fieldValue;
 }
@@ -27,7 +36,7 @@ function getRecoverField() {
 //======================================
 
 
-function getRecoverRules(isActiveRule) {
+window.getRecoverRules = function getRecoverRules(isActiveRule) {
     if (isActiveRule) {
         var rules = new rulesResult;
         rules.fieldReciver1 = $("#fieldReciver1").val();
@@ -46,7 +55,7 @@ function getRecoverRules(isActiveRule) {
 //======================================
 
 
-function getRecoverValidations() {
+window.getRecoverValidations = function getRecoverValidations() {
 
     var listValidatorResult = [];
 
@@ -80,7 +89,7 @@ function getRecoverValidations() {
 //======================================
 
 
-function getRecoverStyles() {
+window.getRecoverStyles = function getRecoverStyles() {
     var styles = new styleResult();
     var selector = document.getElementById("selectTypeCell").value;
 

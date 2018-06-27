@@ -133,10 +133,10 @@ window.allPickerIsComplete = function allPickerIsComplete() {
     return isComplete
 }
 
-window.controlError = function controlError(values, style, type) {
+window.controlError = function controlError(values, style) {
     if (values.label.length > 0 &&  values.key.length > 0) {
-        if (values.subtype.length > 0 && values.subtype == "expandable") {
-            if (values.description.length == 0 || values.expandText.length == 0 || values.collapseText.length == 0) {
+        if (values.subtype != null && values.subtype.length > 0 && values.subtype == "expandable") {
+            if (values.description.length == 0 || values.textbuttonReadMore.length == 0 || values.textbuttonReadLess.length == 0) {
                 alert("Es necesario rellenar todos los campos con asterisco, estos son obligatorios");
                 return false;
             } 
@@ -147,7 +147,7 @@ window.controlError = function controlError(values, style, type) {
                 return true;
             }
             else {
-                if (style.sizeError == null && type == "index") {
+                if (style.sizeError == null && values.type == "index") {
                      return true;
                 } else {
                     alert("Si define un tipo de fuente debe elegir el tamaño de fuente para el titulo y el error");

@@ -15,7 +15,7 @@ window.removeContainerPicker = function removeContainerPicker(idContainerPicker)
 }
 
 //-- PICKER YA CREADO SOLO MOSTRAR --
-window.createPickerField = function createPickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, styleM) {
+window.createPickerField = function createPickerField(values, validator, styleM) {
 
     var isEditingCheck = ""
     if (isEditing) {
@@ -64,7 +64,7 @@ window.createPickerField = function createPickerField(keyTextField,title,acceptB
         }
     }
 
-    var html = require('html-loader!../aux/auxPickerCreated.html')
+    var html = require('html-loader!../../aux/auxPickerCreated.html')
             .replace('{{styles}}',styles)
             .replace('{{keyTextField}}',keyTextField)
             .replace('{{title}}',title)
@@ -79,7 +79,7 @@ window.createPickerField = function createPickerField(keyTextField,title,acceptB
     resetTypeField();
 }
 
-window.savePickerField = function savePickerField(keyTextField,type,title,acceptButtonTextField,isEditing, isHidden, validator, styleM) {
+window.savePickerField = function savePickerField(values, validator, styleM) {
     
     //-- MANDATORY FIELDS --
     var listOptions = [];

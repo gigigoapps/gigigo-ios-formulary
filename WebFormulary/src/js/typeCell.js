@@ -9,9 +9,7 @@ window.getSelectorCell = function getSelectorCell() {
 	html += '</select> ';
 
 	return html;
-}
-
-                  
+}          
                       
 window.getHtmlCustomCell = function getHtmlCustomCell() {
 	var html = '';
@@ -19,6 +17,33 @@ window.getHtmlCustomCell = function getHtmlCustomCell() {
 	html += '<input id="nameXib" type="text" name="element">';
 	return html;
 }
+
+
+window.getExpandableResult = function getExpandableResult(values) {
+    var html = '';
+
+    if (values.isExpandable) {
+        html += '<div id="containerExpandable" class="containerExpandableActive">';
+        html += '    <div class="descriptionExpan">';
+        html += '        <p>Descripción*:</p>';
+        html += '        <input type="text" name="descripcionExpan" id="descripcionExpan" disabled readonly value="'+values.description+'">';
+        html += '    </div>';
+        html += '    <div class="expandTextExpan">';
+        html += '        <p>Botón leer más*:</p>';
+        html += '        <input type="text" name="expandText" id="expandText" disabled readonly value="'+values.textbuttonReadMore+'">';
+        html += '    </div>';
+        html += '    <div class="collapseTextExpan">';
+        html += '        <p>Botón leer menos*:</p>';
+        html += '        <input type="text" name="collapseText" id="collapseText" disabled readonly value="'+values.textbuttonReadLess+'">';
+        html += '    </div>';
+        html += '</div>';
+    }
+
+
+    return html;
+}
+
+
 
 
 // Actions
@@ -145,6 +170,10 @@ window.getAlignFont = function getAlignFont(style) {
 }
 
 window.getStylesJson = function getStylesJson(styleModel) {
+    if (styleModel == null) {
+        return null;
+    }
+
     var style = {}
     var haveStyle = false;
     

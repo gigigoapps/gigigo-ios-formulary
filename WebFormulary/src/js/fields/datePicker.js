@@ -5,7 +5,7 @@
 
 
 //-- DATE PICKER YA CREADO SOLO MOSTRAR --
-window.createDatePickerField = function createDatePickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styleM) {
+window.createDatePickerField = function createDatePickerField(values, validator, rules, styleM) {
 
     var isEditingCheck = ""
     if (isEditing) {
@@ -44,7 +44,7 @@ window.createDatePickerField = function createDatePickerField(keyTextField,title
     }
 
 
-    var html = require('html-loader!../aux/auxDatePickerCreated.html')
+    var html = require('html-loader!../../aux/auxDatePickerCreated.html')
             .replace('{{styles}}',styles)
             .replace('{{keyTextField}}',keyTextField)
             .replace('{{title}}',title)
@@ -60,7 +60,7 @@ window.createDatePickerField = function createDatePickerField(keyTextField,title
     resetTypeField();
 }
 
-window.saveDatePickerField = function saveDatePickerField(keyTextField,type,title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styleM) {
+window.saveDatePickerField = function saveDatePickerField(values, validator, rules, styleM) {
     
     //-- MANDATORY FIELDS --
 

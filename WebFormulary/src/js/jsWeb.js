@@ -29,19 +29,19 @@ window.removeField = function removeField(idRemove){
 }
             
 window.addField = function addField() {
-    if (fieldSelected == "Text") {
+    if (fieldSelected == "text") {
         validateTextField();
     }
-    else if (fieldSelected == "Picker") {
+    else if (fieldSelected == "picker") {
         validatePickerField();
     }
-    else if (fieldSelected == "DatePicker") {
+    else if (fieldSelected == "datePicker") {
         validateDatePickerField();
     }
-    else if (fieldSelected == "Boolean") {
+    else if (fieldSelected == "boolean") {
         validateBooleanField();
     }
-    else if (fieldSelected == "Index") {
+    else if (fieldSelected == "index") {
         validateIndexField();
     }
 }
@@ -122,14 +122,13 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
 
-    // TODO EDU falta el expandableboolean
-
     $("#containterElementField").append(html)
 
     launchEventColors();
     createEventFont();
     createEventTextCompare();
     createEventRules();
+    createEventExpandable();
     showContainerCustomValidate();
 }
 
@@ -147,12 +146,12 @@ window.createEventFont = function createEventFont() {
 
 window.createEventExpandable = function createEventExpandable() {
   
-     $("#rules").change(function() {
+     $("#isExpandable").change(function() {
          if (this.checked == true) {
-            $("#containerRule").css("display","block");
+            $("#containerExpandable").css("display","block");
          }
          else {
-            $("#containerRule").css("display","none");
+            $("#containerExpandable").css("display","none");
          }
     });
 }

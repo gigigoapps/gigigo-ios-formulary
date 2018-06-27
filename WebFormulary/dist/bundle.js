@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 26);
+/******/ 	return __webpack_require__(__webpack_require__.s = 28);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -86,101 +86,12 @@ window.listFonts = 'AcademyEngravedLetPlain,AlNile-Bold,AlNile,AmericanTypewrite
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//======================================
-//        BOOLEAN   (YA CREADO)       //
-//======================================
-            
-window.createBooleanField = function createBooleanField(keyTextField,title, isEditing, isHidden, validator, styleM) {
-
-    var isEditingValueCheck = ""
-    if (isEditing) {
-        isEditingValueCheck = "checked"
-    }
-    var isHiddenChecked = ""
-    if (isHidden) {
-        isHiddenChecked = "checked"
-    }
-
-    //-- Recover Styles --
-    var htmlTypeCell = getTypeCell(styleM);
-    var htmlBackgroundColor = getStyleColor(styleM);
-    var htmlFontSize = getStyleSize (styleM);
-    var htmlAlingFont = getAlignFont(styleM)
-    var htmlImages = recoverHtmlAllImage(styleM)
-    var htmlValidator = generateHtmlValidator(validator);
-    var htmlCustom = getStyleCustom(styleM);
-
-    var styles;
-    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
-        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
-    } else if (styleM.typeCell == "custom") {
-        styles =  htmlTypeCell + htmlCustom + htmlImages;
-    } else if (htmlImages.length > 0) {
-        styles = htmlImages;
-    } else {
-        styles = '<p class="styleDefault">Estilos por defecto</p>';
-    }
-
-    var html = __webpack_require__(17)
-            .replace('{{styles}}',styles)
-            .replace('{{keyTextField}}',keyTextField)
-            .replace('{{title}}',title)
-            .replace('{{htmlValidator}}',htmlValidator)
-            .replace('{{isEditingValueCheck}}',isEditingValueCheck)
-            .replace('{{isHiddenChecked}}',isHiddenChecked)
-            .replace(/\{\{indexField\}\}/g,indexField)
-
-
-    $("#containerListItemsCreated").append(html);
-    resetTypeField();
-}
-
-window.saveBooleanField = function saveBooleanField(keyTextField,type,title, isEditing, isHidden, validator, styleM) {
-    //-- Mandatory Fiedls --
-    var itemSave = {
-        "key":keyTextField,
-        "tag":indexField,
-        "type":type,
-        "label":title
-    }
-
-    if (isEditing) {
-        itemSave["isEditing"] = isEditing
-    }
-    if (isHidden) {
-        itemSave["isHidden"] = isHidden
-    }
-
-    var itemsValidators = generateDicValidator(validator);
-
-    if (itemsValidators.length > 0) {
-        itemSave["validator"] = itemsValidators;
-    }
-    
-    //-- OPTIONAL FIELDS --
-    var styles = getStylesJson(styleM);
-
-    if (styles != null) {
-        itemSave["style"] = styles
-    } 
-    
-    listFieldsResult.push(itemSave)
-
-    indexField++;
-}
-
-
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports) {
 
 window.colorBasicZone = ' <p>Color de la celda:</p><input type="color" value="#ffffff" id="cellColor" class="cellColorCreate"><input id="cellColorHex" class="inputColorHex" placeholder="#ffffff"> <p class="colorTittleP">Color titulo:</p><input type="color" value="#ffffff" id="titleColor" class="cellColorCreate"><input id="titleColorHex" class="inputColorHex" placeholder="#ffffff"> <p class="colorTittleP">Color Error:</p><input type="color" value="#ffffff" id="errorColor" class="cellColorCreate"><input id="errorColorHex" class="inputColorHex" placeholder="#ffffff">';
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports) {
 
 //==============================================//
@@ -356,6 +267,11 @@ window.generateHtmlValidator = function generateHtmlValidator(validator) {
 
 window.generateDicValidator = function generateDicValidator(validator) {
     var itemsValidators = []
+
+    if (validator == null) {
+        return itemsValidators;
+    }
+
     for (var i = 0; i < validator.length; i++) {
         var valElement = validator[i];
 
@@ -391,117 +307,7 @@ window.generateDicValidator = function generateDicValidator(validator) {
 
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-//======================================
-//            DATE   PICKER           //
-//======================================
-
-
-//-- DATE PICKER YA CREADO SOLO MOSTRAR --
-window.createDatePickerField = function createDatePickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styleM) {
-
-    var isEditingCheck = ""
-    if (isEditing) {
-        isEditingCheck = "checked"
-    }
-    var isHiddenChecked = ""
-    if (isHidden) {
-        isHiddenChecked = "checked"
-    }
-
-    var htmlRules = '';
-    if (isActiveRule) {
-        htmlRules = generateHtmlRulesResult(rules)
-    }
-
-    //-- Recover Styles --
-    var htmlTypeCell = getTypeCell(styleM);
-    var htmlColorBasic = getStyleColor(styleM);
-    var htmlFontSize = getStyleSize (styleM);
-    var htmlColorPicker = getStyleColorPicker (styleM);
-    var htmlAlingFont = getAlignFont(styleM)
-    var htmlImages = recoverHtmlImageMandatory(styleM)
-    var htmlValidator = generateHtmlValidator(validator);
-    var htmlCustom = getStyleCustom(styleM);
-
-
-    var styles = '';
-    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
-        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages + htmlColorPicker;
-    } else if (styleM.typeCell == "custom") {
-        styles =  htmlTypeCell + htmlCustom + htmlImages + htmlColorPicker;
-    } else if (htmlImages.length > 0 || htmlColorPicker.length > 0) {
-        styles = htmlImages + htmlColorPicker;
-    } else {
-        styles = '<p class="styleDefault">Estilos por defecto</p>';
-    }
-
-
-    var html = __webpack_require__(19)
-            .replace('{{styles}}',styles)
-            .replace('{{keyTextField}}',keyTextField)
-            .replace('{{title}}',title)
-            .replace('{{htmlValidator}}',htmlValidator)
-            .replace('{{isEditingCheck}}',isEditingCheck)
-            .replace('{{isHiddenChecked}}',isHiddenChecked)
-            .replace('{{acceptButtonTextField}}',acceptButtonTextField)
-            .replace('{{htmlRules}}',htmlRules)
-            .replace(/\{\{indexField\}\}/g,indexField)
-
-
-    $("#containerListItemsCreated").append(html);
-    resetTypeField();
-}
-
-window.saveDatePickerField = function saveDatePickerField(keyTextField,type,title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styleM) {
-    
-    //-- MANDATORY FIELDS --
-
-    var itemSave = {
-        "key":keyTextField,
-        "tag":indexField,
-        "type":type,
-        "label":title
-    }
-    
-    //-- OPTIONAL FIELDS --
-
-    if (isEditing) {
-        itemSave["isEditing"] = isEditing
-    }
-    if (isHidden) {
-        itemSave["isHidden"] = isHidden
-    }              
-    if (acceptButtonTextField.length > 0) {
-        itemSave["textAcceptButton"] = acceptButtonTextField
-    }                
- 
-    var itemsValidators = generateDicValidator(validator);
-    if (itemsValidators.length > 0) {
-        itemSave["validator"] = itemsValidators;
-    }
-
-    if (isActiveRule) {
-        itemSave["rules"] = generateDicRules(rules)
-    }    
-
-    var styles = getStylesJson(styleM);
-    if (styles != null) {
-        itemSave["style"] = styles
-    }    
-
-    //-- SAVE ITEMS --
-    listFieldsResult.push(itemSave)
-        
-    indexField++;
-}
-
-
-/***/ }),
-/* 6 */
+/* 4 */
 /***/ (function(module, exports) {
 
 
@@ -559,7 +365,524 @@ window.launchEventColors = function launchEventColors() {
 }
 
 /***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//======================================
+//        BOOLEAN   (YA CREADO)       //
+//======================================
+            
+window.createBooleanField = function createBooleanField(values, validator, styleM) {
+
+    var isEditingValueCheck = ""
+    if (values.isEditing) {
+        isEditingValueCheck = "checked"
+    }
+    var isHiddenChecked = ""
+    if (values.isHidden) {
+        isHiddenChecked = "checked"
+    }
+    var isExpandedChecked = ""
+    if (values.isExpandable) {
+        isExpandedChecked = "checked"
+    }
+
+    //-- Recover Styles --
+    var htmlTypeCell = getTypeCell(styleM);
+    var htmlBackgroundColor = getStyleColor(styleM);
+    var htmlFontSize = getStyleSize (styleM);
+    var htmlAlingFont = getAlignFont(styleM)
+    var htmlImages = recoverHtmlAllImage(styleM)
+    var htmlValidator = generateHtmlValidator(validator);
+    var htmlCustom = getStyleCustom(styleM);
+    var htmlExpandable = getExpandableResult(values);
+
+    var styles;
+    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
+    } else if (styleM.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom + htmlImages;
+    } else if (htmlImages.length > 0) {
+        styles = htmlImages;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
+
+    var html = __webpack_require__(19)
+            .replace('{{styles}}',styles)
+            .replace('{{keyTextField}}',values.key)
+            .replace('{{title}}',values.label)
+            .replace('{{htmlValidator}}',htmlValidator)
+            .replace('{{isEditingValueCheck}}',isEditingValueCheck)
+            .replace('{{isHiddenChecked}}',isHiddenChecked)
+            .replace(/\{\{indexField\}\}/g,indexField)
+            .replace('{{isExpandableChecked}}',isExpandedChecked)
+            .replace('{{htmlExpandable}}',htmlExpandable)
+
+
+    $("#containerListItemsCreated").append(html);
+    resetTypeField();
+}
+
+window.saveBooleanField = function saveBooleanField(values, validator, styleM) {
+    //-- Mandatory Fiedls --
+    var itemSave = {
+        "key":values.key,
+        "tag":indexField,
+        "type":values.type,
+        "label":values.label
+    }
+
+    if (values.isEditing) {
+        itemSave["isEditing"] = values.isEditing
+    }
+    if (values.isHidden) {
+        itemSave["isHidden"] = values.isHidden
+    }
+
+    var itemsValidators = generateDicValidator(validator);
+
+    if (itemsValidators.length > 0) {
+        itemSave["validator"] = itemsValidators;
+    }
+    
+    //-- OPTIONAL FIELDS --
+    var styles = getStylesJson(styleM);
+
+    if (styles != null) {
+        itemSave["style"] = styles
+    } 
+    
+    listFieldsResult.push(itemSave)
+
+    indexField++;
+}
+
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+//======================================
+//            DATE   PICKER           //
+//======================================
+
+
+//-- DATE PICKER YA CREADO SOLO MOSTRAR --
+window.createDatePickerField = function createDatePickerField(values, validator, rules, styleM) {
+
+    var isEditingCheck = ""
+    if (isEditing) {
+        isEditingCheck = "checked"
+    }
+    var isHiddenChecked = ""
+    if (isHidden) {
+        isHiddenChecked = "checked"
+    }
+
+    var htmlRules = '';
+    if (isActiveRule) {
+        htmlRules = generateHtmlRulesResult(rules)
+    }
+
+    //-- Recover Styles --
+    var htmlTypeCell = getTypeCell(styleM);
+    var htmlColorBasic = getStyleColor(styleM);
+    var htmlFontSize = getStyleSize (styleM);
+    var htmlColorPicker = getStyleColorPicker (styleM);
+    var htmlAlingFont = getAlignFont(styleM)
+    var htmlImages = recoverHtmlImageMandatory(styleM)
+    var htmlValidator = generateHtmlValidator(validator);
+    var htmlCustom = getStyleCustom(styleM);
+
+
+    var styles = '';
+    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages + htmlColorPicker;
+    } else if (styleM.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom + htmlImages + htmlColorPicker;
+    } else if (htmlImages.length > 0 || htmlColorPicker.length > 0) {
+        styles = htmlImages + htmlColorPicker;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
+
+
+    var html = __webpack_require__(21)
+            .replace('{{styles}}',styles)
+            .replace('{{keyTextField}}',keyTextField)
+            .replace('{{title}}',title)
+            .replace('{{htmlValidator}}',htmlValidator)
+            .replace('{{isEditingCheck}}',isEditingCheck)
+            .replace('{{isHiddenChecked}}',isHiddenChecked)
+            .replace('{{acceptButtonTextField}}',acceptButtonTextField)
+            .replace('{{htmlRules}}',htmlRules)
+            .replace(/\{\{indexField\}\}/g,indexField)
+
+
+    $("#containerListItemsCreated").append(html);
+    resetTypeField();
+}
+
+window.saveDatePickerField = function saveDatePickerField(values, validator, rules, styleM) {
+    
+    //-- MANDATORY FIELDS --
+
+    var itemSave = {
+        "key":keyTextField,
+        "tag":indexField,
+        "type":type,
+        "label":title
+    }
+    
+    //-- OPTIONAL FIELDS --
+
+    if (isEditing) {
+        itemSave["isEditing"] = isEditing
+    }
+    if (isHidden) {
+        itemSave["isHidden"] = isHidden
+    }              
+    if (acceptButtonTextField.length > 0) {
+        itemSave["textAcceptButton"] = acceptButtonTextField
+    }                
+ 
+    var itemsValidators = generateDicValidator(validator);
+    if (itemsValidators.length > 0) {
+        itemSave["validator"] = itemsValidators;
+    }
+
+    if (isActiveRule) {
+        itemSave["rules"] = generateDicRules(rules)
+    }    
+
+    var styles = getStylesJson(styleM);
+    if (styles != null) {
+        itemSave["style"] = styles
+    }    
+
+    //-- SAVE ITEMS --
+    listFieldsResult.push(itemSave)
+        
+    indexField++;
+}
+
+
+/***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+//======================================
+//               TEXT (YA CREADO)     //
+//======================================
+
+window.createIndexField = function createIndexField(values, styleM) {
+    
+    //-- Recover Styles --
+    var htmlTypeCell = getTypeCell(styleM);
+    var htmlBackgroundColor = getStyleColor(styleM);
+    var htmlFontSize = getStyleSize (styleM);
+    var htmlAlingFont = getAlignFont(styleM)
+    var htmlCustom = getStyleCustom(styleM);
+    
+
+    var styles = '';
+    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont
+    } else if (styleM.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
+
+        
+    var html = __webpack_require__(23)
+            .replace('{{styles}}',styles)
+            .replace('{{keyTextField}}',keyTextField)
+            .replace('{{title}}',title)
+            .replace(/\{\{indexField\}\}/g,indexField)
+
+
+    $("#containerListItemsCreated").append(html);
+    resetTypeField();
+}
+
+window.saveIndexField = function saveIndexField(values, styleM) {
+    //-- Mandatory Fiedls --
+    var itemSave = {
+        "tag":indexField,
+        "key":keyTextField,
+        "type":type,
+        "label":title
+    }
+    
+    
+    //-- OPTIONAL FIELDS --
+    var styles = getStylesJson(styleM);
+    
+    if (styles != null) {
+        itemSave["style"] = styles
+    }
+    
+    listFieldsResult.push(itemSave)
+ 
+    indexField++;
+}
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+//======================================
+//               PICKER               //
+//======================================
+window.idPickerField = 1
+window.addContainerPicker = function addContainerPicker() {
+    $("#pickerFieldsInsert").append('<div class="containerPickerField" id="containerPickerField'+idPickerField+'"><input id="inputKeyPickerField'+idPickerField+'" type="text" name="element" placeholder="Clave Picker"><input id="inputValuePickerField'+idPickerField+'" type="text" name="element" placeholder="Valor picker"><p onclick="removeContainerPicker('+idPickerField+')">-</p></div>');
+    idPickerField++;
+}
+
+window.removeContainerPicker = function removeContainerPicker(idContainerPicker) {
+    $("#containerPickerField"+idContainerPicker).slideUp(function(){
+           $("#containerPickerField"+idContainerPicker).remove()
+    });
+}
+
+//-- PICKER YA CREADO SOLO MOSTRAR --
+window.createPickerField = function createPickerField(values, validator, styleM) {
+
+    var isEditingCheck = ""
+    if (isEditing) {
+        isEditingCheck = "checked"
+    }
+    var isHiddenChecked = ""
+    if (isHidden) {
+        isHiddenChecked = "checked"
+    }
+
+    //-- Recover Styles --
+    var htmlTypeCell = getTypeCell(styleM);
+    var htmlColorBasic = getStyleColor(styleM);
+    var htmlFontSize = getStyleSize (styleM);
+    var htmlColorPicker = getStyleColorPicker (styleM);
+    var htmlAlingFont = getAlignFont(styleM)
+    var htmlImages = recoverHtmlImageMandatory(styleM)
+    var htmlValidator = generateHtmlValidator(validator);
+    var htmlCustom = getStyleCustom(styleM);
+
+
+    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages + htmlColorPicker;
+    } else if (styleM.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom + htmlImages + htmlColorPicker;
+    } else if (htmlImages.length > 0 || htmlColorPicker.length > 0) {
+        styles = htmlImages + htmlColorPicker;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
+
+
+    //-- Create options fields --
+    var htmlPickerItems = '';
+    for (var i = 0; i < idPickerField; i++) {
+        var idKey = $("#inputKeyPickerField"+i).val()
+        var idValue = $("#inputValuePickerField"+i).val()
+
+        if (idKey != undefined && idValue != undefined) {
+            var html = '';
+            html += '<div class="containerPickerField">';
+            html += '   <input type="text" name="element" value="'+idKey+'" disabled readonly>';
+            html += '   <input type="text" name="element" value="'+idValue+'" disabled readonly>';
+            html += '</div>';
+            htmlPickerItems = htmlPickerItems + html;
+        }
+    }
+
+    var html = __webpack_require__(25)
+            .replace('{{styles}}',styles)
+            .replace('{{keyTextField}}',keyTextField)
+            .replace('{{title}}',title)
+            .replace('{{htmlValidator}}',htmlValidator)
+            .replace('{{isHiddenChecked}}',isHiddenChecked)
+            .replace('{{htmlPickerItems}}',htmlPickerItems) 
+            .replace('{{isEditingChecked}}',isEditingCheck)
+            .replace('{{acceptButtonTextField}}',acceptButtonTextField)
+            .replace(/\{\{indexField\}\}/g,indexField)
+
+    $("#containerListItemsCreated").append(html);
+    resetTypeField();
+}
+
+window.savePickerField = function savePickerField(values, validator, styleM) {
+    
+    //-- MANDATORY FIELDS --
+    var listOptions = [];
+    for (var i = 0; i < idPickerField; i++) {
+        var idKey = $("#inputKeyPickerField"+i).val()
+        var idValue = $("#inputValuePickerField"+i).val()
+        var options = {
+            "key": idKey,
+            "value":idValue
+        }
+        if (idKey != undefined && idValue != undefined) {
+            listOptions.push(options)
+        }        
+    }
+
+    var itemSave = {
+        "key":keyTextField,
+        "tag":indexField,
+        "type":type,
+        "label":title,
+        "listOptions":listOptions
+    }
+    
+    //-- OPTIONAL FIELDS --
+
+    if (isEditing) {
+        itemSave["isEditing"] = isEditing
+    }
+    if (isHidden) {
+        itemSave["isHidden"] = isHidden
+    }             
+    if (acceptButtonTextField.length > 0) {
+        itemSave["textAcceptButton"] = acceptButtonTextField
+    } 
+    
+    var itemsValidators = generateDicValidator(validator);
+
+    if (itemsValidators.length > 0) {
+        itemSave["validator"] = itemsValidators;
+    }
+
+    var styles = getStylesJson(styleM);
+    if (styles != null) {
+        itemSave["style"] = styles
+    }    
+
+    //-- SAVE ITEMS --
+    listFieldsResult.push(itemSave)
+    
+    indexField++;
+}
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+//======================================
+//               TEXT (YA CREADO)     //  
+//======================================
+            
+
+window.createField = function createField(values, validator, style) {
+
+    var isPasswordChecked = ""
+    if (isPassword) {
+        isPasswordChecked = "checked"
+    }
+    var isEditingChecked = ""
+    if (isEditing) {
+        isEditingChecked = "checked"
+    } 
+    var isHiddenChecked = ""
+    if (isHidden) {
+        isHiddenChecked = "checked"
+    }
+
+    //-- Recover HTML --
+    var htmlTypeCell = getTypeCell(style);
+    var htmlBackgroundColor = getStyleColor(style);
+    var htmlFontSize = getStyleSize (style);
+    var htmlAlingFont = getAlignFont(style)
+    var htmlImages = recoverHtmlImageMandatory(style)    
+    var htmlCustom = getStyleCustom(style);
+    var htmlValidator = generateHtmlValidator(validator);
+    
+
+    var styles;
+    if (style.typeCell == "default" || style.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
+    } else if (style.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom + htmlImages;
+    } else if (htmlImages.length > 0) {
+        styles = htmlImages;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
+
+
+    var html = __webpack_require__(27)
+            .replace('{{styles}}',styles)
+            .replace('{{keyTextField}}',keyTextField)
+            .replace('{{title}}',title)
+            .replace('{{placeHolder}}',placeHolder)
+            .replace('{{keyboard}}',keyboard)
+            .replace('{{htmlValidator}}',htmlValidator)
+            .replace('{{isPasswordChecked}}',isPasswordChecked)
+            .replace('{{isEditingChecked}}',isEditingChecked)
+            .replace('{{isHiddenChecked}}',isHiddenChecked)
+            .replace(/\{\{indexField\}\}/g,indexField)
+
+    $("#containerListItemsCreated").append(html);
+    resetTypeField();
+}
+
+window.saveField = function saveField(values, validator, style) {
+    //-- Mandatory Fiedls --
+    var itemSave = {
+        "tag":indexField,
+        "key":keyTextField,
+        "type":type,
+        "label":title
+    }
+
+
+    if (isEditing) {
+        itemSave["isEditing"] = isEditing
+    }
+    if (isHidden) {
+        itemSave["isHidden"] = isHidden
+    }
+    if (placeHolder.length > 0) {
+        itemSave["placeHolder"] = placeHolder
+    } 
+    if (keyboard != "None") {
+        itemSave["keyboard"] = keyboard
+    }
+    if (isPassword) {
+        itemSave["isPassword"] = isPassword
+    }
+
+    var itemsValidators = generateDicValidator(validator);
+
+    if (itemsValidators.length > 0) {
+        itemSave["validator"] = itemsValidators;
+    }
+
+    //-- OPTIONAL FIELDS --
+    var styles = getStylesJson(style);
+
+    if (styles != null) {
+        itemSave["style"] = styles
+    } 
+    
+    listFieldsResult.push(itemSave)
+    
+    
+    indexField++;
+}
+
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports) {
 
 
@@ -580,7 +903,7 @@ window.createListOptionsFont = function createListOptionsFont() {
 
 
 /***/ }),
-/* 8 */
+/* 11 */
 /***/ (function(module, exports) {
 
 window.getHtmlImageMandatory = function getHtmlImageMandatory() {
@@ -623,70 +946,7 @@ window.recoverHtmlAllImage = function recoverHtmlAllImage(style) {
 
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-//======================================
-//               TEXT (YA CREADO)     //
-//======================================
-
-window.createIndexField = function createIndexField(keyTextField, title, styleM) {
-    
-    //-- Recover Styles --
-    var htmlTypeCell = getTypeCell(styleM);
-    var htmlBackgroundColor = getStyleColor(styleM);
-    var htmlFontSize = getStyleSize (styleM);
-    var htmlAlingFont = getAlignFont(styleM)
-    var htmlCustom = getStyleCustom(styleM);
-    
-
-    var styles = '';
-    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
-        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont
-    } else if (styleM.typeCell == "custom") {
-        styles =  htmlTypeCell + htmlCustom;
-    } else {
-        styles = '<p class="styleDefault">Estilos por defecto</p>';
-    }
-
-        
-    var html = __webpack_require__(21)
-            .replace('{{styles}}',styles)
-            .replace('{{keyTextField}}',keyTextField)
-            .replace('{{title}}',title)
-            .replace(/\{\{indexField\}\}/g,indexField)
-
-
-    $("#containerListItemsCreated").append(html);
-    resetTypeField();
-}
-
-window.saveIndexField = function saveIndexField(keyTextField, type, title, styleM) {
-    //-- Mandatory Fiedls --
-    var itemSave = {
-        "tag":indexField,
-        "key":keyTextField,
-        "type":type,
-        "label":title
-    }
-    
-    
-    //-- OPTIONAL FIELDS --
-    var styles = getStylesJson(styleM);
-    
-    if (styles != null) {
-        itemSave["style"] = styles
-    }
-    
-    listFieldsResult.push(itemSave)
- 
-    indexField++;
-}
-
-
-/***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -720,19 +980,19 @@ window.removeField = function removeField(idRemove){
 }
             
 window.addField = function addField() {
-    if (fieldSelected == "Text") {
+    if (fieldSelected == "text") {
         validateTextField();
     }
-    else if (fieldSelected == "Picker") {
+    else if (fieldSelected == "picker") {
         validatePickerField();
     }
-    else if (fieldSelected == "DatePicker") {
+    else if (fieldSelected == "datePicker") {
         validateDatePickerField();
     }
-    else if (fieldSelected == "Boolean") {
+    else if (fieldSelected == "boolean") {
         validateBooleanField();
     }
-    else if (fieldSelected == "Index") {
+    else if (fieldSelected == "index") {
         validateIndexField();
     }
 }
@@ -763,7 +1023,18 @@ window.createElementField = function createElementField(typeField) {
     var htmlSelectorCell = getSelectorCell();
     var htmlCustomCell = getHtmlCustomCell();
 
-    if (typeField == "Text") {
+    if (typeField == "text") {
+        html = __webpack_require__(26)
+            .replace('{{colorBasicZone}}',colorBasicZone)
+            .replace('{{htmlFont}}',htmlFont)
+            .replace('{{htmlImage}}',htmlImage)
+            .replace('{{htmlRules}}',htmlRules)
+            .replace('{{htmlValidators}}',htmlValidators)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
+    }
+    else if (typeField == "picker") {
+        idPickerField = 1; // Reset Picker
         html = __webpack_require__(24)
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
@@ -773,9 +1044,8 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlSelectorCell}}',htmlSelectorCell)
             .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
-    else if (typeField == "Picker") {
-        idPickerField = 1; // Reset Picker
-        html = __webpack_require__(22)
+    else if (typeField == "datePicker") {
+        html = __webpack_require__(20)
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
@@ -784,7 +1054,8 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlSelectorCell}}',htmlSelectorCell)
             .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
-    else if (typeField == "DatePicker") {
+    else if (typeField == "boolean") {
+        htmlImage = getHtmlAllImage();
         html = __webpack_require__(18)
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
@@ -794,19 +1065,8 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlSelectorCell}}',htmlSelectorCell)
             .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
-    else if (typeField == "Boolean") {
-        htmlImage = getHtmlAllImage();
-        html = __webpack_require__(16)
-            .replace('{{colorBasicZone}}',colorBasicZone)
-            .replace('{{htmlFont}}',htmlFont)
-            .replace('{{htmlImage}}',htmlImage)
-            .replace('{{htmlRules}}',htmlRules)
-            .replace('{{htmlValidators}}',htmlValidators)
-            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
-            .replace('{{htmlCustomCell}}',htmlCustomCell)
-    }
-    else if (typeField == "Index") {
-        html = __webpack_require__(20)
+    else if (typeField == "index") {
+        html = __webpack_require__(22)
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlSelectorCell}}',htmlSelectorCell)
@@ -819,6 +1079,7 @@ window.createElementField = function createElementField(typeField) {
     createEventFont();
     createEventTextCompare();
     createEventRules();
+    createEventExpandable();
     showContainerCustomValidate();
 }
 
@@ -832,7 +1093,20 @@ window.createEventFont = function createEventFont() {
          }
     });
 }
-// TODO EDU falta el compare
+
+
+window.createEventExpandable = function createEventExpandable() {
+  
+     $("#isExpandable").change(function() {
+         if (this.checked == true) {
+            $("#containerExpandable").css("display","block");
+         }
+         else {
+            $("#containerExpandable").css("display","none");
+         }
+    });
+}
+
 
 window.createEventRules = function createEventRules() {
   
@@ -992,154 +1266,212 @@ clipboard.on('error', function(e) {
 
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 13 */
+/***/ (function(module, exports) {
 
 
 //======================================
-//               PICKER               //
+//         RECOVER    FIELDS          //
 //======================================
-window.idPickerField = 1
-window.addContainerPicker = function addContainerPicker() {
-    $("#pickerFieldsInsert").append('<div class="containerPickerField" id="containerPickerField'+idPickerField+'"><input id="inputKeyPickerField'+idPickerField+'" type="text" name="element" placeholder="Clave Picker"><input id="inputValuePickerField'+idPickerField+'" type="text" name="element" placeholder="Valor picker"><p onclick="removeContainerPicker('+idPickerField+')">-</p></div>');
-    idPickerField++;
-}
-
-window.removeContainerPicker = function removeContainerPicker(idContainerPicker) {
-    $("#containerPickerField"+idContainerPicker).slideUp(function(){
-           $("#containerPickerField"+idContainerPicker).remove()
-    });
-}
-
-//-- PICKER YA CREADO SOLO MOSTRAR --
-window.createPickerField = function createPickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, styleM) {
-
-    var isEditingCheck = ""
-    if (isEditing) {
-        isEditingCheck = "checked"
-    }
-    var isHiddenChecked = ""
-    if (isHidden) {
-        isHiddenChecked = "checked"
-    }
-
-    //-- Recover Styles --
-    var htmlTypeCell = getTypeCell(styleM);
-    var htmlColorBasic = getStyleColor(styleM);
-    var htmlFontSize = getStyleSize (styleM);
-    var htmlColorPicker = getStyleColorPicker (styleM);
-    var htmlAlingFont = getAlignFont(styleM)
-    var htmlImages = recoverHtmlImageMandatory(styleM)
-    var htmlValidator = generateHtmlValidator(validator);
-    var htmlCustom = getStyleCustom(styleM);
 
 
-    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
-        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages + htmlColorPicker;
-    } else if (styleM.typeCell == "custom") {
-        styles =  htmlTypeCell + htmlCustom + htmlImages + htmlColorPicker;
-    } else if (htmlImages.length > 0 || htmlColorPicker.length > 0) {
-        styles = htmlImages + htmlColorPicker;
-    } else {
-        styles = '<p class="styleDefault">Estilos por defecto</p>';
-    }
-
-
-    //-- Create options fields --
-    var htmlPickerItems = '';
-    for (var i = 0; i < idPickerField; i++) {
-        var idKey = $("#inputKeyPickerField"+i).val()
-        var idValue = $("#inputValuePickerField"+i).val()
-
-        if (idKey != undefined && idValue != undefined) {
-            var html = '';
-            html += '<div class="containerPickerField">';
-            html += '   <input type="text" name="element" value="'+idKey+'" disabled readonly>';
-            html += '   <input type="text" name="element" value="'+idValue+'" disabled readonly>';
-            html += '</div>';
-            htmlPickerItems = htmlPickerItems + html;
-        }
-    }
-
-    var html = __webpack_require__(23)
-            .replace('{{styles}}',styles)
-            .replace('{{keyTextField}}',keyTextField)
-            .replace('{{title}}',title)
-            .replace('{{htmlValidator}}',htmlValidator)
-            .replace('{{isHiddenChecked}}',isHiddenChecked)
-            .replace('{{htmlPickerItems}}',htmlPickerItems) 
-            .replace('{{isEditingChecked}}',isEditingCheck)
-            .replace('{{acceptButtonTextField}}',acceptButtonTextField)
-            .replace(/\{\{indexField\}\}/g,indexField)
-
-    $("#containerListItemsCreated").append(html);
-    resetTypeField();
-}
-
-window.savePickerField = function savePickerField(keyTextField,type,title,acceptButtonTextField,isEditing, isHidden, validator, styleM) {
-    
-    //-- MANDATORY FIELDS --
-    var listOptions = [];
-    for (var i = 0; i < idPickerField; i++) {
-        var idKey = $("#inputKeyPickerField"+i).val()
-        var idValue = $("#inputValuePickerField"+i).val()
-        var options = {
-            "key": idKey,
-            "value":idValue
-        }
-        if (idKey != undefined && idValue != undefined) {
-            listOptions.push(options)
-        }        
-    }
-
-    var itemSave = {
-        "key":keyTextField,
-        "tag":indexField,
-        "type":type,
-        "label":title,
-        "listOptions":listOptions
-    }
-    
-    //-- OPTIONAL FIELDS --
-
-    if (isEditing) {
-        itemSave["isEditing"] = isEditing
-    }
-    if (isHidden) {
-        itemSave["isHidden"] = isHidden
-    }             
-    if (acceptButtonTextField.length > 0) {
-        itemSave["textAcceptButton"] = acceptButtonTextField
-    } 
-    
-    var itemsValidators = generateDicValidator(validator);
-
-    if (itemsValidators.length > 0) {
-        itemSave["validator"] = itemsValidators;
-    }
-
-    var styles = getStylesJson(styleM);
-    if (styles != null) {
-        itemSave["style"] = styles
+window.getRecoverField = function getRecoverField() {
+    var fieldValue = new fieldResult();
+    fieldValue.type = document.getElementById("selectTypeField").value;
+    fieldValue.key = $("#keyTextField").val()
+    fieldValue.label = $("#titleTextField").val()
+    fieldValue.placeHolder = $("#palceHolderTextField").val()
+    if (document.getElementById("selectTypeKeyboard") != null) {
+        fieldValue.keyboard = document.getElementById("selectTypeKeyboard").value;
     }    
-
-    //-- SAVE ITEMS --
-    listFieldsResult.push(itemSave)
+    fieldValue.isPassword = $('#passwordTextField').is(':checked');
+    fieldValue.isEditing = $('#isEditingTextField').is(':checked');
+    fieldValue.isHidden = $('#isHiddenTextField').is(':checked');
+    fieldValue.acceptButtonTextField = $("#acceptButtonTextField").val()
+    fieldValue.isActiveRule = $('#rules').is(':checked');
+    fieldValue.isExpandable = $('#isExpandable').is(':checked');
+    if (fieldValue.isExpandable) {
+        fieldValue.subtype = "expandable";
+        fieldValue.description = $("#descripcionExpan").val()
+        fieldValue.textbuttonReadMore = $("#expandText").val()
+        fieldValue.textbuttonReadLess = $("#collapseText").val()
+    }
     
-    indexField++;
+
+    return fieldValue;
 }
+
+
+//======================================
+//         RECOVER    RULES           //
+//======================================
+
+
+window.getRecoverRules = function getRecoverRules(isActiveRule) {
+    if (isActiveRule) {
+        var rules = new rulesResult;
+        rules.fieldReciver1 = $("#fieldReciver1").val();
+        rules.fieldReciver2 = $("#fieldReciver2").val();
+        rules.typeCompare = document.getElementById("selectTypeRuleCompare").value;
+        rules.valueCompare = $("#valueRule").val();
+        rules.behaviorCompare = document.getElementById("selectTypeRuleBehavior").value;
+        rules.elseCompare = document.getElementById("selectTypeRuleElseBehavior").value; 
+        return rules;
+    }
+}
+
+
+//======================================
+//        RECOVER    VALIDATION       //
+//======================================
+
+
+window.getRecoverValidations = function getRecoverValidations() {
+
+    var listValidatorResult = [];
+
+    for (var i = 0; i <= window.idValidatorField; i++) {
+        if ($("#containerValidatorField"+i).length > 0) {
+
+            var select = document.getElementById("selectTypeValidator"+i);    
+            var validatorRes = new validatorResult;
+            validatorRes.type = select.value;
+            validatorRes.text = $("#inputValueValidatorField"+i).val()
+
+            if ($("#extraFieldsValidator"+i).length > 0) {
+                validatorRes.minLength = $("#minLength").val();
+                validatorRes.maxLength = $("#maxLength").val();
+                validatorRes.regex = $("#custonValidator").val();
+                validatorRes.compareKey1 = $("#compareKey1").val();
+                validatorRes.compareKey2 = $("#compareKey2").val();
+                validatorRes.minAge = $("#minAge").val();
+            }
+
+            listValidatorResult.push(validatorRes);
+        }
+    }
+
+    return listValidatorResult;
+}
+
+
+//======================================
+//         RECOVER    STYLES          //
+//======================================
+
+
+window.getRecoverStyles = function getRecoverStyles() {
+    var styles = new styleResult();
+    var selector = document.getElementById("selectTypeCell").value;
+
+    styles.typeCell = selector;
+    styles.imageMandatory = $("#imageMandatory").val()
+    styles.imageCheckBoxOff = $("#imageCheckBoxOff").val()
+    styles.imageCheckBoxOn = $("#imageCheckBoxOn").val()
+    styles.aceptColor = $("#aceptColorHex").val()
+    styles.containerAceptColor = $("#containerAceptColorHex").val()
+    styles.backgroundPickerColor = $("#backgroundPickerColorHex").val()
+
+
+    if (selector == "default" || selector == "line") {
+        styles.cellColor = $("#cellColorHex").val()
+        styles.titleColor = $("#titleColorHex").val()
+        styles.errorColor = $("#errorColorHex").val()
+        styles.sizeTitle = $("#sizeTitle").val()
+        styles.sizeError = $("#sizeError").val()
+        styles.align = document.getElementById("selectTypeAlign").value;
+        styles.font = document.getElementById("selectTypeFont").value;
+
+        if (styles.font == "custom") {
+            styles.font = $("#custonFont").val()
+        }
+    } else if (selector == "custom") {
+        styles.nameXib = $("#nameXib").val();
+    } 
+
+    return styles;
+}
+
+
 
 
 /***/ }),
-/* 12 */
+/* 14 */
+/***/ (function(module, exports) {
+
+
+//======================================
+//              MODELS                //
+//======================================
+
+
+window.fieldResult = function fieldResult() {
+    var key = "";
+    var type = "";
+    var subtype = "";
+    var isEditing = "";
+    var isHidden = ""; 
+    var label = ""; 
+    var description = ""; 
+    var textbuttonReadMore = ""; 
+    var textbuttonReadLess = ""; 
+    var placeHolder = "";
+    var keyboard = "";
+    var acceptButtonTextField = "";
+    var isActiveRule = "";
+    var isExpandable = "";
+}
+
+window.validatorResult = function validatorResult() {
+    var type = "";
+    var text = "";
+    var minLength = "";
+    var maxLength = "";
+    var regex = ""; 
+    var compareKey1 = "";
+    var compareKey2 = "";
+    var minAge = 0;
+}
+
+window.rulesResult = function rulesResult() {
+    var fieldReciver1 = "";
+    var fieldReciver2 = "";
+    var typeCompare = "";
+    var valueCompare = "";
+    var behaviorCompare = "";
+    var elseCompare = "";
+}
+
+window.styleResult = function styleResult() {
+    var cellColor = "";
+    var titleColor = "";
+    var errorColor = "";
+    var sizeTitle = "";
+    var sizeError = "";
+    var align = "";
+    var font = "";
+    var typeCell = "";
+    var nameXib = "";
+    var imageMandatory = "";
+    var imageCheckBoxOn = ""
+    var imageCheckBoxOff = ""
+    var aceptColor = "";
+    var containerAceptColor = "";
+    var backgroundPickerColor = "";
+    var expandCollapseButtonTextColor = "";
+    var expandCollapseButtonFontSize = "";
+}
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports) {
 
 
 window.getRules= function getRules() {  
 	var html = '';
 	html += '<div class="zoneRule">';
-	html += '	<input type="checkbox"name="rules"value="rules"id="rules">';
-	html += '	<p id="textActiteRule">Active rule?</p>';
+	html += '	<input type="checkbox" name="rules" value="rules" id="rules">';
+	html += '	<p id="textActiteRule">Activar regla?</p>';
 	html += '	<div id="containerRule">';
 	html += '		<div id="fieldCompareRules">';
 	html += '			<p>Keys Compare:</p>';
@@ -1222,116 +1554,7 @@ window.generateDicRules = function generateDicRules(rules) {
 
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-//======================================
-//               TEXT (YA CREADO)     //  
-//======================================
-            
-
-window.createField = function createField(keyTextField,title,placeHolder,keyboard,validator, isPassword, isEditing, isHidden, style) {
-
-    var isPasswordChecked = ""
-    if (isPassword) {
-        isPasswordChecked = "checked"
-    }
-    var isEditingChecked = ""
-    if (isEditing) {
-        isEditingChecked = "checked"
-    } 
-    var isHiddenChecked = ""
-    if (isHidden) {
-        isHiddenChecked = "checked"
-    }
-
-    //-- Recover HTML --
-    var htmlTypeCell = getTypeCell(style);
-    var htmlBackgroundColor = getStyleColor(style);
-    var htmlFontSize = getStyleSize (style);
-    var htmlAlingFont = getAlignFont(style)
-    var htmlImages = recoverHtmlImageMandatory(style)    
-    var htmlCustom = getStyleCustom(style);
-    var htmlValidator = generateHtmlValidator(validator);
-    
-
-    var styles;
-    if (style.typeCell == "default" || style.typeCell == "line") {
-        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
-    } else if (style.typeCell == "custom") {
-        styles =  htmlTypeCell + htmlCustom + htmlImages;
-    } else if (htmlImages.length > 0) {
-        styles = htmlImages;
-    } else {
-        styles = '<p class="styleDefault">Estilos por defecto</p>';
-    }
-
-
-    var html = __webpack_require__(25)
-            .replace('{{styles}}',styles)
-            .replace('{{keyTextField}}',keyTextField)
-            .replace('{{title}}',title)
-            .replace('{{placeHolder}}',placeHolder)
-            .replace('{{keyboard}}',keyboard)
-            .replace('{{htmlValidator}}',htmlValidator)
-            .replace('{{isPasswordChecked}}',isPasswordChecked)
-            .replace('{{isEditingChecked}}',isEditingChecked)
-            .replace('{{isHiddenChecked}}',isHiddenChecked)
-            .replace(/\{\{indexField\}\}/g,indexField)
-
-    $("#containerListItemsCreated").append(html);
-    resetTypeField();
-}
-
-window.saveField = function saveField(keyTextField,type,title,placeHolder,keyboard,validator, isPassword, isEditing, isHidden, style) {
-    //-- Mandatory Fiedls --
-    var itemSave = {
-        "tag":indexField,
-        "key":keyTextField,
-        "type":type,
-        "label":title
-    }
-
-
-    if (isEditing) {
-        itemSave["isEditing"] = isEditing
-    }
-    if (isHidden) {
-        itemSave["isHidden"] = isHidden
-    }
-    if (placeHolder.length > 0) {
-        itemSave["placeHolder"] = placeHolder
-    } 
-    if (keyboard != "None") {
-        itemSave["keyboard"] = keyboard
-    }
-    if (isPassword) {
-        itemSave["isPassword"] = isPassword
-    }
-
-    var itemsValidators = generateDicValidator(validator);
-
-    if (itemsValidators.length > 0) {
-        itemSave["validator"] = itemsValidators;
-    }
-
-    //-- OPTIONAL FIELDS --
-    var styles = getStylesJson(style);
-
-    if (styles != null) {
-        itemSave["style"] = styles
-    } 
-    
-    listFieldsResult.push(itemSave)
-    
-    
-    indexField++;
-}
-
-
-/***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports) {
 
 
@@ -1345,9 +1568,7 @@ window.getSelectorCell = function getSelectorCell() {
 	html += '</select> ';
 
 	return html;
-}
-
-                  
+}          
                       
 window.getHtmlCustomCell = function getHtmlCustomCell() {
 	var html = '';
@@ -1355,6 +1576,33 @@ window.getHtmlCustomCell = function getHtmlCustomCell() {
 	html += '<input id="nameXib" type="text" name="element">';
 	return html;
 }
+
+
+window.getExpandableResult = function getExpandableResult(values) {
+    var html = '';
+
+    if (values.isExpandable) {
+        html += '<div id="containerExpandable" class="containerExpandableActive">';
+        html += '    <div class="descriptionExpan">';
+        html += '        <p>Descripción*:</p>';
+        html += '        <input type="text" name="descripcionExpan" id="descripcionExpan" disabled readonly value="'+values.description+'">';
+        html += '    </div>';
+        html += '    <div class="expandTextExpan">';
+        html += '        <p>Botón leer más*:</p>';
+        html += '        <input type="text" name="expandText" id="expandText" disabled readonly value="'+values.textbuttonReadMore+'">';
+        html += '    </div>';
+        html += '    <div class="collapseTextExpan">';
+        html += '        <p>Botón leer menos*:</p>';
+        html += '        <input type="text" name="collapseText" id="collapseText" disabled readonly value="'+values.textbuttonReadLess+'">';
+        html += '    </div>';
+        html += '</div>';
+    }
+
+
+    return html;
+}
+
+
 
 
 // Actions
@@ -1481,6 +1729,10 @@ window.getAlignFont = function getAlignFont(style) {
 }
 
 window.getStylesJson = function getStylesJson(styleModel) {
+    if (styleModel == null) {
+        return null;
+    }
+
     var style = {}
     var haveStyle = false;
     
@@ -1559,73 +1811,60 @@ window.getStylesJson = function getStylesJson(styleModel) {
 
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports) {
 
 
 
 //======================================
-//            VALIDATION              //
+//            TEXTFIELD               //
 //======================================
 
-
-//=== TEXTFIELD ===
 window.validateTextField = function validateTextField() {
-    var keyTextField = $("#keyTextField").val()
-    var title = $("#titleTextField").val()
-    var placeHolder = $("#palceHolderTextField").val()
-    var keyboard = document.getElementById("selectTypeKeyboard").value;
+    var values = getRecoverField();
     var validator = getRecoverValidations();
     var styles = getRecoverStyles();
 
-    var isPassword = $('#passwordTextField').is(':checked');
-    var isEditing = $('#isEditingTextField').is(':checked');
-    var isHidden = $('#isEditingTextField').is(':checked');
-       
-
-    if (controlError(title, keyTextField, styles, "text")) {
+    if (controlError(values, styles)) {
         window.idValidatorField = 0;
-        createField(keyTextField,title,placeHolder,keyboard,validator,isPassword, isEditing, isHidden, styles);
-        saveField(keyTextField,"text",title,placeHolder,keyboard,validator,isPassword, isEditing, isHidden, styles);
+        createField(values, validator, styles);
+        saveField(values, validator, styles);
     }
 }
 
-//=== DATE PICKER ===
+
+//======================================
+//            DATE PICKER             //
+//======================================
+
+
 window.validateDatePickerField = function validateDatePickerField() {
-    var keyTextField = $("#keyTextField").val()
-    var title = $("#titleTextField").val()
+    var values = getRecoverField();
     var validator = getRecoverValidations();
     var styles = getRecoverStyles();
     var rules = getRecoverRules(isActiveRule);
 
-    var acceptButtonTextField = $("#acceptButtonTextField").val()
-    var isEditing = $('#isEditingTextField').is(':checked');
-    var isHidden = $('#isEditingTextField').is(':checked');
-    var isActiveRule = $('#rules').is(':checked');
-
-
-    if (controlError(title,keyTextField,styles, "datePicker")) {
-        createDatePickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styles);
-        saveDatePickerField(keyTextField,"datePicker",title,acceptButtonTextField,isEditing, isHidden, validator, isActiveRule, rules, styles);
+    if (controlError(values, styles)) {
+        createDatePickerField(values, validator, rules, styles);
+        saveDatePickerField(values, validator, rules, styles);
     }
 }
 
-//=== PICKER ===
+
+//======================================
+//               PICKER               //
+//======================================
+
+
 window.validatePickerField = function validatePickerField() {
-    var keyTextField = $("#keyTextField").val()
-    var title = $("#titleTextField").val()
+    var values = getRecoverField();
     var validator = getRecoverValidations();
     var styles = getRecoverStyles();
 
-    var acceptButtonTextField = $("#acceptButtonTextField").val()
-    var isEditing = $('#isEditingTextField').is(':checked');
-    var isHidden = $('#isEditingTextField').is(':checked');
-
-
-    if (controlError(title,keyTextField, styles, "picker")) {
+    if (controlError(values, styles)) {
         if (allPickerIsComplete()) {
-            createPickerField(keyTextField,title,acceptButtonTextField,isEditing, isHidden, validator, styles);
-            savePickerField(keyTextField,"picker",title,acceptButtonTextField, isEditing, isHidden, validator, styles);
+            createPickerField(values, validator, styles);
+            savePickerField(values, validator, styles);
         }
         else {
             alert("Los campos de clave y valor de los picker deben estar todos rellenos");
@@ -1634,37 +1873,56 @@ window.validatePickerField = function validatePickerField() {
 }
 
 
-//=== BOOLEAN ===
+//======================================
+//              BOOLEAN               //
+//======================================
+
+
 window.validateBooleanField = function validateBooleanField() {
-    var keyTextField = $("#keyTextField").val()
-    var title = $("#titleTextField").val()
+    var values = getRecoverField();
     var validator = getRecoverValidations();
     var styles = getRecoverStyles();
 
-
-    var isEditing = $('#isEditingTextField').is(':checked');
-    var isHidden = $('#isEditingTextField').is(':checked');
-
-
-    if (controlError(title,keyTextField,styles, "boolean")) {
-        createBooleanField(keyTextField,title,isEditing, isHidden, validator, styles);
-        saveBooleanField(keyTextField,"boolean",title,isEditing, isHidden, validator, styles)
+    if (controlError(values, styles)) {
+        createBooleanField(values, validator, styles);
+        saveBooleanField(values, validator, styles)
     }
 }
 
 
-//=== INDEX ===
-window.validateIndexField = function validateIndexField() {
-    var keyTextField = $("#keyTextField").val()
-    var title = $("#titleTextField").val()
+//======================================
+//            EXPANDED BOOLEAN        //
+//======================================
+
+
+window.validateExpandedBooleanField = function validateExpandedBooleanField() {
+    var values = getRecoverField();
+    var validator = getRecoverValidations();
     var styles = getRecoverStyles();
-    
 
-    if (controlError(title,keyTextField,styles, "index")) {
-        createIndexField(keyTextField,title, styles)
-        saveIndexField(keyTextField,"index",title, styles)
+    if (controlError(values, styles)) {
+        createBooleanField(values, validator, styles);
+        saveBooleanField(values, validator, styles)
     }
 }
+
+
+//======================================
+//              INDEX                 //
+//======================================
+
+
+window.validateIndexField = function validateIndexField() {
+    var values = getRecoverField();
+    var styles = getRecoverStyles();    
+
+    if (controlError(values,styles)) {
+        createIndexField(values, styles)
+        saveIndexField(values, styles)
+    }
+}
+
+
 
 
 //======================================
@@ -1691,14 +1949,21 @@ window.allPickerIsComplete = function allPickerIsComplete() {
     return isComplete
 }
 
-window.controlError = function controlError(title, keyTextField, style, type) {
-    if (title.length > 0 &&  keyTextField.length > 0) {
+window.controlError = function controlError(values, style) {
+    if (values.label.length > 0 &&  values.key.length > 0) {
+        if (values.subtype != null && values.subtype.length > 0 && values.subtype == "expandable") {
+            if (values.description.length == 0 || values.textbuttonReadMore.length == 0 || values.textbuttonReadLess.length == 0) {
+                alert("Es necesario rellenar todos los campos con asterisco, estos son obligatorios");
+                return false;
+            } 
+        } 
+
         if (style.font != null) {
             if (style.sizeTitle != null && style.sizeError != null) {
                 return true;
             }
             else {
-                if (style.sizeError == null && type == "index") {
+                if (style.sizeError == null && values.type == "index") {
                      return true;
                 } else {
                     alert("Si define un tipo de fuente debe elegir el tamaño de fuente para el titulo y el error");
@@ -1708,7 +1973,7 @@ window.controlError = function controlError(title, keyTextField, style, type) {
         } 
         else {
             return true;
-        }
+        }        
     }
     else {
         alert("Los campos con asterisco son obligatorios");
@@ -1716,221 +1981,94 @@ window.controlError = function controlError(title, keyTextField, style, type) {
     }
 }
 
-//======================================
-//         RECOVER    RULES           //
-//======================================
 
 
-function getRecoverRules(isActiveRule) {
-    if (isActiveRule) {
-        var rules = new rulesResult;
-        rules.fieldReciver1 = $("#fieldReciver1").val();
-        rules.fieldReciver2 = $("#fieldReciver2").val();
-        rules.typeCompare = document.getElementById("selectTypeRuleCompare").value;
-        rules.valueCompare = $("#valueRule").val();
-        rules.behaviorCompare = document.getElementById("selectTypeRuleBehavior").value;
-        rules.elseCompare = document.getElementById("selectTypeRuleElseBehavior").value; 
-        return rules;
-    }
-}
 
-//======================================
-//        RECOVER    VALIDATION       //
-//======================================
-
-function getRecoverValidations() {
-
-    var listValidatorResult = [];
-
-    for (var i = 0; i <= window.idValidatorField; i++) {
-        if ($("#containerValidatorField"+i).length > 0) {
-
-            var select = document.getElementById("selectTypeValidator"+i);    
-            var validatorRes = new validatorResult;
-            validatorRes.type = select.value;
-            validatorRes.text = $("#inputValueValidatorField"+i).val()
-
-            if ($("#extraFieldsValidator"+i).length > 0) {
-                validatorRes.minLength = $("#minLength").val();
-                validatorRes.maxLength = $("#maxLength").val();
-                validatorRes.regex = $("#custonValidator").val();
-                validatorRes.compareKey1 = $("#compareKey1").val();
-                validatorRes.compareKey2 = $("#compareKey2").val();
-                validatorRes.minAge = $("#minAge").val();
-            }
-
-            listValidatorResult.push(validatorRes);
-        }
-    }
-
-    return listValidatorResult;
-}
-
-
-//======================================
-//         RECOVER    STYLES          //
-//======================================
-
-
-function getRecoverStyles() {
-    var styles = new styleResult();
-    var selector = document.getElementById("selectTypeCell").value;
-
-    styles.typeCell = selector;
-    styles.imageMandatory = $("#imageMandatory").val()
-    styles.imageCheckBoxOff = $("#imageCheckBoxOff").val()
-    styles.imageCheckBoxOn = $("#imageCheckBoxOn").val()
-    styles.aceptColor = $("#aceptColorHex").val()
-    styles.containerAceptColor = $("#containerAceptColorHex").val()
-    styles.backgroundPickerColor = $("#backgroundPickerColorHex").val()
-
-
-    if (selector == "default" || selector == "line") {
-        styles.cellColor = $("#cellColorHex").val()
-        styles.titleColor = $("#titleColorHex").val()
-        styles.errorColor = $("#errorColorHex").val()
-        styles.sizeTitle = $("#sizeTitle").val()
-        styles.sizeError = $("#sizeError").val()
-        styles.align = document.getElementById("selectTypeAlign").value;
-        styles.font = document.getElementById("selectTypeFont").value;
-
-        if (styles.font == "custom") {
-            styles.font = $("#custonFont").val()
-        }
-    } else if (selector == "custom") {
-        styles.nameXib = $("#nameXib").val();
-    } 
-
-    return styles;
-}
-
-
-//======================================
-//              MODELS                //
-//======================================
-
-
-function validatorResult() {
-    var type = "";
-    var text = "";
-    var minLength = "";
-    var maxLength = "";
-    var regex = ""; 
-    var compareKey1 = "";
-    var compareKey2 = "";
-    var minAge = 0;
-}
-
-function rulesResult() {
-    var fieldReciver1 = "";
-    var fieldReciver2 = "";
-    var typeCompare = "";
-    var valueCompare = "";
-    var behaviorCompare = "";
-    var elseCompare = "";
-}
-
-function styleResult() {
-    var cellColor = "";
-    var titleColor = "";
-    var errorColor = "";
-    var sizeTitle = "";
-    var sizeError = "";
-    var align = "";
-    var font = "";
-    var typeCell = "";
-    var nameXib = "";
-    var imageMandatory = "";
-    var imageCheckBoxOn = ""
-    var imageCheckBoxOff = ""
-    var aceptColor = "";
-    var containerAceptColor = "";
-    var backgroundPickerColor = "";
-}
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports) {
-
-module.exports = "  <div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>         \n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>         \n             </div>\n\n\n            {{htmlValidators}}\n\n             <div class=\"containerTextFieldCenter optionalBooleanContainer\">                  \n                  <div class=\"isEditingTextField\">\n                      <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                      <p>Es editable?</p>\n                  </div>\n                  \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n             </div>\n             \n              <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n                    <div class=\"containerTypeCell\"> \n                        <div class=\"clasicCell\">      \n                            <div class=\"colorZone\">\n                              {{colorBasicZone}}\n                           </div>                             \n                           <div class=\"sizeZone\">\n                              <p>Tamaño titulo:</p>\n                              <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                              <p>Tamaño texto error:</p>\n                              <input id=\"sizeError\" type=\"text\" name=\"element\">\n                           </div>\n                           \n                           {{htmlFont}}\n                        </div>\n                        <div class=\"customCell\">\n                          {{htmlCustomCell}}\n                        </div>\n                    </div>\n                \n                 {{htmlImage}}\n\n              </div>\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>\n";
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-module.exports = "\n<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" disabled value=\"{{title}}\">\n                </div>\n            </div>\n            <div class=\"containerTextFieldCenter optionalBooleanContainer\">\n                <div class=\"isEditingTextField\">\n                    <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingValueCheck}} disabled readonly >\n                    <p>Es editable?</p>\n                </div>\n\n                <div class=\"isHiddenTextField\">\n                    <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                    <p>Es visible?</p>\n                </div>\n            </div>\n\n            <div class=\"validatorContainer validatorCreated\">\n                 {{htmlValidator}}\n            </div>\n\n            <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                {{styles}} \n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonRemoveText\" onclick=\"removeField({{indexField}})\"><p>-</p></div>\n    </div>\n</div> \n";
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div class=\"acceptButtonTextField\">\n               <p>Titulo aceptar picker:</p>\n               <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">\n             </div>  \n\n            <div id=\"containerOptionalDatePicker\">\n                <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n                </div>\n                <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n                </div>               \n            </div>\n\n            {{htmlValidators}}\n\n            {{htmlRules}}\n\n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">\n\n                           <div class=\"colorZone\">\n                              {{colorBasicZone}}\n                           </div>       \n                        \n                           <div class=\"sizeZone\">\n                              <p>Tamaño titulo:</p>\n                              <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                              <p>Tamaño texto error:</p>\n                              <input id=\"sizeError\" type=\"text\" name=\"element\">\n                           </div>\n\n                           {{htmlFont}}\n                      </div>\n                      <div class=\"customCell\">\n                          {{htmlCustomCell}}\n                      </div>\n                  </div>\n\n\n                 {{htmlImage}}\n\n                <div class=\"colorZone pickerColorZone\">\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n\n               </div>\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n";
+module.exports = "  <div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>         \n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>         \n             </div>\n\n\n            {{htmlValidators}}\n\n             <div class=\"containerTextFieldCenter optionalBooleanContainer\">                  \n                  <div class=\"isEditingTextField\">\n                      <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                      <p>Es editable?</p>\n                  </div>\n                  \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n\n                 <div id=\"isExpandableContainer\">\n                     <input type=\"checkbox\" name=\"isExpandable\" value=\"isExpandable\" id=\"isExpandable\">\n                     <p>Es expandible?</p>                    \n                  </div>\n             </div>\n\n\n              <div id=\"containerExpandable\">\n                    <div class=\"descriptionExpan\">\n                        <p>Descripción*:</p>\n                        <input type=\"text\" name=\"descripcionExpan\" id=\"descripcionExpan\">\n                    </div>\n                    <div class=\"expandTextExpan\">\n                        <p>Botón leer más*:</p>\n                        <input type=\"text\" name=\"expandText\" id=\"expandText\">\n                    </div>\n                    <div class=\"collapseTextExpan\">\n                        <p>Botón leer menos*:</p>\n                        <input type=\"text\" name=\"collapseText\" id=\"collapseText\">\n                    </div>\n              </div>\n             \n              <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n                    <div class=\"containerTypeCell\"> \n                        <div class=\"clasicCell\">      \n                            <div class=\"colorZone\">\n                              {{colorBasicZone}}\n                           </div>                             \n                           <div class=\"sizeZone\">\n                              <p>Tamaño titulo:</p>\n                              <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                              <p>Tamaño texto error:</p>\n                              <input id=\"sizeError\" type=\"text\" name=\"element\">\n                           </div>\n                           \n                           {{htmlFont}}\n                        </div>\n                        <div class=\"customCell\">\n                          {{htmlCustomCell}}\n                        </div>\n                    </div>\n                \n                 {{htmlImage}}\n\n              </div>\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>\n";
 
 /***/ }),
 /* 19 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" value=\"{{title}}\" disabled readonly>\n                </div>\n            </div>\n            \n           <div class=\"acceptButtonTextField\">\n               <p>Titulo aceptar picker:</p>\n               <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\" value=\"{{acceptButtonTextField}}\">                                       \n            </div>  \n            \n\n            <div id=\"containerOptionalDatePicker\">\n                <div class=\"isEditingTextField\">\n                    <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingCheck}} disabled readonly>\n                        <p>Es editable?</p>\n                </div>\n                        \n                <div class=\"isHiddenTextField\">\n                    <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                    <p>Es visible?</p>\n                </div>\n            </div>\n\n            <div class=\"validatorContainer validatorCreated\">\n                 {{htmlValidator}}\n            </div>\n\n            {{htmlRules}}\n\n            <div class=\"styleField\">\n                <h4>Estilos de celda:</h4>\n                {{styles}}\n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonAddPicker\"onclick=\"removeField({{indexField}})\">\n            <p>-</p>\n        </div>\n    </div>\n </div>\n";
+module.exports = "\n<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" disabled value=\"{{title}}\">\n                </div>\n            </div>\n            <div class=\"containerTextFieldCenter optionalBooleanContainer\">\n                <div class=\"isEditingTextField\">\n                    <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingValueCheck}} disabled readonly >\n                    <p>Es editable?</p>\n                </div>\n\n                <div class=\"isHiddenTextField\">\n                    <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                    <p>Es visible?</p>\n                </div>\n\n\n                 <div id=\"isExpandableContainer\">\n                     <input type=\"checkbox\" name=\"isExpandable\" value=\"isExpandable\" id=\"isExpandable\" {{isExpandableChecked}} disabled readonly>\n                     <p>Es expandible?</p>                    \n                  </div>\n            </div>\n\n            {{htmlExpandable}}\n\n            <div class=\"validatorContainer validatorCreated\">\n                 {{htmlValidator}}\n            </div>\n\n            <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                {{styles}} \n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonRemoveText\" onclick=\"removeField({{indexField}})\"><p>-</p></div>\n    </div>\n</div> \n";
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor\" id=\"createField\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n                    </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                        </div>\n            </div>\n            <div class=\"styleField\">\n                <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">\n                            <div class=\"colorZone\">\n                                {{colorBasicZone}}\n                            </div>\n                            <div class=\"sizeZone\">\n                                <p>Tamaño titulo:</p>\n                                <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                            </div>\n                            \n                            {{htmlFont}}\n                      </div>\n                      <div class=\"customCell\">\n                      {{htmlCustomCell}}\n                      </div>\n                  </div>\n                \n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n            <p>+</p>\n        </div>\n    </div>\n</div>\n\n\n\n";
+module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div class=\"acceptButtonTextField\">\n               <p>Titulo aceptar picker:</p>\n               <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">\n             </div>  \n\n            <div id=\"containerOptionalDatePicker\">\n                <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n                </div>\n                <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n                </div>               \n            </div>\n\n            {{htmlValidators}}\n\n            {{htmlRules}}\n\n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">\n\n                           <div class=\"colorZone\">\n                              {{colorBasicZone}}\n                           </div>       \n                        \n                           <div class=\"sizeZone\">\n                              <p>Tamaño titulo:</p>\n                              <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                              <p>Tamaño texto error:</p>\n                              <input id=\"sizeError\" type=\"text\" name=\"element\">\n                           </div>\n\n                           {{htmlFont}}\n                      </div>\n                      <div class=\"customCell\">\n                          {{htmlCustomCell}}\n                      </div>\n                  </div>\n\n\n                 {{htmlImage}}\n\n                <div class=\"colorZone pickerColorZone\">\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n\n               </div>\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n";
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" disabled value=\"{{title}}\">\n                </div>\n            </div>\n\n            <div class=\"styleField\">\n                <h4>Estilos de celda:</h4>\n                {{styles}}\n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonRemoveText\" onclick=\"removeField({{indexField}})\"><p>-</p></div>\n    </div>\n</div> ";
+module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" value=\"{{title}}\" disabled readonly>\n                </div>\n            </div>\n            \n           <div class=\"acceptButtonTextField\">\n               <p>Titulo aceptar picker:</p>\n               <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\" value=\"{{acceptButtonTextField}}\">                                       \n            </div>  \n            \n\n            <div id=\"containerOptionalDatePicker\">\n                <div class=\"isEditingTextField\">\n                    <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingCheck}} disabled readonly>\n                        <p>Es editable?</p>\n                </div>\n                        \n                <div class=\"isHiddenTextField\">\n                    <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                    <p>Es visible?</p>\n                </div>\n            </div>\n\n            <div class=\"validatorContainer validatorCreated\">\n                 {{htmlValidator}}\n            </div>\n\n            {{htmlRules}}\n\n            <div class=\"styleField\">\n                <h4>Estilos de celda:</h4>\n                {{styles}}\n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonAddPicker\"onclick=\"removeField({{indexField}})\">\n            <p>-</p>\n        </div>\n    </div>\n </div>\n";
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n           <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n           </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div class=\"containerAcceptEditing\">\n               <div class=\"acceptButtonTextField\">\n                   <p>Titulo aceptar picker:</p>\n                   <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">\n               </div>\n           </div>\n\n\n          {{htmlValidators}}\n\n\n           <div class=\"containerOptionalPicker\">    \n               <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n               </div>\n\n               <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n               </div>\n           </div>\n           \n\n           <div id=\"valuesOptionsSelector\"> \n              <div id=\"containerPickerFieldAdd\">\n                 <p id=\"addFieldPickerText\">Añadir campos del picker:</p> \n                 <div id=\"sumatoryPicker\">\n                      <p onclick=\"addContainerPicker()\">+</p>\n                </div>\n              </div>\n\n              <div id=\"pickerFieldsInsert\">\n                  <div class=\"containerPickerField\" id=\"containerPickerField'+idPickerField+'\">\n                      <input id=\"inputKeyPickerField0\" type=\"text\" name=\"element\" placeholder=\"Clave Picker\" value=\"KeyNoSelected\"  disabled readonly>\n                      <input id=\"inputValuePickerField0\" type=\"text\" name=\"element\" placeholder=\"Valor picker por defecto\">\n                  </div>\n              </div>\n            </div> \n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">   \n                         <div class=\"colorZone\">\n                            {{colorBasicZone}}\n                         </div>                       \n                         <div class=\"sizeZone\">\n                            <p>Tamaño titulo:</p>\n                            <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                            <p>Tamaño texto error:</p>\n                            <input id=\"sizeError\" type=\"text\" name=\"element\">\n                         </div>\n                       \n                         {{htmlFont}}\n                      </div>\n                      <div class=\"customCell\">\n                          {{htmlCustomCell}}\n                      </div>\n                  </div>\n\n\n\n                 {{htmlImage}}\n\n\n                <div class=\"colorZone pickerColorZone\">\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n               </div>\n\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n\n                   \n";
+module.exports = "<div class=\"cellConstructor\" id=\"createField\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n                    </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                        </div>\n            </div>\n            <div class=\"styleField\">\n                <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">\n                            <div class=\"colorZone\">\n                                {{colorBasicZone}}\n                            </div>\n                            <div class=\"sizeZone\">\n                                <p>Tamaño titulo:</p>\n                                <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                            </div>\n                            \n                            {{htmlFont}}\n                      </div>\n                      <div class=\"customCell\">\n                      {{htmlCustomCell}}\n                      </div>\n                  </div>\n                \n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n            <p>+</p>\n        </div>\n    </div>\n</div>\n\n\n\n";
 
 /***/ }),
 /* 23 */
 /***/ (function(module, exports) {
 
-module.exports = "\n   <div class=\"cellConstructor pickerConstructor\" id=\"fieldNumber{{indexField}}\">\n           <div class=\"row\">\n               <div class=\"col-md-10\">\n                   <div class=\"containerTextFieldTop\">\n                        <div class=\"keyTextField\">\n                            <p>key*:</p>\n                            <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" value=\"{{keyTextField}}\" disabled readonly>\n                       </div>\n                         <div class=\"titleTextField\">\n                             <p>Titulo*:</p>\n                             <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" value=\"{{title}}\" disabled readonly>                                       \n                          </div>                                 \n                   </div>\n\n                 <div class=\"containerAcceptEditing\">\n                     <div class=\"acceptButtonTextField\">\n                         <p>Titulo aceptar picker:</p>\n                         <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\" disabled readonly value=\"{{acceptButtonTextField}}\" >\n                     </div>\n                 </div>\n\n                   <div class=\"containerOptionalPicker\">                                     \n                        <div class=\"isEditingTextField\">\n                            <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingChecked}} disabled readonly>\n                            <p>Es editable?</p>\n                        </div>\n\n                        <div class=\"isHiddenTextField\">\n                            <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                            <p>Es visible?</p>\n                        </div>\n                   </div>\n\n                  <div class=\"validatorContainer validatorCreated\">\n                       {{htmlValidator}}\n                  </div>\n\n                   <div id=\"valuesOptionsSelector\">     \n                      <div id=\"pickerFieldsInsert\">\n                          <p>Valores creados:</p>\n                          {{htmlPickerItems}}\n                      </div>\n                    </div> \n\n                  <div class=\"styleField\"> \n                      <h4>Estilos de celda:</h4>\n                        {{styles}}\n                  </div>\n                    <div class=\"spaceSeparate\"></div>\n               </div>\n               <div class=\"col-md-2 buttonRemove buttonAddPicker\" onclick=\"removeField({{indexField}})\">\n                  <p>-</p>\n               </div>\n           </div>\n      </div>\n";
+module.exports = "<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n            <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" disabled value=\"{{title}}\">\n                </div>\n            </div>\n\n            <div class=\"styleField\">\n                <h4>Estilos de celda:</h4>\n                {{styles}}\n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonRemoveText\" onclick=\"removeField({{indexField}})\"><p>-</p></div>\n    </div>\n</div> ";
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>       \n                  <select id=\"selectTypeKeyboard\">\n                      <option value=\"None\">Elegir tipo de teclado</option>\n                      <option value=\"FormKeyboardTypeText\">Texto</option>\n                      <option value=\"FormKeyboardTypeEmail\">Email</option>\n                      <option value=\"FormKeyboardTypeNumbers\">Nuerico</option>\n                      <option value=\"FormKeyboardTypeNumberPad\">NuericoPad</option>\n                  </select>                                   \n             </div>\n             <div class=\"containerTextFieldCenter\">\n                 <div class=\"inputTextField\">\n                     <p>PlaceHolder:</p>\n                     <input type=\"text\" name=\"palceHolderTextField\" id=\"palceHolderTextField\">\n                 </div>\n             </div>\n             \n\n          {{htmlValidators}}\n\n\n             <div class=\"containerPassEdit\">\n                 <div class=\"passwordTextField\">\n                     <input type=\"checkbox\" name=\"passwordTextField\" value=\"passwordTextField\" id=\"passwordTextField\">\n                     <p>Es password?</p>\n                 </div>\n                 \n                 <div class=\"isEditingTextField\">\n                     <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                     <p>Es editable?</p>\n                  </div>\n                 \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n             </div>\n\n\n             \n              <div class=\"styleField\">\n                  <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">\n                          <div class=\"colorZone\">\n                              {{colorBasicZone}}\n                          </div>                                   \n                          <div class=\"sizeZone\">\n                              <p>Tamaño titulo:</p>\n                              <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                              <p>Tamaño texto error:</p>\n                              <input id=\"sizeError\" type=\"text\" name=\"element\">\n                          </div>\n\n                          {{htmlFont}}\n                      </div>\n                      <div class=\"customCell\">\n                          {{htmlCustomCell}}\n                      </div>\n                  </div>\n\n                  {{htmlImage}}\n              </div>\n\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>";
+module.exports = "<div class=\"cellConstructor pickerConstructor\" id=\"createField\">\n   <div class=\"row\">\n       <div class=\"col-md-10\">\n           <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n           </div>\n           <div class=\"containerTextFieldTop\">\n               <div class=\"titleTextField\">\n                   <p>Titulo*:</p>\n                   <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">                                       \n                </div>                                 \n           </div>\n           <div class=\"containerAcceptEditing\">\n               <div class=\"acceptButtonTextField\">\n                   <p>Titulo aceptar picker:</p>\n                   <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\">\n               </div>\n           </div>\n\n\n          {{htmlValidators}}\n\n\n           <div class=\"containerOptionalPicker\">    \n               <div class=\"isEditingTextField\">\n                   <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                   <p>Es editable?</p>\n               </div>\n\n               <div class=\"isHiddenTextField\">\n                   <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                   <p>Es visible?</p>\n               </div>\n           </div>\n           \n\n           <div id=\"valuesOptionsSelector\"> \n              <div id=\"containerPickerFieldAdd\">\n                 <p id=\"addFieldPickerText\">Añadir campos del picker:</p> \n                 <div id=\"sumatoryPicker\">\n                      <p onclick=\"addContainerPicker()\">+</p>\n                </div>\n              </div>\n\n              <div id=\"pickerFieldsInsert\">\n                  <div class=\"containerPickerField\" id=\"containerPickerField'+idPickerField+'\">\n                      <input id=\"inputKeyPickerField0\" type=\"text\" name=\"element\" placeholder=\"Clave Picker\" value=\"KeyNoSelected\"  disabled readonly>\n                      <input id=\"inputValuePickerField0\" type=\"text\" name=\"element\" placeholder=\"Valor picker por defecto\">\n                  </div>\n              </div>\n            </div> \n\n            <div class=\"styleField\"> \n              <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">   \n                         <div class=\"colorZone\">\n                            {{colorBasicZone}}\n                         </div>                       \n                         <div class=\"sizeZone\">\n                            <p>Tamaño titulo:</p>\n                            <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                            <p>Tamaño texto error:</p>\n                            <input id=\"sizeError\" type=\"text\" name=\"element\">\n                         </div>\n                       \n                         {{htmlFont}}\n                      </div>\n                      <div class=\"customCell\">\n                          {{htmlCustomCell}}\n                      </div>\n                  </div>\n\n\n\n                 {{htmlImage}}\n\n\n                <div class=\"colorZone pickerColorZone\">\n                   <p class=\"nextColor\">Estilos picker selector</p>\n                   <p class=\"colorOKPicker\">Color texto OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"aceptColor\" class=\"cellColorCreate\"><input id=\"aceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color contenedor OK:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"containerAceptColor\" class=\"cellColorCreate\"><input id=\"containerAceptColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n                   <p class=\"colorTittleP\">Color fondo:</p>\n                   <input type=\"color\" value=\"#ffffff\" id=\"backgroundPickerColor\" class=\"cellColorCreate\"><input id=\"backgroundPickerColorHex\" class=\"inputColorHex\" placeholder=\"#ffffff\">\n               </div>\n\n            </div>\n            <div class=\"spaceSeparate\"></div>\n       </div>\n       <div class=\"col-md-2 buttonAdd buttonAddPicker\" onclick=\"addField()\">\n           <p>+</p>\n       </div>\n   </div>\n</div> \n\n\n                   \n";
 
 /***/ }),
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" disabled value=\"{{title}}\">\n                </div>\n                <div class=\"keyboardResult\">Keyboard:{{keyboard}}</div>\n            </div>\n            <div class=\"containerTextFieldCenter\">\n                <div class=\"inputTextField\">\n                    <p>PlaceHolder:</p>\n                    <input type=\"text\" name=\"palceHolderTextField\" id=\"palceHolderTextField\" disabled value=\"{{placeHolder}}\">\n                </div>                   \n            </div>\n\n            <div class=\"containerPassEdit\">\n                <div class=\"passwordTextField\">\n                    <input type=\"checkbox\" name=\"passwordTextField\" value=\"passwordTextField\" id=\"passwordTextField\" {{isPasswordChecked}} disabled readonly>\n                    <p>Es password?</p>\n                </div>\n                \n                <div class=\"isEditingTextField\">\n                    <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingChecked}} disabled readonly>\n                    <p>Es editable?</p>\n                </div>\n                \n                <div class=\"isHiddenTextField\">\n                    <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                    <p>Es visible?</p>\n                </div>\n            </div>\n            \n\n            <div class=\"validatorContainer validatorCreated\">\n                 {{htmlValidator}}\n            </div>\n        \n            \n            <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                {{styles}}\n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonRemoveText\" onclick=\"removeField({{indexField}})\"><p>-</p></div>\n    </div>\n</div> \n\n";
+module.exports = "\n   <div class=\"cellConstructor pickerConstructor\" id=\"fieldNumber{{indexField}}\">\n           <div class=\"row\">\n               <div class=\"col-md-10\">\n                   <div class=\"containerTextFieldTop\">\n                        <div class=\"keyTextField\">\n                            <p>key*:</p>\n                            <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" value=\"{{keyTextField}}\" disabled readonly>\n                       </div>\n                         <div class=\"titleTextField\">\n                             <p>Titulo*:</p>\n                             <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" value=\"{{title}}\" disabled readonly>                                       \n                          </div>                                 \n                   </div>\n\n                 <div class=\"containerAcceptEditing\">\n                     <div class=\"acceptButtonTextField\">\n                         <p>Titulo aceptar picker:</p>\n                         <input type=\"text\" name=\"acceptButtonTextField\" id=\"acceptButtonTextField\" disabled readonly value=\"{{acceptButtonTextField}}\" >\n                     </div>\n                 </div>\n\n                   <div class=\"containerOptionalPicker\">                                     \n                        <div class=\"isEditingTextField\">\n                            <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingChecked}} disabled readonly>\n                            <p>Es editable?</p>\n                        </div>\n\n                        <div class=\"isHiddenTextField\">\n                            <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                            <p>Es visible?</p>\n                        </div>\n                   </div>\n\n                  <div class=\"validatorContainer validatorCreated\">\n                       {{htmlValidator}}\n                  </div>\n\n                   <div id=\"valuesOptionsSelector\">     \n                      <div id=\"pickerFieldsInsert\">\n                          <p>Valores creados:</p>\n                          {{htmlPickerItems}}\n                      </div>\n                    </div> \n\n                  <div class=\"styleField\"> \n                      <h4>Estilos de celda:</h4>\n                        {{styles}}\n                  </div>\n                    <div class=\"spaceSeparate\"></div>\n               </div>\n               <div class=\"col-md-2 buttonRemove buttonAddPicker\" onclick=\"removeField({{indexField}})\">\n                  <p>-</p>\n               </div>\n           </div>\n      </div>\n";
 
 /***/ }),
 /* 26 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"cellConstructor\" id=\"createField\">\n     <div class=\"row\">\n         <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\">\n            </div>\n             <div class=\"containerTextFieldTop\">\n                 <div class=\"titleTextField\">\n                     <p>Titulo*:</p>\n                     <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\">\n                  </div>       \n                  <select id=\"selectTypeKeyboard\">\n                      <option value=\"None\">Elegir tipo de teclado</option>\n                      <option value=\"FormKeyboardTypeText\">Texto</option>\n                      <option value=\"FormKeyboardTypeEmail\">Email</option>\n                      <option value=\"FormKeyboardTypeNumbers\">Nuerico</option>\n                      <option value=\"FormKeyboardTypeNumberPad\">NuericoPad</option>\n                  </select>                                   \n             </div>\n             <div class=\"containerTextFieldCenter\">\n                 <div class=\"inputTextField\">\n                     <p>PlaceHolder:</p>\n                     <input type=\"text\" name=\"palceHolderTextField\" id=\"palceHolderTextField\">\n                 </div>\n             </div>\n             \n\n          {{htmlValidators}}\n\n\n             <div class=\"containerPassEdit\">\n                 <div class=\"passwordTextField\">\n                     <input type=\"checkbox\" name=\"passwordTextField\" value=\"passwordTextField\" id=\"passwordTextField\">\n                     <p>Es password?</p>\n                 </div>\n                 \n                 <div class=\"isEditingTextField\">\n                     <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\">\n                     <p>Es editable?</p>\n                  </div>\n                 \n                 <div class=\"isHiddenTextField\">\n                     <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\">\n                     <p>Es visible?</p>\n                  </div>\n             </div>\n\n\n             \n              <div class=\"styleField\">\n                  <h4>Estilos de celda:</h4>\n                  {{htmlSelectorCell}}\n\n                  <div class=\"containerTypeCell\"> \n                      <div class=\"clasicCell\">\n                          <div class=\"colorZone\">\n                              {{colorBasicZone}}\n                          </div>                                   \n                          <div class=\"sizeZone\">\n                              <p>Tamaño titulo:</p>\n                              <input id=\"sizeTitle\" type=\"text\" name=\"element\">\n                              <p>Tamaño texto error:</p>\n                              <input id=\"sizeError\" type=\"text\" name=\"element\">\n                          </div>\n\n                          {{htmlFont}}\n                      </div>\n                      <div class=\"customCell\">\n                          {{htmlCustomCell}}\n                      </div>\n                  </div>\n\n                  {{htmlImage}}\n              </div>\n\n              <div class=\"spaceSeparate\"></div>\n         </div>\n         <div class=\"col-md-2 buttonAdd\" onclick=\"addField()\">\n             <p>+</p>\n         </div>\n     </div>\n </div>";
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"cellConstructor\" id=\"fieldNumber{{indexField}}\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n             <div class=\"keyTextField\">\n                <p>key*:</p>\n                <input type=\"text\" name=\"keyTextField\" id=\"keyTextField\" disabled value=\"{{keyTextField}}\">\n            </div>\n            <div class=\"containerTextFieldTop\">\n                <div class=\"titleTextField\">\n                    <p>Titulo*:</p>\n                    <input type=\"text\" name=\"titleTextField\" id=\"titleTextField\" disabled value=\"{{title}}\">\n                </div>\n                <div class=\"keyboardResult\">Keyboard:{{keyboard}}</div>\n            </div>\n            <div class=\"containerTextFieldCenter\">\n                <div class=\"inputTextField\">\n                    <p>PlaceHolder:</p>\n                    <input type=\"text\" name=\"palceHolderTextField\" id=\"palceHolderTextField\" disabled value=\"{{placeHolder}}\">\n                </div>                   \n            </div>\n\n            <div class=\"containerPassEdit\">\n                <div class=\"passwordTextField\">\n                    <input type=\"checkbox\" name=\"passwordTextField\" value=\"passwordTextField\" id=\"passwordTextField\" {{isPasswordChecked}} disabled readonly>\n                    <p>Es password?</p>\n                </div>\n                \n                <div class=\"isEditingTextField\">\n                    <input type=\"checkbox\" name=\"isEditingTextField\" value=\"isEditingTextField\" id=\"isEditingTextField\" {{isEditingChecked}} disabled readonly>\n                    <p>Es editable?</p>\n                </div>\n                \n                <div class=\"isHiddenTextField\">\n                    <input type=\"checkbox\" name=\"isHiddenTextField\" value=\"isHiddenTextField\" id=\"isHiddenTextField\" {{isHiddenChecked}} disabled readonly>\n                    <p>Es visible?</p>\n                </div>\n            </div>\n            \n\n            <div class=\"validatorContainer validatorCreated\">\n                 {{htmlValidator}}\n            </div>\n        \n            \n            <div class=\"styleField\"> \n                <h4>Estilos de celda:</h4>\n                {{styles}}\n            </div>\n            <div class=\"spaceSeparate\"></div>\n        </div>\n        <div class=\"col-md-2 buttonRemove buttonRemoveText\" onclick=\"removeField({{indexField}})\"><p>-</p></div>\n    </div>\n</div> \n\n";
+
+/***/ }),
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* PASOS: Arrancar desde la ruta donde esta webpack.config.js y abrir consola y poner: npm start  */
 
 window.Clipboard = __webpack_require__(0)
 __webpack_require__(1)
-__webpack_require__(7)
+__webpack_require__(10)
+__webpack_require__(2)
+__webpack_require__(11)
+__webpack_require__(4)
+__webpack_require__(17)
+__webpack_require__(15)
+__webpack_require__(12)
 __webpack_require__(3)
+__webpack_require__(16)
+__webpack_require__(14)
+__webpack_require__(13)
+__webpack_require__(9)
 __webpack_require__(8)
 __webpack_require__(6)
-__webpack_require__(15)
-__webpack_require__(13)
-__webpack_require__(11)
 __webpack_require__(5)
-__webpack_require__(2)
-__webpack_require__(12)
-__webpack_require__(9)
-__webpack_require__(10)
-__webpack_require__(4)
-__webpack_require__(14)
+__webpack_require__(7)
 
 /***/ })
 /******/ ]);

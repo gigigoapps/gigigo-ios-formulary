@@ -4,7 +4,7 @@
 //======================================
             
 
-window.createField = function createField(keyTextField,title,placeHolder,keyboard,validator, isPassword, isEditing, isHidden, style) {
+window.createField = function createField(values, validator, style) {
 
     var isPasswordChecked = ""
     if (isPassword) {
@@ -41,7 +41,7 @@ window.createField = function createField(keyTextField,title,placeHolder,keyboar
     }
 
 
-    var html = require('html-loader!../aux/auxTextCreated.html')
+    var html = require('html-loader!../../aux/auxTextCreated.html')
             .replace('{{styles}}',styles)
             .replace('{{keyTextField}}',keyTextField)
             .replace('{{title}}',title)
@@ -57,7 +57,7 @@ window.createField = function createField(keyTextField,title,placeHolder,keyboar
     resetTypeField();
 }
 
-window.saveField = function saveField(keyTextField,type,title,placeHolder,keyboard,validator, isPassword, isEditing, isHidden, style) {
+window.saveField = function saveField(values, validator, style) {
     //-- Mandatory Fiedls --
     var itemSave = {
         "tag":indexField,
