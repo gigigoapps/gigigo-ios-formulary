@@ -26,7 +26,7 @@ window.validateDatePickerField = function validateDatePickerField() {
     var values = getRecoverField();
     var validator = getRecoverValidations();
     var styles = getRecoverStyles();
-    var rules = getRecoverRules(isActiveRule);
+    var rules = getRecoverRules(values.isActiveRule);
 
     if (controlError(values, styles)) {
         createDatePickerField(values, validator, rules, styles);

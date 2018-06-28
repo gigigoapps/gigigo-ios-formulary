@@ -8,22 +8,22 @@
 window.createDatePickerField = function createDatePickerField(values, validator, rules, styleM) {
 
     var isEditingCheck = ""
-    if (isEditing) {
+    if (values.isEditing) {
         isEditingCheck = "checked"
     }
     var isHiddenChecked = ""
-    if (isHidden) {
+    if (values.isHidden) {
         isHiddenChecked = "checked"
     }
 
     var htmlRules = '';
-    if (isActiveRule) {
+    if (values.isActiveRule) {
         htmlRules = generateHtmlRulesResult(rules)
     }
 
     //-- Recover Styles --
     var htmlTypeCell = getTypeCell(styleM);
-    var htmlColorBasic = getStyleColor(styleM);
+    var htmlBackgroundColor = getStyleColor(styleM);
     var htmlFontSize = getStyleSize (styleM);
     var htmlColorPicker = getStyleColorPicker (styleM);
     var htmlAlingFont = getAlignFont(styleM)
@@ -46,12 +46,12 @@ window.createDatePickerField = function createDatePickerField(values, validator,
 
     var html = require('html-loader!../../aux/auxDatePickerCreated.html')
             .replace('{{styles}}',styles)
-            .replace('{{keyTextField}}',keyTextField)
-            .replace('{{title}}',title)
+            .replace('{{keyTextField}}',values.key)
+            .replace('{{title}}',values.label)
             .replace('{{htmlValidator}}',htmlValidator)
             .replace('{{isEditingCheck}}',isEditingCheck)
             .replace('{{isHiddenChecked}}',isHiddenChecked)
-            .replace('{{acceptButtonTextField}}',acceptButtonTextField)
+            .replace('{{acceptButtonTextField}}',values.acceptButtonTextField)
             .replace('{{htmlRules}}',htmlRules)
             .replace(/\{\{indexField\}\}/g,indexField)
 
@@ -65,22 +65,22 @@ window.saveDatePickerField = function saveDatePickerField(values, validator, rul
     //-- MANDATORY FIELDS --
 
     var itemSave = {
-        "key":keyTextField,
+        "key":values.key,
         "tag":indexField,
-        "type":type,
-        "label":title
+        "type":values.type,
+        "label":values.label
     }
     
     //-- OPTIONAL FIELDS --
 
-    if (isEditing) {
-        itemSave["isEditing"] = isEditing
+    if (values.isEditing) {
+        itemSave["isEditing"] = false
     }
-    if (isHidden) {
-        itemSave["isHidden"] = isHidden
+    if (values.isHidden) {
+        itemSave["isHidden"] = values.isHidden
     }              
-    if (acceptButtonTextField.length > 0) {
-        itemSave["textAcceptButton"] = acceptButtonTextField
+    if (values.acceptButtonTextField.length > 0) {
+        itemSave["textAcceptButton"] = values.acceptButtonTextField
     }                
  
     var itemsValidators = generateDicValidator(validator);
@@ -88,7 +88,7 @@ window.saveDatePickerField = function saveDatePickerField(values, validator, rul
         itemSave["validator"] = itemsValidators;
     }
 
-    if (isActiveRule) {
+    if (values.isActiveRule) {
         itemSave["rules"] = generateDicRules(rules)
     }    
 

@@ -148,10 +148,16 @@ window.createEventExpandable = function createEventExpandable() {
   
      $("#isExpandable").change(function() {
          if (this.checked == true) {
-            $("#containerExpandable").css("display","block");
+            $("#containerExpandable").fadeIn();
+
+            var selector = document.getElementById("selectTypeCell").value;
+            if (selector == "default" || selector == "line") {
+                $("#expandableStyles").fadeIn();
+            }
          }
          else {
-            $("#containerExpandable").css("display","none");
+            $("#containerExpandable").fadeOut();
+            $("#expandableStyles").fadeOut();
          }
     });
 }

@@ -13,15 +13,6 @@ protocol PickerFormFieldOutPut {
     func launchRule(idField: [String], behaivour: TypeBehavior)
 }
 // TODO EDU
-// falla el expandable el texto
-// en la web falta el exapandable (claves:
-/*
- expandableInfo": {
- "expandText": "EXPUESTA Pequeño texto",
- "collapseText": "EXPUESTA En la imagen publicada por la NASA se puede apreciar una duna de color turquesa que asombra por su contraste con el entorno. Los científicos de la agencia espacial estadounidense explicaron el origen del extraño color que adoptó el médano del planeta rojo."
- },
- "subtype": "expandable",
- */
 
 // probar las imagenes de los mandatory y de los checkbox desde app externa
 

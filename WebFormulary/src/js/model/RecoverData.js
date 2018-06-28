@@ -101,7 +101,6 @@ window.getRecoverStyles = function getRecoverStyles() {
     styles.containerAceptColor = $("#containerAceptColorHex").val()
     styles.backgroundPickerColor = $("#backgroundPickerColorHex").val()
 
-
     if (selector == "default" || selector == "line") {
         styles.cellColor = $("#cellColorHex").val()
         styles.titleColor = $("#titleColorHex").val()
@@ -110,6 +109,8 @@ window.getRecoverStyles = function getRecoverStyles() {
         styles.sizeError = $("#sizeError").val()
         styles.align = document.getElementById("selectTypeAlign").value;
         styles.font = document.getElementById("selectTypeFont").value;
+        styles.expandCollapseButtonTextColor = $("#expandedColorHex").val()
+        styles.expandCollapseButtonFontSize = $("#sizeExpandedButton").val()
 
         if (styles.font == "custom") {
             styles.font = $("#custonFont").val()

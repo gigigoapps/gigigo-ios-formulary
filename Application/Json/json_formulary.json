@@ -88,11 +88,11 @@
               {
               "key": "keyExpandable1",
               "label" : "EXPUESTA Yes, please personalise your marketing messages to me",
-              "description" : "EXPUESTA En la imagen publicada por la NASA se puede apreciar una duna de color turquesa que asombra por su contraste con el entorno. Los científicos de la agencia espacial estadounidense explicaron el origen del extraño color que adoptó el médano del planeta rojo.",
               "type": "boolean",
               "expandableInfo": {
-                    "expandText": "EXPUESTA button Read more",
-                    "collapseText": "EXPUESTA button Read less"
+                    "textButtonReadMore": "EXPUESTA button Read more",
+                    "textButtonReadLess": "EXPUESTA button Read less",
+                    "description" : "EXPUESTA En la imagen publicada por la NASA se puede apreciar una duna de color turquesa que asombra por su contraste con el entorno. Los científicos de la agencia espacial estadounidense explicaron el origen del extraño color que adoptó el médano del planeta rojo."
                 },
               "subtype": "expandable",
               "validator": [
@@ -110,10 +110,10 @@
               "key": "keyExpandable2",
               "type": "boolean",
               "label" : "Yes, please personalise your marketing messages to me",
-              "description" : "En la imagen publicada por la NASA se puede apreciar una duna de color turquesa que asombra por su contraste con el entorno. Los científicos de la agencia espacial estadounidense explicaron el origen del extraño color que adoptó el médano del planeta rojo.",
               "expandableInfo": {
-                    "expandText": "button Read more",
-                    "collapseText": "button Read less"
+                    "textButtonReadMore": "button Read more",
+                    "textButtonReadLess": "button Read less",
+                    "description" : "En la imagen publicada por la NASA se puede apreciar una duna de color turquesa que asombra por su contraste con el entorno. Los científicos de la agencia espacial estadounidense explicaron el origen del extraño color que adoptó el médano del planeta rojo."
                 },
               "subtype": "expandable",
               "validator": [
@@ -121,11 +121,11 @@
                                     "type": "mandatory",
                                     "textError": "texto errorrrr"
                                 }
-                            ]
-              },
+                            ],
               "style" : {
                     "expandCollapseButtonTextColor" : "#000000",
                     "expandCollapseButtonFontSize" : 12,
                 },
-              ]
+              }
+    ]
 }

@@ -60,3 +60,32 @@ window.launchEventColors = function launchEventColors() {
 		}, false);
 	}
 }
+
+
+window.getStyleColor = function getStyleColor(style) {
+	var html = '';
+    if (style.cellColor != "" || style.titleColor != "" || style.errorColor != "") {
+		html += '<div class="colorZone">';
+        if (style.cellColor != "") {
+            html += '   <p>Color de la celda:</p>';
+    		html += '	<div id="cellColor" class="cellColor" style="background-color:'+style.cellColor+'">';
+    		html += '		<p id="colorId">'+style.cellColor+'</p>';
+    		html += '	</div>';
+        }
+        if (style.titleColor != "") {
+    		html += '	<p class="colorTittleP">Color titulo:</p>';
+    		html += '	<div id="titleColor" class="cellColor" style="background-color:'+style.titleColor+'">';
+    		html += '		<p id="colorId">'+style.titleColor+'</p>';
+    		html += '	</div>';
+        }
+        if (style.errorColor != "") {
+    		html += '	<p class="colorTittleP">Color error:</p>';
+    		html += '	<div id="errorColor" class="cellColor" style="background-color:'+style.errorColor+'">';
+    		html += '		<p id="colorId">'+style.errorColor+'</p>';
+    		html += '	</div>';
+        }
+		html += '</div>';
+    }
+
+    return html;
+}

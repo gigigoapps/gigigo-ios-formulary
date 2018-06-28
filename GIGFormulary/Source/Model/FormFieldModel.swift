@@ -97,15 +97,16 @@ class FormFieldModel: NSObject {
         }
         
         self.subtype = json["subtype"] as? String
-        self.fieldDescription = json["description"] as? String
         
         if let expandable = json["expandableInfo"] as? [AnyHashable: String],
-            let expandText = expandable["expandText"],
-            let collapseText = expandable["collapseText"] {
-            self.expandableInfo = ExpandableInfo(
-                collapseText: collapseText,
-                expandText: expandText
-            )
+            let expandText = expandable["textButtonReadMore"],
+            let collapseText = expandable["textButtonReadLess"],
+            let description = expandable["description"] {
+                self.expandableInfo = ExpandableInfo(
+                                          collapseText: collapseText,
+                                            expandText: expandText)
+                
+                self.fieldDescription = description
         }
  
         if json["listOptions"] != nil {

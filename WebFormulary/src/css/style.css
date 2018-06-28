@@ -997,6 +997,8 @@
 
  .zoneRuleResult {
     margin-left: 144px;
+    float: left;
+    width: 100%;
  }
 
  .zoneRuleResult p, .zoneRuleResult input {
@@ -1115,6 +1117,7 @@
 #expandableStyles {
     margin-left: 17px;
     margin-bottom: 10px;
+    display: none;
 }
 
 #sizeContainerExpandable {
@@ -1129,3 +1132,10 @@
     margin-top: 0px;width: 59px;
     margin-right: 10px;
 }
+
+#containerStyleExpandable {
+    margin-left: 18px;
+}
+    #containerStyleExpandable p {
+        margin-left: 30px;
+    }

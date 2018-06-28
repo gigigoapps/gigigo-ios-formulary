@@ -26,14 +26,17 @@ window.createBooleanField = function createBooleanField(values, validator, style
     var htmlValidator = generateHtmlValidator(validator);
     var htmlCustom = getStyleCustom(styleM);
     var htmlExpandable = getExpandableResult(values);
+    var htmlExpandableStyle = getExpandableStyleResult(values, styleM);
 
     var styles;
     if (styleM.typeCell == "default" || styleM.typeCell == "line") {
-        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages;
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages + htmlExpandableStyle;
     } else if (styleM.typeCell == "custom") {
         styles =  htmlTypeCell + htmlCustom + htmlImages;
     } else if (htmlImages.length > 0) {
-        styles = htmlImages;
+        styles = htmlImages + htmlExpandableStyle;
+    } else if (htmlExpandableStyle.length > 0) {
+        styles = htmlExpandableStyle;
     } else {
         styles = '<p class="styleDefault">Estilos por defecto</p>';
     }
@@ -64,10 +67,13 @@ window.saveBooleanField = function saveBooleanField(values, validator, styleM) {
     }
 
     if (values.isEditing) {
-        itemSave["isEditing"] = values.isEditing
+        itemSave["isEditing"] = false
     }
     if (values.isHidden) {
         itemSave["isHidden"] = values.isHidden
+    }
+    if (values.isExpandable) {
+        itemSave["subtype"] = "expandable"
     }
 
     var itemsValidators = generateDicValidator(validator);

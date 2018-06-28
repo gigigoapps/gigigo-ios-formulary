@@ -19,33 +19,6 @@ window.getHtmlCustomCell = function getHtmlCustomCell() {
 }
 
 
-window.getExpandableResult = function getExpandableResult(values) {
-    var html = '';
-
-    if (values.isExpandable) {
-        html += '<div id="containerExpandable" class="containerExpandableActive">';
-        html += '    <div class="descriptionExpan">';
-        html += '        <p>Descripción*:</p>';
-        html += '        <input type="text" name="descripcionExpan" id="descripcionExpan" disabled readonly value="'+values.description+'">';
-        html += '    </div>';
-        html += '    <div class="expandTextExpan">';
-        html += '        <p>Botón leer más*:</p>';
-        html += '        <input type="text" name="expandText" id="expandText" disabled readonly value="'+values.textbuttonReadMore+'">';
-        html += '    </div>';
-        html += '    <div class="collapseTextExpan">';
-        html += '        <p>Botón leer menos*:</p>';
-        html += '        <input type="text" name="collapseText" id="collapseText" disabled readonly value="'+values.textbuttonReadLess+'">';
-        html += '    </div>';
-        html += '</div>';
-    }
-
-
-    return html;
-}
-
-
-
-
 // Actions
 
 window.changeSelectioCell = function changeSelectioCell() {
@@ -54,12 +27,17 @@ window.changeSelectioCell = function changeSelectioCell() {
 	if (selector == "default" || selector == "line") {
     	$(".clasicCell").fadeIn();
     	$(".customCell").fadeOut();
+        if ($('#isExpandable').is(':checked')) {
+            $("#expandableStyles").fadeIn();
+        }
     } else if (selector == "custom") {
     	$(".clasicCell").fadeOut();
     	$(".customCell").fadeIn();
+        $("#expandableStyles").fadeOut();
     } else {
     	$(".clasicCell").fadeOut();
     	$(".customCell").fadeOut();
+        $("#expandableStyles").fadeOut();
     }
 }
 
@@ -81,33 +59,6 @@ window.getStyleCustom = function getStyleCustom(style) {
 	return html;
 }
 
-window.getStyleColor = function getStyleColor(style) {
-	var html = '';
-    if (style.cellColor != "" || style.titleColor != "" || style.errorColor != "") {
-		html += '<div class="colorZone">';
-        if (style.cellColor != "") {
-            html += '   <p>Color de la celda:</p>';
-    		html += '	<div id="cellColor" class="cellColor" style="background-color:'+style.cellColor+'">';
-    		html += '		<p id="colorId">'+style.cellColor+'</p>';
-    		html += '	</div>';
-        }
-        if (style.titleColor != "") {
-    		html += '	<p class="colorTittleP">Color titulo:</p>';
-    		html += '	<div id="titleColor" class="cellColor" style="background-color:'+style.titleColor+'">';
-    		html += '		<p id="colorId">'+style.titleColor+'</p>';
-    		html += '	</div>';
-        }
-        if (style.errorColor != "") {
-    		html += '	<p class="colorTittleP">Color error:</p>';
-    		html += '	<div id="errorColor" class="cellColor" style="background-color:'+style.errorColor+'">';
-    		html += '		<p id="colorId">'+style.errorColor+'</p>';
-    		html += '	</div>';
-        }
-		html += '</div>';
-    }
-
-    return html;
-}
 
 window.getStyleColorPicker = function getStyleColorPicker(style) {
 	var html = '';
@@ -230,6 +181,14 @@ window.getStylesJson = function getStylesJson(styleModel) {
     }
     if (styleModel.imageMandatory != null && styleModel.imageMandatory.length > 0) {
         style["mandatoryIcon"] = styleModel.imageMandatory
+        haveStyle = true;
+    }
+    if (styleModel.expandCollapseButtonTextColor != null && styleModel.expandCollapseButtonTextColor.length > 0) {
+        style["expandCollapseButtonTextColor"] = styleModel.expandCollapseButtonTextColor
+        haveStyle = true;
+    }
+    if (styleModel.expandCollapseButtonFontSize != null && styleModel.expandCollapseButtonFontSize.length > 0) {
+        style["expandCollapseButtonFontSize"] = styleModel.expandCollapseButtonFontSize
         haveStyle = true;
     }
     if (styleModel.imageCheckBoxOn != null && styleModel.imageCheckBoxOff != null && styleModel.imageCheckBoxOn.length > 0 && styleModel.imageCheckBoxOff.length > 0) {

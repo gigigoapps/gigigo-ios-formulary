@@ -25,8 +25,8 @@ window.createIndexField = function createIndexField(values, styleM) {
         
     var html = require('html-loader!../../aux/auxIndexCreated.html')
             .replace('{{styles}}',styles)
-            .replace('{{keyTextField}}',keyTextField)
-            .replace('{{title}}',title)
+            .replace('{{keyTextField}}',values.key)
+            .replace('{{title}}',values.label)
             .replace(/\{\{indexField\}\}/g,indexField)
 
 
@@ -38,9 +38,9 @@ window.saveIndexField = function saveIndexField(values, styleM) {
     //-- Mandatory Fiedls --
     var itemSave = {
         "tag":indexField,
-        "key":keyTextField,
-        "type":type,
-        "label":title
+        "key":values.key,
+        "type":values.type,
+        "label":values.label
     }
     
     

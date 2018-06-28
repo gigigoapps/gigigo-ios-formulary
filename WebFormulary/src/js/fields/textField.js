@@ -7,15 +7,15 @@
 window.createField = function createField(values, validator, style) {
 
     var isPasswordChecked = ""
-    if (isPassword) {
+    if (values.isPassword) {
         isPasswordChecked = "checked"
     }
     var isEditingChecked = ""
-    if (isEditing) {
+    if (values.isEditing) {
         isEditingChecked = "checked"
     } 
     var isHiddenChecked = ""
-    if (isHidden) {
+    if (values.isHidden) {
         isHiddenChecked = "checked"
     }
 
@@ -43,10 +43,10 @@ window.createField = function createField(values, validator, style) {
 
     var html = require('html-loader!../../aux/auxTextCreated.html')
             .replace('{{styles}}',styles)
-            .replace('{{keyTextField}}',keyTextField)
-            .replace('{{title}}',title)
-            .replace('{{placeHolder}}',placeHolder)
-            .replace('{{keyboard}}',keyboard)
+            .replace('{{keyTextField}}',values.key)
+            .replace('{{title}}',values.label)
+            .replace('{{placeHolder}}',values.placeHolder)
+            .replace('{{keyboard}}',values.keyboard)
             .replace('{{htmlValidator}}',htmlValidator)
             .replace('{{isPasswordChecked}}',isPasswordChecked)
             .replace('{{isEditingChecked}}',isEditingChecked)
@@ -61,26 +61,26 @@ window.saveField = function saveField(values, validator, style) {
     //-- Mandatory Fiedls --
     var itemSave = {
         "tag":indexField,
-        "key":keyTextField,
-        "type":type,
-        "label":title
+        "key":values.key,
+        "type":values.type,
+        "label":values.label
     }
 
 
-    if (isEditing) {
-        itemSave["isEditing"] = isEditing
+    if (values.isEditing) {
+        itemSave["isEditing"] = false
     }
-    if (isHidden) {
-        itemSave["isHidden"] = isHidden
+    if (values.isHidden) {
+        itemSave["isHidden"] = values.isHidden
     }
-    if (placeHolder.length > 0) {
-        itemSave["placeHolder"] = placeHolder
+    if (values.placeHolder.length > 0) {
+        itemSave["placeHolder"] = values.placeHolder
     } 
-    if (keyboard != "None") {
-        itemSave["keyboard"] = keyboard
+    if (values.keyboard != "None") {
+        itemSave["keyboard"] = values.keyboard
     }
-    if (isPassword) {
-        itemSave["isPassword"] = isPassword
+    if (values.isPassword) {
+        itemSave["isPassword"] = values.isPassword
     }
 
     var itemsValidators = generateDicValidator(validator);

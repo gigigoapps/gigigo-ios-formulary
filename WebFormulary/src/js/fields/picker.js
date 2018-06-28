@@ -18,11 +18,11 @@ window.removeContainerPicker = function removeContainerPicker(idContainerPicker)
 window.createPickerField = function createPickerField(values, validator, styleM) {
 
     var isEditingCheck = ""
-    if (isEditing) {
+    if (values.isEditing) {
         isEditingCheck = "checked"
     }
     var isHiddenChecked = ""
-    if (isHidden) {
+    if (values.isHidden) {
         isHiddenChecked = "checked"
     }
 
@@ -66,13 +66,13 @@ window.createPickerField = function createPickerField(values, validator, styleM)
 
     var html = require('html-loader!../../aux/auxPickerCreated.html')
             .replace('{{styles}}',styles)
-            .replace('{{keyTextField}}',keyTextField)
-            .replace('{{title}}',title)
+            .replace('{{keyTextField}}',values.key)
+            .replace('{{title}}',values.label)
             .replace('{{htmlValidator}}',htmlValidator)
             .replace('{{isHiddenChecked}}',isHiddenChecked)
             .replace('{{htmlPickerItems}}',htmlPickerItems) 
             .replace('{{isEditingChecked}}',isEditingCheck)
-            .replace('{{acceptButtonTextField}}',acceptButtonTextField)
+            .replace('{{acceptButtonTextField}}',values.acceptButtonTextField)
             .replace(/\{\{indexField\}\}/g,indexField)
 
     $("#containerListItemsCreated").append(html);
@@ -96,23 +96,23 @@ window.savePickerField = function savePickerField(values, validator, styleM) {
     }
 
     var itemSave = {
-        "key":keyTextField,
+        "key":values.key,
         "tag":indexField,
-        "type":type,
-        "label":title,
+        "type":values.type,
+        "label":values.label,
         "listOptions":listOptions
     }
     
     //-- OPTIONAL FIELDS --
 
-    if (isEditing) {
-        itemSave["isEditing"] = isEditing
+    if (values.isEditing) {
+        itemSave["isEditing"] = false
     }
-    if (isHidden) {
-        itemSave["isHidden"] = isHidden
+    if (values.isHidden) {
+        itemSave["isHidden"] = values.isHidden
     }             
-    if (acceptButtonTextField.length > 0) {
-        itemSave["textAcceptButton"] = acceptButtonTextField
+    if (values.acceptButtonTextField.length > 0) {
+        itemSave["textAcceptButton"] = values.acceptButtonTextField
     } 
     
     var itemsValidators = generateDicValidator(validator);
