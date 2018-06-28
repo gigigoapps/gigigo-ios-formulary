@@ -2,8 +2,8 @@
 window.getRules= function getRules() {  
 	var html = '';
 	html += '<div class="zoneRule">';
-	html += '	<input type="checkbox"name="rules"value="rules"id="rules">';
-	html += '	<p id="textActiteRule">Active rule?</p>';
+	html += '	<input type="checkbox" name="rules" value="rules" id="rules">';
+	html += '	<p id="textActiteRule">Activar regla?</p>';
 	html += '	<div id="containerRule">';
 	html += '		<div id="fieldCompareRules">';
 	html += '			<p>Keys Compare:</p>';

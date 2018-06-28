@@ -60,7 +60,8 @@ open class Formulary: PFormController {
         self.formController?.loadFieldsFromJSONFile(jsonFile)
         self.formController?.formControllerOutput = self
         
-        return self.formController!.recoverView()
+        guard let formController = self.formController else { return UIView() }
+        return formController.recoverView()
     }
     
     open func start(_ button: UIButton, listItems: [[AnyHashable: Any]], bundle: Bundle = Bundle(for: Formulary.self)) -> UIView {
@@ -71,7 +72,8 @@ open class Formulary: PFormController {
         self.formController?.loadFieldsFromJSONDictionary(listItems)
         self.formController?.formControllerOutput = self
         
-        return self.formController!.recoverView()
+        guard let formController = self.formController else { return UIView() }
+        return formController.recoverView()
     }
     
     

@@ -29,19 +29,19 @@ window.removeField = function removeField(idRemove){
 }
             
 window.addField = function addField() {
-    if (fieldSelected == "Text") {
+    if (fieldSelected == "text") {
         validateTextField();
     }
-    else if (fieldSelected == "Picker") {
+    else if (fieldSelected == "picker") {
         validatePickerField();
     }
-    else if (fieldSelected == "DatePicker") {
+    else if (fieldSelected == "datePicker") {
         validateDatePickerField();
     }
-    else if (fieldSelected == "Boolean") {
+    else if (fieldSelected == "boolean") {
         validateBooleanField();
     }
-    else if (fieldSelected == "Index") {
+    else if (fieldSelected == "index") {
         validateIndexField();
     }
 }
@@ -68,17 +68,21 @@ window.createElementField = function createElementField(typeField) {
     var htmlFont = getFontPositionZone()
     var htmlImage = getHtmlImageMandatory();
     var htmlRules = getRules();
-    var htmlValidators = getValidatorsZone()
+    var htmlValidators = getValidatorsZone();
+    var htmlSelectorCell = getSelectorCell();
+    var htmlCustomCell = getHtmlCustomCell();
 
-    if (typeField == "Text") {
+    if (typeField == "text") {
         html = require('html-loader!../aux/auxText.html')
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
             .replace('{{htmlValidators}}',htmlValidators)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
-    else if (typeField == "Picker") {
+    else if (typeField == "picker") {
         idPickerField = 1; // Reset Picker
         html = require('html-loader!../aux/auxPicker.html')
             .replace('{{colorBasicZone}}',colorBasicZone)
@@ -86,16 +90,20 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
             .replace('{{htmlValidators}}',htmlValidators)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
-    else if (typeField == "DatePicker") {
+    else if (typeField == "datePicker") {
         html = require('html-loader!../aux/auxDatePicker.html')
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
             .replace('{{htmlValidators}}',htmlValidators)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
-    else if (typeField == "Boolean") {
+    else if (typeField == "boolean") {
         htmlImage = getHtmlAllImage();
         html = require('html-loader!../aux/auxBoolean.html')
             .replace('{{colorBasicZone}}',colorBasicZone)
@@ -103,11 +111,15 @@ window.createElementField = function createElementField(typeField) {
             .replace('{{htmlImage}}',htmlImage)
             .replace('{{htmlRules}}',htmlRules)
             .replace('{{htmlValidators}}',htmlValidators)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
-    else if (typeField == "Index") {
+    else if (typeField == "index") {
         html = require('html-loader!../aux/auxIndex.html')
             .replace('{{colorBasicZone}}',colorBasicZone)
             .replace('{{htmlFont}}',htmlFont)
+            .replace('{{htmlSelectorCell}}',htmlSelectorCell)
+            .replace('{{htmlCustomCell}}',htmlCustomCell)
     }
 
     $("#containterElementField").append(html)
@@ -116,6 +128,7 @@ window.createElementField = function createElementField(typeField) {
     createEventFont();
     createEventTextCompare();
     createEventRules();
+    createEventExpandable();
     showContainerCustomValidate();
 }
 
@@ -129,7 +142,26 @@ window.createEventFont = function createEventFont() {
          }
     });
 }
-// TODO EDU falta el compare
+
+
+window.createEventExpandable = function createEventExpandable() {
+  
+     $("#isExpandable").change(function() {
+         if (this.checked == true) {
+            $("#containerExpandable").fadeIn();
+
+            var selector = document.getElementById("selectTypeCell").value;
+            if (selector == "default" || selector == "line") {
+                $("#expandableStyles").fadeIn();
+            }
+         }
+         else {
+            $("#containerExpandable").fadeOut();
+            $("#expandableStyles").fadeOut();
+         }
+    });
+}
+
 
 window.createEventRules = function createEventRules() {
   
@@ -252,7 +284,11 @@ $("#buttonGenerateJson").click(function() {
     var copyListField = copyList(listFieldsResult);
     var recoverJSON = JSON.stringify(copyListField, undefined, 4);
     recoverJSON = '{ \n "fields":'+recoverJSON+' \n}';
-   $("#containerJsonItemsCreated").append("<button class='btn butonCopyPaste' data-clipboard-action='copy' data-clipboard-target='#bar'>Copiar</button><textarea id='bar'>"+recoverJSON+"</textarea><pre>"+syntaxHighlight(recoverJSON)+"</pre>")
+    $("#containerJsonItemsCreated").append("<button class='btn butonCopyPaste' data-clipboard-action='copy' data-clipboard-target='#bar'>Copiar</button><textarea id='bar'>"+recoverJSON+"</textarea><pre>"+syntaxHighlight(recoverJSON)+"</pre>")
+
+    $('html, body').animate({
+       scrollTop: $("#containerJsonItemsCreated").offset().top
+    }, 1000)
 });
  
 var idColor = ""           
@@ -281,108 +317,4 @@ clipboard.on('error', function(e) {
              });
 
 
-
-//======================================
-//               GENERIC              //
-//======================================
-
-window.getStyleColor = function getStyleColor(cellColor,titleColor,errorColor) {
-    var html = '<div class="colorZone withOutStyle"><p>Sin estilo de color</p><div id="cellColor"></div></div>';
-    if (cellColor != "" || titleColor != "" || errorColor != "") {
-        html = '<div class="colorZone"><p>Color de la celda:</p><div id="cellColor" class="cellColor" style="background-color:'+cellColor+'"><p id="colorId">'+cellColor+'</p></div><p class="colorTittleP">Color titulo:</p><div id="titleColor" class="cellColor" style="background-color:'+titleColor+'"><p id="colorId">'+titleColor+'</p></div><p class="colorTittleP">Color error:</p><div id="errorColor" class="cellColor" style="background-color:'+errorColor+'"><p id="colorId">'+errorColor+'</p></div></div>';
-    }
-
-    return html;
-}
-
-window.getStyleColorPicker = function getStyleColorPicker(aceptColor,containerAceptColor,backgroundPickerColor) {
-    var html = '<div class="colorZone withOutStyle"><p>Sin estilo de color del picker</p><div id="cellColor"></div></div>';
-    if (aceptColor != "" ||containerAceptColor != "" || backgroundPickerColor != "") {
-        html = '<div class="colorZone"><p class="nextColor">Estilos picker selector</p><p class="colorOKPicker">Color texto OK:</p><div id="aceptColor"class="cellColor" style="background-color:'+aceptColor+'"><p id="colorId">'+aceptColor+'</p></div><p class="colorTittleP">Color contenedor OK:</p><div id="containerAceptColor"class="cellColor"  style="background-color:'+containerAceptColor+'"><p id="colorId">'+containerAceptColor+'</p></div><p class="colorTittleP">Color fondo:</p><div id="backgroundPickerColor" class="cellColor"  style="background-color:'+backgroundPickerColor+'"><p id="colorId">'+backgroundPickerColor+'</p></div></div>';
-    }
-
-    return html;
-}
-
-window.getStyleSize = function getStyleSize (sizeTitle, sizeError) {
-    var htmlFontSize =  '<div class="colorZone withOutStyle"><p>Sin estilo de fuente de tamaño</p></div>';
-    if (sizeTitle != "" || sizeError != "") {
-        htmlFontSize = '<div class="sizeZone"><p>Tamaño titulo:</p><input id="sizeTitle"type="text"name="element" disabled readonly value="'+sizeTitle+'"><p>Tamaño texto error:</p><input id="sizeError"type="text"name="element" disabled readonly value="'+sizeError+'"></div>';
-    }
-
-    return htmlFontSize;
-}
-
-window.getAlignFont = function getAlignFont(align,font) {
-    var htmlAlignFont =  '<div class="colorZone withOutStyle"><p>Sin estilo de alineación o tipo de fuente</p></div>';
-    if (align != "" || font != "") {
-        htmlAlignFont = '<div class="sizeZone alignZone"><p>Alineación:</p><input id="alignTitle" type="text"name="element" disabled readonly value="'+align+'"><p>Fuente:</p><input id="fontField"type="text"name="element" disabled readonly value="'+font+'"></div>';
-    }
-
-    return htmlAlignFont;
-}
-
-window.getStylesJson = function getStylesJson(cellColor,titleColor,errorColor,sizeTitle, sizeError,aceptColor,containerAceptColor,backgroundPickerColor,align,font,imageMandatory,imageCheckBoxOn,imageCheckBoxOff) {
-    var style = {}
-    var haveStyle = false;
-    
-    //-- STYLES --
-    if (cellColor.length > 0) {
-        style["backgroundColorField"] = cellColor
-        haveStyle = true;
-    }
-    if (titleColor.length > 0) {
-        style["titleColor"] = titleColor
-        haveStyle = true;
-    }
-    if (errorColor.length > 0) {
-        style["errorColor"] = errorColor
-        haveStyle = true;
-    }
-    if (sizeTitle.length > 0) {
-        style["sizeTitle"] = parseInt(sizeTitle)
-        haveStyle = true;
-    }
-    if (sizeError.length > 0) {
-        style["sizeError"] = parseInt(sizeError)
-        haveStyle = true;
-    }
-    if (aceptColor.length > 0) {
-        style["acceptColorPicker"] = aceptColor
-        haveStyle = true;
-    }
-    if (containerAceptColor.length > 0) {
-        style["containerAcceptColorPicker"] = containerAceptColor
-        haveStyle = true;
-    }
-    if (backgroundPickerColor.length > 0) {
-        style["backgroundPickerColorPicker"] = backgroundPickerColor
-        haveStyle = true;
-    }
-    if (align.length > 0) {
-        style["align"] = align
-        haveStyle = true;
-    }
-    if (font.length > 0) {
-        style["font"] = font
-        haveStyle = true;
-    }
-    if (imageMandatory.length > 0) {
-        style["mandatoryIcon"] = imageMandatory
-        haveStyle = true;
-    }
-    if (imageCheckBoxOn.length > 0 && imageCheckBoxOff.length > 0) {
-        var checkBox = {}
-        checkBox["checkBoxOn"] = imageCheckBoxOn
-        checkBox["checkBoxOff"] = imageCheckBoxOff
-        style["checkBox"] = checkBox
-        haveStyle = true;
-    }
-    if (haveStyle) {
-        return style;
-    }
-    else {
-        return null;
-    }
-}
 

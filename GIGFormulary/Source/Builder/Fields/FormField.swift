@@ -145,7 +145,7 @@ open class FormField: UIView {
         var validateResult = true
         for validateRule in validator {
             if validateResult {
-                if validateRule.isKind(of: CompareValidator.self) {
+                if validateRule.isKind(of: CompareValidator.self) || validateRule.isKind(of: AgeValidator.self) {
                     validateResult = validateRule.validate(extraValues)
                 } else {
                     validateResult = validateRule.validate(self.fieldValue)
@@ -176,8 +176,4 @@ open class FormField: UIView {
     func loadError(error: Any) {
         // TODO nothing
     }
-    /*
-    func showCompareError(show: Bool) {
-        // TODO nothing
-    }*/
 }

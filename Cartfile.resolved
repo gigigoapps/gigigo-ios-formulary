@@ -1,3 +1,3 @@
-github "Quick/Nimble" "v7.1.1"
+github "Quick/Nimble" "v7.1.2"
 github "Quick/Quick" "v1.3.0"
-github "gigigoapps/gigigo-ios-lib" "v3.0.14"
+github "gigigoapps/gigigo-ios-lib" "v3.0.16"

@@ -6,24 +6,31 @@ window.getHtmlAllImage = function getHtmlAllImage() {
 	return '<div class="imagesZone"><p>Imagen obligatorio:</p><input id="imageMandatory"type="text"name="element"><p>Imagen checkBox On:</p><input id="imageCheckBoxOn"type="text"name="element"><p>Imagen checkBox Off:</p><input id="imageCheckBoxOff"type="text"name="element"></div>';
 }
 
-window.recoverHtmlImageMandatory = function recoverHtmlImageMandatory(imageMandatory) {
+window.recoverHtmlImageMandatory = function recoverHtmlImageMandatory(style) {
 
-    var htmlImage =  '<div class="imagesZone withOutStyle2"><p>Sin estilo de imagenes</p></div>';
-    if (imageMandatory != "") {
-		htmlImage = '<div class="imagesZone"><p>Imagen obligatorio:</p><input id="imageMandatory"type="text"name="element" disabled readonly value="'+imageMandatory+'"></div>';
+    var htmlImage = '';
+    if (style.imageMandatory != "") {
+		htmlImage = '<div class="imagesZone"><p>Imagen obligatorio:</p><input id="imageMandatory"type="text"name="element" disabled readonly value="'+style.imageMandatory+'"></div>';
 	}
 
 	return htmlImage
 }
 
-window.recoverHtmlAllImage = function recoverHtmlAllImage(imageMandatory,imageCheckBoxOn,imageCheckBoxOff) {
+window.recoverHtmlAllImage = function recoverHtmlAllImage(style) {
 
-    var htmlImage =  '<div class="imagesZone withOutStyle2"><p>Sin estilo de imagenes</p></div>';
-    if (imageMandatory != "" || imageCheckBoxOn != "" || imageCheckBoxOff != "") {
-		htmlImage = '<div class="imagesZone"><p>Imagen obligatorio:</p><input id="imageMandatory"type="text"name="element" disabled readonly value="'+imageMandatory+'"><p>Imagen checkBox On:</p><input id="imageCheckBoxOn"type="text"name="element" disabled readonly value="'+imageCheckBoxOn+'"><p>Imagen checkBox Off:</p><input id="imageCheckBoxOff"type="text"name="element" disabled readonly value="'+imageCheckBoxOff+'"></div>';
+    var html = '';
+    if (style.imageMandatory != "" || style.imageCheckBoxOn != "" || style.imageCheckBoxOff != "") {
+		html += '<div class="imagesZone">';
+		html += '	<p>Imagen obligatorio:</p>';
+		html += '	<input id="imageMandatory"type="text"name="element" disabled readonly value="'+style.imageMandatory+'">';
+		html += '	<p>Imagen checkBox On:</p>';
+		html += '	<input id="imageCheckBoxOn"type="text"name="element" disabled readonly value="'+style.imageCheckBoxOn+'">';
+		html += '	<p>Imagen checkBox Off:</p>';
+		html += '	<input id="imageCheckBoxOff"type="text"name="element" disabled readonly value="'+style.imageCheckBoxOff+'">';
+		html += '</div>';
 	}
 
-	return htmlImage
+	return html
 }
 
 

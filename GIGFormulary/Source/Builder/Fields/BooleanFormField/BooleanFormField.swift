@@ -14,19 +14,11 @@ protocol PBooleanFormField {
     func userDidTapLink(_ key: String)
 }
 
-class BooleanFormField: FormField {
-
-    @IBOutlet var buttonAccept: UIButton!
-    @IBOutlet var titleLabel: FRHyperLabel!
-    @IBOutlet var mandotoryImage: UIImageView!
-    @IBOutlet var errorLabel: UILabel!
-    
-    @IBOutlet weak var heightErrorLabelConstraint: NSLayoutConstraint!
-    @IBOutlet weak var widthMandatoryImageConstraint: NSLayoutConstraint!
-    
+class BooleanFormField: BoolCellInterace {    
     //-- Local var --
-    var checkBoxOn: UIImage?
-    var checkBoxOff: UIImage?
+    private var checkBoxOn: UIImage?
+    private var checkBoxOff: UIImage?
+    private var auxWidthConstraint: CGFloat = 0
     
     // MARK: INIT
     
@@ -63,9 +55,11 @@ class BooleanFormField: FormField {
     // MARK: Public Method
     
     override func insertData() {
-        self.loadCustomStyleField(self.formFieldM!)
-        self.loadData(self.formFieldM!)
-        self.loadMandatory(self.formFieldM!.isMandatory())
+        self.auxWidthConstraint = self.widthMandatoryImageConstraint.constant
+        guard let formFieldM = self.formFieldM else { return LogWarn("Model is nil") }
+        self.loadCustomStyleField(formFieldM)
+        self.loadData(formFieldM)
+        self.loadMandatory(formFieldM.isMandatory())
         super.insertData()
     }
         
@@ -77,7 +71,7 @@ class BooleanFormField: FormField {
     
     // MARK: GIGFormField (Override)
     
-    override internal var fieldValue: Any? {
+    override var fieldValue: Any? {
         get {
             return self.buttonAccept.isSelected as Any?
         }
@@ -106,11 +100,13 @@ class BooleanFormField: FormField {
     // MARK: Private Method
     
     fileprivate func showError() {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.errorLabel.sizeToFit()
-            self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
-            self.viewPpal?.layoutIfNeeded()
-        }) 
+        if self.heightErrorLabelConstraint.constant == 0 {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.errorLabel.sizeToFit()
+                self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
+                self.viewPpal?.layoutIfNeeded()
+            })
+        }
     }
     
     fileprivate func hideError() {
@@ -127,6 +123,9 @@ class BooleanFormField: FormField {
         self.checkBoxOn = UIImage(named: "chackBoxOn", in: Bundle(for: type(of: self)), compatibleWith: nil)
         self.checkBoxOff = UIImage(named: "checkBox", in: Bundle(for: type(of: self)), compatibleWith: nil)
         self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
+        
+        self.buttonAccept.addTarget(self, action: #selector(actionButtonAccept), for: .touchUpInside)
+        self.buttonAccept.tintColor = UIColor.clear
     }
     
     // MARK: Load data field
@@ -186,44 +185,43 @@ class BooleanFormField: FormField {
     
     fileprivate func loadMandatory(_ isMandatory: Bool) {
         if isMandatory {
-            self.widthMandatoryImageConstraint.constant = 30
+            self.widthMandatoryImageConstraint.constant = self.auxWidthConstraint
         } else {
             self.widthMandatoryImageConstraint.constant = 0
         }
     }
     
     fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel) {
-        let styleField = formFieldM.style
-        if styleField != nil {
-            if styleField!.mandatoryIcon != nil {
-                self.mandotoryImage.image = styleField?.mandatoryIcon
-            }
-            if styleField!.backgroundColorField != nil {
-                self.viewContainer.backgroundColor = styleField!.backgroundColorField!
-            }
-            if styleField!.titleColor != nil {
-                self.titleLabel.textColor = styleField!.titleColor!
-            }
-            if styleField!.errorColor != nil {
-                self.errorLabel.textColor = styleField!.errorColor!
-            }
-            if styleField!.fontTitle != nil {
-                self.titleLabel.font = styleField?.fontTitle
-            }
-            if styleField!.fontError != nil {
-                self.errorLabel.font = styleField?.fontError
-            }
-            if styleField!.align != nil {
-                self.titleLabel.textAlignment = styleField!.align!
-            }
-            if styleField!.checkBoxOn != nil {
-                self.checkBoxOn = styleField!.checkBoxOn!
-                self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
-            }
-            if styleField!.checkBoxOff != nil {
-                self.checkBoxOff = styleField!.checkBoxOff!
-                self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
-            }
+        guard let styleField = formFieldM.style else { return LogInfo("Styles is nil") }
+        
+        if let mandatoryIcon = styleField.mandatoryIcon {
+            self.mandotoryImage.image = mandatoryIcon
+        }
+        if let backgroundColorField = styleField.backgroundColorField {
+            self.viewContainer.backgroundColor = backgroundColorField
+        }
+        if let titleColor = styleField.titleColor {
+            self.titleLabel.textColor = titleColor
+        }
+        if let errorColor = styleField.errorColor {
+            self.errorLabel.textColor = errorColor
+        }
+        if let fontTitle = styleField.fontTitle {
+            self.titleLabel.font = fontTitle
+        }
+        if let fontError = styleField.fontError {
+            self.errorLabel.font = fontError
+        }
+        if let align = styleField.align {
+            self.titleLabel.textAlignment = align
+        }
+        if let checkBoxOn = styleField.checkBoxOn {
+            self.checkBoxOn = checkBoxOn
+            self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
+        }
+        if let checkBoxOff = styleField.checkBoxOff {
+            self.checkBoxOff = checkBoxOff
+            self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
         }
     }
     
@@ -231,7 +229,6 @@ class BooleanFormField: FormField {
         if self.buttonAccept.isSelected {
             self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
         } else {
-            self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState())
             self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
         }
         self.buttonAccept.isSelected = !self.buttonAccept.isSelected
@@ -283,7 +280,7 @@ class BooleanFormField: FormField {
     
     // MARK: Actions
     
-    @IBAction func actionButtonAccept(_ sender: AnyObject) {
+    @objc func actionButtonAccept() {
         self.changeState()
     }
     

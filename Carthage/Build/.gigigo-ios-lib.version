@@ -8,11 +8,11 @@
   "tvOS" : [
 
   ],
-  "commitish" : "v3.0.14",
+  "commitish" : "v3.0.16",
   "iOS" : [
     {
       "name" : "GIGLibrary",
-      "hash" : "76ec379f15ac1ed805c4ebeb99b2e17b684e5a12d5f7cb7a540cfc97031ff08a"
+      "hash" : "81688515d5c4114ccb5ab0316606ac44d182966ab0d42c2798e930d9e4478f06"
     }
   ]
 }

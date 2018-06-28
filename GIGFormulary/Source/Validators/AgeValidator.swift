@@ -40,8 +40,8 @@ class AgeValidator: Validator {
             return true
         }
         
-        if date != nil {
-            return self.isValidAge(date!)
+        if let date = date {
+            return self.isValidAge(date)
         }
         
         return true

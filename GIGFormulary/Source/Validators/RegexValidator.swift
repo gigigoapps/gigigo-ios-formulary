@@ -20,8 +20,8 @@ class RegexValidator: StringValidator {
     }
     
     init(regexPattern: String?, mandatory: Bool) {
-        if regexPattern != nil {
-            self.regex = NSRegularExpression(pattern: regexPattern!)
+        if let regexPattern = regexPattern {
+            self.regex = NSRegularExpression(pattern: regexPattern)
         }
         
         super.init(mandatory: mandatory)

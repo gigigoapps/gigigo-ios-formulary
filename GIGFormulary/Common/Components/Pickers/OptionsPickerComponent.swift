@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GIGLibrary
 
 protocol POptionsPickerComponent {
     func formFieldDidFinish()
@@ -26,7 +27,8 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
     
     var selectedIndex: Int? {
         get {
-            return !(self.textField!.text?.isEmpty ?? true) ? self.picker.selectedRow(inComponent: 0) : 0
+            guard let textField = self.textField else { return 0 }
+            return !(textField.text?.isEmpty ?? true) ? self.picker.selectedRow(inComponent: 0) : 0
         }
         
         set {
@@ -90,7 +92,8 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
     fileprivate func setupPicker() {
         self.picker.dataSource = self
         self.picker.delegate = self
-        self.textField!.inputView = self.picker
+        guard let textField = self.textField else { return LogWarn("TextField is nil") }
+        textField.inputView = self.picker
     }
     
     fileprivate func setupDoneToolbar() {
@@ -107,8 +110,9 @@ class OptionsPickerComponent: UIPickerView, UIPickerViewDataSource, UIPickerView
         toolBar.isUserInteractionEnabled = true
         toolBar.sizeToFit()
         
-        self.textField!.inputAccessoryView = toolBar
         self.picker.backgroundColor = self.styles?.backgroundPickerColorPicker
+        guard let textField = self.textField else { return LogWarn("TextField is nil") }
+        textField.inputAccessoryView = toolBar
     }
     
     @objc fileprivate func onDoneTap() {

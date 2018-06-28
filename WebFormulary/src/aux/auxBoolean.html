@@ -18,31 +18,73 @@
              <div class="containerTextFieldCenter optionalBooleanContainer">                  
                   <div class="isEditingTextField">
                       <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField">
-                      <p>Es editable?</p>
+                      <p>Bloquear Editar?</p>
                   </div>
                   
                  <div class="isHiddenTextField">
                      <input type="checkbox" name="isHiddenTextField" value="isHiddenTextField" id="isHiddenTextField">
                      <p>Es visible?</p>
                   </div>
+
+                 <div id="isExpandableContainer">
+                     <input type="checkbox" name="isExpandable" value="isExpandable" id="isExpandable">
+                     <p>Es expandible?</p>                    
+                  </div>
              </div>
+
+
+              <div id="containerExpandable">
+                    <div class="descriptionExpan">
+                        <p>Descripción*:</p>
+                        <input type="text" name="descripcionExpan" id="descripcionExpan">
+                    </div>
+                    <div class="expandTextExpan">
+                        <p>Botón leer más*:</p>
+                        <input type="text" name="expandText" id="expandText">
+                    </div>
+                    <div class="collapseTextExpan">
+                        <p>Botón leer menos*:</p>
+                        <input type="text" name="collapseText" id="collapseText">
+                    </div>
+              </div>
              
               <div class="styleField"> 
                 <h4>Estilos de celda:</h4>
-                                 
-                 <div class="sizeZone">
-                    <p>Tamaño titulo:</p>
-                    <input id="sizeTitle" type="text" name="element">
-                    <p>Tamaño texto error:</p>
-                    <input id="sizeError" type="text" name="element">
-                 </div>
-                 
-                 {{htmlFont}}
+                  {{htmlSelectorCell}}
+
+                    <div class="containerTypeCell"> 
+                        <div class="clasicCell">      
+                            <div class="colorZone">
+                              {{colorBasicZone}}
+                           </div>                             
+                           <div class="sizeZone">
+                              <p>Tamaño titulo:</p>
+                              <input id="sizeTitle" type="text" name="element">
+                              <p>Tamaño texto error:</p>
+                              <input id="sizeError" type="text" name="element">
+                           </div>
+                           
+                           {{htmlFont}}
+                        </div>
+                        <div class="customCell">
+                          {{htmlCustomCell}}
+                        </div>
+                    </div>
+                
                  {{htmlImage}}
 
-                  <div class="colorZone">
-                    {{colorBasicZone}}
-                 </div>  
+                 <div id="expandableStyles">
+                    <h4 id="titleExpandable">Estilos de vista expandida:</h4>
+                    <div id="colorContainerExpandable">
+                        <p class="colorTittleP">Text color:</p>
+                        <input type="color" value="#ffffff" id="expandedColor" class="cellColorCreate">
+                        <input id="expandedColorHex" class="inputColorHex" placeholder="#ffffff">
+                    </div>
+                    <div id="sizeContainerExpandable">
+                        <p>Tamaño texto expandido:</p>
+                        <input id="sizeExpandedButton" type="text" name="element">
+                    </div>
+                 </div>
               </div>
               <div class="spaceSeparate"></div>
          </div>

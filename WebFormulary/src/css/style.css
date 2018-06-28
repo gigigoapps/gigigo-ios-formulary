@@ -54,17 +54,16 @@
         }
         .buttonAdd {
             background-color: blue;
-            border-radius: 0px 10px 10px 0px;
+            border-radius: 0px 10px 0px 10px;
             color: white;
             float: right;
             font-size: 49px;
-            height: 570px;
+            height: auto;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonAdd p{
-                margin-top: 240px;
             }
             .buttonAdd:hover {
                 background-color: skyblue;
@@ -72,17 +71,17 @@
             }
         .buttonRemove {
             background-color: red;
-            border-radius: 0px 10px 10px 0px;
+            border-radius: 0px 10px 0px 10px;
             color: white;
             float: right;
             font-size: 49px;
-            height: 230px;
+            height: auto;
             margin-right: 13px;
             text-align: center;
             width: 80px;
         }
             .buttonRemove p{
-                margin-top: 70px;
+                
             }
             .buttonRemove:hover {
                 background-color: gray;
@@ -375,7 +374,6 @@
             margin-top: 0px;
         }
         .colorZone {
-            float: left;
             height: 38px;
             margin-left: 31px;
             padding-top: 7px;
@@ -560,8 +558,8 @@
 
 .sizeZone {
     float: left;
-    height: 51px;
-    margin-left: 51px;
+    height: 49px;
+    margin-left: 28px;
     width: 100%;
 }
     .sizeZone p {
@@ -582,7 +580,7 @@
     width: 100%;
 }
 .pickerConstructor{
-    min-height: 410px;
+    
 }
 .pickerColorZone {
     height: 119px;
@@ -590,12 +588,7 @@
 .colorOKPicker {
     margin-left: 12px;
 }
-.buttonAddPicker {
-    height: 581px;
-}
-    .buttonAddPicker p {
-        margin-top: 257px;
-    }
+
     
 .withOutStyle{
     width: 100%;
@@ -625,12 +618,7 @@
 .stylePicker{
     height: 205px;
 }
-.buttonRemoveText {
-    height: 476px;
-}
-    .buttonRemoveText p {
-        margin-top: 209px;
-    }
+
 .minAgeContainer {
     height: 43px;
     width: 100%;
@@ -682,7 +670,7 @@
 .fontPositionZone {
     float: left;
     height: 50px;
-    margin-left: 72px;
+    margin-left: 28px;
     width: 100%;
 }
     .fontPositionZone p{
@@ -714,10 +702,10 @@
     }
 
 .imagesZone {
-    float: left;
     height: 51px;
-    margin-left: 21px;
+    margin-left: 28px;
     width: 100%;
+    float: left;
 }
     .imagesZone p {
         float: left;
@@ -1009,6 +997,8 @@
 
  .zoneRuleResult {
     margin-left: 144px;
+    float: left;
+    width: 100%;
  }
 
  .zoneRuleResult p, .zoneRuleResult input {
@@ -1032,3 +1022,120 @@
 .specialSpaceRule {
     margin-left: 10px !important;
 }
+
+.clasicCell, .customCell {
+    display: none;
+}
+
+#selectTypeCell{
+    margin-left: 24px;
+}
+
+.customCell {
+    margin-left: 28px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+    .customCell p {
+        margin-bottom: 0px;
+        float: left;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+
+    .customCell input {
+        height: 38px;
+        margin-top: 0px;
+        width: 300px;
+    }
+
+.styleDefault {
+    margin-left: 48px;
+}
+
+.cellContainer {
+    margin-left: 48px;
+}
+
+.typeCell {
+    margin-left: 48px;
+}
+
+#isExpandableContainer {
+    float: left;
+}
+#isExpandableContainer input {
+    float: left;
+    width: 36px;
+}
+#isExpandableContainer p {
+    margin-top: 14px;
+}
+.containerExpandableActive {
+    display: block !important;
+    display: block !important;
+    margin-top: 53px !important;
+    margin-left: 110px !important;
+}
+
+#containerExpandable {
+    display: none;
+    margin-left: 103px;
+    margin-top: 110px;
+}
+#containerExpandable p {
+    width: 123px;
+    margin: 0px;
+    float: left;
+    margin-top: 10px;
+    text-align: right;
+    margin-right: 10px;
+}
+#containerExpandable input {
+    float: left;
+    margin-top: 0px;
+    width: 17%;
+    margin-right: 10px;
+}
+
+#colorContainerExpandable {
+    margin-left: 20px;
+    height: 36px;
+}
+
+#colorContainerExpandable p {
+    float: left;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+
+#titleExpandable {
+    margin-left: 10px;
+}
+
+#expandableStyles {
+    margin-left: 17px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+#sizeContainerExpandable {
+    margin-left: 30px;
+}
+#sizeContainerExpandable p {
+    float: left;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+#sizeContainerExpandable input {
+    margin-top: 0px;width: 59px;
+    margin-right: 10px;
+}
+
+#containerStyleExpandable {
+    margin-left: 18px;
+}
+    #containerStyleExpandable p {
+        margin-left: 30px;
+    }

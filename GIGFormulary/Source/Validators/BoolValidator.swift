@@ -18,7 +18,7 @@ class BoolValidator: Validator {
         
         if self.mandatory {
             if value is Bool {
-                guard let valueBool = value as? Bool else {LogWarn("Parse value Bool Error, return false"); return false }
+                guard let valueBool = value as? Bool else { LogWarn("Parse value Bool Error, return false"); return false }
                 return valueBool
             }
         }

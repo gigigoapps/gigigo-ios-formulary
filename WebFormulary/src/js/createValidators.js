@@ -58,6 +58,7 @@ window.getListValidators = function getListValidators(idContainerValidator){
 	return html;
 }
 
+
 window.changeSelectionValidator = function changeSelectionValidator(idClassValidator) {
 
     var selectorFound = document.getElementById("selectTypeValidator"+idClassValidator);
@@ -170,6 +171,11 @@ window.generateHtmlValidator = function generateHtmlValidator(validator) {
 
 window.generateDicValidator = function generateDicValidator(validator) {
     var itemsValidators = []
+
+    if (validator == null) {
+        return itemsValidators;
+    }
+
     for (var i = 0; i < validator.length; i++) {
         var valElement = validator[i];
 

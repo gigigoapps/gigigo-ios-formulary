@@ -6,6 +6,7 @@ window.errorColorEvent;
 window.aceptColorEvent;
 window.containerAceptColorEvent;
 window.backgroundPickerColorEvent;
+window.expandedColorEvent;
 
 window.launchEventColors = function launchEventColors() {
 	cellColorEvent = document.getElementById("cellColor");
@@ -14,6 +15,8 @@ window.launchEventColors = function launchEventColors() {
 	aceptColorEvent = document.getElementById("aceptColor");
 	containerAceptColorEvent = document.getElementById("containerAceptColor");
 	backgroundPickerColorEvent = document.getElementById("backgroundPickerColor");
+	backgroundPickerColorEvent = document.getElementById("backgroundPickerColor");
+	expandedColorEvent = document.getElementById("expandedColor");
 
 	if (cellColorEvent) {
 		cellColorEvent.addEventListener("input", function() {
@@ -50,4 +53,39 @@ window.launchEventColors = function launchEventColors() {
 		    $("#backgroundPickerColorHex").val(backgroundPickerColorEvent.value)
 		}, false);
 	}	
+
+	if (expandedColorEvent) {
+		expandedColorEvent.addEventListener("input", function() {
+		    $("#expandedColorHex").val(expandedColorEvent.value)
+		}, false);
+	}
+}
+
+
+window.getStyleColor = function getStyleColor(style) {
+	var html = '';
+    if (style.cellColor != "" || style.titleColor != "" || style.errorColor != "") {
+		html += '<div class="colorZone">';
+        if (style.cellColor != "") {
+            html += '   <p>Color de la celda:</p>';
+    		html += '	<div id="cellColor" class="cellColor" style="background-color:'+style.cellColor+'">';
+    		html += '		<p id="colorId">'+style.cellColor+'</p>';
+    		html += '	</div>';
+        }
+        if (style.titleColor != "") {
+    		html += '	<p class="colorTittleP">Color titulo:</p>';
+    		html += '	<div id="titleColor" class="cellColor" style="background-color:'+style.titleColor+'">';
+    		html += '		<p id="colorId">'+style.titleColor+'</p>';
+    		html += '	</div>';
+        }
+        if (style.errorColor != "") {
+    		html += '	<p class="colorTittleP">Color error:</p>';
+    		html += '	<div id="errorColor" class="cellColor" style="background-color:'+style.errorColor+'">';
+    		html += '		<p id="colorId">'+style.errorColor+'</p>';
+    		html += '	</div>';
+        }
+		html += '</div>';
+    }
+
+    return html;
 }

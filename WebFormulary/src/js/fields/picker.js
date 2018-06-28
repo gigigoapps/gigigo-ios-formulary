@@ -15,26 +15,38 @@ window.removeContainerPicker = function removeContainerPicker(idContainerPicker)
 }
 
 //-- PICKER YA CREADO SOLO MOSTRAR --
-window.createPickerField = function createPickerField(keyTextField,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator) {
+window.createPickerField = function createPickerField(values, validator, styleM) {
 
     var isEditingCheck = ""
-    if (isEditing) {
+    if (values.isEditing) {
         isEditingCheck = "checked"
     }
     var isHiddenChecked = ""
-    if (isHidden) {
+    if (values.isHidden) {
         isHiddenChecked = "checked"
     }
 
     //-- Recover Styles --
-    var htmlColorBasic = getStyleColor(cellColor,titleColor,errorColor);
-    var htmlFontSize = getStyleSize (sizeTitle, sizeError);
-    var htmlColorPicker = getStyleColorPicker (aceptColor,containerAceptColor,backgroundPickerColor);
-    var htmlAlingFont = getAlignFont(align,font)
-    var htmlImages = recoverHtmlImageMandatory(imageMandatory)
+    var htmlTypeCell = getTypeCell(styleM);
+    var htmlColorBasic = getStyleColor(styleM);
+    var htmlFontSize = getStyleSize (styleM);
+    var htmlColorPicker = getStyleColorPicker (styleM);
+    var htmlAlingFont = getAlignFont(styleM)
+    var htmlImages = recoverHtmlImageMandatory(styleM)
     var htmlValidator = generateHtmlValidator(validator);
+    var htmlCustom = getStyleCustom(styleM);
 
-    var styles = htmlFontSize + htmlColorBasic + htmlAlingFont + htmlImages + htmlColorPicker;
+
+    if (styleM.typeCell == "default" || styleM.typeCell == "line") {
+        styles =  htmlTypeCell + htmlFontSize + htmlBackgroundColor + htmlAlingFont + htmlImages + htmlColorPicker;
+    } else if (styleM.typeCell == "custom") {
+        styles =  htmlTypeCell + htmlCustom + htmlImages + htmlColorPicker;
+    } else if (htmlImages.length > 0 || htmlColorPicker.length > 0) {
+        styles = htmlImages + htmlColorPicker;
+    } else {
+        styles = '<p class="styleDefault">Estilos por defecto</p>';
+    }
+
 
     //-- Create options fields --
     var htmlPickerItems = '';
@@ -52,22 +64,22 @@ window.createPickerField = function createPickerField(keyTextField,title,cellCol
         }
     }
 
-    var html = require('html-loader!../aux/auxPickerCreated.html')
+    var html = require('html-loader!../../aux/auxPickerCreated.html')
             .replace('{{styles}}',styles)
-            .replace('{{keyTextField}}',keyTextField)
-            .replace('{{title}}',title)
+            .replace('{{keyTextField}}',values.key)
+            .replace('{{title}}',values.label)
             .replace('{{htmlValidator}}',htmlValidator)
             .replace('{{isHiddenChecked}}',isHiddenChecked)
             .replace('{{htmlPickerItems}}',htmlPickerItems) 
             .replace('{{isEditingChecked}}',isEditingCheck)
-            .replace('{{acceptButtonTextField}}',acceptButtonTextField)
+            .replace('{{acceptButtonTextField}}',values.acceptButtonTextField)
             .replace(/\{\{indexField\}\}/g,indexField)
 
     $("#containerListItemsCreated").append(html);
     resetTypeField();
 }
 
-window.savePickerField = function savePickerField(keyTextField,type,title,cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,acceptButtonTextField,align,font,imageMandatory,isEditing, isHidden, validator) {
+window.savePickerField = function savePickerField(values, validator, styleM) {
     
     //-- MANDATORY FIELDS --
     var listOptions = [];
@@ -84,23 +96,23 @@ window.savePickerField = function savePickerField(keyTextField,type,title,cellCo
     }
 
     var itemSave = {
-        "key":keyTextField,
+        "key":values.key,
         "tag":indexField,
-        "type":type,
-        "label":title,
+        "type":values.type,
+        "label":values.label,
         "listOptions":listOptions
     }
     
     //-- OPTIONAL FIELDS --
 
-    if (isEditing) {
-        itemSave["isEditing"] = isEditing
+    if (values.isEditing) {
+        itemSave["isEditing"] = false
     }
-    if (isHidden) {
-        itemSave["isHidden"] = isHidden
+    if (values.isHidden) {
+        itemSave["isHidden"] = values.isHidden
     }             
-    if (acceptButtonTextField.length > 0) {
-        itemSave["textAcceptButton"] = acceptButtonTextField
+    if (values.acceptButtonTextField.length > 0) {
+        itemSave["textAcceptButton"] = values.acceptButtonTextField
     } 
     
     var itemsValidators = generateDicValidator(validator);
@@ -109,7 +121,7 @@ window.savePickerField = function savePickerField(keyTextField,type,title,cellCo
         itemSave["validator"] = itemsValidators;
     }
 
-    var styles = getStylesJson(cellColor,titleColor,errorColor,sizeTitle,sizeError,aceptColor,containerAceptColor,backgroundPickerColor,align,font,imageMandatory,"","");
+    var styles = getStylesJson(styleM);
     if (styles != null) {
         itemSave["style"] = styles
     }    

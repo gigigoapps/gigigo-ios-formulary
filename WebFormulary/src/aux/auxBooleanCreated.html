@@ -15,14 +15,22 @@
             <div class="containerTextFieldCenter optionalBooleanContainer">
                 <div class="isEditingTextField">
                     <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField" {{isEditingValueCheck}} disabled readonly >
-                    <p>Es editable?</p>
+                    <p>Bloquear Editar?</p>
                 </div>
 
                 <div class="isHiddenTextField">
                     <input type="checkbox" name="isHiddenTextField" value="isHiddenTextField" id="isHiddenTextField" {{isHiddenChecked}} disabled readonly>
                     <p>Es visible?</p>
                 </div>
+
+
+                 <div id="isExpandableContainer">
+                     <input type="checkbox" name="isExpandable" value="isExpandable" id="isExpandable" {{isExpandableChecked}} disabled readonly>
+                     <p>Es expandible?</p>                    
+                  </div>
             </div>
+
+            {{htmlExpandable}}
 
             <div class="validatorContainer validatorCreated">
                  {{htmlValidator}}

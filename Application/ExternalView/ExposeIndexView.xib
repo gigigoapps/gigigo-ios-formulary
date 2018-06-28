@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IndexCellInterface">
+            <connections>
+                <outlet property="indexLabel" destination="h2d-H2-fmP" id="iSP-QN-xGT"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="kPC-LF-cNu">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2d-H2-fmP" userLabel="titleLabel" customClass="FRHyperLabel">
+                    <rect key="frame" x="20" y="20" width="345" height="42"/>
+                    <color key="backgroundColor" red="0.2886349647" green="1" blue="0.34380336909999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="50"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="h2d-H2-fmP" secondAttribute="trailing" constant="10" id="8my-zv-Rev"/>
+                <constraint firstAttribute="bottom" secondItem="h2d-H2-fmP" secondAttribute="bottom" constant="20" id="QNG-SZ-261"/>
+                <constraint firstItem="h2d-H2-fmP" firstAttribute="leading" secondItem="kPC-LF-cNu" secondAttribute="leading" constant="20" id="T98-Q2-kwL"/>
+                <constraint firstItem="h2d-H2-fmP" firstAttribute="top" secondItem="kPC-LF-cNu" secondAttribute="top" constant="20" id="u0h-dJ-gM6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="36.5" y="-234"/>
+        </view>
+    </objects>
+</document>

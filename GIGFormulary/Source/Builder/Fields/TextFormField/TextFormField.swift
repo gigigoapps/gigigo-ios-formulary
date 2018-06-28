@@ -8,26 +8,6 @@
 
 import UIKit
 import GIGLibrary
-private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
 
 
 protocol PTextFormField {
@@ -35,18 +15,7 @@ protocol PTextFormField {
     func formFieldDidFinish(_ field: FormField)
 }
 
-
-public class TextFormField: FormField, UITextFieldDelegate {
-    
-    @IBOutlet public var titleLabel: UILabel!
-    @IBOutlet public var textTextField: UITextField!
-    @IBOutlet public var mandotoryImage: UIImageView!
-    @IBOutlet public var errorLabel: UILabel!
-    
-    @IBOutlet public weak var heightErrorLabelConstraint: NSLayoutConstraint!
-    @IBOutlet public weak var widthMandatoryImageConstraint: NSLayoutConstraint!
-    @IBOutlet public var heightLabelConstraint: NSLayoutConstraint!
-    
+class TextFormField: TextCellInterface, UITextFieldDelegate {
     
     // MARK: INIT
     
@@ -62,7 +31,7 @@ public class TextFormField: FormField, UITextFieldDelegate {
         self.initializeView()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -71,6 +40,7 @@ public class TextFormField: FormField, UITextFieldDelegate {
     override func validate(extraValues: Any?) -> Bool {
         let status = super.validate(extraValues: extraValues)
         if !status {
+            self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
             self.showError()
         } else {
             self.hideError()
@@ -82,11 +52,11 @@ public class TextFormField: FormField, UITextFieldDelegate {
     // MARK: Public Method
     
     override func insertData() {
-        self.loadData(self.formFieldM!)
-        self.loadMandatory(self.formFieldM!.isMandatory())
-        self.loadCustomStyleField(self.formFieldM!)
-        self.loadKeyboard(self.formFieldM!)
-        self.loadCustomField(self.formFieldM!)
+        self.loadData(self.formFieldM)
+        self.loadMandatory(self.formFieldM?.isMandatory())
+        self.loadCustomStyleField(self.formFieldM)
+        self.loadKeyboard()
+        self.loadCustomField(self.formFieldM)
         super.insertData()
     }
     
@@ -98,7 +68,7 @@ public class TextFormField: FormField, UITextFieldDelegate {
     
     // MARK: GIGFormField (Override)
     
-    override public var fieldValue: Any? {
+    override var fieldValue: Any? {
         get {            
             return self.textTextField.text?.count > 0 ? self.textTextField.text : nil
         }
@@ -120,12 +90,13 @@ public class TextFormField: FormField, UITextFieldDelegate {
     }
     
     func showError() {
-        self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
-        UIView.animate(withDuration: 0.5, animations: {
-            self.errorLabel.sizeToFit()
-            self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
-            self.viewPpal?.layoutIfNeeded()
-        })
+        if self.heightErrorLabelConstraint.constant == 0 {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.errorLabel.sizeToFit()
+                self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
+                self.viewPpal?.layoutIfNeeded()
+            })
+        }
     }
     
     // MARK: Private Method
@@ -146,13 +117,14 @@ public class TextFormField: FormField, UITextFieldDelegate {
     
     // MARK: Load data field
     
-    fileprivate func loadCustomField(_ formFieldM: FormFieldModel) {
-        self.textTextField.isSecureTextEntry = formFieldM.isPassword
+    fileprivate func loadCustomField(_ formFieldM: FormFieldModel?) {
+        guard let isPassword = formFieldM?.isPassword else { return }
+        self.textTextField.isSecureTextEntry = isPassword
     }
     
-    fileprivate func loadData(_ formFieldM: FormFieldModel) {
-        self.titleLabel.text = formFieldM.label
-        self.textTextField.placeholder = formFieldM.placeHolder
+    fileprivate func loadData(_ formFieldM: FormFieldModel?) {
+        self.titleLabel.text = formFieldM?.label
+        self.textTextField.placeholder = formFieldM?.placeHolder
         self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
         if self.formFieldM?.value != nil {
             self.textTextField.text = self.formFieldM?.value as? String
@@ -160,10 +132,13 @@ public class TextFormField: FormField, UITextFieldDelegate {
         if self.formFieldM?.label == nil {
             self.heightLabelConstraint.constant = 0
         }
-        self.textTextField.isEnabled = formFieldM.isEditing
+        
+        guard let isEditing = formFieldM?.isEditing else { return }
+        self.textTextField.isEnabled = isEditing
     }
     
-    fileprivate func loadMandatory(_ isMandatory: Bool) {
+    fileprivate func loadMandatory(_ isMandatory: Bool?) {
+        guard let isMandatory = isMandatory else { return LogInfo("Mandatory is nil") }
         if isMandatory {
             self.widthMandatoryImageConstraint.constant = 30
         } else {
@@ -171,43 +146,43 @@ public class TextFormField: FormField, UITextFieldDelegate {
         }
     }
     
-    fileprivate func loadKeyboard(_ formFieldM: FormFieldModel) {
-        self.textTextField.keyboardType = self.keyBoard!
+    fileprivate func loadKeyboard() {
+        guard let keyBoard = keyBoard else { return }
+        self.textTextField.keyboardType = keyBoard
     }
     
-    fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel) {
-        let styleField = formFieldM.style
-        if styleField != nil {
-            if styleField!.mandatoryIcon != nil {
-                self.mandotoryImage.image = styleField?.mandatoryIcon
-            }
-            if styleField!.backgroundColorField != nil {
-                self.viewContainer.backgroundColor = styleField!.backgroundColorField!
-            }
-            if styleField!.titleColor != nil {
-                self.titleLabel.textColor = styleField!.titleColor!
-            }
-            if styleField!.errorColor != nil {
-                self.errorLabel.textColor = styleField!.errorColor!
-            }
-            if styleField!.fontTitle != nil {
-                self.titleLabel.font = styleField?.fontTitle
-                self.textTextField.font = styleField?.fontTitle
-            }
-            if styleField!.fontError != nil {
-                self.errorLabel.font = styleField?.fontError
-            }
-            if styleField!.align != nil {
-                self.titleLabel.textAlignment = styleField!.align!
-            }
-            if let styleCell = styleField?.styleCell {
-                switch styleCell {
-                case .defaultStyle, .custom:
-                    // TODO nothing
-                    break
-                case .lineStyle:
-                    self.customizeCell()                    
-                }
+    fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel?) {
+        guard let styleField = formFieldM?.style else { return LogInfo("Field Model is nil") }
+   
+        if let mandatoryIcon = styleField.mandatoryIcon {
+            self.mandotoryImage.image = mandatoryIcon
+        }
+        if let backgroundColorField = styleField.backgroundColorField {
+            self.viewContainer.backgroundColor = backgroundColorField
+        }
+        if let titleColor = styleField.titleColor {
+            self.titleLabel.textColor = titleColor
+        }
+        if let errorColor = styleField.errorColor {
+            self.errorLabel.textColor = errorColor
+        }
+        if let fontTitle = styleField.fontTitle {
+            self.titleLabel.font = fontTitle
+            self.textTextField.font = fontTitle
+        }
+        if let fontError = styleField.fontError {
+            self.errorLabel.font = fontError
+        }
+        if let align = styleField.align {
+            self.titleLabel.textAlignment = align
+        }
+        if let styleCell = styleField.styleCell {
+            switch styleCell {
+            case .defaultStyle, .custom:
+                // TODO nothing
+                break
+            case .lineStyle:
+                self.customizeCell()
             }
         }
     }
@@ -226,16 +201,17 @@ public class TextFormField: FormField, UITextFieldDelegate {
     
     // MARK: UITextFieldDelegate
     
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.formFieldOutput!.scrollRectToVisible(self)
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard let formFieldOutput = self.formFieldOutput else { return }
+        formFieldOutput.scrollRectToVisible(self)
     }
     
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.formFieldOutput?.formFieldDidFinish(self)
         return false
     }
     
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let textFieldText: NSString = textField.text as NSString? ?? ""
         let finalString = textFieldText.replacingCharacters(in: range, with: string)    
         let lengthValidator = LengthValidator(
@@ -251,15 +227,37 @@ public class TextFormField: FormField, UITextFieldDelegate {
     }
     
     // MARK: UIResponser (Overrride)
-    public override var canBecomeFirstResponder: Bool {
+    override var canBecomeFirstResponder: Bool {
         return self.textTextField.canBecomeFirstResponder
     }
     
-    public override func becomeFirstResponder() -> Bool {
+    override func becomeFirstResponder() -> Bool {
         return self.textTextField.becomeFirstResponder()
     }
     
-    public override func resignFirstResponder() -> Bool {
+    override func resignFirstResponder() -> Bool {
         return self.textTextField.resignFirstResponder()
+    }
+}
+
+// Comparations
+
+private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l < r
+    case (nil, _?):
+        return true
+    default:
+        return false
+    }
+}
+
+private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l > r
+    default:
+        return rhs < lhs
     }
 }

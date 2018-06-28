@@ -262,9 +262,9 @@ Como usar GIGFormulary
 ### Cargar estilo de celda ###
 Existen 3 tipos de estilos de vista.
 
-* Por defecto
-* De linea
-* Custom
+* Por defecto (default)
+* De linea (line)
+* Custom (custom)
 
 Para añadirse se hara de la siguiente forma:
 
@@ -277,7 +277,7 @@ Para añadirse se hara de la siguiente forma:
         "type": "index",
         "label": "titulo ",        
         "style": {
-             "styleCell": "line",
+             "styleCell": "line",  // Options : default , line ,custom
         }
     	}
 	] 

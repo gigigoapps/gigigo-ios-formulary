@@ -7,15 +7,13 @@
 //
 
 import UIKit
+import GIGLibrary
 
 protocol PIndexFormField {
     func userDidTapLink(_ key: String)
 }
 
-class IndexFormField: FormField {
-
-    @IBOutlet var indexLabel: FRHyperLabel!
-    
+class IndexFormField: IndexCellInterface {
     
     // MARK: INIT
     
@@ -39,15 +37,16 @@ class IndexFormField: FormField {
     // MARK: Public Method
     
     override func insertData() {
-        self.loadData(self.formFieldM!)
-        self.loadCustomStyleField(self.formFieldM!)
+        self.loadData(self.formFieldM)
+        self.loadCustomStyleField(self.formFieldM)
     }
     
     
     // MARK: Actions
     
     func labelAction(grTap: UITapGestureRecognizer) {
-        self.formFieldOutput?.userDidTapLink((self.formFieldM?.key)!)
+        guard let key = self.formFieldM?.key else { return LogInfo("Key is nil") }
+        self.formFieldOutput?.userDidTapLink(key)
     }
     
     
@@ -60,11 +59,13 @@ class IndexFormField: FormField {
     
     // MARK: Load data field
     
-    fileprivate func loadData(_ formFieldM: FormFieldModel) {
+    fileprivate func loadData(_ formFieldM: FormFieldModel?) {
+        guard let formFieldM = formFieldM else { return LogWarn("Model of form is nil") }
+        
         self.indexLabel.text = formFieldM.label
         
-        if self.existLink(formFieldM.label!) {
-            let getLinks = self.getListLinks(formFieldM.label!)
+        if self.existLink(formFieldM.label) {
+            let getLinks = self.getListLinks(formFieldM.label)
             
             let attributes = [NSAttributedStringKey.foregroundColor: UIColor.black,
                               NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
@@ -84,36 +85,36 @@ class IndexFormField: FormField {
         }
     }
     
-    fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel) {
-        let styleField = formFieldM.style
-        if styleField != nil {
-            if styleField!.backgroundColorField != nil {
-                self.viewContainer.backgroundColor = styleField!.backgroundColorField!
-            }
-            if styleField!.titleColor != nil {
-                self.indexLabel.textColor = styleField!.titleColor!
-            }
-            if styleField!.fontTitle != nil {
-                self.indexLabel.font = styleField?.fontTitle
-            }
-            if styleField!.align != nil {
-                self.indexLabel.textAlignment = styleField!.align!
-            }
+    fileprivate func loadCustomStyleField(_ formFieldM: FormFieldModel?) {
+        guard let styleField = formFieldM?.style else { return LogInfo("Style is nil") }
+        
+        if let backgroundColor = styleField.backgroundColorField {
+            self.viewContainer.backgroundColor = backgroundColor
+        }
+        if let titleColor = styleField.titleColor {
+            self.indexLabel.textColor = titleColor
+        }
+        if let fontTitle = styleField.fontTitle {
+            self.indexLabel.font = fontTitle
+        }
+        if let align = styleField.align {
+            self.indexLabel.textAlignment = align
         }
     }
     
     
     // MARK: Parse
     
-    fileprivate func existLink(_ text: String) -> Bool {
-        // TODOE EDU otra opcion // return text.characters.index(of: "{") != nil
+    fileprivate func existLink(_ text: String?) -> Bool {
+        guard let text = text else { return false }
         if text.index(of: "{") != nil {
             return true
         }
         return false
     }
     
-    fileprivate func getListLinks(_ text: String) -> ([String], String) {
+    fileprivate func getListLinks(_ text: String?) -> ([String], String) {
+        guard let text = text else { return ([], "") }
         let newStringKey = text.replacingOccurrences(of: "{* ", with: "{* #", options: .literal, range: nil)
         let firstPart = newStringKey.components(separatedBy: "{* ")
         let localizedStringPieces = self.separeteString(listPart: firstPart)

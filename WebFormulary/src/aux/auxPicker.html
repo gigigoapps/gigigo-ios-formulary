@@ -25,7 +25,7 @@
            <div class="containerOptionalPicker">    
                <div class="isEditingTextField">
                    <input type="checkbox" name="isEditingTextField" value="isEditingTextField" id="isEditingTextField">
-                   <p>Es editable?</p>
+                   <p>Bloquear Editar?</p>
                </div>
 
                <div class="isHiddenTextField">
@@ -53,19 +53,35 @@
 
             <div class="styleField"> 
               <h4>Estilos de celda:</h4>
-               <div class="sizeZone">
-                  <p>Tamaño titulo:</p>
-                  <input id="sizeTitle" type="text" name="element">
-                  <p>Tamaño texto error:</p>
-                  <input id="sizeError" type="text" name="element">
-               </div>
-               
-                 {{htmlFont}}
+                  {{htmlSelectorCell}}
+
+
+
+                  <div class="containerTypeCell"> 
+                      <div class="clasicCell">   
+                         <div class="colorZone">
+                            {{colorBasicZone}}
+                         </div>                       
+                         <div class="sizeZone">
+                            <p>Tamaño titulo:</p>
+                            <input id="sizeTitle" type="text" name="element">
+                            <p>Tamaño texto error:</p>
+                            <input id="sizeError" type="text" name="element">
+                         </div>
+                       
+                         {{htmlFont}}
+                      </div>
+                      <div class="customCell">
+                          {{htmlCustomCell}}
+                      </div>
+                  </div>
+
+
+
                  {{htmlImage}}
 
-                <div class="colorZone pickerColorZone">
-                    {{colorBasicZone}}
 
+                <div class="colorZone pickerColorZone">
                    <p class="nextColor">Estilos picker selector</p>
                    <p class="colorOKPicker">Color texto OK:</p>
                    <input type="color" value="#ffffff" id="aceptColor" class="cellColorCreate"><input id="aceptColorHex" class="inputColorHex" placeholder="#ffffff">
@@ -74,6 +90,7 @@
                    <p class="colorTittleP">Color fondo:</p>
                    <input type="color" value="#ffffff" id="backgroundPickerColor" class="cellColorCreate"><input id="backgroundPickerColorHex" class="inputColorHex" placeholder="#ffffff">
                </div>
+
             </div>
             <div class="spaceSeparate"></div>
        </div>
