@@ -295,7 +295,7 @@ class BooleanFormField: BoolCellInterace {
         case .different where valueToCompare != self.buttonAccept.isSelected:
             self.formFieldOutput?.launchRule(idField: rules.fieldReciver, behaivour: rules.behavior)
         default:
-            break
+            self.formFieldOutput?.launchRule(idField: rules.fieldReciver, behaivour: rules.behaviorElse)
         }
     }
     
