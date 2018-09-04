@@ -131,7 +131,7 @@ class BooleanFormField: BoolCellInterace {
     // MARK: Load data field
     
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
-        self.titleLabel.text = formFieldM.label        
+        self.titleLabel.text = formFieldM.label
         self.errorLabel.text = self.recoverTextError(value: self.fieldValue)
         if formFieldM.value != nil && (formFieldM.value as? Bool)! {
             self.changeState()
@@ -282,6 +282,21 @@ class BooleanFormField: BoolCellInterace {
     
     @objc func actionButtonAccept() {
         self.changeState()
+        guard
+            let formFiled = self.formFieldM,
+            let rules = formFiled.rules,
+            let valueToCompare = Bool(rules.value)
+        else {
+            return
+        }
+        switch rules.compare {
+        case .equal where valueToCompare == self.buttonAccept.isSelected:
+            self.formFieldOutput?.launchRule(idField: rules.fieldReciver, behaivour: rules.behavior)
+        case .different where valueToCompare != self.buttonAccept.isSelected:
+            self.formFieldOutput?.launchRule(idField: rules.fieldReciver, behaivour: rules.behavior)
+        default:
+            break
+        }
     }
     
     func labelAction(grTap: UITapGestureRecognizer) {

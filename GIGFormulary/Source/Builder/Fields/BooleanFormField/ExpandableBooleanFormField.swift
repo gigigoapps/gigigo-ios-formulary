@@ -87,6 +87,22 @@ class ExpandableBooleanFormField: ExpandableCellInterface, HyperlinkTextViewDele
         }
     }
     
+    override func launchRule(behaivour: TypeBehavior) {
+        super.launchRule(behaivour: behaivour)
+        switch behaivour {
+        case .disable:
+            self.disable()
+        case .enable:
+            self.enable()
+        case .hide:
+            if self.acceptButton.isSelected {
+                self.actionButtonAccept()
+            }
+        case .show, .none:
+            break
+        }
+    }
+    
     // MARK: Private Method
     
     fileprivate func showError() {
@@ -118,6 +134,18 @@ class ExpandableBooleanFormField: ExpandableCellInterface, HyperlinkTextViewDele
         self.expandCollapseButton.addTarget(self, action: #selector(expandCollapseButtonTapped), for: .touchUpInside)
     }
     
+    fileprivate func disable() {
+        self.acceptButton.isSelected = false
+        self.acceptButton.setBackgroundImage(self.checkBoxOff, for: .normal)
+        self.acceptButton.isEnabled = false
+        self.alpha = 0.5
+    }
+    
+    fileprivate func enable() {
+        self.acceptButton.isEnabled = true
+        self.alpha = 1.0
+    }
+    
     // MARK: Load data field
     
     fileprivate func loadData(_ formFieldM: FormFieldModel) {
@@ -125,7 +153,11 @@ class ExpandableBooleanFormField: ExpandableCellInterface, HyperlinkTextViewDele
         if formFieldM.value is Bool {
             self.changeState()
         }
-        self.acceptButton.isEnabled = formFieldM.isEditing
+        if !formFieldM.isEditing {
+            self.disable()
+        } else {
+            self.enable()
+        }
         var fieldDescription = formFieldM.fieldDescription
         if let strings = formFieldM.fieldDescription?.find(pattern: "\\{\\* [a-zA-Z0-9_]* \\*\\}") {
             strings.forEach {
@@ -207,6 +239,21 @@ class ExpandableBooleanFormField: ExpandableCellInterface, HyperlinkTextViewDele
     
     @objc func actionButtonAccept() {
         self.changeState()
+        guard
+            let formFiled = self.formFieldM,
+            let rules = formFiled.rules,
+            let valueToCompare = Bool(rules.value)
+        else {
+            return
+        }
+        switch rules.compare {
+        case .equal where valueToCompare == self.acceptButton.isSelected:
+            self.formFieldOutput?.launchRule(idField: rules.fieldReciver, behaivour: rules.behavior)
+        case .different where valueToCompare != self.acceptButton.isSelected:
+            self.formFieldOutput?.launchRule(idField: rules.fieldReciver, behaivour: rules.behavior)
+        default:
+            self.formFieldOutput?.launchRule(idField: rules.fieldReciver, behaivour: rules.behaviorElse)
+        }
     }
     
     @objc func expandCollapseButtonTapped() {
