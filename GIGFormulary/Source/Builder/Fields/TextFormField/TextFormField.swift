@@ -90,13 +90,11 @@ class TextFormField: TextCellInterface, UITextFieldDelegate {
     }
     
     func showError() {
-        if self.heightErrorLabelConstraint.constant == 0 {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.errorLabel.sizeToFit()
-                self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
-                self.viewPpal?.layoutIfNeeded()
-            })
-        }
+        UIView.animate(withDuration: 0.5, animations: {
+            self.errorLabel.sizeToFit()
+            self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
+            self.viewPpal?.layoutIfNeeded()
+        })
     }
     
     // MARK: Private Method

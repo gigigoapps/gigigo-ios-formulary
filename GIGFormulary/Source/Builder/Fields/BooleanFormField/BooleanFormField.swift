@@ -100,13 +100,11 @@ class BooleanFormField: BoolCellInterace {
     // MARK: Private Method
     
     fileprivate func showError() {
-        if self.heightErrorLabelConstraint.constant == 0 {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.errorLabel.sizeToFit()
-                self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
-                self.viewPpal?.layoutIfNeeded()
-            })
-        }
+        UIView.animate(withDuration: 0.5, animations: {
+            self.errorLabel.sizeToFit()
+            self.heightErrorLabelConstraint.constant =  self.errorLabel.frame.height
+            self.viewPpal?.layoutIfNeeded()
+        })
     }
     
     fileprivate func hideError() {

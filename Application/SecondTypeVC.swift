@@ -147,7 +147,7 @@ class SecondTypeVC: UIViewController, PFormulary {
     // MARK: Actions
     @IBAction func loadError(_ sender: Any) {
         let dicError = [
-            "pickerKey": "error 1",
+            "pickerKey": "error message: long one - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
             "key": "error 2"
             ]
         self.formulary.loadError(dicError)
