@@ -111,12 +111,12 @@ class FormBuilderViews: NSObject {
     }
     
     fileprivate func notifications() {
-        self.notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        self.notificationCenter.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        self.notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        self.notificationCenter.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     fileprivate func events() {
-        self.buttonSend.addTarget(self, action: #selector(self.buttonAction), for: UIControlEvents.touchUpInside)
+        self.buttonSend.addTarget(self, action: #selector(self.buttonAction), for: UIControl.Event.touchUpInside)
         self.scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hideComponent)))
         self.viewContainerField.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hideComponent)))
     }
@@ -173,10 +173,10 @@ class FormBuilderViews: NSObject {
     
     @objc func keyboardWillShow(_ notification: Notification) {
         guard let dict: NSDictionary = (notification as NSNotification).userInfo as NSDictionary? else { return }
-        guard let s: NSValue = dict.value(forKey: UIKeyboardFrameEndUserInfoKey) as? NSValue else { return LogWarn("keyboardWillShow NSValue parse error")}
+        guard let s: NSValue = dict.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue else { return LogWarn("keyboardWillShow NSValue parse error")}
         let keyboardFrame: CGRect = s.cgRectValue
         UIView.animate(withDuration: 0.25, animations: {
-            self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.size.height, 0)
+            self.scrollView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: keyboardFrame.size.height, right: 0)
             self.scrollView.scrollIndicatorInsets = self.scrollView.contentInset
         }) 
     }

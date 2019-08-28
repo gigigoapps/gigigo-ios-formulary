@@ -22,7 +22,7 @@ public extension PFormulary {
 }
 
 open class Formulary: PFormController {
-    open static let shared = Formulary()
+    public static let shared = Formulary()
     open var formularyOutput: PFormulary?
     
     //-- Private Var --

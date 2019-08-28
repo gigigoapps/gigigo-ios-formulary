@@ -1,18 +1,10 @@
 {
-  "Mac" : [
-
-  ],
-  "watchOS" : [
-
-  ],
-  "tvOS" : [
-
-  ],
-  "commitish" : "v3.0.16",
+  "commitish" : "v3.2.0",
   "iOS" : [
     {
       "name" : "GIGLibrary",
-      "hash" : "b3618738bc145ee044267a1ffb3ac2ff198a09c0e34c013e18832e4c3b82c877"
+      "hash" : "de0d8f3ed2cf46a2cc8926bfd95b03d72f55fa18089ca7ec9a6ffcff544f33b5",
+      "swiftToolchainVersion" : "5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)"
     }
   ]
 }

@@ -89,11 +89,11 @@ class DatePickerComponent: UIDatePicker {
     // MARK: - Private Helpers
     
     fileprivate func setupDatePicker() {
-        self.datePicker.datePickerMode = UIDatePickerMode.date
+        self.datePicker.datePickerMode = UIDatePicker.Mode.date
         self.datePicker.addTarget(
             self,
             action: #selector(onDatePickerValueChanged),
-            for: UIControlEvents.valueChanged
+            for: UIControl.Event.valueChanged
         )
         
         guard let textField = self.textField else { return LogWarn("Text Field is nil") }
@@ -105,8 +105,8 @@ class DatePickerComponent: UIDatePicker {
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
-        let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: self.textAcceptButton, style: UIBarButtonItemStyle.done, target: self, action: #selector(onDoneTap))
+        let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: self.textAcceptButton, style: UIBarButtonItem.Style.done, target: self, action: #selector(onDoneTap))
         doneButton.tintColor = self.styles?.acceptColorPicker
         toolBar.setItems([space, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true

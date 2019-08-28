@@ -186,7 +186,7 @@ class TextFormField: TextCellInterface, UITextFieldDelegate {
     }
     
     fileprivate func customizeCell() {
-        self.textTextField.borderStyle = UITextBorderStyle.none
+        self.textTextField.borderStyle = UITextField.BorderStyle.none
         let border = CALayer()
         let width = CGFloat(1.0)
         border.borderColor = UIColor.lightGray.cgColor

@@ -105,7 +105,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
     // MARK: Private Method
 
     fileprivate func nextFieldTo(_ field: FormField) -> FormField? {
-        let nextFieldPos =  self.formFields.index(of: field)!+1
+        let nextFieldPos =  self.formFields.firstIndex(of: field)!+1
         if nextFieldPos < self.formFields.count {
             let nextField = self.formFields[nextFieldPos]
             if nextField.formFieldM?.type == TypeField.indexFormField.rawValue || (nextField.formFieldM?.isHidden)! {
@@ -126,7 +126,7 @@ class FormController: NSObject, PFormField, PFormBuilderViews {
             
             // Prepare validation
             
-            var extraFields: Any? = nil
+            var extraFields: Any?
             if let validatorCompare = formFieldM.getValidator(validatorType: TypeValidator.validatorCompare) {
                 guard let itemsCompare = validatorCompare.itemCompare else {
                     return false

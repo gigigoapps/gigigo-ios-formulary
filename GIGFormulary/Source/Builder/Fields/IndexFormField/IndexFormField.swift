@@ -67,8 +67,8 @@ class IndexFormField: IndexCellInterface {
         if self.existLink(formFieldM.label) {
             let getLinks = self.getListLinks(formFieldM.label)
             
-            let attributes = [NSAttributedStringKey.foregroundColor: UIColor.black,
-                              NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+            let attributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
+                              NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)]
             self.indexLabel.attributedText = NSAttributedString(string: getLinks.1, attributes: attributes)
             
             //Step 2: Define a selection handler block
@@ -107,7 +107,7 @@ class IndexFormField: IndexCellInterface {
     
     fileprivate func existLink(_ text: String?) -> Bool {
         guard let text = text else { return false }
-        if text.index(of: "{") != nil {
+        if text.firstIndex(of: "{") != nil {
             return true
         }
         return false

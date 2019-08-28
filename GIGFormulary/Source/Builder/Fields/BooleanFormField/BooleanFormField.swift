@@ -120,7 +120,7 @@ class BooleanFormField: BoolCellInterace {
         self.mandotoryImage.image = UIImage(named: "mandatoryIcon", in: Bundle(for: type(of: self)), compatibleWith: nil)
         self.checkBoxOn = UIImage(named: "chackBoxOn", in: Bundle(for: type(of: self)), compatibleWith: nil)
         self.checkBoxOff = UIImage(named: "checkBox", in: Bundle(for: type(of: self)), compatibleWith: nil)
-        self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
+        self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControl.State())
         
         self.buttonAccept.addTarget(self, action: #selector(actionButtonAccept), for: .touchUpInside)
         self.buttonAccept.tintColor = UIColor.clear
@@ -146,25 +146,25 @@ class BooleanFormField: BoolCellInterace {
             if let styleField = formFieldM.style,
                 let titleColor =  styleField.titleColor {
     
-                let attributes = [NSAttributedStringKey.foregroundColor: titleColor,
-                                  NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+                let attributes = [NSAttributedString.Key.foregroundColor: titleColor,
+                                  NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)]
                 self.titleLabel.attributedText = NSAttributedString(string: getLinks.1, attributes: attributes)
                 
                 self.titleLabel.linkAttributeHighlight = [
-                    NSAttributedStringKey.foregroundColor: UIColor.blue,
-                    NSAttributedStringKey.underlineStyle: 1
+                    NSAttributedString.Key.foregroundColor: UIColor.blue,
+                    NSAttributedString.Key.underlineStyle: 1
                 ]
                 
                 self.titleLabel.linkAttributeDefault = [
-                    NSAttributedStringKey.foregroundColor: titleColor,
-                    NSAttributedStringKey.underlineStyle: 1
+                    NSAttributedString.Key.foregroundColor: titleColor,
+                    NSAttributedString.Key.underlineStyle: 1
                 ]
                 
                 self.titleLabel.font = styleField.fontTitle
             } else {
                 self.titleLabel.font = UIFont.systemFont(ofSize: 17)
-                let attributes = [NSAttributedStringKey.foregroundColor: UIColor.black,
-                                  NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+                let attributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
+                                  NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)]
                 self.titleLabel.attributedText = NSAttributedString(string: getLinks.1, attributes: attributes)
             }
             
@@ -215,35 +215,35 @@ class BooleanFormField: BoolCellInterace {
         }
         if let checkBoxOn = styleField.checkBoxOn {
             self.checkBoxOn = checkBoxOn
-            self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
+            self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControl.State.selected)
         }
         if let checkBoxOff = styleField.checkBoxOff {
             self.checkBoxOff = checkBoxOff
-            self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
+            self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControl.State())
         }
     }
     
     fileprivate func changeState() {
         if self.buttonAccept.isSelected {
-            self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
+            self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControl.State())
         } else {
-            self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
+            self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControl.State.selected)
         }
         self.buttonAccept.isSelected = !self.buttonAccept.isSelected
     }
     
     fileprivate func chooseImage() {
         if self.buttonAccept.isSelected {
-            self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
+            self.buttonAccept.setBackgroundImage(self.checkBoxOn, for: UIControl.State.selected)
         } else {
-            self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControlState())
+            self.buttonAccept.setBackgroundImage(self.checkBoxOff, for: UIControl.State())
         }
     }
     
     // MARK: Parse
     
     fileprivate func existLink(_ text: String) -> Bool {
-        return text.index(of: "{") != nil
+        return text.firstIndex(of: "{") != nil
     }
     
     fileprivate func getListLinks(_ text: String) -> ([String], String) {

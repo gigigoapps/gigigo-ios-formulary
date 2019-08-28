@@ -125,7 +125,7 @@ class ExpandableBooleanFormField: ExpandableCellInterface, HyperlinkTextViewDele
         self.checkBoxOn = UIImage(named: "chackBoxOn", in: Bundle(for: type(of: self)), compatibleWith: nil)
         self.checkBoxOff = UIImage(named: "checkBox", in: Bundle(for: type(of: self)), compatibleWith: nil)
         self.mandotoryImage.image = UIImage(named: "mandatoryIcon", in: Bundle(for: type(of: self)), compatibleWith: nil)
-        self.acceptButton.setBackgroundImage(self.checkBoxOff, for: UIControlState())
+        self.acceptButton.setBackgroundImage(self.checkBoxOff, for: UIControl.State())
         
         self.acceptButton.addTarget(self, action: #selector(actionButtonAccept), for: .touchUpInside)
         self.acceptButton.tintColor = UIColor.clear
@@ -206,30 +206,30 @@ class ExpandableBooleanFormField: ExpandableCellInterface, HyperlinkTextViewDele
         }
         if let checkBoxOn = styleField?.checkBoxOn {
             self.checkBoxOn = checkBoxOn
-            self.acceptButton.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
+            self.acceptButton.setBackgroundImage(self.checkBoxOn, for: UIControl.State.selected)
         }
         if let checkBoxOff = styleField?.checkBoxOff {
             self.checkBoxOff = checkBoxOff
-            self.acceptButton.setBackgroundImage(self.checkBoxOff, for: UIControlState())
+            self.acceptButton.setBackgroundImage(self.checkBoxOff, for: UIControl.State())
         }
         self.layoutIfNeeded()
     }
     
     fileprivate func changeState() {
         if self.acceptButton.isSelected {
-            self.acceptButton.setBackgroundImage(self.checkBoxOff, for: UIControlState())
+            self.acceptButton.setBackgroundImage(self.checkBoxOff, for: UIControl.State())
         } else {
-            self.acceptButton.setBackgroundImage(self.checkBoxOn, for: UIControlState())
-            self.acceptButton.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
+            self.acceptButton.setBackgroundImage(self.checkBoxOn, for: UIControl.State())
+            self.acceptButton.setBackgroundImage(self.checkBoxOn, for: UIControl.State.selected)
         }
         self.acceptButton.isSelected = !self.acceptButton.isSelected
     }
     
     fileprivate func chooseImage() {
         if self.acceptButton.isSelected {
-            self.acceptButton.setBackgroundImage(self.checkBoxOn, for: UIControlState.selected)
+            self.acceptButton.setBackgroundImage(self.checkBoxOn, for: UIControl.State.selected)
         } else {
-            self.acceptButton.setBackgroundImage(self.checkBoxOff, for: UIControlState())
+            self.acceptButton.setBackgroundImage(self.checkBoxOff, for: UIControl.State())
         }
     }
     

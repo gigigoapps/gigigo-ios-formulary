@@ -64,7 +64,7 @@ class PickerFormField: PickerCellInterface, POptionsPickerComponent, PDatePicker
                 var pos = 0
                 if let option = optionFound {
                     if  option.count > 0 {
-                       pos = self.formFieldM!.options!.index(of: option[0])!
+                       pos = self.formFieldM!.options!.firstIndex(of: option[0])!
                     }
                 }
                 self.pickerOptions?.selectedIndex = pos
@@ -249,7 +249,7 @@ class PickerFormField: PickerCellInterface, POptionsPickerComponent, PDatePicker
     }
     
     fileprivate func customizeCell() {
-        self.textTextField.borderStyle = UITextBorderStyle.none
+        self.textTextField.borderStyle = UITextField.BorderStyle.none
         let border = CALayer()
         let width = CGFloat(1.0)
         border.borderColor = UIColor.lightGray.cgColor
